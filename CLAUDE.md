@@ -15,6 +15,7 @@ against, plus the audit of the source document it is built on.
 ```
 pipeline/extract_golden.py   PDF -> structured diagnostic trees (deterministic)
 pipeline/audit_manual.py     source-document data-quality audit
+tests/test_extraction.py     regression guard; runs automatically after extraction
 golden/                      the ground truth (committed)
 reports/audit_findings.json  audit baseline (committed)
 eval/                        evaluation harness (not yet implemented)
@@ -72,6 +73,14 @@ Path overrides, all resolved from the script's own location by default:
 
 ## Regression check
 
+`tests/test_extraction.py` enforces everything below and runs automatically at
+the end of `extract_golden.py`. A non-zero exit means the regenerated dataset is
+not a valid baseline. Run it standalone with:
+
+```bash
+python tests/test_extraction.py
+```
+
 After any regeneration, these must hold exactly. Verified on 2026-09-10 with
 pdfplumber 0.11.10 / pymupdf 1.28.2:
 
@@ -86,28 +95,44 @@ pdfplumber 0.11.10 / pymupdf 1.28.2:
 | cross-reference edges | 94 |
 | format split | 117 A / 57 B |
 
-Audit baseline: **19 findings — 6 HIGH / 8 MEDIUM / 3 LOW / 2 INFO.**
+Audit baseline: **20 findings — 6 HIGH / 9 MEDIUM / 3 LOW / 2 INFO.**
 
 Any deviation is a behaviour change. Report it loudly and investigate before
 committing the regenerated data.
 
 ## Known state worth carrying forward
 
-- `README.md` says "20 findings ... 3 informational"; the audit actually emits
-  19 (2 INFO). The `H2` non-embedded-fonts finding does not fire, because font
-  detection samples only every 37th page. Docs and data disagree here.
-- `METRICS.md`'s case-type table sums to 1,241 but `qa_set.json` holds 1,330;
-  its `numeric_exactness` (759) and `branch_following` (114) counts are stale
-  against the actual 846 and 116.
-- `CA451` step 6 carries the criterion `.2 to 4.6V`. The correct value is
-  `0.2 to 4.6V` (confirmed by sibling code `CA452`). The `README.md` "Also found
-  and repaired" section claims this was fixed; it was not, and audit check `E4`
-  cannot detect it because it looks for a digit before the split point.
-- 4 `qa_set.json` cases are duplicate questions with conflicting expected
-  answers (`CA271` resistance at the same measuring point across two steps).
-  They are unanswerable as written and cap `numeric_exactness` below 100%.
+- **`golden/qa_set.json` is stale and must be regenerated.** Case `22858d0adc`
+  requires the verbatim string `.2 to 4.6V` for `CA451` step 6; the corrected
+  ground truth is `Sensor output 0.2 to 4.6V`. `numeric_exactness` scored against
+  it today penalises the correct answer. Do not hand-edit it — and note it
+  *cannot* be regenerated: `build_qa_set.py`, `evaluate.py` and
+  `make_mock_runs.py` are documented in `README.md` but were never present.
+  `eval/` is the intended home for them. Writing `build_qa_set.py` is the next
+  task.
+- Audit check `G1` fires 14 times, and **all 14 are false positives.** The
+  page-number scraper takes the first `\d\d-\d+` in a page's last three lines;
+  Index pages end with an entry like `Center Swivel Joint..... 10-214`, which has
+  the same shape as a footer. The manual's printed page numbers are genuinely
+  unique. `G1` needs its detection narrowed before its output means anything.
+- `H2` (non-embedded fonts) does not fire, and that is now correct rather than a
+  sampling artifact. It scans every page and finds all 123 fonts embedded.
+  `README.md` previously claimed Arial and Arial-Bold were not embedded; that is
+  false for this file.
+- `H3` reports 94 font instances, not 4. PDF subsetting gives each subset a
+  unique six-letter prefix, so 87 of the 94 are subsets of one MS-Gothic face.
+  Count families, not font objects.
+- `J2` is hardcoded: its permission strings are literals, never read from
+  `doc.permissions`. The copy used for the current baseline reports
+  `is_encrypted: False`.
+- 4 `qa_set.json` question groups are duplicates with differing `expected`
+  payloads. Only one is genuinely conflicting (`CA271`, `Between ECM (female) (2)
+  and (32)`, `1 to 5Ω` at step 3 vs `Min. 100kΩ` at step 4); the other three —
+  one more `CA271` and two `D8ARKR` — carry identical criteria and differ only in
+  the `step` field. A further 10 duplicate questions have identical expectations
+  and merely double-weight those measuring points.
 - Criteria strings mix `Ω` U+2126 (353) and U+03A9 (349). Any evaluator must
   NFC-normalise before verbatim comparison.
-- `build_qa_set.py`, `evaluate.py` and `make_mock_runs.py` are documented in
-  `README.md` but were never present. `eval/` is the intended home for them.
-  `golden/qa_set.json` therefore cannot currently be regenerated from source.
+- The source PDF is currently sitting at `<repo>/SEN06867-13.pdf`, inside the
+  working tree. It is gitignored via `*.pdf` and invisible to git, but Rule 3
+  says it belongs outside the tree. Move it.

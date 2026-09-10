@@ -312,6 +312,25 @@ if no_point:
         "A value exists but the pins or terminals to measure between were lost.",
         no_point, "The technician knows the target number but not where to probe.")
 
+# A criterion split across a cell boundary. A leading '.' is the signature of the
+# orphaned-fragment case: the integer part was stranded in an adjacent cell.
+SPLIT_DECIMAL = re.compile(r"\d\s+\.\d|\d\.\s+\d|^\s*\.\d|\d\s+\.\s*\d")
+
+# E4 SELF-TEST. This check reported zero on a known-corrupt record once already,
+# because the pattern required a digit BEFORE the split and '.2 to 4.6V' has
+# none -- and that zero was then cited as proof the corruption was fixed. A check
+# that cannot fail on its own motivating example is not a check. These assertions
+# run on every audit so a clean E4 means the corpus is clean, not that E4 is blind.
+assert SPLIT_DECIMAL.search(".2 to 4.6V"), \
+    "E4 SELF-TEST FAILED: pattern cannot detect a leading-dot fragment"
+assert SPLIT_DECIMAL.search("Sensor output 0 .2 to 4.6V"), \
+    "E4 SELF-TEST FAILED: pattern cannot detect a space-split decimal"
+assert not SPLIT_DECIMAL.search("Sensor output 0.2 to 4.6V"), \
+    "E4 SELF-TEST FAILED: pattern flags the corrected value"
+assert not SPLIT_DECIMAL.search("Max. 1 Ω"), \
+    "E4 SELF-TEST FAILED: pattern flags a plain bound"
+print("E4 self-test: PASS - detects '.2 to 4.6V', accepts 'Sensor output 0.2 to 4.6V'")
+
 # ------------------------- split-cell corruption (step number glued into text)
 glued = []
 for c, r in recs.items():
@@ -339,12 +358,14 @@ for c, r in recs.items():
         meas += st["measurements"]
     for m in meas:
         crit = m.get("criteria") or ""
-        if re.search(r"\d\s+\.\d|\d\.\s+\d", crit):
+        if SPLIT_DECIMAL.search(crit):
             split_dec.append(f"{c}: '{crit[:40]}'")
 if split_dec:
     add("E4", "HIGH", "STRUCT", "Measurement values split across a cell boundary",
         "A decimal criterion is broken in two by the table structure, e.g. "
-        "'0' and '.2 to 4.6V' in adjacent cells.", split_dec,
+        "'0' and '.2 to 4.6V' in adjacent cells. Also flags a criterion that "
+        "begins with a decimal point, which means the integer part was lost to "
+        "an adjacent cell.", split_dec,
         "Produces a nonsense value if the fragments are joined with a space, and a "
         "wrong value if only one fragment is kept.")
 
@@ -364,7 +385,7 @@ if dup_titles:
 
 # =================================================== G. PAGINATION INTEGRITY
 page_map = collections.defaultdict(list)
-for i in range(2, 2210):
+for i in range(2, doc.page_count):
     txt = doc[i].get_text().strip().split("\n")
     for line in txt[-3:]:
         m = re.search(r"\b(\d{2}-\d{1,4})\b", line)
@@ -380,7 +401,7 @@ if dup_pages:
         "Citations that use only the printed page number are ambiguous. Every "
         "citation must carry the section code and the PDF page as well.")
 
-nopage = [i + 1 for i in range(2, 2210)
+nopage = [i + 1 for i in range(2, doc.page_count)
           if not re.search(r"\b\d{2}-\d{1,4}\b",
                            "\n".join(doc[i].get_text().strip().split("\n")[-3:]))]
 if nopage:
@@ -391,7 +412,7 @@ if nopage:
 
 # ==================================================== H. TEXT LAYER QUALITY
 lowtext, vectoronly = [], []
-for i in range(2, 2210):
+for i in range(2, doc.page_count):
     p = doc[i]
     t = p.get_text().strip()
     if len(t) < 250:
@@ -409,8 +430,11 @@ add("H1", "HIGH", "RISK", "Pages that are effectively invisible to text retrieva
     "plus a vision pass, or they will silently never be retrieved.")
 
 # ------------------------------------------------------------ fonts
+# Every page, not every 37th. Sampling with a stride meant a font used on only
+# a few pages was never observed, so H2 could not fire and the audit reported
+# one finding fewer than the documented baseline.
 fonts = {}
-for i in range(0, doc.page_count, 37):
+for i in range(doc.page_count):
     for f in doc[i].get_fonts(full=True):
         fonts[f[3]] = f
 not_embedded = sorted({name for name, f in fonts.items() if not f[1]})

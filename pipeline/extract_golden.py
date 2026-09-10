@@ -7,7 +7,7 @@ from the Komatsu PC200-10M0 Shop Manual (SEN06867-13).
 Deterministic parsing only - NO LLM is used here. That is the point:
 this file is the reference the LLM pipeline gets scored against.
 """
-import json, re, sys, os
+import json, re, sys, os, traceback, subprocess
 from collections import OrderedDict
 
 import pdfplumber
@@ -141,6 +141,24 @@ CRIT_VALUE = re.compile(
 GLUED_STEP = re.compile(r"^(?=[^\d]*\d)(.*?)\b(\d{1,2})\b(.*)$")
 
 
+def _fuse_split_decimals(cells):
+    """Rejoin a decimal broken across a cell boundary, in place in the cell list:
+    ['Sensor output 0', '.2 to 4.6V'] -> ['Sensor output 0.2 to 4.6V'].
+
+    This must run BEFORE the criterion cell is chosen. '.2 to 4.6V' matches
+    CRIT_VALUE on its own (the range regex sees '2 to 4'), so a right-to-left
+    scan stops on the fragment and strands the integer part in the measuring
+    point: 'Between ECM (25) and (47) / Sensor output 0'.
+    """
+    out = []
+    for c in cells:
+        if out and out[-1] and re.search(r"\d$", out[-1]) and re.match(r"^\.\d", c or ""):
+            out[-1] += c
+        else:
+            out.append(c)
+    return out
+
+
 def _join_criteria(parts):
     """Rejoin criteria fragments. A fragment starting with '.' is a decimal that
     the table extractor split across a cell boundary: '0' + '.2 to 4.6V'."""
@@ -206,6 +224,11 @@ def parse_causes(rows, fmt):
             continue
 
         # ---- continuation row -------------------------------------------
+        # Repair decimals split across a cell boundary before anything reads
+        # the cells positionally, so the criterion is a single cell by the time
+        # crit_idx is chosen.
+        cells = _fuse_split_decimals(cells)
+
         # Section 40 uses three different cause-table layouts and the YES/NO
         # column sits in a different position in each. Locate it by content
         # rather than by index.
@@ -350,7 +373,9 @@ def extract_code(pdf, code, start, end):
         for line in txt.split("\n"):
             if f"[{code}]" in line and "Failure Code" in line:
                 continue
-        rec["title"] = rec.get("detail_of_failure", "")[:120] or None
+        # detail_of_failure is initialised to None and rec.update filters falsy
+        # values, so .get's default never applies -- coerce explicitly.
+        rec["title"] = (rec.get("detail_of_failure") or "")[:120] or None
 
     # ---- cross-references, monitoring codes, connectors
     blob = json.dumps(rec)
@@ -441,7 +466,11 @@ def main():
                 else:
                     rec["in_code_table"] = False
             except Exception as exc:  # keep going; report at the end
+                # A swallowed exception here drops the code from the dataset
+                # entirely. Print the traceback so a silent shrink is loud.
                 failures.append((code, repr(exc)))
+                print(f"\nFAIL {code}: extraction raised, code dropped", file=sys.stderr)
+                traceback.print_exc()
                 continue
             with open(f"{OUT}/failure_codes/{code}.json", "w", encoding="utf-8") as f:
                 json.dump(rec, f, indent=2, ensure_ascii=False)
@@ -469,6 +498,30 @@ def main():
     print(f"action-level conflicts (table vs detail page): {len(conflicts)}")
     for c in conflicts[:10]:
         print("  CONFLICT", c)
+
+    run_regression_guard()
+
+
+def run_regression_guard():
+    """Verify the freshly written dataset before anyone treats it as ground truth.
+
+    Regeneration is only valid together with this check. If a count moves, the
+    parser changed behaviour -- that is a regression to investigate, not a new
+    baseline to accept.
+    """
+    guard = os.path.join(REPO_ROOT, "tests", "test_extraction.py")
+    if not os.path.isfile(guard):
+        print(f"\nWARNING: regression guard not found at {guard}; dataset UNVERIFIED")
+        return
+
+    print("\n" + "=" * 60)
+    print("running regression guard")
+    rc = subprocess.call([sys.executable, guard], env={**os.environ, "GOLD_DIR": OUT})
+    if rc != 0:
+        sys.exit(
+            "\nREGRESSION GUARD FAILED -- the regenerated dataset is NOT a valid\n"
+            "baseline. Do not commit it. See the failures above."
+        )
 
 
 if __name__ == "__main__":

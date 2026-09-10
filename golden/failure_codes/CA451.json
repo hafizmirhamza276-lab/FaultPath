@@ -76,8 +76,8 @@
       "measurements": [
         {
           "quantity": "Voltage",
-          "point": "Between ECM (25) and (47) / Sensor output 0",
-          "criteria": ".2 to 4.6V"
+          "point": "Between ECM (25) and (47)",
+          "criteria": "Sensor output 0.2 to 4.6V"
         }
       ],
       "extraction_warning": "column_split_recovered"

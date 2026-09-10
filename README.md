@@ -8,21 +8,45 @@ Built without workshop access: the manual is the ground truth.
 
 ---
 
+> ## ⚠ `golden/qa_set.json` is stale — regeneration required
+>
+> `golden/failure_codes/` and `golden/index.json` are **current**: regenerated
+> from the source PDF after the split-decimal fix, with all eight regression
+> counts verified. `qa_set.json` is not, and cannot be.
+>
+> - Case `22858d0adc` encodes `".2 to 4.6V"` as a `must_contain_verbatim`
+>   requirement for `CA451` step 6. The corrected ground truth is
+>   `Sensor output 0.2 to 4.6V`. Any `numeric_exactness` run scored against that
+>   case today **requires the assistant to emit a wrong common-rail sensor
+>   voltage and penalises the correct one.** Treat the metric as invalid until
+>   the set is rebuilt.
+> - `qa_set.json` has **no producer script in this repo.** `build_qa_set.py` is
+>   referenced throughout these docs but was never committed. It must be written
+>   before the set can be regenerated.
+>
+> Do not hand-edit it — a hand-corrected value is indistinguishable from a
+> parser bug on the next regeneration. See `CLAUDE.md` Rule 2.
+
+---
+
 ## Contents
 
 ```
-extract_golden.py      PDF -> structured diagnostic trees (deterministic, no LLM)
-build_qa_set.py        trees -> golden Q&A test cases with expected answers
-evaluate.py            scores a system run; module + pipeline metrics, release gates
-make_mock_runs.py      synthetic good/weak runs to validate the harness itself
-audit_manual.py        source-document data-quality audit
+pipeline/
+  extract_golden.py    PDF -> structured diagnostic trees (deterministic, no LLM)
+  audit_manual.py      source-document data-quality audit
+eval/                  intended home of the harness below -- currently empty
+  build_qa_set.py      MISSING: trees -> golden Q&A test cases
+  evaluate.py          MISSING: scores a system run; module + pipeline metrics
+  make_mock_runs.py    MISSING: synthetic good/weak runs to validate the harness
 METRICS.md             metric definitions and interpretation guide
 
 golden/
   failure_codes/*.json  174 failure codes, fully structured
   index.json            summary index
-  qa_set.json           1,330 golden test cases
-audit_findings.json     machine-readable audit output
+  qa_set.json           1,330 golden test cases (stale -- see warning above)
+reports/
+  audit_findings.json   machine-readable audit output
 eval_out/               reports, per-case CSV, metrics JSON, run history
 runs/                   system outputs to be scored (JSONL)
 ```
@@ -30,14 +54,21 @@ runs/                   system outputs to be scored (JSONL)
 ## Quick start
 
 ```bash
-pip install pymupdf pdfplumber
+pip install -r requirements.txt
+export KOMATSU_PDF="/path/outside/this/repo/SEN06867-13.pdf"
 
-python extract_golden.py /path/to/SEN06867-13.pdf
-python build_qa_set.py
-python audit_manual.py
-python make_mock_runs.py
-python evaluate.py runs/run_good.jsonl --run-id good   # 7/7 gates pass
-python evaluate.py runs/run_weak.jsonl --run-id weak   # 0/7 gates pass
+python pipeline/extract_golden.py     # -> golden/
+python pipeline/audit_manual.py       # -> reports/audit_findings.json
+```
+
+The evaluation half of the pipeline is not yet implemented. Once the three
+scripts above exist in `eval/`, the full loop is:
+
+```bash
+python eval/build_qa_set.py                             # regenerate the golden Q&A set
+python eval/make_mock_runs.py
+python eval/evaluate.py runs/run_good.jsonl --run-id good   # expect 7/7 gates pass
+python eval/evaluate.py runs/run_weak.jsonl --run-id weak   # expect 0/7 gates pass
 ```
 
 ## Wiring in a real system
@@ -74,13 +105,30 @@ can see that something broke, not where.
 
 # Source Document Audit
 
-Run `python audit_manual.py` to reproduce. Findings are classified as:
+Run `python pipeline/audit_manual.py` to reproduce. Findings are classified as:
 
 - **SOURCE** — a genuine inconsistency in the manual itself
 - **STRUCT** — a structural property that breaks straightforward extraction
 - **RISK** — not wrong, but a known failure mode for retrieval systems
 
-**20 findings: 6 high, 8 medium, 3 low, 3 informational.**
+**20 findings: 6 high, 9 medium, 3 low, 2 informational.**
+
+Every count in this document is verified against `reports/audit_findings.json`,
+which was regenerated over the full 2,226-page range. Two corrections to what
+this section previously claimed:
+
+- The earlier split (**6/8/3/3**) was wrong in two columns. There are 2
+  informational findings, not 3.
+- The 20th finding is **`G1`**, not `H2`. `G1` had never fired because checks
+  `G1`, `G2` and `H1` iterated a hardcoded `range(2, 2210)` that stopped exactly
+  at the end of Section 90, excluding the 16-page Index. They now use
+  `doc.page_count`.
+
+**`H2` (non-embedded fonts) does not fire, and that is correct.** It previously
+sampled every 37th page, which saw only 18 of the document's 123 fonts — a check
+that structurally could not trigger. It now scans every page, and finds that
+**all 123 fonts are embedded.** The claim previously made below, that Arial and
+Arial-Bold are referenced but not embedded, is false for this file.
 
 Two things worth saying up front. First, this manual is unusually well built —
 2,226 pages, 954 bookmarks with accurate page targets, a clean text layer
@@ -95,7 +143,7 @@ running rather than assuming.
 ## HIGH severity
 
 ### E3 — Steps whose number is typeset inside the cause column
-**27 steps across 14 codes. STRUCT.**
+**27 steps across 12 codes. STRUCT.**
 
 On certain pages the step number is rendered within the cause text rather than
 in its own cell. Extraction produces rows like:
@@ -114,8 +162,8 @@ steps are the final ones — the checks that identify a defective engine
 controller. A technician following the truncated procedure runs out of things to
 check and is told nothing further.
 
-Affected codes: `CA451`, `DWK0KA`, `DWK0KY`, `DWK8KA`, `DWK8KY`, `DWK2KA`,
-`DWK2KY`, `DWA2KA`, `DWA2KY`, `DW91KA`, `DW91KY`, `DY20KA`, and two others.
+Affected codes, in full: `CA451`, `DW91KA`, `DW91KY`, `DWA2KA`, `DWA2KY`,
+`DWK0KA`, `DWK0KY`, `DWK2KA`, `DWK2KY`, `DWK8KA`, `DWK8KY`, `DY20KA`.
 
 *Handled:* `extract_golden.py` recovers the step number from the mangled text
 and flags the record with `extraction_warning: column_split_recovered`. Verify
@@ -172,9 +220,9 @@ elsewhere in Section 40. It needs manual transcription or a vision pass, and is
 excluded from step-based evaluation until then.
 
 ### H1 — Pages effectively invisible to text retrieval
-**218 pages, of which 103 are dense vector graphics. RISK.**
+**220 pages, of which 103 are dense vector graphics. RISK.**
 
-218 pages carry under 250 characters of extractable text. 103 of those contain
+220 pages carry under 250 characters of extractable text. 103 of those contain
 over 500 vector drawing operations each — circuit diagrams and hydraulic
 schematics drawn as line art, not as embedded images.
 
@@ -186,6 +234,9 @@ characters of text.
 **These pages will never be retrieved by a text pipeline and will never produce
 an error.** They need page rasterisation plus a vision pass, or they are simply
 absent from the system.
+
+*Was 218/103 before the audit range was extended to the full document; the two
+additional low-text pages are in the Index.*
 
 ---
 
@@ -269,28 +320,78 @@ the manual, so each of these is a required second hop.
 Without it the assistant tells the technician to check the monitoring function
 and stops — technically faithful to the retrieved chunk, and useless.
 
+### G1 — The same printed page number appears on multiple pages
+**14 instances. SOURCE — but see below.**
+
+This check had never fired, because the audit stopped at PDF page 2210 and the
+Index runs to 2226. With the full range covered it reports 14 collisions, and
+**every one pairs a body page with an Index page**:
+
+```
+10-214 on PDF pages [316, 2211]
+01-10  on PDF pages [98,  2223]
+40-192 on PDF pages [734, 2213]
+```
+
+**These are false positives, and the finding as classified is wrong.** The
+page-number scraper reads the last three lines of a page and takes the first
+`\d\d-\d+` match. A body page ends with its own footer:
+
+```
+'10 Structure and Function'   '10-214'   'PC200-10M0'
+```
+
+An Index page ends with an index *entry*, whose trailing reference has the same
+shape:
+
+```
+'Center Swivel Joint........................................... 10-214'
+'Index'   '1'
+```
+
+So the scraper attributes `10-214` to the Index page. The manual's printed page
+numbers are unique; the extractor is ambiguous on Index pages. Two consequences:
+
+- The original claim that this document has **no** duplicate printed page
+  numbers anywhere still holds. Nothing found here contradicts it.
+- `G1` needs its detection narrowed — require the number to stand alone on its
+  line, or skip pages whose footer reads `Index` — before its output means
+  anything. Until then it is a known-noisy check. It is left firing rather than
+  silently suppressed, because a suppressed check is how `E4` went blind.
+
 ---
 
 ## LOW severity
 
 ### G2 — Pages carrying no printed page number
-**19 pages. STRUCT.** Section dividers and full-bleed diagram pages have no
-footer, so content on them cannot be cited the way a technician expects.
+**21 pages. STRUCT.** Section dividers and full-bleed diagram pages have no
+footer, so content on them cannot be cited the way a technician expects. *Was 19
+before the audit range was extended to the full document.*
 
 ### H3 — Japanese CID fonts in an English manual
-**4 fonts. STRUCT.** The document was produced from a Japanese source
+**94 font instances. STRUCT.** The document was produced from a Japanese source
 (`MS-Gothic-90ms-RKSJ-H`). Poppler reports a missing Adobe-Japan1 mapping.
 Harmless for the English text layer, but some tools emit warnings or drop
 affected glyphs.
 
-### H2 / J2 — Non-embedded fonts and AES encryption
-Arial and Arial-Bold are referenced but not embedded, which is a character
-substitution risk when rasterising pages for a vision pass. The file is AES
-encrypted with modification denied — printing and copying are allowed, but some
-libraries refuse to open it or silently return empty text.
+*Was 4 under the old every-37th-page sampling. The jump to 94 is not new
+content: PDF subsetting gives each subset a unique six-letter prefix
+(`WTHOJK+MS-Gothic-…`, `GYTDCU+MS-Gothic-…`), so 87 of the 94 are subsets of the
+same MS-Gothic face. Count families, not font objects, before reading anything
+into this number.*
+
+### J2 — AES encryption
+The file is AES encrypted with modification denied — printing and copying are
+allowed, but some libraries refuse to open it or silently return empty text.
 
 Normalise with `qpdf --decrypt` before ingestion, or tool behaviour will vary
 across machines.
+
+*This finding is hardcoded in `audit_manual.py` — its permission strings are
+literals, never read from `doc.permissions`. The copy used for the current
+baseline reports `is_encrypted: False`, i.e. it has already been normalised.
+Treat the finding as a standing note about the distributed file, not a
+measurement of the file the audit ran against.*
 
 ---
 
@@ -310,12 +411,20 @@ across machines.
 | 60 Maintenance Standard | 74 | Tables + dimension drawings |
 | 80 Others | 112 | Mixed |
 | 90 Circuit Diagrams | 44 | Vector schematics, almost no text |
+| Index | 16 | Text |
 
 Section 40 alone is 43% of the manual. A single chunking and embedding strategy
 applied uniformly will be wrong for most of the document.
 
+The trailing 16-page Index was previously omitted from this table and, more
+consequentially, from the audit itself: checks `G1`, `G2` and `H1` iterated a
+hardcoded `range(2, 2210)`, which stops exactly at the end of Section 90. All
+three now use `doc.page_count`. The effect: `G2` 19 → 21, `H1` 218 → 220
+low-text pages (103 vector-only, unchanged), and `G1` fired for the first time
+with 14 instances — all of them Index-page artifacts, as described above.
+
 ### E5 — Criteria that are legitimately non-numeric
-**22 measurements.** Continuity checks and audible confirmations ("No continuity
+**26 measurements.** Continuity checks and audible confirmations ("No continuity
 (there is no sound)") have no numeric value by design. Not a defect — but any
 validation rule demanding a number from every criterion will flag them
 incorrectly.
@@ -345,20 +454,54 @@ measurement sub-rows, whose position also shifts between formats.
 
 ---
 
-## Also found and repaired
+## Also found
 
-### Measurement values split across a cell boundary
+### Measurement values split across a cell boundary — found, regressed, re-fixed
 
 `CA451` step 6 stores its criterion as two cells: `'Sensor output 0'` and
 `'.2 to 4.6V'`. Joined with a space this reads **"0 .2 to 4.6V"**; keep only one
 fragment and it reads **"0"**.
 
-The correct value is `0.2 to 4.6V` — a common rail pressure sensor output range.
-Either corruption is the kind of number a technician would act on.
+The correct value is `Sensor output 0.2 to 4.6V` — a common rail pressure sensor
+output range. Every corruption of it is the kind of number a technician acts on.
 
-`extract_golden.py` rejoins fragments beginning with a decimal point. The audit
-check for this pattern (`E4`) now reports zero, which is the intended end state
-rather than evidence the problem never existed.
+This was fixed once, then **silently reintroduced** when measurement detection
+was rewritten to handle the third cause-table layout. `_join_criteria` still
+rejoins decimal fragments correctly, but the rewrite chose the criterion cell
+*before* calling it: the right-to-left scan for `CRIT_VALUE` matches `.2 to 4.6V`
+on its own, because the range pattern sees `2 to 4`. The scan therefore stopped
+on the fragment and stranded the integer part in the measuring point:
+
+```
+point:    "Between ECM (25) and (47) / Sensor output 0"
+criteria: ".2 to 4.6V"
+```
+
+`extract_golden.py` now fuses split decimals on the raw cell list, before any
+positional read (`_fuse_split_decimals`). A cell ending in a digit followed by
+one beginning `.<digit>` is a decimal broken by the table structure and is
+rejoined into a single cell.
+
+**The audit could not have caught this.** Check `E4` matched `\d\s+\.\d`, which
+requires a digit *before* the split point — and `.2 to 4.6V` has none. `E4`
+reported zero on a known-corrupt record, and this document previously cited that
+zero as evidence the problem was fixed.
+
+> **`E4` currently reports zero. That is now meaningful.** A check that cannot
+> fail on its own motivating example is not a check, so `audit_manual.py` runs
+> four assertions on the `E4` pattern before using it — it must match
+> `".2 to 4.6V"` and `"Sensor output 0 .2 to 4.6V"`, and must not match
+> `"Sensor output 0.2 to 4.6V"` or `"Max. 1 Ω"`. The audit prints
+> `E4 self-test: PASS` on every run and aborts if the pattern ever goes blind
+> again. Against the pre-fix corpus the widened check found `CA451`; against the
+> regenerated corpus it finds nothing, because the corruption is gone.
+
+The corpus was swept for the same shape — every criterion starting with `.` and
+every measuring point ending in an orphaned digit. `CA451` step 6 was the only
+genuine instance across all 872 measurements, and instrumenting the repair
+during a full re-extraction confirms it fired exactly once, on that one row.
+`tests/test_extraction.py` pins the corrected value so this cannot regress a
+third time.
 
 ### Quantity labels vary far more than the common cases suggest
 

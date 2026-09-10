@@ -43,6 +43,17 @@ have failed, and the machine goes back out broken.
 Typical cause of a drop: the model is paraphrasing retrieved text instead of
 quoting it. Fix in the prompt, not the retriever.
 
+> **Currently invalid.** The ground truth for `CA451` step 6 has been corrected
+> to `Sensor output 0.2 to 4.6V`, but case `22858d0adc` in `qa_set.json` still
+> requires the verbatim string `".2 to 4.6V"`. Until the set is rebuilt, this
+> metric penalises the correct answer on a safety-critical value. See the warning
+> at the top of `README.md`.
+>
+> **Normalise before comparing.** Criteria strings mix two ohm codepoints —
+> U+2126 OHM SIGN (353 occurrences) and U+03A9 GREEK CAPITAL LETTER OMEGA (349).
+> A verbatim comparator that does not NFC-normalise first will fail roughly half
+> of all resistance cases for a reason that has nothing to do with correctness.
+
 ### `hallucination_rate_values`
 **Target: ≤ 0.5%**
 
@@ -124,14 +135,15 @@ filter is enforced.
 
 | Type | n | Tests |
 |---|---|---|
-| `numeric_exactness` | 759 | Measurement criteria reproduced verbatim |
+| `numeric_exactness` | 846 | Measurement criteria reproduced verbatim |
 | `direct_lookup` | 173 | Code → title, action level, machine effect |
 | `step_ordering` | 164 | Correct first check |
-| `branch_following` | 114 | Format-A YES/NO branch outcomes |
+| `branch_following` | 116 | Format-A YES/NO branch outcomes |
 | `precondition` | 10 | Which code to solve first when several show |
 | `cross_ref_hop` | 9 | Pointer-only codes that must redirect |
 | `adversarial_unknown` | 6 | Fabricated codes — must refuse |
 | `adversarial_model` | 6 | Real code, wrong machine — must refuse |
+| **Total** | **1,330** | |
 
 The adversarial counts are small by design. They are pass/fail gates, not
 averages — one failure among six is a release blocker, not a 17% dip.
@@ -145,10 +157,14 @@ helps nobody.
 
 ## Running an evaluation
 
+> `build_qa_set.py`, `evaluate.py` and `make_mock_runs.py` are **not yet
+> implemented**. `eval/` is their intended home. Everything in this section and
+> the next describes the target state, not a working command.
+
 ```bash
-python extract_golden.py                      # rebuild ground truth from the PDF
-python build_qa_set.py                        # regenerate the golden Q&A set
-python evaluate.py runs/<run>.jsonl --run-id <name>
+python pipeline/extract_golden.py             # rebuild ground truth from the PDF
+python eval/build_qa_set.py                   # regenerate the golden Q&A set
+python eval/evaluate.py runs/<run>.jsonl --run-id <name>
 ```
 
 Outputs land in `eval_out/`:
@@ -167,9 +183,9 @@ argument than any single number.
 ## Validating the harness itself
 
 ```bash
-python make_mock_runs.py
-python evaluate.py runs/run_good.jsonl --run-id good   # expect 7/7 gates pass
-python evaluate.py runs/run_weak.jsonl --run-id weak   # expect 0/7 gates pass
+python eval/make_mock_runs.py
+python eval/evaluate.py runs/run_good.jsonl --run-id good   # expect 7/7 gates pass
+python eval/evaluate.py runs/run_weak.jsonl --run-id weak   # expect 0/7 gates pass
 ```
 
 `run_weak` is a deliberately bad system: it nudges every number by 10%, cites
@@ -184,14 +200,15 @@ scorecard that cannot fail is not a scorecard.
 
 ## Known limitations
 
-The full source-document audit lives in `README.md` (20 findings). The items
-that directly bound what these metrics can tell you:
+The full source-document audit lives in `README.md` (20 findings: 6 high, 9
+medium, 3 low, 2 informational). The items that directly bound what these
+metrics can tell you:
 
 1. **Ground truth covers Section 40 failure codes only** — 174 codes. H-Mode and
    S-Mode symptom trees are not extracted, so symptom-entry queries are
    unmeasured.
 
-2. **Diagrams are not evaluated.** 218 pages carry almost no extractable text and
+2. **Diagrams are not evaluated.** 220 pages carry almost no extractable text and
    103 of those are dense vector schematics. Any answer depending on reading a
    diagram is outside what this harness measures.
 
