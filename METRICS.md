@@ -159,15 +159,28 @@ helps nobody.
 
 ## Running an evaluation
 
-> `evaluate.py` and `make_mock_runs.py` are **not yet implemented**. `eval/` is
-> their intended home. `build_qa_set.py` exists and is runnable; the scoring
-> commands below describe the target state.
+> Tier 1 is implemented in `eval/`. Tier 2 is not wired: judge metrics register
+> through the same `Metric` interface with `TIER = 2` and are aggregated into a
+> separate block, so they cannot be quoted as Tier-1 figures.
 
 ```bash
 python pipeline/extract_golden.py             # rebuild ground truth from the PDF
 python eval/build_qa_set.py                   # regenerate the golden Q&A set
-python eval/evaluate.py runs/<run>.jsonl --run-id <name>
+python eval/run_eval.py --chunker structural --system good --label baseline
+python eval/compare.py eval_out/runs/<a>.json eval_out/runs/<b>.json
 ```
+
+Runs land in `eval_out/runs/<timestamp>_<label>.json` with the git SHA, a
+dirty-tree flag, the full config, every metric, per-case rows and wall time.
+
+**Tier 1 has no noise floor.** It is deterministic, so `compare.py` treats any
+movement as real and exits non-zero on a regression. There is no tolerance band
+to hide a small regression in. A Tier-2 comparison will need one; the two must
+never share a threshold.
+
+**Case ids are frozen.** Runs are matched case by case on `qa_set.json` ids. If
+`build_qa_set.py` ever changes its id scheme, `compare.py` refuses with
+`ids changed, runs not comparable` rather than reporting every case as new.
 
 Outputs land in `eval_out/`:
 
@@ -185,10 +198,21 @@ argument than any single number.
 ## Validating the harness itself
 
 ```bash
-python eval/make_mock_runs.py
-python eval/evaluate.py runs/run_good.jsonl --run-id good   # expect 7/7 gates pass
-python eval/evaluate.py runs/run_weak.jsonl --run-id weak   # expect 0/7 gates pass
+python tests/test_eval_harness.py
 ```
+
+Three things, in order of how badly they bite:
+
+1. **Every metric proves it can fail** on known-bad input, and the run aborts if
+   one cannot. Audit checks `E4` and `H2` each sat at zero for months while
+   being structurally incapable of returning anything else, and both zeros were
+   read as statements about the document. A metric nobody has watched fail is
+   not a measurement.
+2. **Good passes 7/7 gates; weak fails 0/7.** If weak passes one, that gate has
+   a hole. Each gate is additionally checked for direction — weak must be
+   strictly worse, not merely different.
+3. **Two runs of one config produce identical numbers**, asserted rather than
+   assumed.
 
 `run_weak` is a deliberately bad system: it nudges every number by 10%, cites
 wrong pages, ignores the model filter, and invents procedures for codes that do

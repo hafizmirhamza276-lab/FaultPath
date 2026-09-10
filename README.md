@@ -32,9 +32,15 @@ pipeline/
   audit_manual.py      source-document data-quality audit
 eval/
   build_qa_set.py      trees -> golden Q&A test cases (deterministic, no LLM)
-  evaluate.py          MISSING: scores a system run; module + pipeline metrics
-  make_mock_runs.py    MISSING: synthetic good/weak runs to validate the harness
-tests/test_extraction.py  regression guard; runs after extraction
+  adapters.py          Retriever + Generator seams; LocalBM25Retriever ships
+  chunkers.py          corpus builder: structural / fixed_2000 / fixed_512
+  metrics/             retrieval, generation, conversation, safety
+  synthetic.py         good/weak systems that verify the harness itself
+  run_eval.py          Tier-1 CLI -> eval_out/runs/<timestamp>_<label>.json
+  compare.py           run-to-run regression diff; exits non-zero on regression
+tests/
+  test_extraction.py   ground-truth regression guard; runs after extraction
+  test_eval_harness.py verifies the harness: good 7/7, weak 0/7
 METRICS.md             metric definitions and interpretation guide
 
 golden/
@@ -59,14 +65,40 @@ python pipeline/audit_manual.py       # -> reports/audit_findings.json
 python tests/test_extraction.py       # regression guard (also runs automatically)
 ```
 
-The scoring half is not yet implemented. Once the two remaining scripts exist in
-`eval/`, the full loop is:
+Tier-1 evaluation:
 
 ```bash
-python eval/make_mock_runs.py
-python eval/evaluate.py runs/run_good.jsonl --run-id good   # expect 7/7 gates pass
-python eval/evaluate.py runs/run_weak.jsonl --run-id weak   # expect 0/7 gates pass
+python eval/run_eval.py --chunker structural --system good   # 7/7 gates
+python eval/run_eval.py --chunker structural --system weak   # 0/7 gates
+python eval/compare.py eval_out/runs/<a>.json eval_out/runs/<b>.json
+python tests/test_eval_harness.py            # verifies the harness itself
 ```
+
+`--system` takes a synthetic system; a real one plugs into the `Generator` seam
+in `eval/adapters.py`. Tier 2 (judge model) is not wired — metrics register
+through the same interface with `TIER = 2` and are aggregated separately, so a
+judge score can never be quoted as a Tier-1 figure.
+
+### Local baseline
+
+Same corpus, same retriever (BM25), three chunkings. Everything else held still,
+so the spread is the cost of the chunking decision alone.
+
+| | structural | fixed_2000 | fixed_512 |
+|---|---:|---:|---:|
+| chunks | 174 | 491 | 1,708 |
+| **ceiling_recall** | **1.0000** | **0.9997** | **0.9914** |
+| recall@5 | 0.9979 | 0.9665 | 0.7896 |
+| answer_coverage@5 | 0.9970 | 0.9492 | 0.6844 |
+| fragmentation_gap@10 | 0.0004 | 0.0138 | 0.1069 |
+| context_precision | 0.8497 | 0.7020 | 0.6452 |
+| mrr | 0.9917 | 0.9556 | 0.8104 |
+| gates | 7/7 | 7/7 | **6/7** |
+
+Read `ceiling_recall` first: it is set by ingestion and chunking, and every
+other retrieval number lives under it. `fixed_512` cannot reach 1.0 at any k
+because some facts — full step procedures — are longer than 512 characters and
+exist in no single chunk. No amount of ranking work recovers them.
 
 ## Wiring in a real system
 
