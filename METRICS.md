@@ -200,8 +200,8 @@ scorecard that cannot fail is not a scorecard.
 
 ## Known limitations
 
-The full source-document audit lives in `README.md` (20 findings: 6 high, 9
-medium, 3 low, 2 informational). The items that directly bound what these
+The full source-document audit lives in `README.md` (21 findings: 6 high, 8
+medium, 5 low, 2 informational). The items that directly bound what these
 metrics can tell you:
 
 1. **Ground truth covers Section 40 failure codes only** — 174 codes. H-Mode and

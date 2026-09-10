@@ -55,7 +55,7 @@ runs/                   system outputs to be scored (JSONL)
 
 ```bash
 pip install -r requirements.txt
-export KOMATSU_PDF="/path/outside/this/repo/SEN06867-13.pdf"
+export KOMATSU_PDF="../komatsu-manuals/SEN06867-13.pdf"
 
 python pipeline/extract_golden.py     # -> golden/
 python pipeline/audit_manual.py       # -> reports/audit_findings.json
@@ -111,24 +111,21 @@ Run `python pipeline/audit_manual.py` to reproduce. Findings are classified as:
 - **STRUCT** — a structural property that breaks straightforward extraction
 - **RISK** — not wrong, but a known failure mode for retrieval systems
 
-**20 findings: 6 high, 9 medium, 3 low, 2 informational.**
+**21 findings: 6 high, 8 medium, 5 low, 2 informational.**
 
 Every count in this document is verified against `reports/audit_findings.json`,
-which was regenerated over the full 2,226-page range. Two corrections to what
-this section previously claimed:
+which was regenerated over the full 2,226-page range. Corrections to what this
+section previously claimed:
 
-- The earlier split (**6/8/3/3**) was wrong in two columns. There are 2
-  informational findings, not 3.
-- The 20th finding is **`G1`**, not `H2`. `G1` had never fired because checks
-  `G1`, `G2` and `H1` iterated a hardcoded `range(2, 2210)` that stopped exactly
-  at the end of Section 90, excluding the 16-page Index. They now use
-  `doc.page_count`.
-
-**`H2` (non-embedded fonts) does not fire, and that is correct.** It previously
-sampled every 37th page, which saw only 18 of the document's 123 fonts — a check
-that structurally could not trigger. It now scans every page, and finds that
-**all 123 fonts are embedded.** The claim previously made below, that Arial and
-Arial-Bold are referenced but not embedded, is false for this file.
+- The original split (**6/8/3/3**) was wrong in two columns.
+- Checks `G1`, `G2` and `H1` iterated a hardcoded `range(2, 2210)` that stopped
+  exactly at the end of Section 90, excluding the 16-page Index. All three now
+  use `doc.page_count`.
+- Three checks were reporting zero because they were **incapable of reporting
+  anything else**: `E4` (split decimals), `H2` (non-embedded fonts) and `D3`
+  (missing "Details of failure"). Each now carries a self-test that asserts it
+  can fail on a known-bad input, and prints `<id> self-test: PASS` on every run.
+  See *Checks that could not fail* below.
 
 Two things worth saying up front. First, this manual is unusually well built —
 2,226 pages, 954 bookmarks with accurate page targets, a clean text layer
@@ -320,53 +317,24 @@ the manual, so each of these is a required second hop.
 Without it the assistant tells the technician to check the monitoring function
 and stops — technically faithful to the retrieved chunk, and useless.
 
-### G1 — The same printed page number appears on multiple pages
-**14 instances. SOURCE — but see below.**
-
-This check had never fired, because the audit stopped at PDF page 2210 and the
-Index runs to 2226. With the full range covered it reports 14 collisions, and
-**every one pairs a body page with an Index page**:
-
-```
-10-214 on PDF pages [316, 2211]
-01-10  on PDF pages [98,  2223]
-40-192 on PDF pages [734, 2213]
-```
-
-**These are false positives, and the finding as classified is wrong.** The
-page-number scraper reads the last three lines of a page and takes the first
-`\d\d-\d+` match. A body page ends with its own footer:
-
-```
-'10 Structure and Function'   '10-214'   'PC200-10M0'
-```
-
-An Index page ends with an index *entry*, whose trailing reference has the same
-shape:
-
-```
-'Center Swivel Joint........................................... 10-214'
-'Index'   '1'
-```
-
-So the scraper attributes `10-214` to the Index page. The manual's printed page
-numbers are unique; the extractor is ambiguous on Index pages. Two consequences:
-
-- The original claim that this document has **no** duplicate printed page
-  numbers anywhere still holds. Nothing found here contradicts it.
-- `G1` needs its detection narrowed — require the number to stand alone on its
-  line, or skip pages whose footer reads `Index` — before its output means
-  anything. Until then it is a known-noisy check. It is left firing rather than
-  silently suppressed, because a suppressed check is how `E4` went blind.
-
 ---
 
 ## LOW severity
 
 ### G2 — Pages carrying no printed page number
-**21 pages. STRUCT.** Section dividers and full-bleed diagram pages have no
-footer, so content on them cannot be cited the way a technician expects. *Was 19
-before the audit range was extended to the full document.*
+**35 pages. STRUCT.** Section dividers and full-bleed diagram pages have no
+footer, so content on them cannot be cited the way a technician expects.
+
+*Was 19 when the audit stopped at page 2210, then 21 once the range was extended.
+It is 35 now that the footer rule is correct: 19 body pages plus all 16 Index
+pages, which are footed `Index` and a plain sequence number rather than a
+`NN-NNN` page number. The rise is the check becoming accurate, not the document
+getting worse.*
+
+### D3 — Codes with no "Details of failure" field
+**1 code. SOURCE.** `DR31KX` — the same code whose table layout matches no known
+format (`D1`). This check previously reported zero; see *Checks that could not
+fail*.
 
 ### H3 — Japanese CID fonts in an English manual
 **94 font instances. STRUCT.** The document was produced from a Japanese source
@@ -379,6 +347,31 @@ content: PDF subsetting gives each subset a unique six-letter prefix
 (`WTHOJK+MS-Gothic-…`, `GYTDCU+MS-Gothic-…`), so 87 of the 94 are subsets of the
 same MS-Gothic face. Count families, not font objects, before reading anything
 into this number.*
+
+### H2 — Fonts referenced but not embedded
+**10 faces. RISK.**
+
+Ten faces are referenced by page content but carry no embedded font programme,
+so the reader must substitute one from the host system. All ten are Arial
+family:
+
+```
+Arial          Arial,Bold      Arial-BoldMT    ArialMT      ArialNarrow
+JVVZIU+ArialMT SLLUPO+ArialMT  TRNOVV+ArialMT  VMTNYV+ArialMT  VBITAO+ArialNarrow
+```
+
+**Why this matters specifically here.** The audit's own recommendation for the
+220 low-text pages (`H1`) is to rasterise them and run a vision pass. Rasterising
+a page whose text depends on a font the machine does not have substitutes glyphs
+silently — metrics shift, characters are replaced, and the rendered image stops
+agreeing with the text layer it is supposed to complement. Because these are
+Arial faces carrying body text rather than decorative elements, the exposure is
+spread across the document. Install the fonts, or verify rasterised output
+against extracted text before trusting either.
+
+*Type3 fonts are excluded from this count. Their glyphs are content streams
+inside the PDF, so they report `ext='n/a'` by construction and carry no
+substitution risk. One is present in this document.*
 
 ### J2 — AES encryption
 The file is AES encrypted with modification denied — printing and copying are
@@ -419,15 +412,52 @@ applied uniformly will be wrong for most of the document.
 The trailing 16-page Index was previously omitted from this table and, more
 consequentially, from the audit itself: checks `G1`, `G2` and `H1` iterated a
 hardcoded `range(2, 2210)`, which stops exactly at the end of Section 90. All
-three now use `doc.page_count`. The effect: `G2` 19 → 21, `H1` 218 → 220
-low-text pages (103 vector-only, unchanged), and `G1` fired for the first time
-with 14 instances — all of them Index-page artifacts, as described above.
+three now use `doc.page_count`. The effect: `H1` 218 → 220 low-text pages
+(103 vector-only, unchanged) and `G2` 19 → 35. `G1` reports zero either way —
+the manual's printed page numbers are genuinely unique.
 
 ### E5 — Criteria that are legitimately non-numeric
 **26 measurements.** Continuity checks and audible confirmations ("No continuity
 (there is no sound)") have no numeric value by design. Not a defect — but any
 validation rule demanding a number from every criterion will flag them
 incorrectly.
+
+---
+
+## Checks that could not fail
+
+Four checks in `audit_manual.py` were reporting a result they were structurally
+incapable of changing. Three reported zero and one reported noise. In every case
+the empty or wrong result had been read as a statement about the document.
+
+| Check | Defect | Was | Now |
+|---|---|---|---|
+| `E4` split decimals | pattern `\d\s+\.\d` needs a digit *before* the split; `.2 to 4.6V` has none | 0 | 0, self-tested |
+| `H2` non-embedded fonts | `not f[1]` where `f[1]` is `'n/a'`; `not "n/a"` is always `False` | 0 | **10** |
+| `D3` missing detail field | `not value` where the manual prints `-`; `-` is truthy | 0 | **1** |
+| `G1` duplicate page numbers | substring match picks up index entries' trailing references | 14 false | **0** |
+
+`H2` is the one worth dwelling on. Fixing the page stride made it *capable* of
+seeing all 123 fonts instead of 18 — but the predicate was still broken, so it
+evaluated every font as embedded and returned nothing. "Finds nothing" was then
+written into this document as "nothing to find", and a true finding was deleted
+on the strength of a broken check. That is the same mistake `E4` had already
+demonstrated, made a second time while documenting the first.
+
+Each of these now asserts against known-good and known-bad inputs before it runs,
+and prints `<id> self-test: PASS`. The audit aborts if an assertion fails, so a
+clean result means a clean document rather than a blind check.
+
+**`D2` was under-reporting for the same reason as `D3`** (1 code, now 2) — the
+shared root cause is applying truthiness to a field whose "absent" state is the
+non-empty string `-`. Both now use an explicit `missing()` predicate.
+
+The remaining truthiness-on-string predicates in `audit_manual.py` — `E1`
+criteria, `E2` measuring point, `D5` cause/procedure, `F1` canonical title —
+were checked against the corpus. None currently carries a placeholder value in
+its absent state, so all four are correct on this data. They are, however, the
+same shape, and would break the same way if a future revision printed `-` in
+those columns.
 
 ---
 

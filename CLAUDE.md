@@ -57,7 +57,7 @@ rather than running against a missing or wrong file.
 
 ```bash
 pip install -r requirements.txt
-export KOMATSU_PDF="/path/outside/this/repo/SEN06867-13.pdf"
+export KOMATSU_PDF="../komatsu-manuals/SEN06867-13.pdf"
 
 python pipeline/extract_golden.py     # -> golden/
 python pipeline/audit_manual.py       # -> reports/audit_findings.json
@@ -95,7 +95,7 @@ pdfplumber 0.11.10 / pymupdf 1.28.2:
 | cross-reference edges | 94 |
 | format split | 117 A / 57 B |
 
-Audit baseline: **20 findings — 6 HIGH / 9 MEDIUM / 3 LOW / 2 INFO.**
+Audit baseline: **21 findings — 6 HIGH / 8 MEDIUM / 5 LOW / 2 INFO.**
 
 Any deviation is a behaviour change. Report it loudly and investigate before
 committing the regenerated data.
@@ -110,18 +110,28 @@ committing the regenerated data.
   `make_mock_runs.py` are documented in `README.md` but were never present.
   `eval/` is the intended home for them. Writing `build_qa_set.py` is the next
   task.
-- Audit check `G1` fires 14 times, and **all 14 are false positives.** The
-  page-number scraper takes the first `\d\d-\d+` in a page's last three lines;
-  Index pages end with an entry like `Center Swivel Joint..... 10-214`, which has
-  the same shape as a footer. The manual's printed page numbers are genuinely
-  unique. `G1` needs its detection narrowed before its output means anything.
-- `H2` (non-embedded fonts) does not fire, and that is now correct rather than a
-  sampling artifact. It scans every page and finds all 123 fonts embedded.
-  `README.md` previously claimed Arial and Arial-Bold were not embedded; that is
-  false for this file.
+- **Never apply truthiness to a field whose "absent" state is a non-empty
+  string.** This defect class has now bitten three checks. `H2` used
+  `not f[1]` on PyMuPDF's `get_fonts` tuple, where index 1 is the string `'n/a'`
+  when a font is not embedded — and `not "n/a"` is `False`, so it could never
+  fire. `D2`/`D3` used `not value` on fields where the manual prints `-`. All
+  three now use explicit predicates with self-tests. `E1`, `E2`, `D5` and `F1`
+  are the same shape and currently safe only because no placeholder appears in
+  their columns; re-check them on any new revision.
+- Every check that can report zero carries a self-test asserting it can fail on a
+  known-bad input, and prints `<id> self-test: PASS`. The audit aborts if one
+  fails. Do not remove these — `E4` and `H2` were both read as clean when they
+  were blind, and in `H2`'s case a true finding was deleted from `README.md` on
+  the strength of it.
+- `H2` reports 10 non-embedded Arial faces. Type3 is excluded deliberately: its
+  glyphs are inline content streams, so `ext='n/a'` is expected there.
 - `H3` reports 94 font instances, not 4. PDF subsetting gives each subset a
   unique six-letter prefix, so 87 of the 94 are subsets of one MS-Gothic face.
   Count families, not font objects.
+- `G1` reports zero. The footer rule requires the printed page number to be the
+  entire line; a substring search attributes a body page's number to the Index,
+  whose entries end with a reference of the same shape. `G2` is 35 as a result
+  (19 body pages + all 16 Index pages, which have no `NN-NNN` footer at all).
 - `J2` is hardcoded: its permission strings are literals, never read from
   `doc.permissions`. The copy used for the current baseline reports
   `is_encrypted: False`.
@@ -133,6 +143,6 @@ committing the regenerated data.
   and merely double-weight those measuring points.
 - Criteria strings mix `Ω` U+2126 (353) and U+03A9 (349). Any evaluator must
   NFC-normalise before verbatim comparison.
-- The source PDF is currently sitting at `<repo>/SEN06867-13.pdf`, inside the
-  working tree. It is gitignored via `*.pdf` and invisible to git, but Rule 3
-  says it belongs outside the tree. Move it.
+- The source PDF lives at `../komatsu-manuals/SEN06867-13.pdf` — a sibling of the
+  repo, outside the working tree. Keep it there. The `*.pdf` gitignore rule is a
+  safety net, not the policy; Rule 3 is the policy.

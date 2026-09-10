@@ -245,9 +245,10 @@
     "kind": "SOURCE",
     "title": "Codes with no 'Phenomenon on machine' field",
     "detail": "The manual does not state what the operator will actually observe.",
-    "count": 1,
+    "count": 2,
     "items": [
-      "DAFGMC"
+      "DAFGMC",
+      "DR31KX"
     ],
     "impact": "The assistant cannot confirm it is working on the right problem, and cannot help a technician who describes a symptom rather than a code."
   },
@@ -274,31 +275,6 @@
       "'eng water level low' -> B@BCQA, B@BCZK"
     ],
     "impact": "A technician who reports only the screen text, not the code, cannot be disambiguated. The assistant must ask for the code itself."
-  },
-  {
-    "id": "G1",
-    "severity": "MEDIUM",
-    "kind": "SOURCE",
-    "title": "The same printed page number appears on multiple pages",
-    "detail": "Printed page numbers are not unique across the document.",
-    "count": 14,
-    "items": [
-      "01-10 on PDF pages [98, 2223]",
-      "01-5 on PDF pages [93, 2224]",
-      "10-125 on PDF pages [227, 2220]",
-      "10-168 on PDF pages [270, 2222]",
-      "10-214 on PDF pages [316, 2211]",
-      "10-26 on PDF pages [128, 2219]",
-      "10-60 on PDF pages [162, 2215]",
-      "30-91 on PDF pages [441, 2217]",
-      "40-192 on PDF pages [734, 2213]",
-      "40-534 on PDF pages [1076, 2214]",
-      "50-240 on PDF pages [1738, 2216]",
-      "50-470 on PDF pages [1968, 2221]",
-      "50-49 on PDF pages [1547, 2218]",
-      "90-41 on PDF pages [2207, 2212]"
-    ],
-    "impact": "Citations that use only the printed page number are ambiguous. Every citation must carry the section code and the PDF page as well."
   },
   {
     "id": "I1",
@@ -352,12 +328,24 @@
     "impact": "Each of these is a required second hop. Without it the assistant tells the technician to 'check with the monitoring function' and stops there."
   },
   {
+    "id": "D3",
+    "severity": "LOW",
+    "kind": "SOURCE",
+    "title": "Codes with no 'Details of failure' field",
+    "detail": "",
+    "count": 1,
+    "items": [
+      "DR31KX"
+    ],
+    "impact": "Reduces the quality of semantic matching for symptom queries."
+  },
+  {
     "id": "G2",
     "severity": "LOW",
     "kind": "STRUCT",
     "title": "Pages carrying no printed page number",
     "detail": "Section dividers and full-bleed diagram pages have no footer.",
-    "count": 21,
+    "count": 35,
     "items": [
       "88",
       "102",
@@ -378,10 +366,45 @@
       "2206",
       "2208",
       "2210",
+      "2211",
+      "2212",
+      "2213",
+      "2214",
+      "2215",
+      "2216",
+      "2217",
+      "2218",
+      "2219",
+      "2220",
+      "2221",
+      "2222",
+      "2223",
+      "2224",
       "2225",
       "2226"
     ],
     "impact": "Content on these pages cannot be cited the way a technician expects."
+  },
+  {
+    "id": "H2",
+    "severity": "LOW",
+    "kind": "RISK",
+    "title": "Fonts referenced but not embedded",
+    "detail": "These faces are referenced by the page content but carry no embedded font programme, so the reader must supply a substitute from the host system.",
+    "count": 10,
+    "items": [
+      "Arial",
+      "Arial,Bold",
+      "Arial-BoldMT",
+      "ArialMT",
+      "ArialNarrow",
+      "JVVZIU+ArialMT",
+      "SLLUPO+ArialMT",
+      "TRNOVV+ArialMT",
+      "VBITAO+ArialNarrow",
+      "VMTNYV+ArialMT"
+    ],
+    "impact": "The audit's own recommendation for the 220 low-text pages is to rasterise them and run a vision pass. Rasterising a page whose text relies on a font the machine does not have silently substitutes glyphs -- metrics shift, characters are replaced, and the image no longer matches the text layer. Since these are Arial faces carrying body text, the risk is spread across the document rather than confined to decorative elements. Verify rasterised pages against extracted text before trusting either."
   },
   {
     "id": "H3",

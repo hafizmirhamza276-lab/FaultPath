@@ -219,8 +219,23 @@ if pointers:
         "Hop-expansion is mandatory, not an optimisation.")
 
 # ============================================== D. INCOMPLETE CODE RECORDS
-missing_effect = sorted(c for c, r in recs.items() if not r.get("machine_effect"))
-missing_detail = sorted(c for c, r in recs.items() if not r.get("detail_of_failure"))
+def missing(value):
+    """True when a field is absent OR carries a printed placeholder.
+
+    The manual prints '-' for a field it does not populate, and clean() preserves
+    it, so `not value` is False and the check silently under-reports. Same defect
+    class as the H2 font predicate: an 'absent' state that is a non-empty string.
+    """
+    return str(value or "").strip() in ("", "-", "--")
+
+
+assert missing("-") and missing("") and missing(None), \
+    "D2/D3 SELF-TEST FAILED: placeholder or empty value not treated as missing"
+assert not missing("The engine speed changes."), \
+    "D2/D3 SELF-TEST FAILED: real content treated as missing"
+
+missing_effect = sorted(c for c, r in recs.items() if missing(r.get("machine_effect")))
+missing_detail = sorted(c for c, r in recs.items() if missing(r.get("detail_of_failure")))
 no_steps = sorted(c for c, r in recs.items() if not r["steps"])
 
 if no_steps:
@@ -384,14 +399,40 @@ if dup_titles:
         "disambiguated. The assistant must ask for the code itself.")
 
 # =================================================== G. PAGINATION INTEGRITY
+# The printed page number is typeset as a line of its own in the footer, next to
+# (not on) the section name and model name. An Index page ends with an entry line
+# whose trailing reference has the same shape --
+# 'Center Swivel Joint..... 10-214' -- so a substring search attributes a body
+# page's number to the Index and reports a duplicate that does not exist. Require
+# the whole line to be the number: that holds for 2,189 pages and excludes all 14
+# index-entry lines, including the two whose dot-leader is too short to filter on.
+FOOTER_PAGE_NO = re.compile(r"^\d{2}-\d{1,4}$")
+
+
+def printed_page_number(page):
+    lines = [l.strip() for l in page.get_text().strip().split("\n") if l.strip()]
+    for line in lines[-3:]:
+        if FOOTER_PAGE_NO.match(line):
+            return line
+    return None
+
+
+# G1 SELF-TEST: the narrowed rule must still accept a real footer and must reject
+# an index entry. Both literals are taken verbatim from this document.
+assert FOOTER_PAGE_NO.match("10-214"), \
+    "G1 SELF-TEST FAILED: rule rejects a real footer page number"
+assert not FOOTER_PAGE_NO.match(
+    "Center Swivel Joint........................................... 10-214"), \
+    "G1 SELF-TEST FAILED: rule accepts an index entry line"
+assert not FOOTER_PAGE_NO.match("Function of PC-EPC Valve and LS-EPC Valve... 10-60"), \
+    "G1 SELF-TEST FAILED: rule accepts a short-dot-leader index entry"
+print("G1 self-test: PASS - accepts a bare footer number, rejects index entries")
+
 page_map = collections.defaultdict(list)
 for i in range(2, doc.page_count):
-    txt = doc[i].get_text().strip().split("\n")
-    for line in txt[-3:]:
-        m = re.search(r"\b(\d{2}-\d{1,4})\b", line)
-        if m:
-            page_map[m.group(1)].append(i + 1)
-            break
+    n = printed_page_number(doc[i])
+    if n:
+        page_map[n].append(i + 1)
 
 dup_pages = {k: v for k, v in page_map.items() if len(v) > 1}
 if dup_pages:
@@ -402,8 +443,7 @@ if dup_pages:
         "citation must carry the section code and the PDF page as well.")
 
 nopage = [i + 1 for i in range(2, doc.page_count)
-          if not re.search(r"\b\d{2}-\d{1,4}\b",
-                           "\n".join(doc[i].get_text().strip().split("\n")[-3:]))]
+          if printed_page_number(doc[i]) is None]
 if nopage:
     add("G2", "LOW", "STRUCT", "Pages carrying no printed page number",
         "Section dividers and full-bleed diagram pages have no footer.",
@@ -437,12 +477,54 @@ fonts = {}
 for i in range(doc.page_count):
     for f in doc[i].get_fonts(full=True):
         fonts[f[3]] = f
-not_embedded = sorted({name for name, f in fonts.items() if not f[1]})
+
+
+def is_not_embedded(font_tuple):
+    """page.get_fonts(full=True) -> (xref, ext, type, basefont, name, enc, ref).
+
+    Index 1 is `ext`, a STRING: 'ttf'/'cff'/'cid' when the font is embedded, the
+    literal 'n/a' when it is not. This predicate was originally `not f[1]`, and
+    `not "n/a"` is False -- so it could not report a non-embedded font under any
+    circumstances. Fixing the page stride made the check capable of seeing the
+    whole document; it still evaluated every font as embedded, and that empty
+    result was read as "nothing to find". Never apply truthiness to this field.
+
+    Type3 is excluded: its glyphs are defined as content streams inside the PDF,
+    so it reports ext='n/a' by construction and carries no substitution risk.
+    """
+    if str(font_tuple[2]).strip().lower() == "type3":
+        return False
+    return str(font_tuple[1]).strip().lower() == "n/a"
+
+
+# H2 SELF-TEST, on real tuples from this document. A check that cannot fail is
+# not a check -- the same principle E4 is guarded by, and the same way H2 failed.
+assert is_not_embedded((16620, "n/a", "TrueType", "Arial", "", "", 0)), \
+    "H2 SELF-TEST FAILED: predicate does not detect a known non-embedded face"
+assert is_not_embedded((16616, "N/A ", "TrueType", "Arial,Bold", "", "", 0)), \
+    "H2 SELF-TEST FAILED: predicate is not case/whitespace tolerant"
+assert not is_not_embedded((16614, "ttf", "TrueType", "MicrosoftSansSerif", "", "", 0)), \
+    "H2 SELF-TEST FAILED: predicate flags a known embedded face"
+assert not is_not_embedded((8720, "cid", "Type0", "MS-Gothic", "", "", 0)), \
+    "H2 SELF-TEST FAILED: predicate flags an embedded CID face"
+assert not is_not_embedded((8720, "n/a", "Type3", "", "", "", 0)), \
+    "H2 SELF-TEST FAILED: predicate flags a Type3 face, whose glyphs are inline"
+print("H2 self-test: PASS - detects ext='n/a', accepts ext='ttf'/'cid' and Type3")
+
+not_embedded = sorted({name for name, f in fonts.items() if is_not_embedded(f)})
 if not_embedded:
     add("H2", "LOW", "RISK", "Fonts referenced but not embedded",
-        "Some text relies on fonts the reader must supply.", not_embedded,
-        "Character substitution risk when rendering pages for a vision pass. "
-        "Verify rasterised pages against extracted text before trusting either.")
+        "These faces are referenced by the page content but carry no embedded "
+        "font programme, so the reader must supply a substitute from the host "
+        "system.", not_embedded,
+        "The audit's own recommendation for the 220 low-text pages is to "
+        "rasterise them and run a vision pass. Rasterising a page whose text "
+        "relies on a font the machine does not have silently substitutes glyphs "
+        "-- metrics shift, characters are replaced, and the image no longer "
+        "matches the text layer. Since these are Arial faces carrying body text, "
+        "the risk is spread across the document rather than confined to "
+        "decorative elements. Verify rasterised pages against extracted text "
+        "before trusting either.")
 
 cjk = [n for n in fonts if "Gothic" in n or "Japan" in n]
 if cjk:
