@@ -8,24 +8,19 @@ Built without workshop access: the manual is the ground truth.
 
 ---
 
-> ## ⚠ `golden/qa_set.json` is stale — regeneration required
+> **`golden/` is current and fully regenerable.** `failure_codes/`,
+> `index.json` and `qa_set.json` are all rebuilt from the source PDF, with the
+> eight regression counts and the qa_set/ground-truth agreement enforced by
+> `tests/test_extraction.py`.
 >
-> `golden/failure_codes/` and `golden/index.json` are **current**: regenerated
-> from the source PDF after the split-decimal fix, with all eight regression
-> counts verified. `qa_set.json` is not, and cannot be.
+> `qa_set.json` previously had no producer, which is how it went stale: the
+> ground truth was corrected and the test set kept requiring the old value.
+> `eval/build_qa_set.py` closes that. Do not hand-edit either — a hand-corrected
+> value is indistinguishable from a parser bug on the next regeneration. See
+> `CLAUDE.md` Rule 2.
 >
-> - Case `22858d0adc` encodes `".2 to 4.6V"` as a `must_contain_verbatim`
->   requirement for `CA451` step 6. The corrected ground truth is
->   `Sensor output 0.2 to 4.6V`. Any `numeric_exactness` run scored against that
->   case today **requires the assistant to emit a wrong common-rail sensor
->   voltage and penalises the correct one.** Treat the metric as invalid until
->   the set is rebuilt.
-> - `qa_set.json` has **no producer script in this repo.** `build_qa_set.py` is
->   referenced throughout these docs but was never committed. It must be written
->   before the set can be regenerated.
->
-> Do not hand-edit it — a hand-corrected value is indistinguishable from a
-> parser bug on the next regeneration. See `CLAUDE.md` Rule 2.
+> Still missing: `evaluate.py` and `make_mock_runs.py`. Nothing can be *scored*
+> yet.
 
 ---
 
@@ -35,16 +30,17 @@ Built without workshop access: the manual is the ground truth.
 pipeline/
   extract_golden.py    PDF -> structured diagnostic trees (deterministic, no LLM)
   audit_manual.py      source-document data-quality audit
-eval/                  intended home of the harness below -- currently empty
-  build_qa_set.py      MISSING: trees -> golden Q&A test cases
+eval/
+  build_qa_set.py      trees -> golden Q&A test cases (deterministic, no LLM)
   evaluate.py          MISSING: scores a system run; module + pipeline metrics
   make_mock_runs.py    MISSING: synthetic good/weak runs to validate the harness
+tests/test_extraction.py  regression guard; runs after extraction
 METRICS.md             metric definitions and interpretation guide
 
 golden/
   failure_codes/*.json  174 failure codes, fully structured
   index.json            summary index
-  qa_set.json           1,330 golden test cases (stale -- see warning above)
+  qa_set.json           1,330 golden test cases
 reports/
   audit_findings.json   machine-readable audit output
 eval_out/               reports, per-case CSV, metrics JSON, run history
@@ -57,15 +53,16 @@ runs/                   system outputs to be scored (JSONL)
 pip install -r requirements.txt
 export KOMATSU_PDF="../komatsu-manuals/SEN06867-13.pdf"
 
-python pipeline/extract_golden.py     # -> golden/
+python pipeline/extract_golden.py     # -> golden/failure_codes/, index.json
+python eval/build_qa_set.py           # -> golden/qa_set.json
 python pipeline/audit_manual.py       # -> reports/audit_findings.json
+python tests/test_extraction.py       # regression guard (also runs automatically)
 ```
 
-The evaluation half of the pipeline is not yet implemented. Once the three
-scripts above exist in `eval/`, the full loop is:
+The scoring half is not yet implemented. Once the two remaining scripts exist in
+`eval/`, the full loop is:
 
 ```bash
-python eval/build_qa_set.py                             # regenerate the golden Q&A set
 python eval/make_mock_runs.py
 python eval/evaluate.py runs/run_good.jsonl --run-id good   # expect 7/7 gates pass
 python eval/evaluate.py runs/run_weak.jsonl --run-id weak   # expect 0/7 gates pass

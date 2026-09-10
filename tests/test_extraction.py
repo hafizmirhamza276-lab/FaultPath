@@ -27,6 +27,7 @@ import glob
 import os
 import re
 import sys
+import collections
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GOLD = os.environ.get("GOLD_DIR", os.path.join(REPO_ROOT, "golden"))
@@ -147,6 +148,58 @@ check("detector self-test: matches the known-bad '.2 to 4.6V'",
       bool(_probe.search(".2 to 4.6V")))
 check("detector self-test: accepts the corrected 'Sensor output 0.2 to 4.6V'",
       not _probe.search("Sensor output 0.2 to 4.6V"))
+
+# ============================================ 4. qa_set.json agrees with truth
+# qa_set.json went stale once: the ground truth was corrected and the test set
+# kept requiring the old corrupt value as a verbatim answer, so a correct
+# assistant would have been marked wrong on a sensor voltage. Nothing detected
+# that, because nothing compared the two. This does.
+QA_PATH = os.path.join(GOLD, "qa_set.json")
+if not os.path.isfile(QA_PATH):
+    print("\nqa_set.json -- SKIPPED (not present; run eval/build_qa_set.py)")
+else:
+    print("\nqa_set.json agrees with the ground truth")
+    with open(QA_PATH, encoding="utf-8") as f:
+        qa = json.load(f)
+
+    check("qa_set.json holds 1,330 cases", len(qa) == 1330, f"got {len(qa)}")
+    check("all case ids are unique",
+          len({c["id"] for c in qa}) == len(qa))
+
+    # Every pinned verbatim string must be a criterion that currently exists in
+    # golden/ for the code the case names. This is the staleness check.
+    truth = {}
+    for code, rec in recs.items():
+        truth[code] = {m["criteria"] for m in all_measurements(rec)}
+
+    orphans = []
+    for c in qa:
+        for v in c.get("must_contain_verbatim", []):
+            src = c.get("source_code")
+            if src not in truth or v not in truth[src]:
+                orphans.append(f"{c['id']} ({src}) pins {v!r}")
+    check("every must_contain_verbatim string exists in golden/", not orphans,
+          "; ".join(orphans[:5]))
+
+    # The specific shape that went wrong.
+    frags = [f"{c['id']}: {v!r}" for c in qa
+             for v in c.get("must_contain_verbatim", []) if v.startswith(".")]
+    check("no pinned verbatim string is a decimal fragment", not frags,
+          "; ".join(frags[:5]))
+
+    # Refusal cases must not smuggle in a correct answer.
+    leaky = [c["id"] for c in qa if c.get("must_refuse")
+             and (c.get("must_contain") or c.get("must_contain_verbatim")
+                  or c.get("must_cite_page"))]
+    check("refusal cases carry no answer content", not leaky,
+          ", ".join(leaky[:5]))
+
+    counts = collections.Counter(c["type"] for c in qa)
+    for t, want in (("numeric_exactness", 846), ("direct_lookup", 173),
+                    ("step_ordering", 164), ("branch_following", 116),
+                    ("precondition", 10), ("cross_ref_hop", 9),
+                    ("adversarial_unknown", 6), ("adversarial_model", 6)):
+        check(f"qa {t} == {want}", counts.get(t, 0) == want, f"got {counts.get(t,0)}")
 
 # ==================================================================== summary
 print("\n" + "=" * 60)

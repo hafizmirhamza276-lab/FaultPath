@@ -43,11 +43,13 @@ have failed, and the machine goes back out broken.
 Typical cause of a drop: the model is paraphrasing retrieved text instead of
 quoting it. Fix in the prompt, not the retriever.
 
-> **Currently invalid.** The ground truth for `CA451` step 6 has been corrected
-> to `Sensor output 0.2 to 4.6V`, but case `22858d0adc` in `qa_set.json` still
-> requires the verbatim string `".2 to 4.6V"`. Until the set is rebuilt, this
-> metric penalises the correct answer on a safety-critical value. See the warning
-> at the top of `README.md`.
+> **The expected value is the whole criterion string, not a fragment of it.**
+> `CA451` step 6 expects `Sensor output 0.2 to 4.6V`; an evaluator that pins
+> `0.2 to 4.6V` is testing a different string than the manual prints. This
+> metric once required `.2 to 4.6V` — a corrupt extraction that survived in the
+> test set after the ground truth was fixed, penalising correct answers on a
+> common-rail sensor voltage. `tests/test_extraction.py` now asserts every
+> pinned string still exists in `golden/`.
 >
 > **Normalise before comparing.** Criteria strings mix two ohm codepoints —
 > U+2126 OHM SIGN (353 occurrences) and U+03A9 GREEK CAPITAL LETTER OMEGA (349).
@@ -157,9 +159,9 @@ helps nobody.
 
 ## Running an evaluation
 
-> `build_qa_set.py`, `evaluate.py` and `make_mock_runs.py` are **not yet
-> implemented**. `eval/` is their intended home. Everything in this section and
-> the next describes the target state, not a working command.
+> `evaluate.py` and `make_mock_runs.py` are **not yet implemented**. `eval/` is
+> their intended home. `build_qa_set.py` exists and is runnable; the scoring
+> commands below describe the target state.
 
 ```bash
 python pipeline/extract_golden.py             # rebuild ground truth from the PDF
