@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -30,7 +31,18 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-176",
+        "pdf_page": 718,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "B@HANS:1:step:0",
+      "branch_fact_ids": {
+        "NO": "B@HANS:1:branch:0",
+        "YES": "B@HANS:1:branch:1"
+      }
     },
     {
       "step": 2,
@@ -40,7 +52,18 @@
         "YES": "• The hydraulic oil temperature is normal. • Go to the next inspection item.",
         "NO": "• The hydraulic oil temperature is high. • Operate the engine at low idle or stop the engine. Wait for the hydraulic oil temperature to go down. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-176",
+        "pdf_page": 718,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "B@HANS:2:step:0",
+      "branch_fact_ids": {
+        "NO": "B@HANS:2:branch:0",
+        "YES": "B@HANS:2:branch:1"
+      }
     },
     {
       "step": 3,
@@ -50,7 +73,18 @@
         "YES": "• The hydraulic oil temperature sensor is normal. • Go to the next inspection item.",
         "NO": "• The hydraulic oil temperature sensor is defective. • Replace the hydraulic oil temperature sensor. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-177",
+        "pdf_page": 719,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "B@HANS:3:step:0",
+      "branch_fact_ids": {
+        "NO": "B@HANS:3:branch:0",
+        "YES": "B@HANS:3:branch:1"
+      }
     },
     {
       "step": 4,
@@ -60,7 +94,18 @@
         "YES": "The repair is completed.",
         "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-177",
+        "pdf_page": 719,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "B@HANS:4:step:0",
+      "branch_fact_ids": {
+        "NO": "B@HANS:4:branch:0",
+        "YES": "B@HANS:4:branch:1"
+      }
     },
     {
       "step": 5,
@@ -70,39 +115,92 @@
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-177",
+        "pdf_page": 719,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "B@HANS:5:step:0",
+      "branch_fact_ids": {
+        "NO": "B@HANS:5:branch:0",
+        "YES": "B@HANS:5:branch:1"
+      }
     }
   ],
   "standalone_measurements": [
     {
       "quantity": "Resistance",
       "point": "Between P22 (male) (2) and (1) (Oil temperature sensor thermal characteristics) / 25℃",
-      "criteria": "38.1 to 47.8 kΩ"
+      "criteria": "38.1 to 47.8 kΩ",
+      "provenance": {
+        "manual_page": "40-177",
+        "pdf_page": 719,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "B@HANS:0:meas:0"
     },
     {
       "quantity": "Resistance",
       "point": "30℃",
-      "criteria": "31.0 to 40.0 kΩ"
+      "criteria": "31.0 to 40.0 kΩ",
+      "provenance": {
+        "manual_page": "40-177",
+        "pdf_page": 719,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "B@HANS:0:meas:1"
     },
     {
       "quantity": "Resistance",
       "point": "80℃",
-      "criteria": "6.1 to 7.0 kΩ"
+      "criteria": "6.1 to 7.0 kΩ",
+      "provenance": {
+        "manual_page": "40-177",
+        "pdf_page": 719,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "B@HANS:0:meas:2"
     },
     {
       "quantity": "Resistance",
       "point": "90℃",
-      "criteria": "4.6 to 5.2 kΩ"
+      "criteria": "4.6 to 5.2 kΩ",
+      "provenance": {
+        "manual_page": "40-177",
+        "pdf_page": 719,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "B@HANS:0:meas:3"
     },
     {
       "quantity": "Resistance",
       "point": "100℃",
-      "criteria": "3.6 to 4.0 kΩ"
+      "criteria": "3.6 to 4.0 kΩ",
+      "provenance": {
+        "manual_page": "40-177",
+        "pdf_page": 719,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "B@HANS:0:meas:4"
     },
     {
       "quantity": "Resistance",
       "point": "Between P22 (male) (2) and ground / All",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-177",
+        "pdf_page": 719,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "fact_id": "B@HANS:0:meas:5"
     }
   ],
   "refs_failure_codes": [
@@ -114,6 +212,12 @@
   "connectors": [],
   "default_conclusion": null,
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-176",
+    "pdf_page": 718,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "PUMP",
   "system_category": "Mechanical system",
   "in_code_table": true

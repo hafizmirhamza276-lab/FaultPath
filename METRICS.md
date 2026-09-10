@@ -68,6 +68,28 @@ This is the metric to lead with when management asks "how much does it make
 things up". It is a count, not an impression, and every flagged value is listed
 per-case in `results_<run>.csv` so any individual claim can be traced back.
 
+### Deterministic provenance
+
+The model refers to facts by `fact_id`; the system renders the citation from the
+ground truth. Three metrics measure whether that holds.
+
+`citation_resolvability` — every emitted citation re-opens the source PDF at the
+page it names and finds its text there. A citation that cannot be resolved is
+not a citation, it is a claim about one.
+
+`citation_span_precision` — the cited page is the page the fact is *on*, not
+merely a page belonging to that code. 75% of measurements are not on their
+code's first page, so a per-code citation is right by accident a quarter of the
+time.
+
+`uncited_claim_rate` — factual statements carrying no `fact_id`. These are the
+model speaking on its own account, which the design is meant to make impossible.
+
+On the local baseline these separate cleanly by mechanism: every case type that
+names fact ids resolves at **1.0000** (1,126 cases), and every type that types
+its own page resolves at **0.0000**. The metric is measuring adoption of the
+mechanism, not luck.
+
 ### `citation_accuracy`
 **Target: ≥ 95%**
 

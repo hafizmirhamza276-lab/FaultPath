@@ -15,12 +15,34 @@ against, plus the audit of the source document it is built on.
 ```
 pipeline/extract_golden.py   PDF -> structured diagnostic trees (deterministic)
 pipeline/audit_manual.py     source-document data-quality audit
-tests/test_extraction.py     regression guard; runs automatically after extraction
-golden/                      the ground truth (committed)
+core/logging.py              structured JSONL observability, run_id + trace_id
+eval/build_qa_set.py         trees -> golden Q&A set
+eval/citations.py            fact_id -> Citation, and the resolver back to the PDF
+eval/run_eval.py             Tier-1 CLI; eval/compare.py  run-to-run diff
+tests/test_extraction.py     ground-truth guard; runs after extraction
+tests/test_eval_harness.py   harness guard; good 7/7, weak 0/7
+golden/                      the ground truth (committed, schema_version 2)
 reports/audit_findings.json  audit baseline (committed)
-eval/                        evaluation harness (not yet implemented)
-eval_out/, runs/             generated output (gitignored)
+eval_out/                    runs, logs (gitignored)
 ```
+
+## Deterministic provenance
+
+The model never types a page number, a part number, or a value. It names a
+`fact_id`; `eval/citations.py` renders the citation from the ground truth. What
+the model does not generate it cannot get wrong, which makes citation accuracy
+structural rather than something to be measured after the fact.
+
+- Fact ids are `<code>:<step>:<kind>:<index>` (`CA451:6:meas:0`), derived from
+  position and stable across rebuilds. Standalone measurements sit at step 0.
+- Every step and measurement carries `{manual_page, pdf_page, table_index,
+  row_index}` captured at parse time. **75% of measurements are not on their
+  code's first page** — 146 of 174 codes span more than one, one runs to 11 —
+  so a per-code page is not a citation.
+- `citations.resolve()` re-opens the PDF at the cited page and checks the text
+  is there. Keep it strict: it correctly refuses the 27 machine-repaired causes
+  and the 3 synthetic `Redirect` labels, because those are not verbatim page
+  text and must not be citable as if they were.
 
 ## Rule 1 — no LLM in extraction or Tier-1 evaluation
 
@@ -94,6 +116,8 @@ pdfplumber 0.11.10 / pymupdf 1.28.2:
 | steps with `extraction_warning == "column_split_recovered"` | 27 |
 | cross-reference edges | 94 |
 | format split | 117 A / 57 B |
+
+Provenance is additive: it must not move any of these. `schema_version` is 2.
 
 Audit baseline: **21 findings — 6 HIGH / 8 MEDIUM / 5 LOW / 2 INFO.**
 

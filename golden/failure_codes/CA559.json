@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -26,21 +27,45 @@
       "cause": "Defective wiring harness connector",
       "procedure": "1. Examine the connection state of the common rail pressure sensor connector. 2. See descriptions of wiring harness and connectors in “Electrical Components” in “Checks Before Troubleshooting” of “Related Information to Troubleshooting”, and check it. 3. Start the engine. If this failure code is cleared, wiring harness connector is defective.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-247",
+        "pdf_page": 789,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "CA559:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
       "cause": "Use of incorrect fuel",
       "procedure": "Incorrect fuel can be used. Check it.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-247",
+        "pdf_page": 789,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "CA559:2:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 3,
       "cause": "Leakage of fuel to outside",
       "procedure": "Fuel can be leaked outside. Check it (visual check with the engine at low idle).",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-247",
+        "pdf_page": 789,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "CA559:3:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 4,
@@ -51,33 +76,78 @@
         {
           "quantity": "Pressure",
           "point": "Inlet negative pressure of fuel supply pump (fuel prefilter outlet pressure) / At high idle (when the engine can be started)",
-          "criteria": "-50.7kPa or below {-380mmHg or below}"
+          "criteria": "-50.7kPa or below {-380mmHg or below}",
+          "provenance": {
+            "manual_page": "40-247",
+            "pdf_page": 789,
+            "table_index": 1,
+            "row_index": 6
+          },
+          "fact_id": "CA559:4:meas:0"
         },
         {
           "quantity": "Fuel main filter inlet pressure",
           "point": "At cranking (when the engine cannot be started)",
-          "criteria": "0.3 to 1.1MPa {3.1 to 11.3kgf/cm2}"
+          "criteria": "0.3 to 1.1MPa {3.1 to 11.3kgf/cm2}",
+          "provenance": {
+            "manual_page": "40-247",
+            "pdf_page": 789,
+            "table_index": 1,
+            "row_index": 7
+          },
+          "fact_id": "CA559:4:meas:1"
         },
         {
           "quantity": "Fuel main filter inlet pressure",
           "point": "At high idle (when the engine can be started)",
-          "criteria": "0.5 to 1.3MPa {5.1 to 13.3kgf/ cm2}"
+          "criteria": "0.5 to 1.3MPa {5.1 to 13.3kgf/ cm2}",
+          "provenance": {
+            "manual_page": "40-247",
+            "pdf_page": 789,
+            "table_index": 1,
+            "row_index": 8
+          },
+          "fact_id": "CA559:4:meas:2"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-247",
+        "pdf_page": 789,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "CA559:4:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 5,
       "cause": "Air in low-pressure circuit",
       "procedure": "Air may be in low-pressure circuit. Check it according to the following procedure. 1. Remove pressure pickup plug (outlet side) of fuel main filter. 2. Operate feed pump of fuel prefilter. 3. Check pressure pickup plug for leakage of fuel and air. If this error occurs during air bleeding after fuel filter is replaced, air may remain in fuel circuit. Keep running engine at low idle speed for approximately 3 minutes. As air is bled from fuel circuit, engine speed is stabilized, and error display disappears.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-248",
+        "pdf_page": 790,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "CA559:5:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 6,
       "cause": "Defective pressure limiter",
       "procedure": "For check of leakage from the pressure limiter, see Testing and Adjusting, “Examine Fuel Return Rate and Leakage”. Leakage of pressure limiter At low idle 0cc (No leakage)",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-248",
+        "pdf_page": 790,
+        "table_index": 0,
+        "row_index": 2
+      },
+      "fact_id": "CA559:6:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 7,
@@ -88,14 +158,36 @@
         {
           "quantity": "Fuel return rate from injector",
           "point": "At cranking (when the engine cannot be started)",
-          "criteria": "Max. 90cc/min"
+          "criteria": "Max. 90cc/min",
+          "provenance": {
+            "manual_page": "40-248",
+            "pdf_page": 790,
+            "table_index": 0,
+            "row_index": 5
+          },
+          "fact_id": "CA559:7:meas:0"
         },
         {
           "quantity": "Fuel return rate from injector",
           "point": "At low idle (when the engine can be started)",
-          "criteria": "Max. 120cc/min"
+          "criteria": "Max. 120cc/min",
+          "provenance": {
+            "manual_page": "40-248",
+            "pdf_page": 790,
+            "table_index": 0,
+            "row_index": 6
+          },
+          "fact_id": "CA559:7:meas:1"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-248",
+        "pdf_page": 790,
+        "table_index": 0,
+        "row_index": 4
+      },
+      "fact_id": "CA559:7:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 8,
@@ -106,26 +198,63 @@
         {
           "quantity": "Discharged volume from supply pump",
           "point": "Engine speed: 125rpm",
-          "criteria": "min. 75cc/ 30sec"
+          "criteria": "min. 75cc/ 30sec",
+          "provenance": {
+            "manual_page": "40-248",
+            "pdf_page": 790,
+            "table_index": 0,
+            "row_index": 8
+          },
+          "fact_id": "CA559:8:meas:0"
         },
         {
           "quantity": "Discharged volume from supply pump",
           "point": "Engine speed: 150rpm",
-          "criteria": "min. 90cc/ 30sec"
+          "criteria": "min. 90cc/ 30sec",
+          "provenance": {
+            "manual_page": "40-248",
+            "pdf_page": 790,
+            "table_index": 0,
+            "row_index": 9
+          },
+          "fact_id": "CA559:8:meas:1"
         },
         {
           "quantity": "Return rate from supply pump",
           "point": "At low idle: 750rpm",
-          "criteria": "Max. 400cc/ 25sec"
+          "criteria": "Max. 400cc/ 25sec",
+          "provenance": {
+            "manual_page": "40-248",
+            "pdf_page": 790,
+            "table_index": 0,
+            "row_index": 10
+          },
+          "fact_id": "CA559:8:meas:2"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-248",
+        "pdf_page": 790,
+        "table_index": 0,
+        "row_index": 7
+      },
+      "fact_id": "CA559:8:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 9,
       "cause": "Defective common rail pressure sensor system",
       "procedure": "Do the troubleshooting for failure codes [CA451] and [CA452].",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-248",
+        "pdf_page": 790,
+        "table_index": 0,
+        "row_index": 11
+      },
+      "fact_id": "CA559:9:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -139,6 +268,12 @@
   "connectors": [],
   "default_conclusion": "Defective common rail pressure sensor system",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-247",
+    "pdf_page": 789,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true

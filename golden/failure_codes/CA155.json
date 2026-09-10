@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -25,21 +26,45 @@
       "cause": "Degraded cooling performance of aftercooler",
       "procedure": "Cooling performance of the aftercooler can be lowered. Check it for the items that follow. • Loosened or damaged fan belt • Insufficient cooling air volume • Clogged aftercooler fin",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-203",
+        "pdf_page": 745,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "CA155:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
       "cause": "Turbocharger outlet temperature high error",
       "procedure": "It is possible that there is an abnormal temperature rise of the turbocharger outlet. Check the related parts.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-203",
+        "pdf_page": 745,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "CA155:2:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 3,
       "cause": "Defective charge temperature sensor system",
       "procedure": "If no failure is found by the above check, the charge temperature sensor system can be defective. Do the troubleshooting for failure codes [CA153] and [CA154].",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-203",
+        "pdf_page": 745,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "CA155:3:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -53,6 +78,12 @@
   "connectors": [],
   "default_conclusion": "Defective charge temperature sensor system",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-203",
+    "pdf_page": 745,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true

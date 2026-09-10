@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -26,14 +27,30 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “RELATED INFORMA- TION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-259",
+        "pdf_page": 801,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "CA2185:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
       "cause": "Defective throttle sensor (fuel dial)",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector P20. Turn the starting switch to the ON position. If this failure code is cleared, the throttle sensor is defective. Other failure codes are shown, too. This occurs because the connector is disconnected. Ignore failure codes other than this failure code [CA2185].",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-259",
+        "pdf_page": 801,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "CA2185:2:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 3,
@@ -44,14 +61,36 @@
         {
           "quantity": "Resistance",
           "point": "Between CE02 (female) (22) and each pin other than CE02 (female) (22) pin.",
-          "criteria": "Min. 100kΩ"
+          "criteria": "Min. 100kΩ",
+          "provenance": {
+            "manual_page": "40-259",
+            "pdf_page": 801,
+            "table_index": 1,
+            "row_index": 5
+          },
+          "fact_id": "CA2185:3:meas:0"
         },
         {
           "quantity": "Resistance",
           "point": "Between CE02 (female) (22) and CE03 (female) (3)",
-          "criteria": "Min. 100kΩ"
+          "criteria": "Min. 100kΩ",
+          "provenance": {
+            "manual_page": "40-259",
+            "pdf_page": 801,
+            "table_index": 1,
+            "row_index": 6
+          },
+          "fact_id": "CA2185:3:meas:1"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-259",
+        "pdf_page": 801,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "CA2185:3:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 4,
@@ -62,9 +101,24 @@
         {
           "quantity": "Voltage",
           "point": "Between P20 (female) (1) and ground",
-          "criteria": "4.75 to 5.25V"
+          "criteria": "4.75 to 5.25V",
+          "provenance": {
+            "manual_page": "40-259",
+            "pdf_page": 801,
+            "table_index": 1,
+            "row_index": 8
+          },
+          "fact_id": "CA2185:4:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-259",
+        "pdf_page": 801,
+        "table_index": 1,
+        "row_index": 7
+      },
+      "fact_id": "CA2185:4:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 5,
@@ -75,9 +129,24 @@
         {
           "quantity": "Voltage",
           "point": "Between CE02 (male) (22) and (23)",
-          "criteria": "4.75 to 5.25V"
+          "criteria": "4.75 to 5.25V",
+          "provenance": {
+            "manual_page": "40-259",
+            "pdf_page": 801,
+            "table_index": 1,
+            "row_index": 10
+          },
+          "fact_id": "CA2185:5:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-259",
+        "pdf_page": 801,
+        "table_index": 1,
+        "row_index": 9
+      },
+      "fact_id": "CA2185:5:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -89,6 +158,12 @@
   ],
   "default_conclusion": "Defective engine controller",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-259",
+    "pdf_page": 801,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true

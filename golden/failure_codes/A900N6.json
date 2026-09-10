@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -25,7 +26,15 @@
       "cause": "Defective machine monitor",
       "procedure": "If this repeatedly occurs even when the auto idle stop function is OFF, machine monitor may be defective. (In case of an internal defect, troubleshooting is impossible as an assembly. Replace whole assembly.)",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-158",
+        "pdf_page": 700,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "A900N6:1:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -36,6 +45,12 @@
   "connectors": [],
   "default_conclusion": "Defective machine monitor",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-158",
+    "pdf_page": 700,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "MON",
   "system_category": "Mechanical system",
   "in_code_table": true

@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -30,7 +31,18 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-409",
+        "pdf_page": 951,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DHA4KA:1:step:0",
+      "branch_fact_ids": {
+        "NO": "DHA4KA:1:branch:0",
+        "YES": "DHA4KA:1:branch:1"
+      }
     },
     {
       "step": 2,
@@ -40,7 +52,18 @@
         "YES": "• The air cleaner is normal. • Go to the next inspection item.",
         "NO": "• The air cleaner is defective. • Clean or replace the air cleaner. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-409",
+        "pdf_page": 951,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "DHA4KA:2:step:0",
+      "branch_fact_ids": {
+        "NO": "DHA4KA:2:branch:0",
+        "YES": "DHA4KA:2:branch:1"
+      }
     },
     {
       "step": 3,
@@ -50,7 +73,18 @@
         "YES": "• The air cleaner clogging switch is normal. • Go to the next inspection item.",
         "NO": "• The air cleaner clogging switch is defective. • Replace the air cleaner clogging switch. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-410",
+        "pdf_page": 952,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "DHA4KA:3:step:0",
+      "branch_fact_ids": {
+        "NO": "DHA4KA:3:branch:0",
+        "YES": "DHA4KA:3:branch:1"
+      }
     },
     {
       "step": 4,
@@ -60,7 +94,18 @@
         "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-410",
+        "pdf_page": 952,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "DHA4KA:4:step:0",
+      "branch_fact_ids": {
+        "NO": "DHA4KA:4:branch:0",
+        "YES": "DHA4KA:4:branch:1"
+      }
     },
     {
       "step": 5,
@@ -70,7 +115,18 @@
         "YES": "The repair is completed.",
         "NO": "• The machine monitor can be defective. • Replace the machine monitor. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-410",
+        "pdf_page": 952,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "DHA4KA:5:step:0",
+      "branch_fact_ids": {
+        "NO": "DHA4KA:5:branch:0",
+        "YES": "DHA4KA:5:branch:1"
+      }
     },
     {
       "step": 6,
@@ -80,29 +136,68 @@
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-410",
+        "pdf_page": 952,
+        "table_index": 0,
+        "row_index": 7
+      },
+      "fact_id": "DHA4KA:6:step:0",
+      "branch_fact_ids": {
+        "NO": "DHA4KA:6:branch:0",
+        "YES": "DHA4KA:6:branch:1"
+      }
     }
   ],
   "standalone_measurements": [
     {
       "quantity": "Resistance",
       "point": "Between P23 (male) (1) and (2) / Filter normal",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-410",
+        "pdf_page": 952,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DHA4KA:0:meas:0"
     },
     {
       "quantity": "Resistance",
       "point": "Filter clogged",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-410",
+        "pdf_page": 952,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "DHA4KA:0:meas:1"
     },
     {
       "quantity": "Resistance",
       "point": "Between CM02 (female) (4) and P23 (female) (1)",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-410",
+        "pdf_page": 952,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "DHA4KA:0:meas:2"
     },
     {
       "quantity": "Resistance",
       "point": "Between P23 (female) (2) and ground",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-410",
+        "pdf_page": 952,
+        "table_index": 2,
+        "row_index": 2
+      },
+      "fact_id": "DHA4KA:0:meas:3"
     }
   ],
   "refs_failure_codes": [],
@@ -114,6 +209,12 @@
   ],
   "default_conclusion": null,
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-409",
+    "pdf_page": 951,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "MON",
   "system_category": "Electrical system",
   "in_code_table": true

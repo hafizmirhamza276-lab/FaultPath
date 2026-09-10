@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -30,7 +31,18 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-472",
+        "pdf_page": 1014,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DJG1KX:1:step:0",
+      "branch_fact_ids": {
+        "NO": "DJG1KX:1:branch:0",
+        "YES": "DJG1KX:1:branch:1"
+      }
     },
     {
       "step": 2,
@@ -40,7 +52,18 @@
         "YES": "• The water sensor for the fuel prefilter is normal. • Go to the next inspection item.",
         "NO": "• The water sensor for the fuel prefilter is defective. • Replace the water sensor for the fuel prefilter. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-472",
+        "pdf_page": 1014,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "DJG1KX:2:step:0",
+      "branch_fact_ids": {
+        "NO": "DJG1KX:2:branch:0",
+        "YES": "DJG1KX:2:branch:1"
+      }
     },
     {
       "step": 3,
@@ -50,7 +73,18 @@
         "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has an open circuit. • Repair or replace the wiring harness. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-473",
+        "pdf_page": 1015,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "DJG1KX:3:step:0",
+      "branch_fact_ids": {
+        "NO": "DJG1KX:3:branch:0",
+        "YES": "DJG1KX:3:branch:1"
+      }
     },
     {
       "step": 4,
@@ -60,7 +94,18 @@
         "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-473",
+        "pdf_page": 1015,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "DJG1KX:4:step:0",
+      "branch_fact_ids": {
+        "NO": "DJG1KX:4:branch:0",
+        "YES": "DJG1KX:4:branch:1"
+      }
     },
     {
       "step": 5,
@@ -70,7 +115,18 @@
         "YES": "The repair is completed.",
         "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-473",
+        "pdf_page": 1015,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "DJG1KX:5:step:0",
+      "branch_fact_ids": {
+        "NO": "DJG1KX:5:branch:0",
+        "YES": "DJG1KX:5:branch:1"
+      }
     },
     {
       "step": 6,
@@ -80,29 +136,68 @@
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-474",
+        "pdf_page": 1016,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "DJG1KX:6:step:0",
+      "branch_fact_ids": {
+        "NO": "DJG1KX:6:branch:0",
+        "YES": "DJG1KX:6:branch:1"
+      }
     }
   ],
   "standalone_measurements": [
     {
       "quantity": "Resistance",
       "point": "Between P47 (female) (1) and (2)",
-      "criteria": "10 to 100 kΩ"
+      "criteria": "10 to 100 kΩ",
+      "provenance": {
+        "manual_page": "40-472",
+        "pdf_page": 1014,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "DJG1KX:0:meas:0"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (63) and P47 (female) (1)",
-      "criteria": "Max. 10 Ω"
+      "criteria": "Max. 10 Ω",
+      "provenance": {
+        "manual_page": "40-473",
+        "pdf_page": 1015,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DJG1KX:0:meas:1"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (9) and P47 (male) (2)",
-      "criteria": "Max. 10 Ω"
+      "criteria": "Max. 10 Ω",
+      "provenance": {
+        "manual_page": "40-473",
+        "pdf_page": 1015,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "DJG1KX:0:meas:2"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (9) and each pin other than (9)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-473",
+        "pdf_page": 1015,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "DJG1KX:0:meas:3"
     }
   ],
   "refs_failure_codes": [],
@@ -112,6 +207,12 @@
   ],
   "default_conclusion": null,
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-472",
+    "pdf_page": 1014,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "PUMP",
   "system_category": "Mechanical system",
   "in_code_table": true

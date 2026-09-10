@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -26,7 +27,15 @@
       "procedure": "Do the troubleshooting for failure code [CA352].",
       "branches": {},
       "measurements": [],
-      "redirect": true
+      "provenance": {
+        "manual_page": "40-230",
+        "pdf_page": 772,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "redirect": true,
+      "fact_id": "CA386:1:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -37,6 +46,12 @@
   "connectors": [],
   "default_conclusion": null,
   "is_pointer_only": true,
+  "header_provenance": {
+    "manual_page": "40-230",
+    "pdf_page": 772,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true

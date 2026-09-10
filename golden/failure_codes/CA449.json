@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -25,14 +26,30 @@
       "cause": "Defective related systems",
       "procedure": "Check if other failure codes are shown at the same time. If other codes are shown, do the troubleshooting for them.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-240",
+        "pdf_page": 782,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "CA449:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
       "cause": "Air mixture in low-pressure circuit",
       "procedure": "Mixing of air in the low-temperature circuit is suspected. Check it with the procedure that follows. 1. Remove the pressure pickup plug (outlet side) of the fuel main filter. 2. Operate the feed pump of fuel prefilter. 3. Check how the fuel and air leaks from the pressure pickup plug.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-240",
+        "pdf_page": 782,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "CA449:2:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 3,
@@ -43,30 +60,69 @@
         {
           "quantity": "Fuel return circuit pressure",
           "point": "Engine at low idle or cranking",
-          "criteria": "0.02MPa or below {0.19kgf/cm 2 or below}"
+          "criteria": "0.02MPa or below {0.19kgf/cm 2 or below}",
+          "provenance": {
+            "manual_page": "40-240",
+            "pdf_page": 782,
+            "table_index": 1,
+            "row_index": 4
+          },
+          "fact_id": "CA449:3:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-240",
+        "pdf_page": 782,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "CA449:3:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 4,
       "cause": "Defective common rail pressure sensor system",
       "procedure": "Do the troubleshooting for failure codes [CA451] and [CA452].",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-240",
+        "pdf_page": 782,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "CA449:4:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 5,
       "cause": "Defective pressure limiter",
       "procedure": "For check of leakage from the pressure limiter, see Testing and Adjusting, “Examine Fuel Return Rate and Leakage”. Leakage of pressure limiter At low idle 0cc (No leakage)",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-240",
+        "pdf_page": 782,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "fact_id": "CA449:5:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 6,
       "cause": "Defective supply pump",
       "procedure": "If no failure is found by the above checks, the supply pump can be defective.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-240",
+        "pdf_page": 782,
+        "table_index": 1,
+        "row_index": 8
+      },
+      "fact_id": "CA449:6:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -80,6 +136,12 @@
   "connectors": [],
   "default_conclusion": "Defective supply pump",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-240",
+    "pdf_page": 782,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true

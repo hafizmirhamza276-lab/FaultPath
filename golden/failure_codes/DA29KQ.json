@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -32,7 +33,18 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-322",
+        "pdf_page": 864,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DA29KQ:1:step:0",
+      "branch_fact_ids": {
+        "NO": "DA29KQ:1:branch:0",
+        "YES": "DA29KQ:1:branch:1"
+      }
     },
     {
       "step": 2,
@@ -42,7 +54,18 @@
         "YES": "• The model selection connector is normal. • Go to the next inspection item.",
         "NO": "• The model selection connector is defective. • Replace the machine model select connector. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "DA29KQ:2:step:0",
+      "branch_fact_ids": {
+        "NO": "DA29KQ:2:branch:0",
+        "YES": "DA29KQ:2:branch:1"
+      }
     },
     {
       "step": 3,
@@ -52,7 +75,18 @@
         "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-324",
+        "pdf_page": 866,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "DA29KQ:3:step:0",
+      "branch_fact_ids": {
+        "NO": "DA29KQ:3:branch:0",
+        "YES": "DA29KQ:3:branch:1"
+      }
     },
     {
       "step": 4,
@@ -62,7 +96,18 @@
         "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
         "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-324",
+        "pdf_page": 866,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "DA29KQ:4:step:0",
+      "branch_fact_ids": {
+        "NO": "DA29KQ:4:branch:0",
+        "YES": "DA29KQ:4:branch:1"
+      }
     },
     {
       "step": 5,
@@ -72,7 +117,18 @@
         "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-325",
+        "pdf_page": 867,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "DA29KQ:5:step:0",
+      "branch_fact_ids": {
+        "NO": "DA29KQ:5:branch:0",
+        "YES": "DA29KQ:5:branch:1"
+      }
     },
     {
       "step": 6,
@@ -82,7 +138,18 @@
         "YES": "The repair is completed.",
         "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-325",
+        "pdf_page": 867,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "DA29KQ:6:step:0",
+      "branch_fact_ids": {
+        "NO": "DA29KQ:6:branch:0",
+        "YES": "DA29KQ:6:branch:1"
+      }
     },
     {
       "step": 7,
@@ -92,164 +159,392 @@
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-325",
+        "pdf_page": 867,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "DA29KQ:7:step:0",
+      "branch_fact_ids": {
+        "NO": "DA29KQ:7:branch:0",
+        "YES": "DA29KQ:7:branch:1"
+      }
     }
   ],
   "standalone_measurements": [
     {
       "quantity": "Resistance",
       "point": "Between S30 (female) (1) and (2)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DA29KQ:0:meas:0"
     },
     {
       "quantity": "Resistance",
       "point": "Between S30 (female) (1) and (3)",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "DA29KQ:0:meas:1"
     },
     {
       "quantity": "Resistance",
       "point": "Between S30 (female) (1) and (4)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "DA29KQ:0:meas:2"
     },
     {
       "quantity": "Resistance",
       "point": "Between S30 (female) (1) and (7)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "DA29KQ:0:meas:3"
     },
     {
       "quantity": "Resistance",
       "point": "Between S30 (female) (1) and (8)",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "DA29KQ:0:meas:4"
     },
     {
       "quantity": "Resistance",
       "point": "Between S30 (female) (2) and (3)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "fact_id": "DA29KQ:0:meas:5"
     },
     {
       "quantity": "Resistance",
       "point": "Between S30 (female) (2) and (4)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 1,
+        "row_index": 7
+      },
+      "fact_id": "DA29KQ:0:meas:6"
     },
     {
       "quantity": "Resistance",
       "point": "Between S30 (female) (2) and (7)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 1,
+        "row_index": 8
+      },
+      "fact_id": "DA29KQ:0:meas:7"
     },
     {
       "quantity": "Resistance",
       "point": "Between S30 (female) (2) and (8)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 1,
+        "row_index": 9
+      },
+      "fact_id": "DA29KQ:0:meas:8"
     },
     {
       "quantity": "Resistance",
       "point": "Between S30 (female) (3) and (4)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 1,
+        "row_index": 10
+      },
+      "fact_id": "DA29KQ:0:meas:9"
     },
     {
       "quantity": "Resistance",
       "point": "Between S30 (female) (3) and (7)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 1,
+        "row_index": 11
+      },
+      "fact_id": "DA29KQ:0:meas:10"
     },
     {
       "quantity": "Resistance",
       "point": "Between S30 (female) (3) and (8)",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 1,
+        "row_index": 12
+      },
+      "fact_id": "DA29KQ:0:meas:11"
     },
     {
       "quantity": "Resistance",
       "point": "Between S30 (female) (4) and (7)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 1,
+        "row_index": 13
+      },
+      "fact_id": "DA29KQ:0:meas:12"
     },
     {
       "quantity": "Resistance",
       "point": "Between S30 (female) (4) and (8)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 1,
+        "row_index": 14
+      },
+      "fact_id": "DA29KQ:0:meas:13"
     },
     {
       "quantity": "Resistance",
       "point": "Between S30 (female) (7) and (8)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-323",
+        "pdf_page": 865,
+        "table_index": 1,
+        "row_index": 15
+      },
+      "fact_id": "DA29KQ:0:meas:14"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (21) and S30 (male) (3)",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-324",
+        "pdf_page": 866,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DA29KQ:0:meas:15"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (40) and S30 (male) (2)",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-324",
+        "pdf_page": 866,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "DA29KQ:0:meas:16"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (58) and S30 (male) (7)",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-324",
+        "pdf_page": 866,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "DA29KQ:0:meas:17"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (59) and S30 (male) (1)",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-324",
+        "pdf_page": 866,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "DA29KQ:0:meas:18"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (77) and S30 (male) (4)",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-324",
+        "pdf_page": 866,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "DA29KQ:0:meas:19"
     },
     {
       "quantity": "Resistance",
       "point": "Between S30 (male) (8) and ground",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-324",
+        "pdf_page": 866,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "fact_id": "DA29KQ:0:meas:20"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (21) or S30 (male) (3) and ground",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-324",
+        "pdf_page": 866,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "DA29KQ:0:meas:21"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (40) or S30 (male) (2) and ground",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-324",
+        "pdf_page": 866,
+        "table_index": 2,
+        "row_index": 2
+      },
+      "fact_id": "DA29KQ:0:meas:22"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (58) or S30 (male) (7) and ground",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-324",
+        "pdf_page": 866,
+        "table_index": 2,
+        "row_index": 3
+      },
+      "fact_id": "DA29KQ:0:meas:23"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (59) or S30 (male) (1) and ground",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-324",
+        "pdf_page": 866,
+        "table_index": 2,
+        "row_index": 4
+      },
+      "fact_id": "DA29KQ:0:meas:24"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (77) or S30 (male) (4) and ground",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-324",
+        "pdf_page": 866,
+        "table_index": 2,
+        "row_index": 5
+      },
+      "fact_id": "DA29KQ:0:meas:25"
     },
     {
       "quantity": "Resistance",
       "point": "Between CM01 (female) (21) and each pin other than (21)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-325",
+        "pdf_page": 867,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DA29KQ:0:meas:26"
     },
     {
       "quantity": "Resistance",
       "point": "Between CM01 (female) (40) and each pin other than (40)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-325",
+        "pdf_page": 867,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "DA29KQ:0:meas:27"
     },
     {
       "quantity": "Resistance",
       "point": "Between CM01 (female) (58) and each pin other than (58)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-325",
+        "pdf_page": 867,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "DA29KQ:0:meas:28"
     },
     {
       "quantity": "Resistance",
       "point": "Between CM01 (female) (59) and each pin other than (59)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-325",
+        "pdf_page": 867,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "DA29KQ:0:meas:29"
     },
     {
       "quantity": "Resistance",
       "point": "Between CM01 (female) (77) and each pin other than (77)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-325",
+        "pdf_page": 867,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "DA29KQ:0:meas:30"
     }
   ],
   "refs_failure_codes": [],
@@ -263,6 +558,12 @@
   ],
   "default_conclusion": null,
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-322",
+    "pdf_page": 864,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "PUMP",
   "system_category": "Electrical system",
   "in_code_table": true

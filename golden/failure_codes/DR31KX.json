@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -26,6 +27,12 @@
   "connectors": [],
   "default_conclusion": null,
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-481",
+    "pdf_page": 1023,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "MON",
   "system_category": "Electrical system",
   "in_code_table": true

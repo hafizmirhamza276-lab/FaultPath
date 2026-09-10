@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -29,21 +30,45 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-254",
+        "pdf_page": 796,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "CA778:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
       "cause": "Defective sensor 2 power supply system",
       "procedure": "If failure code [CA187] or [CA227] is also shown at the same time, do the troubleshooting for that code first.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-254",
+        "pdf_page": 796,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "CA778:2:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 3,
       "cause": "Breakage or defective installation (looseness) of engine Bkup speed (CAM) sensor",
       "procedure": "There can be breakage or defective installation (looseness) of the engine Bkup speed (CAM) sensor. Check it.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-254",
+        "pdf_page": 796,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "CA778:3:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 4,
@@ -54,9 +79,24 @@
         {
           "quantity": "Voltage",
           "point": "Between CAM SENSOR (female) (1) and (2) / Power supply",
-          "criteria": "4.75 to 5.25V"
+          "criteria": "4.75 to 5.25V",
+          "provenance": {
+            "manual_page": "40-254",
+            "pdf_page": 796,
+            "table_index": 1,
+            "row_index": 5
+          },
+          "fact_id": "CA778:4:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-254",
+        "pdf_page": 796,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "CA778:4:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 5,
@@ -67,19 +107,48 @@
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (37) and CAM SENSOR (female) (1)",
-          "criteria": "Max. 10Ω"
+          "criteria": "Max. 10Ω",
+          "provenance": {
+            "manual_page": "40-254",
+            "pdf_page": 796,
+            "table_index": 1,
+            "row_index": 7
+          },
+          "fact_id": "CA778:5:meas:0"
         },
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (47) and CAM SENSOR (female) (2)",
-          "criteria": "Max. 10Ω"
+          "criteria": "Max. 10Ω",
+          "provenance": {
+            "manual_page": "40-254",
+            "pdf_page": 796,
+            "table_index": 1,
+            "row_index": 8
+          },
+          "fact_id": "CA778:5:meas:1"
         },
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (26) and CAM SENSOR (female) (3)",
-          "criteria": "Max. 10Ω"
+          "criteria": "Max. 10Ω",
+          "provenance": {
+            "manual_page": "40-254",
+            "pdf_page": 796,
+            "table_index": 1,
+            "row_index": 9
+          },
+          "fact_id": "CA778:5:meas:2"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-254",
+        "pdf_page": 796,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "fact_id": "CA778:5:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 6,
@@ -90,14 +159,36 @@
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (26) and (37), or between CAM SENSOR (female) (1) and (3)",
-          "criteria": "Min. 100kΩ"
+          "criteria": "Min. 100kΩ",
+          "provenance": {
+            "manual_page": "40-255",
+            "pdf_page": 797,
+            "table_index": 0,
+            "row_index": 2
+          },
+          "fact_id": "CA778:6:meas:0"
         },
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (26) and (47), or between CAM SENSOR (female) (2) and (3)",
-          "criteria": "Min. 100kΩ"
+          "criteria": "Min. 100kΩ",
+          "provenance": {
+            "manual_page": "40-255",
+            "pdf_page": 797,
+            "table_index": 0,
+            "row_index": 3
+          },
+          "fact_id": "CA778:6:meas:1"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-255",
+        "pdf_page": 797,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "CA778:6:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 7,
@@ -108,9 +199,24 @@
         {
           "quantity": "Resistance",
           "point": "Between ground and ECM (female) (26) or CAM SEN- SOR (female) (3)",
-          "criteria": "Min. 100kΩ"
+          "criteria": "Min. 100kΩ",
+          "provenance": {
+            "manual_page": "40-255",
+            "pdf_page": 797,
+            "table_index": 0,
+            "row_index": 5
+          },
+          "fact_id": "CA778:7:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-255",
+        "pdf_page": 797,
+        "table_index": 0,
+        "row_index": 4
+      },
+      "fact_id": "CA778:7:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 8,
@@ -121,30 +227,69 @@
         {
           "quantity": "Voltage",
           "point": "Between CAM SENSOR (female) (3) and ground",
-          "criteria": "Max. 1V"
+          "criteria": "Max. 1V",
+          "provenance": {
+            "manual_page": "40-255",
+            "pdf_page": 797,
+            "table_index": 0,
+            "row_index": 7
+          },
+          "fact_id": "CA778:8:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-255",
+        "pdf_page": 797,
+        "table_index": 0,
+        "row_index": 6
+      },
+      "fact_id": "CA778:8:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 9,
       "cause": "Looseness of speed sensing ring",
       "procedure": "Remove the engine Bkup speed (CAM) sensor. Check directly through hole (H). REMARK If the speed detection ring (B) is loose, see “REFERENCE”.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-255",
+        "pdf_page": 797,
+        "table_index": 0,
+        "row_index": 8
+      },
+      "fact_id": "CA778:9:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 10,
       "cause": "Defective engine Bkup speed (CAM) sensor",
       "procedure": "If no failure is found by the previous checks, the engine Bkup speed (CAM) sensor is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-255",
+        "pdf_page": 797,
+        "table_index": 0,
+        "row_index": 9
+      },
+      "fact_id": "CA778:10:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 11,
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-255",
+        "pdf_page": 797,
+        "table_index": 0,
+        "row_index": 10
+      },
+      "fact_id": "CA778:11:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -160,6 +305,12 @@
   ],
   "default_conclusion": "Defective engine controller",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-254",
+    "pdf_page": 796,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true

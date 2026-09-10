@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -30,7 +31,18 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-513",
+        "pdf_page": 1055,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DWA2KB:1:step:0",
+      "branch_fact_ids": {
+        "NO": "DWA2KB:1:branch:0",
+        "YES": "DWA2KB:1:branch:1"
+      }
     },
     {
       "step": 2,
@@ -40,7 +52,18 @@
         "YES": "• The attachment single or 2-way change solenoid is normal. • Go to the next inspection item.",
         "NO": "• The attachment single or 2-way change solenoid is defective. • Replace the attachment single or 2-way change selector solenoid. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-513",
+        "pdf_page": 1055,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "DWA2KB:2:step:0",
+      "branch_fact_ids": {
+        "NO": "DWA2KB:2:branch:0",
+        "YES": "DWA2KB:2:branch:1"
+      }
     },
     {
       "step": 3,
@@ -50,7 +73,18 @@
         "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
         "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-514",
+        "pdf_page": 1056,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "DWA2KB:3:step:0",
+      "branch_fact_ids": {
+        "NO": "DWA2KB:3:branch:0",
+        "YES": "DWA2KB:3:branch:1"
+      }
     },
     {
       "step": 4,
@@ -60,7 +94,18 @@
         "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-514",
+        "pdf_page": 1056,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "DWA2KB:4:step:0",
+      "branch_fact_ids": {
+        "NO": "DWA2KB:4:branch:0",
+        "YES": "DWA2KB:4:branch:1"
+      }
     },
     {
       "step": 5,
@@ -70,7 +115,18 @@
         "YES": "The repair is completed.",
         "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-514",
+        "pdf_page": 1056,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "DWA2KB:5:step:0",
+      "branch_fact_ids": {
+        "NO": "DWA2KB:5:branch:0",
+        "YES": "DWA2KB:5:branch:1"
+      }
     },
     {
       "step": 6,
@@ -80,29 +136,68 @@
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-514",
+        "pdf_page": 1056,
+        "table_index": 0,
+        "row_index": 7
+      },
+      "fact_id": "DWA2KB:6:step:0",
+      "branch_fact_ids": {
+        "NO": "DWA2KB:6:branch:0",
+        "YES": "DWA2KB:6:branch:1"
+      }
     }
   ],
   "standalone_measurements": [
     {
       "quantity": "Resistance",
       "point": "Between V07 (male) (1) and (2)",
-      "criteria": "20 to 60 Ω"
+      "criteria": "20 to 60 Ω",
+      "provenance": {
+        "manual_page": "40-513",
+        "pdf_page": 1055,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "DWA2KB:0:meas:0"
     },
     {
       "quantity": "Resistance",
       "point": "Between V07 (male) (1) and ground",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-513",
+        "pdf_page": 1055,
+        "table_index": 2,
+        "row_index": 2
+      },
+      "fact_id": "DWA2KB:0:meas:1"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP02 (female) (86) or V07 (female) (1) and ground",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-514",
+        "pdf_page": 1056,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DWA2KB:0:meas:2"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP02 (female) (86) and each pin other than (86)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-514",
+        "pdf_page": 1056,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "DWA2KB:0:meas:3"
     }
   ],
   "refs_failure_codes": [],
@@ -114,6 +209,12 @@
   ],
   "default_conclusion": null,
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-513",
+    "pdf_page": 1055,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "PUMP",
   "system_category": "Electrical system",
   "in_code_table": true

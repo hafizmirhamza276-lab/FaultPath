@@ -82,8 +82,21 @@ def load_codes():
 
 
 def page_of(rec):
-    """The printed manual page a citation must name, e.g. '40-181'."""
+    """Fallback page for a code-level fact, e.g. '40-181'."""
     return rec["manual_pages"][0] if rec["manual_pages"] else None
+
+
+def page_of_fact(obj, rec):
+    """The page the FACT is on, not the page its code starts on.
+
+    146 of 174 codes span more than one page and one runs to 11, so 75% of
+    measurements do not sit on their code's first page. Citing the first page
+    was wrong for three quarters of numeric cases -- and citation_accuracy
+    still scored 1.0000, because it was comparing the answer against the same
+    wrong page the test set had recorded.
+    """
+    prov = (obj or {}).get("provenance") or {}
+    return prov.get("manual_page") or page_of(rec)
 
 
 def is_numeric_criterion(criteria):
@@ -152,8 +165,9 @@ def cases_numeric_exactness(rec):
                 "step": step,
             },
             "must_contain_verbatim": [criteria],
-            "must_cite_page": page_of(rec),
+            "must_cite_page": page_of_fact(m, rec),
             "must_not_refuse": True,
+            "fact_ids": [m["fact_id"]] if m.get("fact_id") else [],
             "source_code": rec["code"],
         })
     return out
@@ -184,8 +198,9 @@ def case_step_ordering(rec):
             "procedure": first.get("procedure"),
         },
         "must_contain": [first["cause"]] if first.get("cause") else [],
-        "must_cite_page": page_of(rec),
+        "must_cite_page": page_of_fact(first, rec),
         "must_not_refuse": True,
+        "fact_ids": [first["fact_id"]] if first.get("fact_id") else [],
         "source_code": rec["code"],
     }
 
@@ -208,8 +223,10 @@ def case_branch_following(rec):
         "filters": dict(FILTERS),
         "expected": {"step": step["step"], "branch": "NO", "outcome": outcome},
         "must_contain": [outcome[:60]],
-        "must_cite_page": page_of(rec),
+        "must_cite_page": page_of_fact(step, rec),
         "must_not_refuse": True,
+        "fact_ids": [(step.get("branch_fact_ids") or {}).get("NO")]
+                    if (step.get("branch_fact_ids") or {}).get("NO") else [],
         "source_code": rec["code"],
     }
 
@@ -332,8 +349,8 @@ def assign_ids(cases):
 
 KEY_ORDER = ["id", "type", "difficulty", "question", "filters", "expected",
              "must_contain", "must_contain_verbatim", "must_cite_page",
-             "must_not_refuse", "must_refuse", "must_not_contain_numbers",
-             "trap", "source_code"]
+             "fact_ids", "must_not_refuse", "must_refuse",
+             "must_not_contain_numbers", "trap", "source_code"]
 
 
 def ordered(case):

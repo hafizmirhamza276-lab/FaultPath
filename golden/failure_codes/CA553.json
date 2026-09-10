@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -25,21 +26,45 @@
       "cause": "Defective related systems",
       "procedure": "Check if other failure codes are shown at the same time. If other codes are shown, do the troubleshooting for them.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-246",
+        "pdf_page": 788,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "CA553:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
       "cause": "Defective connection of ground terminal",
       "procedure": "The connection of the ground terminal can be defective. Check the terminals that follow. • Ground terminal of machine ((-) terminal of battery) • Engine ground terminal • Engine controller ground terminal • Starting motor ground terminal",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-246",
+        "pdf_page": 788,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "CA553:2:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 3,
       "cause": "Defective common rail pressure sensor system",
       "procedure": "Do the troubleshooting for failure codes [CA451] and [CA452].",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-246",
+        "pdf_page": 788,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "CA553:3:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -53,6 +78,12 @@
   "connectors": [],
   "default_conclusion": "Defective common rail pressure sensor system",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-246",
+    "pdf_page": 788,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true

@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -26,7 +27,15 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-231",
+        "pdf_page": 773,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "CA428:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
@@ -37,9 +46,24 @@
         {
           "quantity": "Resistance",
           "point": "Between P47 (female) (1) and (2)",
-          "criteria": "Min. 100kΩ"
+          "criteria": "Min. 100kΩ",
+          "provenance": {
+            "manual_page": "40-231",
+            "pdf_page": 773,
+            "table_index": 1,
+            "row_index": 3
+          },
+          "fact_id": "CA428:2:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-231",
+        "pdf_page": 773,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "CA428:2:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 3,
@@ -50,9 +74,24 @@
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (14) and (47) (water sensor resistance)",
-          "criteria": "Min. 100kΩ"
+          "criteria": "Min. 100kΩ",
+          "provenance": {
+            "manual_page": "40-231",
+            "pdf_page": 773,
+            "table_index": 1,
+            "row_index": 5
+          },
+          "fact_id": "CA428:3:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-231",
+        "pdf_page": 773,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "CA428:3:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 4,
@@ -63,14 +102,36 @@
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (14) and P47 (female) (1)",
-          "criteria": "Max. 10Ω"
+          "criteria": "Max. 10Ω",
+          "provenance": {
+            "manual_page": "40-231",
+            "pdf_page": 773,
+            "table_index": 1,
+            "row_index": 7
+          },
+          "fact_id": "CA428:4:meas:0"
         },
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (47) and P47 (female) (2)",
-          "criteria": "Max. 10Ω"
+          "criteria": "Max. 10Ω",
+          "provenance": {
+            "manual_page": "40-231",
+            "pdf_page": 773,
+            "table_index": 1,
+            "row_index": 8
+          },
+          "fact_id": "CA428:4:meas:1"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-231",
+        "pdf_page": 773,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "fact_id": "CA428:4:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 5,
@@ -81,16 +142,39 @@
         {
           "quantity": "Continuity",
           "point": "Between ECM (female) (14) and each pin other than pin (14)",
-          "criteria": "No continuity (there is no sound)"
+          "criteria": "No continuity (there is no sound)",
+          "provenance": {
+            "manual_page": "40-231",
+            "pdf_page": 773,
+            "table_index": 1,
+            "row_index": 10
+          },
+          "fact_id": "CA428:5:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-231",
+        "pdf_page": 773,
+        "table_index": 1,
+        "row_index": 9
+      },
+      "fact_id": "CA428:5:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 6,
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-231",
+        "pdf_page": 773,
+        "table_index": 1,
+        "row_index": 11
+      },
+      "fact_id": "CA428:6:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -103,6 +187,12 @@
   ],
   "default_conclusion": "Defective engine controller",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-231",
+    "pdf_page": 773,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true

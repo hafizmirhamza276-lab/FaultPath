@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -27,7 +28,15 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-192",
+        "pdf_page": 734,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "CA141:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
@@ -38,9 +47,24 @@
         {
           "quantity": "Resistance",
           "point": "Between OIL PRESSURE SWITCH (male) (1) and ground",
-          "criteria": "Max. 10Ω"
+          "criteria": "Max. 10Ω",
+          "provenance": {
+            "manual_page": "40-192",
+            "pdf_page": 734,
+            "table_index": 1,
+            "row_index": 3
+          },
+          "fact_id": "CA141:2:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-192",
+        "pdf_page": 734,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "CA141:2:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 3,
@@ -51,23 +75,54 @@
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (17) and ground",
-          "criteria": "Max. 10Ω"
+          "criteria": "Max. 10Ω",
+          "provenance": {
+            "manual_page": "40-192",
+            "pdf_page": 734,
+            "table_index": 1,
+            "row_index": 5
+          },
+          "fact_id": "CA141:3:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-192",
+        "pdf_page": 734,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "CA141:3:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 4,
       "cause": "Looseness or corrosion of battery terminal",
       "procedure": "The looseness or corrosion of battery terminal can be the cause. Check it.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-192",
+        "pdf_page": 734,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "fact_id": "CA141:4:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 5,
       "cause": "Loose terminal or halfopen circuit at terminal",
       "procedure": "1. Starting switch: OFF Check the terminals of alternator, battery relay, and ground terminals (T12), etc.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-192",
+        "pdf_page": 734,
+        "table_index": 1,
+        "row_index": 7
+      },
+      "fact_id": "CA141:5:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 6,
@@ -78,9 +133,24 @@
         {
           "quantity": "Voltage",
           "point": "Between battery terminals (+) and (-)",
-          "criteria": "20 to 30V"
+          "criteria": "20 to 30V",
+          "provenance": {
+            "manual_page": "40-192",
+            "pdf_page": 734,
+            "table_index": 1,
+            "row_index": 10
+          },
+          "fact_id": "CA141:6:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-192",
+        "pdf_page": 734,
+        "table_index": 1,
+        "row_index": 9
+      },
+      "fact_id": "CA141:6:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 7,
@@ -91,9 +161,24 @@
         {
           "quantity": "Voltage",
           "point": "Between E12 (1) and ground",
-          "criteria": "27.5 to 29.5V"
+          "criteria": "27.5 to 29.5V",
+          "provenance": {
+            "manual_page": "40-193",
+            "pdf_page": 735,
+            "table_index": 0,
+            "row_index": 2
+          },
+          "fact_id": "CA141:7:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-193",
+        "pdf_page": 735,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "CA141:7:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 8,
@@ -104,14 +189,36 @@
         {
           "quantity": "Voltage",
           "point": "Between CE03 (3) and (1) / Starting switch: ON",
-          "criteria": "20 to 30V"
+          "criteria": "20 to 30V",
+          "provenance": {
+            "manual_page": "40-193",
+            "pdf_page": 735,
+            "table_index": 0,
+            "row_index": 5
+          },
+          "fact_id": "CA141:8:meas:0"
         },
         {
           "quantity": "Between CE03 (3) and (1)",
           "point": "Starting switch: START",
-          "criteria": "Min. 12V"
+          "criteria": "Min. 12V",
+          "provenance": {
+            "manual_page": "40-193",
+            "pdf_page": 735,
+            "table_index": 0,
+            "row_index": 6
+          },
+          "fact_id": "CA141:8:meas:1"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-193",
+        "pdf_page": 735,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "CA141:8:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -126,6 +233,12 @@
   ],
   "default_conclusion": "Defective engine controller",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-192",
+    "pdf_page": 734,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true

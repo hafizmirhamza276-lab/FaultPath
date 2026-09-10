@@ -149,7 +149,67 @@ check("detector self-test: matches the known-bad '.2 to 4.6V'",
 check("detector self-test: accepts the corrected 'Sensor output 0.2 to 4.6V'",
       not _probe.search("Sensor output 0.2 to 4.6V"))
 
-# ============================================ 4. qa_set.json agrees with truth
+# ================================================= 4. span-level provenance
+# A code spans up to 11 pages, so a citation to the code's first page is not a
+# citation to the measurement. 75% of measurements are not on their code's
+# first page. Provenance is captured at parse time from the page the row was
+# read from; these checks pin that it stayed attached and stayed complete.
+print("\nspan-level provenance (schema v2)")
+
+check("every record declares schema_version 2",
+      all(r.get("schema_version") == 2 for r in recs.values()),
+      f"missing/old: {sorted(c for c, r in recs.items() if r.get('schema_version') != 2)[:5]}")
+
+PROV_KEYS = {"manual_page", "pdf_page", "table_index", "row_index"}
+
+
+def prov_ok(p):
+    return isinstance(p, dict) and PROV_KEYS <= set(p) and p.get("pdf_page")
+
+
+missing_prov = [f"{c} step {s['step']}" for c, r in recs.items()
+                for s in r["steps"] if not prov_ok(s.get("provenance"))]
+check("every step carries complete provenance", not missing_prov,
+      "; ".join(missing_prov[:5]))
+
+missing_mprov = [f"{c} {m.get('fact_id')}" for c, r in recs.items()
+                 for m in all_measurements(r) if not prov_ok(m.get("provenance"))]
+check("every measurement carries complete provenance", not missing_mprov,
+      "; ".join(missing_mprov[:5]))
+
+# Provenance must point inside the code's own page range, or it is pointing at
+# another code's page -- worse than no citation.
+outside = []
+for c, r in recs.items():
+    lo, hi = r["pdf_pages"]
+    for s in r["steps"]:
+        for p in [s.get("provenance")] + [m.get("provenance") for m in s["measurements"]]:
+            if p and not (lo <= p["pdf_page"] <= hi):
+                outside.append(f"{c}: {p['pdf_page']} not in {lo}-{hi}")
+check("no provenance points outside its code's page range", not outside,
+      "; ".join(outside[:5]))
+
+# Fact ids: unique, and shaped <code>:<step>:<kind>:<index>.
+fact_ids = [s["fact_id"] for r in recs.values() for s in r["steps"]]
+fact_ids += [m["fact_id"] for r in recs.values() for m in all_measurements(r)]
+check("every fact id is unique", len(fact_ids) == len(set(fact_ids)),
+      f"{len(fact_ids)} ids, {len(set(fact_ids))} unique")
+FACT_RE = re.compile(r"^[A-Z0-9@#]{4,7}:\d+:(step|meas|branch):\d+$")
+malformed = [f for f in fact_ids if not FACT_RE.match(f)]
+check("every fact id is well formed", not malformed, "; ".join(malformed[:5]))
+
+# The record this whole chain of work exists for.
+_ca451 = [s for s in recs["CA451"]["steps"] if s["step"] == 6]
+if _ca451 and _ca451[0]["measurements"]:
+    _m = _ca451[0]["measurements"][0]
+    check("CA451 step 6 measurement cites 40-242, not the code's first page",
+          _m["provenance"]["manual_page"] == "40-242",
+          f"got {_m['provenance']['manual_page']!r}")
+    check("CA451 step 6 measurement has fact id CA451:6:meas:0",
+          _m.get("fact_id") == "CA451:6:meas:0", f"got {_m.get('fact_id')!r}")
+
+
+# ============================================ 5. qa_set.json agrees with truth
 # qa_set.json went stale once: the ground truth was corrected and the test set
 # kept requiring the old corrupt value as a verbatim answer, so a correct
 # assistant would have been marked wrong on a sensor voltage. Nothing detected

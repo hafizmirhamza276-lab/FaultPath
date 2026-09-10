@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -26,14 +27,30 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-212",
+        "pdf_page": 754,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "CA238:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
       "cause": "Defective sensor or wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors that follow one by one, and turn the starting switch to the ON position each time. 3. When troubleshooting is done, go back to Step 1. If this code is cleared, disconnected sensor or engine wiring harness is defective. REMARK Other failure codes are shown at the same time. This occurs because the connector is disconnected. So ignore codes other than this failure code [CA238]. Connector Ne speed sensor CRANK SENSOR Engine wiring harness ECM",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-212",
+        "pdf_page": 754,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "CA238:2:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 3,
@@ -44,9 +61,24 @@
         {
           "quantity": "Voltage",
           "point": "Between ECM (male) (16) and (48)",
-          "criteria": "4.75 to 5.25V"
+          "criteria": "4.75 to 5.25V",
+          "provenance": {
+            "manual_page": "40-212",
+            "pdf_page": 754,
+            "table_index": 1,
+            "row_index": 7
+          },
+          "fact_id": "CA238:3:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-212",
+        "pdf_page": 754,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "fact_id": "CA238:3:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -57,6 +89,12 @@
   ],
   "default_conclusion": "Defective engine controller",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-212",
+    "pdf_page": 754,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true

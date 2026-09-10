@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -25,14 +26,30 @@
       "cause": "Overheating of engine coolant (when system is normal)",
       "procedure": "Lowered engine oil pressure can be the cause. Check it and if oil pressure is lowered, repair to clear the cause of failure. • For details, see “Coolant Temperature Increases Too High (Overheat)” in S-mode.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-173",
+        "pdf_page": 715,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "B@BCNS:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
       "cause": "Defective engine coolant temperature sensor system",
       "procedure": "If no failure is found by the check on cause 1, the engine coolant temperature sensor system can be defective. Do the troubleshooting for failure codes [CA144] and [CA145].",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-173",
+        "pdf_page": 715,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "B@BCNS:2:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -46,6 +63,12 @@
   "connectors": [],
   "default_conclusion": "Defective engine coolant temperature sensor system",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-173",
+    "pdf_page": 715,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Mechanical system",
   "in_code_table": true

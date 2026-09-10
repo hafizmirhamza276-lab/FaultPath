@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -34,14 +35,36 @@
         {
           "quantity": "Voltage",
           "point": "Between CK05 (female) (1) and (2)",
-          "criteria": "20 to 30 V"
+          "criteria": "20 to 30 V",
+          "provenance": {
+            "manual_page": "40-298",
+            "pdf_page": 840,
+            "table_index": 1,
+            "row_index": 2
+          },
+          "fact_id": "D8ARKR:1:meas:0"
         },
         {
           "quantity": "Voltage",
           "point": "Between CK05 (female) (3) and (4)",
-          "criteria": "20 to 30 V"
+          "criteria": "20 to 30 V",
+          "provenance": {
+            "manual_page": "40-298",
+            "pdf_page": 840,
+            "table_index": 1,
+            "row_index": 3
+          },
+          "fact_id": "D8ARKR:1:meas:1"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-298",
+        "pdf_page": 840,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "D8ARKR:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
@@ -52,24 +75,60 @@
         {
           "quantity": "Resistance",
           "point": "Between F01-17 and CK05 (female) (1)",
-          "criteria": "Max. 1 Ω"
+          "criteria": "Max. 1 Ω",
+          "provenance": {
+            "manual_page": "40-299",
+            "pdf_page": 841,
+            "table_index": 0,
+            "row_index": 2
+          },
+          "fact_id": "D8ARKR:2:meas:0"
         },
         {
           "quantity": "Resistance",
           "point": "Between F01-17 and CK05 (female) (3)",
-          "criteria": "Max. 1 Ω"
+          "criteria": "Max. 1 Ω",
+          "provenance": {
+            "manual_page": "40-299",
+            "pdf_page": 841,
+            "table_index": 0,
+            "row_index": 3
+          },
+          "fact_id": "D8ARKR:2:meas:1"
         },
         {
           "quantity": "Resistance",
           "point": "Between CK05 (female) (2) and ground",
-          "criteria": "Max. 1 Ω"
+          "criteria": "Max. 1 Ω",
+          "provenance": {
+            "manual_page": "40-299",
+            "pdf_page": 841,
+            "table_index": 0,
+            "row_index": 4
+          },
+          "fact_id": "D8ARKR:2:meas:2"
         },
         {
           "quantity": "Resistance",
           "point": "Between CK05 (female) (4) and ground",
-          "criteria": "Max. 1 Ω"
+          "criteria": "Max. 1 Ω",
+          "provenance": {
+            "manual_page": "40-299",
+            "pdf_page": 841,
+            "table_index": 0,
+            "row_index": 5
+          },
+          "fact_id": "D8ARKR:2:meas:3"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-299",
+        "pdf_page": 841,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "D8ARKR:2:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 3,
@@ -80,14 +139,36 @@
         {
           "quantity": "Voltage",
           "point": "Between CK05 (female) (24) and (2)",
-          "criteria": "20 to 30 V"
+          "criteria": "20 to 30 V",
+          "provenance": {
+            "manual_page": "40-299",
+            "pdf_page": 841,
+            "table_index": 0,
+            "row_index": 7
+          },
+          "fact_id": "D8ARKR:3:meas:0"
         },
         {
           "quantity": "Voltage",
           "point": "Between CK05 (female) (24) and (4)",
-          "criteria": "20 to 30 V"
+          "criteria": "20 to 30 V",
+          "provenance": {
+            "manual_page": "40-299",
+            "pdf_page": 841,
+            "table_index": 0,
+            "row_index": 8
+          },
+          "fact_id": "D8ARKR:3:meas:1"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-299",
+        "pdf_page": 841,
+        "table_index": 0,
+        "row_index": 6
+      },
+      "fact_id": "D8ARKR:3:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 4,
@@ -98,24 +179,60 @@
         {
           "quantity": "Resistance",
           "point": "Between F01-10D and CK05 (female) (24)",
-          "criteria": "Max. 1 Ω"
+          "criteria": "Max. 1 Ω",
+          "provenance": {
+            "manual_page": "40-299",
+            "pdf_page": 841,
+            "table_index": 0,
+            "row_index": 10
+          },
+          "fact_id": "D8ARKR:4:meas:0"
         },
         {
           "quantity": "Resistance",
           "point": "Between F01-20J and CK05 (female) (24)",
-          "criteria": "Max. 1 Ω"
+          "criteria": "Max. 1 Ω",
+          "provenance": {
+            "manual_page": "40-299",
+            "pdf_page": 841,
+            "table_index": 0,
+            "row_index": 11
+          },
+          "fact_id": "D8ARKR:4:meas:1"
         },
         {
           "quantity": "Resistance",
           "point": "Between CK05 (female) (2) and ground",
-          "criteria": "Max. 1 Ω"
+          "criteria": "Max. 1 Ω",
+          "provenance": {
+            "manual_page": "40-299",
+            "pdf_page": 841,
+            "table_index": 0,
+            "row_index": 12
+          },
+          "fact_id": "D8ARKR:4:meas:2"
         },
         {
           "quantity": "Resistance",
           "point": "Between CK05 (female) (4) and ground",
-          "criteria": "Max. 1 Ω"
+          "criteria": "Max. 1 Ω",
+          "provenance": {
+            "manual_page": "40-299",
+            "pdf_page": 841,
+            "table_index": 0,
+            "row_index": 13
+          },
+          "fact_id": "D8ARKR:4:meas:3"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-299",
+        "pdf_page": 841,
+        "table_index": 0,
+        "row_index": 9
+      },
+      "fact_id": "D8ARKR:4:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 5,
@@ -126,14 +243,36 @@
         {
           "quantity": "Resistance",
           "point": "Between CM02 (male) (10) and (12)",
-          "criteria": "120±12 Ω"
+          "criteria": "120±12 Ω",
+          "provenance": {
+            "manual_page": "40-299",
+            "pdf_page": 841,
+            "table_index": 0,
+            "row_index": 15
+          },
+          "fact_id": "D8ARKR:5:meas:0"
         },
         {
           "quantity": "Resistance",
           "point": "Between K13 (male) (A) and (B)",
-          "criteria": "120±12 Ω"
+          "criteria": "120±12 Ω",
+          "provenance": {
+            "manual_page": "40-299",
+            "pdf_page": 841,
+            "table_index": 0,
+            "row_index": 16
+          },
+          "fact_id": "D8ARKR:5:meas:1"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-299",
+        "pdf_page": 841,
+        "table_index": 0,
+        "row_index": 14
+      },
+      "fact_id": "D8ARKR:5:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 6,
@@ -144,29 +283,72 @@
         {
           "quantity": "Resistance",
           "point": "Between CK05 (female) (7) and CM02 (female) (10)",
-          "criteria": "Max. 1 Ω"
+          "criteria": "Max. 1 Ω",
+          "provenance": {
+            "manual_page": "40-300",
+            "pdf_page": 842,
+            "table_index": 0,
+            "row_index": 2
+          },
+          "fact_id": "D8ARKR:6:meas:0"
         },
         {
           "quantity": "Resistance",
           "point": "Between CK05 (female) (7) and CM02 (female) (11)",
-          "criteria": "Max. 1 Ω"
+          "criteria": "Max. 1 Ω",
+          "provenance": {
+            "manual_page": "40-300",
+            "pdf_page": 842,
+            "table_index": 0,
+            "row_index": 3
+          },
+          "fact_id": "D8ARKR:6:meas:1"
         },
         {
           "quantity": "Resistance",
           "point": "Between CK05 (female) (26) and CM02 (female) (12)",
-          "criteria": "Max. 1 Ω"
+          "criteria": "Max. 1 Ω",
+          "provenance": {
+            "manual_page": "40-300",
+            "pdf_page": 842,
+            "table_index": 0,
+            "row_index": 4
+          },
+          "fact_id": "D8ARKR:6:meas:2"
         },
         {
           "quantity": "Resistance",
           "point": "Between CK05 (female) (7) and C23 (female) (A)",
-          "criteria": "Max. 1 Ω"
+          "criteria": "Max. 1 Ω",
+          "provenance": {
+            "manual_page": "40-300",
+            "pdf_page": 842,
+            "table_index": 0,
+            "row_index": 5
+          },
+          "fact_id": "D8ARKR:6:meas:3"
         },
         {
           "quantity": "Resistance",
           "point": "Between CK05 (female) (26) and C23 (female) (B)",
-          "criteria": "Max. 1 Ω"
+          "criteria": "Max. 1 Ω",
+          "provenance": {
+            "manual_page": "40-300",
+            "pdf_page": 842,
+            "table_index": 0,
+            "row_index": 6
+          },
+          "fact_id": "D8ARKR:6:meas:4"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-300",
+        "pdf_page": 842,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "D8ARKR:6:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 7,
@@ -177,14 +359,36 @@
         {
           "quantity": "Resistance",
           "point": "Between ground and one of CK05 (female) (7), CM02 (female) (10), (11),CP01 (female) (7) and K13(female) (A)",
-          "criteria": "Min. 1 MΩ"
+          "criteria": "Min. 1 MΩ",
+          "provenance": {
+            "manual_page": "40-300",
+            "pdf_page": 842,
+            "table_index": 0,
+            "row_index": 8
+          },
+          "fact_id": "D8ARKR:7:meas:0"
         },
         {
           "quantity": "Resistance",
           "point": "Between ground and one of CK05 (female) (26) , CM02 (female) (12),CP01(female) (26) and K13(female) (B)",
-          "criteria": "Min. 1 MΩ"
+          "criteria": "Min. 1 MΩ",
+          "provenance": {
+            "manual_page": "40-300",
+            "pdf_page": 842,
+            "table_index": 0,
+            "row_index": 9
+          },
+          "fact_id": "D8ARKR:7:meas:1"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-300",
+        "pdf_page": 842,
+        "table_index": 0,
+        "row_index": 7
+      },
+      "fact_id": "D8ARKR:7:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 8,
@@ -195,28 +399,66 @@
         {
           "quantity": "Voltage",
           "point": "Between K13 (A) and ground",
-          "criteria": "1 to 4 V"
+          "criteria": "1 to 4 V",
+          "provenance": {
+            "manual_page": "40-300",
+            "pdf_page": 842,
+            "table_index": 0,
+            "row_index": 11
+          },
+          "fact_id": "D8ARKR:8:meas:0"
         },
         {
           "quantity": "Voltage",
           "point": "Between K13 (B) and ground",
-          "criteria": "1 to 4 V"
+          "criteria": "1 to 4 V",
+          "provenance": {
+            "manual_page": "40-300",
+            "pdf_page": 842,
+            "table_index": 0,
+            "row_index": 12
+          },
+          "fact_id": "D8ARKR:8:meas:1"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-300",
+        "pdf_page": 842,
+        "table_index": 0,
+        "row_index": 10
+      },
+      "fact_id": "D8ARKR:8:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 9,
       "cause": "Defective gateway function controller",
       "procedure": "If no failure is found by the previous checks, the gateway function controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-300",
+        "pdf_page": 842,
+        "table_index": 0,
+        "row_index": 13
+      },
+      "fact_id": "D8ARKR:9:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 10,
       "cause": "Defective machine monitor",
       "procedure": "If no failure is found by the previous checks, the machine monitor is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-300",
+        "pdf_page": 842,
+        "table_index": 0,
+        "row_index": 14
+      },
+      "fact_id": "D8ARKR:10:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -234,6 +476,12 @@
   ],
   "default_conclusion": "Defective machine monitor",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-298",
+    "pdf_page": 840,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "GW",
   "system_category": "Electrical system",
   "in_code_table": true

@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -25,21 +26,45 @@
       "cause": "Use of incorrect fuel",
       "procedure": "The fuel used can be incorrect. Check it.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-211",
+        "pdf_page": 753,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "CA234:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
       "cause": "Incorrect usage of machine",
       "procedure": "It is possible that the machine is used incorrectly. Instruct the operator to use it correctly.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-211",
+        "pdf_page": 753,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "CA234:2:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 3,
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-211",
+        "pdf_page": 753,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "CA234:3:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -50,6 +75,12 @@
   "connectors": [],
   "default_conclusion": "Defective engine controller",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-211",
+    "pdf_page": 753,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Mechanical system",
   "in_code_table": true

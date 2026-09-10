@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -26,14 +27,30 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-214",
+        "pdf_page": 756,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "CA271:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
       "cause": "Defective actuator of supply pump",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector CP3 PUMP REGULATOR. 3. Starting switch: ON If the failure code changes from [CA271] to [CA272], the supply pump actuator is defective.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-214",
+        "pdf_page": 756,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "CA271:2:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 3,
@@ -44,14 +61,36 @@
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (2) and (32)",
-          "criteria": "1 to 5Ω"
+          "criteria": "1 to 5Ω",
+          "provenance": {
+            "manual_page": "40-214",
+            "pdf_page": 756,
+            "table_index": 1,
+            "row_index": 5
+          },
+          "fact_id": "CA271:3:meas:0"
         },
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (2) and ground",
-          "criteria": "Min. 100kΩ"
+          "criteria": "Min. 100kΩ",
+          "provenance": {
+            "manual_page": "40-214",
+            "pdf_page": 756,
+            "table_index": 1,
+            "row_index": 6
+          },
+          "fact_id": "CA271:3:meas:1"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-214",
+        "pdf_page": 756,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "CA271:3:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 4,
@@ -62,9 +101,24 @@
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (2) and (32)",
-          "criteria": "Min. 100kΩ"
+          "criteria": "Min. 100kΩ",
+          "provenance": {
+            "manual_page": "40-214",
+            "pdf_page": 756,
+            "table_index": 1,
+            "row_index": 8
+          },
+          "fact_id": "CA271:4:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-214",
+        "pdf_page": 756,
+        "table_index": 1,
+        "row_index": 7
+      },
+      "fact_id": "CA271:4:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 5,
@@ -75,16 +129,39 @@
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (2) and ground",
-          "criteria": "Min. 100kΩ"
+          "criteria": "Min. 100kΩ",
+          "provenance": {
+            "manual_page": "40-214",
+            "pdf_page": 756,
+            "table_index": 1,
+            "row_index": 10
+          },
+          "fact_id": "CA271:5:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-214",
+        "pdf_page": 756,
+        "table_index": 1,
+        "row_index": 9
+      },
+      "fact_id": "CA271:5:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 6,
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-214",
+        "pdf_page": 756,
+        "table_index": 1,
+        "row_index": 11
+      },
+      "fact_id": "CA271:6:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -97,6 +174,12 @@
   ],
   "default_conclusion": "Defective engine controller",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-214",
+    "pdf_page": 756,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true

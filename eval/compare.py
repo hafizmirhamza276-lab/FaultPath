@@ -24,11 +24,58 @@ import os
 import sys
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+LOGS_DIR = os.path.join(REPO_ROOT, "eval_out", "logs")
 
 
 def load(path):
     with open(path, encoding="utf-8") as f:
         return json.load(f)
+
+
+def index_rows():
+    sys.path.insert(0, REPO_ROOT)
+    from core.logging import read_index
+    return read_index(LOGS_DIR)
+
+
+def resolve_run(token):
+    """Accept a path, a run_id, or a label. Latest wins for a label."""
+    if os.path.isfile(token):
+        return load(token)
+    rows = index_rows()
+    hit = [r for r in rows if r.get("run_id") == token]
+    if not hit:
+        hit = [r for r in rows if r.get("label") == token]
+    if not hit:
+        raise SystemExit(
+            f"no run matching {token!r}. `--list` shows what is on record.")
+    row = hit[-1]
+    path = os.path.join(REPO_ROOT, row["run_file"])
+    if not os.path.isfile(path):
+        raise SystemExit(f"index names {row['run_file']} but it is missing")
+    return load(path)
+
+
+def list_runs(limit=25):
+    rows = index_rows()
+    if not rows:
+        print(f"no runs on record in {os.path.relpath(LOGS_DIR, REPO_ROOT)}")
+        return 0
+    print(f"{'run_id':26} {'label':22} {'git':9} {'gates':7} "
+          f"{'num_exact':>10} {'fabricated':>11}  when")
+    for r in rows[-limit:]:
+        h = r.get("headline") or {}
+        sha = (r.get("git_sha") or "?")[:7] + ("*" if r.get("git_dirty") else "")
+        ne = h.get("numeric_exactness")
+        fv = h.get("fabricated_values")
+        print(f"{r.get('run_id',''):26} {(r.get('label') or '')[:22]:22} {sha:9} "
+              f"{str(r.get('gates_passed'))+'/'+str(r.get('gates_total')):7} "
+              f"{(f'{ne:.4f}' if ne is not None else '-'):>10} "
+              f"{(f'{fv:.4f}' if fv is not None else '-'):>11}  "
+              f"{r.get('timestamp','')}")
+    print(f"\n{len(rows)} runs on record. This is the trend line: a metric moving")
+    print("across months of rows is a stronger argument than any single number.")
+    return 0
 
 
 def check_comparable(a, b):
@@ -109,15 +156,48 @@ def changed_cases(a, b, metric):
     return out
 
 
+def divergence(a, b, limit=20):
+    """Which specific cases changed verdict, across every metric.
+
+    When a metric drops the first question is always "which cases broke", and
+    the answer should be one command away rather than a scripting exercise
+    against two run files.
+    """
+    ra = {r["id"]: r for r in a.get("rows", [])}
+    rb = {r["id"]: r for r in b.get("rows", [])}
+    per_metric = {}
+    for cid in sorted(set(ra) & set(rb)):
+        ma, mb = ra[cid]["metrics"], rb[cid]["metrics"]
+        for name in set(ma) | set(mb):
+            va, vb = ma.get(name), mb.get(name)
+            if va is None or vb is None or va == vb:
+                continue
+            per_metric.setdefault(name, []).append(
+                {"case_id": cid, "type": ra[cid].get("type"),
+                 "source_code": ra[cid].get("source_code"), "a": va, "b": vb,
+                 "trace_a": ra[cid].get("trace_id"),
+                 "trace_b": rb[cid].get("trace_id")})
+    return per_metric
+
+
 def main():
     ap = argparse.ArgumentParser(description="Tier-1 run-to-run regression diff")
-    ap.add_argument("run_a")
-    ap.add_argument("run_b")
+    ap.add_argument("run_a", nargs="?", help="path, run_id, or label")
+    ap.add_argument("run_b", nargs="?", help="path, run_id, or label")
+    ap.add_argument("--list", action="store_true",
+                    help="list runs on record in eval_out/logs/index.jsonl")
     ap.add_argument("--show-cases", metavar="METRIC", default=None,
                     help="list per-case movement for one metric")
+    ap.add_argument("--divergence", action="store_true",
+                    help="which specific cases changed verdict, across all metrics")
     args = ap.parse_args()
 
-    a, b = load(args.run_a), load(args.run_b)
+    if args.list:
+        return list_runs()
+    if not (args.run_a and args.run_b):
+        ap.error("need two runs (path, run_id or label), or --list")
+
+    a, b = resolve_run(args.run_a), resolve_run(args.run_b)
 
     fatal = check_comparable(a, b)
     if fatal:
@@ -168,6 +248,22 @@ def main():
             print(f"  {cid:14} {va} -> {vb}")
         if len(cases) > 40:
             print(f"  ... and {len(cases) - 40} more")
+
+    if args.divergence:
+        div = divergence(a, b)
+        print(f"\nPER-CASE DIVERGENCE ({len(div)} metrics with case-level change)")
+        for name in sorted(div, key=lambda n: -len(div[n])):
+            rows_ = div[name]
+            worse = [r for r in rows_ if r["b"] < r["a"]]
+            print(f"\n  {name}  ({len(rows_)} cases changed, {len(worse)} worse)")
+            for r in rows_[:8]:
+                mark = "WORSE" if r["b"] < r["a"] else "better"
+                print(f"    {r['case_id']:12} {r['source_code'] or '-':8} "
+                      f"{r['type']:20} {r['a']} -> {r['b']}  {mark}")
+                if r.get("trace_b"):
+                    print(f"       trace {r['trace_b']} in the run's log")
+            if len(rows_) > 8:
+                print(f"    ... and {len(rows_) - 8} more")
 
     regressed = counts.get("REGRESSED", 0)
     broken = [g for g in gd if g[2] == "FAIL"]

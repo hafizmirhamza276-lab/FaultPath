@@ -27,9 +27,11 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from core.logging import RunLogger, NullLogger, new_trace_id  # noqa: E402
 from eval import chunkers                                    # noqa: E402
+from eval import citations as citemod                        # noqa: E402
 from eval.adapters import LocalBM25Retriever                 # noqa: E402
-from eval.metrics.base import Registry, is_adversarial       # noqa: E402
+from eval.metrics.base import Registry, is_adversarial, normalise  # noqa: E402
 from eval.metrics import retrieval as m_retrieval            # noqa: E402
 from eval.metrics import generation as m_generation          # noqa: E402
 from eval.metrics import conversation as m_conversation      # noqa: E402
@@ -39,6 +41,7 @@ from eval.synthetic import SYSTEMS                           # noqa: E402
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GOLD = os.environ.get("GOLD_DIR", os.path.join(REPO_ROOT, "golden"))
 RUNS_DIR = os.path.join(REPO_ROOT, "eval_out", "runs")
+LOGS_DIR = os.path.join(REPO_ROOT, "eval_out", "logs")
 
 RETRIEVERS = {"bm25": LocalBM25Retriever}
 
@@ -87,12 +90,14 @@ def machine_repaired_codes(records):
             if s.get("extraction_warning") == "column_split_recovered"}
 
 
-def evaluate(cases, registry, run_case):
+def evaluate(cases, registry, run_case, log=None):
     """run_case(case) -> result dict. Returns (rows, per_metric_values)."""
+    log = log or NullLogger()
     rows, values = [], collections.defaultdict(list)
     for case in cases:
+        trace = log.trace(new_trace_id())
         result = run_case(case)
-        row = {"id": case["id"], "type": case["type"],
+        row = {"id": case["id"], "type": case["type"], "trace_id": trace,
                "source_code": case.get("source_code"), "metrics": {}}
         for metric in registry:
             try:
@@ -107,6 +112,11 @@ def evaluate(cases, registry, run_case):
         fab = next((m for m in registry if m.name == "fabricated_values"), None)
         if fab and "fabricated_values" in row["metrics"] and row["metrics"]["fabricated_values"]:
             row["fabricated"] = fab.flagged(case, result)
+        log.event("validation", "case_scored",
+                  {"case_id": case["id"], "type": case["type"],
+                   "n_metrics": len(row["metrics"]),
+                   "fabricated": row.get("fabricated", [])},
+                  level="detail")
         rows.append(row)
     return rows, values
 
@@ -174,20 +184,33 @@ def main():
     ap.add_argument("--k", type=int, default=20)
     ap.add_argument("--label", default=None)
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--verbose", action="store_true",
+                    help="per-case stage events on the terminal")
+    ap.add_argument("--no-log", action="store_true",
+                    help="disable logging entirely; used to measure its overhead")
+    ap.add_argument("--prove-determinism", action="store_true",
+                    help="run the whole evaluation twice and require identical metrics")
     args = ap.parse_args()
 
     started = time.time()
-    records = load_records()
-    cases = load_cases()
-    corpus = chunkers.build(args.chunker, list(records.values()))
-    retriever = RETRIEVERS[args.retriever](corpus)
+    log = (NullLogger() if args.no_log else
+           RunLogger(log_dir=LOGS_DIR, quiet=args.quiet, verbose=args.verbose))
+
+    with log.timed("decision", "load_inputs") as t:
+        records = load_records()
+        cases = load_cases()
+        corpus = chunkers.build(args.chunker, list(records.values()))
+        retriever = RETRIEVERS[args.retriever](corpus)
+        t.add(codes=len(records), cases=len(cases), chunks=len(corpus),
+              chunker=args.chunker, retriever=args.retriever)
 
     repaired = machine_repaired_codes(records)
+    pages = citemod.PageText()
 
     registry = Registry()
     registry.extend(m_retrieval.build(corpus))
     if not args.retrieval_only:
-        registry.extend(m_generation.build(records))
+        registry.extend(m_generation.build(records, pages))
         registry.extend(m_safety.build(records))
         registry.extend(m_conversation.build())
 
@@ -207,30 +230,113 @@ def main():
     injections = m_safety.injection_cases(records) if system else []
     all_cases = cases + injections + scenarios
 
+    def _log_retrieval(case, ctx, timer):
+        """Everything needed to reconstruct this retrieval without re-running."""
+        timer.add(
+            query_raw=case["question"],
+            query_normalised=normalise(case["question"]),
+            filters=case.get("filters"),
+            k=args.k,
+            n_returned=len(ctx),
+            returned=[{"chunk_id": c.get("id"), "rank": i, "score": c.get("score"),
+                       "code": c.get("code"), "manual_page": c.get("manual_page")}
+                      for i, c in enumerate(ctx, 1)],
+        )
+
     def run_case(case):
         # Retrieval belongs to the system under test. With no system, the
-        # harness retrieves directly so the retrieval-only mode still works.
+        # harness retrieves directly so retrieval-only mode still works.
         if system is None:
-            ctx = retriever.search(case["question"], args.k, case.get("filters"))
-            return {"retrieved": ctx, "answer": "", "citations": [], "refused": False}
+            with log.timed("retrieval", "search", level="detail") as t:
+                ctx = retriever.search(case["question"], args.k, case.get("filters"))
+                _log_retrieval(case, ctx, t)
+            return {"retrieved": ctx, "answer": "", "citations": [],
+                    "citations_rendered": [], "refused": False}
 
-        ctx = system.retrieve(case, retriever, args.k)
+        with log.timed("retrieval", "search", level="detail") as t:
+            ctx = system.retrieve(case, retriever, args.k)
+            _log_retrieval(case, ctx, t)
+
         if case["type"] == "conversation":
-            turns = [{"role": "technician", "text": case["turns"][0]}]
-            replies = system.converse(case, ctx)
-            for i, rep in enumerate(replies):
-                turns.append({"role": "assistant", "text": rep})
-                if i + 1 < len(case["turns"]):
-                    turns.append({"role": "technician", "text": case["turns"][i + 1]})
+            with log.timed("generation", "converse",
+                           {"case_id": case["id"], "rule": case.get("rule")},
+                           level="detail") as t:
+                turns = [{"role": "technician", "text": case["turns"][0]}]
+                replies = system.converse(case, ctx)
+                for i, rep in enumerate(replies):
+                    turns.append({"role": "assistant", "text": rep})
+                    if i + 1 < len(case["turns"]):
+                        turns.append({"role": "technician",
+                                      "text": case["turns"][i + 1]})
+                t.add(n_turns=len(turns))
             return {"transcript": turns, "retrieved": ctx,
-                    "answer": " ".join(replies), "citations": [], "refused": False}
-        out = system.answer(case, ctx)
+                    "answer": " ".join(replies), "citations": [],
+                    "citations_rendered": [], "refused": False}
+
+        with log.timed("generation", "answer", {"case_id": case["id"]},
+                       level="detail") as t:
+            out = system.answer(case, ctx)
+            t.add(refused=out.get("refused"),
+                  context_chunk_ids=[c.get("id") for c in ctx],
+                  fact_ids=out.get("fact_ids") or [])
         out["retrieved"] = ctx
+
+        # Citations are rendered HERE, by code, from the fact ids the system
+        # named. The system never types a page number. What it does not
+        # generate, it cannot get wrong.
+        with log.timed("citation", "render", {"case_id": case["id"]},
+                       level="detail") as t:
+            rendered, bad = [], []
+            for fid in (out.get("fact_ids") or []):
+                try:
+                    rendered += citemod.render([fid])
+                except citemod.UnknownFact as exc:
+                    bad.append({"fact_id": fid, "error": str(exc)})
+            out["citations_rendered"] = rendered
+            # A system that types its own pages keeps them, and is measured on
+            # them; that is how the weak system is caught.
+            if not rendered and out.get("citations"):
+                out["citations_rendered"] = [
+                    {"fact_id": None, "manual_page": c, "pdf_page": None,
+                     "verbatim_text": ""} for c in out["citations"]]
+            elif rendered:
+                out["citations"] = [c["manual_page"] for c in rendered]
+            t.add(n_rendered=len(rendered), unknown_fact_ids=bad,
+                  pages=[c.get("manual_page") for c in out["citations_rendered"]])
         return out
 
-    rows, _ = evaluate(all_cases, registry, run_case)
+    if not pages.available():
+        print(f"NOTE: source PDF not at {pages.path} -- citation_resolvability "
+              "will report 'not applicable' rather than passing silently.\n")
+
+    with log.timed("decision", "evaluate", {"n_cases": len(all_cases)}):
+        rows, _ = evaluate(all_cases, registry, run_case, log)
     metrics = aggregate(registry, rows)
     gates = check_gates(metrics[1])
+    for g in gates:
+        log.event("decision", "gate", g)
+
+    # --- determinism proof. Tier 1 claims byte-identical output; prove it
+    # rather than asserting it in a doc. Timings are excluded because wall time
+    # legitimately varies and would break the comparison for the wrong reason.
+    determinism = None
+    if args.prove_determinism:
+        with log.timed("decision", "determinism_proof"):
+            rows2, _ = evaluate(all_cases, registry, run_case, NullLogger())
+            metrics2 = aggregate(registry, rows2)
+            same_agg = metrics2[1] == metrics[1]
+            same_rows = ([r["metrics"] for r in rows2] ==
+                         [r["metrics"] for r in rows])
+            determinism = {"identical_aggregate": same_agg,
+                           "identical_per_case": same_rows,
+                           "n_cases": len(rows)}
+        log.event("decision", "determinism", determinism)
+        if not (same_agg and same_rows):
+            print("\nDETERMINISM PROOF FAILED: two runs of the same config "
+                  "produced different metrics. Tier 1 is not reproducible; that "
+                  "is a bug in this harness, not noise.")
+            log.close()
+            return 3
 
     # Provenance split: the same aggregate over cases whose code carries a
     # machine-repaired step, reported beside the headline rather than inside it.
@@ -240,8 +346,10 @@ def main():
     label = args.label or f"{args.chunker}_{args.retriever}_{args.system or 'retrieval'}"
     record = {
         "label": label,
+        "run_id": log.run_id,
         "timestamp": time.strftime("%Y%m%dT%H%M%S", time.gmtime(started)),
         "git": git_state(),
+        "determinism": determinism,
         "config": {"chunker": args.chunker, "retriever": args.retriever,
                    "system": args.system, "k": args.k,
                    "corpus_chunks": len(corpus), "cases": len(all_cases)},
@@ -260,10 +368,44 @@ def main():
     with open(path, "w", encoding="utf-8") as f:
         json.dump(record, f, indent=2, ensure_ascii=False)
 
+    # One summary row per run, appended forever. This is what turns a snapshot
+    # into a record: six months of rows showing a metric improving is a stronger
+    # argument than any single number.
+    n_pass = sum(1 for g in gates if g["status"] == "PASS")
+    log.summary({
+        "timestamp": record["timestamp"],
+        "label": label,
+        "git_sha": record["git"]["sha"],
+        "git_dirty": record["git"]["dirty"],
+        "config": record["config"],
+        "headline": {k: v["value"] for k, v in metrics[1].items()
+                     if k in HEADLINE},
+        "gates_passed": n_pass,
+        "gates_total": len(gates),
+        "gate_result": "PASS" if n_pass == len(gates) else "FAIL",
+        "determinism": determinism,
+        "wall_seconds": record["wall_seconds"],
+        "run_file": os.path.relpath(path, REPO_ROOT).replace("\\", "/"),
+    })
+
     if not args.quiet:
         report(record)
-    print(f"\nwritten to {os.path.relpath(path, REPO_ROOT)}")
+    if log.jsonl:
+        print(f"log      {os.path.relpath(log.jsonl.path, REPO_ROOT)}")
+        print(f"index    {os.path.relpath(log.index_path, REPO_ROOT)}")
+    print(f"written to {os.path.relpath(path, REPO_ROOT)}")
+    pages.close()
+    log.close()
     return 0
+
+
+# Metrics carried into index.jsonl. Kept small on purpose -- the full set lives
+# in the run file; this is the trend line.
+HEADLINE = ("ceiling_recall", "recall@5", "answer_coverage@5", "hit_rate@5",
+            "numeric_exactness", "fabricated_values", "citation_accuracy",
+            "citation_span_precision", "citation_resolvability",
+            "uncited_claim_rate", "refusal_correctness", "over_refusal",
+            "fragmentation_gap@10")
 
 
 def report(rec):

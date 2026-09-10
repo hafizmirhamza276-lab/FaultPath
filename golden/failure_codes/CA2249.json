@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -25,7 +26,15 @@
       "cause": "Low pressure error in the supply pump",
       "procedure": "Do the troubleshooting for failure code [CA559].",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-263",
+        "pdf_page": 805,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "CA2249:1:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -39,6 +48,12 @@
   "connectors": [],
   "default_conclusion": null,
   "is_pointer_only": true,
+  "header_provenance": {
+    "manual_page": "40-263",
+    "pdf_page": 805,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true

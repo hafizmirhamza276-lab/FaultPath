@@ -32,6 +32,11 @@ if not PDF or not os.path.isfile(PDF):
         "  stored in this repo -- see CLAUDE.md."
     )
 
+# Bumped when the record shape changes. v2 adds span-level provenance
+# (manual_page, pdf_page, table_index, row_index) and fact_id to every step and
+# measurement. Purely additive -- no extracted value moves.
+SCHEMA_VERSION = 2
+
 MANUAL_ID = "SEN06867-13"
 REVISION = 13
 MODEL = "PC200-10M0"
@@ -178,10 +183,15 @@ def parse_causes(rows, fmt):
     Turn cause-table rows into ordered steps.
     Format A rows carry an explicit YES/NO branch; format B rows are sequential
     with measurement sub-rows embedded underneath the parent step.
+
+    `rows` is [(cells, provenance)]. Provenance is captured from the page the
+    row was actually read from and carried through untouched -- never inferred
+    afterwards from the code's page range. A code spans up to 11 pages, so a
+    citation to the code's first page is not a citation to the measurement.
     """
     steps = []
     cur = None
-    for row in rows[1:]:  # skip header row
+    for row, prov in rows[1:]:  # skip header row
         cells = [clean(c) for c in row]
         no = cells[0] if cells else ""
 
@@ -208,6 +218,7 @@ def parse_causes(rows, fmt):
                 "procedure": cells[2] if len(cells) > 2 else "",
                 "branches": {},
                 "measurements": [],
+                "provenance": dict(prov),
             }
             if glued_cause:
                 cur["extraction_warning"] = "column_split_recovered"
@@ -269,7 +280,8 @@ def parse_causes(rows, fmt):
                 qty = point = ""
             if point:
                 cur["measurements"].append(
-                    {"quantity": qty, "point": point, "criteria": criteria}
+                    {"quantity": qty, "point": point, "criteria": criteria,
+                     "provenance": dict(prov)}
                 )
 
         if not cur["branches"] and not cur["measurements"]:
@@ -282,30 +294,38 @@ def parse_causes(rows, fmt):
     # just redirects elsewhere, e.g. "Do the troubleshooting for failure code
     # [CA187]." These break naive RAG, so capture them explicitly.
     if not steps:
-        for row in rows[1:]:
+        for row, prov in rows[1:]:
             text = " ".join(clean(c) for c in row if clean(c)).strip()
             if text:
                 steps.append({"step": 1, "cause": "Redirect", "procedure": text,
-                              "branches": {}, "measurements": [], "redirect": True})
+                              "branches": {}, "measurements": [],
+                              "provenance": dict(prov), "redirect": True})
                 break
     return steps
 
 
-def parse_measurement_table(tbl):
-    """Standalone 'Item | Measuring point | Standard value' block."""
+def parse_measurement_table(tbl, prov_base):
+    """Standalone 'Item | Measuring point | Standard value' block.
+
+    `prov_base` carries the page and table this block was read from; row_index
+    is filled in per row so each value points at its own line.
+    """
     out = []
     last_q = ""
-    for row in tbl[1:]:
+    for ri, row in enumerate(tbl[1:], 1):
         cells = [clean(c) for c in row]
         if not any(cells):
             continue
+        prov = dict(prov_base, row_index=ri)
         q = cells[0] or last_q
         last_q = q
         if len(cells) == 3:
-            out.append({"quantity": q, "point": cells[1], "criteria": cells[2]})
+            out.append({"quantity": q, "point": cells[1], "criteria": cells[2],
+                        "provenance": prov})
         elif len(cells) >= 4:
             point = " / ".join(x for x in cells[1:-1] if x)
-            out.append({"quantity": q, "point": point, "criteria": cells[-1]})
+            out.append({"quantity": q, "point": point, "criteria": cells[-1],
+                        "provenance": prov})
     return out
 
 
@@ -313,6 +333,7 @@ def parse_measurement_table(tbl):
 
 def extract_code(pdf, code, start, end):
     rec = OrderedDict(
+        schema_version=SCHEMA_VERSION,
         manual_id=MANUAL_ID,
         revision=REVISION,
         model=MODEL,
@@ -344,27 +365,37 @@ def extract_code(pdf, code, start, end):
         if mp:
             rec["manual_pages"].append(mp)
 
-        for tbl in page.extract_tables():
+        for ti, tbl in enumerate(page.extract_tables()):
+            # Captured here, from the page actually being read. Anything derived
+            # later would be a guess dressed as a citation.
+            prov = {"manual_page": mp, "pdf_page": pno, "table_index": ti}
             kind = table_kind(tbl)
             if kind == "header_a":
                 fmt = fmt or "A"
                 rec.update({k: v for k, v in parse_header_a(tbl).items() if v})
+                rec.setdefault("_header_prov", dict(prov, row_index=0))
             elif kind == "header_b":
                 fmt = fmt or "B"
                 rec.update({k: v for k, v in parse_header_b(tbl).items() if v})
+                rec.setdefault("_header_prov", dict(prov, row_index=0))
             elif kind == "causes":
-                cause_rows.append(tbl)
+                cause_rows.append((tbl, prov))
             elif kind == "measurement":
-                rec["standalone_measurements"] += parse_measurement_table(tbl)
+                rec["standalone_measurements"] += parse_measurement_table(tbl, prov)
 
     rec["format"] = fmt or "B"
 
-    # merge multi-page cause tables (each repeats its header row)
+    # merge multi-page cause tables (each repeats its header row). row_index
+    # stays relative to the table the row came from, so a provenance record
+    # points at a real row of a real table on a real page.
     merged = []
-    for i, t in enumerate(cause_rows):
-        merged += t if i == 0 else t[1:]
+    for i, (t, prov) in enumerate(cause_rows):
+        body = list(enumerate(t))
+        if i:
+            body = body[1:]
+        for ri, row in body:
+            merged.append((row, dict(prov, row_index=ri)))
     if merged:
-        merged = [merged[0]] + merged[1:]
         rec["steps"] = parse_causes(merged, rec["format"])
 
     # ---- title fallback for format A (comes from the bookmark heading)
@@ -376,6 +407,22 @@ def extract_code(pdf, code, start, end):
         # detail_of_failure is initialised to None and rec.update filters falsy
         # values, so .get's default never applies -- coerce explicitly.
         rec["title"] = (rec.get("detail_of_failure") or "")[:120] or None
+
+    # ---- fact identity
+    # <code>:<step>:<kind>:<index>. Derived from position, so it is stable
+    # across rebuilds unless the fact itself moves. Standalone measurements sit
+    # at step 0 -- they belong to the code, not to any one check.
+    rec["header_provenance"] = rec.pop("_header_prov", None)
+    for i, m in enumerate(rec["standalone_measurements"]):
+        m["fact_id"] = f"{code}:0:meas:{i}"
+    for st in rec["steps"]:
+        st["fact_id"] = f"{code}:{st['step']}:step:0"
+        for i, m in enumerate(st["measurements"]):
+            m["fact_id"] = f"{code}:{st['step']}:meas:{i}"
+        st["branch_fact_ids"] = {
+            br: f"{code}:{st['step']}:branch:{i}"
+            for i, br in enumerate(sorted(st.get("branches") or {}))
+        }
 
     # ---- cross-references, monitoring codes, connectors
     blob = json.dumps(rec)

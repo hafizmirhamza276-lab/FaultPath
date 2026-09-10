@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -30,7 +31,18 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-485",
+        "pdf_page": 1027,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DW43KA:1:step:0",
+      "branch_fact_ids": {
+        "NO": "DW43KA:1:branch:0",
+        "YES": "DW43KA:1:branch:1"
+      }
     },
     {
       "step": 2,
@@ -40,7 +52,18 @@
         "YES": "• The travel speed selector solenoid is normal. • Go to the next inspection item.",
         "NO": "• The travel speed selector solenoid is defective. • Replace the travel speed selector solenoid. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-485",
+        "pdf_page": 1027,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "DW43KA:2:step:0",
+      "branch_fact_ids": {
+        "NO": "DW43KA:2:branch:0",
+        "YES": "DW43KA:2:branch:1"
+      }
     },
     {
       "step": 3,
@@ -50,7 +73,18 @@
         "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-486",
+        "pdf_page": 1028,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "DW43KA:3:step:0",
+      "branch_fact_ids": {
+        "NO": "DW43KA:3:branch:0",
+        "YES": "DW43KA:3:branch:1"
+      }
     },
     {
       "step": 4,
@@ -60,7 +94,18 @@
         "YES": "The repair is completed.",
         "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-486",
+        "pdf_page": 1028,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "DW43KA:4:step:0",
+      "branch_fact_ids": {
+        "NO": "DW43KA:4:branch:0",
+        "YES": "DW43KA:4:branch:1"
+      }
     },
     {
       "step": 5,
@@ -70,34 +115,80 @@
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-486",
+        "pdf_page": 1028,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "DW43KA:5:step:0",
+      "branch_fact_ids": {
+        "NO": "DW43KA:5:branch:0",
+        "YES": "DW43KA:5:branch:1"
+      }
     }
   ],
   "standalone_measurements": [
     {
       "quantity": "Resistance",
       "point": "Between V04 (male) (1) and (2)",
-      "criteria": "20 to 60 Ω"
+      "criteria": "20 to 60 Ω",
+      "provenance": {
+        "manual_page": "40-485",
+        "pdf_page": 1027,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "DW43KA:0:meas:0"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP02 (female) (93) and V04 (female) (1)",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-486",
+        "pdf_page": 1028,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DW43KA:0:meas:1"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP02 (female) (115) and V04 (female) (2)",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-486",
+        "pdf_page": 1028,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "DW43KA:0:meas:2"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP02 (female) (117) and V04 (female) (2)",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-486",
+        "pdf_page": 1028,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "DW43KA:0:meas:3"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP02 (female) (120) and V04 (female) (2)",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-486",
+        "pdf_page": 1028,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "DW43KA:0:meas:4"
     }
   ],
   "refs_failure_codes": [],
@@ -109,6 +200,12 @@
   ],
   "default_conclusion": null,
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-485",
+    "pdf_page": 1027,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "PUMP",
   "system_category": "Electrical system",
   "in_code_table": true

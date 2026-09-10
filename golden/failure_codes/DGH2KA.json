@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -30,7 +31,18 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-403",
+        "pdf_page": 945,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DGH2KA:1:step:0",
+      "branch_fact_ids": {
+        "NO": "DGH2KA:1:branch:0",
+        "YES": "DGH2KA:1:branch:1"
+      }
     },
     {
       "step": 2,
@@ -40,7 +52,18 @@
         "YES": "• The hydraulic oil temperature sensor is normal. • Go to the next inspection item.",
         "NO": "• The hydraulic oil temperature sensor is defective. • Replace the hydraulic oil temperature sensor. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-404",
+        "pdf_page": 946,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "DGH2KA:2:step:0",
+      "branch_fact_ids": {
+        "NO": "DGH2KA:2:branch:0",
+        "YES": "DGH2KA:2:branch:1"
+      }
     },
     {
       "step": 3,
@@ -50,7 +73,18 @@
         "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-404",
+        "pdf_page": 946,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "DGH2KA:3:step:0",
+      "branch_fact_ids": {
+        "NO": "DGH2KA:3:branch:0",
+        "YES": "DGH2KA:3:branch:1"
+      }
     },
     {
       "step": 4,
@@ -60,7 +94,18 @@
         "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-405",
+        "pdf_page": 947,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "DGH2KA:4:step:0",
+      "branch_fact_ids": {
+        "NO": "DGH2KA:4:branch:0",
+        "YES": "DGH2KA:4:branch:1"
+      }
     },
     {
       "step": 5,
@@ -70,7 +115,18 @@
         "YES": "The repair is completed.",
         "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-405",
+        "pdf_page": 947,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "DGH2KA:5:step:0",
+      "branch_fact_ids": {
+        "NO": "DGH2KA:5:branch:0",
+        "YES": "DGH2KA:5:branch:1"
+      }
     },
     {
       "step": 6,
@@ -80,44 +136,104 @@
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-405",
+        "pdf_page": 947,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "DGH2KA:6:step:0",
+      "branch_fact_ids": {
+        "NO": "DGH2KA:6:branch:0",
+        "YES": "DGH2KA:6:branch:1"
+      }
     }
   ],
   "standalone_measurements": [
     {
       "quantity": "Resistance",
       "point": "Between P22 (male) (2) and (1) / 25℃",
-      "criteria": "38.1 to 47.8 kΩ"
+      "criteria": "38.1 to 47.8 kΩ",
+      "provenance": {
+        "manual_page": "40-404",
+        "pdf_page": 946,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DGH2KA:0:meas:0"
     },
     {
       "quantity": "Resistance",
       "point": "30℃",
-      "criteria": "31.0 to 40.0 kΩ"
+      "criteria": "31.0 to 40.0 kΩ",
+      "provenance": {
+        "manual_page": "40-404",
+        "pdf_page": 946,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "DGH2KA:0:meas:1"
     },
     {
       "quantity": "Resistance",
       "point": "80℃",
-      "criteria": "6.1 to 7.0 kΩ"
+      "criteria": "6.1 to 7.0 kΩ",
+      "provenance": {
+        "manual_page": "40-404",
+        "pdf_page": 946,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "DGH2KA:0:meas:2"
     },
     {
       "quantity": "Resistance",
       "point": "90℃",
-      "criteria": "4.6 to 5.2 kΩ"
+      "criteria": "4.6 to 5.2 kΩ",
+      "provenance": {
+        "manual_page": "40-404",
+        "pdf_page": 946,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "DGH2KA:0:meas:3"
     },
     {
       "quantity": "Resistance",
       "point": "100℃",
-      "criteria": "3.6 to 4.0 kΩ"
+      "criteria": "3.6 to 4.0 kΩ",
+      "provenance": {
+        "manual_page": "40-404",
+        "pdf_page": 946,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "DGH2KA:0:meas:4"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (28) and P22 (female) (2)",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-404",
+        "pdf_page": 946,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "DGH2KA:0:meas:5"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (46) and P22 (female) (1)",
-      "criteria": "Max. 1 Ω"
+      "criteria": "Max. 1 Ω",
+      "provenance": {
+        "manual_page": "40-404",
+        "pdf_page": 946,
+        "table_index": 2,
+        "row_index": 2
+      },
+      "fact_id": "DGH2KA:0:meas:6"
     }
   ],
   "refs_failure_codes": [],
@@ -129,6 +245,12 @@
   ],
   "default_conclusion": null,
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-403",
+    "pdf_page": 945,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "PUMP",
   "system_category": "Electrical system",
   "in_code_table": true

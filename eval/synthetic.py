@@ -116,7 +116,10 @@ class GoodSystem(_Base):
             if causes:
                 ans += " Full procedure: " + " ".join(
                     f"Step {i}: {c}." for i, c in enumerate(causes, 1))
-        return {"answer": ans, "citations": [page] if page else [], "refused": False}
+        # Names fact ids and lets the system render the citation. It never types
+        # a page number, so it cannot type a wrong one.
+        return {"answer": ans, "fact_ids": list(case.get("fact_ids") or []),
+                "citations": [page] if page else [], "refused": False}
 
     def converse(self, scen, contexts):
         """Protocol-correct assistant turns."""
@@ -224,8 +227,11 @@ class WeakSystem(_Base):
             ans = "This code has no procedure in the manual."
         else:
             ans = "Check the wiring."
-        # Always cites, always the wrong page.
-        return {"answer": ans, "citations": ["40-999"], "refused": False}
+        # Types its own page number instead of naming a fact id -- the failure
+        # mode deterministic provenance exists to remove. Always cites, always
+        # wrong, and carries no fact id to render from.
+        return {"answer": ans, "fact_ids": [], "citations": ["40-999"],
+                "refused": False}
 
     def converse(self, scen, contexts):
         rule, exp = scen["rule"], scen.get("expected") or {}

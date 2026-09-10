@@ -339,8 +339,137 @@ class CitationAccuracy(_GenMetric):
             "citation_accuracy cannot fail"
 
 
-def build(records):
+# ------------------------------------------------- deterministic provenance
+
+class CitationResolvability(_GenMetric):
+    """Every emitted citation resolves back to the page it names.
+
+    Re-opens the source PDF and checks the verbatim text is on the cited page.
+    A citation that cannot be resolved is not a citation, it is a claim about
+    one, and the difference is invisible until something checks.
+
+    Returns None when the PDF is unavailable, so an environment without the
+    manual reports "could not check" rather than "citations are fine".
+    """
+    name = "citation_resolvability"
+    APPLIES_TO = None
+
+    def __init__(self, pages=None):
+        self.pages = pages
+
+    def compute(self, case, result):
+        cites = result.get("citations_rendered") or []
+        if not cites or self.pages is None or not self.pages.available():
+            return None
+        from ..citations import resolve
+        outcomes = [resolve(c, self.pages)["resolved"] for c in cites]
+        outcomes = [o for o in outcomes if o is not None]
+        if not outcomes:
+            return None
+        return sum(1.0 for o in outcomes if o) / len(outcomes)
+
+
+class CitationSpanPrecision(_GenMetric):
+    """The cited page is the page the fact is ON, not merely a page belonging
+    to that code.
+
+    146 of 174 codes span more than one page; one runs to 11. 75% of
+    measurements do not sit on their code's first page, so a per-code citation
+    is right by accident a quarter of the time. Needs no PDF -- it compares the
+    citation against the fact's own recorded provenance.
+    """
+    name = "citation_span_precision"
+    APPLIES_TO = None
+
+    def __init__(self, records):
+        self.records = records
+        self._index = {}
+        for rec in records.values():
+            for m in rec.get("standalone_measurements", []):
+                if m.get("fact_id"):
+                    self._index[m["fact_id"]] = m["provenance"]["manual_page"]
+            for st in rec.get("steps", []):
+                if st.get("fact_id"):
+                    self._index[st["fact_id"]] = st["provenance"]["manual_page"]
+                for m in st.get("measurements", []):
+                    if m.get("fact_id"):
+                        self._index[m["fact_id"]] = m["provenance"]["manual_page"]
+                for br, fid in (st.get("branch_fact_ids") or {}).items():
+                    self._index[fid] = st["provenance"]["manual_page"]
+
+    def compute(self, case, result):
+        cites = result.get("citations_rendered") or []
+        scored = [c for c in cites if c.get("fact_id") in self._index]
+        if not scored:
+            return None
+        ok = sum(1.0 for c in scored
+                 if normalise(c.get("manual_page")) ==
+                 normalise(self._index[c["fact_id"]]))
+        return ok / len(scored)
+
+    def self_test(self):
+        recs = {"X": {"steps": [{"step": 1, "fact_id": "X:1:step:0",
+                                 "provenance": {"manual_page": "40-242"},
+                                 "measurements": [], "branches": {}}],
+                      "standalone_measurements": []}}
+        m = CitationSpanPrecision(recs)
+        case = {"type": "direct_lookup"}
+        right = {"citations_rendered": [{"fact_id": "X:1:step:0",
+                                         "manual_page": "40-242"}]}
+        assert m.compute(case, right) == 1.0
+        # The code's first page, not the fact's page: the exact failure this
+        # metric exists to catch.
+        wrong = {"citations_rendered": [{"fact_id": "X:1:step:0",
+                                         "manual_page": "40-241"}]}
+        assert m.compute(case, wrong) == 0.0, \
+            "citation_span_precision cannot fail on a code-level page"
+
+
+class UncitedClaimRate(_GenMetric):
+    """Factual statements carrying no fact_id. Lower is better.
+
+    These are the model speaking on its own account. The design intent is that
+    the model never types a value -- it names a fact id and the system renders
+    the citation. A claim with a number and no fact id behind it is precisely
+    the thing that design is meant to make impossible, so it is measured rather
+    than assumed away.
+    """
+    name = "uncited_claim_rate"
+    HIGHER_IS_BETTER = False
+    APPLIES_TO = None
+
+    def compute(self, case, result):
+        if result.get("refused"):
+            return None
+        claims = [s for s in sentences(result.get("answer", "")) if _atoms(s)]
+        if not claims:
+            return None
+        cites = result.get("citations_rendered") or []
+        if not cites:
+            return 1.0
+        supported = set()
+        for c in cites:
+            supported |= _atoms(c.get("verbatim_text", ""))
+        supported |= _atoms(case.get("question", ""))
+        uncited = sum(1 for s in claims if not (_atoms(s) <= supported))
+        return uncited / len(claims)
+
+    def self_test(self):
+        m = UncitedClaimRate()
+        case = {"type": "numeric_exactness", "question": ""}
+        bare = {"answer": "The value is 42.", "citations_rendered": []}
+        assert m.compute(case, bare) == 1.0, \
+            "uncited_claim_rate cannot fire on an uncited numeric claim"
+        cited = {"answer": "The value is 42.",
+                 "citations_rendered": [{"verbatim_text": "42"}]}
+        assert m.compute(case, cited) == 0.0
+
+
+def build(records, pages=None):
     return [
+        CitationResolvability(pages),
+        CitationSpanPrecision(records),
+        UncitedClaimRate(),
         NumericExactness(),
         FabricatedValues(records),
         Groundedness(records),

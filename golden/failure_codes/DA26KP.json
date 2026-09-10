@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -33,7 +34,18 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-316",
+        "pdf_page": 858,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DA26KP:1:step:0",
+      "branch_fact_ids": {
+        "NO": "DA26KP:1:branch:0",
+        "YES": "DA26KP:1:branch:1"
+      }
     },
     {
       "step": 2,
@@ -43,7 +55,18 @@
         "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
         "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-317",
+        "pdf_page": 859,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "DA26KP:2:step:0",
+      "branch_fact_ids": {
+        "NO": "DA26KP:2:branch:0",
+        "YES": "DA26KP:2:branch:1"
+      }
     },
     {
       "step": 3,
@@ -53,7 +76,18 @@
         "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-317",
+        "pdf_page": 859,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "DA26KP:3:step:0",
+      "branch_fact_ids": {
+        "NO": "DA26KP:3:branch:0",
+        "YES": "DA26KP:3:branch:1"
+      }
     },
     {
       "step": 4,
@@ -63,7 +97,18 @@
         "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-318",
+        "pdf_page": 860,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "DA26KP:4:step:0",
+      "branch_fact_ids": {
+        "NO": "DA26KP:4:branch:0",
+        "YES": "DA26KP:4:branch:1"
+      }
     },
     {
       "step": 5,
@@ -73,7 +118,18 @@
         "YES": "• The equipment connected to each connector is is normal. • Go to the next inspection item.",
         "NO": "• If this failure code is shown for a connector, the equipment connected to that connector is defective. • Replace the equipment connected to the connector (indicated by the failure code). • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-319",
+        "pdf_page": 861,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "DA26KP:5:step:0",
+      "branch_fact_ids": {
+        "NO": "DA26KP:5:branch:0",
+        "YES": "DA26KP:5:branch:1"
+      }
     },
     {
       "step": 6,
@@ -83,7 +139,18 @@
         "YES": "The repair is completed.",
         "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-319",
+        "pdf_page": 861,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "DA26KP:6:step:0",
+      "branch_fact_ids": {
+        "NO": "DA26KP:6:branch:0",
+        "YES": "DA26KP:6:branch:1"
+      }
     },
     {
       "step": 7,
@@ -93,24 +160,56 @@
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-320",
+        "pdf_page": 862,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "DA26KP:7:step:0",
+      "branch_fact_ids": {
+        "NO": "DA26KP:7:branch:0",
+        "YES": "DA26KP:7:branch:1"
+      }
     }
   ],
   "standalone_measurements": [
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (63), P01 (female) (3), P02 (female) (3), P03 (female) (3), P04 (female) (3), P05 (female) (3), P06 (female) (3), P07 (female) (3), P08 (female) (3), P09(female) (3), P10(female) (3), P11(female) (3), P12(female) (3), P25 (female)(3), P26 (female) (3), P49 (female) (3), P57 (female)(1) or P67 (female) (A) and ground",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-317",
+        "pdf_page": 859,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DA26KP:0:meas:0"
     },
     {
       "quantity": "Resistance",
       "point": "Between CP01 (female) (63) and each pin other than (63)",
-      "criteria": "Min. 1 MΩ"
+      "criteria": "Min. 1 MΩ",
+      "provenance": {
+        "manual_page": "40-317",
+        "pdf_page": 859,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "DA26KP:0:meas:1"
     },
     {
       "quantity": "Voltage",
       "point": "Between P01 (female) (3) and (1), P02 (female) (3) and (1), P03 (female) (3) and (1), P04 (female) (3) and (1), P05 (female) (3) and (1), P06 (female) (3) and (1), P07 (female) (3) and (1), P08 (female) (3) and (1), P09(female) (3) and (1), P10(female) (3) and (1), P11(female) (3) and (1), P12(female) (3) and (1), P25 (female) (3) and (1), P26 (female) (3) and (1), P27 (female) (A) and (B), P28 (female) (A) and (B), P47 (female) (1) and (2), P57 (female) (1) and (2) or P67 (female) (A) and (B)",
-      "criteria": "4.5 to 5.5V"
+      "criteria": "4.5 to 5.5V",
+      "provenance": {
+        "manual_page": "40-318",
+        "pdf_page": 860,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "DA26KP:0:meas:2"
     }
   ],
   "refs_failure_codes": [],
@@ -120,6 +219,12 @@
   ],
   "default_conclusion": null,
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-316",
+    "pdf_page": 858,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "PUMP",
   "system_category": "Electrical system",
   "in_code_table": true

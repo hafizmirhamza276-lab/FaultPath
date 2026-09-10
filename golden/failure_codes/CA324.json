@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -26,7 +27,15 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-220",
+        "pdf_page": 762,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "CA324:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
@@ -37,14 +46,36 @@
         {
           "quantity": "Resistance",
           "point": "Between (3) and (4) of INJECTOR CYL 3 & 4 (male)",
-          "criteria": "Max. 2Ω"
+          "criteria": "Max. 2Ω",
+          "provenance": {
+            "manual_page": "40-220",
+            "pdf_page": 762,
+            "table_index": 1,
+            "row_index": 3
+          },
+          "fact_id": "CA324:2:meas:0"
         },
         {
           "quantity": "Resistance",
           "point": "Between INJECTOR CYL 3 & 4 (male) (3) and ground",
-          "criteria": "Min. 100kΩ"
+          "criteria": "Min. 100kΩ",
+          "provenance": {
+            "manual_page": "40-220",
+            "pdf_page": 762,
+            "table_index": 1,
+            "row_index": 4
+          },
+          "fact_id": "CA324:2:meas:1"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-220",
+        "pdf_page": 762,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "CA324:2:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 3,
@@ -55,14 +86,36 @@
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (55) and (52)",
-          "criteria": "Max. 2Ω"
+          "criteria": "Max. 2Ω",
+          "provenance": {
+            "manual_page": "40-220",
+            "pdf_page": 762,
+            "table_index": 1,
+            "row_index": 6
+          },
+          "fact_id": "CA324:3:meas:0"
         },
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (55) and ground",
-          "criteria": "Min. 100kΩ"
+          "criteria": "Min. 100kΩ",
+          "provenance": {
+            "manual_page": "40-220",
+            "pdf_page": 762,
+            "table_index": 1,
+            "row_index": 7
+          },
+          "fact_id": "CA324:3:meas:1"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-220",
+        "pdf_page": 762,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "CA324:3:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 4,
@@ -73,14 +126,36 @@
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (55) and INJECTOR CYL 3 & 4 (female) (3)",
-          "criteria": "Max. 2Ω"
+          "criteria": "Max. 2Ω",
+          "provenance": {
+            "manual_page": "40-220",
+            "pdf_page": 762,
+            "table_index": 1,
+            "row_index": 9
+          },
+          "fact_id": "CA324:4:meas:0"
         },
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (52) and INJECTOR CYL 3 & 4 (female) (4)",
-          "criteria": "Max. 2Ω"
+          "criteria": "Max. 2Ω",
+          "provenance": {
+            "manual_page": "40-220",
+            "pdf_page": 762,
+            "table_index": 1,
+            "row_index": 10
+          },
+          "fact_id": "CA324:4:meas:1"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-220",
+        "pdf_page": 762,
+        "table_index": 1,
+        "row_index": 8
+      },
+      "fact_id": "CA324:4:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 5,
@@ -91,9 +166,24 @@
         {
           "quantity": "Resistance",
           "point": "Between ground and ECM (female) (55) or INJECTOR CYL 3 & 4 (female) (3)",
-          "criteria": "Min. 100kΩ"
+          "criteria": "Min. 100kΩ",
+          "provenance": {
+            "manual_page": "40-220",
+            "pdf_page": 762,
+            "table_index": 1,
+            "row_index": 12
+          },
+          "fact_id": "CA324:5:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-220",
+        "pdf_page": 762,
+        "table_index": 1,
+        "row_index": 11
+      },
+      "fact_id": "CA324:5:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 6,
@@ -104,28 +194,66 @@
         {
           "quantity": "Continuity",
           "point": "Between ECM (female) (55) and each pin other than pin (55)",
-          "criteria": "No continuity (there is no sound)"
+          "criteria": "No continuity (there is no sound)",
+          "provenance": {
+            "manual_page": "40-221",
+            "pdf_page": 763,
+            "table_index": 0,
+            "row_index": 2
+          },
+          "fact_id": "CA324:6:meas:0"
         },
         {
           "quantity": "Continuity",
           "point": "Between ECM (female) (52) and each pin other than pin (52)",
-          "criteria": "No continuity (there is no sound)"
+          "criteria": "No continuity (there is no sound)",
+          "provenance": {
+            "manual_page": "40-221",
+            "pdf_page": 763,
+            "table_index": 0,
+            "row_index": 3
+          },
+          "fact_id": "CA324:6:meas:1"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-221",
+        "pdf_page": 763,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "CA324:6:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 7,
       "cause": "Defective other cylinder injectors or wiring harness",
       "procedure": "If the failure code for abnormalities of more than one injector is shown, do the troubleshooting for this failure code first.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-221",
+        "pdf_page": 763,
+        "table_index": 0,
+        "row_index": 4
+      },
+      "fact_id": "CA324:7:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 8,
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-221",
+        "pdf_page": 763,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "CA324:8:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -136,6 +264,12 @@
   ],
   "default_conclusion": "Defective engine controller",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-220",
+    "pdf_page": 762,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true

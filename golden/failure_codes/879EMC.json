@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -29,7 +30,18 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-145",
+        "pdf_page": 687,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "879EMC:1:step:0",
+      "branch_fact_ids": {
+        "NO": "879EMC:1:branch:0",
+        "YES": "879EMC:1:branch:1"
+      }
     },
     {
       "step": 2,
@@ -39,7 +51,18 @@
         "YES": "• The removed air conditioner controller is normal. • Restore the removed air conditioner controller. • Go to the next inspection item.",
         "NO": "The repair is completed."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-145",
+        "pdf_page": 687,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "879EMC:2:step:0",
+      "branch_fact_ids": {
+        "NO": "879EMC:2:branch:0",
+        "YES": "879EMC:2:branch:1"
+      }
     },
     {
       "step": 3,
@@ -49,7 +72,18 @@
         "YES": "The repair is completed.",
         "NO": "• The air conditioner unit can be defective. • Replace the air conditioner unit. • Go to “Confirmation of repair”."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-145",
+        "pdf_page": 687,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "879EMC:3:step:0",
+      "branch_fact_ids": {
+        "NO": "879EMC:3:branch:0",
+        "YES": "879EMC:3:branch:1"
+      }
     },
     {
       "step": 4,
@@ -59,7 +93,18 @@
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
       },
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-146",
+        "pdf_page": 688,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "879EMC:4:step:0",
+      "branch_fact_ids": {
+        "NO": "879EMC:4:branch:0",
+        "YES": "879EMC:4:branch:1"
+      }
     }
   ],
   "standalone_measurements": [],
@@ -68,6 +113,12 @@
   "connectors": [],
   "default_conclusion": null,
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-145",
+    "pdf_page": 687,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "MON",
   "system_category": "Electrical system",
   "in_code_table": true

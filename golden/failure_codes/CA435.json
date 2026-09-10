@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -26,7 +27,15 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-235",
+        "pdf_page": 777,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "CA435:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
@@ -37,9 +46,24 @@
         {
           "quantity": "Resistance",
           "point": "Between OIL PRESSURE SWITCH (male) (1) and ground",
-          "criteria": "Max. 10Ω"
+          "criteria": "Max. 10Ω",
+          "provenance": {
+            "manual_page": "40-235",
+            "pdf_page": 777,
+            "table_index": 1,
+            "row_index": 3
+          },
+          "fact_id": "CA435:2:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-235",
+        "pdf_page": 777,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "CA435:2:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 3,
@@ -50,16 +74,39 @@
         {
           "quantity": "Resistance",
           "point": "Between ECM (female) (17) and ground",
-          "criteria": "Max. 10Ω"
+          "criteria": "Max. 10Ω",
+          "provenance": {
+            "manual_page": "40-235",
+            "pdf_page": 777,
+            "table_index": 1,
+            "row_index": 5
+          },
+          "fact_id": "CA435:3:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-235",
+        "pdf_page": 777,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "CA435:3:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 4,
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-235",
+        "pdf_page": 777,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "fact_id": "CA435:4:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -73,6 +120,12 @@
   ],
   "default_conclusion": "Defective engine controller",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-235",
+    "pdf_page": 777,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true

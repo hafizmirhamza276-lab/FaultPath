@@ -1,4 +1,5 @@
 {
+  "schema_version": 2,
   "manual_id": "SEN06867-13",
   "revision": 13,
   "model": "PC200-10M0",
@@ -26,7 +27,15 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-197",
+        "pdf_page": 739,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "CA145:1:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 2,
@@ -37,34 +46,84 @@
         {
           "quantity": "Resistance",
           "point": "Between COOLANT TEMP (male) (A) and (B) (thermal characteristics of coolant temperature sensor) / 0℃",
-          "criteria": "30 to 37kΩ"
+          "criteria": "30 to 37kΩ",
+          "provenance": {
+            "manual_page": "40-197",
+            "pdf_page": 739,
+            "table_index": 1,
+            "row_index": 3
+          },
+          "fact_id": "CA145:2:meas:0"
         },
         {
           "quantity": "Resistance",
           "point": "25℃",
-          "criteria": "9.3 to 10.7kΩ"
+          "criteria": "9.3 to 10.7kΩ",
+          "provenance": {
+            "manual_page": "40-197",
+            "pdf_page": 739,
+            "table_index": 1,
+            "row_index": 4
+          },
+          "fact_id": "CA145:2:meas:1"
         },
         {
           "quantity": "Resistance",
           "point": "50℃",
-          "criteria": "3.2 to 3.8kΩ"
+          "criteria": "3.2 to 3.8kΩ",
+          "provenance": {
+            "manual_page": "40-197",
+            "pdf_page": 739,
+            "table_index": 1,
+            "row_index": 5
+          },
+          "fact_id": "CA145:2:meas:2"
         },
         {
           "quantity": "Resistance",
           "point": "80℃",
-          "criteria": "1.0 to 1.3kΩ"
+          "criteria": "1.0 to 1.3kΩ",
+          "provenance": {
+            "manual_page": "40-197",
+            "pdf_page": 739,
+            "table_index": 1,
+            "row_index": 6
+          },
+          "fact_id": "CA145:2:meas:3"
         },
         {
           "quantity": "Resistance",
           "point": "95℃",
-          "criteria": "700 to 800Ω"
+          "criteria": "700 to 800Ω",
+          "provenance": {
+            "manual_page": "40-197",
+            "pdf_page": 739,
+            "table_index": 1,
+            "row_index": 7
+          },
+          "fact_id": "CA145:2:meas:4"
         },
         {
           "quantity": "Between (B) and ground",
           "point": "All area",
-          "criteria": "Min. 100kΩ"
+          "criteria": "Min. 100kΩ",
+          "provenance": {
+            "manual_page": "40-197",
+            "pdf_page": 739,
+            "table_index": 1,
+            "row_index": 8
+          },
+          "fact_id": "CA145:2:meas:5"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-197",
+        "pdf_page": 739,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "CA145:2:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 3,
@@ -75,9 +134,24 @@
         {
           "quantity": "",
           "point": "Between ECM (female) (15) and (38) (coolant temperature: 0℃ and above) REMARK Accords with the characteristics table of the coolant temperature sensor-resistance value on cause 2.",
-          "criteria": "700Ω to 37kΩ"
+          "criteria": "700Ω to 37kΩ",
+          "provenance": {
+            "manual_page": "40-198",
+            "pdf_page": 740,
+            "table_index": 0,
+            "row_index": 2
+          },
+          "fact_id": "CA145:3:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-198",
+        "pdf_page": 740,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "CA145:3:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 4,
@@ -88,16 +162,39 @@
         {
           "quantity": "",
           "point": "Between ground and ECM (female) (15)",
-          "criteria": "Min. 100kΩ"
+          "criteria": "Min. 100kΩ",
+          "provenance": {
+            "manual_page": "40-198",
+            "pdf_page": 740,
+            "table_index": 0,
+            "row_index": 4
+          },
+          "fact_id": "CA145:4:meas:0"
         }
-      ]
+      ],
+      "provenance": {
+        "manual_page": "40-198",
+        "pdf_page": 740,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "CA145:4:step:0",
+      "branch_fact_ids": {}
     },
     {
       "step": 5,
       "cause": "Defective engine control ler",
       "procedure": "- If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
-      "measurements": []
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-198",
+        "pdf_page": 740,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "CA145:5:step:0",
+      "branch_fact_ids": {}
     }
   ],
   "standalone_measurements": [],
@@ -114,6 +211,12 @@
   ],
   "default_conclusion": "Defective engine control ler",
   "is_pointer_only": false,
+  "header_provenance": {
+    "manual_page": "40-197",
+    "pdf_page": 739,
+    "table_index": 0,
+    "row_index": 0
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true
