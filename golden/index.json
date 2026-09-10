@@ -1,0 +1,1723 @@
+[
+  {
+    "code": "602KNX",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-121",
+    "n_steps": 6,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "6AZ0ZG",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-124",
+    "n_steps": 8,
+    "n_measurements": 6,
+    "refs": [
+      "DHPAMA",
+      "DHPBMA"
+    ]
+  },
+  {
+    "code": "879AKA",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-128",
+    "n_steps": 4,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "879AKB",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-130",
+    "n_steps": 4,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "879BKA",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-132",
+    "n_steps": 6,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "879BKB",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-135",
+    "n_steps": 7,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "879CKA",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-138",
+    "n_steps": 4,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "879CKB",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-140",
+    "n_steps": 4,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "879DKZ",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-142",
+    "n_steps": 7,
+    "n_measurements": 7,
+    "refs": []
+  },
+  {
+    "code": "879EMC",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-145",
+    "n_steps": 4,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "879FMC",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-147",
+    "n_steps": 4,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "879GKX",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-149",
+    "n_steps": 6,
+    "n_measurements": 2,
+    "refs": []
+  },
+  {
+    "code": "989L00",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-152",
+    "n_steps": 4,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "989M00",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-154",
+    "n_steps": 4,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "989N00",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-156",
+    "n_steps": 3,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "A900FR",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-157",
+    "n_steps": 1,
+    "n_measurements": 0,
+    "refs": [
+      "A900N6"
+    ]
+  },
+  {
+    "code": "A900N6",
+    "format": "B",
+    "action_level": "-",
+    "manual_page": "40-158",
+    "n_steps": 1,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "A900NY",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-159",
+    "n_steps": 1,
+    "n_measurements": 0,
+    "refs": [
+      "A900N6"
+    ]
+  },
+  {
+    "code": "AA10NX",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-160",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "AB00KE",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-163",
+    "n_steps": 8,
+    "n_measurements": 6,
+    "refs": []
+  },
+  {
+    "code": "B@BAZG",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-167",
+    "n_steps": 2,
+    "n_measurements": 0,
+    "refs": [
+      "CA435"
+    ]
+  },
+  {
+    "code": "B@BAZK",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-168",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "B@BCZK",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-171",
+    "n_steps": 6,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "B@BCNS",
+    "format": "B",
+    "action_level": "L02",
+    "manual_page": "40-173",
+    "n_steps": 2,
+    "n_measurements": 0,
+    "refs": [
+      "CA144",
+      "CA145"
+    ]
+  },
+  {
+    "code": "B@BCQA",
+    "format": "A",
+    "action_level": "L02",
+    "manual_page": "40-174",
+    "n_steps": 6,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "B@HANS",
+    "format": "A",
+    "action_level": "L02",
+    "manual_page": "40-176",
+    "n_steps": 5,
+    "n_measurements": 6,
+    "refs": [
+      "DGH2KB"
+    ]
+  },
+  {
+    "code": "CA111",
+    "format": "B",
+    "action_level": "L04",
+    "manual_page": "40-179",
+    "n_steps": 2,
+    "n_measurements": 0,
+    "refs": [
+      "CA441"
+    ]
+  },
+  {
+    "code": "CA115",
+    "format": "B",
+    "action_level": "L04",
+    "manual_page": "40-180",
+    "n_steps": 4,
+    "n_measurements": 0,
+    "refs": [
+      "CA689",
+      "CA778"
+    ]
+  },
+  {
+    "code": "CA122",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-181",
+    "n_steps": 6,
+    "n_measurements": 3,
+    "refs": [
+      "CA123",
+      "CA153",
+      "CA227"
+    ]
+  },
+  {
+    "code": "CA123",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-183",
+    "n_steps": 7,
+    "n_measurements": 4,
+    "refs": [
+      "CA187",
+      "CA227"
+    ]
+  },
+  {
+    "code": "CA131",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-185",
+    "n_steps": 7,
+    "n_measurements": 9,
+    "refs": [
+      "CA2185"
+    ]
+  },
+  {
+    "code": "CA132",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-187",
+    "n_steps": 8,
+    "n_measurements": 12,
+    "refs": [
+      "CA2186"
+    ]
+  },
+  {
+    "code": "CA135",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-189",
+    "n_steps": 9,
+    "n_measurements": 7,
+    "refs": [
+      "B@BAZG"
+    ]
+  },
+  {
+    "code": "CA141",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-192",
+    "n_steps": 8,
+    "n_measurements": 6,
+    "refs": [
+      "B@BAZG"
+    ]
+  },
+  {
+    "code": "CA144",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-195",
+    "n_steps": 4,
+    "n_measurements": 6,
+    "refs": []
+  },
+  {
+    "code": "CA145",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-197",
+    "n_steps": 5,
+    "n_measurements": 8,
+    "refs": [
+      "CA144"
+    ]
+  },
+  {
+    "code": "CA153",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-199",
+    "n_steps": 4,
+    "n_measurements": 8,
+    "refs": []
+  },
+  {
+    "code": "CA154",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-201",
+    "n_steps": 5,
+    "n_measurements": 9,
+    "refs": [
+      "CA153"
+    ]
+  },
+  {
+    "code": "CA155",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-203",
+    "n_steps": 3,
+    "n_measurements": 0,
+    "refs": [
+      "CA153",
+      "CA154"
+    ]
+  },
+  {
+    "code": "CA187",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-204",
+    "n_steps": 3,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "CA221",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-206",
+    "n_steps": 6,
+    "n_measurements": 3,
+    "refs": [
+      "CA222",
+      "CA352",
+      "CA386"
+    ]
+  },
+  {
+    "code": "CA222",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-208",
+    "n_steps": 7,
+    "n_measurements": 7,
+    "refs": [
+      "CA352",
+      "CA386"
+    ]
+  },
+  {
+    "code": "CA227",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-210",
+    "n_steps": 1,
+    "n_measurements": 0,
+    "refs": [
+      "CA187"
+    ]
+  },
+  {
+    "code": "CA234",
+    "format": "B",
+    "action_level": "-",
+    "manual_page": "40-211",
+    "n_steps": 3,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "CA238",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-212",
+    "n_steps": 3,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "CA271",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-214",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": [
+      "CA272"
+    ]
+  },
+  {
+    "code": "CA272",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-216",
+    "n_steps": 5,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "CA322",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-218",
+    "n_steps": 8,
+    "n_measurements": 9,
+    "refs": []
+  },
+  {
+    "code": "CA324",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-220",
+    "n_steps": 8,
+    "n_measurements": 9,
+    "refs": []
+  },
+  {
+    "code": "CA331",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-222",
+    "n_steps": 8,
+    "n_measurements": 9,
+    "refs": []
+  },
+  {
+    "code": "CA332",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-224",
+    "n_steps": 8,
+    "n_measurements": 9,
+    "refs": []
+  },
+  {
+    "code": "CA342",
+    "format": "B",
+    "action_level": "L04",
+    "manual_page": "40-226",
+    "n_steps": 2,
+    "n_measurements": 0,
+    "refs": [
+      "CA441"
+    ]
+  },
+  {
+    "code": "CA351",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-227",
+    "n_steps": 2,
+    "n_measurements": 0,
+    "refs": [
+      "CA441"
+    ]
+  },
+  {
+    "code": "CA352",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-228",
+    "n_steps": 3,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "CA386",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-230",
+    "n_steps": 1,
+    "n_measurements": 0,
+    "refs": [
+      "CA352"
+    ]
+  },
+  {
+    "code": "CA428",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-231",
+    "n_steps": 6,
+    "n_measurements": 5,
+    "refs": []
+  },
+  {
+    "code": "CA429",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-233",
+    "n_steps": 6,
+    "n_measurements": 6,
+    "refs": []
+  },
+  {
+    "code": "CA435",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-235",
+    "n_steps": 4,
+    "n_measurements": 2,
+    "refs": [
+      "B@BAZG"
+    ]
+  },
+  {
+    "code": "CA441",
+    "format": "B",
+    "action_level": "L04",
+    "manual_page": "40-237",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "CA442",
+    "format": "B",
+    "action_level": "L04",
+    "manual_page": "40-239",
+    "n_steps": 1,
+    "n_measurements": 0,
+    "refs": [
+      "CA441"
+    ]
+  },
+  {
+    "code": "CA449",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-240",
+    "n_steps": 6,
+    "n_measurements": 1,
+    "refs": [
+      "CA451",
+      "CA452"
+    ]
+  },
+  {
+    "code": "CA451",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-241",
+    "n_steps": 7,
+    "n_measurements": 3,
+    "refs": [
+      "CA187",
+      "CA227"
+    ]
+  },
+  {
+    "code": "CA452",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-243",
+    "n_steps": 6,
+    "n_measurements": 3,
+    "refs": [
+      "CA187",
+      "CA227",
+      "CA451"
+    ]
+  },
+  {
+    "code": "CA488",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-245",
+    "n_steps": 3,
+    "n_measurements": 0,
+    "refs": [
+      "CA153",
+      "CA154"
+    ]
+  },
+  {
+    "code": "CA553",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-246",
+    "n_steps": 3,
+    "n_measurements": 0,
+    "refs": [
+      "CA451",
+      "CA452"
+    ]
+  },
+  {
+    "code": "CA559",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-247",
+    "n_steps": 9,
+    "n_measurements": 8,
+    "refs": [
+      "CA451",
+      "CA452"
+    ]
+  },
+  {
+    "code": "CA689",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-249",
+    "n_steps": 11,
+    "n_measurements": 8,
+    "refs": [
+      "CA238"
+    ]
+  },
+  {
+    "code": "CA731",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-251",
+    "n_steps": 6,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "CA757",
+    "format": "B",
+    "action_level": "L04",
+    "manual_page": "40-253",
+    "n_steps": 2,
+    "n_measurements": 0,
+    "refs": [
+      "CA441"
+    ]
+  },
+  {
+    "code": "CA778",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-254",
+    "n_steps": 11,
+    "n_measurements": 8,
+    "refs": [
+      "CA187",
+      "CA227"
+    ]
+  },
+  {
+    "code": "CA2185",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-259",
+    "n_steps": 5,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "CA2186",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-261",
+    "n_steps": 5,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "CA2249",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-263",
+    "n_steps": 1,
+    "n_measurements": 0,
+    "refs": [
+      "CA559"
+    ]
+  },
+  {
+    "code": "CA2311",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-264",
+    "n_steps": 1,
+    "n_measurements": 0,
+    "refs": [
+      "CA271",
+      "CA272"
+    ]
+  },
+  {
+    "code": "CA2555",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-265",
+    "n_steps": 6,
+    "n_measurements": 5,
+    "refs": []
+  },
+  {
+    "code": "CA2556",
+    "format": "B",
+    "action_level": "L01",
+    "manual_page": "40-268",
+    "n_steps": 5,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "D110KB",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-270",
+    "n_steps": 7,
+    "n_measurements": 6,
+    "refs": []
+  },
+  {
+    "code": "D19JKZ",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-274",
+    "n_steps": 8,
+    "n_measurements": 6,
+    "refs": []
+  },
+  {
+    "code": "D811MC",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-278",
+    "n_steps": 3,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "D862KA",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-279",
+    "n_steps": 6,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "D8ALKA",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-281",
+    "n_steps": 6,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "D8ALKB",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-285",
+    "n_steps": 4,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "D8AQKR",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-288",
+    "n_steps": 11,
+    "n_measurements": 27,
+    "refs": [
+      "DA2QKR",
+      "DAZQKR",
+      "DB2QKR"
+    ]
+  },
+  {
+    "code": "D8ARKR",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-298",
+    "n_steps": 10,
+    "n_measurements": 23,
+    "refs": [
+      "CA441",
+      "CA445",
+      "D8AQKR",
+      "DA2RKR"
+    ]
+  },
+  {
+    "code": "D8G1KT",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-304",
+    "n_steps": 3,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "D8G6KT",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-305",
+    "n_steps": 3,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "DA20MC",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-306",
+    "n_steps": 3,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "DA22KK",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-307",
+    "n_steps": 9,
+    "n_measurements": 7,
+    "refs": [
+      "D110KB"
+    ]
+  },
+  {
+    "code": "DA25KP",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-312",
+    "n_steps": 7,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "DA26KP",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-316",
+    "n_steps": 7,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "DA29KQ",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-322",
+    "n_steps": 7,
+    "n_measurements": 31,
+    "refs": []
+  },
+  {
+    "code": "DA2LKA",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-327",
+    "n_steps": 6,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "DA2LKB",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-331",
+    "n_steps": 4,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "DA2QKR",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-334",
+    "n_steps": 13,
+    "n_measurements": 36,
+    "refs": [
+      "D8AQKR",
+      "DAZQKR",
+      "DB2QKR"
+    ]
+  },
+  {
+    "code": "DA2RKR",
+    "format": "A",
+    "action_level": "L04",
+    "manual_page": "40-345",
+    "n_steps": 13,
+    "n_measurements": 32,
+    "refs": []
+  },
+  {
+    "code": "DAF0MB",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-354",
+    "n_steps": 3,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "DAF0MC",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-355",
+    "n_steps": 3,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "DAF8KB",
+    "format": "B",
+    "action_level": "L03",
+    "manual_page": "40-356",
+    "n_steps": 4,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "DAF9KQ",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-358",
+    "n_steps": 5,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "DAFGMC",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-360",
+    "n_steps": 3,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "DAFLKA",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-362",
+    "n_steps": 6,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "DAFLKB",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-366",
+    "n_steps": 4,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "DAFQKR",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-369",
+    "n_steps": 13,
+    "n_measurements": 32,
+    "refs": [
+      "D8AQKR",
+      "DA2QKR",
+      "DAZQKR",
+      "DB2QKR"
+    ]
+  },
+  {
+    "code": "DAZ9KQ",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-379",
+    "n_steps": 5,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "DAZQKR",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-381",
+    "n_steps": 11,
+    "n_measurements": 25,
+    "refs": [
+      "D8AQKR",
+      "DA2QKR",
+      "DB2QKR"
+    ]
+  },
+  {
+    "code": "DB2QKR",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-390",
+    "n_steps": 13,
+    "n_measurements": 31,
+    "refs": [
+      "D8AQKR",
+      "DA2QKR",
+      "DAZQKR"
+    ]
+  },
+  {
+    "code": "DDPAKA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-400",
+    "n_steps": 6,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "DGH2KA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-403",
+    "n_steps": 6,
+    "n_measurements": 7,
+    "refs": []
+  },
+  {
+    "code": "DGH2KB",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-406",
+    "n_steps": 6,
+    "n_measurements": 7,
+    "refs": []
+  },
+  {
+    "code": "DHA4KA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-409",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "DHE5MA",
+    "format": "A",
+    "action_level": "L00",
+    "manual_page": "40-412",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": []
+  },
+  {
+    "code": "DHPAMA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-416",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": [
+      "DA26KP"
+    ]
+  },
+  {
+    "code": "DHPBMA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-420",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": [
+      "DA26KP"
+    ]
+  },
+  {
+    "code": "DHS3MA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-424",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": [
+      "DA26KP"
+    ]
+  },
+  {
+    "code": "DHS4MA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-428",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": [
+      "DA26KP"
+    ]
+  },
+  {
+    "code": "DHS8MA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-432",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": [
+      "DA26KP"
+    ]
+  },
+  {
+    "code": "DHS9MA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-436",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": [
+      "DA26KP"
+    ]
+  },
+  {
+    "code": "DHSAMA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-440",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": [
+      "DA26KP"
+    ]
+  },
+  {
+    "code": "DHSBMA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-444",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": [
+      "DA26KP"
+    ]
+  },
+  {
+    "code": "DHSCMA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-448",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": [
+      "DA26KP"
+    ]
+  },
+  {
+    "code": "DHSDMA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-452",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": [
+      "DA26KP"
+    ]
+  },
+  {
+    "code": "DHSFMA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-456",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": [
+      "DA25KP"
+    ]
+  },
+  {
+    "code": "DHSGMA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-460",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": [
+      "DA25KP"
+    ]
+  },
+  {
+    "code": "DHSHMA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-464",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": [
+      "DA25KP"
+    ]
+  },
+  {
+    "code": "DHSJMA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-468",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": [
+      "DA25KP"
+    ]
+  },
+  {
+    "code": "DJG1KX",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-472",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "DKR2MA",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-475",
+    "n_steps": 8,
+    "n_measurements": 7,
+    "refs": [
+      "DA26KP"
+    ]
+  },
+  {
+    "code": "DKR2NX",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-479",
+    "n_steps": 5,
+    "n_measurements": 0,
+    "refs": [
+      "DA26KP"
+    ]
+  },
+  {
+    "code": "DR31KX",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-481",
+    "n_steps": 0,
+    "n_measurements": 0,
+    "refs": []
+  },
+  {
+    "code": "DV20KB",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-482",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "DW43KA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-485",
+    "n_steps": 5,
+    "n_measurements": 5,
+    "refs": []
+  },
+  {
+    "code": "DW43KB",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-488",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "DW43KY",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-491",
+    "n_steps": 4,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "DW45KA",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-493",
+    "n_steps": 7,
+    "n_measurements": 11,
+    "refs": []
+  },
+  {
+    "code": "DW45KB",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-497",
+    "n_steps": 8,
+    "n_measurements": 10,
+    "refs": []
+  },
+  {
+    "code": "DW45KY",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-501",
+    "n_steps": 5,
+    "n_measurements": 3,
+    "refs": []
+  },
+  {
+    "code": "DW91KA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-504",
+    "n_steps": 5,
+    "n_measurements": 5,
+    "refs": []
+  },
+  {
+    "code": "DW91KB",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-506",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "DW91KY",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-509",
+    "n_steps": 4,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "DWA2KA",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-511",
+    "n_steps": 5,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "DWA2KB",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-513",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "DWA2KY",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-516",
+    "n_steps": 4,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "DWK0KA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-518",
+    "n_steps": 5,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "DWK0KB",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-520",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "DWK0KY",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-523",
+    "n_steps": 4,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "DWK2KA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-525",
+    "n_steps": 5,
+    "n_measurements": 5,
+    "refs": []
+  },
+  {
+    "code": "DWK2KB",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-527",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "DWK2KY",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-530",
+    "n_steps": 4,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "DWK8KA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-532",
+    "n_steps": 5,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "DWK8KB",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-534",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "DWK8KY",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-537",
+    "n_steps": 4,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "DXA8KA",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-539",
+    "n_steps": 6,
+    "n_measurements": 11,
+    "refs": []
+  },
+  {
+    "code": "DXA8KB",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-542",
+    "n_steps": 8,
+    "n_measurements": 10,
+    "refs": []
+  },
+  {
+    "code": "DXA9KA",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-546",
+    "n_steps": 6,
+    "n_measurements": 11,
+    "refs": []
+  },
+  {
+    "code": "DXA9KB",
+    "format": "A",
+    "action_level": "L03",
+    "manual_page": "40-549",
+    "n_steps": 8,
+    "n_measurements": 10,
+    "refs": []
+  },
+  {
+    "code": "DXE0KA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-553",
+    "n_steps": 5,
+    "n_measurements": 5,
+    "refs": []
+  },
+  {
+    "code": "DXE0KB",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-556",
+    "n_steps": 7,
+    "n_measurements": 5,
+    "refs": []
+  },
+  {
+    "code": "DXE4KA",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-559",
+    "n_steps": 5,
+    "n_measurements": 5,
+    "refs": []
+  },
+  {
+    "code": "DXE4KB",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-562",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "DXE4KY",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-565",
+    "n_steps": 4,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "DXE5KA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-567",
+    "n_steps": 5,
+    "n_measurements": 5,
+    "refs": []
+  },
+  {
+    "code": "DXE5KB",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-570",
+    "n_steps": 7,
+    "n_measurements": 5,
+    "refs": []
+  },
+  {
+    "code": "DXE6KA",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-573",
+    "n_steps": 5,
+    "n_measurements": 5,
+    "refs": []
+  },
+  {
+    "code": "DXE6KB",
+    "format": "A",
+    "action_level": "L01",
+    "manual_page": "40-576",
+    "n_steps": 7,
+    "n_measurements": 5,
+    "refs": []
+  },
+  {
+    "code": "DY20KA",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-579",
+    "n_steps": 7,
+    "n_measurements": 13,
+    "refs": []
+  },
+  {
+    "code": "DY20MA",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-583",
+    "n_steps": 7,
+    "n_measurements": 13,
+    "refs": []
+  },
+  {
+    "code": "DY2CKB",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-587",
+    "n_steps": 10,
+    "n_measurements": 9,
+    "refs": []
+  },
+  {
+    "code": "DY2DKB",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-592",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "DY2EKB",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-595",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "F313KA",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-598",
+    "n_steps": 5,
+    "n_measurements": 5,
+    "refs": []
+  },
+  {
+    "code": "F313KB",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-600",
+    "n_steps": 7,
+    "n_measurements": 5,
+    "refs": []
+  },
+  {
+    "code": "F318KB",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-603",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "refs": []
+  },
+  {
+    "code": "F318KY",
+    "format": "A",
+    "action_level": "-",
+    "manual_page": "40-606",
+    "n_steps": 4,
+    "n_measurements": 1,
+    "refs": []
+  },
+  {
+    "code": "F@BBZL",
+    "format": "A",
+    "action_level": "L00a",
+    "manual_page": "40-608",
+    "n_steps": 5,
+    "n_measurements": 1,
+    "refs": [
+      "DHE5MA"
+    ]
+  }
+]

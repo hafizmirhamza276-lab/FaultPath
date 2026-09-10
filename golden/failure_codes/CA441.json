@@ -1,0 +1,103 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA441",
+  "title": "Power Voltage Low Error",
+  "action_level": "L04",
+  "detail_of_failure": "A low voltage occurs in the power supply circuit of the engine controller.",
+  "controller_action": null,
+  "machine_effect": "The operation can be continued as normal. But the engine stops while it is in operation or the engine cannot be started while it is stopped.",
+  "related_information": "• Power supply voltage of the engine controller can be checked with monitoring function. (Code: 03203 (V)) • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    779,
+    780
+  ],
+  "manual_pages": [
+    "40-237",
+    "40-238"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Looseness or corrosion of battery terminal",
+      "procedure": "The looseness or corrosion of battery terminal can be the cause. Check it.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Loose terminal or halfopen circuit at terminal",
+      "procedure": "1. Starting switch: OFF Check the terminals of alternator, battery relay, and ground terminals (T12), etc.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Defective battery voltage",
+      "procedure": "1. Starting switch: OFF 2. Do the troubleshooting when the starting switch is in the OFF position, and also when the engine is started.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between battery terminals (+) and (-)",
+          "criteria": "20 to 30V"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cause": "Defective alternator",
+      "procedure": "1. Starting switch: OFF 2. Insert a T-adapter into the connector E12. 3. Engine start (engine speed is medium or above)",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between E12 (1) and ground",
+          "criteria": "27.5 to 29.5V"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "cause": "Defective engine controller",
+      "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.) Reference 1. Turn the starting switch to the OFF position. Disconnect the ground cable of the battery. 2. Insert a T-adapter into the connector CE03. 3. Connect a battery ground. 4. Measure it when the starting switch is in the ON position and when the engine is started.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between CE03 (3) and (1) / Starting switch: ON",
+          "criteria": "20 to 30V"
+        },
+        {
+          "quantity": "Between CE03 (3) and (1)",
+          "point": "Starting switch: START",
+          "criteria": "Min. 12V"
+        }
+      ]
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "03203"
+  ],
+  "connectors": [
+    "CE03"
+  ],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

@@ -1,0 +1,51 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA342",
+  "title": "Calibration Code Incompatibility",
+  "action_level": "L04",
+  "detail_of_failure": "Data matching error occurs in the engine controller.",
+  "controller_action": null,
+  "machine_effect": "Normal operation, or engine stop, starting is not possible",
+  "related_information": "• Power supply voltage of the engine controller can be checked with monitoring function. (Code: 03203 (V)) • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    768,
+    768
+  ],
+  "manual_pages": [
+    "40-226"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective related systems",
+      "procedure": "Check if other failure codes are shown at the same time. If other codes are shown, do the troubleshooting for them.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective power supply pressure system",
+      "procedure": "Do the troubleshooting for failure code [CA441].",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA441"
+  ],
+  "refs_monitoring_codes": [
+    "03203"
+  ],
+  "connectors": [],
+  "default_conclusion": "Defective power supply pressure system",
+  "is_pointer_only": true,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

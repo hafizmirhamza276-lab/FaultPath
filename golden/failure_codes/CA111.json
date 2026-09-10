@@ -1,0 +1,51 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA111",
+  "title": "Engine Controller Internal Abnormality",
+  "action_level": "L04",
+  "detail_of_failure": "Error occurs in the internal memory of the engine controller or internal power supply circuit.",
+  "controller_action": null,
+  "machine_effect": "Engine can stop during operation, or it cannot be started while it is stopped.",
+  "related_information": "• The power supply voltage of the engine controller can be checked with the monitoring function. (Code: 03203) • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Start the engine.",
+  "format": "B",
+  "pdf_pages": [
+    721,
+    721
+  ],
+  "manual_pages": [
+    "40-179"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective related systems",
+      "procedure": "Check if other failure codes are shown at the same time. If other codes are shown, do the troubleshooting for them.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Do the troubleshooting for failure code [CA441].",
+      "procedure": "",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA441"
+  ],
+  "refs_monitoring_codes": [
+    "03203"
+  ],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": true,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

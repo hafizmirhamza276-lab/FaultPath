@@ -1,0 +1,178 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DY20KA",
+  "title": "Wiper Motor Open Circuit",
+  "action_level": "-",
+  "detail_of_failure": "The W signal at the top end of the wiper motor working area is not input during operation of the wiper.",
+  "controller_action": "• Stops the output for operation to the wiper motor. • If the cause of the failure disappears, the machine becomes normal by itself.",
+  "machine_effect": "The wiper motor does not operate.",
+  "related_information": "Monitoring code The signal input (ON/OFF) of the W contact at the wiper working area can be monitored. (Code: 02204) Reference information As the T-adapter for the pump controller connector is a “socket-type box”, the operating voltage cannot be measured at the pump controller connector.",
+  "format": "A",
+  "pdf_pages": [
+    1121,
+    1124
+  ],
+  "manual_pages": [
+    "40-579",
+    "40-580",
+    "40-581",
+    "40-582"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Wiper motor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector M05. 3. Connect the T-adapter to the female side of connector M05. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Wiper position: Max. Working area top 1 Ω Between M05 end (female) (6) and (5) Wiper position: Resist- Min. 1 Other than workance MΩ ing area top end Between M05 Wiper position: Max. 20 (female) (1) and All Ω (3)",
+      "branches": {
+        "YES": "• The wiper motor is normal. • Go to the next inspection item.",
+        "NO": "• The wiper motor is defective. • Replace the wiper motor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01, connector CP02, and connector M05. 4. Connect the T-adapter to the female side of connector CP01 and connector CP02 and the male side of connector M05. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between CP01 (female) (56) and Max. M05 (male) (6) 1 Ω Max. Between M05 (male) (5) and ground 1 Ω Resistance Between CP02 (female) (119) and Max. M05 (male) (3) 1 Ω Between CP02 (female) (114) and Max. M05 (male) (1) 1 Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01, connector CP02, and connector M05. 4. Connect the T-adapter to the female or male side of one of the connectors. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between CP01 (female) (56) or M05 Min. 1 (male) (6) and ground MΩ Resist- Between CP02 (female) (119) or Min. 1 ance M05 (male) (3) and ground MΩ Between CP02 (female) (114) or Min. 1 M05 (male) (1) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01, connector CP02, and connector M05. 4. Connect the T-adapter to the female side of connector CP01 and connector CP02. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between CP01 (female) (56) and Min. 1 each pin other than (56) MΩ Resist- Between CP02 (female) (119) and Min. 1 ance each pin other than (119) MΩ Between CP02 (female) (114) and Min. 1 each pin other than (114) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "R of ite econfirmation 1. inspection 2. m",
+      "procedure": "Do the preceding troubleshooting again. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "extraction_warning": "column_split_recovered"
+    },
+    {
+      "step": 7,
+      "cause": "C re 1. 2. onfirmation of 3. pair 4. 5.",
+      "procedure": "Turn the starting switch to the OFF position. Install all the configuration equipment and connect them. Turn the starting switch to the ON position. Turn the wiper switch from the INT or ON position to the OFF position. Is this failure code shown?",
+      "branches": {
+        "NO": "The repair is completed."
+      },
+      "measurements": [],
+      "extraction_warning": "column_split_recovered"
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between M05 (female) (6) and (5) / Wiper position: Working area top end",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Wiper position: Other than working area top end",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between M05 (female) (1) and (3) / Wiper position: All",
+      "criteria": "Max. 20 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (56) and M05 (male) (6)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between M05 (male) (5) and ground",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (119) and M05 (male) (3)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (114) and M05 (male) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (56) or M05 (male) (6) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (119) or M05 (male) (3) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (114) or M05 (male) (1) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (56) and each pin other than (56)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (119) and each pin other than (119)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (114) and each pin other than (114)",
+      "criteria": "Min. 1 MΩ"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "02204"
+  ],
+  "connectors": [
+    "CP01",
+    "CP02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

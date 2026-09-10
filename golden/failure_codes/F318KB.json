@@ -1,0 +1,121 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "F318KB",
+  "title": "Communication Terminal Power Supply 1 Short Circuit",
+  "action_level": "-",
+  "detail_of_failure": "Since the voltage of the communication terminal power output line from the gateway function controller became 2.5 V or less while the command is ON, a short circuit (ground fault) is detected.",
+  "controller_action": "• Turns OFF the power supply output of the communication terminal. • Even after the cause of failure is corrected, the machine will not return to normal until the starting switch is turned to the OFF position.",
+  "machine_effect": "The KOMTRAX system does not operate normally.",
+  "related_information": null,
+  "format": "A",
+  "pdf_pages": [
+    1145,
+    1147
+  ],
+  "manual_pages": [
+    "40-603",
+    "40-604",
+    "40-605"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. See Related Information to Troubleshooting, Checks Before Troubleshooting, Electric Equipment. Check according to the descriptions of wiring harnesses and connectors. 2. Are the wiring harness and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harness and connectors are normal. • Go to the next check item.",
+        "NO": "• The wiring harness or a connector is defective. • Repair or replace the defective wiring harness or connector. • Go to confirmation of repair."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Communication terminal connector",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect the connector CK06, and connect the T-adapter to the male side. 3. Measure the resistance. 4. Does the troubleshooting result agree with the standard value?",
+      "branches": {
+        "YES": "• The communication terminal connector is normal. • Go to the next check item.",
+        "NO": "• The communication terminal connector is defective. • Repair or replace the communication terminal connector. • Go to confirmation of repair."
+      },
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between CK06 (male) (1) and (3)",
+          "criteria": "Max. 1 Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between CK06 (male) (2) and (3)",
+          "criteria": "Max. 1 Ω"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect the connectors CK05 and CK06, and connect the T-adapter to the female side of one of them. 3. Measure the resistance. 4. Does the troubleshooting result agree with the standard value?",
+      "branches": {
+        "YES": "• The wiring harness has no ground fault. • Go to the next check item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to confirmation of repair."
+      },
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ground and one of CK05 (female) (56) and CK06 (female) (1)",
+          "criteria": "Min. 1 MΩ"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect the connectors CK05 and CK06, and connect the T-adapter to the female side of CK05. 3. Measure the resistance. 4. Does the troubleshooting result agree with the standard value?",
+      "branches": {
+        "YES": "• The wiring harness has no short circuit. • Go to the next check item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to confirmation of repair."
+      },
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between CK05 (female) (56) and each pin other than pin (56)",
+          "criteria": "Min. 1 MΩ"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cause": "Reconfirmation of check item",
+      "procedure": "1. Do the previous checks again. 2. Can you identify the cause when the check is repeated?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The gateway function controller can be defective. • Replace the gateway function controller. • Go to confirmation of repair."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Connect all the component parts. 3. Turn the starting switch to the ON position to troubleshoot. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Go back to the first check item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "CK05",
+    "CK06"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "GW",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

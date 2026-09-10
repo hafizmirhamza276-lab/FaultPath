@@ -1,0 +1,86 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA449",
+  "title": "Common Rail Pressure High Error 2",
+  "action_level": "L03",
+  "detail_of_failure": "High pressure error (level 2) occurs in common rail circuit.",
+  "controller_action": "Operates the machine with the engine output limited.",
+  "machine_effect": "• The engine sound becomes larger when it is not loaded or lightly loaded. • Engine output is reduced.",
+  "related_information": "• Common rail pressure can be checked with monitoring function (Code: 36400). • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Start the engine.",
+  "format": "B",
+  "pdf_pages": [
+    782,
+    782
+  ],
+  "manual_pages": [
+    "40-240"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective related systems",
+      "procedure": "Check if other failure codes are shown at the same time. If other codes are shown, do the troubleshooting for them.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Air mixture in low-pressure circuit",
+      "procedure": "Mixing of air in the low-temperature circuit is suspected. Check it with the procedure that follows. 1. Remove the pressure pickup plug (outlet side) of the fuel main filter. 2. Operate the feed pump of fuel prefilter. 3. Check how the fuel and air leaks from the pressure pickup plug.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Defective fuel return circuit device",
+      "procedure": "For check of pressure in fuel return circuit, see Testing and Adjusting, “Examine Fuel Pressure”.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Fuel return circuit pressure",
+          "point": "Engine at low idle or cranking",
+          "criteria": "0.02MPa or below {0.19kgf/cm 2 or below}"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Defective common rail pressure sensor system",
+      "procedure": "Do the troubleshooting for failure codes [CA451] and [CA452].",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Defective pressure limiter",
+      "procedure": "For check of leakage from the pressure limiter, see Testing and Adjusting, “Examine Fuel Return Rate and Leakage”. Leakage of pressure limiter At low idle 0cc (No leakage)",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Defective supply pump",
+      "procedure": "If no failure is found by the above checks, the supply pump can be defective.",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA451",
+    "CA452"
+  ],
+  "refs_monitoring_codes": [
+    "36400"
+  ],
+  "connectors": [],
+  "default_conclusion": "Defective supply pump",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

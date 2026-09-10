@@ -1,0 +1,120 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "B@BAZK",
+  "title": "Eng Oil Level Low",
+  "action_level": "L01",
+  "detail_of_failure": "When the starting switch is turned to the ON position, the signal voltage from engine oil level switch is not 1 V or less. The machine monitor senses Engine Oil Level Low (oil level switch OPEN).",
+  "controller_action": "Shows the engine oil level in yellow on the machine monitor.",
+  "machine_effect": "If machine is used as it is, the engine can be seized.",
+  "related_information": "Monitoring code The engine oil level switch can be monitored. (Code: 04501)",
+  "format": "A",
+  "pdf_pages": [
+    710,
+    712
+  ],
+  "manual_pages": [
+    "40-168",
+    "40-169",
+    "40-170"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Engine oil level",
+      "procedure": "1. Measure the engine oil pressure. REMARK For the measuring method, see Testing and Adjusting, “Examine Engine Oil Pressure”. 2. Does the measurement result agree with the standard value?",
+      "branches": {
+        "YES": "• The engine oil level is normal. • Go to the next inspection item.",
+        "NO": "• The engine oil level is incorrect. • Add engine oil to the correct level. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Engine oil level sensor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P44. 3. Connect the T-adapter to the female side of connector P44. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value When the engine Max. Between P44 oil level is normal 1 Ω Resist- (male) (1) and ance ground When the engine Min. 1 oil level is low MΩ",
+      "branches": {
+        "YES": "• The engine oil level sensor is normal. • Go to the next inspection item.",
+        "NO": "• The engine oil level sensor is defective. • Replace the engine oil level sensor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CM02 and connector P44. 3. Connect the T-adapter to the female side of connector CM02 and the male side of connector P44. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between CM02 (female) (2) and Max. P44 (female) (1) 1 Ω Resistance Max. Between P44 (male) (1) and ground 1 Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The machine monitor can be defective. • Replace the machine monitor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Start the engine. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between P44 (male) (1) and ground / When the engine oil level is normal",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "When the engine oil level is low",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (2) and P44 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between P44 (male) (1) and ground",
+      "criteria": "Max. 1 Ω"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "04501"
+  ],
+  "connectors": [
+    "CM02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Mechanical system",
+  "in_code_table": true
+}

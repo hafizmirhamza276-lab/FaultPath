@@ -1,0 +1,97 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DWA2KA",
+  "title": "Attachment Single or 2-Way Change Solenoid Open Circuit",
+  "action_level": "L03",
+  "detail_of_failure": "The pump controller senses an open circuit in the attachment single or 2-way change solenoid circuit.",
+  "controller_action": "• None in particular. (Since no current flows, the solenoid is not energized.) • If the cause of the failure disappears, the machine becomes normal by itself.",
+  "machine_effect": "The hydraulic circuit for attachment does not become a single-acting circuit.",
+  "related_information": "Monitoring code The command (ON or OFF) from the controller to the attachment single or 2-way change solenoid can be monitored. (As long as the command from the controller is ON, the indication on the monitor is ON even if the solenoid is not energized because there is an open circuit.) (Code: 02301)",
+  "format": "A",
+  "pdf_pages": [
+    1053,
+    1054
+  ],
+  "manual_pages": [
+    "40-511",
+    "40-512"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Attachment single or 2-way change solenoid",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector V07. 3. Connect the T-adapter to the female side of connector V07. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- 20 to Between V07 (male) (1) and (2) ance 60 Ω",
+      "branches": {
+        "YES": "• The attachment single or 2-way change solenoid is normal. • Go to the next inspection item.",
+        "NO": "• The attachment single or 2-way change solenoid is defective. • Replace the attachment single or 2-way change selector solenoid. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "O w pen circu iring har",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP02 and connector V07. 3. Connect the T-adapter to the female side of each connector. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Standit in Item Measurement position and condition ard valness ue Between CP02 (female) (86) and Max. V07 (female) (1) 1 Ω Between CP02 (female) (115) and Max. V07 (female) (2) 1 Ω Resistance Between CP02 (female) (117) and Max. V07 (female) (2) 1 Ω Between CP02 (female) (120) and Max. V07 (female) (2) 1 Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "extraction_warning": "column_split_recovered"
+    },
+    {
+      "step": 4,
+      "cause": "R o it econfirm f inspecti em",
+      "procedure": "ation 1. Do the preceding troubleshooting again. on 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "extraction_warning": "column_split_recovered"
+    },
+    {
+      "step": 5,
+      "cause": "C r onfirmati epair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. on of 3. Turn the starting switch to the ON position. 4. Set to other than breaker mode (B). 5. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": [],
+      "extraction_warning": "column_split_recovered"
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between V07 (male) (1) and (2)",
+      "criteria": "20 to 60 Ω"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "02301"
+  ],
+  "connectors": [
+    "CP02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

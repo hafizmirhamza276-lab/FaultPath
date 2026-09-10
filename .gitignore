@@ -1,0 +1,44 @@
+# ---------------------------------------------------------------------------
+# Source manual -- NEVER COMMIT
+# SEN06867-13 is Komatsu copyrighted material. The repo holds the extracted
+# ground truth, never the document it came from. See CLAUDE.md.
+# ---------------------------------------------------------------------------
+*.pdf
+*-decrypted.pdf
+*_decrypted.pdf
+
+# ---------------------------------------------------------------------------
+# Generated evaluation output -- reproducible, not source of record
+# ---------------------------------------------------------------------------
+eval_out/
+runs/
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# ---------------------------------------------------------------------------
+# Local environment / editor
+# ---------------------------------------------------------------------------
+.env
+.env.*
+.DS_Store
+.idea/
+.vscode/
+
+# ---------------------------------------------------------------------------
+# NOT ignored, deliberately:
+#   golden/          the ground truth -- the whole point of this repo
+#   reports/         audit baseline, tracked so regressions are visible in diff
+# ---------------------------------------------------------------------------

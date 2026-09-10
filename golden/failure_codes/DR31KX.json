@@ -1,0 +1,32 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DR31KX",
+  "title": "Camera 3 Picture Reverse Drive Input Out of Range",
+  "action_level": "-",
+  "detail_of_failure": "-",
+  "controller_action": "-",
+  "machine_effect": "-",
+  "related_information": "Reference information Since this machine is not equipped with camera 3, this failure code is not shown. This failure code is prepared as a spare in case camera 3 is equipped in the future. If this failure code is shown, follow the procedure in “Procedure for troubleshooting” to clear the failure code.",
+  "format": "A",
+  "pdf_pages": [
+    1023,
+    1023
+  ],
+  "manual_pages": [
+    "40-481"
+  ],
+  "steps": [],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

@@ -1,0 +1,43 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA386",
+  "title": "Sensor 1 Supply Voltage High Error",
+  "action_level": "L03",
+  "detail_of_failure": "High voltage is sensed in sensor 1 power supply circuit.",
+  "controller_action": "Operates with ambient pressure as fixed value.",
+  "machine_effect": "• Engine output is reduced. • Startability deteriorates.",
+  "related_information": "After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    772,
+    772
+  ],
+  "manual_pages": [
+    "40-230"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Redirect",
+      "procedure": "Do the troubleshooting for failure code [CA352].",
+      "branches": {},
+      "measurements": [],
+      "redirect": true
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA352"
+  ],
+  "refs_monitoring_codes": [],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": true,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

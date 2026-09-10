@@ -1,0 +1,56 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA234",
+  "title": "Engine Overspeed",
+  "action_level": "-",
+  "detail_of_failure": "Engine speed exceeds upper control limit.",
+  "controller_action": "Stops injection of injector until speed drops to the normal speed.",
+  "machine_effect": "The engine speed changes.",
+  "related_information": "• Engine speed can be checked with monitoring function. (Code: 01002) • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Start the engine and run it at high idle.",
+  "format": "B",
+  "pdf_pages": [
+    753,
+    753
+  ],
+  "manual_pages": [
+    "40-211"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Use of incorrect fuel",
+      "procedure": "The fuel used can be incorrect. Check it.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Incorrect usage of machine",
+      "procedure": "It is possible that the machine is used incorrectly. Instruct the operator to use it correctly.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Defective engine controller",
+      "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "01002"
+  ],
+  "connectors": [],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Mechanical system",
+  "in_code_table": true
+}

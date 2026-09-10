@@ -1,0 +1,159 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DKR2MA",
+  "title": "Return Filter Bypass Stroke Sensor 1 Defective Function",
+  "action_level": "-",
+  "detail_of_failure": "The signal voltage of the stroke sensor 1 circuit of the return filter bypass valve is 0.3 V or below or 4.5 V or above.",
+  "controller_action": "None in particular",
+  "machine_effect": "If the machine is used as is, the hydraulic components can be damaged.",
+  "related_information": "Pre-troubleshooting If failure code [DA26KP] is also shown, do the troubleshooting for this code first. Monitoring code • The return filter pressure can be monitored. (Code: 97000) • The voltage of the return filter pressure sensor can be monitored. (Code: 97001)",
+  "format": "A",
+  "pdf_pages": [
+    1017,
+    1020
+  ],
+  "manual_pages": [
+    "40-475",
+    "40-476",
+    "40-477",
+    "40-478"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. For details, see RELATED INFORMATION TO TROUBLESHOOT, CHECKS BEFORE TROU- BLESHOOTING, Electrical equipment. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP01, P67. Connect the T- adapter to each female side. 3. Measure the resistance. 4. Does the troubleshooting result agree with the standard value? Stand- Item Measurement position and condition ard value Between CP01 (female) (18) and Max. P67 (female) (B) 1 Ω Resist- Between CP01 (female) (63) and Max. ance P67 (female) (A) 1 Ω Between CP01 (female) (74) and Max. P67 (female) (C) 1 Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP01, P67. Connect the T- adapter to one of the female sides. 3. Measure the resistance. 4. Does the troubleshooting result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP01 (female) (74) or P67 Min. 1 ance (female) (C) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP01, P67. Connect the T- adapter to the female side of CP01. 3. Measure the resistance. 4. Does the troubleshooting result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP01 (female) (74) and Min. 1 ance each pin other than (74) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P67. Connect the T-adapter to the female side. 3. Turn the starting switch to the ON position. 4. Measure the voltage. 5. Does the troubleshooting result agree with the standard value? Stand- Item Measurement position and condition ard value Max. 1 Voltage Between P67 (female) (C) and (B) V",
+      "branches": {
+        "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Stroke sensor 1 for return filter bypass valve",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Insert the T-adapter into connector P67. 3. Turn the starting switch to the ON position. 4. Measure the voltage. 5. Does the troubleshooting result agree with the standard value? Stand- Item Measurement position and condition ard value 0.5 to Voltage Between P67 (C) and (B) 4.8 V",
+      "branches": {
+        "YES": "• The stroke sensor 1 for the return filter bypass valve is normal. • Go to the next inspection item.",
+        "NO": "• The stroke sensor 1 for the return filter bypass valve is defective. • Replace the stroke sensor 1 for the return filter bypass valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the troubleshooting above again. 2. Can you identify the cause by reconfirmation?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 8,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Connect all the configuration equipment. 3. Turn the starting switch to the ON position to troubleshoot. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (18) and P67 (female) (B)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (63) and P67 (female) (A)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (74) and P67 (female) (C)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (74) or P67 (female) (C) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (74) and each pin other than (74)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between P67 (female) (C) and (B)",
+      "criteria": "Max. 1 V"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between P67 (C) and (B)",
+      "criteria": "0.5 to 4.8 V"
+    }
+  ],
+  "refs_failure_codes": [
+    "DA26KP"
+  ],
+  "refs_monitoring_codes": [
+    "97000",
+    "97001"
+  ],
+  "connectors": [
+    "CP01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

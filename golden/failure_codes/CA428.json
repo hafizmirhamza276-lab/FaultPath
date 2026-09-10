@@ -1,0 +1,109 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA428",
+  "title": "Water in Fuel Sensor High Error",
+  "action_level": "L01",
+  "detail_of_failure": "A high voltage occurs in the signal circuit of the water sensor of the fuel prefilter.",
+  "controller_action": null,
+  "machine_effect": "The water separator monitor does not operate normally.",
+  "related_information": "• The signal state (ON/OFF) of the water sensor in the fuel prefilter can be checked with monitoring function. (Code: 18800) • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    773,
+    774
+  ],
+  "manual_pages": [
+    "40-231",
+    "40-232"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective fuel prefilter water sensor",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector P47. Connect a T-adapter to the female side. REMARK If water is accumulated in the fuel prefilter, remove the water accumulated.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between P47 (female) (1) and (2)",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "cause": "Open or short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (14) and (47) (water sensor resistance)",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Open circuit in wiring harness (wire breakage or defective contact of connector)",
+      "procedure": "If no failure is found by check on cause 3, this check is not required. 1. Starting switch: OFF 2. Disconnect the connectors ECM and P47. Connect a T-adapter to each female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (14) and P47 (female) (1)",
+          "criteria": "Max. 10Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (47) and P47 (female) (2)",
+          "criteria": "Max. 10Ω"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and P47. Connect a T-adapter to the female side of ECM. Do the check with the multimeter in the continuity mode.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Continuity",
+          "point": "Between ECM (female) (14) and each pin other than pin (14)",
+          "criteria": "No continuity (there is no sound)"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "cause": "Defective engine controller",
+      "procedure": "If no failure is found by the previous checks, engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "18800"
+  ],
+  "connectors": [
+    "ECM"
+  ],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

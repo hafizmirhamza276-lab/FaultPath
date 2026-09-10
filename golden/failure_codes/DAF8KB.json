@@ -1,0 +1,80 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DAF8KB",
+  "title": "Camera Power Supply Short Circuit (Machine monitor system)",
+  "action_level": "L03",
+  "detail_of_failure": "Output power supply voltage (rating: 8 V) from machine monitor to camera is 10 V and above when no current is outputted.",
+  "controller_action": "• Stops output power supply voltage to camera. • Even if cause of failure disappears, machine does not become normal until starting switch is turned to OFF position.",
+  "machine_effect": "Camera image is not displayed on machine monitor.",
+  "related_information": "After repair is completed, check if the failure code is cleared by the following procedure. Procedure: Turn the starting switch to ON position.",
+  "format": "B",
+  "pdf_pages": [
+    898,
+    899
+  ],
+  "manual_pages": [
+    "40-356",
+    "40-357"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective camera (internal short circuit)",
+      "procedure": "1. Turn starting switch to OFF position. 2. Disconnect connector A45 or A46 of camera, and turn starting switch to ON position. If failure code is cleared after disconnecting camera to perform operation of reproducing procedure, internal defect of camera is detected.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective machine monitor",
+      "procedure": "1. Turn starting switch to OFF position. 2. Disconnect connector CM04. 3. Connect T-adapter to male side of CM04. 4. Turn starting switch to ON position.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between CM04 (male) (1) and ground",
+          "criteria": "6 to 10 V"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "cause": "Ground fault in wiring harness (Contact with ground circuit)",
+      "procedure": "1. Turn starting switch to OFF position. 2. Disconnect camera connector A45 and A46 from connector CM04. 3. Connect T-adapter to female side of connector CM04.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between CM04 (female) (1) and ground",
+          "criteria": "Min. 1 MΩ"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Hot short circuit in wiring harness (contact with 24 V circuit)",
+      "procedure": "1. Turn starting switch to OFF position. 2. Disconnect connector A45 and A46 of camera. 3. Insert T-adapter into connector CM04. 4. Turn starting switch to ON position. (Disconnect camera and check that it is normal, in advance.)",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between CM04 (1) and (5)",
+          "criteria": "Max. 10 V"
+        }
+      ]
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "CM04"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "in_code_table": false
+}

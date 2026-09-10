@@ -1,0 +1,118 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DY2EKB",
+  "title": "Wiper Motor (Reverse Rotation) Short Circuit",
+  "action_level": "-",
+  "detail_of_failure": "When the reverse rotation side of the wiper motor drive circuit is driven, a short circuit is sensed because an abnormal current flows in the circuit.",
+  "controller_action": "• Stops the output to the wiper motor drive reverse side. • Even if the cause of the failure is removed, the machine does not become normal until the starting switch is turned to the OFF position once.",
+  "machine_effect": "The wiper does not operate.",
+  "related_information": "Reference information As the T-adapter for the pump controller connector is a “socket-type box”, the operating voltage cannot be measured at the pump controller connector.",
+  "format": "A",
+  "pdf_pages": [
+    1137,
+    1139
+  ],
+  "manual_pages": [
+    "40-595",
+    "40-596",
+    "40-597"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Wiper motor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector M05. 3. Connect the T-adapter to the female side of connector M05. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Max. 20 Between M05 (female) (1) and (3) Ω Resistance Between M05 (female) (1) and Min. 1 ground MΩ",
+      "branches": {
+        "YES": "• The wiper motor is normal. • Go to the next inspection item.",
+        "NO": "• The wiper motor is defective. • Replace the wiper motor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP02 and connector M05. 3. Connect the T-adapter to the female or male side of one of the connectors. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP02 (female) (114) or Min. 1 ance M05 (male) (1) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP02 and connector M05. 3. Connect the T-adapter to the female side of connector CP02. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP02 (female) (114) and Min. 1 ance each pin other than (114) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Turn the wiper switch to the INT or ON position to troubleshoot. 5. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between M05 (female) (1) and (3)",
+      "criteria": "Max. 20 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between M05 (female) (1) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (114) or M05 (male) (1) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (114) and each pin other than (114)",
+      "criteria": "Min. 1 MΩ"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "CP02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

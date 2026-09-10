@@ -1,0 +1,166 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DW45KA",
+  "title": "Swing Parking Brake Solenoid Open Circuit",
+  "action_level": "L03",
+  "detail_of_failure": "The pump controller senses an open circuit in the swing parking brake solenoid circuit.",
+  "controller_action": "• None in particular. (The solenoid does not operate since no current flows.) That is, the swing parking brake is kept applied.) • If the cause of the failure disappears, the machine becomes normal by itself.",
+  "machine_effect": "The machine does not swing. (The swing parking brake is not released)",
+  "related_information": "Monitoring code The command (ON or OFF) from the controller to the swing parking brake solenoid can be monitored. (As long as the command from the controller is ON, the indication on the monitor is ON even if the solenoid is not energized because there is an open circuit.) (Code: 02300) Reference information • When the solenoid and wiring harness are normal, swing operation is possible if the swing parking brake cancel switch is set to the RELEASE position. (Note that the swing parking brake is applied when the starting switch is in the OFF position.) • Power for the swing parking brake solenoid is supplied from pin (101) of pump controller CP02 or fuse No.1 in fuse box F01.",
+  "format": "A",
+  "pdf_pages": [
+    1035,
+    1038
+  ],
+  "manual_pages": [
+    "40-493",
+    "40-494",
+    "40-495",
+    "40-496"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Swing parking brake solenoid",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector V03. 3. Connect the T-adapter to the female side of connector V03. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- 20 to Between V03 (male) (1) and (2) ance 60 Ω",
+      "branches": {
+        "YES": "• The swing parking brake solenoid is normal. • Go to the next inspection item.",
+        "NO": "• The swing parking brake solenoid is defective. • Replace the swing parking brake solenoid. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Swing lock switch",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector S04. 3. Connect the T-adapter to the female side of connector S04. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between S04 Swing lock Max. (male) (3) and switch: OFF 1 Ω (4) Resistance Between S04 Swing lock Min. 1 (male) (3) and switch: ON MΩ (4)",
+      "branches": {
+        "YES": "• The swing lock switch is normal. • Go to the next inspection item.",
+        "NO": "• The swing lock switch is defective. • Replace the swing lock switch. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Diode",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector D01. 3. Connect the T-adapter to the female side of connector D01. 4. Measure the continuity. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between D01 (male) (3) (+) and (7) No con- (-) tinuity Continuity Between D01 (male) (7) (+) and (3) Con- (-) tinuity",
+      "branches": {
+        "YES": "• The diode is normal. • Go to the next inspection item.",
+        "NO": "• The diode is defective. • Replace the diode. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01, connector CP02, connector D01, connector V03, and connector S04. 4. Connect the T-adapter to the female side of each connector. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between CP02 (female) (101) and Max. D01 (female) (7) 1 Ω Between D01 (female) (3) and S04 Max. (female) (3) 1 Ω Between S04 (female) (4) and V03 Max. (female) (1) 1 Ω Resistance Between V03 (female) (2) and CP02 Max. (female) (115) 1 Ω Between V03 (female) (2) and CP02 Max. (female) (117) 1 Ω Between V03 (female) (2) and CP02 Max. (female) (120) 1 Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between V03 (male) (1) and (2)",
+      "criteria": "20 to 60 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S04 (male) (3) and (4) / Swing lock switch: OFF",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S04 (male) (3) and (4) / Swing lock switch: ON",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Continuity",
+      "point": "Between D01 (male) (3) (+) and (7) (-)",
+      "criteria": "No continuity"
+    },
+    {
+      "quantity": "Continuity",
+      "point": "Between D01 (male) (7) (+) and (3) (-)",
+      "criteria": "Continuity"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (101) and D01 (female) (7)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between D01 (female) (3) and S04 (female) (3)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S04 (female) (4) and V03 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between V03 (female) (2) and CP02 (female) (115)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between V03 (female) (2) and CP02 (female) (117)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between V03 (female) (2) and CP02 (female) (120)",
+      "criteria": "Max. 1 Ω"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "02300"
+  ],
+  "connectors": [
+    "CP02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

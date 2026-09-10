@@ -1,0 +1,89 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA2186",
+  "title": "Throttle Sensor Supply Voltage Low Error",
+  "action_level": "L03",
+  "detail_of_failure": "Low voltage occurs in throttle sensor power supply circuit.",
+  "controller_action": "Operates the engine at the throttle position set by the signal from other than throttle sensor.",
+  "machine_effect": "Engine speed cannot be controlled with the fuel dial.",
+  "related_information": "After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    803,
+    804
+  ],
+  "manual_pages": [
+    "40-261",
+    "40-262"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “RELATED INFORMA- TION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective throttle sensor (fuel dial)",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector P20. Turn the starting switch to the ON position. If this failure code is cleared, the throttle sensor is defective. Other failure codes are shown, too. This occurs because the connector is disconnected. Ignore failure codes other than this failure code [CA2186].",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Ground fault in wiring harness (contact with ground circuit)",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connectors CE02 and P20. Connect a T-adapter to one of them on the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ground and CE02 (female) (22) or P20 (female) (1)",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connectors CE02 and P20. Connect a T-adapter to the female side of CE02. 3. Starting switch: ON",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between CE02 (female) (22) and each pin other than CE02 (female) (22) pin.",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cause": "Defective engine controller",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector CE02. Connect a T-adapter to the male side. 3. Turn the starting switch to the ON position with the wiring harness disconnected.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between CE02 (male) (22) and (23)",
+          "criteria": "4.75 to 5.25V"
+        }
+      ]
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "CE02"
+  ],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

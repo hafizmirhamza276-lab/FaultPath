@@ -1,0 +1,113 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "879BKA",
+  "title": "Air Conditioner Outside Air Temperature Sensor Open Circuit",
+  "action_level": "-",
+  "detail_of_failure": "The air conditioner controller senses an open circuit in the fresh air temperature sensor.",
+  "controller_action": "• The air conditioner controller sends an open circuit information of the fresh air temperature sensor to the machine monitor by CAN communication. • Ignores data of the outside air temperature sensor and continues control of the air conditioner in automatic air conditioner mode.",
+  "machine_effect": "Since the outside air temperature sensor of air conditioner has an open circuit, the outside air temperature is not considered in the automatic air conditioner mode. (The air conditioner operates in manual mode.)",
+  "related_information": "Pre-troubleshooting • Check if this failure code is shown on the electrical system abnormality record screen in the service mode of the machine monitor. Reference information • See \"INSTALLATION LOCATIONS OF AIR CONDITIONER PARTS AND AR- RANGEMENT OF CONNECTORS” for each connector location. • Since a T-adapter is not provided for the air conditioner controller connector ACECU and the pins are small, use an intermediate connector to troubleshoot. (Although the intermediate connector also has no T-adapter, it has large pins.) • If it is necessary to repair the air conditioner wiring harness between the air conditioner controller connector ACECU and the intermediate connector, replace the air conditioner unit.",
+  "format": "A",
+  "pdf_pages": [
+    674,
+    676
+  ],
+  "manual_pages": [
+    "40-132",
+    "40-133",
+    "40-134"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of the inspection method, see “RELA- TED INFORMATION TO TROUBLESHOOT”, “Check before troubleshooting”, “Electrical parts”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Outside air temperature sensor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P18. 3. Connect the T-adapter to the female side of connector P18. 4. Measure the resistance. 5. Does the measurement result match with the judgment criteria? Stand- Item Measurement position/condition ard value Between P18 Approx- Resist- Temperature: (male) (2) and imately ance 25°C (1) 1.7 kΩ",
+      "branches": {
+        "YES": "• The outside air temperature sensor is normal. • Go to the next inspection item.",
+        "NO": "• The outside air temperature sensor is defective. • Replace the outside air temperature sensor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector AC01 and connector P18. 3. Connect the T-adapter to the female side of each connector. 4. Measure the resistance. 5. Does the measurement result match with the judgment criteria? Stand- Item Measurement position/condition ard value Between AC01 (female) (8) and P18 Max. 1 (female) (2) Ω Resistance Between AC01 (female) (7) and P18 Max. 1 (female) (1) Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Air conditioner controller",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Replace the air conditioner controller. 3. Turn the starting switch to the ON position. 4. Delete the abnormality record of the electrical system. REMARK For the operating method, See Testing and Adjusting, “Set and Operate Machine Monitor”, “Method for confirming abnormality record (electrical systems)”. 5. Turn the starting switch to the OFF position. 6. Shut down the engine controller. (See “Procedure for Troubleshooting” in this chapter.) 7. Turn the starting switch to the ON position. 8. Check the abnormality record. 9. Is this failure code shown in the record?",
+      "branches": {
+        "YES": "• The removed air conditioner controller is normal. • Restore the removed air conditioner controller. • Go to the next inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the inspection above again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The air conditioner unit can be defective. • Replace the air conditioner unit. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Check the abnormality record. 5. Is “E” shown in the record of this failure code?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between P18 (male) (2) and (1) / Temperature: 25°C",
+      "criteria": "Approximately 1.7 kΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01 (female) (8) and P18 (female) (2)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01 (female) (7) and P18 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "AC01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

@@ -1,0 +1,6 @@
+# Pinned to the versions used to generate the committed golden/ ground truth.
+# Table extraction behaviour is version-sensitive: changing these can silently
+# alter parsed output. Re-pin only alongside a full regeneration + count check
+# (see CLAUDE.md).
+pdfplumber==0.11.10
+pymupdf==1.28.2

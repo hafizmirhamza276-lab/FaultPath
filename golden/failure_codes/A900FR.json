@@ -1,0 +1,42 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "A900FR",
+  "title": "Abrupt Engine Stop by Auto Idling Stop 3",
+  "action_level": "L03",
+  "detail_of_failure": "Durability of turbocharger is degraded due to high engine speed before the engine is stopped by auto idle stop function and frequent engine stops.",
+  "controller_action": "• Turn the auto-deceleration setting ON. • Auto idle stop sudden stop monitor is displayed in red on machine monitor. • Resets when next auto idle stop countdown starts or starting switch is turned OFF.",
+  "machine_effect": "Turbocharger may get damaged.",
+  "related_information": "• This failure code is displayed when activation of failure code [A900N6] exceeds 2000 times. • This failure code will be cleared after replacing the turbocharger assembly and resetting the auto idle stop sudden engine stop counter. • After repairing, check if the failure code is cleared by the following procedure. Procedure: Before resetting the auto idle stop sudden engine stop counter, let the engine stop by auto idle stop function with auto-deceleration turned OFF and fuel dial set at maximum.",
+  "format": "B",
+  "pdf_pages": [
+    699,
+    699
+  ],
+  "manual_pages": [
+    "40-157"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective machine monitor",
+      "procedure": "If this repeatedly occurs even when the auto idle stop function is OFF, machine monitor may be defective. (In case of an internal defect, troubleshooting is impossible as an assembly. Replace whole assembly.)",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "A900N6"
+  ],
+  "refs_monitoring_codes": [],
+  "connectors": [],
+  "default_conclusion": "Defective machine monitor",
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Mechanical system",
+  "in_code_table": true
+}

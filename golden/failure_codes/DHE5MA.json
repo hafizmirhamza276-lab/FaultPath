@@ -1,0 +1,156 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DHE5MA",
+  "title": "Blow By Pressure Sensor Defective Function",
+  "action_level": "L00",
+  "detail_of_failure": "The signal voltage of the blowby pressure sensor circuit is 0.3 V or below or 4.74 V or above.",
+  "controller_action": "• Cannot recognize the blowby pressure. • If the phenomenon of the failure no longer exists, the machine becomes normal by itself.",
+  "machine_effect": "None in particular.",
+  "related_information": "Notice If the connection of the 5 V circuit (1) and ground circuit (3) of the blowby pressure sensor are inverted, the sensor will break. Take extreme care when checking. Monitoring code The blowby pressure can be monitored. (Code: 42830) Reference information As the T-adapter for the pump controller connector is a “socket-type box”, the operating voltage cannot be measured at the pump controller connector.",
+  "format": "A",
+  "pdf_pages": [
+    954,
+    957
+  ],
+  "manual_pages": [
+    "40-412",
+    "40-413",
+    "40-414",
+    "40-415"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. For details, see RELATED INFORMATION TO TROUBLESHOOT, CHECKS BEFORE TROU- BLESHOOTING, Electrical equipment. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connectors CP01 and P57. Connect the T-adapter to each female side. 3. Measure the resistance. 4. Does the troubleshooting result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between CP01 (female) (63) and Max. 1 P57 (female) (1) Ω Resist- Between CP01 (female) (55) and Max. 1 ance P57 (female) (3) Ω Between CP01 (female) (18) and Max. 1 P57 (female) (2) Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connectors CP01 and P57. Connect the T-adapter to the female side of one of the connectors. 3. Measure the resistance. 4. Does the troubleshooting result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Resist- Between ground and one of CP01 Min. 1 ance (female) (55) and P57 (female) (3) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connectors CP01 and P57. Connect the T-adapter to the female side of CP01. 3. Measure the resistance. 4. Does the troubleshooting result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Resist- Between CP01 (female) (55) and Min. 1 ance each pin other than pin (55) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P57. Connect the T-adapter to the female side. 3. Turn the starting switch to the ON position to troubleshoot. 4. Does the troubleshooting result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Voltage Between P57 (female) (3) and (2) Max 1V",
+      "branches": {
+        "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Blowby pressure sensor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Insert the T-adapter into connector P57. 3. Turn the starting switch to the ON position. 4. Does the troubleshooting result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue 0.5 to Voltage Between P57 (2) and (1) 4.5 V",
+      "branches": {
+        "YES": "• The blowby pressure sensor is normal. • Go to the next inspection item.",
+        "NO": "• The blowby pressure sensor is defective. • Replace the blowby pressure sensor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the troubleshooting above again. 2. Can you identify the cause by reconfirmation?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 8,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Connect all the configuration equipment. 3. Turn the starting switch to the ON position to troubleshoot. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (63) and P57 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (55) and P57 (female) (3)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (18) and P57 (female) (2)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between ground and one of CP01 (female) (55) and P57 (female) (3)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (55) and each pin other than pin (55)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between P57 (female) (3) and (2)",
+      "criteria": "Max 1V"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between P57 (2) and (1)",
+      "criteria": "0.5 to 4.5 V"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "42830"
+  ],
+  "connectors": [
+    "CP01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

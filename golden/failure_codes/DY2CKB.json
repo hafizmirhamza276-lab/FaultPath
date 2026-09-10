@@ -1,0 +1,185 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DY2CKB",
+  "title": "Washer Motor Short Circuit",
+  "action_level": "-",
+  "detail_of_failure": "When driving the window washer drive circuit (grounded), a short circuit was sensed when an abnormal current flowed in the circuit.",
+  "controller_action": "• Stops the output to the window washer motor. • Even if the cause of the failure is removed, the machine does not become normal until the starting switch is turned to the OFF position once.",
+  "machine_effect": "The window washer does not operate.",
+  "related_information": "None in particular.",
+  "format": "A",
+  "pdf_pages": [
+    1129,
+    1133
+  ],
+  "manual_pages": [
+    "40-587",
+    "40-588",
+    "40-589",
+    "40-590",
+    "40-591"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Fuse",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.4 in fuse box F01. 4. Check if the fuse is blown. 5. Check the fuse for continuity. 6. Is the fuse normal?",
+      "branches": {
+        "YES": "• The fuse is normal. • Go to the next inspection item.",
+        "NO": "• The fuse is defective. • It blown, go to “Ground fault in wiring harness”. • If the fuse is not blown but has no continuity, replace the fuse. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Window washer motor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector M06. 3. Connect the T-adapter to the female side of connector M06. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value 5 to 20 Between M06 (male) (1) and (2) Ω Resistance Between M06 (male) (1) or (2) and Min. 1 ground MΩ",
+      "branches": {
+        "YES": "• The window washer motor is normal. • Go to the next inspection item.",
+        "NO": "• The window washer motor is defective. • Replace the window washer motor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Diode array",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector D02. 3. Connect the T-adapter to the female side of connector D02. 4. Measure the continuity. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between D02 (male) (3) (+) and (7) Con- (-) tinuity Continuity Between D02 (male) (7) (+) and (3) No con- (-) tinuity",
+      "branches": {
+        "YES": "• The diode array is normal. • Go to the next inspection item.",
+        "NO": "• The diode array is defective. • Replace the diode array. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01 and connector M06. 4. Connect the T-adapter to the female side of each connector. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP01 (female) (3) and Max. ance M06 (female) (1) 1 Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.4 in fuse box F01. 4. Disconnect connector M06, connector CP01, and connector D02. 5. Connect the T-adapter to the female side of one of the connectors. 6. Measure the resistance. 7. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between F01-4, M06 (female) (2), or Min. 1 D02 (female) (3) and ground MΩ Resistance Between CP01 (female) (3), M06 Min. 1 (female) (1), or D02 (female) (7) and MΩ ground",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Replace the fuse if it is blown. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01, connector M06, and connector D02. 4. Connect the T-adapter to the female side of connector CP01. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP01 (female) (3) and Min. 1 ance each pin other than (3) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 8,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.4 in fuse box F01. 4. Disconnect connector CP01 and connector M06. 5. Connect the T-adapter to the female side of connector CP01. 6. Turn the battery disconnect switch to the ON position. 7. Turn the starting switch to the ON position. 8. Measure the voltage. 9. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between CP01 (female) (3) and Max. 1 Voltage ground V",
+      "branches": {
+        "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 9,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 10,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Turn the washer switch to the ON position. 5. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between M06 (male) (1) and (2)",
+      "criteria": "5 to 20 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between M06 (male) (1) or (2) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Continuity",
+      "point": "Between D02 (male) (3) (+) and (7) (-)",
+      "criteria": "Continuity"
+    },
+    {
+      "quantity": "Continuity",
+      "point": "Between D02 (male) (7) (+) and (3) (-)",
+      "criteria": "No continuity"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (3) and M06 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-4, M06 (female) (2), or D02 (female) (3) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (3), M06 (female) (1), or D02 (female) (7) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (3) and each pin other than (3)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between CP01 (female) (3) and ground",
+      "criteria": "Max. 1 V"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "CP01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

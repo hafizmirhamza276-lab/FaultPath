@@ -1,0 +1,149 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "D19JKZ",
+  "title": "Personal code relay open circuit or short circuit",
+  "action_level": "L03",
+  "detail_of_failure": "The machine monitor senses an open circuit or a ground fault in the circuit of the personal code relay.",
+  "controller_action": "• None in particular. (When an open circuit occurs) • Stops to drive the personal code relay. (When a ground fault occurs) • If the cause of the failure disappears, the machine becomes normal by itself. (When an open circuit occurs) • After the cause of the failure is removed, the machine does not become normal until the starting switch is turned to the OFF position once. (When a ground fault occurs)",
+  "machine_effect": "• The start motor operates even after the engine starts. (When an open circuit occurs) • The starting motor does not operate. (When a ground fault occurs)",
+  "related_information": "Notice While this failure code is shown, if you turn the key switch to the START position after the engine has started, the pinion of starting motor may break. Reference information This failure code is shown only when the engine lock function is enabled.",
+  "format": "A",
+  "pdf_pages": [
+    816,
+    819
+  ],
+  "manual_pages": [
+    "40-274",
+    "40-275",
+    "40-276",
+    "40-277"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Fuse",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.3 in fuse box F01. 4. Check if the fuse is blown. 5. Check the fuse for continuity. 6. Is the fuse normal?",
+      "branches": {
+        "YES": "• Fuse No.3 is normal. • Go to the next inspection item.",
+        "NO": "• FuseNo.3 is defective. • It blown, go to “Ground fault in wiring harness”. • If fuse No.3 is not blown but has no continuity, replace it. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Personal code relay",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector R07. 3. Connect the T-adapter to the female side of connector R07. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- 200 to Between R07 (male) (1) and (2) ance 600 Ω",
+      "branches": {
+        "YES": "• The personal code relay is normal. • Go to the next inspection item.",
+        "NO": "• The personal code relay is defective. • Replace the personal code relay. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.3 in fuse box F01. 4. Disconnect connector CM01 and connector R07. 5. Connect the T-adapter to the female side of each connector. 6. Measure the resistance. 7. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between F01-3 and R07 (female) Max. (1) 1 Ω Resistance Between CM01 (female) (6) and Max. R07 (female) (2) 1 Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.3 in fuse box F01. 4. Disconnect connector CM01, R07, S14. 5. Connect the T-adapter to the female side of one of the connectors. 6. Measure the resistance. 7. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between F01-3, R07 (female) (1), or Min. 1 S14 (female) (1) and ground MΩ Resistance Between CM01 (female) (6) or R07 Min. 1 (female) (2) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.3 in fuse box F01. 4. Disconnect connector CM01 and connector H16. 5. Connect the T-adapter to the female side of connector CM01. 6. Measure the resistance. 7. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CM01 (female) (6) and Min. 1 ance each pin other than (6) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The machine monitor can be defective. • Replace the machine monitor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 8,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between R07 (male) (1) and (2)",
+      "criteria": "200 to 600 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-3 and R07 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM01 (female) (6) and R07 (female) (2)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-3, R07 (female) (1), or S14 (female) (1) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM01 (female) (6) or R07 (female) (2) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM01 (female) (6) and each pin other than (6)",
+      "criteria": "Min. 1 MΩ"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "CM01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

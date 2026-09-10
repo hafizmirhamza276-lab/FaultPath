@@ -1,0 +1,82 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "F318KY",
+  "title": "Communication Terminal Power Supply 1 Hot Short Circuit",
+  "action_level": "-",
+  "detail_of_failure": "Since the voltage of the communication terminal power output line from the gateway function controller became 7 V or more while the command is OFF, a power supply voltage fault or hot short circuit is detected.",
+  "controller_action": "• Does not turn ON the power output of the communication terminal. • Even after the cause of failure is corrected, the machine will not return to normal until the starting switch is turned to the OFF position.",
+  "machine_effect": "The KOMTRAX system does not operate normally.",
+  "related_information": null,
+  "format": "A",
+  "pdf_pages": [
+    1148,
+    1149
+  ],
+  "manual_pages": [
+    "40-606",
+    "40-607"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. See Related Information to Troubleshooting, Checks Before Troubleshooting, Electric Equipment. Check according to the descriptions of wiring harnesses and connectors. 2. Are the wiring harness and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harness and connectors are normal. • Go to the next check item.",
+        "NO": "• The wiring harness or a connector is defective. • Repair or replace the defective wiring harness or connector. • Go to confirmation of repair."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect the connector CK06. Connect the T- adapter to the female side. 3. Turn the starting switch to the ON position. 4. Measure the voltage. 5. Does the troubleshooting result agree with the standard value?",
+      "branches": {
+        "YES": "• The wiring harness has no hot short circuit. • Go to the next check item.",
+        "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to confirmation of repair."
+      },
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between CK06 (female) (1) and (3)",
+          "criteria": "Max 7 V"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "cause": "Reconfirmation of check item",
+      "procedure": "1. Do the previous checks again. 2. Can you identify the cause when the check is repeated?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The gateway function controller can be defective. • Replace the gateway function controller. • Go to confirmation of repair."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Connect all the component parts. 3. Turn the starting switch to the ON position to troubleshoot. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Go back to the first check item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "CK06"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "GW",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

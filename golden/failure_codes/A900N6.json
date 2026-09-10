@@ -1,0 +1,42 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "A900N6",
+  "title": "Abrupt Engine Stop by Auto Idling Stop 1",
+  "action_level": "-",
+  "detail_of_failure": "Engine speed just before the engine is stopped by auto idle stop function is high.",
+  "controller_action": "Turn the auto-deceleration setting ON.",
+  "machine_effect": "None in particular",
+  "related_information": "• This failure code is displayed if auto-deceleration is not OFF and fuel dial is not at minimum when auto idle stop function commands engine stop. • Engine speed can be checked with monitoring function. (Code: 01002) • Accumulated counts can be checked with auto idle stop sudden stops counter reset menu. • After repairing, check if the failure code is cleared by the following procedure. Procedure: Let the engine stop by auto idle stop function with auto-deceleration turned OFF and fuel dial set at maximum.",
+  "format": "B",
+  "pdf_pages": [
+    700,
+    700
+  ],
+  "manual_pages": [
+    "40-158"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective machine monitor",
+      "procedure": "If this repeatedly occurs even when the auto idle stop function is OFF, machine monitor may be defective. (In case of an internal defect, troubleshooting is impossible as an assembly. Replace whole assembly.)",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "01002"
+  ],
+  "connectors": [],
+  "default_conclusion": "Defective machine monitor",
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Mechanical system",
+  "in_code_table": true
+}

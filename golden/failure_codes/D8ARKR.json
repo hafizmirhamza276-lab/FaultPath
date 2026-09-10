@@ -1,0 +1,240 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "D8ARKR",
+  "title": "CAN1 Defective Communication (Gateway Controller)",
+  "action_level": "L03",
+  "detail_of_failure": "The machine monitor cannot recognize the gateway function controller on the CAN 1 communication line (KOMNET/r).",
+  "controller_action": "Keeps the working mode. Keeps the current selection of auto-deceleration. Keeps the information when the failure occurred.",
+  "machine_effect": "Information to be got from the gateway function controller is not shown, and special functions do not work. Or update of received data is stopped.",
+  "related_information": "• Start of CAN communication is recognized by each controller when ACC signal of starting switch is received. • If failure codes [CA441] and [CA445] are shown at the same time, do the troubleshooting for them first. • If failure code [D8AQKR] is also shown, the Gateway function controller system in cause 1 is probably defective. • There are 2 failure codes ([D8ARKR] and [DA2RKR]) for CAN 1 communication errors that the machine monitor senses. When these 4 failure codes are also shown, it is possible that there is a ground fault, short circuit or hot short circuit in the wiring harness (CAN communication line). • Terminating resistor of CAN 1 on the cab side is provided in the machine monitor, and that on the engine side is connector “K13”. • Because each controller and machine monitor is connected directly to the battery, the power is supplied even after the starting switch is turned to the OFF position. • Because the signal of active CAN communication line is pulse voltage, it cannot be measured with multimeter. • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Starting switch ON",
+  "format": "B",
+  "pdf_pages": [
+    840,
+    845
+  ],
+  "manual_pages": [
+    "40-298",
+    "40-299",
+    "40-300",
+    "40-301",
+    "40-302",
+    "40-303"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective power supply circuit of gateway function controller",
+      "procedure": "1. Starting switch: OFF 2. Make sure that the system operating lamp is not lit. Turn the battery disconnect switch to the OFF position. 3. Disconnect the connector CK05. Connect a T-adapter to the female side. 4. Battery disconnect switch: ON REMARK If no failure is found, check No.2 is not necessary.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between CK05 (female) (1) and (2)",
+          "criteria": "20 to 30 V"
+        },
+        {
+          "quantity": "Voltage",
+          "point": "Between CK05 (female) (3) and (4)",
+          "criteria": "20 to 30 V"
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Make sure that the system operating lamp is not lit. Turn the battery disconnect switch to the OFF position. 3. Remove the fuse No.17 in the fuse box F01. 4. Disconnect the connector CK05. Connect a T-adapter to the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between F01-17 and CK05 (female) (1)",
+          "criteria": "Max. 1 Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between F01-17 and CK05 (female) (3)",
+          "criteria": "Max. 1 Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between CK05 (female) (2) and ground",
+          "criteria": "Max. 1 Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between CK05 (female) (4) and ground",
+          "criteria": "Max. 1 Ω"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "cause": "Defective gateway function controller ACC signal circuit",
+      "procedure": "1. Starting switch: OFF 2. Make sure that the system operating lamp is not lit. Turn the battery disconnect switch to the OFF position. 3. Disconnect the connector CK05. Connect a T-adapter to the female side. 4. Battery disconnect switch: ON 5. Starting switch: ON REMARK If no failure is found, check No.4 is not necessary.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between CK05 (female) (24) and (2)",
+          "criteria": "20 to 30 V"
+        },
+        {
+          "quantity": "Voltage",
+          "point": "Between CK05 (female) (24) and (4)",
+          "criteria": "20 to 30 V"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Make sure that the system operating lamp is not lit. Turn the battery disconnect switch to the OFF position. 3. Remove the fuse No.10 and No.20 in the fuse box F01. 4. Disconnect the connector CK05. Connect a T-adapter to the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between F01-10D and CK05 (female) (24)",
+          "criteria": "Max. 1 Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between F01-20J and CK05 (female) (24)",
+          "criteria": "Max. 1 Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between CK05 (female) (2) and ground",
+          "criteria": "Max. 1 Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between CK05 (female) (4) and ground",
+          "criteria": "Max. 1 Ω"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cause": "Defective CAN 1 terminating resistor",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connectors K13 and CM02. Connect a T-adapter to each male side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between CM02 (male) (10) and (12)",
+          "criteria": "120±12 Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between K13 (male) (A) and (B)",
+          "criteria": "120±12 Ω"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "cause": "Open circuit in wiring harness (CAN 1 communication circuit)",
+      "procedure": "1. Starting switch: OFF 2. Make sure that the system operating lamp is not lit. Turn the battery disconnect switch to the OFF position. 3. Disconnect the connectors CM02, CK05 and C23. Connect a T-adapter to each female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between CK05 (female) (7) and CM02 (female) (10)",
+          "criteria": "Max. 1 Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between CK05 (female) (7) and CM02 (female) (11)",
+          "criteria": "Max. 1 Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between CK05 (female) (26) and CM02 (female) (12)",
+          "criteria": "Max. 1 Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between CK05 (female) (7) and C23 (female) (A)",
+          "criteria": "Max. 1 Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between CK05 (female) (26) and C23 (female) (B)",
+          "criteria": "Max. 1 Ω"
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "cause": "Ground fault in wiring harness (CAN 1 communication circuit)",
+      "procedure": "1. Starting switch: OFF 2. Make sure that the system operating lamp is not lit. Turn the battery disconnect switch to the OFF position. 3. Disconnect the connectors CK05,CM02,CP01 and LK13, and connect T- adapter to one of them on the female side. 4. Disconnect the connectors, terminals, and fuses of all the devices divided from connectors CK05 (7) and (26).",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ground and one of CK05 (female) (7), CM02 (female) (10), (11),CP01 (female) (7) and K13(female) (A)",
+          "criteria": "Min. 1 MΩ"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between ground and one of CK05 (female) (26) , CM02 (female) (12),CP01(female) (26) and K13(female) (B)",
+          "criteria": "Min. 1 MΩ"
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "cause": "Hot short circuit in wiring harness (CAN 1 communication circuit)",
+      "procedure": "1. Starting switch: OFF 2. Make sure that the system operating lamp is not lit. Turn the battery disconnect switch to the OFF position. 3. Insert a T-adapter into the connector K13. 4. Battery disconnect switch: ON 5. Starting switch: ON REMARK Voltage of CANH and CANL is 2.5±1 V including the case it is in communication state, so regard wiring harness as correct if measured voltage is 1 to 4 V.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between K13 (A) and ground",
+          "criteria": "1 to 4 V"
+        },
+        {
+          "quantity": "Voltage",
+          "point": "Between K13 (B) and ground",
+          "criteria": "1 to 4 V"
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "cause": "Defective gateway function controller",
+      "procedure": "If no failure is found by the previous checks, the gateway function controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 10,
+      "cause": "Defective machine monitor",
+      "procedure": "If no failure is found by the previous checks, the machine monitor is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA441",
+    "CA445",
+    "D8AQKR",
+    "DA2RKR"
+  ],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "CK05",
+    "CM02",
+    "CP01"
+  ],
+  "default_conclusion": "Defective machine monitor",
+  "is_pointer_only": false,
+  "controller": "GW",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

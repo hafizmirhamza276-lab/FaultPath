@@ -1,0 +1,124 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DA25KP",
+  "title": "5 V Sensor Power Supply Output 1 Voltage Low",
+  "action_level": "-",
+  "detail_of_failure": "The voltage of the 5 V sensor power supply output 1 circuit is 2.5 V or below or 6.0 V or above.",
+  "controller_action": "• Stops the output of power from 5 V sensor power supply output 1. • After the cause of the failure is removed, the machine does not become normal until the starting switch is turned to the OFF position once.",
+  "machine_effect": "• Signals from the pressure sensor are not input correctly. • The error code for the pressure sensor is shown at the same time. • Travel and work equipment speeds are slow. • The travel automatic transmission function does not operate. • The auto-decelerator function stays activated or the fine control performance of the work equipment is low.",
+  "related_information": null,
+  "format": "A",
+  "pdf_pages": [
+    854,
+    857
+  ],
+  "manual_pages": [
+    "40-312",
+    "40-313",
+    "40-314",
+    "40-315"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of the inspection method, see “RELA- TED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP01, P09, P10, P11, P12. 3. Connect the T-adapter to the female side of one of the connectors. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between CP01 (female) (6), P09 Resist- (female) (3), P10 (female) (3), P11 Min. 1 ance (female) (3), or P12 (female) and MΩ ground",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP01, P09, P10, P11, P12. 3. Connect the T-adapter to the female side of connector CP01. 4. Measure the resistance. 5. Does the measuring result meet the standard value for the connector? Stand- Measuring point and measurement Item ard valcondition ue Resist- Between C P01 (female) (6) and Min. 1 ance each pin other than (6) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P09, P10, P11, P12. 3. Connect the T-adapter to the female side of one of the connectors. 4. Turn the starting switch to the ON position. 5. Measure the voltage. 6. Does the measuring result meet the standard value for the connector? Stand- Measuring point and measurement Item ard valcondition ue Between P09 (female) (3) and (1), P10 (female) (3) and (1), P11 (fe- 4.5 to Voltage male) (3) and (1), P12 (female)(3) 5.5V and (1)",
+      "branches": {
+        "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Sensor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P09, P10, P11, P12. 3. Connect one of the disconnected connectors. 4. Turn the starting switch to the ON position to troubleshoot. 5. Check that this failure code is not shown. 6. Do the steps 1 to 5 again for all the disconnected connectors. 7. Are all connectors checked for not having a defect to show this failure code? REMARK Since connectors are disconnected, the failure codes for the disconnected devices are shown. Con- Sensor nector Travel forward LEFT pressure sensor P09 Travel reverse LEFT pressure sensor P10 Travel forward RIGHT pressure sensor P11 Travel reverse RIGHT pressure sensor P12",
+      "branches": {
+        "YES": "• The equipment connected to each connector is is normal. • Go to the next inspection item.",
+        "NO": "• If this failure code is shown for a connector, the equipment connected to that connector is defective. • Replace the equipment connected to the connector (indicated by the failure code). • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the inspection above again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (6), P09 (female) (3), P10 (female) (3), P11 (female) (3), or P12 (female) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between C P01 (female) (6) and each pin other than (6)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between P09 (female) (3) and (1), P10 (female) (3) and (1), P11 (female) (3) and (1), P12 (female)(3) and (1)",
+      "criteria": "4.5 to 5.5V"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "CP01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

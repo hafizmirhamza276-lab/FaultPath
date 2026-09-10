@@ -1,0 +1,59 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA155",
+  "title": "Charge Air Temperature High Speed Derate",
+  "action_level": "L03",
+  "detail_of_failure": "The temperature by the charge (boost) pressure and temperature sensor exceeds the upper control limit.",
+  "controller_action": "Operates the machine with the engine output limited.",
+  "machine_effect": "• Engine output is reduced. • Engine stops.",
+  "related_information": "• Boost temperature can be checked with monitoring function. (Code: 18500) • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    745,
+    745
+  ],
+  "manual_pages": [
+    "40-203"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Degraded cooling performance of aftercooler",
+      "procedure": "Cooling performance of the aftercooler can be lowered. Check it for the items that follow. • Loosened or damaged fan belt • Insufficient cooling air volume • Clogged aftercooler fin",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Turbocharger outlet temperature high error",
+      "procedure": "It is possible that there is an abnormal temperature rise of the turbocharger outlet. Check the related parts.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Defective charge temperature sensor system",
+      "procedure": "If no failure is found by the above check, the charge temperature sensor system can be defective. Do the troubleshooting for failure codes [CA153] and [CA154].",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA153",
+    "CA154"
+  ],
+  "refs_monitoring_codes": [
+    "18500"
+  ],
+  "connectors": [],
+  "default_conclusion": "Defective charge temperature sensor system",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

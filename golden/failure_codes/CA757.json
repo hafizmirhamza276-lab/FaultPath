@@ -1,0 +1,49 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA757",
+  "title": "All Continuous Data Lost Error",
+  "action_level": "L04",
+  "detail_of_failure": "All data lost error occurs in the engine controller.",
+  "controller_action": null,
+  "machine_effect": "• Engine stops and cannot start in some cases. • Monitoring function (engine controller system) of the machine monitor does not operate normally in some cases.",
+  "related_information": "After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    795,
+    795
+  ],
+  "manual_pages": [
+    "40-253"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective related systems",
+      "procedure": "Check if other failure codes are shown at the same time. If other codes are shown, do the troubleshooting for them.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Do the troubleshooting for failure code [CA441].",
+      "procedure": "",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA441"
+  ],
+  "refs_monitoring_codes": [],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": true,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

@@ -1,0 +1,269 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DA29KQ",
+  "title": "Model Selection Signal Mismatch (Pump Controller)",
+  "action_level": "L01",
+  "detail_of_failure": "A model code signal for a model which is not registered in the controller is input.",
+  "controller_action": "• Controls the machine by regarding the machine as a default model (standard specification machine). • After the cause of the failure is removed, the machine does not become normal until the starting switch is turned to the OFF position once.",
+  "machine_effect": "No problem is shown if the machine specification is standard.",
+  "related_information": "Monitoring code • The assembly part number of the pump controller can be monitored. (Code: 20229) • The state (ON or OFF) of the machine model selection signal can be monitored. (Code: 02201) Machine Model Select 1: OFF Machine Model Select 2: OFF Machine Model Select 3: ON Machine Model Select 4: OFF Machine Model Select 5: OFF",
+  "format": "A",
+  "pdf_pages": [
+    864,
+    868
+  ],
+  "manual_pages": [
+    "40-322",
+    "40-323",
+    "40-324",
+    "40-325",
+    "40-326"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of the inspection method, see “RELA- TED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Model selection connector",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector S30. 3. Connect the T-adapter to the female side of connector S30. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Min. 1 Between S30 (female) (1) and (2) MΩ Max. 1 Between S30 (female) (1) and (3) Ω Min. 1 Between S30 (female) (1) and (4) MΩ Min. 1 Between S30 (female) (1) and (7) MΩ Max. 1 Between S30 (female) (1) and (8) Ω Min. 1 Between S30 (female) (2) and (3) MΩ Min. 1 Between S30 (female) (2) and (4) MΩ Resist- Min. 1 Between S30 (female) (2) and (7) ance MΩ Min. 1 Between S30 (female) (2) and (8) MΩ Min. 1 Between S30 (female) (3) and (4) MΩ Min. 1 Between S30 (female) (3) and (7) MΩ Max. 1 Between S30 (female) (3) and (8) Ω Min. 1 Between S30 (female) (4) and (7) MΩ Min. 1 Between S30 (female) (4) and (8) MΩ Min. 1 Between S30 (female) (7) and (8) MΩ",
+      "branches": {
+        "YES": "• The model selection connector is normal. • Go to the next inspection item.",
+        "NO": "• The model selection connector is defective. • Replace the machine model select connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP01 and connector S30. 3. Connect the T-adapter to the female side of connector CP01 and the male side of connector S30. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between CP01 (female) (21) and Max. 1 S30 (male) (3) Ω Between CP01 (female) (40) and Max. 1 S30 (male) (2) Ω Between CP01 (female) (58) and Max. 1 S30 (male) (7) Ω Resistance Between CP01 (female) (59) and Max. 1 S30 (male) (1) Ω Between CP01 (female) (77) and Max. 1 S30 (male) (4) Ω Max. 1 Between S30 (male) (8) and ground Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP01 and connector S30. 3. Connect the T-adapter to the female side or male side of one of the connectors. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between CP01 (female) (21) or S30 Min. 1 (male) (3) and ground MΩ Between CP01 (female) (40) or S30 Min. 1 (male) (2) and ground MΩ Resist- Between CP01 (female) (58) or S30 Min. 1 ance (male) (7) and ground MΩ Between CP01 (female) (59) or S30 Min. 1 (male) (1) and ground MΩ Between CP01 (female) (77) or S30 Min. 1 (male) (4) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01 and connector S30. 4. Connect the T-adapter to the female side of connector CP01. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between CM01 (female) (21) and Min. 1 each pin other than (21) MΩ Between CM01 (female) (40) and Min. 1 each pin other than (40) MΩ Resist- Between CM01 (female) (58) and Min. 1 ance each pin other than (58) MΩ Between CM01 (female) (59) and Min. 1 each pin other than (59) MΩ Between CM01 (female) (77) and Min. 1 each pin other than (77) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the inspection above again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (female) (1) and (2)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (female) (1) and (3)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (female) (1) and (4)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (female) (1) and (7)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (female) (1) and (8)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (female) (2) and (3)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (female) (2) and (4)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (female) (2) and (7)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (female) (2) and (8)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (female) (3) and (4)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (female) (3) and (7)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (female) (3) and (8)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (female) (4) and (7)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (female) (4) and (8)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (female) (7) and (8)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (21) and S30 (male) (3)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (40) and S30 (male) (2)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (58) and S30 (male) (7)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (59) and S30 (male) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (77) and S30 (male) (4)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S30 (male) (8) and ground",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (21) or S30 (male) (3) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (40) or S30 (male) (2) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (58) or S30 (male) (7) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (59) or S30 (male) (1) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (77) or S30 (male) (4) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM01 (female) (21) and each pin other than (21)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM01 (female) (40) and each pin other than (40)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM01 (female) (58) and each pin other than (58)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM01 (female) (59) and each pin other than (59)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM01 (female) (77) and each pin other than (77)",
+      "criteria": "Min. 1 MΩ"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "02201",
+    "20229"
+  ],
+  "connectors": [
+    "CM01",
+    "CP01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

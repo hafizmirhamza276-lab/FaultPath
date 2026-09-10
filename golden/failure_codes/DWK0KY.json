@@ -1,0 +1,84 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DWK0KY",
+  "title": "2-Stage Relief Solenoid Hot Short Circuit",
+  "action_level": "L01",
+  "detail_of_failure": "The pump controller senses a hot short circuit in the 2-stage relief solenoid circuit.",
+  "controller_action": "• None in particular. • If the cause of the failure disappears, the machine becomes normal by itself.",
+  "machine_effect": "The relief pressure becomes high also by operations other than travel and one-touch power maximizing.",
+  "related_information": "Monitoring code The command (ON or OFF) from the controller to the 2-stage relief solenoid can be monitored. (As long as the command from the controller is ON, the indication on the monitor is ON even if the solenoid is not energized because there is an open circuit.) (Code: 02300) Reference information The controller senses an open circuit when the solenoid output is OFF.",
+  "format": "A",
+  "pdf_pages": [
+    1065,
+    1066
+  ],
+  "manual_pages": [
+    "40-523",
+    "40-524"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of the inspection method, see “RELA- TED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector V02. 3. Connect the T-adapter to the female side of connector V02. 4. Turn the starting switch to the ON position. 5. Measure the voltage. 6. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Max Voltage Between V02 (female) (1) and (2) 4.5V",
+      "branches": {
+        "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "R of ite econfirm inspectio m",
+      "procedure": "ation 1. Do the inspection above again. n 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "extraction_warning": "column_split_recovered"
+    },
+    {
+      "step": 4,
+      "cause": "C re onfirmati pair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and conon of nect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": [],
+      "extraction_warning": "column_split_recovered"
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Voltage",
+      "point": "Between V02 (female) (1) and (2)",
+      "criteria": "Max 4.5V"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "02300"
+  ],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

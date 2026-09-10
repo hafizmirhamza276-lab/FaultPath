@@ -1,0 +1,171 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DXA9KB",
+  "title": "Rear Pump PC-EPC Solenoid Short Circuit",
+  "action_level": "L03",
+  "detail_of_failure": "The pump controller senses a ground fault or hot short circuit in the rear pump PC-EPC solenoid circuit.",
+  "controller_action": "• Stops to drive the rear pump PC-EPC solenoid. • Even if the cause of the failure is removed, the machine does not become normal until the starting switch is turned to the OFF position once.",
+  "machine_effect": "If the pump load increases, the engine speed decreases largely. The engine can stop.",
+  "related_information": "Monitoring code The drive current to the rear pump PC-EPC solenoid can be monitored. (Code: 01302) Reference information When the solenoid and wiring harness are normal, the engine can be prevented from stopping by setting the pump drive secondary switch to the ON position.",
+  "format": "A",
+  "pdf_pages": [
+    1091,
+    1094
+  ],
+  "manual_pages": [
+    "40-549",
+    "40-550",
+    "40-551",
+    "40-552"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Rear pump PC- EPC solenoid",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector V12. 3. Connect the T-adapter to the female side of connector V12. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value 3 to 14 Between V12 (male) (1) and (2) Ω Resistance Min. 1 Between V12 (male) (1) and ground MΩ",
+      "branches": {
+        "YES": "• The rear pump PC- EPC solenoid is normal. • Go to the next inspection item.",
+        "NO": "• The rear pump PC- EPC solenoid is defective. • Replace the rear pump PC-EPC solenoid. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Pump secondary drive switch",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector S25. 3. Connect the T-adapter to the female side of connector S25. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Pump secondary Max. drive switch: Nor- 1 Ω Between S25 mal (male) (9) and (8) Pump secondary Min. 1 drive switch: MΩ Drive Resistance Pump secondary Max. drive switch: Nor- 1 Ω Between S25 mal (male) (11) and (12) Pump secondary Min. 1 drive switch: MΩ Drive",
+      "branches": {
+        "YES": "• The pump secondary drive switch is normal. • Go to the next inspection item.",
+        "NO": "• The pump secondary drive switch is defective. • Replace the pump secondary drive switch. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP02, connector V12, and connector S25. 3. Connect the T-adapter to the female side of one of the connectors. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between CP02 (female) (104) or Min. 1 S25 (female) (9) and ground MΩ Resistance Between S25 (female) (8) or V12 Min. 1 (female) (1) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP02 and connector V12. 3. Connect the T-adapter to the female side of connector CP02. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP02 (female) (104) and Min. 1 ance each pin other than (104) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector V12. 3. Connect the T-adapter to the female side of connector V12. 4. Turn the starting switch to the ON position. 5. Measure the voltage. 6. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Max. Voltage Between V12 (female) (1) and (2) 2.5V",
+      "branches": {
+        "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 8,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between V12 (male) (1) and (2)",
+      "criteria": "3 to 14 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between V12 (male) (1) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S25 (male) (9) and (8) / Pump secondary drive switch: Normal",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Pump secondary drive switch: Drive",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S25 (male) (11) and (12) / Pump secondary drive switch: Normal",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Pump secondary drive switch: Drive",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (104) or S25 (female) (9) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between S25 (female) (8) or V12 (female) (1) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (104) and each pin other than (104)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between V12 (female) (1) and (2)",
+      "criteria": "Max. 2.5V"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "01302"
+  ],
+  "connectors": [
+    "CP02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

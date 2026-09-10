@@ -1,0 +1,52 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "B@BCNS",
+  "title": "Eng Water Overheat",
+  "action_level": "L02",
+  "detail_of_failure": "The engine controller senses engine coolant temperature overheat (105℃ or above) when voltage from the engine coolant temperature sensor decreases while the engine is running.",
+  "controller_action": "• Lights up the engine coolant temperature caution lamp in red on the machine monitor. • Operates the machine with the engine output limited.",
+  "machine_effect": "• If the machine continues to be used, the engine can be seized. • Engine output is reduced.",
+  "related_information": "• The engine controller transmits the inputted signal voltage of the engine coolant temperature sensor to the machine monitor by CAN communication. • Engine coolant temperature can be checked with monitoring function. (Code: 04107) • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Start the engine.",
+  "format": "B",
+  "pdf_pages": [
+    715,
+    715
+  ],
+  "manual_pages": [
+    "40-173"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Overheating of engine coolant (when system is normal)",
+      "procedure": "Lowered engine oil pressure can be the cause. Check it and if oil pressure is lowered, repair to clear the cause of failure. • For details, see “Coolant Temperature Increases Too High (Overheat)” in S-mode.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective engine coolant temperature sensor system",
+      "procedure": "If no failure is found by the check on cause 1, the engine coolant temperature sensor system can be defective. Do the troubleshooting for failure codes [CA144] and [CA145].",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA144",
+    "CA145"
+  ],
+  "refs_monitoring_codes": [
+    "04107"
+  ],
+  "connectors": [],
+  "default_conclusion": "Defective engine coolant temperature sensor system",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Mechanical system",
+  "in_code_table": true
+}

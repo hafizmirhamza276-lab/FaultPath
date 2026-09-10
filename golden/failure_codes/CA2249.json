@@ -1,0 +1,45 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA2249",
+  "title": "Common Rail Pressure Low Error 2",
+  "action_level": "L03",
+  "detail_of_failure": "Pressure low error (level 2) is sensed in the supply pump.",
+  "controller_action": "Operates the machine with the engine output limited.",
+  "machine_effect": "Engine output is reduced.",
+  "related_information": "• The signal voltage from the common rail pressure sensor can be checked with monitoring function (Code: 36401 (V)) • The common rail pressure sensed by the common rail pressure sensor can be checked with monitoring function (Code: 36400 (MPa)) • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Start the engine.",
+  "format": "B",
+  "pdf_pages": [
+    805,
+    805
+  ],
+  "manual_pages": [
+    "40-263"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Low pressure error in the supply pump",
+      "procedure": "Do the troubleshooting for failure code [CA559].",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA559"
+  ],
+  "refs_monitoring_codes": [
+    "36400",
+    "36401"
+  ],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": true,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

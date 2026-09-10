@@ -1,0 +1,103 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA221",
+  "title": "Ambient Pressure Sensor High Error",
+  "action_level": "L03",
+  "detail_of_failure": "A high voltage is sensed in the signal circuit of the ambient pressure sensor.",
+  "controller_action": "Operates with ambient pressure as fixed value.",
+  "machine_effect": "• Engine output is reduced. • Startability deteriorates.",
+  "related_information": "• Input voltage from the ambient pressure sensor can be checked with monitoring function. (Code: 37401 (V)) • Ambient pressure sensed by the ambient pressure sensor can be checked with monitoring function. (Code: 37400 (kPa)) • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    748,
+    749
+  ],
+  "manual_pages": [
+    "40-206",
+    "40-207"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective sensor 1 power supply system",
+      "procedure": "If failure code [CA352] or [CA386] is also shown at the same time, do the troubleshooting for that code first.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Defective ambient pressure sensor",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector AMB. AIR PRESSURE 3. Starting switch: ON If the failure code changes from [CA221] to [CA222], the sensor is defective. 1. Starting switch: OFF 2. Insert a T-adapter into the connector ECM. 3. Starting switch: ON",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between ECM (3) and (38) / Sensor output",
+          "criteria": "0.5 to 4.5V"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and AMB. AIR PRESSURE, and connect a T-adapter to one of them on the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (33) and (3), or between AMB. AIR PRESSURE (female) (1) and (3)",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector AMB. AIR PRESSURE 3. Connect a T-adapter to the female side of connector AMB. AIR PRES- SURE, or insert a T-adapter into the connector ECM. 4. Turn the starting switch to the ON position (with connector AMB. AIR PRESSURE disconnected).",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between ECM (female) (3) and (38), or between AMB. AIR PRESSURE (female) (3) and (2)",
+          "criteria": "Max. 1V"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "cause": "Defective engine controller",
+      "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA222",
+    "CA352",
+    "CA386"
+  ],
+  "refs_monitoring_codes": [
+    "37400",
+    "37401"
+  ],
+  "connectors": [
+    "ECM"
+  ],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

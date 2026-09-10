@@ -1,0 +1,139 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA131",
+  "title": "Throttle Sensor High Error",
+  "action_level": "L03",
+  "detail_of_failure": "High voltage is sensed in the fuel dial circuit.",
+  "controller_action": "• If an abnormality occurs while the starting switch is set in the ON position, the controller fixes the voltage at the value before detection of the abnormality to continue the operation. • If the starting switch is turned to the ON position after the abnormality occurs, the controller runs the engine at the value of 100%.",
+  "machine_effect": "Engine speed cannot be controlled with the fuel dial.",
+  "related_information": "• Signal voltage of the fuel dial can be checked with monitoring function. (Code: 03000) • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    727,
+    728
+  ],
+  "manual_pages": [
+    "40-185",
+    "40-186"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “RELATED INFORMA- TION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective throttle sensor power supply system",
+      "procedure": "If failure code [CA2185] is shown, do the troubleshooting for that code first.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Defective fuel dial (throttle sensor)",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector P20. Connect a T-adapter to the male side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between P20 (male) (1) and (3)",
+          "criteria": "4.0 to 6.0kΩ"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between P20 (male) (2) and (3)",
+          "criteria": "0.25 to 5.0kΩ"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between P20 (male) (1) and (2)",
+          "criteria": "0.25 to 5.0kΩ"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Open or short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector CE02. Connect a T-adapter to the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between CE02 (female) (22) and (23)",
+          "criteria": "4.0 to 6.0kΩ"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between CE02 (female) (9) and (23)",
+          "criteria": "0.25 to 5.0kΩ"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "If no failure is found by check on cause 4, this check is not required. 1. Starting switch: OFF 2. Disconnect the connectors CE02 and P20, and connect a T-adapter to one of them on the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between CE02 (female) (9) and (22), or between P20 (female) (1) and (2)",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector P20. Connect a T-adapter to the female side. 3. Starting switch: ON",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between P20 (female) (2) and ground",
+          "criteria": "Max. 1V"
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "cause": "Defective engine controller",
+      "procedure": "If no failure is found by the previous checks, engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.) 1. Starting switch: OFF 2. Insert a T-adapter into the connector CE02. 3. Starting switch: ON 4. Operate the fuel control dial to do the troubleshooting.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between CE02 (22) and (23) / Power supply",
+          "criteria": "4.75 to 5.25V"
+        },
+        {
+          "quantity": "Between CE02 (9) and (23)",
+          "point": "Sensor output",
+          "criteria": "0.5 to 4.5V"
+        }
+      ]
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA2185"
+  ],
+  "refs_monitoring_codes": [
+    "03000"
+  ],
+  "connectors": [
+    "CE02"
+  ],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

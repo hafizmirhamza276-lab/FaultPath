@@ -1,0 +1,141 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "D110KB",
+  "title": "Battery Relay Output Short Circuit",
+  "action_level": "L01",
+  "detail_of_failure": "The pump controller found a ground fault in the battery relay circuit.",
+  "controller_action": "• Stops the 24 V output to the primary (coil side) circuit of the battery relay. • Even if the cause of the failure is removed, the machine does not become normal until the starting switch is turned to the OFF position once.",
+  "machine_effect": "Each controller possibly fails in writing of data into its ROM (non-volatile memory).",
+  "related_information": "Monitoring code The output (ON or OFF) to the battery relay can be monitored. (Code: 03700)",
+  "format": "A",
+  "pdf_pages": [
+    812,
+    815
+  ],
+  "manual_pages": [
+    "40-270",
+    "40-271",
+    "40-272",
+    "40-273"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of the inspection method, see “RELA- TED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Battery relay",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect battery relay terminal R01, R02. 3. Resistance 4. Measure the continuity. 5. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Con- Con- Between R01 and R02 tinuity tinuity",
+      "branches": {
+        "YES": "• The battery relay is normal. • Go to the next inspection item.",
+        "NO": "• The battery relay is defective. • Replace the battery relay. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Diode",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector D01. 3. Connect the T-adapter to the male side of connector D01. 4. Measure the continuity. 5. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between D01 (male) (2) (+) and (6) No con- (-) tinuity Continuity Between D01 (male) (6) (+) and (2) Con- (-) tinuity",
+      "branches": {
+        "YES": "• The diode is normal. • Go to the next inspection item.",
+        "NO": "• The diode is defective. • Replace the diode. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect battery relay terminal R01. 3. Disconnect connector CP02, connector D01, and connector H15. 4. Connect the T-adapter to the female side of one of the connectors. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between H15 (female) (2) or D01 Min. 1 (female) (5) and ground MΩ Resistance Between CP02 (female) (108) or Min. 1 D01 (female) (2) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect battery relay terminal R01. 3. Disconnect connector CP02 and connector D01. 4. Connect the T-adapter to the female side of connector CP02. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Resist- Between CP02 (female) (108) and Min. 1 ance each pin other than (108) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the inspection above again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Continuity",
+      "point": "Between R01 and R02",
+      "criteria": "Continuity"
+    },
+    {
+      "quantity": "Continuity",
+      "point": "Between D01 (male) (2) (+) and (6) (-)",
+      "criteria": "No continuity"
+    },
+    {
+      "quantity": "Continuity",
+      "point": "Between D01 (male) (6) (+) and (2) (-)",
+      "criteria": "Continuity"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between H15 (female) (2) or D01 (female) (5) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (108) or D01 (female) (2) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (108) and each pin other than (108)",
+      "criteria": "Min. 1 MΩ"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "03700"
+  ],
+  "connectors": [
+    "CP02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

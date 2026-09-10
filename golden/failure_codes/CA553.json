@@ -1,0 +1,59 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA553",
+  "title": "Common Rail Pressure High Error 1",
+  "action_level": "L01",
+  "detail_of_failure": "High pressure error (level 1) occurs in common rail circuit.",
+  "controller_action": null,
+  "machine_effect": "• The engine sound becomes larger when it is not loaded or lightly loaded. • Engine output is reduced.",
+  "related_information": "• Common rail pressure can be checked with monitoring function (Code: 36400). • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Start the engine.",
+  "format": "B",
+  "pdf_pages": [
+    788,
+    788
+  ],
+  "manual_pages": [
+    "40-246"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective related systems",
+      "procedure": "Check if other failure codes are shown at the same time. If other codes are shown, do the troubleshooting for them.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective connection of ground terminal",
+      "procedure": "The connection of the ground terminal can be defective. Check the terminals that follow. • Ground terminal of machine ((-) terminal of battery) • Engine ground terminal • Engine controller ground terminal • Starting motor ground terminal",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Defective common rail pressure sensor system",
+      "procedure": "Do the troubleshooting for failure codes [CA451] and [CA452].",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA451",
+    "CA452"
+  ],
+  "refs_monitoring_codes": [
+    "36400"
+  ],
+  "connectors": [],
+  "default_conclusion": "Defective common rail pressure sensor system",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

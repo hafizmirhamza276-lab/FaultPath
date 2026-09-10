@@ -1,0 +1,64 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA115",
+  "title": "Engine NE and Bkup Speed Sensor Error",
+  "action_level": "L04",
+  "detail_of_failure": "Errors occur in the signal circuits of the engine Ne speed sensor and the engine Bkup speed sensor at the same time.",
+  "controller_action": "Stops the engine.",
+  "machine_effect": "• Engine stops. • Engine does not start.",
+  "related_information": "After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Start the engine.",
+  "format": "B",
+  "pdf_pages": [
+    722,
+    722
+  ],
+  "manual_pages": [
+    "40-180"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective connection of sensor connector",
+      "procedure": "Defective connection (incorrect connection) of Ne speed sensor and Bkup speed sensor can be the cause. Check it.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective Ne speed sensor system",
+      "procedure": "Do the checks on causes 1 to 10 for failure code [CA689].",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Defective Bkup speed sensor system",
+      "procedure": "Do the troubleshooting for failure code [CA778].",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Defective engine controller",
+      "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA689",
+    "CA778"
+  ],
+  "refs_monitoring_codes": [],
+  "connectors": [],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

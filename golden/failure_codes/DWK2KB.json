@@ -1,0 +1,120 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DWK2KB",
+  "title": "Variable Back Pressure Solenoid Short Circuit",
+  "action_level": "L01",
+  "detail_of_failure": "The pump controller senses a ground fault in the variable back pressure solenoid circuit.",
+  "controller_action": "• Stops to drive the variable back pressure solenoid. • After the cause of the failure is removed, the machine does not become normal until the starting switch is turned to the OFF position once.",
+  "machine_effect": "The fuel consumption is degraded.",
+  "related_information": "Monitoring code The command (ON or OFF) from the controller to the variable back pressure solenoid can be monitored. (As long as the command from the controller is ON, the indication on the monitor is ON even if the solenoid is not energized because there is an open circuit.) (Code: 02301) Reference information When the solenoid is ON, the back pressure valve set pressure decreases.",
+  "format": "A",
+  "pdf_pages": [
+    1069,
+    1071
+  ],
+  "manual_pages": [
+    "40-527",
+    "40-528",
+    "40-529"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Variable back pressure solenoid",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector V25. 3. Connect the T-adapter to the female side of connector V25. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- 20 to Between V25 (male) (1) and (2) ance 60 Ω Resist- Min. 1 Between V25 (male) (1) and ground ance MΩ",
+      "branches": {
+        "YES": "• The variable back pressure solenoid is normal. • Go to the next inspection item.",
+        "NO": "• The variable back pressure solenoid is defective. • Replace the variable back pressure solenoid. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP02 and connector V25. 3. Connect the T-adapter to the female side of one of the connectors. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP02 (female) (113) or Min. 1 ance V25 (female) (1) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP02 and connector V25. 3. Connect the T-adapter to the female side of connector CP02. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP02 (female) (113) and Min. 1 ance each pin other than (113) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between V25 (male) (1) and (2)",
+      "criteria": "20 to 60 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between V25 (male) (1) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (113) or V25 (female) (1) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (113) and each pin other than (113)",
+      "criteria": "Min. 1 MΩ"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "02301"
+  ],
+  "connectors": [
+    "CP02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

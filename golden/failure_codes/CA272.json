@@ -1,0 +1,89 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA272",
+  "title": "PCV 1 Open Circuit Error",
+  "action_level": "L03",
+  "detail_of_failure": "Open circuit is sensed in the supply pump actuator drive circuit.",
+  "controller_action": null,
+  "machine_effect": "• The engine runs but it is not stable. • The common rail fuel pressure is higher than the command value. • The engine startability degrades. • Engine output is reduced.",
+  "related_information": "• The connector of “socket” for troubleshooting for this sensor is female only. So the socket cannot be connected to the female connector on the wiring harness side of the sensor, and check for wire breakage cannot be done (T-adapter is not provided). • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    758,
+    759
+  ],
+  "manual_pages": [
+    "40-216",
+    "40-217"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective actuator of supply pump",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector CP3 PUMP REGULATOR.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between CP3 PUMP REGULATOR (male) (1) and (2)",
+          "criteria": "Max. 5Ω"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "cause": "Short circuit or ground fault in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (2) and (32)",
+          "criteria": "Max. 5Ω"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector CP3 PUMP REGULATOR. 3. Insert a T-adapter into the connector ECM. 4. Turn the starting switch to the ON position (connector CP3 PUMP REGU- LATOR is disconnected), and measure after 1 minute or more. REMARK Because of PWM, average voltage is shown.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between ECM (2) and (32)",
+          "criteria": "Max. 3V"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cause": "Defective engine controller",
+      "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "ECM"
+  ],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

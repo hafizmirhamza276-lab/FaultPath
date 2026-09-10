@@ -1,0 +1,89 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DKR2NX",
+  "title": "Return Filter1 Clogging",
+  "action_level": "-",
+  "detail_of_failure": "The pump controller senses a clogged return filter.",
+  "controller_action": "None in particular",
+  "machine_effect": "If the machine is used as is, the hydraulic components can be damaged.",
+  "related_information": "Pre-troubleshooting If failure code [DA26KP] is also shown, do the troubleshooting for this code first. Monitoring code • The return filter pressure can be monitored. (Code: 97000) • The voltage of the return filter pressure sensor can be monitored. (Code: 97001)",
+  "format": "A",
+  "pdf_pages": [
+    1021,
+    1022
+  ],
+  "manual_pages": [
+    "40-479",
+    "40-480"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. For details, see RELATED INFORMATION TO TROUBLESHOOT, CHECKS BEFORE TROU- BLESHOOTING, Electrical equipment. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Return filter",
+      "procedure": "1. Check if the return filter is clogged. 2. Is the return filter normal?",
+      "branches": {
+        "YES": "• The return filter is normal. • Go to the next inspection item.",
+        "NO": "• The return filter is defective. • Clean or replace the return filter. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Return filter bypass valve",
+      "procedure": "1. Check the return filter bypass valve. 2. Is the return filter bypass valve normal?",
+      "branches": {
+        "YES": "• The return filter bypass valve is normal. • Go to the next inspection item.",
+        "NO": "• The return filter bypass valve is defective. • Replace the return filter bypass valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the troubleshooting above again. 2. Can you identify the cause by reconfirmation?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Connect all the configuration equipment. 3. Start the engine. 4. Set the fuel control dial to Hi. 5. Increase the oil temperature to 50 ° C or higher. 6. Operate the work equipment relief approximately 15 times to troubleshoot. 7. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "DA26KP"
+  ],
+  "refs_monitoring_codes": [
+    "97000",
+    "97001"
+  ],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Mechanical system",
+  "in_code_table": true
+}

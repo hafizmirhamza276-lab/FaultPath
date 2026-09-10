@@ -1,0 +1,49 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "B@BAZG",
+  "title": "Engine Oil Pressure Low",
+  "action_level": "L03",
+  "detail_of_failure": "While engine is in operation, engine oil pressure low (sensor contact CLOSE) is sensed with the signal voltage of the engine oil pressure switch by the engine controller.",
+  "controller_action": "• Shows the engine oil pressure monitor in red on the machine monitor. • Operates the machine with the engine output limited.",
+  "machine_effect": "• Engine output is reduced. • If the machine continues to be used, the engine can be seized.",
+  "related_information": "• Signals from the engine oil pressure switch are input to the engine controller. When the engine oil pressure switch turns to the CLOSE (ON) position while the engine runs, the engine controller sends this failure code to the machine monitor. • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Start the engine.",
+  "format": "B",
+  "pdf_pages": [
+    709,
+    709
+  ],
+  "manual_pages": [
+    "40-167"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Low engine oil pressure (when system is normal)",
+      "procedure": "Lowered engine oil pressure can be the cause. Check it and if oil pressure is lowered, repair to clear the cause of failure. • Do “Engine Oil Pressure Low” in S-mode.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective engine oil pressure monitor system",
+      "procedure": "If no failure is found by the check on cause 1, engine oil pressure monitor system can be defective. Do the troubleshooting for failure code [CA435].",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA435"
+  ],
+  "refs_monitoring_codes": [],
+  "connectors": [],
+  "default_conclusion": "Defective engine oil pressure monitor system",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Mechanical system",
+  "in_code_table": true
+}

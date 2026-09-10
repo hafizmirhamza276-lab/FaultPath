@@ -1,0 +1,76 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA731",
+  "title": "Engine Bkup Speed Sensor Phase Error",
+  "action_level": "L01",
+  "detail_of_failure": "Phase error is sensed in signal of the engine Ne speed sensor and the engine Bkup speed sensor.",
+  "controller_action": "Continues control with signals of the engine Ne sensor.",
+  "machine_effect": "• The engine does not start or is hard to start. • The engine does not run at idle speed stably. • Exhaust gas color becomes black.",
+  "related_information": "After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Start the engine.",
+  "format": "B",
+  "pdf_pages": [
+    793,
+    794
+  ],
+  "manual_pages": [
+    "40-251",
+    "40-252"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Damaged engine Ne speed sensor",
+      "procedure": "The breakage of the engine Ne speed sensor can be the cause. Check it.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Breakage of engine Bkup speed sensor",
+      "procedure": "The breakage of the engine Bkup speed sensor can be the cause. Check it.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Deformation or damage of the speed sensing wheel on the crankshaft side",
+      "procedure": "The speed sensing wheel (1) on the crankshaft side can be deformed or damaged. Check it.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Defective installation or damage of speed sensing ring on camshaft side",
+      "procedure": "There can be defective installation or breakage of the speed detection ring on the camshaft side. Check it as follows. 1. Set No. 1 cylinder to the compression top dead center (align stamp mark). 2. Remove the Bkup speed sensor. 3. Installation is correct if the twin groove (single rib) (B) of the speed sensing ring can be seen through the sensor mounting hole (H).",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Misaligned timing of crankshaft and camshaft",
+      "procedure": "Timing of crankshaft and camshaft can be misaligned. Check it.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Defective connection of ground terminal",
+      "procedure": "The connection of the ground terminal can be defective. Check directly the terminals that follow. • Ground terminal of machine ((-) terminal of battery) • Engine ground terminal • Engine controller ground terminal • Starting motor ground terminal",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [],
+  "default_conclusion": "Defective connection of ground terminal",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

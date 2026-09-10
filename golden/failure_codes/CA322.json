@@ -1,0 +1,142 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA322",
+  "title": "Injector #1 (L#1) Open Circuit Error or Short Circuit Error",
+  "action_level": "L03",
+  "detail_of_failure": "Open circuit or short circuit is sensed in No.1 injector drive circuit.",
+  "controller_action": null,
+  "machine_effect": "• Defective explosion or hunting occurs. • Engine output is reduced.",
+  "related_information": "• While the engine is running normally, a pulse voltage of approximately 65V is supplied to the injector (+) side. Because it is pulse voltage, it cannot be measured with the multimeter. • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Start the engine.",
+  "format": "B",
+  "pdf_pages": [
+    760,
+    761
+  ],
+  "manual_pages": [
+    "40-218",
+    "40-219"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective No.1 injector",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector INJECTOR CYL 1 & 2, and connect a T-adapter to the male side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between (3) and (4) of INJECTOR CYL 1 & 2 (male)",
+          "criteria": "Max. 2Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between INJECTOR CYL 1 & 2 (male) (3) and ground",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "cause": "Open circuit or ground fault in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (45) and (53)",
+          "criteria": "Max. 2Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (45) and ground",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Open circuit in wiring harness (wire breakage or defective contact of connector)",
+      "procedure": "If no failure is found by check on cause 3, this check is not required. 1. Starting switch: OFF 2. Disconnect the connectors ECM and INJECTOR CYL 1 & 2, and connect a T-adapter to each female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (45) and INJECTOR CYL 1 & 2 (female) (3)",
+          "criteria": "Max. 2Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (53) and INJECTOR CYL 1 & 2 (female) (4)",
+          "criteria": "Max. 2Ω"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cause": "Ground fault in wiring harness (contact with ground circuit)",
+      "procedure": "If no failure is found by check on cause 3, this check is not required. 1. Starting switch: OFF 2. Disconnect the connectors ECM and INJECTOR CYL 1 & 2, and connect a T-adapter to one of them on the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ground and ECM (female) (45) or INJECTOR CYL 1 & 2 (female) (3)",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and INJECTOR CYL 1 & 2, and connect a T-adapter to the female side of ECM. Do the check with the multimeter in the continuity mode.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Continuity",
+          "point": "Between ECM (female) (45) and each pin other than pin (45)",
+          "criteria": "No continuity (there is no sound)"
+        },
+        {
+          "quantity": "Continuity",
+          "point": "Between ECM (female) (53) and each pin other than pin (53)",
+          "criteria": "No continuity (there is no sound)"
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "cause": "Defective other cylinder injectors or wiring harness",
+      "procedure": "If the failure code for abnormalities of more than one injector is shown, do the troubleshooting for this failure code first.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 8,
+      "cause": "Defective engine controller",
+      "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "ECM"
+  ],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

@@ -1,0 +1,74 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "989M00",
+  "title": "Engine Controller Lock Caution 2",
+  "action_level": "-",
+  "detail_of_failure": "The machine monitor senses an error of the engine controller lock. (Factor 2)",
+  "controller_action": "• None in particular. • If the cause of the failure disappears, the machine becomes normal by itself.",
+  "machine_effect": "The engine does not start.",
+  "related_information": "Reference information If this failure code is shown after the machine monitor is replaced, the user password needs to be changed back to the previous one.",
+  "format": "A",
+  "pdf_pages": [
+    696,
+    697
+  ],
+  "manual_pages": [
+    "40-154",
+    "40-155"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “Related Information for Troubleshooting”, “CHECKS BE- FORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Setting of user password",
+      "procedure": "1. Check the user password (machine monitor). 2. Did you set the user password to the previous one after replacing the machine monitor?",
+      "branches": {
+        "YES": "• Setting of the user password is proper. • Go to the next inspection item.",
+        "NO": "• Setting of the user password is improper. • Set the user password to the previous one. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The machine monitor can be defective. • Replace the machine monitor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Delete the abnormality record of the electrical system. 5. Turn the starting switch to the OFF position. 6. Shut down the engine controller. (See “Procedure for Troubleshooting” in this chapter.) 7. Turn the starting switch to the ON position. 8. Check the abnormality record. 9. Is this failure code displayed in the record?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

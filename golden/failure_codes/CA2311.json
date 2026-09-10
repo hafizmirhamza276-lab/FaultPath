@@ -1,0 +1,43 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA2311",
+  "title": "IMV Solenoid Error",
+  "action_level": "L03",
+  "detail_of_failure": "The resistance value of the supply pump actuator circuit is abnormally high or low.",
+  "controller_action": null,
+  "machine_effect": "Engine output is reduced.",
+  "related_information": "After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Start the engine.",
+  "format": "B",
+  "pdf_pages": [
+    806,
+    806
+  ],
+  "manual_pages": [
+    "40-264"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "IMV Solenoid Error",
+      "procedure": "Do the troubleshooting for failure codes [CA271] and [CA272].",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA271",
+    "CA272"
+  ],
+  "refs_monitoring_codes": [],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": true,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

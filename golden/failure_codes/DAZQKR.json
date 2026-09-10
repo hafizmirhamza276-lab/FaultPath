@@ -1,0 +1,289 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DAZQKR",
+  "title": "CAN 2 defective communication (Air conditioner)",
+  "action_level": "L01",
+  "detail_of_failure": "The machine monitor cannot recognize the air conditioner controller in the CAN2 communication line (KOMNET/c).",
+  "controller_action": "Keeps information when an error occurs.",
+  "machine_effect": "• The information from the engine controller is not shown. (Such as failure codes and monitoring codes sent from the engine controller) • The air conditioner cannot be operated. (No air comes out ) • The air conditioner control screen of the machine monitor is not shown correctly.",
+  "related_information": "Reference information • The ACC signal from the starting switch tells the start of CAN communication to each controller. • 4 different failure codes, [D8AQKR], [DA2QKR], [DAZQKR] and [DB2QKR] are used for defective CAN communications in CAN 2 when they are found by the machine monitor. If all of these failure codes are shown simultaneously, there can be a ground fault, short circuit, or hot short circuit in the wiring harness (CAN communication line). REMARK If the air conditioner is operable, there is no possibility of ground fault, short circuit, or hot short circuit occurred in the wiring harness (CAN communication line). • One of the CAN2 termination resistors is located in the machine monitor on the cab side. The other is in connector K02 located on the engine side. • Since each controller and machine monitor are connected directly to the battery, they are supplied with power even when the starting switch is in the OFF position. • Since the signals passing an active CAN communication line are pulse voltages, they cannot be measured by using a multimeter.",
+  "format": "A",
+  "pdf_pages": [
+    923,
+    931
+  ],
+  "manual_pages": [
+    "40-381",
+    "40-382",
+    "40-383",
+    "40-384",
+    "40-385",
+    "40-386",
+    "40-387",
+    "40-388",
+    "40-389"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of the inspection method, see “RELA- TED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "ACC signal circuit for air conditioner controller",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector AC02. 3. Connect the T-adapter to the female side of connector AC02. 4. Turn the starting switch to the ON position. 5. Measure the voltage. 6. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue 20 to Voltage Between AC02 (female) (4) and (1) 30V",
+      "branches": {
+        "YES": "• The ACC signal circuit of the air conditioner controller is normal. • Go to check item of “CAN TERMINATING RESISTOR”.",
+        "NO": "• The ACC signal circuit of the air conditioner controller is defective. • Go to the next inspection item."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Open circuit in wiring harness (ACC signal circuit of air conditioner controller)",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.10 in fuse box F01. 4. Disconnect connector AC02. 5. Connect the T-adapter to the female side of connector AC02. 6. Measure the resistance. 7. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between F01-10 and AC02 (female) Max. 1 (4) Ω Resistance Between AC02 (female) (1) and Max. 1 ground Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "CAN terminating resistor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CM02 and connector K02. 3. Connect the T-adapter to the male side of each connector. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue 120 Between CM02 (male) (7) and (9) ± 12 Ω Resistance 120 Between K02 (male) (A) and (B) ± 12 Ω",
+      "branches": {
+        "YES": "• The CAN terminating resistor is normal. • Go to the next inspection item.",
+        "NO": "• The CAN terminating resistor is defective. • Replace the CAN terminating resistor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Open circuit in wiring harness (CAN2 communication circuit)",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector AC01, connector CM02, and connector K02. 4. Connect the T-adapter to the female side of each connector. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between AC01 (female) (2) and Max. 1 CM02 (female) (7) Ω Between AC01 (female) (2) and Max. 1 CM02 (female) (8) Ω Resist- Between AC01 (female) (1) and Max. 1 ance CM02 (female) (9) Ω Between AC01 (female) (2) and K02 Max. 1 (female) (A) Ω Between AC01 (female) (1) and K02 Max. 1 (female) (B) Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Ground fault in wiring harness (CAN2 communication circuit)",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CM02, CP01, CE02, AC01, CK05 and K02. 4. Connect the T-adapter to the female side of one of the connectors. 5. Measure the resistance. 6. Does the measuring result meet the standard value for the connector? Stand- Measuring point and measurement Item ard valcondition ue Between CM02 (female) (8), CP01 (female) (45), CE02 (female) (46), Min. 1 AC01 (female) (2), CK05 (female) MΩ (45) or K02 (female) (A) and ground Resistance Between CM02 (female) (9), CP01 (female) (64), CE02 (female) (47), Min. 1 AC01 (female) (1), CK05 (female) MΩ (64), K02 (female) (A) and ground",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Short circuit in wiring harness (CAN2 communication circuit)",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CM02, CP01, CE02, AC01, CK05 and K02. 4. Connect the T-adapter to the female side of connector CM02, CP01, CE02, AC01, CK05 and K02. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between CK05 (female) (45) and Min. 1 each pin other than (45) MΩ Between CK01 (female) (64) and Min. 1 each pin other than (64) MΩ Between CP01 (female) (45) and Min. 1 each pin other than (45) MΩ Between CP01 (female) (64) and Min. 1 each pin other than (64) MΩ Between AC01 (female) (2) and Min. 1 each pin other than (2) MΩ Resist- Between AC01 (female) (1) and Min. 1 ance each pin other than (1) MΩ Between CE02 (female) (46) and Min. 1 each pin other than (46) MΩ Between CE02 (female) (47) and Min. 1 each pin other than (47) MΩ Between CM02 (female) (7) and Min. 1 each pin other than (7), or (8) MΩ Between CM02 (female) (8) and Min. 1 each pin other than (7), or (8) MΩ Between CM02 (female) (9) and Min. 1 each pin other than (9) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 8,
+      "cause": "Hot short circuit in wiring harness (CAN2 communication circuit).",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Insert the T-adapter into connector K02. 3. Turn the starting switch to the ON position. 4. Measure the voltage. 5. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Max. 1 Between K02 (A) and ground to 4 V Voltage Max. 1 Between K02 (B) and ground to 4 V",
+      "branches": {
+        "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 9,
+      "cause": "Controller",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect one of the CAN communication connectors below. Gateway function controller (connectorCK01), pump controller (connectorCP01), air conditioner controller (connectorAC01), engine controller (connectorCE02) REMARK Connector CM02 of the monitor controller is not disconnected. A terminating register is built in the connector. If the connector is disconnected, a CAN2 communication error occurs. You will not be able to troubleshoot. 4. Turn the battery disconnect switch to the ON position. 5. Turn the starting switch to the ON position. 6. Does the number of shown failure codes decrease from 4? 7. If the number does not decrease, change the connector to be disconnected. Do the steps again from 1. REMARK • If all of 4 failure codes, [D8AQKR], [DA2QKR], [DAZQKR], and [DB2QKR] are shown, disconnect the controller one by one and as explained in steps 1 to 6 to find the defective controller.",
+      "branches": {
+        "YES": "• The removed controller is defective. • Replace the defective controller. • Go to “Confirmation of repair”.",
+        "NO": "• The removed controller is normal. • Restore the removed controller. • Go to the next inspection item."
+      },
+      "measurements": []
+    },
+    {
+      "step": 10,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the inspection above again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The machine monitor can be defective. • Replace the machine monitor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 11,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Voltage",
+      "point": "Between AC02 (female) (4) and (1)",
+      "criteria": "20 to 30V"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-10 and AC02 (female) (4)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC02 (female) (1) and ground",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (male) (7) and (9)",
+      "criteria": "120 ± 12 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between K02 (male) (A) and (B)",
+      "criteria": "120 ± 12 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01 (female) (2) and CM02 (female) (7)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01 (female) (2) and CM02 (female) (8)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01 (female) (1) and CM02 (female) (9)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01 (female) (2) and K02 (female) (A)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01 (female) (1) and K02 (female) (B)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (8), CP01 (female) (45), CE02 (female) (46), AC01 (female) (2), CK05 (female) (45) or K02 (female) (A) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (9), CP01 (female) (64), CE02 (female) (47), AC01 (female) (1), CK05 (female) (64), K02 (female) (A) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CK05 (female) (45) and each pin other than (45)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CK01 (female) (64) and each pin other than (64)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (45) and each pin other than (45)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (64) and each pin other than (64)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01 (female) (2) and each pin other than (2)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01 (female) (1) and each pin other than (1)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CE02 (female) (46) and each pin other than (46)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CE02 (female) (47) and each pin other than (47)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (7) and each pin other than (7), or (8)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (8) and each pin other than (7), or (8)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (9) and each pin other than (9)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between K02 (A) and ground",
+      "criteria": "Max. 1 to 4 V"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between K02 (B) and ground",
+      "criteria": "Max. 1 to 4 V"
+    }
+  ],
+  "refs_failure_codes": [
+    "D8AQKR",
+    "DA2QKR",
+    "DB2QKR"
+  ],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "AC01",
+    "AC02",
+    "CE02",
+    "CK01",
+    "CK05",
+    "CM02",
+    "CP01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

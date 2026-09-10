@@ -1,0 +1,114 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "B@BCQA",
+  "title": "Eng Water Level Low",
+  "action_level": "L02",
+  "detail_of_failure": "Signal circuit of radiator coolant level switch has been in “OPEN” (disconnected from GND) state continuously for 1 hour.",
+  "controller_action": "None in particular",
+  "machine_effect": "When coolant level is low, if machine is used as it is, engine may be damaged.",
+  "related_information": "Monitoring code Operation of radiator coolant level switch can be checked by (Code: 04500).",
+  "format": "A",
+  "pdf_pages": [
+    716,
+    717
+  ],
+  "manual_pages": [
+    "40-174",
+    "40-175"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. For details, see RELATED INFORMATION TO TROUBLESHOOT, CHECKS BEFORE TROU- BLESHOOTING, Electrical equipment. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Radiator coolant level",
+      "procedure": "1. Check the radiator for the coolant level and leakage. 2. Is the radiator coolant level between FULL and LOW of the sub-tank?",
+      "branches": {
+        "YES": "• The radiator coolant level is normal. • Go to the next inspection item.",
+        "NO": "• The radiator coolant level is incorrect. • Add radiator coolant to the correct level. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Radiator coolant level sensor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P24. Connect the T-adapter to the male side. 3. Measure the resistance. 4. Does the troubleshooting result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Resist- Max. 1 Between P24 (male) (1) and (2) ance Ω",
+      "branches": {
+        "YES": "• The radiator coolant level sensor is normal. • Go to the next inspection item.",
+        "NO": "• The radiator coolant level sensor is defective. • Replace the radiator coolant level sensor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CM02, P24. Connect the T-adapter to each female side. 3. Measure the resistance. 4. Does the troubleshooting result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between CM02 (female) (3) and Max. 1 P24 (female) (1) Ω Resistance Between P24 (female) (2) and Max. 1 ground Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the troubleshooting above again. 2. Can you identify the cause by reconfirmation?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The machine monitor can be defective. • Replace the machine monitor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Connect all the configuration equipment. 3. Turn the starting switch to the ON position to troubleshoot. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between P24 (male) (1) and (2)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (3) and P24 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between P24 (female) (2) and ground",
+      "criteria": "Max. 1 Ω"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "04500"
+  ],
+  "connectors": [
+    "CM02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Mechanical system",
+  "in_code_table": true
+}

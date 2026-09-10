@@ -1,0 +1,135 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DGH2KB",
+  "title": "Hydraulic Oil Temperature Sensor Ground Fault",
+  "action_level": "L01",
+  "detail_of_failure": "The pump controller senses a ground fault in the hydraulic oil temperature sensor circuit.",
+  "controller_action": "When the cause of failure no longer exists, the machine returns to normal.",
+  "machine_effect": "• The hydraulic oil temperature gauge shows approximately 50°C. • The fan speed reaches maximum speed.",
+  "related_information": "Monitoring code The signal voltage of the hydraulic oil temperature sensor can be monitored. (Code: 04402)",
+  "format": "A",
+  "pdf_pages": [
+    948,
+    950
+  ],
+  "manual_pages": [
+    "40-406",
+    "40-407",
+    "40-408"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of the inspection method, see “RELA- TED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Hydraulic oil temperature sensor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P22. 3. Connect the T-adapter to the male side of connector P22. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue 38.1 to 25℃ 47.8 kΩ 31.0 to 30℃ 40.0 kΩ Between P22 6.1 to (male) (2) and 80℃ 7.0 kΩ (1) Resistance 4.6 to 90℃ 5.2 kΩ 3.6 to 100℃ 4.0 kΩ Between P22 Min. (male) (2) and All 100 kΩ ground",
+      "branches": {
+        "YES": "• The hydraulic oil temperature sensor is normal. • Go to the next inspection item.",
+        "NO": "• The hydraulic oil temperature sensor is defective. • Replace the hydraulic oil temperature sensor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01 and connector P22. 4. Connect the T-adapter to the female side of one of the connectors. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Resist- Between CP01 (female) (28) or P22 Min. 1 ance (female) (2) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01, connector P22. 4. Connect the T-adapter to the female side of connector CP01. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Resist- Between CP01 (female) (28) and Min. 1 ance each pin other than (28) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Reconfirmatio of inspection item",
+      "procedure": "n 1. Do the inspection above again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation o repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and conf nect them. 3. Start the engine. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between P22 (male) (2) and (1) / 25℃",
+      "criteria": "38.1 to 47.8 kΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "30℃",
+      "criteria": "31.0 to 40.0 kΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "80℃",
+      "criteria": "6.1 to 7.0 kΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "90℃",
+      "criteria": "4.6 to 5.2 kΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "100℃",
+      "criteria": "3.6 to 4.0 kΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between P22 (male) (2) and ground / All",
+      "criteria": "Min. 100 kΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (28) or P22 (female) (2) and ground",
+      "criteria": "Min. 1 MΩ"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "04402"
+  ],
+  "connectors": [
+    "CP01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

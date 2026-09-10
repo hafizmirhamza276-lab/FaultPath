@@ -1,0 +1,97 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "F@BBZL",
+  "title": "Blow By Pressure High Error",
+  "action_level": "L00a",
+  "detail_of_failure": "The pressure sensed by the blowby pressure sensor is 1.96 kPa or above.",
+  "controller_action": "None in particular.",
+  "machine_effect": "If the machine is used as it is, the engine can be damaged.",
+  "related_information": "Pre-troubleshooting If failure code [DHE5MA] is also shown, do the troubleshooting for this code first. Monitoring code The blowby pressure can be monitored. (Code: 42803)",
+  "format": "A",
+  "pdf_pages": [
+    1150,
+    1152
+  ],
+  "manual_pages": [
+    "40-608",
+    "40-609",
+    "40-610"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. For details, see RELATED INFORMATION TO TROUBLESHOOT, CHECKS BEFORE TROU- BLESHOOTING, Electrical equipment. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Blowby pressure sensor",
+      "procedure": "1. Check if the block on which the blowby pressure sensor is installed, tube and squeezed part of tip are clogged. 2. Are the block on which the blowby pressure sensor is installed, tube and squeezed part of tip normal?",
+      "branches": {
+        "YES": "• The blowby pressure sensor is normal. • Go to the next inspection item.",
+        "NO": "• The blowby pressure sensor is abnormal. • Replace the blowby pressure sensor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Pump controller",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Insert the T-adapter into connector CP01. 3. Start the engine. Turn the starting switch to the ON position. 4. Measure the voltage. 5. Does the troubleshooting result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between CP01 (female) (55) and 0.3 to Voltage (18) 3.6V",
+      "branches": {
+        "YES": "• The pump controller is normal. • Go to the next inspection item.",
+        "NO": "• The pump controller is defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the inspection above again. 2. Can you identify the cause by reconfirmation?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The engine controller can be defective. • Replace the engine. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Connect all the configuration equipment. 3. Turn the starting switch to the ON position to troubleshoot. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Voltage",
+      "point": "Between CP01 (female) (55) and (18)",
+      "criteria": "0.3 to 3.6V"
+    }
+  ],
+  "refs_failure_codes": [
+    "DHE5MA"
+  ],
+  "refs_monitoring_codes": [
+    "42803"
+  ],
+  "connectors": [
+    "CP01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

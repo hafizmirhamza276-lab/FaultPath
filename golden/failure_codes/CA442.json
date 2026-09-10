@@ -1,0 +1,45 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA442",
+  "title": "Power Voltage High Error",
+  "action_level": "L04",
+  "detail_of_failure": "A high voltage (36V or above) occurs in the power supply circuit of the engine controller.",
+  "controller_action": null,
+  "machine_effect": "The operation can be continued as normal. But the engine stops while it is in operation or the engine cannot be started while it is stopped.",
+  "related_information": "• Power supply voltage of the engine controller can be checked with monitoring function. (Code: 03203 (V)) • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    781,
+    781
+  ],
+  "manual_pages": [
+    "40-239"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Redirect",
+      "procedure": "Do the troubleshooting for failure code [CA441].",
+      "branches": {},
+      "measurements": [],
+      "redirect": true
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA441"
+  ],
+  "refs_monitoring_codes": [
+    "03203"
+  ],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": true,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

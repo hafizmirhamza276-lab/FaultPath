@@ -1,0 +1,115 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DDPAKA",
+  "title": "Additional Hyd Oil Filter Clog Switch Open Circuit",
+  "action_level": "L01",
+  "detail_of_failure": "When the machine is not in a breaker work in B mode, an open circuit of the clogging switch for additional hydraulic oil filter or open switch contacts is sensed.",
+  "controller_action": "If the phenomenon of the failure no longer exists, the machine becomes normal by itself.",
+  "machine_effect": "If the machine is used as it is, the detection function for a clogged additional hydraulic oil filter does not operate.",
+  "related_information": "Monitoring code The input state (ON/OFF) from the clogging switch of the additional hydraulic oil filter can be monitored. (Code: 02203) Reference information This failure code shows a failure only when the working mode is set in B mode.",
+  "format": "A",
+  "pdf_pages": [
+    942,
+    944
+  ],
+  "manual_pages": [
+    "40-400",
+    "40-401",
+    "40-402"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. For details, see RELATED INFORMATION TO TROUBLESHOOT, CHECKS BEFORE TROU- BLESHOOTING, Electrical equipment. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Hydraulic oil additional filter element",
+      "procedure": "1. Visually check the hydraulic oil additional filter element. 2. Is the hydraulic oil additional filter element normal?",
+      "branches": {
+        "YES": "• The hydraulic oil additional filter element is normal. • Go to the next inspection item.",
+        "NO": "• The hydraulic oil additional filter element is defective. • Replace the hydraulic oil additional filter element. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Clogging switch for hydraulic oil additional filter",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P68. Connect the T-adapter to the male side to troubleshoot. 3. Does the troubleshooting result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Resist- Max. 1 Between P68 (male) (1) and (2) ance Ω",
+      "branches": {
+        "YES": "• The clogging switch for the hydraulic oil additional filter is normal. • Go to the next inspection item.",
+        "NO": "• The clogging switch for the hydraulic oil additional filter is defective. • Replace the clogging switch for the hydraulic oil additional filter. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connectors CP01, P68 CP01 and P68. Connect the T-adapter to each female side to troubleshoot. 3. Does the troubleshooting result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between CP01 (female) (17) and Max. 1 P68 (female) (1) Ω Resistance Between P68 (female) (2) and Max. 1 ground Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the inspection above again. 2. Can you identify the cause by reconfirmation?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Connect all the configuration equipment. 3. Turn the starting switch to the ON position to troubleshoot. 4. Set the working mode to B mode. 5. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between P68 (male) (1) and (2)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (17) and P68 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between P68 (female) (2) and ground",
+      "criteria": "Max. 1 Ω"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "02203"
+  ],
+  "connectors": [
+    "CP01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

@@ -1,0 +1,11 @@
+# Ground truth must be byte-stable across platforms. Without this, a Windows
+# checkout rewrites every golden/*.json to CRLF and the next regeneration shows
+# 174 files as modified when nothing actually changed.
+* text=auto eol=lf
+
+*.json text eol=lf
+*.py   text eol=lf
+*.md   text eol=lf
+*.txt  text eol=lf
+
+*.pdf binary

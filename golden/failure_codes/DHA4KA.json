@@ -1,0 +1,120 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DHA4KA",
+  "title": "Air Cleaner Clog Sensor Open Circuit",
+  "action_level": "L01",
+  "detail_of_failure": "The machine monitor senses a clogged air cleaner (sensor contacts \"OPEN\"), because the signal voltage of the air cleaner clogging switch is no longer 1 V or below when the start switch is turned to the ON position.",
+  "controller_action": "Shows the air cleaner clogging monitor in yellow on the machine monitor.",
+  "machine_effect": "If machine is used as it is, the engine can be damaged.",
+  "related_information": "Monitoring code The input (ON or OFF) from air cleaner clogging switch can be monitored. (Code: 04501)",
+  "format": "A",
+  "pdf_pages": [
+    951,
+    953
+  ],
+  "manual_pages": [
+    "40-409",
+    "40-410",
+    "40-411"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Air cleaner",
+      "procedure": "1. Check the air cleaner for clogging. 2. Is the air cleaner normal?",
+      "branches": {
+        "YES": "• The air cleaner is normal. • Go to the next inspection item.",
+        "NO": "• The air cleaner is defective. • Clean or replace the air cleaner. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Air cleaner clogging switch",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P23. 3. Connect the T-adapter to the female side of connector P23. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Max. Filter normal Between P23 1 Ω Resist- (male) (1) and ance (2) Min. 1 Filter clogged MΩ",
+      "branches": {
+        "YES": "• The air cleaner clogging switch is normal. • Go to the next inspection item.",
+        "NO": "• The air cleaner clogging switch is defective. • Replace the air cleaner clogging switch. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CM02, connector P23. 3. Connect the T-adapter to the female side of each connector. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between CM02 (female) (4) and Max. P23 (female) (1) 1 Ω Resistance Between P23 (female) (2) and Max. ground 1 Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The machine monitor can be defective. • Replace the machine monitor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between P23 (male) (1) and (2) / Filter normal",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Filter clogged",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (4) and P23 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between P23 (female) (2) and ground",
+      "criteria": "Max. 1 Ω"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "04501"
+  ],
+  "connectors": [
+    "CM02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

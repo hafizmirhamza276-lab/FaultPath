@@ -1,0 +1,336 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DA2RKR",
+  "title": "Controller Area Network 1 Defective Communication (Pump Controller)",
+  "action_level": "L04",
+  "detail_of_failure": "The machine monitor cannot recognize the pump controller in the CAN1 communication line (KOMNET/c).",
+  "controller_action": "• Keeps the working mode. • Keeps the current selection of auto-deceleration. • Keeps the travel speed (Hi/Lo). • Keeps information when an error occurs.",
+  "machine_effect": "• The information from the pump controller is not shown. Special functions do not operate. Received data do not update. • Pump control is disabled. • The Hydraulic oil temperature gauge pointer is not shown on the machine monitor. • Windshield wiper operation is disabled. • Windshield washer operation is disabled. • The flow rate of the attachment oil pressure line cannot be controlled.",
+  "related_information": "Reference information • The ACC signal from the starting switch tells the start of CAN communication to each controller. • If this failure code is shown, there can be a ground fault, short circuit, or hot short circuit in the wiring harness (CAN communication line). • One of the CAN1 termination resistors is located in the machine monitor on the cab side. The other is in connector K13 located on the engine side. • Since each controller and machine monitor are connected directly to the battery, they are supplied with power even when the starting switch is in the OFF position. • Since the signals passing an active CAN communication line are pulse voltages, they cannot be measured by using a multimeter.",
+  "format": "A",
+  "pdf_pages": [
+    887,
+    895
+  ],
+  "manual_pages": [
+    "40-345",
+    "40-346",
+    "40-347",
+    "40-348",
+    "40-349",
+    "40-350",
+    "40-351",
+    "40-352",
+    "40-353"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of the inspection method, see “RELA- TED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Pump controller power supply circuit",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01. 4. Connect the T-adapter to the female side of connector CP01. 5. Turn the starting switch to the ON position. 6. Measure the voltage. 7. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue 20 to Between CP01 (female) (1) and (2) 30V Voltage 20 to Between CP01 (female) (4) and (5) 30V",
+      "branches": {
+        "YES": "• The power supply circuit of the pump controller is normal. • Go to inspection item of “ACC signal circuit of pump controller”.",
+        "NO": "• The pump controller power supply circuit is defective. • Go to the next inspection item."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Open circuit in wiring harness (Pump controller power supply circuit)",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.17 in fuse box F01. 4. Disconnect connector CP01. 5. Connect the T-adapter to the female side of connector CP01. 6. Measure the resistance. 7. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between F01-17 and CP01 (female) Max. 1 (1) Ω Between F01-17 and CP01 (female) Max. 1 (4) Ω Resistance Between CP01 (female) (2) and Max. 1 ground Ω Between CP01 (female) (5) and Max. 1 ground Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "ACC signal circuit of pump controller",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP01. 3. Connect the T-adapter to the female side of connector CP01. 4. Turn the starting switch to the ON position. 5. Measure the voltage. 6. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue 20 to Between CP01 (female) (24) and (2) 30V 20 to Voltage Between CP01 (female) (43) and (5) 30V 20 to Between CP01 (female) (80) and (2) 30V",
+      "branches": {
+        "YES": "• The ACC signal circuit of the pump controller is normal. • Go to check item of “CAN TERMINATING RESISTOR”.",
+        "NO": "• The ACC signal circuit of the pump controller is defective. • Go to the next inspection item."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Open circuit in wiring harness (ACC signal circuit of pump controller)",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.10 and 20 in fuse box F01. 4. Disconnect connector CP01. 5. Connect the T-adapter to the female side of connector CP01. 6. Measure the resistance. 7. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between F01-10 and CP01 (female) Max. 1 (24) Ω Between F01-20 and CP01 (female) Max. 1 (43) Ω Resist- Between F01-20 and CP01 (female) Max. 1 ance (80) Ω Between CP01 (female) (2) and Max. 1 ground Ω Between CP01 (female) (5) and Max. 1 ground Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "CAN terminating resistor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CM02 and connector K13. 3. Connect the T-adapter to the male side of each connector. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue 120 Between CM02 (male) (10) and (12) ± 12 Ω Resistance 120 Between K13 (male) (A) and (B) ± 12 Ω",
+      "branches": {
+        "YES": "• The CAN terminating resistor is normal. • Go to the next inspection item.",
+        "NO": "• The CAN terminating resistor is defective. • Replace the CAN terminating resistor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Open circuit in wiring harness (CAN1 communication circuit)",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01, connector CM02, and connector K13. 4. Connect the T-adapter to the female side of each connector. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between CP01 (female) (7) and Max. 1 CM02 (female) (10) Ω Between CP01 (female) (7) and Max. 1 CM02 (female) (11) Ω Resist- Between CP01 (female) (26) and Max. 1 ance CM02 (female) (12) Ω Between CP01 (female) (7) and K13 Max. 1 (female) (A) Ω Between CP01 (female) (26) and Max. 1 K13 (female) (B) Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 8,
+      "cause": "Ground fault in wiring harness (CAN1 communication circuit)",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01, connector CM02, and connector K13. 4. Connect the T-adapter to the female side of one of the connectors. 5. Measure the resistance. 6. Does the measuring result meet the standard value for the connector? Stand- Measuring point and measurement Item ard valcondition ue Between CP01 (female) (7), CM02 (female) (10), CM02 (female) (11), Min. 1 CK05 (female) (7) or K13 (female) MΩ Resist- (A) and ground ance Between CP01 (female) (26), CM02 Min. 1 (female) (12), CK05(female) (26) or MΩ K13 (female) (B) and ground",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 9,
+      "cause": "Short circuit in wiring harness (CAN1 communication circuit)",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01, connector CM02, and connector K13. 4. Connect the T-adapter to the female side of connector CP01 and connector CM02. 5. Measure the resistance. 6. Does the measuring result meet the standard value for the connector? Stand- Measuring point and measurement Item ard valcondition ue Between CP01 (female) (7) and Min. 1 each pin other than (7) MΩ Between CP01 (female) (26) and Min. 1 each pin other than (26) MΩ Between CK05 (female) (7) and Min. 1 each pin other than (7) MΩ Resist- Between CK05 (female) (26) and Min. 1 ance each pin other than (26) MΩ Between CM02 (female) (10) and Min. 1 each pin other than (10), or (11) MΩ Between CM02 (female) (11) and Min. 1 each pin other than (10), or (11) MΩ Between CM02 (female) (12) and Min. 1 each pin other than (12) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 10,
+      "cause": "Hot short circuit in wiring harness (CAN1 communication circuit).",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Insert the T-adapter into connector K13. 3. Turn the starting switch to the ON position. 4. Measure the voltage. 5. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Max. 1 Between K13 (A) and ground to 4 V Voltage Max. 1 Between K13 (B) and ground to 4 V",
+      "branches": {
+        "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 11,
+      "cause": "Controller",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect the pump controller (connector CP01). 4. Turn the battery disconnect switch to the ON position. 5. Turn the starting switch to the ON position. 6. Is the shown failure code cleared?",
+      "branches": {
+        "YES": "• The pump controller is defective. • Replace the pump controller. • Go to “Confirmation of repair”.",
+        "NO": "• The pump controller is normal. • Restore the pump controller. • Go to the next inspection item."
+      },
+      "measurements": []
+    },
+    {
+      "step": 12,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the inspection above again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The machine monitor can be defective. • Replace the machine monitor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 13,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Voltage",
+      "point": "Between CP01 (female) (1) and (2)",
+      "criteria": "20 to 30V"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between CP01 (female) (4) and (5)",
+      "criteria": "20 to 30V"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-17 and CP01 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-17 and CP01 (female) (4)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (2) and ground",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (5) and ground",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between CP01 (female) (24) and (2)",
+      "criteria": "20 to 30V"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between CP01 (female) (43) and (5)",
+      "criteria": "20 to 30V"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between CP01 (female) (80) and (2)",
+      "criteria": "20 to 30V"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-10 and CP01 (female) (24)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-20 and CP01 (female) (43)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-20 and CP01 (female) (80)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (2) and ground",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (5) and ground",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (male) (10) and (12)",
+      "criteria": "120 ± 12 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between K13 (male) (A) and (B)",
+      "criteria": "120 ± 12 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (7) and CM02 (female) (10)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (7) and CM02 (female) (11)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (26) and CM02 (female) (12)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (7) and K13 (female) (A)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (26) and K13 (female) (B)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (7), CM02 (female) (10), CM02 (female) (11), CK05 (female) (7) or K13 (female) (A) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (26), CM02 (female) (12), CK05(female) (26) or K13 (female) (B) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (7) and each pin other than (7)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (26) and each pin other than (26)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CK05 (female) (7) and each pin other than (7)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CK05 (female) (26) and each pin other than (26)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (10) and each pin other than (10), or (11)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (11) and each pin other than (10), or (11)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (12) and each pin other than (12)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between K13 (A) and ground",
+      "criteria": "Max. 1 to 4 V"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between K13 (B) and ground",
+      "criteria": "Max. 1 to 4 V"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "CK05",
+    "CM02",
+    "CP01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

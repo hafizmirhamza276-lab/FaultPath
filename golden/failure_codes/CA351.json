@@ -1,0 +1,51 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA351",
+  "title": "Injectors Drive Circuit Error",
+  "action_level": "L03",
+  "detail_of_failure": "Error occurs in the injector drive power supply circuit.",
+  "controller_action": "Operates the machine with the engine output limited.",
+  "machine_effect": "• Exhaust gas color becomes black. • Defective explosion occurs. • Engine output is reduced. • The engine does not start.",
+  "related_information": "• Power supply voltage of the engine controller can be checked with monitoring function. (Code: 03203 (V)) • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Start the engine.",
+  "format": "B",
+  "pdf_pages": [
+    769,
+    769
+  ],
+  "manual_pages": [
+    "40-227"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective related systems",
+      "procedure": "Check if other failure codes are shown at the same time. If other codes are shown, do the troubleshooting for them.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective power supply pressure system",
+      "procedure": "Do the troubleshooting for failure code [CA441].",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA441"
+  ],
+  "refs_monitoring_codes": [
+    "03203"
+  ],
+  "connectors": [],
+  "default_conclusion": "Defective power supply pressure system",
+  "is_pointer_only": true,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

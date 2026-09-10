@@ -1,0 +1,135 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DXE0KB",
+  "title": "LS-EPC Solenoid Short Circuit",
+  "action_level": "L01",
+  "detail_of_failure": "The pump controller senses a ground fault or hot short circuit in the LS-EPC solenoid circuit.",
+  "controller_action": "• Stops to drive the LS-EPC solenoid. • If the cause of the failure disappears, the machine becomes normal by itself.",
+  "machine_effect": "• The machine travels fast in the Lo or Mi travel speed setting. • The operation speed of the work equipment and swing becomes high in fine control mode (L).",
+  "related_information": "Monitoring code The drive current to the LS-EPC solenoid can be monitored. (Code: 01500)",
+  "format": "A",
+  "pdf_pages": [
+    1098,
+    1100
+  ],
+  "manual_pages": [
+    "40-556",
+    "40-557",
+    "40-558"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "LS-EPC solenoid",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector V19. 3. Connect the T-adapter to the female side of connector V19. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value 3 to 14 Between V19 (male) (1) and (2) Ω Resistance Min. 1 Between V19 (male) (1) and ground MΩ",
+      "branches": {
+        "YES": "• The LS-EPC solenoid is normal. • Go to the next inspection item.",
+        "NO": "• The LS-EPC solenoid is defective. • Replace the LS-EPC solenoid. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP02 and connector V19. 3. Connect the T-adapter to the female side of one of the connectors. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP02 (female) (88) or V19 Min. 1 ance (female) (1) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP02 and connector V19. 3. Connect the T-adapter to the female side of connector CP02. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP02 (female) (88) and Min. 1 ance each pin other than (88) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector V19. 3. Connect the T-adapter to the female side of the connector. 4. Turn the starting switch to the ON position. 5. Measure the voltage. 6. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Max. Voltage Between V19 (female) (1) and (2) 2.5 V",
+      "branches": {
+        "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between V19 (male) (1) and (2)",
+      "criteria": "3 to 14 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between V19 (male) (1) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (88) or V19 (female) (1) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (88) and each pin other than (88)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between V19 (female) (1) and (2)",
+      "criteria": "Max. 2.5 V"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "01500"
+  ],
+  "connectors": [
+    "CP02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

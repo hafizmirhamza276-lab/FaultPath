@@ -1,0 +1,167 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DA22KK",
+  "title": "Pump Controller Solenoid Power Voltage Low Error",
+  "action_level": "L03",
+  "detail_of_failure": "The power supply voltage of the pump controller to drive solenoids is 20 V or below.",
+  "controller_action": "• While this failure code is active, stops sensing of failures (open circuits and short circuits) in all solenoid systems. • If the cause of the failure disappears, the machine becomes normal by itself.",
+  "machine_effect": "Since no solenoid valve is energized correctly, the machine does not operate correctly. (Work equipment, swing, and travel systems do not work.)",
+  "related_information": "Pre-troubleshooting If failure code [D110KB] is also shown, do the troubleshooting for this code first. Reference information As the T-adapter for the pump controller connector is a “socket-type box”, the operating voltage cannot be measured at the pump controller connector.",
+  "format": "A",
+  "pdf_pages": [
+    849,
+    853
+  ],
+  "manual_pages": [
+    "40-307",
+    "40-308",
+    "40-309",
+    "40-310",
+    "40-311"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Battery",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check the battery electrolyte level. 3. Measure the battery voltage. 4. Measure the specific gravity of the battery electrolyte. 5. Do the electrolyte level, voltage and specific gravity agree with the standard value? Judged item Standard value Battery electro- Between UPPER LEVEL and LOW- lyte level ER LEVEL Battery voltage Min. 12 V (1 battery) Battery voltage (2 batteries in Min. 24V series) Specific gravity Min. 1.26 (electrolyte temperature: of battery elec- 20°C) trolyte",
+      "branches": {
+        "YES": "• The battery is normal. • Go to the next inspection item.",
+        "NO": "• The battery is defective. • If the battery electrolyte level is low, add electrolyte. After the electrolyte is refilled, charge the battery. • If the battery voltage is low, charge or replace the battery. • If the specific gravity of the battery electrolyte is low, charge the battery. After charging, if the specific gravity is lower than the specified value, replace the battery. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Fusible link",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fusible link F04. 4. Check if the fusible link is blown. 5. Check the fusible link for continuity. 6. Is the fusible link normal?",
+      "branches": {
+        "YES": "The fusible link is normal. • Go to the next inspection item.",
+        "NO": "• The fusible link is defective. • It blown, go to “Ground fault in wiring harness”. • If the fusible link is not blown but has no continuity, replace it. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Fuse",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.2 in fuse box F01. 4. Check if the fuse is blown. 5. Check the fuse for continuity. 6. Is the fuse normal?",
+      "branches": {
+        "YES": "• The fuse is normal. • Go to the next inspection item.",
+        "NO": "• The fuse is defective. • It blown, go to “Ground fault in wiring harness”. • If the fuse is not blown but has no continuity, replace the fuse. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.2 in fuse box F01. 4. Disconnect connector CP02. 5. Connect the T-adapter to the female side of connector CP02. 6. Measure the resistance. 7. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between F01-2 and CP02 (female) Max. (116) 1 Ω Resist- Between F01-2 and CP02 (female) Max. ance (118) 1 Ω Between F01-2 and CP02 (female) Max. (121) 1 Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.2 in fuse box F01. 4. Disconnect connector CP02. 5. Connect the T-adapter to the female side of connector CP02. 6. Measure the resistance. 7. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between F01-2, CP02 (female) Min. 1 ance (116), (118) or (121) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Replace the fuse if it is blown. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.2 in fuse box F01. 4. Disconnect connector CP02. 5. Connect the T-adapter to the female side of connector CP02. 6. Measure the resistance. 7. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between CP02 (female) (116) and Min. 1 each pin other than (116), (118), or MΩ (121) Between CP02 (female) (118) and Resist- Min. 1 each pin other than (116), (118), or ance MΩ (121) Between CP02 (female) (121) and Min. 1 each pin other than (116), (118), or MΩ (121)",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Replace the fuse if it is blown. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 8,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 9,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-2 and CP02 (female) (116)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-2 and CP02 (female) (118)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-2 and CP02 (female) (121)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-2, CP02 (female) (116), (118) or (121) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (116) and each pin other than (116), (118), or (121)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (118) and each pin other than (116), (118), or (121)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (121) and each pin other than (116), (118), or (121)",
+      "criteria": "Min. 1 MΩ"
+    }
+  ],
+  "refs_failure_codes": [
+    "D110KB"
+  ],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "CP02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

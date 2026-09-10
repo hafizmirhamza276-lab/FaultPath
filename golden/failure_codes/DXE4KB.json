@@ -1,0 +1,120 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DXE4KB",
+  "title": "Attachment Flow Regulating EPC Solenoid Short Circuit",
+  "action_level": "-",
+  "detail_of_failure": "The pump controller senses a ground fault in the attachment flow rate adjustment EPC solenoid circuit.",
+  "controller_action": "• None in particular. (Since no current flows, the solenoid is not energized.) • If the cause of the failure disappears, the machine becomes normal by itself.",
+  "machine_effect": "The attachment does not operate.",
+  "related_information": "Monitoring code The drive current to the attachment flow rate adjustment EPC solenoid can be monitored. (Code: 01700)",
+  "format": "A",
+  "pdf_pages": [
+    1104,
+    1106
+  ],
+  "manual_pages": [
+    "40-562",
+    "40-563",
+    "40-564"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Attachment flow rate adjustment EPC solenoid",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector V30. 3. Connect the T-adapter to the female side of connector V30. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value 3 to 14 Between V30 (male) (1) and (2) Ω Resistance Min. 1 Between V30 (male) (1) and ground MΩ",
+      "branches": {
+        "YES": "• The attachment flow rate adjustment EPC solenoid is normal. • Go to the next inspection item.",
+        "NO": "• The attachment flow rate adjustment EPC solenoid is defective. • Replace the attachment flow rate adjustment EPC solenoid. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP02 and connector V30. 3. Connect the T-adapter to the female side of one of the connectors. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP02 (female) (97) or V30 Min. 1 ance (female) (1) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP02, V30. 3. Connect the T-adapter to the female side of connector CP02. 4. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP02 (female) (97) and Min. 1 ance each pin other than (97) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Set to other than breaker mode (B). 5. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between V30 (male) (1) and (2)",
+      "criteria": "3 to 14 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between V30 (male) (1) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (97) or V30 (female) (1) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (97) and each pin other than (97)",
+      "criteria": "Min. 1 MΩ"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "01700"
+  ],
+  "connectors": [
+    "CP02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

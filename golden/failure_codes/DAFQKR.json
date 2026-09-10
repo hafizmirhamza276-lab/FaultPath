@@ -1,0 +1,346 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DAFQKR",
+  "title": "CAN 2 Defective Communication (Monitor)",
+  "action_level": "-",
+  "detail_of_failure": "The Gateway function controller cannot recognize the machine monitor in the CAN2 communication line (KOMNET/c).",
+  "controller_action": "None in particular.",
+  "machine_effect": "The system can possibly not operate correctly.",
+  "related_information": "Reference information • The ACC signal from the starting switch tells the start of CAN communication to each controller. • The failure code is shown on the machine monitor by CAN communication. If CAN communication with the machine monitor fails, failure code [DAFQKR] is not shown on the machine monitor and it can be confirmed only through The Gateway function controller. • One of the CAN2 termination resistors is located in the machine monitor on the cab side. The other is in connector K02 located on the engine side. • Since each controller and machine monitor are connected directly to the battery, they are supplied with power even when the starting switch is in the OFF position. • Since the signals passing an active CAN communication line are pulse voltages, they cannot be measured by using a multimeter.",
+  "format": "A",
+  "pdf_pages": [
+    911,
+    920
+  ],
+  "manual_pages": [
+    "40-369",
+    "40-370",
+    "40-371",
+    "40-372",
+    "40-373",
+    "40-374",
+    "40-375",
+    "40-376",
+    "40-377",
+    "40-378"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of the inspection method, see “RELA- TED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Machine monitor power supply circuit",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CM01. 4. Connect the T-adapter to the female side of the connector. 5. Turn the starting switch to the ON position. 6. Measure the voltage. 7. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue 20 to Between CM01 (female) (1) and (3) 30V Voltage 20 to Between CM01 (female) (2) and (4) 30V",
+      "branches": {
+        "YES": "• The power supply circuit of the machine monitor is normal. • Go to inspection item of “ACC signal circuit of machine monitor”.",
+        "NO": "• The machine monitor power supply circuit is defective. • Go to the next inspection item."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Open circuit in wiring harness (Machine monitor power supply circuit)",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.17 in fuse box F01. 4. Disconnect connector CM01. 5. Connect the T-adapter to the female side of the connector. 6. Measure the resistance. 7. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between F01-17 and CM01 (female) Max. 1 (1) Ω Between F01-17 and CM01 (female) Max. 1 (2) Ω Resistance Between CM01 (female) (3) and Max. 1 ground Ω Between CM01 (female) (4) and Max. 1 ground Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "ACC signal circuit of machine monitor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CM01. 4. Connect the T-adapter to the female side of the connector. 5. Turn the starting switch to the ON position. 6. Measure the voltage. 7. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between CM01 (female) (10) and 20 to (3) 30V Voltage Between CM01 (female) (13) and 20 to (4) 30V",
+      "branches": {
+        "YES": "• The ACC signal circuit of the machine monitor is normal. • Go to check item of “CAN TERMINATING RESISTOR”.",
+        "NO": "• The ACC signal circuit of the machine monitor is defective. • Go to the next inspection item."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Open circuit in wiring harness (ACC signal circuit of machine monitor)",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Remove fuse No.10 and 20 in fuse box F01. 4. Disconnect connector CM01. 5. Connect the T-adapter to the female side of the connector. 6. Measure the resistance. 7. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between F01-10 and CM01 (female) Max. 1 (10) Ω Between F01-20 and CM01 (female) Max. 1 (20) Ω Resistance Between CM01 (female) (3) and Max. 1 ground Ω Between CM01 (female) (4) and Max. 1 ground Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "CAN terminating resistor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CM02 and connector K02. 3. Connect the T-adapter to the male side of each connector. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue 120 Between CM02 (male) (7) and (9) ± 12 Ω Resistance 120 Between K02 (male) (A) and (B) ± 12 Ω",
+      "branches": {
+        "YES": "• The CAN terminating resistor is normal. • Go to the next inspection item.",
+        "NO": "• The CAN terminating resistor is defective. • Replace the CAN terminating resistor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Open circuit in wiring harness (CAN2 communication circuit)",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CM02 and connector K02. 3. Connect the T-adapter to the female side of each connector. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between CM02 (female) (7) and Max. 1 K02 (female) (A) Ω Resist- Between CM02 (female) (8) and Max. 1 ance K02 (female) (A) Ω Between CM02 (female) (9) and Max. 1 K02 (female) (B) Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 8,
+      "cause": "Ground fault in wiring harness (CAN2 communication circuit)",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CM02, CP01, CE02, AC01, CK05, K02. 4. Connect the T-adapter to the female side of one of the connectors. 5. Measure the resistance. 6. Does the measuring result meet the standard value for the connector? Stand- Measuring point and measurement Item ard valcondition ue Between CM02 (female) (8), CP01 (female) (45), CE02 (female) (46), Min. 1 AC01 (female) (2), CK05 (female) MΩ (45) or K02 (female) (A) and ground Resistance Between CM02 (female) (9), CP01 (female) (64), CE02 (female) (47), Min. 1 AC01 (female) (1), CK05 (female) MΩ (64) or K02 (female) (B) and ground",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 9,
+      "cause": "Short circuit in wiring harness (CAN2 communication circuit)",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CM02, CP01, CE02, AC01, CK05, K02. 4. Connect the T-adapter to the female side of connector CM02, CP01, CE02, AC01, CK05, K02. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between CK05 (female) (45) and Min. 1 each pin other than (45) MΩ Between CK01 (female) (64) and Min. 1 each pin other than (64) MΩ Between CP01 (female) (45) and Min. 1 each pin other than (45) MΩ Between CP01 (female) (64) and Min. 1 each pin other than (64) MΩ Between AC01 (female) (2) and Min. 1 each pin other than (2) MΩ Resist- Between AC01 (female) (1) and Min. 1 ance each pin other than (1) MΩ Between CE02 (female) (46) and Min. 1 each pin other than (46) MΩ Between CE02 (female) (47) and Min. 1 each pin other than (47) MΩ Between CM02 (female) (7) and Min. 1 each pin other than (7), or (8) MΩ Between CM02 (female) (8) and Min. 1 each pin other than (7), or (8) MΩ Between CM02 (female) (9) and Min. 1 each pin other than (9) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 10,
+      "cause": "Hot short circuit in wiring harness (CAN2 communication circuit).",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Insert the T-adapter into connector K02. 3. Turn the starting switch to the ON position. 4. Measure the voltage. 5. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Max. 1 Between K02 (A) and ground to 4 V Voltage Max. 1 Between K02 (B) and ground to 4 V",
+      "branches": {
+        "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 11,
+      "cause": "Controller",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect one of the CAN communication connectors below. Gateway function controller (connectorCK05), pump controller (connectorCP01), air conditioner controller (connectorAC01), engine controller (connectorCE02) REMARK Connector CM02 of the monitor controller is not disconnected. A terminating register is built in the connector. If the connector is disconnected, a CAN2 communication error occurs. You will not be able to troubleshoot. 4. Turn the battery disconnect switch to the ON position. 5. Turn the starting switch to the ON position. 6. Does the number of shown failure codes decrease from 4? 7. If the number does not decrease, change the connector to be disconnected. Do the steps again from 1. REMARK • If all of 4 failure codes, [D8AQKR], [DA2QKR], [DAZQKR], and [DB2QKR] are shown, disconnect the controller one by one and as explained in steps 1 to 6 to find the defective controller.",
+      "branches": {
+        "YES": "• The removed controller is normal. • Restore the removed controller. • Go to the next inspection item.",
+        "NO": "• The removed controller is defective. • Replace the defective controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 12,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the inspection above again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The machine monitor can be defective. • Replace the machine monitor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 13,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Voltage",
+      "point": "Between CM01 (female) (1) and (3)",
+      "criteria": "20 to 30V"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between CM01 (female) (2) and (4)",
+      "criteria": "20 to 30V"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-17 and CM01 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-17 and CM01 (female) (2)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM01 (female) (3) and ground",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM01 (female) (4) and ground",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between CM01 (female) (10) and (3)",
+      "criteria": "20 to 30V"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between CM01 (female) (13) and (4)",
+      "criteria": "20 to 30V"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-10 and CM01 (female) (10)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-20 and CM01 (female) (20)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM01 (female) (3) and ground",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM01 (female) (4) and ground",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (male) (7) and (9)",
+      "criteria": "120 ± 12 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between K02 (male) (A) and (B)",
+      "criteria": "120 ± 12 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (7) and K02 (female) (A)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (8) and K02 (female) (A)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (9) and K02 (female) (B)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (8), CP01 (female) (45), CE02 (female) (46), AC01 (female) (2), CK05 (female) (45) or K02 (female) (A) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (9), CP01 (female) (64), CE02 (female) (47), AC01 (female) (1), CK05 (female) (64) or K02 (female) (B) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CK05 (female) (45) and each pin other than (45)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CK01 (female) (64) and each pin other than (64)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (45) and each pin other than (45)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (64) and each pin other than (64)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01 (female) (2) and each pin other than (2)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01 (female) (1) and each pin other than (1)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CE02 (female) (46) and each pin other than (46)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CE02 (female) (47) and each pin other than (47)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (7) and each pin other than (7), or (8)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (8) and each pin other than (7), or (8)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (9) and each pin other than (9)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between K02 (A) and ground",
+      "criteria": "Max. 1 to 4 V"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between K02 (B) and ground",
+      "criteria": "Max. 1 to 4 V"
+    }
+  ],
+  "refs_failure_codes": [
+    "D8AQKR",
+    "DA2QKR",
+    "DAZQKR",
+    "DB2QKR"
+  ],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "AC01",
+    "CE02",
+    "CK01",
+    "CK05",
+    "CM01",
+    "CM02",
+    "CP01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "KOMTRAX",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

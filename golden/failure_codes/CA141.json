@@ -1,0 +1,132 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA141",
+  "title": "Eng Oil Press Sensor Low Error",
+  "action_level": "L01",
+  "detail_of_failure": "An error occurs in the signal circuit of the engine oil pressure switch.",
+  "controller_action": null,
+  "machine_effect": "• The protection function by the engine oil pressure does not operate. • The engine oil pressure monitor is not shown correctly.",
+  "related_information": "k For the check and replacement work of the engine oil pressure switch, open the engine oil filler port. Check that the engine oil temperature is decreased sufficiently to not get burned. • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position or start the engine. • The engine oil pressure switch closes (ON) when the oil pressure is low (engine stopped), and opens (OFF) when the oil pressure is high (engine in operation). • For this failure code, the engine controller checks if the oil pressure switch is closed (ON), that is, at “GND level”, only when the engine is stopped. • Error of the engine oil pressure switch during engine operation is checked for failure code [B@BAZG].",
+  "format": "B",
+  "pdf_pages": [
+    734,
+    736
+  ],
+  "manual_pages": [
+    "40-192",
+    "40-193",
+    "40-194"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective engine oil pressure switch",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector OIL PRESSURE SWITCH, and connect a T- adapter to the male side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between OIL PRESSURE SWITCH (male) (1) and ground",
+          "criteria": "Max. 10Ω"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "cause": "Open or short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (17) and ground",
+          "criteria": "Max. 10Ω"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Looseness or corrosion of battery terminal",
+      "procedure": "The looseness or corrosion of battery terminal can be the cause. Check it.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Loose terminal or halfopen circuit at terminal",
+      "procedure": "1. Starting switch: OFF Check the terminals of alternator, battery relay, and ground terminals (T12), etc.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Defective battery voltage",
+      "procedure": "1. Starting switch: OFF 2. Do the troubleshooting when the starting switch is in the OFF position, and also when the engine is started.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between battery terminals (+) and (-)",
+          "criteria": "20 to 30V"
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "cause": "Defective alternator",
+      "procedure": "1. Starting switch: OFF 2. Insert a T-adapter into the connector E12. 3. Engine start (engine speed is medium or above)",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between E12 (1) and ground",
+          "criteria": "27.5 to 29.5V"
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "cause": "Defective engine controller",
+      "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.) Reference 1. Turn the starting switch to the OFF position. Disconnect the ground cable of the battery. 2. Insert a T-adapter into the connector CE03. 3. Connect a battery ground. 4. Measure it when the starting switch is in the ON position and when the engine is started.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between CE03 (3) and (1) / Starting switch: ON",
+          "criteria": "20 to 30V"
+        },
+        {
+          "quantity": "Between CE03 (3) and (1)",
+          "point": "Starting switch: START",
+          "criteria": "Min. 12V"
+        }
+      ]
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "B@BAZG"
+  ],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "CE03",
+    "ECM",
+    "SWITCH"
+  ],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

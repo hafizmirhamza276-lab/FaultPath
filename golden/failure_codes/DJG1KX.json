@@ -1,0 +1,118 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DJG1KX",
+  "title": "WIF Sensor Input Signal Out of Range",
+  "action_level": "L01",
+  "detail_of_failure": "The voltage of the signal circuit for the water sensor in the fuel prefilter is 0.3 V or below or 4.7 V or above.",
+  "controller_action": "None in particular.",
+  "machine_effect": "The water separator monitor does not operate normally.",
+  "related_information": null,
+  "format": "A",
+  "pdf_pages": [
+    1014,
+    1016
+  ],
+  "manual_pages": [
+    "40-472",
+    "40-473",
+    "40-474"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of the inspection method, see “RELA- TED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Water sensor for fuel prefilter",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P47. 3. Connect the T-adapter to the female side of connector P47. 4. Measure the resistance to troubleshoot. 5. Does the troubleshooting result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Resist- 10 to Between P47 (female) (1) and (2) ance 100 kΩ",
+      "branches": {
+        "YES": "• The water sensor for the fuel prefilter is normal. • Go to the next inspection item.",
+        "NO": "• The water sensor for the fuel prefilter is defective. • Replace the water sensor for the fuel prefilter. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01 and P47. 4. Connect the T-adapter to the female side of connector CP01 and the male side of connector CP01. 5. Measure the resistance to troubleshoot. 6. Does the troubleshooting result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between CP01 (female) (63) and Max. 10 P47 (female) (1) Ω Resistance Between CP01 (female) (9) and P47 Max. 10 (male) (2) Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01 and P47. 4. Connect the T-adapter to the female side of connector CP01. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Resist- Between CP01 (female) (9) and Min. 1 ance each pin other than (9) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the inspection above again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Restore the machine. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Delete the abnormality record of the electrical system. REMARK For the operating method, see Testing and Adjusting, “Set and Operate Machine Monitor”, “CHECK ABNORMALITY RECORD (ELECTRI- CAL SYSTEMS)”. 5. Turn the starting switch to the OFF position. 6. Shut down the engine controller. (See “Procedure for Troubleshooting” in this chapter.) 7. Turn the starting switch to the ON position. 8. Check the abnormality record. 9. Is this failure code shown in the record?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between P47 (female) (1) and (2)",
+      "criteria": "10 to 100 kΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (63) and P47 (female) (1)",
+      "criteria": "Max. 10 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (9) and P47 (male) (2)",
+      "criteria": "Max. 10 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (9) and each pin other than (9)",
+      "criteria": "Min. 1 MΩ"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "CP01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Mechanical system",
+  "in_code_table": true
+}

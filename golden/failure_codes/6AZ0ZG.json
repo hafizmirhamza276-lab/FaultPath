@@ -1,0 +1,155 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "6AZ0ZG",
+  "title": "Quick Coupler System Abnormality",
+  "action_level": "L03",
+  "detail_of_failure": "The pump controller senses a low pressure in the quick coupler.",
+  "controller_action": "None in particular.",
+  "machine_effect": "If the machine continues to be operated, the hydraulic components can suffer a damage.",
+  "related_information": "Pre-troubleshooting If failure code [DHPAMA] or [DHPBMA] is also shown, do the troubleshooting for that code first. Monitoring code The pump pressure can be monitored. (Code: 01100, 01101)",
+  "format": "A",
+  "pdf_pages": [
+    666,
+    669
+  ],
+  "manual_pages": [
+    "40-124",
+    "40-125",
+    "40-126",
+    "40-127"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. For details, see RELATED INFORMATION TO TROUBLESHOOT, CHECKS BEFORE TROU- BLESHOOTING, Electrical equipment. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Quick coupler pressure switch",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P50. Connect the T-adapter to the male side. 3. Start the engine. REMARK Check that the pressure of the F pump and R pump are 3.43 MPa (35 kg/cm2) or above. 4. Measure the continuity. 5. Does the troubleshooting result agree with the standard value? Stand- Item Measurement position and condition ard value Con- Con- Between P50 (male) (2) and (1) tinuity tinuity",
+      "branches": {
+        "YES": "• The quick coupler pressure switch is normal. • Go to the next inspection item.",
+        "NO": "• The quick coupler pressure switch is defective. • Replace the quick coupler pressure switch. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP01, P50. Connect the T- adapter to each female side. 3. Measure the resistance. 4. Does the troubleshooting result agree with the standard value? Stand- Item Measurement position and condition ard value Between CP01 (female) (54) and Max. P50 (female) (2) 1 Ω Resistance Between P50 (female) (1) and Max. ground 1 Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P50. 3. Connect the T-adapter to the female side of connector P50. 4. Turn the starting switch to the ON position. 5. Measure the voltage to troubleshoot. 6. Does the troubleshooting result agree with the standard value? Stand- Item Measurement position and condition ard value Max. 1 Voltage Between P50 (female) (2) and (1) V",
+      "branches": {
+        "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a hot short circuit. • Repair or replace the wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CM02,H28. 3. Connect the T-adapter to the female side of one of the connectors. 4. Measure the resistance to troubleshoot. 5. Does the troubleshooting result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CM02 (female) (6) or H28 Min. 1 ance (female) (5) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CM02,H28. 3. Connect the T-adapter to the female side of connector CM02. 4. Measure the resistance to troubleshoot. 5. Does the troubleshooting result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CM02 (female) (6) and Min. ance each pin other than (6) 100 kΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the troubleshooting above again. 2. Can you identify the cause by reconfirmation?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 8,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Connect all the configuration equipment. 3. Turn the starting switch to the ON position to troubleshoot. 4. Check the abnormality record. 5. Is this failure code displayed in the record?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Continuity",
+      "point": "Between P50 (male) (2) and (1)",
+      "criteria": "Continuity"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (54) and P50 (female) (2)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between P50 (female) (1) and ground",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between P50 (female) (2) and (1)",
+      "criteria": "Max. 1 V"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (6) or H28 (female) (5) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM02 (female) (6) and each pin other than (6)",
+      "criteria": "Min. 100 kΩ"
+    }
+  ],
+  "refs_failure_codes": [
+    "DHPAMA",
+    "DHPBMA"
+  ],
+  "refs_monitoring_codes": [
+    "01100"
+  ],
+  "connectors": [
+    "CM02",
+    "CP01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Mechanical system",
+  "in_code_table": true
+}

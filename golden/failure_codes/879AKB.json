@@ -1,0 +1,74 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "879AKB",
+  "title": "Air Conditioner Recirculation Air Temperature Sensor Short Circuit",
+  "action_level": "-",
+  "detail_of_failure": "The air conditioner controller senses a short circuit in the recirculation air temperature sensor.",
+  "controller_action": "• The air conditioner controller sends a short circuit information of the recirculation air temperature sensor to the machine monitor by CAN communication. • When in the automatic air conditioner mode, stops the air conditioner.",
+  "machine_effect": "Since the inside air temperature sensor of the air conditioner has a short circuit, the automatic air conditioner does not operate. (The air conditioner operates in manual mode.)",
+  "related_information": "Reference information Replace the air conditioner unit as an assembly.",
+  "format": "A",
+  "pdf_pages": [
+    672,
+    673
+  ],
+  "manual_pages": [
+    "40-130",
+    "40-131"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of the inspection method, see “RELA- TED INFORMATION TO TROUBLESHOOT”, “Check before troubleshooting”, “Electrical parts”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Air conditioner controller",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Replace the air conditioner controller. 3. Turn the starting switch to the ON position. 4. Check the abnormality record. 5. Is “E” shown in the record of this failure code?",
+      "branches": {
+        "YES": "• The removed air conditioner controller is normal. • Restore the removed air conditioner controller. • Go to the next inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the inspection above again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The air conditioner unit can be defective. • Replace the air conditioner unit. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Check the abnormality record. 5. Is “E” shown in the record of this failure code?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

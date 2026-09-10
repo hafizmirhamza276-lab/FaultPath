@@ -1,0 +1,116 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DW91KA",
+  "title": "Travel Junction Solenoid Open Circuit",
+  "action_level": "L01",
+  "detail_of_failure": "The pump controller senses an open circuit in the travel junction solenoid circuit.",
+  "controller_action": "• None in particular. (Since no current flows, the solenoid is not energized.) • If the cause of the failure disappears, the machine becomes normal by itself.",
+  "machine_effect": "It is hard to steer during machine travel.",
+  "related_information": "Monitoring code The command (ON or OFF) from the controller to the travel junction solenoid can be monitored. (As long as the command from the controller is ON, the indication on the monitor is ON even if the solenoid is not energized because there is an open circuit.) (Code: 02300) Reference information Setting the solenoid to OFF interconnects the travel junction circuit.",
+  "format": "A",
+  "pdf_pages": [
+    1046,
+    1047
+  ],
+  "manual_pages": [
+    "40-504",
+    "40-505"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Travel junction solenoid",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector V05. 3. Connect the T-adapter to the female side of connector V05. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- 20 to Between V05 (male) (1) and (2) ance 60 Ω",
+      "branches": {
+        "YES": "• The travel junction solenoid is normal. • Go to the next inspection item.",
+        "NO": "• The travel junction solenoid is defective. • Replace the travel junction solenoid. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Open circuit i wiring harnes",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP02 and connector V05. 3. Connect the T-adapter to the female side of each connector. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Standn Item Measurement position and condition ard vals ue Between CP02 (female) (85) and Max. V05 (female) (1) 1 Ω Between CP02 (female) (115) and Max. V05 (female) (2) 1 Ω Resistance Between CP02 (female) (117) and Max. V05 (female) (2) 1 Ω Between CP02 (female) (120) and Max. V05 (female) (2) 1 Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "o i Reconfirmati f inspection tem",
+      "procedure": "on 1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "extraction_warning": "column_split_recovered"
+    },
+    {
+      "step": 5,
+      "cause": "r Confirmation epair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. of 3. Start the engine. 4. Operate the R.H. and L.H. travel levers to steer the machine. 5. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": [],
+      "extraction_warning": "column_split_recovered"
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between V05 (male) (1) and (2)",
+      "criteria": "20 to 60 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (85) and V05 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (115) and V05 (female) (2)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (117) and V05 (female) (2)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (120) and V05 (female) (2)",
+      "criteria": "Max. 1 Ω"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "02300"
+  ],
+  "connectors": [
+    "CP02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

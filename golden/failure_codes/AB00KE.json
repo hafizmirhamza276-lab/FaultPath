@@ -1,0 +1,151 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "AB00KE",
+  "title": "Charge Voltage Low",
+  "action_level": "L03",
+  "detail_of_failure": "While the engine is running, the voltage from alternator drops. The machine monitor senses a low charge voltage.",
+  "controller_action": "Shows the battery charge level monitor in red on the machine monitor.",
+  "machine_effect": "If machine is used as it is, the battery will possibly be not charged.",
+  "related_information": "Monitoring code The battery voltage can be monitored. (Code: 04300)",
+  "format": "A",
+  "pdf_pages": [
+    705,
+    708
+  ],
+  "manual_pages": [
+    "40-163",
+    "40-164",
+    "40-165",
+    "40-166"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Diode",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector D01. 3. Connect the T-adapter to the female side of connector D01. 4. Measure the continuity. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between D01 (male) (6) (+) and (2) Con- (-) tinuity Continuity Between D01 (male) (2) (+) and (6) No con- (-) tinuity",
+      "branches": {
+        "YES": "• The diode is normal. • Go to the next inspection item.",
+        "NO": "• The diode is defective. • Replace the diode. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CM01 and connector E12. 3. Connect the T-adapter to the female side of each connector. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CM01 (female) (16) and Max. ance E12 (female) (1) 1 Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CM01 and connector E12. 3. Connect the T-adapter to the female side of one of the connectors. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CM01 (female) (16) or E12 Min. 1 ance (female) (1) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CM01 and connector E12. 3. Connect the T-adapter to the female side of connector CM01. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CM01 (female) (16) and Min. 1 ance each pin other than (16) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Alternator",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Insert the T-adapter into connector E12. 3. Start the engine. 4. Run the engine at medium speed or higher. 5. Measure the voltage. 6. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value 27.5 to Voltage Between E12 (1) and ground 29.5V",
+      "branches": {
+        "YES": "• The alternator is normal. • Go to the next inspection item.",
+        "NO": "• The alternator is defective. • Replace the alternator. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The machine monitor can be defective. • Replace the machine monitor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 8,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Start the engine. 4. Is this failure code shown again?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Continuity",
+      "point": "Between D01 (male) (6) (+) and (2) (-)",
+      "criteria": "Continuity"
+    },
+    {
+      "quantity": "Continuity",
+      "point": "Between D01 (male) (2) (+) and (6) (-)",
+      "criteria": "No continuity"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM01 (female) (16) and E12 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM01 (female) (16) or E12 (female) (1) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CM01 (female) (16) and each pin other than (16)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between E12 (1) and ground",
+      "criteria": "27.5 to 29.5V"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "04300"
+  ],
+  "connectors": [
+    "CM01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Mechanical system",
+  "in_code_table": true
+}

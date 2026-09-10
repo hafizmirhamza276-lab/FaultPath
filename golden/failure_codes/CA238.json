@@ -1,0 +1,63 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA238",
+  "title": "NE Speed Sensor Supply Voltage Error",
+  "action_level": "L01",
+  "detail_of_failure": "Low voltage error is sensed in the power supply circuit of the engine Ne speed sensor.",
+  "controller_action": "Controls by the signals from the Bkup speed sensor.",
+  "machine_effect": "• Running engine stops (when the Bkup speed sensor is also defective). • Stopped engine cannot be started (when the Bkup speed sensor is also defective). • Engine startability is unsatisfactory. • Engine speed hunts.",
+  "related_information": "After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    754,
+    755
+  ],
+  "manual_pages": [
+    "40-212",
+    "40-213"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective sensor or wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connectors that follow one by one, and turn the starting switch to the ON position each time. 3. When troubleshooting is done, go back to Step 1. If this code is cleared, disconnected sensor or engine wiring harness is defective. REMARK Other failure codes are shown at the same time. This occurs because the connector is disconnected. So ignore codes other than this failure code [CA238]. Connector Ne speed sensor CRANK SENSOR Engine wiring harness ECM",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Defective engine controller",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the male side. 3. Turn the starting switch to the ON position with the engine wiring harness disconnected.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between ECM (male) (16) and (48)",
+          "criteria": "4.75 to 5.25V"
+        }
+      ]
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "ECM"
+  ],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

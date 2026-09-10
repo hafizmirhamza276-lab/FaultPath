@@ -1,0 +1,145 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA559",
+  "title": "Common Rail Pressure Low Error 1",
+  "action_level": "L01",
+  "detail_of_failure": "Pressure low error (level 1) occurs in the common rail circuit.",
+  "controller_action": null,
+  "machine_effect": "• The engine does not start or startability is not good. • Exhaust gas color becomes black. • Engine output is reduced.",
+  "related_information": "• Common rail pressure can be checked with monitoring function (Code: 36400). • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Start the engine.",
+  "format": "B",
+  "pdf_pages": [
+    789,
+    790
+  ],
+  "manual_pages": [
+    "40-247",
+    "40-248"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "1. Examine the connection state of the common rail pressure sensor connector. 2. See descriptions of wiring harness and connectors in “Electrical Components” in “Checks Before Troubleshooting” of “Related Information to Troubleshooting”, and check it. 3. Start the engine. If this failure code is cleared, wiring harness connector is defective.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Use of incorrect fuel",
+      "procedure": "Incorrect fuel can be used. Check it.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Leakage of fuel to outside",
+      "procedure": "Fuel can be leaked outside. Check it (visual check with the engine at low idle).",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Defective low-pressure circuit device",
+      "procedure": "• See “Note 1” for troubleshooting. • For check of pressure in fuel low-pressure circuit, see Testing and Adjusting, “Examine Fuel Pressure”.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Pressure",
+          "point": "Inlet negative pressure of fuel supply pump (fuel prefilter outlet pressure) / At high idle (when the engine can be started)",
+          "criteria": "-50.7kPa or below {-380mmHg or below}"
+        },
+        {
+          "quantity": "Fuel main filter inlet pressure",
+          "point": "At cranking (when the engine cannot be started)",
+          "criteria": "0.3 to 1.1MPa {3.1 to 11.3kgf/cm2}"
+        },
+        {
+          "quantity": "Fuel main filter inlet pressure",
+          "point": "At high idle (when the engine can be started)",
+          "criteria": "0.5 to 1.3MPa {5.1 to 13.3kgf/ cm2}"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cause": "Air in low-pressure circuit",
+      "procedure": "Air may be in low-pressure circuit. Check it according to the following procedure. 1. Remove pressure pickup plug (outlet side) of fuel main filter. 2. Operate feed pump of fuel prefilter. 3. Check pressure pickup plug for leakage of fuel and air. If this error occurs during air bleeding after fuel filter is replaced, air may remain in fuel circuit. Keep running engine at low idle speed for approximately 3 minutes. As air is bled from fuel circuit, engine speed is stabilized, and error display disappears.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Defective pressure limiter",
+      "procedure": "For check of leakage from the pressure limiter, see Testing and Adjusting, “Examine Fuel Return Rate and Leakage”. Leakage of pressure limiter At low idle 0cc (No leakage)",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Defective injector (includes high pressure pipes in the head)",
+      "procedure": "For check of return rate from injector, see Testing and Adjusting, “Examine Fuel Return Rate and Leakage”.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Fuel return rate from injector",
+          "point": "At cranking (when the engine cannot be started)",
+          "criteria": "Max. 90cc/min"
+        },
+        {
+          "quantity": "Fuel return rate from injector",
+          "point": "At low idle (when the engine can be started)",
+          "criteria": "Max. 120cc/min"
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "cause": "Defective supply pump",
+      "procedure": "For details of testing of discharged volume and return rate of the supply pump, see Testing and Adjusting, “Examine Fuel Discharge, Return and Leakage”.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Discharged volume from supply pump",
+          "point": "Engine speed: 125rpm",
+          "criteria": "min. 75cc/ 30sec"
+        },
+        {
+          "quantity": "Discharged volume from supply pump",
+          "point": "Engine speed: 150rpm",
+          "criteria": "min. 90cc/ 30sec"
+        },
+        {
+          "quantity": "Return rate from supply pump",
+          "point": "At low idle: 750rpm",
+          "criteria": "Max. 400cc/ 25sec"
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "cause": "Defective common rail pressure sensor system",
+      "procedure": "Do the troubleshooting for failure codes [CA451] and [CA452].",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA451",
+    "CA452"
+  ],
+  "refs_monitoring_codes": [
+    "36400"
+  ],
+  "connectors": [],
+  "default_conclusion": "Defective common rail pressure sensor system",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

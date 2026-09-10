@@ -1,0 +1,110 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA2555",
+  "title": "Intake Air Heater Relay Open Circuit Error",
+  "action_level": "L01",
+  "detail_of_failure": "Open circuit is sensed in preheating relay drive circuit (primary side).",
+  "controller_action": null,
+  "machine_effect": "Intake air heater does not work in auto preheating mode (which causes degraded startability and emission of white smoke at low temperature).",
+  "related_information": "• The temperature sensed by the charge air temperature sensor (boost temperature sensor) can be checked with monitoring function. (Code: 18500) • Troubleshooting of this failure code covers circuits from the engine controller to the primary (coil) side of preheating relay R18. • For troubleshooting of secondary circuit of heater relay and preheating relay R18, see “E-2” in E-mode. • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to ON position. (Charge temperature: -4℃ and below)",
+  "format": "B",
+  "pdf_pages": [
+    807,
+    809
+  ],
+  "manual_pages": [
+    "40-265",
+    "40-266",
+    "40-267"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective preheating relay R18",
+      "procedure": "1. Starting switch: OFF 2. Disconnect relay R18, and connect a T-adapter to the male side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between R18 (male) (1) and (2)",
+          "criteria": "200 to 400Ω"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "cause": "Open or short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector CE02. Connect a T-adapter to the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between CE02 (female) (40) and (42) (relay R18 coil resistance)",
+          "criteria": "200 to 400Ω"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "If no failure is found by check on cause 3, this check is not required. 1. Starting switch: OFF 2. Disconnect the connector CE02 and relay R18, and connect a T-adapter to the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between CE02 (female) (40) and R18 (female) (1)",
+          "criteria": "Max. 10Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between R18 (female) (2) and CE02 (female) (42)",
+          "criteria": "Max. 10Ω"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector CE02 and relay R18, and connect a T-adapter to the female side of CE02. Do the check with the multimeter in the continuity mode.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Continuity",
+          "point": "Between CE02 (female) (40) and each pin other than pin (40)",
+          "criteria": "No continuity (there is no sound)"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "cause": "Defective engine controller",
+      "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "18500"
+  ],
+  "connectors": [
+    "CE02"
+  ],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

@@ -1,0 +1,158 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DHS8MA",
+  "title": "Boom RAISE PPC Pressure Sensor Defective Function",
+  "action_level": "L01",
+  "detail_of_failure": "The signal voltage of the boom RAISE PPC pressure sensor circuit becomes 0.3 V or below or 4.5 V or above.",
+  "controller_action": "• Controls the machine by regarding the boom RAISE PPC pressure as 0 MPa. • If the cause of the failure disappears, the machine becomes normal by itself.",
+  "machine_effect": "• The auto-deceleration function cannot be canceled. • Degraded operability of boom RAISE.",
+  "related_information": "Notice If the connection of the 5 V circuit (3) and ground circuit (1) of the pressure sensor are inverted, the pressure sensor will break. Take extreme care when checking. Pre-troubleshooting If failure code [DA26KP] is also shown, do the troubleshooting for this code first. Monitoring code The boom RAISE PPC pressure can be monitored. (Code: 07400)",
+  "format": "A",
+  "pdf_pages": [
+    974,
+    977
+  ],
+  "manual_pages": [
+    "40-432",
+    "40-433",
+    "40-434",
+    "40-435"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01 and connector P06. 4. Connect the T-adapter to the female side of each connector. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between CP01 (female) (63) and Max. P06 (female) (3) 1 Ω Resist- Between CP01 (female) (32) and Max. ance P06 (female) (2) 1 Ω Between CP01 (female) (18) and Max. P06 (female) (1) 1 Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01 and connector P06. 4. Connect the T-adapter to the female side of one of the connectors. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP01 (female) (32) or P06 Min. 1 ance (female) (2) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Check that the system operating lamp is turned off. Turn the battery disconnect switch to the OFF position. 3. Disconnect connector CP01 and connector P06. 4. Connect the T-adapter to the female side of connector CP01. 5. Measure the resistance. 6. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP01 (female) (32) and Min. 1 ance each pin other than (32) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P06. 3. Connect the T-adapter to the female side of the connector. 4. Turn the starting switch to the ON position. 5. Measure the voltage. 6. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Max. 1 Voltage Between P06 (female) (2) and (1) V",
+      "branches": {
+        "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Boom RAISE PPC pressure sensor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Insert the T-adapter into connector P06. 3. Turn the starting switch to the ON position. 4. Measure the voltage. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value 0.5 to Voltage Between P06 (2) and (1) 4.5V",
+      "branches": {
+        "YES": "• The boom RAISE PPC pressure sensor is normal. • Go to the next inspection item.",
+        "NO": "• The boom RAISE PPC pressure sensor is defective. • Replace the boom RAISE PPC pressure sensor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 8,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (63) and P06 (female) (3)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (32) and P06 (female) (2)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (18) and P06 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (32) or P06 (female) (2) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP01 (female) (32) and each pin other than (32)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between P06 (female) (2) and (1)",
+      "criteria": "Max. 1 V"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between P06 (2) and (1)",
+      "criteria": "0.5 to 4.5V"
+    }
+  ],
+  "refs_failure_codes": [
+    "DA26KP"
+  ],
+  "refs_monitoring_codes": [
+    "07400"
+  ],
+  "connectors": [
+    "CP01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

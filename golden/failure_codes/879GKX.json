@@ -1,0 +1,108 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "879GKX",
+  "title": "Refrigerant Pressure Input Signal Out of Range",
+  "action_level": "L01",
+  "detail_of_failure": "The air conditioner controller senses that the dual pressure switch is OFF.",
+  "controller_action": "• The air conditioner controller transmits an abnormality information of the refrigerant pressure to the machine monitor by CAN communication. • Since refrigerant pressure is abnormal, the air conditioner controller turns off the compressor clutch relay. (The air conditioner compressor stops.)",
+  "machine_effect": "The air conditioner does not function (in cooling mode).",
+  "related_information": "k If refrigerant gas (air conditioner gas: R134a) gets in your eyes, you may lose your sight. And if it touches your skin, you may suffer from frostbite. k When you collect or fill refrigerant, always wear protective eyeglasses, gloves and working clothes with long sleeves. Notice Before you handle refrigerant, always read the precautions for refrigerant in the chapter OTHERS.",
+  "format": "A",
+  "pdf_pages": [
+    691,
+    693
+  ],
+  "manual_pages": [
+    "40-149",
+    "40-150",
+    "40-151"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of the inspection method, see “RELA- TED INFORMATION TO TROUBLESHOOT”, “Check before troubleshooting”, “Electrical parts”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective refrigerant (dual) pressure switch",
+      "procedure": "1. Check the refrigerant (dual) pressure switch. For details, see chapter 80, OTHERS, TEST (DUAL) PRESSURE SWITCH FOR REFRIGERANT. 2. Is the refrigerant (dual) pressure switch normal? NOTICE Before you replace the dual pressure switch, be sure to collect refrigerant. See chapter 80, OTH- ERS, “PRECAUTIONS FOR REFRIGERANT”.",
+      "branches": {
+        "YES": "• The refrigerant (dual) pressure switch is normal. • Go to the next inspection item.",
+        "NO": "• The refrigerant (dual) pressure switch is defective. • Replace the defective refrigerant (dual) pressure switch. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector AC01, P17. 3. Connect the T-adapter to the female side of each connector. 4. Does the measurement result match with the judgment criteria? Stand- Item Measurement position/condition ard value Between AC01 (female) (6) and P17 Max. 1 (female) (1) Ω Resistance Between P17 (female) (2) and Max. 1 ground Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Air conditioner controller",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Replace the air conditioner controller. 3. Turn the starting switch to the ON position. 4. Check the abnormality record. 5. Is “E” shown in the record of this failure code?",
+      "branches": {
+        "YES": "• The removed air conditioner controller is normal. • Restore the removed air conditioner controller. • Go to the next inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the inspection above again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The air conditioner unit can be defective. • Replace the air conditioner unit. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Check the abnormality record. 5. Is “E” shown in the record of this failure code?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01 (female) (6) and P17 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between P17 (female) (2) and ground",
+      "criteria": "Max. 1 Ω"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "AC01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

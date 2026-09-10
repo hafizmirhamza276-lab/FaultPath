@@ -1,0 +1,120 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA145",
+  "title": "Coolant Temperature Sensor Low Error",
+  "action_level": "L01",
+  "detail_of_failure": "A low voltage is sensed in the signal circuit of the engine coolant temperature sensor.",
+  "controller_action": "Operates with coolant temperature as fixed value.",
+  "machine_effect": "• The engine startability is degraded at low temperatures. • The overheat prevention function does not operate.",
+  "related_information": "k Because hot water can blow out of the coolant temperature sensor installation part even if the radiator cap is removed when you test and replace the coolant temperature sensor, drain coolant by 10ℓ. • The input voltage from the engine coolant temperature sensor can be checked with monitoring function. (Code: 04105 (V)) • The temperature sensed by the engine coolant temperature sensor can be checked with monitoring function. (Code: 04107 (℃)) • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position. • If the temperature sensor connector is disconnected, failure code [CA144] for High Error is shown, not this failure code.",
+  "format": "B",
+  "pdf_pages": [
+    739,
+    740
+  ],
+  "manual_pages": [
+    "40-197",
+    "40-198"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective coolant temperature sensor",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector COOLANT TEMP. Connect the socket to the male side. REMARK When the coolant temperature is 0℃ or above, if the resistance of the coolant temperature sensor is 700Ω to 37kΩ, the coolant temperature sensor is regarded as correct.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between COOLANT TEMP (male) (A) and (B) (thermal characteristics of coolant temperature sensor) / 0℃",
+          "criteria": "30 to 37kΩ"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "25℃",
+          "criteria": "9.3 to 10.7kΩ"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "50℃",
+          "criteria": "3.2 to 3.8kΩ"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "80℃",
+          "criteria": "1.0 to 1.3kΩ"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "95℃",
+          "criteria": "700 to 800Ω"
+        },
+        {
+          "quantity": "Between (B) and ground",
+          "point": "All area",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "cause": "Short circuit in wiring ha ness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the female side. Between ECM (female) (15) and (38) (coolant temperr- ature: 0℃ and above) 700Ω to Resistance REMARK 37kΩ Accords with the characteristics table of the coolant temperature sensor-resistance value on cause 2.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "",
+          "point": "Between ECM (female) (15) and (38) (coolant temperature: 0℃ and above) REMARK Accords with the characteristics table of the coolant temperature sensor-resistance value on cause 2.",
+          "criteria": "700Ω to 37kΩ"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Ground fault in wiring harness (contact with ground circuit)",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and COOLANT TEMP. Connect a T- adapter to the female side of ECM. Resistance Between ground and ECM (female) (15) Min. 100kΩ",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "",
+          "point": "Between ground and ECM (female) (15)",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cause": "Defective engine control ler",
+      "procedure": "- If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA144"
+  ],
+  "refs_monitoring_codes": [
+    "04105",
+    "04107"
+  ],
+  "connectors": [
+    "ECM",
+    "TEMP"
+  ],
+  "default_conclusion": "Defective engine control ler",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

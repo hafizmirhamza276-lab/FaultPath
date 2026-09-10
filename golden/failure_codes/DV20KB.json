@@ -1,0 +1,118 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DV20KB",
+  "title": "Travel Alarm Short Circuit",
+  "action_level": "L01",
+  "detail_of_failure": "When the pump controller drives the travel alarm circuit, an abnormal current flows.",
+  "controller_action": "• Stops to drive the travel alarm circuit. • Even if the cause of the failure is naturally resolved, the machine does not become normal until the starting switch is turned to the OFF position once.",
+  "machine_effect": "The travel alarm does not sound.",
+  "related_information": "-",
+  "format": "A",
+  "pdf_pages": [
+    1024,
+    1026
+  ],
+  "manual_pages": [
+    "40-482",
+    "40-483",
+    "40-484"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP02 and connector M14. 3. Connect the T-adapter to the female side of one of the connectors. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP02 (female) (107) or Min. 1 ance M14 (female) (1) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP02 and connector M14. 3. Connect the T-adapter to the female side of connector CP02. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- Between CP02 (female) (107) and Min. 1 ance each pin other than (107) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Travel alarm",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Insert the T-adapter into connector M14. 3. Turn the starting switch to the ON position. 4. Operate the travel lever to measure the voltage. 5. Does the measurement result agree with the standard value? k Do not go under the machine to measure when the machine travels. Stand- Item Measurement position and condition ard value Travel lever: Max. 1 NEUTRAL V Between M14 (1) Voltage and (2) Travel lever: At 20 to operation 30V",
+      "branches": {
+        "YES": "• The travel alarm is normal. • Go to the next inspection item.",
+        "NO": "• The travel alarm is defective. • Replace the travel alarm. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (107) or M14 (female) (1) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between CP02 (female) (107) and each pin other than (107)",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between M14 (1) and (2) / Travel lever: NEUTRAL",
+      "criteria": "Max. 1 V"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Travel lever: At operation",
+      "criteria": "20 to 30V"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "CP02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

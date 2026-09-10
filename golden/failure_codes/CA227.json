@@ -1,0 +1,43 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA227",
+  "title": "Sensor 2 Supply Voltage High Error",
+  "action_level": "L03",
+  "detail_of_failure": "High voltage is sensed in sensor 2 power supply circuit.",
+  "controller_action": "• Operates with charge pressure and charge temperature as fixed value. • Operates the machine with the engine output limited.",
+  "machine_effect": "• Engine output is reduced. • Startability deteriorates.",
+  "related_information": "After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    752,
+    752
+  ],
+  "manual_pages": [
+    "40-210"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Redirect",
+      "procedure": "Do the troubleshooting for failure code [CA187].",
+      "branches": {},
+      "measurements": [],
+      "redirect": true
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA187"
+  ],
+  "refs_monitoring_codes": [],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": true,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

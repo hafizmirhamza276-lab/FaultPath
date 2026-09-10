@@ -1,0 +1,166 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA778",
+  "title": "Engine Backup Speed Sensor Error",
+  "action_level": "L01",
+  "detail_of_failure": "Error is sensed in the signal from engine Bkup speed sensor (CAM).",
+  "controller_action": "Continues control with signals of the engine Ne speed sensor.",
+  "machine_effect": "• Engine startability is deteriorated (when Ne speed sensor is normal). • Running engine stops (when Ne speed sensor is also defective). • Stopped engine cannot be started (when Ne speed sensor is also defective).",
+  "related_information": "• After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Start the engine. • The inside of the speed sensor consists of a hall sensor and electronic circuit instead of a coil. So you cannot judge whether the sensor is correct or not by measurement of the resistance of the speed sensor with a multimeter. • Because the speed sensor output is a 5V pulse voltage, it cannot be measured with a multimeter. • The speed sensor senses the speed by the groove in the speed sensing ring installed to the camshaft.",
+  "format": "B",
+  "pdf_pages": [
+    796,
+    800
+  ],
+  "manual_pages": [
+    "40-254",
+    "40-255",
+    "40-256",
+    "40-257",
+    "40-258"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective sensor 2 power supply system",
+      "procedure": "If failure code [CA187] or [CA227] is also shown at the same time, do the troubleshooting for that code first.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Breakage or defective installation (looseness) of engine Bkup speed (CAM) sensor",
+      "procedure": "There can be breakage or defective installation (looseness) of the engine Bkup speed (CAM) sensor. Check it.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Defective engine Bkup speed sensor power supply input",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector CAM SENSOR, and connect a T-adapter to the female side. 3. Starting switch: ON",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between CAM SENSOR (female) (1) and (2) / Power supply",
+          "criteria": "4.75 to 5.25V"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cause": "Open circuit in wiring harness (wire breakage or defective contact of connector)",
+      "procedure": "1. Starting switch: OFF 2. Disconnect ECM and CAM SENSOR. Connect a T-adapter to each female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (37) and CAM SENSOR (female) (1)",
+          "criteria": "Max. 10Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (47) and CAM SENSOR (female) (2)",
+          "criteria": "Max. 10Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (26) and CAM SENSOR (female) (3)",
+          "criteria": "Max. 10Ω"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and CAM SENSOR, and connect a T- adapter to one of them on the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (26) and (37), or between CAM SENSOR (female) (1) and (3)",
+          "criteria": "Min. 100kΩ"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (26) and (47), or between CAM SENSOR (female) (2) and (3)",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "cause": "Ground fault in wiring harness (contact with ground circuit)",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and CAM SENSOR, and connect a T- adapter to one of them on the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ground and ECM (female) (26) or CAM SEN- SOR (female) (3)",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect CAM SENSOR, and connect a T-adapter to the female side. 3. Starting switch: ON",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between CAM SENSOR (female) (3) and ground",
+          "criteria": "Max. 1V"
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "cause": "Looseness of speed sensing ring",
+      "procedure": "Remove the engine Bkup speed (CAM) sensor. Check directly through hole (H). REMARK If the speed detection ring (B) is loose, see “REFERENCE”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 10,
+      "cause": "Defective engine Bkup speed (CAM) sensor",
+      "procedure": "If no failure is found by the previous checks, the engine Bkup speed (CAM) sensor is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 11,
+      "cause": "Defective engine controller",
+      "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA187",
+    "CA227"
+  ],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "ECM",
+    "SENSOR",
+    "SOR"
+  ],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

@@ -1,0 +1,94 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "D862KA",
+  "title": "GPS Antenna Open Circuit",
+  "action_level": "-",
+  "detail_of_failure": "An open circuit is found in the GPS antenna circuit.",
+  "controller_action": "If the cause of the failure disappears, the machine becomes normal by itself.",
+  "machine_effect": "The GPS positioning system does not work.",
+  "related_information": null,
+  "format": "A",
+  "pdf_pages": [
+    821,
+    822
+  ],
+  "manual_pages": [
+    "40-279",
+    "40-280"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Installation condition of GPS antenna cable",
+      "procedure": "1. Check the installation condition of the GPS antenna cable. 2. Is the installation condition of the GPS antenna cable normal?",
+      "branches": {
+        "YES": "• The installation condition of the GPS antenna cable is normal. • Go to the next inspection item.",
+        "NO": "• The GPS antenna cable is disconnected. • Connect the GPS antenna cable to the Gateway controller and the GPS antenna. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "GPS antenna cable",
+      "procedure": "1. Check if the GPS antenna cable has an open circuit. 2. Is thw GPS antenna cable normal?",
+      "branches": {
+        "YES": "• The GPS antenna cable is normal. • Go to the next inspection item.",
+        "NO": "• The GPS antenna cable has an open circuit. • Replace the GPS antenna cable. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "GPS antenna",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Replace the air conditioner controller. 3. Turn the starting switch to the ON position. 4. Delete the abnormality record of the electrical system. 5. Turn the starting switch to the OFF position. 6. Shut down the engine controller. (See “Procedure for Troubleshooting” in this chapter.) 7. Turn the starting switch to the ON position. 8. Check the abnormality record. 9. Is this failure code displayed in the record?",
+      "branches": {
+        "YES": "• The removed GPS antenna is normal. • Restore the removed GPS antenna. • Go to the next inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The Gateway function controller can be defective. • Replace the Gateway function controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Delete the abnormality record of the electrical system. 5. Turn the starting switch to the OFF position. 6. Shut down the engine controller. (See “Procedure for Troubleshooting” in this chapter.) 7. Turn the starting switch to the ON position. 8. Check the abnormality record. 9. Is this failure code displayed in the record?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "KOMTRAX",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

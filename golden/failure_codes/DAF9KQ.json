@@ -1,0 +1,88 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DAF9KQ",
+  "title": "Model Selection Signal Mismatch (Monitor)",
+  "action_level": "L03",
+  "detail_of_failure": "The pump controller is not the model specified in the machine monitor program. (The replaced machine monitor or pump controller has a wrong part number.)",
+  "controller_action": null,
+  "machine_effect": "The machine does not operate correctly.",
+  "related_information": "Monitoring code • The assembly part number of the machine monitor can be monitored. (Code: 20227) • The assembly part number of the pump controller can be monitored. (Code: 20229) • The state (ON or OFF) of the machine model selection signal can be monitored. (Code: 02201) Machine Model Select 1: OFF Machine Model Select 2: OFF Machine Model Select 3: ON Machine Model Select 4: OFF Machine Model Select 5: OFF",
+  "format": "A",
+  "pdf_pages": [
+    900,
+    901
+  ],
+  "manual_pages": [
+    "40-358",
+    "40-359"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of the inspection method, see “Related Information for Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Part number of machine monitor",
+      "procedure": "1. Check the part number of the replaced machine monitor. 2. Check the correct part number with monitoring code 20227. 3. Is the part number of the machine monitor correct?",
+      "branches": {
+        "YES": "• The machine monitor is correct. • Go to the next inspection item.",
+        "NO": "• The machine monitor is incorrect. • Replace the machine monitor with the correct one. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Part number of pump controller",
+      "procedure": "1. Check the part number of the replaced pump controller. 2. Check the correct part number with monitoring code 20229. 3. Is the part number of the pump controller correct?",
+      "branches": {
+        "YES": "• The pump controller is correct. • Go to the next inspection item.",
+        "NO": "• The pump controller is incorrect. • Replace the pump controller with the correct one. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the inspection above again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The machine monitor can be defective. • Replace the machine monitor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "02201",
+    "20227",
+    "20229"
+  ],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

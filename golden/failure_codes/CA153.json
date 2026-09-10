@@ -1,0 +1,110 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA153",
+  "title": "Charge Air Temperature Sensor High Error",
+  "action_level": "L03",
+  "detail_of_failure": "High voltage is sensed in the temperature signal circuit of the charge (boost) pressure and temperature sensor.",
+  "controller_action": "Operates with charge temperature as fixed value.",
+  "machine_effect": "• Engine protection function by boost temperature does not operate. • Engine output is reduced. • The engine startability will be degraded at low temperatures.",
+  "related_information": "• Input voltage from the charge air temperature sensor (boost temperature sensor) can be checked with monitoring function. (Code: 18501 (V)) • Temperature sensed by the charge air temperature sensor (boost temperature sensor) can be checked with monitoring function. (Code: 18500(℃)) • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position. • The connector of “socket” for troubleshooting for this sensor is female only. So the socket cannot be connected to the female connector on the wiring harness side of the sensor, and check for wire breakage cannot be done (T-adapter is not provided). • When the temperature sensor connector is disconnected, this failure code is shown.",
+  "format": "B",
+  "pdf_pages": [
+    741,
+    742
+  ],
+  "manual_pages": [
+    "40-199",
+    "40-200"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective charge air temperature sensor",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector BOOST PRESS & IMT, and connect a socket to the male side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between BOOST PRESS & IMT (male) (3) and (4) Charge thermal characteristics / -40℃",
+          "criteria": "41 to 48kΩ"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "-20℃",
+          "criteria": "14 to 16kΩ"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "0℃",
+          "criteria": "5.4 to 6.1kΩ"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "30℃",
+          "criteria": "1.6 to 1.8kΩ"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "60℃",
+          "criteria": "560 to 600Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "90℃",
+          "criteria": "230 to 250Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "130℃",
+          "criteria": "80 to 90Ω"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "cause": "Open or short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (23) and (47) REMARK The resistance value accords with the characteristics table for resistance value of charge air temperature sensor in cause 2.",
+          "criteria": "80Ω to 48kΩ"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Defective engine controller",
+      "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "18500",
+    "18501"
+  ],
+  "connectors": [
+    "ECM",
+    "IMT"
+  ],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

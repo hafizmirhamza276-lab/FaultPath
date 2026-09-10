@@ -1,0 +1,120 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "B@HANS",
+  "title": "Hydraulic Oil Overheat",
+  "action_level": "L02",
+  "detail_of_failure": "When the engine is running, the pump controller senses an overheating of the hydraulic oil temperature (approximately 102°C or above) by the signal voltage from the hydraulic oil temperature sensor.",
+  "controller_action": "• Lights up the hydraulic oil temperature monitor in red on the machine monitor. • If the cause of the failure disappears, the machine becomes normal by itself.",
+  "machine_effect": "If the machine continues to be operated, the hydraulic components can suffer a damage.",
+  "related_information": "Pre-troubleshooting If failure code [DGH2KB] is also shown, do the troubleshooting for this code first. Monitoring code The hydraulic oil temperature can be monitored. (Code: 04401) Reference information Signals from the hydraulic oil temperature sensor are input to the pump controller and then the data is sent to the machine monitor by CAN communication.",
+  "format": "A",
+  "pdf_pages": [
+    718,
+    720
+  ],
+  "manual_pages": [
+    "40-176",
+    "40-177",
+    "40-178"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Hydraulic oil temperature",
+      "procedure": "1. Check the hydraulic oil temperature. 2. Is the hydraulic oil temperature 102°C or below?",
+      "branches": {
+        "YES": "• The hydraulic oil temperature is normal. • Go to the next inspection item.",
+        "NO": "• The hydraulic oil temperature is high. • Operate the engine at low idle or stop the engine. Wait for the hydraulic oil temperature to go down. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Hydraulic oil temperature sensor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P22. 3. Connect the T-adapter to the female side of connector P22. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value 38.1 to 25℃ 47.8 kΩ 31.0 to Between P22 30℃ 40.0 kΩ (male) (2) and (1) 6.1 to 80℃ (Oil temperature 7.0 kΩ Resistsensor thermal ance characteristics) 90℃ 4.6 to 5.2 kΩ 3.6 to 100℃ 4.0 kΩ Between P22 Min. 1 (male) (2) and All MΩ ground",
+      "branches": {
+        "YES": "• The hydraulic oil temperature sensor is normal. • Go to the next inspection item.",
+        "NO": "• The hydraulic oil temperature sensor is defective. • Replace the hydraulic oil temperature sensor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Start the engine. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between P22 (male) (2) and (1) (Oil temperature sensor thermal characteristics) / 25℃",
+      "criteria": "38.1 to 47.8 kΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "30℃",
+      "criteria": "31.0 to 40.0 kΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "80℃",
+      "criteria": "6.1 to 7.0 kΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "90℃",
+      "criteria": "4.6 to 5.2 kΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "100℃",
+      "criteria": "3.6 to 4.0 kΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between P22 (male) (2) and ground / All",
+      "criteria": "Min. 1 MΩ"
+    }
+  ],
+  "refs_failure_codes": [
+    "DGH2KB"
+  ],
+  "refs_monitoring_codes": [
+    "04401"
+  ],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Mechanical system",
+  "in_code_table": true
+}

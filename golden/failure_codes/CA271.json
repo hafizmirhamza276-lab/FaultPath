@@ -1,0 +1,103 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA271",
+  "title": "PCV 1 Short Circuit Error",
+  "action_level": "L03",
+  "detail_of_failure": "Short circuit is sensed in the supply pump actuator drive circuit.",
+  "controller_action": null,
+  "machine_effect": "• The engine speed does not increase from low idle speed. • Engine output is reduced. • The engine startability degrades. • The common rail fuel pressure is higher than the command value.",
+  "related_information": "After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    756,
+    757
+  ],
+  "manual_pages": [
+    "40-214",
+    "40-215"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective actuator of supply pump",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector CP3 PUMP REGULATOR. 3. Starting switch: ON If the failure code changes from [CA271] to [CA272], the supply pump actuator is defective.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Short circuit or ground fault in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (2) and (32)",
+          "criteria": "1 to 5Ω"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (2) and ground",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "If no failure is found by check on cause 3, this check is not required. 1. Starting switch: OFF 2. Disconnect the connectors ECM and CP3 PUMP REGULATOR. Connect a T-adapter to the female side of ECM.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (2) and (32)",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cause": "Ground fault in wiring harness (contact with ground circuit)",
+      "procedure": "If no failure is found by check on cause 3, this check is not required. 1. Starting switch: OFF 2. Disconnect the connectors ECM and CP3 PUMP REGULATOR. Connect a T-adapter to the female side of ECM.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (2) and ground",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "cause": "Defective engine controller",
+      "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [
+    "CA272"
+  ],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "ECM"
+  ],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

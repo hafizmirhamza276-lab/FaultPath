@@ -1,0 +1,103 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DW45KY",
+  "title": "Short circuit in swing parking brake solenoid power supply line",
+  "action_level": "L03",
+  "detail_of_failure": "The pump controller senses a hot short circuit in the swing parking brake solenoid circuit.",
+  "controller_action": "• None in particular. • If the cause of the failure disappears, the machine becomes normal by itself.",
+  "machine_effect": "The swing parking brake does not work.",
+  "related_information": "Monitoring code The command (ON or OFF) from the controller to the swing parking brake solenoid can be monitored. (As long as the command from the controller is ON, the indication on the monitor is ON even if the solenoid is not energized because there is an open circuit.) (Code: 02300) Reference information • When the solenoid and wiring harness are normal, swing operation is possible if the swing parking brake cancel switch is set to the RELEASE position. (Note that the swing parking brake is applied when the starting switch is in the OFF position.) • Power for the swing parking brake solenoid is supplied from pin (101) of pump controller CP02 or fuse No.1 in fuse box F01.",
+  "format": "A",
+  "pdf_pages": [
+    1043,
+    1045
+  ],
+  "manual_pages": [
+    "40-501",
+    "40-502",
+    "40-503"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of the inspection method, see “RELA- TED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Diode",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector D01. 3. Connect the T-adapter to the male side of connector D01. 4. Measure the continuity. 5. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between D01 (male) (3) (+) and (7) No con- (-) tinuity Continuity Between D01 (male) (7) (+) and (3) Con- (-) tinuity",
+      "branches": {
+        "YES": "• The diode is normal. • Go to the next inspection item.",
+        "NO": "• The diode is defective. • Replace the diode. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector D01. 3. Connect the T-adapter to the female side of connector D01. 4. Turn the starting switch to the ON position. 5. Measure the voltage. 6. Does the measurement result agree with the standard value? Stand- Measuring point and measurement Item ard valcondition ue Between D01 (female) (7) and Max. Voltage ground 7V",
+      "branches": {
+        "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the inspection above again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Continuity",
+      "point": "Between D01 (male) (3) (+) and (7) (-)",
+      "criteria": "No continuity"
+    },
+    {
+      "quantity": "Continuity",
+      "point": "Between D01 (male) (7) (+) and (3) (-)",
+      "criteria": "Continuity"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Between D01 (female) (7) and ground",
+      "criteria": "Max. 7V"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "02300"
+  ],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

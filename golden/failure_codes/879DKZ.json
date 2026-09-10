@@ -1,0 +1,143 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "879DKZ",
+  "title": "Sunlight Sensor Open Circuit or Short Circuit",
+  "action_level": "-",
+  "detail_of_failure": "The air conditioner controller senses an open or short circuit in the sunlight sensor.",
+  "controller_action": "• The air conditioner controller transmits an open or short circuit information of the sunlight sensor to the machine monitor by CAN communication. • When in the automatic air conditioner mode, ignores data of the sunlight sensor and continues control of the air conditioner.",
+  "machine_effect": "Since the air conditioner sunlight sensor has an open or a short circuit, sunlight intensity is not considered in automatic air conditioner mode. (The air conditioner is not affected in manual mode.)",
+  "related_information": "Reference information • Replace the air conditioner unit as an assembly. • If it is necessary to repair the air conditioner wiring harness between the air conditioner controller connector ACECU and the intermediate connector, replace the air conditioner unit.",
+  "format": "A",
+  "pdf_pages": [
+    684,
+    686
+  ],
+  "manual_pages": [
+    "40-142",
+    "40-143",
+    "40-144"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of the inspection method, see “RELA- TED INFORMATION TO TROUBLESHOOT”, “Check before troubleshooting”, “Electrical parts”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Sunlight sensor",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector P31. 3. Connect the T-adapter to the male side of the connector. 4. Does the measurement result match with the judgment criteria? Stand- Item Measurement position/condition ard value Approx. Direct sunlight 0.55V Approx- Between P31 Cloudy imately Voltage (male) (1) and 0.45V (2) Approx- Inside the cab imately 0.4V",
+      "branches": {
+        "YES": "• The sunlight sensor is normal. • Go to the next inspection item.",
+        "NO": "• The sunlight sensor is defective. • Replace the sunlight sensor. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector AC01 and connector P31. 3. Connect the T-adapter to the female side of each connector. 4. Does the measurement result match with the judgment criteria? Stand- Item Measurement position/condition ard value Between AC01 (female) (10) and Max. 1 P31 (female) (1) Ω Resistance Between AC01 (female) (9) and P31 Max. 1 (female) (2) Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector AC01 and connector P31. 3. Connect the T-adapter to the female side of one of the connectors. 4. Does the measurement result match with the judgment criteria? Stand- Item Measurement position/condition ard value Resist- Between AC01(female)(9) or P31 Min. 1 ance (female) (2) and ground MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector AC01 and connector P31. 3. Connect the T-adapter to the female side of connector AC01. 4. Does the measurement result match with the judgment criteria? Stand- Item Measurement position/condition ard value Resist- Between AC01 (female) (10) and Min. 1 ance each pin other than (10) MΩ",
+      "branches": {
+        "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the inspection above again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The air conditioner controller can be defective. • Replace the air conditioner controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 7,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Check the abnormality record. 5. Is “E” shown in the record of this failure code?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Voltage",
+      "point": "Between P31 (male) (1) and (2) / Direct sunlight",
+      "criteria": "Approx. 0.55V"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Cloudy",
+      "criteria": "Approximately 0.45V"
+    },
+    {
+      "quantity": "Voltage",
+      "point": "Inside the cab",
+      "criteria": "Approximately 0.4V"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01 (female) (10) and P31 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01 (female) (9) and P31 (female) (2)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01(female)(9) or P31 (female) (2) and ground",
+      "criteria": "Min. 1 MΩ"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between AC01 (female) (10) and each pin other than (10)",
+      "criteria": "Min. 1 MΩ"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "AC01"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "MON",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

@@ -1,0 +1,116 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DA2LKA",
+  "title": "System Operating Lamp Open Circuit (Pump Controller)",
+  "action_level": "-",
+  "detail_of_failure": "The pump controller senses an open circuit because the output line voltage of the system operating lamp is 5 V or below for approximately 3 seconds after the start switch is turned to the ON position while the pump controller does not output a current.",
+  "controller_action": "• Stops to turn on the system operating lamp. • Even if the cause of the failure is removed, the machine does not become normal until the starting switch is turned to the OFF position once.",
+  "machine_effect": "None in particular.",
+  "related_information": "Reference information • Do not turn the battery disconnect switch to the OFF position while the system operating lamp is lit. • If the battery disconnect switch is turned to the OFF position while the system operating lamp is lit, the memory data stored in each controller will possibly be destroyed. • The system operating lamp cannot be lit from the pump controller. • Although the system operating lamp cannot be lit from the pump controller, no trouble will result unless the battery disconnect switch is turned to the OFF position. • When the system operating lamp is lit, the output voltage is at low level. • Since no controller drives the system operating lamp for approximately 3 seconds after the starting switch is turned to the ON position, an open circuit can be found.",
+  "format": "A",
+  "pdf_pages": [
+    869,
+    872
+  ],
+  "manual_pages": [
+    "40-327",
+    "40-328",
+    "40-329",
+    "40-330"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Fuse",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. When this failure code is active or left in the abnormality record, you cannot check whether the controller shuts down normally even if the system operating lamp is turned off. In this case, turn the starting switch to the OFF position. Wait for 8 minutes or more. Then turn the battery disconnect switch to the OFF position. 3. Check if the fuse is blown. 4. Check the fuse for continuity. 5. Is the fuse normal?",
+      "branches": {
+        "YES": "• The fuse is normal. • Go to the next inspection item.",
+        "NO": "• The fuse is defective. • It blown, go to “Ground fault in wiring harness”. • If the fuse is not blown but has no continuity, replace the fuse. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Open circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. When this failure code is active or left in the abnormality record, you cannot check whether the controller shuts down normally even if the system operating lamp is turned off. In this case, turn the starting switch to the OFF position. Wait for 8 minutes or more. Then turn the battery disconnect switch to the OFF position. 3. Remove fuse No.16 in fuse box F01. 4. Disconnect connector CP02 and connector L19. 5. Connect the T-adapter to the female side of each connector. 6. Measure the resistance. 7. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between F01-16 and L19 (female) Max. (1) 1 Ω Resistance Between L19 (female) (2) and CP02 Max. (female) (100) 1 Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Ground fault in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. When this failure code is active or left in the abnormality record, you cannot check whether the controller shuts down normally even if the system operating lamp is turned off. In this case, turn the starting switch to the OFF position. Wait for 8 minutes or more. Then turn the battery disconnect switch to the OFF position. 3. Remove fuse No.16 in fuse box F01. 4. Disconnect connector L19, L03, H16, CK01. 5. Connect the T-adapter to the female side of one of the connectors. 6. Measure the resistance. 7. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between F01-16, L19 (female) (1), Resist- H16 (female) (1), CP02(female) Min. 1 ance (100), CK05 (female) (63),or MΩ CM01(female)(8) and ground",
+      "branches": {
+        "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Replace the fuse if it is blown. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 5,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-16 and L19 (female) (1)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between L19 (female) (2) and CP02 (female) (100)",
+      "criteria": "Max. 1 Ω"
+    },
+    {
+      "quantity": "Resistance",
+      "point": "Between F01-16, L19 (female) (1), H16 (female) (1), CP02(female) (100), CK05 (female) (63),or CM01(female)(8) and ground",
+      "criteria": "Min. 1 MΩ"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "CK05",
+    "CM01",
+    "CP02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

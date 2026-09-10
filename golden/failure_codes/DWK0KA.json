@@ -1,0 +1,97 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "DWK0KA",
+  "title": "2-Stage Relief Solenoid Open Circuit",
+  "action_level": "L01",
+  "detail_of_failure": "The pump controller senses an open circuit in the 2-stage relief solenoid circuit.",
+  "controller_action": "• None in particular. (Since no current flows, the solenoid is not energized.) • When the cause of failure is resolved naturally, the machine returns to normal.",
+  "machine_effect": "• The traveling force becomes weak. (The main relief valve is not switched to high pressure setting.) • The one-touch power maximizing function does not operate.",
+  "related_information": "Monitoring code The command (ON or OFF) from the controller to the 2-stage relief solenoid can be monitored. (As long as the command from the controller is ON, the indication on the monitor is ON even if the solenoid is not energized because there is an open circuit.) (Code: 02300) Reference information The controller senses an open circuit when the solenoid output is OFF.",
+  "format": "A",
+  "pdf_pages": [
+    1060,
+    1061
+  ],
+  "manual_pages": [
+    "40-518",
+    "40-519"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "2-stage relief solenoid",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector V02. 3. Connect the T-adapter to the female side of connector V02. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Resist- 20 to Between V02 (male) (1) and (2) ance 60 Ω",
+      "branches": {
+        "YES": "• The 2-stage relief solenoid is normal. • Go to the next inspection item.",
+        "NO": "• The 2-stage relief solenoid is defective. • Replace the 2-stage relief solenoid. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "O wi pen circui ring harn",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector CP02, V02. 3. Connect the T-adapter to the female side of each connector. 4. Measure the resistance. 5. Does the measurement result agree with the standard value? Standt in Item Measurement position and condition ard valess ue Between CP02 (female) (109) and Max. V02 (female) (1) 1 Ω Between CP02 (female) (115) and Max. V02 (female) (2) 1 Ω Resistance Between CP02 (female) (117) and Max. V02 (female) (2) 1 Ω Between CP02 (female) (120) and Max. V02 (female) (2) 1 Ω",
+      "branches": {
+        "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "extraction_warning": "column_split_recovered"
+    },
+    {
+      "step": 4,
+      "cause": "R of ite econfirma inspectio m",
+      "procedure": "tion 1. Do the preceding troubleshooting again. n 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "extraction_warning": "column_split_recovered"
+    },
+    {
+      "step": 5,
+      "cause": "C re onfirmatio pair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and conn of nect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": [],
+      "extraction_warning": "column_split_recovered"
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Resistance",
+      "point": "Between V02 (male) (1) and (2)",
+      "criteria": "20 to 60 Ω"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "02300"
+  ],
+  "connectors": [
+    "CP02"
+  ],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "PUMP",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

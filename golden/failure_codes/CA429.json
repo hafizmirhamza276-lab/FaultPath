@@ -1,0 +1,114 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA429",
+  "title": "Water in Fuel Sensor Low Error",
+  "action_level": "L01",
+  "detail_of_failure": "A low voltage occurs in the signal circuit of the water sensor of the fuel prefilter.",
+  "controller_action": null,
+  "machine_effect": "The water separator monitor does not operate normally.",
+  "related_information": "• The signal state (ON/OFF) of the water sensor in the fuel prefilter can be checked with monitoring function. (Code: 18800) • After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    775,
+    776
+  ],
+  "manual_pages": [
+    "40-233",
+    "40-234"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective fuel prefilter water sensor",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector P47. Connect a T-adapter to the female side. REMARK If water is accumulated in the fuel prefilter, remove the water accumulated.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between P47 (female) (1) and (2)",
+          "criteria": "Min. 100kΩ"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between P47 (female) (1) and ground",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "cause": "Short circuit or ground fault in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (14) and (47) (water-in-fuel sensor resistance)",
+          "criteria": "Min. 100kΩ"
+        },
+        {
+          "quantity": "Resistance",
+          "point": "Between ECM (female) (14) and ground",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "cause": "Short circuit in wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and P47. Connect a T-adapter to the female side of ECM. Do the check with the multimeter in the continuity mode.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Continuity",
+          "point": "Between ECM (female) (14) and each pin other than pin (14)",
+          "criteria": "No continuity (there is no sound)"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "cause": "Ground fault in wiring harness (contact with ground circuit)",
+      "procedure": "If no failure is found by check on cause 3, this check is not required. 1. Starting switch: OFF 2. Disconnect the connectors ECM and P47. Connect a T-adapter to one of them on the female side.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Resistance",
+          "point": "Between ground and ECM (female) (14) or P47 (female) (1)",
+          "criteria": "Min. 100kΩ"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "cause": "Defective engine controller",
+      "procedure": "If no failure is found by the previous checks, engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
+      "branches": {},
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [
+    "18800"
+  ],
+  "connectors": [
+    "ECM"
+  ],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

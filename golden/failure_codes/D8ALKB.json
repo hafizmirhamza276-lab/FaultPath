@@ -1,0 +1,81 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "D8ALKB",
+  "title": "System Operating Lamp Short Circuit (KOMTRAX)",
+  "action_level": "-",
+  "detail_of_failure": "The Gateway function controller senses a short circuit because the output voltage does not become low level while the Gateway function controller outputs current to the system operating lamp.",
+  "controller_action": "• Stops to drive the system operating lamp. • Even if the cause of the failure is removed, the machine does not become normal until the starting switch is turned to the OFF position once.",
+  "machine_effect": "None in particular.",
+  "related_information": "Reference information • Do not turn the battery disconnect switch to the OFF position while the system operating lamp is lit. • If the battery disconnect switch is turned to the OFF position while the system operating lamp is lit, the memory data stored in each controller will possibly be destroyed. • The system operating lamp cannot be lit from the Gateway function controller. • Although the system operating lamp cannot be lit from the Gateway function controller, no trouble will result unless the battery disconnect switch is turned to the OFF position. • When the system operating lamp is lit, the output voltage is at low level.",
+  "format": "A",
+  "pdf_pages": [
+    827,
+    829
+  ],
+  "manual_pages": [
+    "40-285",
+    "40-286",
+    "40-287"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Wiring harness and connector",
+      "procedure": "1. Check the wiring harnesses and connectors. REMARK For details of checking method, see “RELATED INFORMATION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”. 2. Are the wiring harnesses and connectors normal?",
+      "branches": {
+        "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
+        "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Hot short circuit in wiring harness",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Disconnect connector L19. 3. Connect the T-adapter to the female side of connector L19. 4. Turn the starting switch to the ON position. 5. Measure the voltage. 6. Does the measurement result agree with the standard value? Stand- Item Measurement position and condition ard value Between L19 (female) (2) and Max. 1 Voltage ground V",
+      "branches": {
+        "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
+        "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Reconfirmation of inspection item",
+      "procedure": "1. Do the preceding troubleshooting again. 2. Have you identified the cause when the inspection is done again?",
+      "branches": {
+        "YES": "The repair is completed.",
+        "NO": "• The Gateway function controller can be defective. • Replace the Gateway function controller. • Go to “Confirmation of repair”."
+      },
+      "measurements": []
+    },
+    {
+      "step": 4,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Turn the starting switch to the OFF position. 2. Install all the configuration equipment and connect them. 3. Turn the starting switch to the ON position. 4. Is this failure code shown?",
+      "branches": {
+        "YES": "Return to the first inspection item.",
+        "NO": "The repair is completed."
+      },
+      "measurements": []
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Voltage",
+      "point": "Between L19 (female) (2) and ground",
+      "criteria": "Max. 1 V"
+    }
+  ],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [],
+  "default_conclusion": null,
+  "is_pointer_only": false,
+  "controller": "KOMTRAX",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}

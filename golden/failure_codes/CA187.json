@@ -1,0 +1,63 @@
+{
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "40",
+  "code": "CA187",
+  "title": "Sensor 2 Supply Voltage Low Error",
+  "action_level": "L03",
+  "detail_of_failure": "Low voltage is sensed in sensor 2 power supply circuit.",
+  "controller_action": "• Operates with charge (boost) pressure and charge (boost) temperature as fixed value. • Operates the machine with the engine output limited.",
+  "machine_effect": "• Engine output is reduced. • Startability deteriorates.",
+  "related_information": "After the repair is done, check that the failure code is not shown with the operation that follows. Procedure: Turn the starting switch to the ON position.",
+  "format": "B",
+  "pdf_pages": [
+    746,
+    747
+  ],
+  "manual_pages": [
+    "40-204",
+    "40-205"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective wiring harness connector",
+      "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 2,
+      "cause": "Defective sensor or wiring harness",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connectors that follow one by one, and turn the starting switch to the ON position each time. 3. When troubleshooting is done, go back to step 1. If this failure code is cleared, disconnected sensor or engine wiring harness is defective. REMARK Because the connector is disconnected, other failure codes are also shown. Ignore all failure codes other than this failure code [CA187]. Connector Boost pressure and temperature sensor BOOST PRESS & IMT Common rail pressure sensor FUEL RAIL PRESS Bkup sensor CAM SEN- SOR Engine wiring harness ECM",
+      "branches": {},
+      "measurements": []
+    },
+    {
+      "step": 3,
+      "cause": "Defective engine controller",
+      "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the male side. 3. Disconnect the connector ECM. Turn the starting switch to the ON position in this condition.",
+      "branches": {},
+      "measurements": [
+        {
+          "quantity": "Voltage",
+          "point": "Between ECM (male) (37) and (47)",
+          "criteria": "4.75 to 5.25V"
+        }
+      ]
+    }
+  ],
+  "standalone_measurements": [],
+  "refs_failure_codes": [],
+  "refs_monitoring_codes": [],
+  "connectors": [
+    "ECM"
+  ],
+  "default_conclusion": "Defective engine controller",
+  "is_pointer_only": false,
+  "controller": "ENG",
+  "system_category": "Electrical system",
+  "in_code_table": true
+}
