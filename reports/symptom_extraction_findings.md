@@ -87,3 +87,63 @@ text and provenance, per Decision 2. Nothing is gated on them.
 a relationship rather than a value, `numeric` otherwise. Relational criteria
 leave the numeric denominator by declaration and must still resolve against the
 page.
+
+---
+
+# Update — both defects addressed, one blocker surfaced
+
+## DEFECT 2 — FIXED
+
+Entry spans now stop at the section boundary. `HM37` is `pdf_pages: [1471, 1471]`,
+manual page `40-929`, `skipped_tables: 0`. Nothing on 1472 is attributed to it.
+
+## DEFECT 1 — HALF FIXED (6 of 24 rows), blocked on a rule conflict
+
+`symptom_table_kind()` is a symptom-local classifier; `table_kind()` is
+unmodified. Its self-test runs before extraction and covers all four rejection
+cases.
+
+**Rule (a) blank leading row — works.** 6 rows recovered, all in HM06:
+
+| page | criteria | rule |
+|---|---|---|
+| 1319 | `0 mA` | `blank_leading_row(+1)` |
+| 1319 | `800 to 1000 mA` | `blank_leading_row(+1)` |
+| 1320 | `0 mA` | `blank_leading_row(+1)` |
+| 1320 | `0 to 0.49 MPa {0 to 5 kgf/ cm2}` | `blank_leading_row(+1)` |
+| 1320 | `2.84 to 3.43 MPa {29 to 35 kgf/cm2}` | `blank_leading_row(+1)` |
+| 1320 | `800 to 1000 mA` | `blank_leading_row(+1)` |
+
+Measurements 250 -> 256. Skipped tables 10 -> 6.
+
+**Rule (b) proven continuation — admits nothing. 18 rows still dropped.**
+
+The third condition, "the fragment is the first table on its page", does not
+hold for any real continuation in this document. Observed layout:
+
+```
+page 1331   t0 causes(5 cols)   t1 measurement(4 cols)   <- runs off the page
+page 1332   t0 causes(5 cols)   t1 UNKNOWN(4 cols)       t2 measurement(3 cols)
+```
+
+The measurement fragment is `t1`, because a **cause-table continuation occupies
+`t0`**. Conditions one and two are satisfied — the previous page's last table is
+a measurement table and the column counts match at 4 — but the third fails.
+
+Identical on 1344/1345 and 1400/1401.
+
+**Not relaxed, because the choice is yours.** Two readings of the intent:
+
+- *literal* — keep "first table on its page"; 18 rows stay dropped in
+  HM13 (1332/1333), HM15 (1344/1345) and HM24 (1401/1402).
+- *positional intent* — "nothing of substance intervened", i.e. first table
+  that is not itself a continuation, or no measurement table precedes it on the
+  page. Admits these 6 tables and recovers the 18 rows.
+
+The second is weaker evidence: it admits a fragment with one more thing standing
+between it and its predecessor. Given a classifier that accepts header-less
+fragments is exactly what we agreed to be careful about, this is a decision
+rather than a detail.
+
+**Fidelity has NOT been run.** A measurement gate at 100% over a denominator
+still missing 18 rows is the same failure as before, one third the size.

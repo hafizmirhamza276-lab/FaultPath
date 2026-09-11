@@ -396,6 +396,7 @@
         "table_index": 2,
         "row_index": 1
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM24:0:meas:0",
       "criteria_kind": "numeric"
     },
@@ -409,6 +410,7 @@
         "table_index": 2,
         "row_index": 2
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM24:0:meas:1",
       "criteria_kind": "numeric"
     },
@@ -422,6 +424,7 @@
         "table_index": 1,
         "row_index": 1
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM24:0:meas:2",
       "criteria_kind": "numeric"
     },
@@ -435,6 +438,7 @@
         "table_index": 1,
         "row_index": 2
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM24:0:meas:3",
       "criteria_kind": "numeric"
     },
@@ -448,6 +452,7 @@
         "table_index": 1,
         "row_index": 1
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM24:0:meas:4",
       "criteria_kind": "numeric"
     },
@@ -461,6 +466,7 @@
         "table_index": 1,
         "row_index": 2
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM24:0:meas:5",
       "criteria_kind": "numeric"
     },
@@ -474,6 +480,7 @@
         "table_index": 1,
         "row_index": 1
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM24:0:meas:6",
       "criteria_kind": "numeric"
     },
@@ -487,6 +494,7 @@
         "table_index": 1,
         "row_index": 2
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM24:0:meas:7",
       "criteria_kind": "numeric"
     },
@@ -500,6 +508,7 @@
         "table_index": 1,
         "row_index": 1
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM24:0:meas:8",
       "criteria_kind": "numeric"
     },
@@ -513,6 +522,7 @@
         "table_index": 1,
         "row_index": 2
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM24:0:meas:9",
       "criteria_kind": "numeric"
     },
@@ -526,6 +536,7 @@
         "table_index": 1,
         "row_index": 1
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM24:0:meas:10",
       "criteria_kind": "numeric"
     },
@@ -539,6 +550,7 @@
         "table_index": 2,
         "row_index": 1
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM24:0:meas:11",
       "criteria_kind": "numeric"
     }

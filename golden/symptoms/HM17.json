@@ -95,6 +95,7 @@
         "table_index": 2,
         "row_index": 1
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM17:0:meas:0",
       "criteria_kind": "numeric"
     },
@@ -108,6 +109,7 @@
         "table_index": 2,
         "row_index": 2
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM17:0:meas:1",
       "criteria_kind": "numeric"
     },
@@ -121,6 +123,7 @@
         "table_index": 2,
         "row_index": 3
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM17:0:meas:2",
       "criteria_kind": "numeric"
     },
@@ -134,6 +137,7 @@
         "table_index": 1,
         "row_index": 1
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM17:0:meas:3",
       "criteria_kind": "numeric"
     },
@@ -147,6 +151,7 @@
         "table_index": 1,
         "row_index": 2
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM17:0:meas:4",
       "criteria_kind": "numeric"
     }

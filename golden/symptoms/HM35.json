@@ -244,6 +244,7 @@
         "table_index": 1,
         "row_index": 1
       },
+      "admitted_by": "section40_classifier",
       "fact_id": "HM35:0:meas:0",
       "criteria_kind": "numeric"
     }

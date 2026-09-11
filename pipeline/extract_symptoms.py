@@ -86,6 +86,58 @@ def is_relational(criteria: str) -> bool:
     return bool(RELATIONAL_RE.search(c)) and not CRIT_VALUE.search(c)
 
 
+def _strip_leading_blank_rows(tbl):
+    """(reduced_table, n_dropped). Leading all-blank rows only."""
+    i = 0
+    while i < len(tbl) and not any(clean(c) for c in tbl[i] if c):
+        i += 1
+    return tbl[i:], i
+
+
+def symptom_table_kind(tbl, prev=None, is_first_on_page=False):
+    """Symptom-local classifier. Returns (kind, admitting_rule).
+
+    table_kind() is NOT modified: Section 40's 174 codes, 996 steps and 872
+    measurements rest on it, and changing a shared classifier to serve new
+    content would risk the mature half to help the new one. Section 40 also has
+    no need of this -- the blank-leading-row and header-less-continuation shapes
+    occur only in the symptom sections, and orphan_detection and fidelity are
+    both clean over Section 40.
+
+    Two shapes beyond the Section 40 set:
+
+    a) BLANK LEADING ROW -- scan past leading all-blank rows and classify the
+       real header. Low risk: the header is still present and still read.
+
+    b) HEADER-LESS CONTINUATION -- PROVEN, never assumed. A classifier that
+       accepts header-less fragments will accept things that are not
+       measurement tables, so all three must hold:
+         - the previous page's last table was a measurement table
+         - the column count matches it
+         - this is the first table on its page
+       `prev` is {"kind": ..., "cols": ...} for the previous page's last table.
+
+    The admitting rule travels with the result so a wrong admission is
+    traceable rather than invisible.
+    """
+    base = table_kind(tbl)
+    if base != "unknown":
+        return base, "section40_classifier"
+
+    reduced, dropped = _strip_leading_blank_rows(tbl)
+    if dropped and reduced:
+        k = table_kind(reduced)
+        if k != "unknown":
+            return k, f"blank_leading_row(+{dropped})"
+
+    cols = max((len(r) for r in tbl), default=0)
+    if (reduced and prev and prev.get("kind") == "measurement"
+            and prev.get("cols") == cols and is_first_on_page):
+        return "measurement", "proven_continuation"
+
+    return "unknown", "unclassified"
+
+
 def s_mode_header_kind(tbl) -> bool:
     """True when this is an S-Mode symptom header.
 
@@ -197,6 +249,7 @@ def extract_entry(pdf, sid, title, start, end, mode, section40_codes):
     )
 
     cause_rows, flat_rows = [], []
+    prev_last = None                      # previous page's last table, for (b)
     for pno in range(start, end + 1):
         if pno - 1 >= len(pdf.pages):
             continue
@@ -205,7 +258,9 @@ def extract_entry(pdf, sid, title, start, end, mode, section40_codes):
         if mp and mp not in rec["manual_pages"]:
             rec["manual_pages"].append(mp)
 
-        for ti, tbl in enumerate(page.extract_tables()):
+        tables = page.extract_tables()
+        page_last = None
+        for ti, tbl in enumerate(tables):
             prov = {"manual_page": mp, "pdf_page": pno, "table_index": ti}
             flat_text = " ".join(clean(c) for r in tbl for c in r if c)
 
@@ -215,6 +270,7 @@ def extract_entry(pdf, sid, title, start, end, mode, section40_codes):
                 rec["skipped_tables"].append(
                     {**prov, "reason": "table is entirely empty",
                      "shape": f"{len(tbl)}x{max((len(r) for r in tbl), default=0)}"})
+                page_last = None
                 continue
 
             rec["unresolved_pointers"] += find_pointers(flat_text, prov,
@@ -224,7 +280,10 @@ def extract_entry(pdf, sid, title, start, end, mode, section40_codes):
                 rec.update({k: v for k, v in parse_s_header(tbl).items() if v})
                 continue
 
-            kind = table_kind(tbl)
+            kind, rule = symptom_table_kind(
+                tbl, prev=prev_last, is_first_on_page=(ti == 0))
+            page_last = {"kind": kind,
+                         "cols": max((len(r) for r in tbl), default=0)}
             if kind == "header_a":
                 rec.update({k: v for k, v in parse_header_a(tbl).items() if v})
             elif kind == "causes":
@@ -235,13 +294,25 @@ def extract_entry(pdf, sid, title, start, end, mode, section40_codes):
                 else:
                     flat_rows.append(([r for _, r in body], provs))
             elif kind == "measurement":
-                rec["standalone_measurements"] += parse_measurement_table(tbl, prov)
+                src = tbl
+                if rule.startswith("blank_leading_row"):
+                    src, _ = _strip_leading_blank_rows(tbl)
+                elif rule == "proven_continuation":
+                    # No header row to skip: parse_measurement_table drops
+                    # tbl[0], so a header is prepended to keep every data row.
+                    src = [["Item", "", "", ""]] + [
+                        r for r in tbl if any(clean(c) for c in r if c)]
+                got = parse_measurement_table(src, prov)
+                for m in got:
+                    m["admitted_by"] = rule
+                rec["standalone_measurements"] += got
             else:
                 rec["skipped_tables"].append(
-                    {**prov, "reason": f"table_kind={kind}",
+                    {**prov, "reason": f"table_kind={kind}", "rule": rule,
                      "first_cell": clean((tbl[0] or [""])[0])[:40],
                      "shape": f"{len(tbl)}x{max((len(r) for r in tbl), default=0)}"})
 
+        prev_last = page_last
     if mode == "H":
         merged, mprov = [], []
         for i, (rows, provs) in enumerate(cause_rows):
@@ -288,8 +359,12 @@ def entries(doc):
             out.append(("S", title, pg))
     spans = []
     for i, (mode, title, pg) in enumerate(out):
-        end = out[i + 1][2] - 1 if i + 1 < len(out) else S_MODE_RANGE[1]
-        spans.append((mode, title, pg, end))
+        # An entry may never run past its own section. Computing the end as
+        # next_entry_page - 1 gave the last H-Mode entry pp 1471-1472, which
+        # swallowed the S-Mode legend page and made its provenance wrong by one.
+        limit = H_MODE_RANGE[1] if mode == "H" else S_MODE_RANGE[1]
+        nxt = out[i + 1][2] - 1 if i + 1 < len(out) else limit
+        spans.append((mode, title, pg, min(nxt, limit)))
     return spans
 
 
@@ -322,6 +397,33 @@ def self_test() -> None:
     assert not is_relational("0 MPa {0 kgf/cm2}"), \
         "relational bucket swallows a real dual-unit value"
     assert not is_relational("Max. 1 Ω"), "relational bucket swallows a bound"
+
+    meas_hdr = [["Item", "Measurement position", "", "Standard value"],
+                ["EPC Current", "Monitoring code: 08000", "", "0 mA"]]
+    blank_lead = [["", "", "", ""]] + meas_hdr
+    k, r = symptom_table_kind(blank_lead)
+    assert (k, r) == ("measurement", "blank_leading_row(+1)"),         f"blank-leading-row measurement table not admitted: {(k, r)}"
+
+    frag = [["EPC Current", "Monitoring code: 08000", "", "0 mA"]]
+    good_prev = {"kind": "measurement", "cols": 4}
+    k, r = symptom_table_kind(frag, prev=good_prev, is_first_on_page=True)
+    assert (k, r) == ("measurement", "proven_continuation"),         f"proven continuation not admitted: {(k, r)}"
+
+    # every rejection case: all three conditions are required
+    assert symptom_table_kind(frag, prev={"kind": "causes", "cols": 4},
+                              is_first_on_page=True)[0] == "unknown",         "continuation admitted whose predecessor was not a measurement table"
+    assert symptom_table_kind(frag, prev={"kind": "measurement", "cols": 5},
+                              is_first_on_page=True)[0] == "unknown",         "continuation admitted with a mismatched column count"
+    assert symptom_table_kind(frag, prev=good_prev,
+                              is_first_on_page=False)[0] == "unknown",         "continuation admitted that was not the first table on its page"
+    assert symptom_table_kind(frag, prev=None,
+                              is_first_on_page=True)[0] == "unknown",         "continuation admitted with no predecessor at all"
+
+    cause_t = [["No.", "Cause", "Point to check", "Remedy"]]
+    assert symptom_table_kind(cause_t)[0] == "causes",         "symptom classifier mangles a cause table"
+    assert symptom_table_kind([["", "", ""]] + cause_t)[0] == "causes",         "blank-led cause table misread as a measurement table"
+    s40 = [["Details of failure", "A high voltage occurs..."]]
+    assert symptom_table_kind(s40)[0] == "header_a",         "symptom classifier mangles a Section 40 header"
 
     flat = parse_flat_causes(
         [["No.", "Cause", "Point to check", "Remedy"],

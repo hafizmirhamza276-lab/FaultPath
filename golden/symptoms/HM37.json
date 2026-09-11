@@ -13,11 +13,10 @@
   "related_information": null,
   "pdf_pages": [
     1471,
-    1472
+    1471
   ],
   "manual_pages": [
-    "40-929",
-    "40-930"
+    "40-929"
   ],
   "steps": [
     {
@@ -108,22 +107,5 @@
   "standalone_measurements": [],
   "unresolved_pointers": [],
   "refs_failure_codes": [],
-  "skipped_tables": [
-    {
-      "manual_page": "40-930",
-      "pdf_page": 1472,
-      "table_index": 0,
-      "reason": "table_kind=unknown",
-      "first_cell": "Failure",
-      "shape": "2x2"
-    },
-    {
-      "manual_page": "40-930",
-      "pdf_page": 1472,
-      "table_index": 1,
-      "reason": "table_kind=unknown",
-      "first_cell": "Cause",
-      "shape": "6x4"
-    }
-  ]
+  "skipped_tables": []
 }
