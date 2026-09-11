@@ -1,0 +1,547 @@
+{
+  "entries": [
+    {
+      "fact_id": "CA451:6:step:0",
+      "field": "cause",
+      "code": "CA451",
+      "step": 6,
+      "manual_page": "40-242",
+      "pdf_page": 784,
+      "image": "CA451_6_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "CA451:6:step:0",
+      "field": "procedure",
+      "code": "CA451",
+      "step": 6,
+      "manual_page": "40-242",
+      "pdf_page": 784,
+      "image": "CA451_6_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "CA451:7:step:0",
+      "field": "cause",
+      "code": "CA451",
+      "step": 7,
+      "manual_page": "40-242",
+      "pdf_page": 784,
+      "image": "CA451_7_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "CA451:7:step:0",
+      "field": "procedure",
+      "code": "CA451",
+      "step": 7,
+      "manual_page": "40-242",
+      "pdf_page": 784,
+      "image": "CA451_7_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DW91KA:4:step:0",
+      "field": "cause",
+      "code": "DW91KA",
+      "step": 4,
+      "manual_page": "40-505",
+      "pdf_page": 1047,
+      "image": "DW91KA_4_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DW91KA:4:step:0",
+      "field": "procedure",
+      "code": "DW91KA",
+      "step": 4,
+      "manual_page": "40-505",
+      "pdf_page": 1047,
+      "image": "DW91KA_4_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DW91KA:5:step:0",
+      "field": "cause",
+      "code": "DW91KA",
+      "step": 5,
+      "manual_page": "40-505",
+      "pdf_page": 1047,
+      "image": "DW91KA_5_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DW91KA:5:step:0",
+      "field": "procedure",
+      "code": "DW91KA",
+      "step": 5,
+      "manual_page": "40-505",
+      "pdf_page": 1047,
+      "image": "DW91KA_5_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DW91KY:3:step:0",
+      "field": "cause",
+      "code": "DW91KY",
+      "step": 3,
+      "manual_page": "40-510",
+      "pdf_page": 1052,
+      "image": "DW91KY_3_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DW91KY:3:step:0",
+      "field": "procedure",
+      "code": "DW91KY",
+      "step": 3,
+      "manual_page": "40-510",
+      "pdf_page": 1052,
+      "image": "DW91KY_3_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DW91KY:4:step:0",
+      "field": "cause",
+      "code": "DW91KY",
+      "step": 4,
+      "manual_page": "40-510",
+      "pdf_page": 1052,
+      "image": "DW91KY_4_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DW91KY:4:step:0",
+      "field": "procedure",
+      "code": "DW91KY",
+      "step": 4,
+      "manual_page": "40-510",
+      "pdf_page": 1052,
+      "image": "DW91KY_4_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWA2KA:3:step:0",
+      "field": "cause",
+      "code": "DWA2KA",
+      "step": 3,
+      "manual_page": "40-512",
+      "pdf_page": 1054,
+      "image": "DWA2KA_3_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWA2KA:3:step:0",
+      "field": "procedure",
+      "code": "DWA2KA",
+      "step": 3,
+      "manual_page": "40-512",
+      "pdf_page": 1054,
+      "image": "DWA2KA_3_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWA2KA:4:step:0",
+      "field": "cause",
+      "code": "DWA2KA",
+      "step": 4,
+      "manual_page": "40-512",
+      "pdf_page": 1054,
+      "image": "DWA2KA_4_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWA2KA:4:step:0",
+      "field": "procedure",
+      "code": "DWA2KA",
+      "step": 4,
+      "manual_page": "40-512",
+      "pdf_page": 1054,
+      "image": "DWA2KA_4_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWA2KA:5:step:0",
+      "field": "cause",
+      "code": "DWA2KA",
+      "step": 5,
+      "manual_page": "40-512",
+      "pdf_page": 1054,
+      "image": "DWA2KA_5_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWA2KA:5:step:0",
+      "field": "procedure",
+      "code": "DWA2KA",
+      "step": 5,
+      "manual_page": "40-512",
+      "pdf_page": 1054,
+      "image": "DWA2KA_5_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWA2KY:3:step:0",
+      "field": "cause",
+      "code": "DWA2KY",
+      "step": 3,
+      "manual_page": "40-517",
+      "pdf_page": 1059,
+      "image": "DWA2KY_3_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWA2KY:3:step:0",
+      "field": "procedure",
+      "code": "DWA2KY",
+      "step": 3,
+      "manual_page": "40-517",
+      "pdf_page": 1059,
+      "image": "DWA2KY_3_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWA2KY:4:step:0",
+      "field": "cause",
+      "code": "DWA2KY",
+      "step": 4,
+      "manual_page": "40-517",
+      "pdf_page": 1059,
+      "image": "DWA2KY_4_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWA2KY:4:step:0",
+      "field": "procedure",
+      "code": "DWA2KY",
+      "step": 4,
+      "manual_page": "40-517",
+      "pdf_page": 1059,
+      "image": "DWA2KY_4_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK0KA:3:step:0",
+      "field": "cause",
+      "code": "DWK0KA",
+      "step": 3,
+      "manual_page": "40-519",
+      "pdf_page": 1061,
+      "image": "DWK0KA_3_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK0KA:3:step:0",
+      "field": "procedure",
+      "code": "DWK0KA",
+      "step": 3,
+      "manual_page": "40-519",
+      "pdf_page": 1061,
+      "image": "DWK0KA_3_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK0KA:4:step:0",
+      "field": "cause",
+      "code": "DWK0KA",
+      "step": 4,
+      "manual_page": "40-519",
+      "pdf_page": 1061,
+      "image": "DWK0KA_4_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK0KA:4:step:0",
+      "field": "procedure",
+      "code": "DWK0KA",
+      "step": 4,
+      "manual_page": "40-519",
+      "pdf_page": 1061,
+      "image": "DWK0KA_4_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK0KA:5:step:0",
+      "field": "cause",
+      "code": "DWK0KA",
+      "step": 5,
+      "manual_page": "40-519",
+      "pdf_page": 1061,
+      "image": "DWK0KA_5_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK0KA:5:step:0",
+      "field": "procedure",
+      "code": "DWK0KA",
+      "step": 5,
+      "manual_page": "40-519",
+      "pdf_page": 1061,
+      "image": "DWK0KA_5_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK0KY:3:step:0",
+      "field": "cause",
+      "code": "DWK0KY",
+      "step": 3,
+      "manual_page": "40-524",
+      "pdf_page": 1066,
+      "image": "DWK0KY_3_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK0KY:3:step:0",
+      "field": "procedure",
+      "code": "DWK0KY",
+      "step": 3,
+      "manual_page": "40-524",
+      "pdf_page": 1066,
+      "image": "DWK0KY_3_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK0KY:4:step:0",
+      "field": "cause",
+      "code": "DWK0KY",
+      "step": 4,
+      "manual_page": "40-524",
+      "pdf_page": 1066,
+      "image": "DWK0KY_4_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK0KY:4:step:0",
+      "field": "procedure",
+      "code": "DWK0KY",
+      "step": 4,
+      "manual_page": "40-524",
+      "pdf_page": 1066,
+      "image": "DWK0KY_4_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK2KA:3:step:0",
+      "field": "cause",
+      "code": "DWK2KA",
+      "step": 3,
+      "manual_page": "40-526",
+      "pdf_page": 1068,
+      "image": "DWK2KA_3_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK2KA:3:step:0",
+      "field": "procedure",
+      "code": "DWK2KA",
+      "step": 3,
+      "manual_page": "40-526",
+      "pdf_page": 1068,
+      "image": "DWK2KA_3_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK2KA:4:step:0",
+      "field": "cause",
+      "code": "DWK2KA",
+      "step": 4,
+      "manual_page": "40-526",
+      "pdf_page": 1068,
+      "image": "DWK2KA_4_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK2KA:4:step:0",
+      "field": "procedure",
+      "code": "DWK2KA",
+      "step": 4,
+      "manual_page": "40-526",
+      "pdf_page": 1068,
+      "image": "DWK2KA_4_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK2KA:5:step:0",
+      "field": "cause",
+      "code": "DWK2KA",
+      "step": 5,
+      "manual_page": "40-526",
+      "pdf_page": 1068,
+      "image": "DWK2KA_5_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK2KA:5:step:0",
+      "field": "procedure",
+      "code": "DWK2KA",
+      "step": 5,
+      "manual_page": "40-526",
+      "pdf_page": 1068,
+      "image": "DWK2KA_5_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK2KY:3:step:0",
+      "field": "cause",
+      "code": "DWK2KY",
+      "step": 3,
+      "manual_page": "40-531",
+      "pdf_page": 1073,
+      "image": "DWK2KY_3_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK2KY:3:step:0",
+      "field": "procedure",
+      "code": "DWK2KY",
+      "step": 3,
+      "manual_page": "40-531",
+      "pdf_page": 1073,
+      "image": "DWK2KY_3_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK2KY:4:step:0",
+      "field": "cause",
+      "code": "DWK2KY",
+      "step": 4,
+      "manual_page": "40-531",
+      "pdf_page": 1073,
+      "image": "DWK2KY_4_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK2KY:4:step:0",
+      "field": "procedure",
+      "code": "DWK2KY",
+      "step": 4,
+      "manual_page": "40-531",
+      "pdf_page": 1073,
+      "image": "DWK2KY_4_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK8KA:4:step:0",
+      "field": "cause",
+      "code": "DWK8KA",
+      "step": 4,
+      "manual_page": "40-533",
+      "pdf_page": 1075,
+      "image": "DWK8KA_4_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK8KA:4:step:0",
+      "field": "procedure",
+      "code": "DWK8KA",
+      "step": 4,
+      "manual_page": "40-533",
+      "pdf_page": 1075,
+      "image": "DWK8KA_4_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK8KA:5:step:0",
+      "field": "cause",
+      "code": "DWK8KA",
+      "step": 5,
+      "manual_page": "40-533",
+      "pdf_page": 1075,
+      "image": "DWK8KA_5_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK8KA:5:step:0",
+      "field": "procedure",
+      "code": "DWK8KA",
+      "step": 5,
+      "manual_page": "40-533",
+      "pdf_page": 1075,
+      "image": "DWK8KA_5_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK8KY:3:step:0",
+      "field": "cause",
+      "code": "DWK8KY",
+      "step": 3,
+      "manual_page": "40-538",
+      "pdf_page": 1080,
+      "image": "DWK8KY_3_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK8KY:3:step:0",
+      "field": "procedure",
+      "code": "DWK8KY",
+      "step": 3,
+      "manual_page": "40-538",
+      "pdf_page": 1080,
+      "image": "DWK8KY_3_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK8KY:4:step:0",
+      "field": "cause",
+      "code": "DWK8KY",
+      "step": 4,
+      "manual_page": "40-538",
+      "pdf_page": 1080,
+      "image": "DWK8KY_4_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DWK8KY:4:step:0",
+      "field": "procedure",
+      "code": "DWK8KY",
+      "step": 4,
+      "manual_page": "40-538",
+      "pdf_page": 1080,
+      "image": "DWK8KY_4_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DY20KA:6:step:0",
+      "field": "cause",
+      "code": "DY20KA",
+      "step": 6,
+      "manual_page": "40-582",
+      "pdf_page": 1124,
+      "image": "DY20KA_6_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DY20KA:6:step:0",
+      "field": "procedure",
+      "code": "DY20KA",
+      "step": 6,
+      "manual_page": "40-582",
+      "pdf_page": 1124,
+      "image": "DY20KA_6_step_0__procedure.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DY20KA:7:step:0",
+      "field": "cause",
+      "code": "DY20KA",
+      "step": 7,
+      "manual_page": "40-582",
+      "pdf_page": 1124,
+      "image": "DY20KA_7_step_0__cause.png",
+      "fallback": false
+    },
+    {
+      "fact_id": "DY20KA:7:step:0",
+      "field": "procedure",
+      "code": "DY20KA",
+      "step": 7,
+      "manual_page": "40-582",
+      "pdf_page": 1124,
+      "image": "DY20KA_7_step_0__procedure.png",
+      "fallback": false
+    }
+  ],
+  "dpi": 220,
+  "steps": 27,
+  "fallbacks": []
+}

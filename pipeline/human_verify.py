@@ -229,18 +229,86 @@ def apply_adjudications(rows: List[dict], adjudications: dict) -> List[dict]:
     return rows
 
 
-def verified_fact_ids(rows: List[dict]) -> List[str]:
-    """Facts a human confirmed. Agreement on EVERY transcribed field of that
-    fact, and no disagreement anywhere on it."""
-    by_fact: Dict[str, List[dict]] = {}
+VERIFIED = "verified"
+PARTIAL = "PARTIAL"
+NOT_TRANSCRIBED = "NOT_TRANSCRIBED"
+DISPUTED = "DISPUTED"
+
+
+def expected_fields(recs: Dict[str, dict]) -> Dict[str, set]:
+    """Which fields EXIST for each fact, from golden/.
+
+    A fact is only verified when every field it actually has was transcribed.
+    Without this the step fact_id is shared by `cause` and `procedure`, so a
+    correct cause with a blank procedure marked the whole step human_verified
+    -- crediting the record with work nobody did. Same class as the audit
+    checks that sat at zero because they could not fail.
+    """
+    out: Dict[str, set] = {}
+    for rec in recs.values():
+        for m in rec.get("standalone_measurements", []):
+            if m.get("fact_id"):
+                out[m["fact_id"]] = {f for f in ("quantity", "point", "criteria")
+                                     if str(m.get(f) or "").strip()}
+        for st in rec.get("steps", []):
+            if st.get("fact_id"):
+                out[st["fact_id"]] = {f for f in ("cause", "procedure")
+                                      if str(st.get(f) or "").strip()}
+            for m in st.get("measurements", []):
+                if m.get("fact_id"):
+                    out[m["fact_id"]] = {f for f in ("quantity", "point", "criteria")
+                                         if str(m.get(f) or "").strip()}
+            for br, fid in (st.get("branch_fact_ids") or {}).items():
+                out[fid] = {f"branch_{br.lower()}"}
+    return out
+
+
+def fact_states(rows: List[dict], expected: Dict[str, set]) -> Dict[str, str]:
+    """verified / PARTIAL / DISPUTED / NOT_TRANSCRIBED, per fact.
+
+    PARTIAL exists so an incomplete step reports as incomplete instead of
+    quietly counting as agreement. It is never treated as verified anywhere.
+    """
+    seen: Dict[str, set] = {}
+    bad: Dict[str, bool] = {}
     for r in rows:
-        if r["fact_id"]:
-            by_fact.setdefault(r["fact_id"], []).append(r)
-    out = []
-    for fid, rs in by_fact.items():
-        if all(r["verdict"] in (EXACT, NORMALISED) for r in rs):
-            out.append(fid)
-    return sorted(out)
+        fid = r.get("fact_id")
+        if not fid:
+            continue
+        seen.setdefault(fid, set()).add(r["field"])
+        if r["verdict"] == DISAGREE:
+            bad[fid] = True
+    states = {}
+    for fid, want in expected.items():
+        got = seen.get(fid, set())
+        if bad.get(fid):
+            states[fid] = DISPUTED
+        elif not got:
+            states[fid] = NOT_TRANSCRIBED
+        elif want and not want <= got:
+            states[fid] = PARTIAL
+        else:
+            states[fid] = VERIFIED
+    return states
+
+
+def verified_fact_ids(rows: List[dict],
+                      expected: Optional[Dict[str, set]] = None) -> List[str]:
+    """Facts a human confirmed: every field that exists, all agreeing.
+
+    `expected` is required for the completeness rule. Without it the old
+    behaviour returns -- any agreeing field verifies the fact -- so callers
+    that cannot supply it get the conservative reading instead: a fact with
+    fewer rows than fields is NOT verified.
+    """
+    if expected is None:
+        from agent import tools as _t
+        try:
+            expected = expected_fields(_t.records())
+        except Exception:
+            expected = {}
+    states = fact_states(rows, expected)
+    return sorted(f for f, s in states.items() if s == VERIFIED)
 
 
 def summarise(rows: List[dict]) -> dict:
@@ -335,7 +403,8 @@ def coverage(trs: Dict[str, dict], recs: Dict[str, dict],
 
 
 def column_split_per_step(rows: List[dict], recs: Dict[str, dict],
-                          trs: Dict[str, dict]) -> List[dict]:
+                          trs: Dict[str, dict],
+                          states: Optional[Dict[str, str]] = None) -> List[dict]:
     """Every machine-repaired step, one row each. NEVER aggregated.
 
     One wrong step among 27 matters; 96.3% hides it. The reader gets the
@@ -353,12 +422,18 @@ def column_split_per_step(rows: List[dict], recs: Dict[str, dict],
                 continue
             fid = st.get("fact_id")
             row = by_fact.get(fid)
+            state = states.get(fid, NOT_TRANSCRIBED) if states else None
+            verdict = (row["verdict"] if row else NOT_TRANSCRIBED)
+            # PARTIAL outranks a per-field verdict: a step with an agreeing
+            # cause and a blank procedure must not read as a match.
+            if state == PARTIAL:
+                verdict = PARTIAL
             out.append({
                 "fact_id": fid, "code": code, "step": st.get("step"),
                 "manual_page": (st.get("provenance") or {}).get("manual_page"),
                 "extractor": st.get("cause"),
                 "human": row["human"] if row else None,
-                "verdict": row["verdict"] if row else "NOT_TRANSCRIBED",
+                "verdict": verdict, "state": state,
                 "transcribed": code in trs})
     return out
 
@@ -380,10 +455,14 @@ def run(kit_dir: Optional[str] = None, adjudications: Optional[dict] = None,
     out["coverage"] = coverage(trs, recs, manifest)
     out["resolver_blind_spots"] = resolver_blind_spots(rows, ver)
     out["column_split_accuracy"] = column_split_accuracy(rows, recs)
-    out["column_split_steps"] = column_split_per_step(rows, recs, trs)
+    expected = expected_fields(recs)
+    states = fact_states(rows, expected)
+    out["column_split_steps"] = column_split_per_step(rows, recs, trs, states)
+    out["fact_states"] = {s_: sum(1 for v in states.values() if v == s_)
+                          for s_ in (VERIFIED, PARTIAL, DISPUTED, NOT_TRANSCRIBED)}
     out["rounds"] = {c: round_of(c, manifest) for c in sorted(trs)}
     out["codes_transcribed"] = sorted(trs)
-    out["human_verified_fact_ids"] = verified_fact_ids(rows)
+    out["human_verified_fact_ids"] = verified_fact_ids(rows, expected)
     out["rows"] = rows
     return out
 
@@ -416,12 +495,28 @@ def self_test() -> None:
     apply_adjudications(rows, {})
     assert rows[0]["adjudication"] == UNADJUDICATED, \
         "an unadjudicated disagreement must stay unadjudicated"
-    assert not verified_fact_ids(rows), \
+    exp = {"X:1:meas:0": {"quantity", "point", "criteria"}}
+    assert not verified_fact_ids(rows, exp), \
         "a disputed fact must never be marked human_verified"
 
-    ok = [{"fact_id": "X:1:meas:0", "field": "criteria", "kind": "measurement",
-           "verdict": EXACT, "adjudication": None}]
-    assert verified_fact_ids(ok) == ["X:1:meas:0"]
+    # COMPLETENESS. The previous version of this assertion encoded the bug it
+    # was meant to guard -- one agreeing field verified the whole fact, so a
+    # step with a correct cause and a blank procedure read as verified. A fact
+    # is verified only when every field it actually has was transcribed.
+    one_of_three = [{"fact_id": "X:1:meas:0", "field": "criteria",
+                     "kind": "measurement", "verdict": EXACT,
+                     "adjudication": None}]
+    assert fact_states(one_of_three, exp)["X:1:meas:0"] == PARTIAL, \
+        "a partially transcribed fact must report PARTIAL"
+    assert not verified_fact_ids(one_of_three, exp), \
+        "PARTIAL must never count as verified"
+
+    all_three = [{"fact_id": "X:1:meas:0", "field": f, "kind": "measurement",
+                  "verdict": EXACT, "adjudication": None}
+                 for f in ("quantity", "point", "criteria")]
+    assert fact_states(all_three, exp)["X:1:meas:0"] == VERIFIED
+    assert verified_fact_ids(all_three, exp) == ["X:1:meas:0"]
+    assert fact_states([], exp)["X:1:meas:0"] == NOT_TRANSCRIBED
 
 
 # ---------------------------------------------------------------- progress
@@ -446,6 +541,9 @@ def progress(kit_dir: Optional[str] = None, round_no: Optional[int] = 1) -> dict
     rows = apply_adjudications(rows, load_adjudications())
     done = [c for c in wanted if c["code"] in trs]
     pending = [c for c in wanted if c["code"] not in trs]
+    expected = expected_fields(recs)
+    states = fact_states(rows, expected)
+    n_partial = sum(1 for v in states.values() if v == PARTIAL)
     agree = sum(1 for r in rows if r["verdict"] in (EXACT, NORMALISED))
     mins = [trs[c["code"]].get("minutes_taken") for c in done
             if trs[c["code"]].get("minutes_taken")]
@@ -457,6 +555,8 @@ def progress(kit_dir: Optional[str] = None, round_no: Optional[int] = 1) -> dict
         "fields_compared": len(rows),
         "running_agreement": (agree / len(rows)) if rows else None,
         "disagreements": sum(1 for r in rows if r["verdict"] == DISAGREE),
+        "partial_facts": n_partial,
+        "verified_facts": sum(1 for v in states.values() if v == VERIFIED),
         "minutes_spent": sum(mins) if mins else 0,
         "minutes_remaining_estimate": (
             round(sum(mins) / len(done) * len(pending)) if mins and done else None),
@@ -473,6 +573,10 @@ def print_progress(kit_dir: Optional[str] = None, round_no: int = 1) -> dict:
         print(f"  fields compared   : {p['fields_compared']}")
         print(f"  running agreement : {p['running_agreement']:.4f}")
         print(f"  disagreements     : {p['disagreements']}")
+        print(f"  facts verified    : {p['verified_facts']}")
+        print(f"  facts PARTIAL     : {p['partial_facts']}"
+              + ("   <- incomplete, NOT counted as verified"
+                 if p["partial_facts"] else ""))
     else:
         print("  nothing compared yet")
     if p["minutes_spent"]:

@@ -530,6 +530,103 @@ check("every Round 1 fault is caught",
       all(c2 for _, c2 in r1muts),
       f"uncaught: {[n for n, c2 in r1muts if not c2]}")
 
+# ==================================================== PARTIAL + CROPS
+print("\nPARTIAL STATE AND CROP KIT")
+from pipeline import human_crops                          # noqa: E402
+
+try:
+    human_verify.self_test()
+    check("comparator self-tests pass (incl. PARTIAL)", True)
+except AssertionError as exc:
+    check("comparator self-tests pass (incl. PARTIAL)", False, str(exc))
+
+exp_all = human_verify.expected_fields(recs)
+_rec = recs["CA451"]
+_s1 = tools.real_steps(_rec)[0]
+_t = human_kit.blank_template("CA451", _rec)
+_t["transcriber"] = "probe"
+_t["steps"][0]["cause"] = _s1["cause"]        # one field filled
+_t["steps"][0]["procedure"] = ""              # one field blank
+_rows = human_verify.diff_code(_t, _rec)
+_states = human_verify.fact_states(_rows, exp_all)
+check("a half-filled step reports PARTIAL",
+      _states[_s1["fact_id"]] == human_verify.PARTIAL,
+      str(_states[_s1["fact_id"]]))
+check("PARTIAL never reaches verified_fact_ids",
+      _s1["fact_id"] not in human_verify.verified_fact_ids(_rows, exp_all))
+_t["steps"][0]["procedure"] = _s1["procedure"]
+_rows2 = human_verify.diff_code(_t, _rec)
+check("a fully filled step reaches verified",
+      human_verify.fact_states(_rows2, exp_all)[_s1["fact_id"]]
+      == human_verify.VERIFIED)
+check("an untouched fact reports NOT_TRANSCRIBED",
+      human_verify.fact_states([], exp_all)[_s1["fact_id"]]
+      == human_verify.NOT_TRANSCRIBED)
+
+try:
+    human_crops.self_test()
+    check("crop self-tests pass", True)
+except AssertionError as exc:
+    check("crop self-tests pass", False, str(exc))
+
+check("one crop pair for each of the 27 repaired steps",
+      len(human_crops.repaired_steps(recs)) == 27)
+
+print("\n  PARTIAL / CROP MUTATION TABLE")
+cmuts = []
+
+
+def cmut(name, caught):
+    cmuts.append((name, caught))
+    print(f"    {name:42} {'caught' if caught else '*** NOT CAUGHT ***':20} "
+          f"{', '.join(caught) or '-'}")
+
+
+cmut("one_field_filled_one_blank",
+     ["fact_states -> PARTIAL"]
+     if _states[_s1["fact_id"]] == human_verify.PARTIAL else [])
+
+_entries = [{"fact_id": s["fact_id"], "field": "cause", "code": s["code"],
+             "step": s["step"], "manual_page": s["prov"].get("manual_page"),
+             "pdf_page": s["prov"].get("pdf_page"), "image": "x.png",
+             "fallback": False} for s in human_crops.repaired_steps(recs)]
+_page = human_crops.render_index(_entries)
+_leaks = []
+for s in human_crops.repaired_steps(recs):
+    stored = next(x for x in recs[s["code"]]["steps"]
+                  if x["step"] == s["step"]).get("cause") or ""
+    if len(stored) > 12 and stored in _page:
+        _leaks.append(s["fact_id"])
+cmut("crop_index_contains_stored_text",
+     ["render_index carries no extracted string"] if not _leaks else [])
+
+import tempfile as _tf, shutil as _sh                      # noqa: E402
+_d = _tf.mkdtemp()
+try:
+    os.makedirs(os.path.join(_d, "CA451"))
+    with open(os.path.join(_d, "CA451", "CA451.json"), "w", encoding="utf-8") as f:
+        json.dump(human_kit.blank_template("CA451", _rec), f)
+    human_crops.write_into_templates(
+        {f"{_s1['fact_id']}|cause": "typed"}, kit_dir=_d)
+    with open(os.path.join(_d, "CA451", "CA451.json"), encoding="utf-8") as f:
+        _back = json.load(f)
+    _slot = next(x for x in _back["steps"] if x["step"] == _s1["step"])
+    cmut("writer_fills_a_field_it_was_not_given",
+         ["writer left procedure empty"]
+         if _slot["cause"] == "typed" and _slot["procedure"] == "" else [])
+finally:
+    _sh.rmtree(_d, ignore_errors=True)
+
+_n_part = sum(1 for v in _states.values() if v == human_verify.PARTIAL)
+cmut("partial_counted_as_verified_in_progress",
+     ["verified and PARTIAL are separate counters"]
+     if _n_part >= 1 and _s1["fact_id"] not in
+     human_verify.verified_fact_ids(_rows, exp_all) else [])
+
+check("every PARTIAL/crop fault is caught", all(c2 for _, c2 in cmuts),
+      f"uncaught: {[n for n, c2 in cmuts if not c2]}")
+
+
 print("\n" + "=" * 62)
 print(f"module {timings.get('module', 0):.1f}s  "
       f"pipeline {timings.get('pipeline', 0):.1f}s  e2e {timings.get('e2e', 0):.1f}s")

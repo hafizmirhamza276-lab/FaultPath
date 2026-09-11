@@ -47,3 +47,6 @@ env/
 # templates and manifest are tracked; the PNGs are regenerable from the
 # PDF and are copyrighted source material.
 reports/transcription/**/*.png
+
+# Crop images: rendered Komatsu page regions, regenerable from the PDF.
+reports/transcription/crops/*.png
