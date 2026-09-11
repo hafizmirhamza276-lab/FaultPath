@@ -4,3 +4,7 @@
 # (see CLAUDE.md).
 pdfplumber==0.11.10
 pymupdf==1.28.2
+
+# Agent graph. Pinned: the graph is deterministic, so its runtime must be too.
+langgraph==1.2.11
+pydantic==2.13.5
