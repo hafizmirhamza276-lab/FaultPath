@@ -302,8 +302,42 @@ def write_unresolved(result: dict, out_path: Optional[str] = None) -> dict:
     counts = {}
     for i in items:
         counts[i["classification"]] = counts.get(i["classification"], 0) + 1
-    payload = {"total_unresolved": len(items), "by_classification": counts,
-               "items": sorted(items, key=lambda x: (x["classification"], x["fact_id"]))}
+    payload = {
+        "total_unresolved": len(items),
+        "by_classification": counts,
+        # RECORDED, NOT QUIETLY DROPPED. The human round was designed, the kit
+        # was built (27 steps, 54 crop boxes, ~1-2 hours of work) and it was
+        # never executed. A gap that stops being visible becomes an unknown gap.
+        "human_verification": {
+            "status": "NOT PERFORMED",
+            "human_verified_facts": 0,
+            "detail": (
+                "The 27 machine-repaired column-split steps have no human "
+                "verification. The transcription round was built and not run; "
+                "human_verified is 0 across all 3,305 facts."),
+            "what_is_still_covered": (
+                "3,266 of 3,305 facts are resolver-verified against the PDF. "
+                "All 872 measurement criteria and all 1,437 branch outcomes "
+                "resolve exactly, so every safety-critical value has external "
+                "confirmation from the source document."),
+            "what_remains_unverified": (
+                "Reassembled cause text on 27 steps: the extractor recovered a "
+                "step number typeset inside the cause column and kept the "
+                "mangled fragments. No person has read those pages."),
+            "supporting_evidence": (
+                "The crop work produced independent support for the extractor's "
+                "behaviour on these tables: glyphs overflow their declared "
+                "column by up to 36pt (measured on page 784, cause text "
+                "x0=70.4..164.4 against a declared cell of 106.3..181.3), and "
+                "pdfplumber and PyMuPDF agree on what lies inside the "
+                "rectangle. That is consistent with the extractor reading the "
+                "tables correctly. It is NOT a substitute for a human reading, "
+                "because both libraries share the same notion of a cell."),
+            "to_close_it": (
+                "reports/transcription/crops/index.html -- 54 boxes, "
+                "0.9-1.8 hours. pipeline/human_verify.py compares the result."),
+        },
+        "items": sorted(items, key=lambda x: (x["classification"], x["fact_id"]))}
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2, ensure_ascii=False)

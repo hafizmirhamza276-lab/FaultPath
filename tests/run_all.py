@@ -35,6 +35,7 @@ LEVELS = [
     ("agent", "tests/test_agent_replay.py"),
     ("module", "tests/test_api_module.py"),
     ("pipeline+e2e", "tests/test_api_e2e.py"),
+    ("orchestrator", "tests/test_orchestrator.py"),
 ]
 
 

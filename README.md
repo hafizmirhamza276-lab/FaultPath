@@ -730,3 +730,48 @@ The consequence is worth being explicit about: **`cause` fidelity gap is no
 longer a usable generalisation signal under this split.** It is dominated by
 where the known-unresolvable facts sit. The gated kinds — `measurement` and
 `branch`, both 0.0000 on both splits — and the agent metrics remain meaningful.
+
+---
+
+## Human verification: NOT PERFORMED
+
+**`human_verified` is 0 across all 3,305 facts.** The transcription round was
+designed and the kit was built — 27 machine-repaired steps, 54 crop boxes,
+roughly 1–2 hours of work — and it was never executed. Recording that here
+rather than letting it disappear: a known gap that stops being visible becomes
+an unknown gap.
+
+### What is still covered
+
+**3,266 of 3,305 facts are resolver-verified against the PDF.** All **872**
+measurement criteria and all **1,437** branch outcomes resolve exactly — every
+safety-critical value has external confirmation from the source document, found
+on the page it is cited to.
+
+### What remains unverified
+
+Reassembled cause text on **27 steps**. The extractor recovered a step number
+typeset inside the cause column and kept the mangled fragments; no person has
+read those pages. These are `cause` strings only — no measurement, no branch,
+no criterion.
+
+### Supporting evidence, and its limit
+
+The crop work produced independent support for the extractor's behaviour on
+these tables. Glyphs overflow their declared column by up to **36pt** — measured
+on page 784, where the cause text runs `x0=70.4..164.4` against a declared cell
+of `106.3..181.3` — and **pdfplumber and PyMuPDF agree on what lies inside the
+rectangle**. That is consistent with the extractor having read the tables
+correctly.
+
+It is **not a substitute for a human reading.** Both libraries share the same
+notion of a cell, so a misreading rooted in that shared notion is invisible to
+both. That is precisely the class of error the human round existed to catch.
+
+### To close it
+
+`reports/transcription/crops/index.html` — 54 boxes, 0.9–1.8 hours.
+`pipeline/human_verify.py` compares the result and sets `human_verified` only on
+full agreement.
+
+Every orchestrator run prints `human_verified: 0` in its summary.

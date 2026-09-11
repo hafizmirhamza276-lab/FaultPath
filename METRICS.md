@@ -278,3 +278,28 @@ metrics can tell you:
    behaviour. Adding a second manual requires regenerating the golden set and
    re-baselining, because cross-model confusion is a failure mode that cannot
    appear in a single-model test set.
+
+---
+
+## Verification status of the ground truth
+
+Every metric in this document is computed against `golden/`. How far `golden/`
+itself has been verified against the source PDF bounds what any of them can
+claim.
+
+| status | facts | what it means |
+|---|---:|---|
+| `resolver_verified` | 3,266 | text found on the cited PDF page by `eval/citations.py` |
+| `human_verified` | **0** | a person read the page — **never performed** |
+| `unverified` | 39 | 12 known limitations + 27 machine-repaired causes |
+
+**The human round was built and not run.** `numeric_exactness`,
+`fabricated_values` and `citation_accuracy` all rest on facts that resolve
+exactly — 872/872 measurements, 1437/1437 branches — so those figures carry
+external confirmation. What has no independent reading is reassembled cause
+text on 27 steps, which feeds `content_recall` and `path_correctness` but no
+numeric metric.
+
+The resolver and the extractor share normalisation rules, so a misreading common
+to both is invisible to the resolver. Quoting `resolver_verified` as if it were
+independent human confirmation would overstate it.

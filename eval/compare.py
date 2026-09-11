@@ -134,6 +134,91 @@ def compare(a, b):
     return rows
 
 
+def is_orchestrator(rec):
+    return rec.get("kind") == "orchestrator"
+
+
+def stage_diff(a, b):
+    """Stage-by-stage diff of two orchestrator runs."""
+    sa = {s["stage"]: s for s in a.get("stages", [])}
+    sb = {s["stage"]: s for s in b.get("stages", [])}
+    rows = []
+    for name in sorted(set(sa) | set(sb)):
+        x, y = sa.get(name), sb.get(name)
+        rows.append({
+            "stage": name,
+            "a": x["status"] if x else "ABSENT",
+            "b": y["status"] if y else "ABSENT",
+            "changed": (x or {}).get("status") != (y or {}).get("status"),
+            "a_secs": (x or {}).get("seconds"), "b_secs": (y or {}).get("seconds"),
+            "skip_reason": (y or {}).get("skip_reason"),
+        })
+    return rows
+
+
+def orchestrator_gate_diff(a, b):
+    """Every gate, keyed by stage.gate, with its value on each side."""
+    ga = {f"{g['stage']}.{g['gate']}": g for g in a.get("gates", [])}
+    gb = {f"{g['stage']}.{g['gate']}": g for g in b.get("gates", [])}
+    rows = []
+    for k in sorted(set(ga) | set(gb)):
+        x, y = ga.get(k), gb.get(k)
+        av = x["value"] if x else None
+        bv = y["value"] if y else None
+        rows.append({"gate": k, "a": av, "b": bv,
+                     "a_status": (x or {}).get("status", "ABSENT"),
+                     "b_status": (y or {}).get("status", "ABSENT"),
+                     "moved": av != bv})
+    return rows
+
+
+def report_orchestrator(a, b):
+    print("=" * 72)
+    print(f"A  {a['run_id']}  {(a['git']['sha'] or '?')[:8]}"
+          f"{' DIRTY' if a['git']['dirty'] else ''}")
+    print(f"B  {b['run_id']}  {(b['git']['sha'] or '?')[:8]}"
+          f"{' DIRTY' if b['git']['dirty'] else ''}")
+    print("=" * 72)
+
+    print(f"\n{'stage':14}{'A':10}{'B':10}  note")
+    for r in stage_diff(a, b):
+        note = "CHANGED" if r["changed"] else ""
+        if r["skip_reason"]:
+            note = (note + "  " if note else "") + r["skip_reason"]
+        print(f"{r['stage']:14}{r['a']:10}{r['b']:10}  {note}")
+
+    moved = [g for g in orchestrator_gate_diff(a, b) if g["moved"]]
+    print(f"\nGATES THAT MOVED: {len(moved)}")
+    for g in moved:
+        print(f"  {g['gate']:40} {g['a']} -> {g['b']}  "
+              f"({g['a_status']} -> {g['b_status']})")
+    broke = [g for g in orchestrator_gate_diff(a, b)
+             if g["b_status"] == "FAIL" and g["a_status"] != "FAIL"]
+    if broke:
+        print("\nGATES BROKEN")
+        for g in broke:
+            print(f"  {g['gate']}: {g['a']} -> {g['b']}  <-- GATE BROKEN")
+
+    ka, kb = a.get("known_gaps", {}), b.get("known_gaps", {})
+    if ka != kb:
+        print("\nKNOWN GAPS CHANGED")
+        for k in sorted(set(ka) | set(kb)):
+            if ka.get(k) != kb.get(k):
+                print(f"  {k}: {ka.get(k)} -> {kb.get(k)}")
+    else:
+        print(f"\nknown gaps unchanged (human_verified: "
+              f"{kb.get('human_verified')})")
+
+    rc_a, rc_b = a.get("regression_counts", {}), b.get("regression_counts", {})
+    if rc_a != rc_b:
+        print("\nREGRESSION COUNTS MOVED -- investigate before accepting")
+        for k in sorted(set(rc_a) | set(rc_b)):
+            if rc_a.get(k) != rc_b.get(k):
+                print(f"  {k}: {rc_a.get(k)} -> {rc_b.get(k)}")
+
+    return 1 if (broke or rc_a != rc_b) else 0
+
+
 def gate_diff(a, b):
     ga = {g["gate"]: g["status"] for g in a.get("gates", [])}
     gb = {g["gate"]: g["status"] for g in b.get("gates", [])}
@@ -198,6 +283,16 @@ def main():
         ap.error("need two runs (path, run_id or label), or --list")
 
     a, b = resolve_run(args.run_a), resolve_run(args.run_b)
+
+    # Orchestrator runs have their own shape: stages and gates, not per-case
+    # rows. Diffing them through the case-level path would report every stage
+    # as an added metric.
+    if is_orchestrator(a) or is_orchestrator(b):
+        if not (is_orchestrator(a) and is_orchestrator(b)):
+            print("REFUSING TO COMPARE: one run is an orchestrator run and the "
+                  "other is not. They record different things.")
+            return 2
+        return report_orchestrator(a, b)
 
     fatal = check_comparable(a, b)
     if fatal:
