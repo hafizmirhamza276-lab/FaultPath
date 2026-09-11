@@ -147,3 +147,80 @@ rather than a detail.
 
 **Fidelity has NOT been run.** A measurement gate at 100% over a denominator
 still missing 18 rows is the same failure as before, one third the size.
+
+---
+
+## Resolution — position replaced by structural evidence
+
+The positional condition was withdrawn. Neither reading above was taken: both
+argue about *how near* the fragment is, and neither answers the question that
+matters, which is whether it is the same table. Conditions 3 and 4 answer that
+directly, so proximity is no longer consulted at all.
+
+The four conditions now required for `proven_continuation`:
+
+1. the previous page's last table classified as a measurement table
+2. the fragment has no fewer columns than it
+3. the fragment carries no header row of its own — no `Item`, no
+   `Standard value`, checked over every row rather than just the first
+4. its column rules land where the predecessor's do
+
+### The tolerance, and why it is not tuned
+
+`GEOMETRY_TOLERANCE_PT = 1.0`, and **the comparison is not of absolute x**.
+Measured on 1331→1332:
+
+```
+p1331 last table   157.4  197.4  264.0  330.7  397.3
+p1332 t1           143.3  183.2  249.9  316.5  383.1
+                   -14.1  -14.2  -14.1  -14.2  -14.2
+```
+
+Every continuation sits **14.20pt** from its predecessor, and 1400→1401 sits
+14.20pt in the *other* direction. That is the recto/verso gutter margin — a
+property of the page, not of the table. Comparing absolute x would have rejected
+all 18 rows. The offset is therefore measured from the left edge and removed,
+after which the rules agree to **0.1pt**.
+
+1.0pt is 10× the observed agreement and 14× tighter than the margin shift it
+must not absorb. Both bounds were tested against the real corpus:
+
+| tolerance | result |
+|---|---|
+| 0.05pt | self-test fails — *a genuine continuation was rejected* |
+| **1.0pt** | 274 measurements, 0 unclassified tables |
+| 40.0pt | self-test fails — *a boundary the predecessor does not draw was accepted* |
+
+A rejected case, from the same page as an accepted one — `p1332 t0`, a cause
+table at `42.5 64.4 137.4 389.0 414.6 538.6`: 6 columns against 5, and no shift
+aligns those rules with a measurement table's.
+
+### What condition 2 cost, and why it was loosened rather than kept
+
+Conditions 3 and 4 alone recovered 6 of the 18 rows. The other 12 were still
+rejected, and **for a different reason than the one being fixed**: three of these
+tables end their page on a header-only stub whose `Measurement position` heading
+is a single **merged** cell spanning two columns —
+
+```
+p1332 t2 (header stub)   143.3  183.2         316.5  383.1     widths 39.9 133.3 66.6
+p1333 t1 (its own body)  157.4  197.4  264.0  330.7  397.3     widths 40.0 66.6 66.7 66.6
+                                        ^ 133.3 = 66.6 + 66.7
+```
+
+Same table; one merged heading cell draws one fewer rule. Equality of column
+count would discard a table on that alone, so condition 2 became *no fewer*, and
+condition 4 tests **subset alignment**: every rule the predecessor draws must
+reappear in the fragment and both outer edges must coincide, while the fragment
+may carry interior rules the predecessor merged away. Shifting one stub boundary
+by 16pt breaks it, which the self-test asserts.
+
+### Confirmed
+
+**All 18 rows recovered.** H-Mode measurements **256 → 274**, the predicted
+figure. **Unknown tables: 0** — `p1332 t1`, `p1333 t1`, `p1344 t1`, `p1345 t1`,
+`p1401 t1`, `p1402 t1` all classify, none by position. The 8 empty phantom
+tables on 1319–1345 remain skipped and logged as before.
+
+Fidelity still has not been run; that is the next gate, now over a complete
+denominator.

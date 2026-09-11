@@ -94,7 +94,69 @@ def _strip_leading_blank_rows(tbl):
     return tbl[i:], i
 
 
-def symptom_table_kind(tbl, prev=None, is_first_on_page=False):
+# Column boundaries of a continuation align with its predecessor's to within
+# 0.1pt once the page margin is removed. 1.0pt is therefore generous against
+# rendering noise while being 14x tighter than the recto/verso margin shift and
+# orders of magnitude looser than nothing -- a genuinely different table differs
+# by tens of points and usually in column count too. Chosen from the observed
+# spread, not tuned to make the answer come out right.
+GEOMETRY_TOLERANCE_PT = 1.0
+
+
+def column_widths(boundaries):
+    """Widths between successive boundaries.
+
+    Compared instead of absolute x because odd and even pages carry mirrored
+    gutter margins: every continuation in this document sits exactly 14.20pt
+    from its predecessor. Absolute alignment would reject all of them, and that
+    shift is a property of the page, not of the table. Widths are invariant --
+    one table drawn across two pages keeps its columns.
+    """
+    return [round(b - a, 2) for a, b in zip(boundaries, boundaries[1:])]
+
+
+def geometry_matches(frag_bounds, prev_bounds, tol=GEOMETRY_TOLERANCE_PT):
+    """True when the fragment's rules sit where the predecessor's do.
+
+    Alignment is tested as a SUBSET, not an equality: every boundary the
+    predecessor draws must reappear in the fragment, and both outer edges must
+    coincide. The fragment may carry extra interior boundaries the predecessor
+    does not, because a merged cell draws fewer rules over the same span --
+    three of these tables end a page on a header row whose "Measurement
+    position" cell spans two columns (width 133.3 = 66.6 + 66.7), so the stub
+    reports 4 boundaries where its own body has 5. Requiring equality would
+    reject a table on the strength of one merged heading cell.
+
+    The offset is measured from the left edge rather than assumed to be zero:
+    odd and even pages carry mirrored gutter margins, and every continuation in
+    this document sits exactly 14.20pt from its predecessor. That shift belongs
+    to the page, not the table.
+    """
+    if len(prev_bounds) < 2 or len(frag_bounds) < 2:
+        return False, None
+    if len(frag_bounds) < len(prev_bounds):
+        return False, None            # columns were lost, not merged
+    shift = frag_bounds[0] - prev_bounds[0]
+    worst = abs((prev_bounds[-1] + shift) - frag_bounds[-1])   # right edge
+    for b in prev_bounds[1:-1]:
+        worst = max(worst, min(abs((b + shift) - f) for f in frag_bounds))
+    return worst <= tol, round(worst, 2)
+
+
+def has_own_header(tbl):
+    """A fragment carrying its own header row is a NEW table, not a
+    continuation. Checked over every row, not just the first."""
+    for row in tbl:
+        labels = [norm_label(c or "") for c in row]
+        if "item" in labels:
+            return True
+        for c in row:
+            if c and "standard value" in clean(c).lower():
+                return True
+    return False
+
+
+def symptom_table_kind(tbl, prev=None, is_first_on_page=False, bounds=None):
     """Symptom-local classifier. Returns (kind, admitting_rule).
 
     table_kind() is NOT modified: Section 40's 174 codes, 996 steps and 872
@@ -109,13 +171,21 @@ def symptom_table_kind(tbl, prev=None, is_first_on_page=False):
     a) BLANK LEADING ROW -- scan past leading all-blank rows and classify the
        real header. Low risk: the header is still present and still read.
 
-    b) HEADER-LESS CONTINUATION -- PROVEN, never assumed. A classifier that
-       accepts header-less fragments will accept things that are not
-       measurement tables, so all three must hold:
-         - the previous page's last table was a measurement table
-         - the column count matches it
-         - this is the first table on its page
-       `prev` is {"kind": ..., "cols": ...} for the previous page's last table.
+    b) HEADER-LESS CONTINUATION -- PROVEN, never assumed. All four must hold:
+         1. the previous page's last table was a measurement table
+         2. it has no fewer columns than the predecessor (a merged heading
+            cell draws fewer rules over the same span, so equality would
+            reject a table over one merged cell -- see geometry_matches)
+         3. the fragment carries NO header row of its own
+         4. its column widths match the predecessor's within
+            GEOMETRY_TOLERANCE_PT
+       `prev` is {"kind", "cols", "bounds"} for the previous page's last table.
+
+       Position was the original third condition and has been replaced. Cause
+       tables also cross pages, so a measurement continuation always sits at t1
+       and the condition could not be true anywhere in this corpus. Conditions
+       3 and 4 answer the real question -- is this the same table -- instead of
+       "is it nearby".
 
     The admitting rule travels with the result so a wrong admission is
     traceable rather than invisible.
@@ -131,9 +201,11 @@ def symptom_table_kind(tbl, prev=None, is_first_on_page=False):
             return k, f"blank_leading_row(+{dropped})"
 
     cols = max((len(r) for r in tbl), default=0)
-    if (reduced and prev and prev.get("kind") == "measurement"
-            and prev.get("cols") == cols and is_first_on_page):
-        return "measurement", "proven_continuation"
+    if reduced and prev and prev.get("kind") == "measurement" \
+            and cols >= prev.get("cols", 0) and not has_own_header(tbl):
+        ok, delta = geometry_matches(bounds or [], prev.get("bounds") or [])
+        if ok:
+            return "measurement", "proven_continuation(geom_delta=%.2fpt)" % delta
 
     return "unknown", "unclassified"
 
@@ -258,9 +330,13 @@ def extract_entry(pdf, sid, title, start, end, mode, section40_codes):
         if mp and mp not in rec["manual_pages"]:
             rec["manual_pages"].append(mp)
 
-        tables = page.extract_tables()
+        tables = []
+        for ft in page.find_tables():
+            xs = sorted({round(c[0], 1) for r in ft.rows for c in r.cells if c}
+                        | {round(ft.bbox[2], 1)})
+            tables.append((ft.extract(), xs))
         page_last = None
-        for ti, tbl in enumerate(tables):
+        for ti, (tbl, tbounds) in enumerate(tables):
             prov = {"manual_page": mp, "pdf_page": pno, "table_index": ti}
             flat_text = " ".join(clean(c) for r in tbl for c in r if c)
 
@@ -281,9 +357,11 @@ def extract_entry(pdf, sid, title, start, end, mode, section40_codes):
                 continue
 
             kind, rule = symptom_table_kind(
-                tbl, prev=prev_last, is_first_on_page=(ti == 0))
+                tbl, prev=prev_last, is_first_on_page=(ti == 0),
+                bounds=tbounds)
             page_last = {"kind": kind,
-                         "cols": max((len(r) for r in tbl), default=0)}
+                         "cols": max((len(r) for r in tbl), default=0),
+                         "bounds": tbounds}
             if kind == "header_a":
                 rec.update({k: v for k, v in parse_header_a(tbl).items() if v})
             elif kind == "causes":
@@ -405,19 +483,60 @@ def self_test() -> None:
     assert (k, r) == ("measurement", "blank_leading_row(+1)"),         f"blank-leading-row measurement table not admitted: {(k, r)}"
 
     frag = [["EPC Current", "Monitoring code: 08000", "", "0 mA"]]
-    good_prev = {"kind": "measurement", "cols": 4}
-    k, r = symptom_table_kind(frag, prev=good_prev, is_first_on_page=True)
-    assert (k, r) == ("measurement", "proven_continuation"),         f"proven continuation not admitted: {(k, r)}"
+    PREV_B = [157.4, 197.4, 264.0, 330.7, 397.3]     # observed predecessor
+    FRAG_B = [143.3, 183.2, 249.9, 316.5, 383.1]     # same table, 14.20pt over
+    CAUSE_B = [42.5, 64.4, 137.4, 389.0, 414.6]      # a cause table's shape
+    good_prev = {"kind": "measurement", "cols": 4, "bounds": PREV_B}
 
-    # every rejection case: all three conditions are required
-    assert symptom_table_kind(frag, prev={"kind": "causes", "cols": 4},
-                              is_first_on_page=True)[0] == "unknown",         "continuation admitted whose predecessor was not a measurement table"
-    assert symptom_table_kind(frag, prev={"kind": "measurement", "cols": 5},
-                              is_first_on_page=True)[0] == "unknown",         "continuation admitted with a mismatched column count"
+    k, r = symptom_table_kind(frag, prev=good_prev, bounds=FRAG_B)
+    assert k == "measurement" and r.startswith("proven_continuation"), \
+        "a genuine continuation was rejected: %s" % ((k, r),)
+
+    # every rejection case: all four conditions are required
+    assert symptom_table_kind(frag, prev={"kind": "causes", "cols": 4,
+                                          "bounds": PREV_B},
+                              bounds=FRAG_B)[0] == "unknown", \
+        "continuation admitted whose predecessor was not a measurement table"
+    assert symptom_table_kind(frag, prev={"kind": "measurement", "cols": 5,
+                                          "bounds": PREV_B},
+                              bounds=FRAG_B)[0] == "unknown", \
+        "continuation admitted that had lost a column"
+
+    # a predecessor that is a header-only stub: its "Measurement position"
+    # heading is one merged cell, so it draws 4 rules where its body has 5.
+    # Same table, and the outer edges and every surviving rule still line up.
+    STUB_B = [143.3, 183.2, 316.5, 383.1]
+    assert geometry_matches(FRAG_B, STUB_B)[0], \
+        "a merged heading cell was mistaken for a different table"
+    assert symptom_table_kind(frag, prev={"kind": "measurement", "cols": 3,
+                                          "bounds": STUB_B},
+                              bounds=FRAG_B)[0] == "measurement", \
+        "continuation of a merged-header stub rejected on column count"
+    # ... but the subset must be genuine: shifting one rule breaks it
+    assert not geometry_matches(FRAG_B, [143.3, 183.2, 300.0, 383.1])[0], \
+        "a boundary the predecessor does not draw was accepted anyway"
+    assert symptom_table_kind(frag, prev=None, bounds=FRAG_B)[0] == "unknown", \
+        "continuation admitted with no predecessor at all"
+
+    # condition 3 -- a fragment carrying its own header is a NEW table
+    own_hdr = [["Item", "Measurement position", "", "Standard value"],
+               ["EPC Current", "Monitoring code: 08000", "", "0 mA"]]
+    assert has_own_header(own_hdr), "own-header detector missed an Item row"
+    assert not has_own_header(frag), "own-header detector fired on a fragment"
+    assert not symptom_table_kind(
+        own_hdr, prev=good_prev, bounds=FRAG_B)[1].startswith(
+            "proven_continuation"), \
+        "a fragment carrying its own header was admitted as a continuation"
+
+    # condition 4 -- geometry, compared after the margin shift is removed
+    ok, d = geometry_matches(FRAG_B, PREV_B)
+    assert ok and d <= GEOMETRY_TOLERANCE_PT, \
+        "observed continuation geometry delta %s exceeds the tolerance" % d
+    assert not geometry_matches(CAUSE_B, PREV_B)[0], \
+        "tolerance is wide enough to admit a genuinely different table"
     assert symptom_table_kind(frag, prev=good_prev,
-                              is_first_on_page=False)[0] == "unknown",         "continuation admitted that was not the first table on its page"
-    assert symptom_table_kind(frag, prev=None,
-                              is_first_on_page=True)[0] == "unknown",         "continuation admitted with no predecessor at all"
+                              bounds=CAUSE_B)[0] == "unknown", \
+        "a fragment with mismatched column geometry was admitted"
 
     cause_t = [["No.", "Cause", "Point to check", "Remedy"]]
     assert symptom_table_kind(cause_t)[0] == "causes",         "symptom classifier mangles a cause table"

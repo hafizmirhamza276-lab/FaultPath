@@ -66,7 +66,7 @@
     "symptom": "Arm Speed or Power is Low",
     "manual_page": "40-787",
     "n_steps": 18,
-    "n_measurements": 14,
+    "n_measurements": 20,
     "n_pointers": 2
   },
   {
@@ -76,7 +76,7 @@
     "symptom": "Bucket Speed or Power is Low",
     "manual_page": "40-799",
     "n_steps": 14,
-    "n_measurements": 13,
+    "n_measurements": 19,
     "n_pointers": 2
   },
   {
@@ -216,7 +216,7 @@
     "symptom": "Machine is Not Steered Well or Steering Power is Low",
     "manual_page": "40-854",
     "n_steps": 28,
-    "n_measurements": 16,
+    "n_measurements": 22,
     "n_pointers": 28
   },
   {

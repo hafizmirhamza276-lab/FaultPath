@@ -737,6 +737,90 @@
       "criteria_kind": "numeric"
     },
     {
+      "quantity": "EPC Current",
+      "point": "Monitoring code: 08000 / • Control lever: All levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0 mA",
+      "provenance": {
+        "manual_page": "40-859",
+        "pdf_page": 1401,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "admitted_by": "proven_continuation(geom_delta=0.10pt)",
+      "fact_id": "HM22:0:meas:8",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "EPC Current",
+      "point": "• Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "800 to 1000 mA",
+      "provenance": {
+        "manual_page": "40-859",
+        "pdf_page": 1401,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "admitted_by": "proven_continuation(geom_delta=0.10pt)",
+      "fact_id": "HM22:0:meas:9",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "LS- EPC output pressure",
+      "point": "Oil pressure sensor mounting port (PP1S) of front pump / • Control lever: All levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0 to 0.49 MPa {0 to 5 kgf/ cm2}",
+      "provenance": {
+        "manual_page": "40-860",
+        "pdf_page": 1402,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "admitted_by": "proven_continuation(geom_delta=0.10pt)",
+      "fact_id": "HM22:0:meas:10",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "LS- EPC output pressure",
+      "point": "• Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-860",
+        "pdf_page": 1402,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "admitted_by": "proven_continuation(geom_delta=0.10pt)",
+      "fact_id": "HM22:0:meas:11",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "EPC Current",
+      "point": "Monitoring code: 08001 / • Control lever: All levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0 mA",
+      "provenance": {
+        "manual_page": "40-860",
+        "pdf_page": 1402,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "admitted_by": "proven_continuation(geom_delta=0.10pt)",
+      "fact_id": "HM22:0:meas:12",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "EPC Current",
+      "point": "• Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "800 to 1000 mA",
+      "provenance": {
+        "manual_page": "40-860",
+        "pdf_page": 1402,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "admitted_by": "proven_continuation(geom_delta=0.10pt)",
+      "fact_id": "HM22:0:meas:13",
+      "criteria_kind": "numeric"
+    },
+    {
       "quantity": "Main relief pressure",
       "point": "Front pump discharged pressure pickup port / • Fuel control dial at Hi • Control lever: R.H. travel forward relief • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "36.2 to 40.2 MPa {370 to 410 kgf/cm2}",
@@ -747,7 +831,7 @@
         "row_index": 1
       },
       "admitted_by": "section40_classifier",
-      "fact_id": "HM22:0:meas:8",
+      "fact_id": "HM22:0:meas:14",
       "criteria_kind": "numeric"
     },
     {
@@ -761,7 +845,7 @@
         "row_index": 2
       },
       "admitted_by": "section40_classifier",
-      "fact_id": "HM22:0:meas:9",
+      "fact_id": "HM22:0:meas:15",
       "criteria_kind": "numeric"
     },
     {
@@ -775,7 +859,7 @@
         "row_index": 1
       },
       "admitted_by": "section40_classifier",
-      "fact_id": "HM22:0:meas:10",
+      "fact_id": "HM22:0:meas:16",
       "criteria_kind": "numeric"
     },
     {
@@ -789,7 +873,7 @@
         "row_index": 1
       },
       "admitted_by": "section40_classifier",
-      "fact_id": "HM22:0:meas:11",
+      "fact_id": "HM22:0:meas:17",
       "criteria_kind": "numeric"
     },
     {
@@ -803,7 +887,7 @@
         "row_index": 2
       },
       "admitted_by": "section40_classifier",
-      "fact_id": "HM22:0:meas:12",
+      "fact_id": "HM22:0:meas:18",
       "criteria_kind": "numeric"
     },
     {
@@ -817,7 +901,7 @@
         "row_index": 1
       },
       "admitted_by": "section40_classifier",
-      "fact_id": "HM22:0:meas:13",
+      "fact_id": "HM22:0:meas:19",
       "criteria_kind": "numeric"
     },
     {
@@ -831,7 +915,7 @@
         "row_index": 1
       },
       "admitted_by": "section40_classifier",
-      "fact_id": "HM22:0:meas:14",
+      "fact_id": "HM22:0:meas:20",
       "criteria_kind": "numeric"
     },
     {
@@ -845,7 +929,7 @@
         "row_index": 1
       },
       "admitted_by": "section40_classifier",
-      "fact_id": "HM22:0:meas:15",
+      "fact_id": "HM22:0:meas:21",
       "criteria_kind": "numeric"
     }
   ],
@@ -1132,24 +1216,5 @@
     }
   ],
   "refs_failure_codes": [],
-  "skipped_tables": [
-    {
-      "manual_page": "40-859",
-      "pdf_page": 1401,
-      "table_index": 1,
-      "reason": "table_kind=unknown",
-      "rule": "unclassified",
-      "first_cell": "",
-      "shape": "3x4"
-    },
-    {
-      "manual_page": "40-860",
-      "pdf_page": 1402,
-      "table_index": 1,
-      "reason": "table_kind=unknown",
-      "rule": "unclassified",
-      "first_cell": "",
-      "shape": "5x4"
-    }
-  ]
+  "skipped_tables": []
 }
