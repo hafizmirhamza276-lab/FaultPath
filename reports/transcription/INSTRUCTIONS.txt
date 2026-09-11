@@ -1,0 +1,64 @@
+TRANSCRIBING A KOMATSU FAILURE CODE
+===================================
+
+You are creating an independent record of what the manual page says. The machine
+has already read these pages. You are NOT checking its work -- you are not shown
+its work, on purpose. Two independent readings that agree are evidence. One
+reading confirmed by a person who could see it is not.
+
+WHAT TO DO
+
+1. Open the PNG pages for the code. They are named <CODE>_p<pdf page>.png.
+2. Open <CODE>.json. It has empty fields and the right number of slots.
+3. Type what you see, field by field:
+
+   cause        the text in the "Cause" column for that step
+   procedure    the text in the procedure / "Diagnosis and treatment" column
+   branch_yes   the whole YES outcome, including the bullet marks
+   branch_no    the whole NO outcome
+   measurements quantity (e.g. Resistance), point (e.g. Between CK06 (1) and
+                (3)), criteria (e.g. Max. 1 ohm) -- exactly as printed
+
+4. Copy CHARACTERS, not meaning. If the page reads "Max. 1 kOhm" type that, not
+   "1000 ohm". Never convert a unit. Never tidy a number.
+
+UNCLEAR TEXT
+
+   If you cannot read a character, type the rest and put the word in the step's
+   "notes" field with a question mark:  notes: "har?ess - last letters unclear"
+   Do NOT guess. An honest gap is useful; a guess is indistinguishable from a
+   reading and quietly becomes ground truth.
+
+   Some words run past the ruled cell border in this manual. If a letter is
+   clearly printed but sits outside the box, INCLUDE it and note it. That is a
+   real property of the document and we want it recorded.
+
+GENUINE SOURCE AMBIGUITY
+
+   If the page itself is contradictory -- two different values for the same
+   thing, a branch with no outcome -- record what you see and describe the
+   conflict in "notes". Do not pick one. The manual does contain conflicts
+   (F@BBZL states two different action levels) and finding more is a result,
+   not a problem.
+
+IF THE TEMPLATE IS WRONG
+
+   The template's step and measurement counts came from the machine's reading.
+   If the page shows more steps than the template has slots, or fewer, set
+   "page_disagrees_with_template": true and describe it in "notes". THE PAGE
+   WINS. A count mismatch is one of the most valuable things you can find --
+   27 steps were once lost exactly this way and nothing noticed for months.
+
+WHAT NOT TO DO
+
+   Do not open golden/, the repo, or any extracted file.
+   Do not ask a language model to read the page or fill a field.
+   Do not copy from another transcriber.
+
+WHEN FINISHED
+
+   Fill transcriber, date and minutes_taken, and save the file in place.
+   minutes_taken is used only to plan future rounds; accuracy matters more
+   than speed and nobody is judged on it.
+
+A worked example of a completed transcription is in example/.

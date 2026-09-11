@@ -42,3 +42,8 @@ env/
 #   golden/          the ground truth -- the whole point of this repo
 #   reports/         audit baseline, tracked so regressions are visible in diff
 # ---------------------------------------------------------------------------
+
+# Transcription kit page images: 22MB of rendered Komatsu pages. The
+# templates and manifest are tracked; the PNGs are regenerable from the
+# PDF and are copyrighted source material.
+reports/transcription/**/*.png

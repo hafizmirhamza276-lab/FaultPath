@@ -1,0 +1,68 @@
+{
+  "code": "DWK8KA",
+  "manual_id": "SEN06867-13",
+  "manual_pages": [
+    "40-532",
+    "40-533"
+  ],
+  "transcriber": "",
+  "date": "",
+  "minutes_taken": null,
+  "_instructions": "Type what the PAGE says. Do not consult any other file. Leave a field empty if the page does not show it. Use the notes field for anything unclear.",
+  "steps": [
+    {
+      "step": 1,
+      "cause": "",
+      "procedure": "",
+      "branch_yes": "",
+      "branch_no": "",
+      "measurements": [],
+      "notes": ""
+    },
+    {
+      "step": 2,
+      "cause": "",
+      "procedure": "",
+      "branch_yes": "",
+      "branch_no": "",
+      "measurements": [],
+      "notes": ""
+    },
+    {
+      "step": 3,
+      "cause": "",
+      "procedure": "",
+      "branch_yes": "",
+      "branch_no": "",
+      "measurements": [],
+      "notes": ""
+    },
+    {
+      "step": 4,
+      "cause": "",
+      "procedure": "",
+      "branch_yes": "",
+      "branch_no": "",
+      "measurements": [],
+      "notes": ""
+    },
+    {
+      "step": 5,
+      "cause": "",
+      "procedure": "",
+      "branch_yes": "",
+      "branch_no": "",
+      "measurements": [],
+      "notes": ""
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    }
+  ],
+  "page_disagrees_with_template": false,
+  "notes": ""
+}

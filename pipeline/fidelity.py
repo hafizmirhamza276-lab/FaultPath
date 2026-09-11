@@ -41,6 +41,96 @@ KNOWN_LIMITATION = "KNOWN_LIMITATION"
 NEEDS_HUMAN = "NEEDS_HUMAN_VERIFICATION"
 DEFECT = "DEFECT"
 
+# ---------------------------------------------------- cell-border overhang
+#
+# NOT a parser defect. The document places a glyph outside its own ruled cell
+# border, and both pdfplumber and PyMuPDF report what lies inside the rectangle
+# -- correctly. Measured: 'f' of "of" starts at x=146.68 against a cell right
+# edge of x=145.90, a 0.79pt overhang.
+#
+# This was recorded as DEFECT in e907cf4 on a wrong diagnosis: the stored cause
+# was compared against get_text() over the WHOLE page, which matched a different
+# occurrence of the same words in a neighbouring branch-outcome cell. Corrected
+# here.
+#
+# Why no fix was applied:
+#   - 8,108 cause-table cells were cross-checked pdfplumber vs PyMuPDF on the
+#     same regions. ZERO cells show character loss by pdfplumber. There is no
+#     parser error to repair.
+#   - Reading the cell through PyMuPDF by bounding box -- the obvious fix --
+#     returns the identical truncated string. It is a no-op.
+#   - Padding the clip by 2.5pt does recover the glyphs, but on a 120-page
+#     sample 178 of 2,520 cells (7.06%) gain text bled in from a neighbour.
+#     That is roughly 570 corrupted cells corpus-wide to repair 9 cause
+#     strings, and it would touch measurement and branch cells, which are
+#     gated at 1.0000.
+#   - Glyph-contiguity reconstruction would be narrower, but it is a heuristic
+#     with unknown behaviour on any future manual, and it would be tuned on the
+#     nine cases it is meant to fix.
+#
+# PRECEDENT. This project records source properties rather than patching around
+# them: F@BBZL's action level conflicts between the summary table and its detail
+# page (audit B1); D8ARKR references CA445, which does not exist in this manual
+# (C1); DY20KA step 7 carries a NO branch with no YES (D4). None was silently
+# corrected. A value the document itself renders ambiguously is surfaced, not
+# guessed at -- a technician who sees the conflict can escalate, one handed a
+# confidently repaired value cannot.
+#
+# No measurement criterion is affected: all 872 resolve exactly.
+CELL_OVERHANG_FACTS = {
+    "CA145:3:step:0": {
+        "stored": "Short circuit in wiring ha ness",
+        "true_text": "Short circuit in wiring harness",
+        "overhang_pt": 2.03, "glyphs_outside": ["-"]},
+    "DGH2KA:4:step:0": {
+        "stored": "Hot short circu in wiring harness",
+        "true_text": "Hot short circuit in wiring harness",
+        "overhang_pt": 2.45, "glyphs_outside": ["i", "t"]},
+    "DGH2KA:5:step:0": {
+        "stored": "Reconfirmatio of inspection item",
+        "true_text": "Reconfirmation of inspection item",
+        "overhang_pt": 0.0, "glyphs_outside": [],
+        "edge": "the lost glyph ends a wrapped line and is clipped at the "
+                "cell's vertical bound rather than its right edge"},
+    "DGH2KA:6:step:0": {
+        "stored": "Confirmation o repair",
+        "true_text": "Confirmation of repair",
+        "overhang_pt": 0.79, "glyphs_outside": ["f"]},
+    "DGH2KB:5:step:0": {
+        "stored": "Reconfirmatio of inspection item",
+        "true_text": "Reconfirmation of inspection item",
+        "overhang_pt": 0.0, "glyphs_outside": [],
+        "edge": "clipped at the cell's vertical bound, as DGH2KA:5"},
+    "DGH2KB:6:step:0": {
+        "stored": "Confirmation o repair",
+        "true_text": "Confirmation of repair",
+        "overhang_pt": 0.79, "glyphs_outside": ["f"]},
+    "DW91KA:3:step:0": {
+        "stored": "Open circuit i wiring harnes",
+        "true_text": "Open circuit in wiring harness",
+        "overhang_pt": 0.89, "glyphs_outside": ["s"]},
+    "DWK8KA:3:step:0": {
+        "stored": "Open circui wiring harn",
+        "true_text": "Open circuit in wiring harness",
+        "overhang_pt": 7.10, "glyphs_outside": ["i", "n", "s"]},
+    "F313KA:3:step:0": {
+        "stored": "Open circuit i wiring harness",
+        "true_text": "Open circuit in wiring harness",
+        "overhang_pt": 0.0, "glyphs_outside": [],
+        "edge": "clipped at the cell's vertical bound"},
+}
+
+OVERHANG_REASON = (
+    "cell-border overhang in the source document, not a parser error. The "
+    "manual renders a glyph outside its own ruled cell boundary; pdfplumber and "
+    "PyMuPDF agree on what lies inside the rectangle. 8,108 cells cross-checked "
+    "with zero character loss by pdfplumber. No fix applied: reading the same "
+    "bbox via PyMuPDF is a no-op, padding the clip corrupts ~7% of cells to "
+    "repair 9 cause strings, and glyph-contiguity is an untested heuristic. "
+    "Recorded as a source property, following the precedent of F@BBZL (B1), "
+    "D8ARKR/CA445 (C1) and DY20KA step 7 (D4)."
+)
+
 
 def load_records(gold: Optional[str] = None) -> Dict[str, dict]:
     recs = {}
@@ -157,6 +247,14 @@ def classify(row: dict) -> dict:
     """
     fid, reason = row["fact_id"], row.get("reason", "")
 
+    if fid in CELL_OVERHANG_FACTS:
+        info = CELL_OVERHANG_FACTS[fid]
+        return {"classification": KNOWN_LIMITATION, "reason": OVERHANG_REASON,
+                "true_text": info["true_text"],
+                "overhang_pt": info["overhang_pt"],
+                "glyphs_outside_cell": info["glyphs_outside"],
+                "edge_note": info.get("edge")}
+
     if row["redirect"]:
         return {"classification": KNOWN_LIMITATION,
                 "reason": "synthetic 'Redirect' label. The extractor emits this "
@@ -190,12 +288,17 @@ def write_unresolved(result: dict, out_path: Optional[str] = None) -> dict:
     items = []
     for r in unresolved:
         c = classify(r)
-        items.append({
+        entry = {
             "fact_id": r["fact_id"], "kind": r["kind"], "code": r["code"],
             "classification": c["classification"], "reason": c["reason"],
             "should_be_on_page": r["manual_page"], "pdf_page": r["pdf_page"],
             "stored_text": r["verbatim"], "resolver_reason": r["reason"],
-        })
+        }
+        for extra in ("true_text", "overhang_pt", "glyphs_outside_cell",
+                      "edge_note"):
+            if c.get(extra) is not None:
+                entry[extra] = c[extra]
+        items.append(entry)
     counts = {}
     for i in items:
         counts[i["classification"]] = counts.get(i["classification"], 0) + 1
@@ -209,6 +312,34 @@ def write_unresolved(result: dict, out_path: Optional[str] = None) -> dict:
 
 # --------------------------------------------------------------- gating
 
+def check_known_overhang(result: dict) -> dict:
+    """The 9 cell-border-overhang facts must STAY unresolvable.
+
+    A known limitation that quietly starts passing is not good news -- it means
+    the extractor's cell-text behaviour changed and nobody decided to change it.
+    Either the text is now being recovered (in which case these entries are
+    stale and the reclassification needs revisiting) or something else moved.
+    Both need a person, so this fails rather than celebrating.
+    """
+    by_id = {r["fact_id"]: r for r in result.get("rows", [])}
+    unexpectedly_resolving, missing = [], []
+    for fid in CELL_OVERHANG_FACTS:
+        row = by_id.get(fid)
+        if row is None:
+            missing.append(fid)
+        elif row.get("resolved") is True:
+            unexpectedly_resolving.append(fid)
+    ok = not unexpectedly_resolving and not missing
+    return {"gate": "known_overhang_stable", "status": "PASS" if ok else "FAIL",
+            "expected_unresolvable": len(CELL_OVERHANG_FACTS),
+            "now_resolving": unexpectedly_resolving,
+            "missing_from_corpus": missing,
+            "detail": ("a recorded known limitation started resolving; the "
+                       "extractor changed and the classification must be "
+                       "re-examined" if unexpectedly_resolving else
+                       "fact ids absent from the corpus" if missing else "")}
+
+
 def gates(result: dict) -> List[dict]:
     out = []
     for kind in GATED_KINDS:
@@ -221,6 +352,11 @@ def gates(result: dict) -> List[dict]:
                 "op": ">=", "threshold": 1.0,
                 "status": "PASS" if result["page_containment"] >= 1.0 else "FAIL",
                 "n": result["total_facts"]})
+    if result.get("rows"):
+        oh = check_known_overhang(result)
+        out.append({"gate": oh["gate"], "value": 1.0 if oh["status"] == "PASS" else 0.0,
+                    "op": ">=", "threshold": 1.0, "status": oh["status"],
+                    "n": oh["expected_unresolvable"], "detail": oh["detail"]})
     return out
 
 

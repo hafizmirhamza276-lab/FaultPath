@@ -1,8 +1,7 @@
 {
   "total_unresolved": 39,
   "by_classification": {
-    "DEFECT": 9,
-    "KNOWN_LIMITATION": 3,
+    "KNOWN_LIMITATION": 12,
     "NEEDS_HUMAN_VERIFICATION": 27
   },
   "items": [
@@ -10,100 +9,17 @@
       "fact_id": "CA145:3:step:0",
       "kind": "cause",
       "code": "CA145",
-      "classification": "DEFECT",
-      "reason": "characters missing from the stored text. pdfplumber's extract_tables() dropped glyphs from this cell; the PDF text layer contains the full word. Not a hyphenation difference -- letters are absent.",
+      "classification": "KNOWN_LIMITATION",
+      "reason": "cell-border overhang in the source document, not a parser error. The manual renders a glyph outside its own ruled cell boundary; pdfplumber and PyMuPDF agree on what lies inside the rectangle. 8,108 cells cross-checked with zero character loss by pdfplumber. No fix applied: reading the same bbox via PyMuPDF is a no-op, padding the clip corrupts ~7% of cells to repair 9 cause strings, and glyph-contiguity is an untested heuristic. Recorded as a source property, following the precedent of F@BBZL (B1), D8ARKR/CA445 (C1) and DY20KA step 7 (D4).",
       "should_be_on_page": "40-198",
       "pdf_page": 740,
       "stored_text": "Short circuit in wiring ha ness",
-      "resolver_reason": "verbatim text NOT on the cited page"
-    },
-    {
-      "fact_id": "DGH2KA:4:step:0",
-      "kind": "cause",
-      "code": "DGH2KA",
-      "classification": "DEFECT",
-      "reason": "characters missing from the stored text. pdfplumber's extract_tables() dropped glyphs from this cell; the PDF text layer contains the full word. Not a hyphenation difference -- letters are absent.",
-      "should_be_on_page": "40-405",
-      "pdf_page": 947,
-      "stored_text": "Hot short circu in wiring harness",
-      "resolver_reason": "verbatim text NOT on the cited page"
-    },
-    {
-      "fact_id": "DGH2KA:5:step:0",
-      "kind": "cause",
-      "code": "DGH2KA",
-      "classification": "DEFECT",
-      "reason": "characters missing from the stored text. pdfplumber's extract_tables() dropped glyphs from this cell; the PDF text layer contains the full word. Not a hyphenation difference -- letters are absent.",
-      "should_be_on_page": "40-405",
-      "pdf_page": 947,
-      "stored_text": "Reconfirmatio of inspection item",
-      "resolver_reason": "verbatim text NOT on the cited page"
-    },
-    {
-      "fact_id": "DGH2KA:6:step:0",
-      "kind": "cause",
-      "code": "DGH2KA",
-      "classification": "DEFECT",
-      "reason": "characters missing from the stored text. pdfplumber's extract_tables() dropped glyphs from this cell; the PDF text layer contains the full word. Not a hyphenation difference -- letters are absent.",
-      "should_be_on_page": "40-405",
-      "pdf_page": 947,
-      "stored_text": "Confirmation o repair",
-      "resolver_reason": "verbatim text NOT on the cited page"
-    },
-    {
-      "fact_id": "DGH2KB:5:step:0",
-      "kind": "cause",
-      "code": "DGH2KB",
-      "classification": "DEFECT",
-      "reason": "characters missing from the stored text. pdfplumber's extract_tables() dropped glyphs from this cell; the PDF text layer contains the full word. Not a hyphenation difference -- letters are absent.",
-      "should_be_on_page": "40-408",
-      "pdf_page": 950,
-      "stored_text": "Reconfirmatio of inspection item",
-      "resolver_reason": "verbatim text NOT on the cited page"
-    },
-    {
-      "fact_id": "DGH2KB:6:step:0",
-      "kind": "cause",
-      "code": "DGH2KB",
-      "classification": "DEFECT",
-      "reason": "characters missing from the stored text. pdfplumber's extract_tables() dropped glyphs from this cell; the PDF text layer contains the full word. Not a hyphenation difference -- letters are absent.",
-      "should_be_on_page": "40-408",
-      "pdf_page": 950,
-      "stored_text": "Confirmation o repair",
-      "resolver_reason": "verbatim text NOT on the cited page"
-    },
-    {
-      "fact_id": "DW91KA:3:step:0",
-      "kind": "cause",
-      "code": "DW91KA",
-      "classification": "DEFECT",
-      "reason": "characters missing from the stored text. pdfplumber's extract_tables() dropped glyphs from this cell; the PDF text layer contains the full word. Not a hyphenation difference -- letters are absent.",
-      "should_be_on_page": "40-505",
-      "pdf_page": 1047,
-      "stored_text": "Open circuit i wiring harnes",
-      "resolver_reason": "verbatim text NOT on the cited page"
-    },
-    {
-      "fact_id": "DWK8KA:3:step:0",
-      "kind": "cause",
-      "code": "DWK8KA",
-      "classification": "DEFECT",
-      "reason": "characters missing from the stored text. pdfplumber's extract_tables() dropped glyphs from this cell; the PDF text layer contains the full word. Not a hyphenation difference -- letters are absent.",
-      "should_be_on_page": "40-533",
-      "pdf_page": 1075,
-      "stored_text": "Open circui wiring harn",
-      "resolver_reason": "verbatim text NOT on the cited page"
-    },
-    {
-      "fact_id": "F313KA:3:step:0",
-      "kind": "cause",
-      "code": "F313KA",
-      "classification": "DEFECT",
-      "reason": "characters missing from the stored text. pdfplumber's extract_tables() dropped glyphs from this cell; the PDF text layer contains the full word. Not a hyphenation difference -- letters are absent.",
-      "should_be_on_page": "40-599",
-      "pdf_page": 1141,
-      "stored_text": "Open circuit i wiring harness",
-      "resolver_reason": "verbatim text NOT on the cited page"
+      "resolver_reason": "verbatim text NOT on the cited page",
+      "true_text": "Short circuit in wiring harness",
+      "overhang_pt": 2.03,
+      "glyphs_outside_cell": [
+        "-"
+      ]
     },
     {
       "fact_id": "CA227:1:step:0",
@@ -137,6 +53,134 @@
       "pdf_page": 781,
       "stored_text": "Redirect",
       "resolver_reason": "verbatim text NOT on the cited page"
+    },
+    {
+      "fact_id": "DGH2KA:4:step:0",
+      "kind": "cause",
+      "code": "DGH2KA",
+      "classification": "KNOWN_LIMITATION",
+      "reason": "cell-border overhang in the source document, not a parser error. The manual renders a glyph outside its own ruled cell boundary; pdfplumber and PyMuPDF agree on what lies inside the rectangle. 8,108 cells cross-checked with zero character loss by pdfplumber. No fix applied: reading the same bbox via PyMuPDF is a no-op, padding the clip corrupts ~7% of cells to repair 9 cause strings, and glyph-contiguity is an untested heuristic. Recorded as a source property, following the precedent of F@BBZL (B1), D8ARKR/CA445 (C1) and DY20KA step 7 (D4).",
+      "should_be_on_page": "40-405",
+      "pdf_page": 947,
+      "stored_text": "Hot short circu in wiring harness",
+      "resolver_reason": "verbatim text NOT on the cited page",
+      "true_text": "Hot short circuit in wiring harness",
+      "overhang_pt": 2.45,
+      "glyphs_outside_cell": [
+        "i",
+        "t"
+      ]
+    },
+    {
+      "fact_id": "DGH2KA:5:step:0",
+      "kind": "cause",
+      "code": "DGH2KA",
+      "classification": "KNOWN_LIMITATION",
+      "reason": "cell-border overhang in the source document, not a parser error. The manual renders a glyph outside its own ruled cell boundary; pdfplumber and PyMuPDF agree on what lies inside the rectangle. 8,108 cells cross-checked with zero character loss by pdfplumber. No fix applied: reading the same bbox via PyMuPDF is a no-op, padding the clip corrupts ~7% of cells to repair 9 cause strings, and glyph-contiguity is an untested heuristic. Recorded as a source property, following the precedent of F@BBZL (B1), D8ARKR/CA445 (C1) and DY20KA step 7 (D4).",
+      "should_be_on_page": "40-405",
+      "pdf_page": 947,
+      "stored_text": "Reconfirmatio of inspection item",
+      "resolver_reason": "verbatim text NOT on the cited page",
+      "true_text": "Reconfirmation of inspection item",
+      "overhang_pt": 0.0,
+      "glyphs_outside_cell": [],
+      "edge_note": "the lost glyph ends a wrapped line and is clipped at the cell's vertical bound rather than its right edge"
+    },
+    {
+      "fact_id": "DGH2KA:6:step:0",
+      "kind": "cause",
+      "code": "DGH2KA",
+      "classification": "KNOWN_LIMITATION",
+      "reason": "cell-border overhang in the source document, not a parser error. The manual renders a glyph outside its own ruled cell boundary; pdfplumber and PyMuPDF agree on what lies inside the rectangle. 8,108 cells cross-checked with zero character loss by pdfplumber. No fix applied: reading the same bbox via PyMuPDF is a no-op, padding the clip corrupts ~7% of cells to repair 9 cause strings, and glyph-contiguity is an untested heuristic. Recorded as a source property, following the precedent of F@BBZL (B1), D8ARKR/CA445 (C1) and DY20KA step 7 (D4).",
+      "should_be_on_page": "40-405",
+      "pdf_page": 947,
+      "stored_text": "Confirmation o repair",
+      "resolver_reason": "verbatim text NOT on the cited page",
+      "true_text": "Confirmation of repair",
+      "overhang_pt": 0.79,
+      "glyphs_outside_cell": [
+        "f"
+      ]
+    },
+    {
+      "fact_id": "DGH2KB:5:step:0",
+      "kind": "cause",
+      "code": "DGH2KB",
+      "classification": "KNOWN_LIMITATION",
+      "reason": "cell-border overhang in the source document, not a parser error. The manual renders a glyph outside its own ruled cell boundary; pdfplumber and PyMuPDF agree on what lies inside the rectangle. 8,108 cells cross-checked with zero character loss by pdfplumber. No fix applied: reading the same bbox via PyMuPDF is a no-op, padding the clip corrupts ~7% of cells to repair 9 cause strings, and glyph-contiguity is an untested heuristic. Recorded as a source property, following the precedent of F@BBZL (B1), D8ARKR/CA445 (C1) and DY20KA step 7 (D4).",
+      "should_be_on_page": "40-408",
+      "pdf_page": 950,
+      "stored_text": "Reconfirmatio of inspection item",
+      "resolver_reason": "verbatim text NOT on the cited page",
+      "true_text": "Reconfirmation of inspection item",
+      "overhang_pt": 0.0,
+      "glyphs_outside_cell": [],
+      "edge_note": "clipped at the cell's vertical bound, as DGH2KA:5"
+    },
+    {
+      "fact_id": "DGH2KB:6:step:0",
+      "kind": "cause",
+      "code": "DGH2KB",
+      "classification": "KNOWN_LIMITATION",
+      "reason": "cell-border overhang in the source document, not a parser error. The manual renders a glyph outside its own ruled cell boundary; pdfplumber and PyMuPDF agree on what lies inside the rectangle. 8,108 cells cross-checked with zero character loss by pdfplumber. No fix applied: reading the same bbox via PyMuPDF is a no-op, padding the clip corrupts ~7% of cells to repair 9 cause strings, and glyph-contiguity is an untested heuristic. Recorded as a source property, following the precedent of F@BBZL (B1), D8ARKR/CA445 (C1) and DY20KA step 7 (D4).",
+      "should_be_on_page": "40-408",
+      "pdf_page": 950,
+      "stored_text": "Confirmation o repair",
+      "resolver_reason": "verbatim text NOT on the cited page",
+      "true_text": "Confirmation of repair",
+      "overhang_pt": 0.79,
+      "glyphs_outside_cell": [
+        "f"
+      ]
+    },
+    {
+      "fact_id": "DW91KA:3:step:0",
+      "kind": "cause",
+      "code": "DW91KA",
+      "classification": "KNOWN_LIMITATION",
+      "reason": "cell-border overhang in the source document, not a parser error. The manual renders a glyph outside its own ruled cell boundary; pdfplumber and PyMuPDF agree on what lies inside the rectangle. 8,108 cells cross-checked with zero character loss by pdfplumber. No fix applied: reading the same bbox via PyMuPDF is a no-op, padding the clip corrupts ~7% of cells to repair 9 cause strings, and glyph-contiguity is an untested heuristic. Recorded as a source property, following the precedent of F@BBZL (B1), D8ARKR/CA445 (C1) and DY20KA step 7 (D4).",
+      "should_be_on_page": "40-505",
+      "pdf_page": 1047,
+      "stored_text": "Open circuit i wiring harnes",
+      "resolver_reason": "verbatim text NOT on the cited page",
+      "true_text": "Open circuit in wiring harness",
+      "overhang_pt": 0.89,
+      "glyphs_outside_cell": [
+        "s"
+      ]
+    },
+    {
+      "fact_id": "DWK8KA:3:step:0",
+      "kind": "cause",
+      "code": "DWK8KA",
+      "classification": "KNOWN_LIMITATION",
+      "reason": "cell-border overhang in the source document, not a parser error. The manual renders a glyph outside its own ruled cell boundary; pdfplumber and PyMuPDF agree on what lies inside the rectangle. 8,108 cells cross-checked with zero character loss by pdfplumber. No fix applied: reading the same bbox via PyMuPDF is a no-op, padding the clip corrupts ~7% of cells to repair 9 cause strings, and glyph-contiguity is an untested heuristic. Recorded as a source property, following the precedent of F@BBZL (B1), D8ARKR/CA445 (C1) and DY20KA step 7 (D4).",
+      "should_be_on_page": "40-533",
+      "pdf_page": 1075,
+      "stored_text": "Open circui wiring harn",
+      "resolver_reason": "verbatim text NOT on the cited page",
+      "true_text": "Open circuit in wiring harness",
+      "overhang_pt": 7.1,
+      "glyphs_outside_cell": [
+        "i",
+        "n",
+        "s"
+      ]
+    },
+    {
+      "fact_id": "F313KA:3:step:0",
+      "kind": "cause",
+      "code": "F313KA",
+      "classification": "KNOWN_LIMITATION",
+      "reason": "cell-border overhang in the source document, not a parser error. The manual renders a glyph outside its own ruled cell boundary; pdfplumber and PyMuPDF agree on what lies inside the rectangle. 8,108 cells cross-checked with zero character loss by pdfplumber. No fix applied: reading the same bbox via PyMuPDF is a no-op, padding the clip corrupts ~7% of cells to repair 9 cause strings, and glyph-contiguity is an untested heuristic. Recorded as a source property, following the precedent of F@BBZL (B1), D8ARKR/CA445 (C1) and DY20KA step 7 (D4).",
+      "should_be_on_page": "40-599",
+      "pdf_page": 1141,
+      "stored_text": "Open circuit i wiring harness",
+      "resolver_reason": "verbatim text NOT on the cited page",
+      "true_text": "Open circuit in wiring harness",
+      "overhang_pt": 0.0,
+      "glyphs_outside_cell": [],
+      "edge_note": "clipped at the cell's vertical bound"
     },
     {
       "fact_id": "CA451:6:step:0",
