@@ -135,7 +135,7 @@ Identical on 1344/1345 and 1400/1401.
 **Not relaxed, because the choice is yours.** Two readings of the intent:
 
 - *literal* — keep "first table on its page"; 18 rows stay dropped in
-  HM13 (1332/1333), HM15 (1344/1345) and HM24 (1401/1402).
+  HM07 (1332/1333), HM08 (1344/1345) and HM22 (1401/1402).
 - *positional intent* — "nothing of substance intervened", i.e. first table
   that is not itself a continuation, or no measurement table precedes it on the
   page. Admits these 6 tables and recovers the 18 rows.
