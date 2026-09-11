@@ -50,3 +50,6 @@ reports/transcription/**/*.png
 
 # Crop images: rendered Komatsu page regions, regenerable from the PDF.
 reports/transcription/crops/*.png
+
+# session-hook artefacts, not project data
+.ai/
