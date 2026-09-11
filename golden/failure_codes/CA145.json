@@ -27,6 +27,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-197",
@@ -42,6 +43,7 @@
       "cause": "Defective coolant temperature sensor",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector COOLANT TEMP. Connect the socket to the male side. REMARK When the coolant temperature is 0℃ or above, if the resistance of the coolant temperature sensor is 700Ω to 37kΩ, the coolant temperature sensor is regarded as correct.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -130,6 +132,7 @@
       "cause": "Short circuit in wiring ha ness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the female side. Between ECM (female) (15) and (38) (coolant temperr- ature: 0℃ and above) 700Ω to Resistance REMARK 37kΩ Accords with the characteristics table of the coolant temperature sensor-resistance value on cause 2.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "",
@@ -158,6 +161,7 @@
       "cause": "Ground fault in wiring harness (contact with ground circuit)",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and COOLANT TEMP. Connect a T- adapter to the female side of ECM. Resistance Between ground and ECM (female) (15) Min. 100kΩ",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "",
@@ -186,6 +190,7 @@
       "cause": "Defective engine control ler",
       "procedure": "- If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-198",

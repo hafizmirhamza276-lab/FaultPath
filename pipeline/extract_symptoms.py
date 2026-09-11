@@ -346,6 +346,12 @@ def parse_flat_causes(rows, prov_rows) -> list:
             "point_to_check": cells[2] if len(cells) > 2 else "",
             "remedy": cells[3] if len(cells) > 3 else "",
             "provenance": dict(prov),
+            # The remedy is the OUTCOME of a flat tree and is cited on its own,
+            # so it gets its own page rather than the step's. Identical today
+            # because both are read from this row -- and that is a property of
+            # the current layout, not a guarantee. Captured here so a remedy
+            # that ever moves to another row moves its citation with it.
+            "remedy_provenance": dict(prov) if len(cells) > 3 and cells[3] else None,
         })
     return steps
 
@@ -379,6 +385,23 @@ def find_pointers(text: str, prov: dict, section40_codes: set) -> list:
     return out
 
 
+def page_prints_title(page_text: str, title: str) -> bool:
+    """Does this page actually print the symptom title?
+
+    Both sides go through clean(), which is what the resolver's _norm() mirrors.
+    A raw substring match moved three titles (HM18, HM34, HM35) to their SECOND
+    page, because the first renders them hyphenated across a line break --
+    "work equipment with heavi- er load moves slower". The title really was on
+    the first page; only the comparison was wrong.
+
+    Matching provenance with one text pipeline and verifying it with another is
+    how a fix ends up disagreeing with its own check.
+    """
+    needle = " ".join(clean(title or "").lower().split())
+    hay = " ".join(clean(page_text or "").lower().split())
+    return bool(needle) and needle in hay
+
+
 def assign_branch_provenance(steps, rows, provs):
     """Give each branch outcome the page it was actually read from.
 
@@ -405,8 +428,16 @@ def assign_branch_provenance(steps, rows, provs):
 
     own, inherited = 0, []
     for st in steps:
-        st["branch_provenance"] = {}
+        # parse_causes now captures this at parse time, which is strictly
+        # better than matching after the fact: the row provenance is in hand
+        # at the moment the outcome is read, so there is nothing to match and
+        # nothing to get wrong. This pass only fills what parse time could not.
+        at_parse = dict(st.get("branch_provenance") or {})
+        st["branch_provenance"] = at_parse
         for br, txt in sorted((st.get("branches") or {}).items()):
+            if at_parse.get(br):
+                own += 1
+                continue
             hits = index.get(txt or "")
             if hits and len(hits) == 1:
                 st["branch_provenance"][br] = hits[0]
@@ -447,6 +478,10 @@ def extract_entry(pdf, sid, title, start, end, mode, section40_codes):
         unresolved_pointers=[], refs_failure_codes=[],
         skipped_tables=[],
         merged_cells_inherited=[],
+        title_provenance=None,
+        # Every fact kind that could not capture its own page, counted by kind.
+        # A fallback that is not counted is a fallback nobody knows happened.
+        provenance_fallbacks={},
     )
 
     cause_rows, flat_rows = [], []
@@ -458,6 +493,27 @@ def extract_entry(pdf, sid, title, start, end, mode, section40_codes):
         mp = manual_page(page)
         if mp and mp not in rec["manual_pages"]:
             rec["manual_pages"].append(mp)
+
+        # TITLE PROVENANCE. pdf_pages[0] is the manual_pages[0] pattern
+        # verbatim -- the shape that sent 635 citations to the wrong page. The
+        # title happens to sit on the entry's first page in this revision, and
+        # "happens to" is exactly what this is meant to stop relying on.
+        #
+        # The bookmark supplies the title TEXT; this finds the page that
+        # actually prints it. Matched exactly on the normalised page text, never
+        # fuzzily, and the first page carrying it wins.
+        #
+        # Both sides go through clean(), which is what the resolver's _norm()
+        # mirrors. A raw substring match moved three titles (HM18, HM34, HM35)
+        # to their SECOND page, because the first renders them hyphenated
+        # across a line break -- "work equipment with heavi- er load moves
+        # slower". The title really is on the first page; only the comparison
+        # was wrong. Matching provenance with one text pipeline and verifying
+        # it with another is how a fix ends up disagreeing with its own check.
+        if rec.get("title_provenance") is None:
+            if page_prints_title(page.extract_text() or "", title):
+                rec["title_provenance"] = {"manual_page": mp, "pdf_page": pno,
+                                           "table_index": None, "row_index": None}
 
         tables = []
         for ft in page.find_tables():
@@ -541,6 +597,24 @@ def extract_entry(pdf, sid, title, start, end, mode, section40_codes):
             own, inherited = assign_branch_provenance(rec["steps"], merged, mprov)
             rec["branch_provenance_own"] = own
             rec["branch_provenance_inherited"] = inherited
+            if inherited:
+                rec["provenance_fallbacks"]["branch"] = len(inherited)
+
+    # Fallbacks, counted by kind. Each falls back to the parent's page -- the
+    # old behaviour -- but never silently.
+    if rec.get("title_provenance") is None:
+        rec["title_provenance"] = {"manual_page": rec["manual_pages"][0]
+                                   if rec["manual_pages"] else None,
+                                   "pdf_page": start,
+                                   "table_index": None, "row_index": None}
+        rec["provenance_fallbacks"]["symptom_title"] = 1
+    n = sum(1 for s in rec["steps"]
+            if (s.get("remedy") or "").strip() and not s.get("remedy_provenance"))
+    if n:
+        rec["provenance_fallbacks"]["remedy"] = n
+        for s in rec["steps"]:
+            if (s.get("remedy") or "").strip() and not s.get("remedy_provenance"):
+                s["remedy_provenance"] = dict(s["provenance"])
     else:
         for rows, provs in flat_rows:
             rec["steps"] += parse_flat_causes(rows, provs)

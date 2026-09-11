@@ -27,6 +27,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-204",
@@ -42,6 +43,7 @@
       "cause": "Defective sensor or wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors that follow one by one, and turn the starting switch to the ON position each time. 3. When troubleshooting is done, go back to step 1. If this failure code is cleared, disconnected sensor or engine wiring harness is defective. REMARK Because the connector is disconnected, other failure codes are also shown. Ignore all failure codes other than this failure code [CA187]. Connector Boost pressure and temperature sensor BOOST PRESS & IMT Common rail pressure sensor FUEL RAIL PRESS Bkup sensor CAM SEN- SOR Engine wiring harness ECM",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-204",
@@ -57,6 +59,7 @@
       "cause": "Defective engine controller",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the male side. 3. Disconnect the connector ECM. Turn the starting switch to the ON position in this condition.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",

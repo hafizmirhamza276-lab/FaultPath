@@ -27,6 +27,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "1. Examine the connection state of the common rail pressure sensor connector. 2. See descriptions of wiring harness and connectors in “Electrical Components” in “Checks Before Troubleshooting” of “Related Information to Troubleshooting”, and check it. 3. Start the engine. If this failure code is cleared, wiring harness connector is defective.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-247",
@@ -42,6 +43,7 @@
       "cause": "Use of incorrect fuel",
       "procedure": "Incorrect fuel can be used. Check it.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-247",
@@ -57,6 +59,7 @@
       "cause": "Leakage of fuel to outside",
       "procedure": "Fuel can be leaked outside. Check it (visual check with the engine at low idle).",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-247",
@@ -72,6 +75,7 @@
       "cause": "Defective low-pressure circuit device",
       "procedure": "• See “Note 1” for troubleshooting. • For check of pressure in fuel low-pressure circuit, see Testing and Adjusting, “Examine Fuel Pressure”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Pressure",
@@ -124,6 +128,7 @@
       "cause": "Air in low-pressure circuit",
       "procedure": "Air may be in low-pressure circuit. Check it according to the following procedure. 1. Remove pressure pickup plug (outlet side) of fuel main filter. 2. Operate feed pump of fuel prefilter. 3. Check pressure pickup plug for leakage of fuel and air. If this error occurs during air bleeding after fuel filter is replaced, air may remain in fuel circuit. Keep running engine at low idle speed for approximately 3 minutes. As air is bled from fuel circuit, engine speed is stabilized, and error display disappears.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-248",
@@ -139,6 +144,7 @@
       "cause": "Defective pressure limiter",
       "procedure": "For check of leakage from the pressure limiter, see Testing and Adjusting, “Examine Fuel Return Rate and Leakage”. Leakage of pressure limiter At low idle 0cc (No leakage)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-248",
@@ -154,6 +160,7 @@
       "cause": "Defective injector (includes high pressure pipes in the head)",
       "procedure": "For check of return rate from injector, see Testing and Adjusting, “Examine Fuel Return Rate and Leakage”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Fuel return rate from injector",
@@ -194,6 +201,7 @@
       "cause": "Defective supply pump",
       "procedure": "For details of testing of discharged volume and return rate of the supply pump, see Testing and Adjusting, “Examine Fuel Discharge, Return and Leakage”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Discharged volume from supply pump",
@@ -246,6 +254,7 @@
       "cause": "Defective common rail pressure sensor system",
       "procedure": "Do the troubleshooting for failure codes [CA451] and [CA452].",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-248",

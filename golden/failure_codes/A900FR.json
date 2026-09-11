@@ -26,6 +26,7 @@
       "cause": "Defective machine monitor",
       "procedure": "If this repeatedly occurs even when the auto idle stop function is OFF, machine monitor may be defective. (In case of an internal defect, troubleshooting is impossible as an assembly. Replace whole assembly.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-157",

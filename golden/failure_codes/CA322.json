@@ -27,6 +27,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-218",
@@ -42,6 +43,7 @@
       "cause": "Defective No.1 injector",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector INJECTOR CYL 1 & 2, and connect a T-adapter to the male side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -82,6 +84,7 @@
       "cause": "Open circuit or ground fault in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -122,6 +125,7 @@
       "cause": "Open circuit in wiring harness (wire breakage or defective contact of connector)",
       "procedure": "If no failure is found by check on cause 3, this check is not required. 1. Starting switch: OFF 2. Disconnect the connectors ECM and INJECTOR CYL 1 & 2, and connect a T-adapter to each female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -162,6 +166,7 @@
       "cause": "Ground fault in wiring harness (contact with ground circuit)",
       "procedure": "If no failure is found by check on cause 3, this check is not required. 1. Starting switch: OFF 2. Disconnect the connectors ECM and INJECTOR CYL 1 & 2, and connect a T-adapter to one of them on the female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -190,6 +195,7 @@
       "cause": "Short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and INJECTOR CYL 1 & 2, and connect a T-adapter to the female side of ECM. Do the check with the multimeter in the continuity mode.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Continuity",
@@ -230,6 +236,7 @@
       "cause": "Defective other cylinder injectors or wiring harness",
       "procedure": "If the failure code for abnormalities of more than one injector is shown, do the troubleshooting for this failure code first.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-219",
@@ -245,6 +252,7 @@
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-219",

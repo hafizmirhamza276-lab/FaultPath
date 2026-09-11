@@ -217,6 +217,17 @@ def parse_causes(rows, fmt):
                 "cause": cause,
                 "procedure": cells[2] if len(cells) > 2 else "",
                 "branches": {},
+                # PER-BRANCH provenance, captured here rather than inferred
+                # later. A step that straddles a page break has its YES outcome
+                # printed on one page and its NO on the next; both taking the
+                # step's page sends one citation to a page its text is not on.
+                # This is the same defect as citing a code's first page for a
+                # measurement eleven pages later, one level down.
+                #
+                # Nothing about WHAT is extracted changes -- `prov` is the row
+                # provenance already in hand at the moment the branch is read,
+                # so this records a value that was being discarded.
+                "branch_provenance": {},
                 "measurements": [],
                 "provenance": dict(prov),
             }
@@ -228,6 +239,7 @@ def parse_causes(rows, fmt):
                     nxt = next((cells[j] for j in range(i + 1, len(cells)) if cells[j]), "")
                     if nxt:
                         cur["branches"][c] = nxt
+                        cur["branch_provenance"][c] = dict(prov)
                     break
             continue
 
@@ -249,6 +261,10 @@ def parse_causes(rows, fmt):
                 nxt = next((cells[j] for j in range(i + 1, len(cells)) if cells[j]), "")
                 if nxt:
                     cur["branches"][c] = nxt
+                    # the CONTINUATION row's page, which is the whole point:
+                    # this row may be on the far side of a page break from the
+                    # step row that opened the step
+                    cur["branch_provenance"][c] = dict(prov)
                     used |= {i, i + 1}
                 break
 

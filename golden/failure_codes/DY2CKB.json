@@ -33,6 +33,20 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-587",
+          "pdf_page": 1129,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-587",
+          "pdf_page": 1129,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-587",
@@ -53,6 +67,20 @@
       "branches": {
         "YES": "• The fuse is normal. • Go to the next inspection item.",
         "NO": "• The fuse is defective. • It blown, go to “Ground fault in wiring harness”. • If the fuse is not blown but has no continuity, replace the fuse. • Go to “Confirmation of repair”."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-587",
+          "pdf_page": 1129,
+          "table_index": 1,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-587",
+          "pdf_page": 1129,
+          "table_index": 1,
+          "row_index": 4
+        }
       },
       "measurements": [],
       "provenance": {
@@ -75,6 +103,20 @@
         "YES": "• The window washer motor is normal. • Go to the next inspection item.",
         "NO": "• The window washer motor is defective. • Replace the window washer motor. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-588",
+          "pdf_page": 1130,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-588",
+          "pdf_page": 1130,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-588",
@@ -95,6 +137,20 @@
       "branches": {
         "YES": "• The diode array is normal. • Go to the next inspection item.",
         "NO": "• The diode array is defective. • Replace the diode array. • Go to “Confirmation of repair”."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-588",
+          "pdf_page": 1130,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-588",
+          "pdf_page": 1130,
+          "table_index": 0,
+          "row_index": 4
+        }
       },
       "measurements": [],
       "provenance": {
@@ -117,6 +173,20 @@
         "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-588",
+          "pdf_page": 1130,
+          "table_index": 0,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-588",
+          "pdf_page": 1130,
+          "table_index": 0,
+          "row_index": 6
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-588",
@@ -137,6 +207,20 @@
       "branches": {
         "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
         "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Replace the fuse if it is blown. • Go to “Confirmation of repair”."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-589",
+          "pdf_page": 1131,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-589",
+          "pdf_page": 1131,
+          "table_index": 0,
+          "row_index": 2
+        }
       },
       "measurements": [],
       "provenance": {
@@ -159,6 +243,20 @@
         "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-589",
+          "pdf_page": 1131,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-589",
+          "pdf_page": 1131,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-589",
@@ -179,6 +277,20 @@
       "branches": {
         "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-590",
+          "pdf_page": 1132,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-590",
+          "pdf_page": 1132,
+          "table_index": 0,
+          "row_index": 2
+        }
       },
       "measurements": [],
       "provenance": {
@@ -201,6 +313,20 @@
         "YES": "The repair is completed.",
         "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-590",
+          "pdf_page": 1132,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-590",
+          "pdf_page": 1132,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-590",
@@ -221,6 +347,20 @@
       "branches": {
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-590",
+          "pdf_page": 1132,
+          "table_index": 0,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-590",
+          "pdf_page": 1132,
+          "table_index": 0,
+          "row_index": 6
+        }
       },
       "measurements": [],
       "provenance": {

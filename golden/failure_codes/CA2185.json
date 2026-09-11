@@ -27,6 +27,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “RELATED INFORMA- TION TO TROUBLESHOOT”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-259",
@@ -42,6 +43,7 @@
       "cause": "Defective throttle sensor (fuel dial)",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector P20. Turn the starting switch to the ON position. If this failure code is cleared, the throttle sensor is defective. Other failure codes are shown, too. This occurs because the connector is disconnected. Ignore failure codes other than this failure code [CA2185].",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-259",
@@ -57,6 +59,7 @@
       "cause": "Short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors CE02, CE03 and P20, and connect a T-adapter to the female sides of CE02 and CE03.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -97,6 +100,7 @@
       "cause": "Hot short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector P20. Connect a T-adapter to the female side. 3. Starting switch: ON",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",
@@ -125,6 +129,7 @@
       "cause": "Defective engine controller",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector CE02. Connect a T-adapter to the male side. 3. Turn the starting switch to the ON position with the wiring harness disconnected.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",

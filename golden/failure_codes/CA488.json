@@ -26,6 +26,7 @@
       "cause": "Degraded cooling performance of aftercooler",
       "procedure": "Cooling performance of the aftercooler can be lowered. Check it for the items that follow. • Loosened or damaged fan belt • Insufficient cooling air volume • Clogged aftercooler fin",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-245",
@@ -41,6 +42,7 @@
       "cause": "Turbocharger outlet temperature high error",
       "procedure": "It is possible that there is an abnormal temperature rise of the turbocharger outlet. Check the related parts.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-245",
@@ -56,6 +58,7 @@
       "cause": "Defective charge temperature sensor system",
       "procedure": "Do the troubleshooting for failure codes [CA153] and [CA154].",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-245",

@@ -37,6 +37,20 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-345",
+          "pdf_page": 887,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-345",
+          "pdf_page": 887,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-345",
@@ -57,6 +71,20 @@
       "branches": {
         "YES": "• The power supply circuit of the pump controller is normal. • Go to inspection item of “ACC signal circuit of pump controller”.",
         "NO": "• The pump controller power supply circuit is defective. • Go to the next inspection item."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-346",
+          "pdf_page": 888,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-346",
+          "pdf_page": 888,
+          "table_index": 0,
+          "row_index": 2
+        }
       },
       "measurements": [],
       "provenance": {
@@ -79,6 +107,20 @@
         "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-346",
+          "pdf_page": 888,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-346",
+          "pdf_page": 888,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-346",
@@ -99,6 +141,20 @@
       "branches": {
         "YES": "• The ACC signal circuit of the pump controller is normal. • Go to check item of “CAN TERMINATING RESISTOR”.",
         "NO": "• The ACC signal circuit of the pump controller is defective. • Go to the next inspection item."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-347",
+          "pdf_page": 889,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-347",
+          "pdf_page": 889,
+          "table_index": 0,
+          "row_index": 2
+        }
       },
       "measurements": [],
       "provenance": {
@@ -121,6 +177,20 @@
         "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-347",
+          "pdf_page": 889,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-347",
+          "pdf_page": 889,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-347",
@@ -141,6 +211,20 @@
       "branches": {
         "YES": "• The CAN terminating resistor is normal. • Go to the next inspection item.",
         "NO": "• The CAN terminating resistor is defective. • Replace the CAN terminating resistor. • Go to “Confirmation of repair”."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-348",
+          "pdf_page": 890,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-348",
+          "pdf_page": 890,
+          "table_index": 0,
+          "row_index": 2
+        }
       },
       "measurements": [],
       "provenance": {
@@ -163,6 +247,20 @@
         "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-348",
+          "pdf_page": 890,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-348",
+          "pdf_page": 890,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-348",
@@ -183,6 +281,20 @@
       "branches": {
         "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
         "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-349",
+          "pdf_page": 891,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-349",
+          "pdf_page": 891,
+          "table_index": 0,
+          "row_index": 2
+        }
       },
       "measurements": [],
       "provenance": {
@@ -205,6 +317,20 @@
         "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-350",
+          "pdf_page": 892,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-350",
+          "pdf_page": 892,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-350",
@@ -225,6 +351,20 @@
       "branches": {
         "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-350",
+          "pdf_page": 892,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-350",
+          "pdf_page": 892,
+          "table_index": 0,
+          "row_index": 4
+        }
       },
       "measurements": [],
       "provenance": {
@@ -247,6 +387,20 @@
         "YES": "• The pump controller is defective. • Replace the pump controller. • Go to “Confirmation of repair”.",
         "NO": "• The pump controller is normal. • Restore the pump controller. • Go to the next inspection item."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-351",
+          "pdf_page": 893,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-351",
+          "pdf_page": 893,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-351",
@@ -268,6 +422,20 @@
         "YES": "The repair is completed.",
         "NO": "• The machine monitor can be defective. • Replace the machine monitor. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-351",
+          "pdf_page": 893,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-351",
+          "pdf_page": 893,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-351",
@@ -288,6 +456,20 @@
       "branches": {
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-351",
+          "pdf_page": 893,
+          "table_index": 0,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-351",
+          "pdf_page": 893,
+          "table_index": 0,
+          "row_index": 6
+        }
       },
       "measurements": [],
       "provenance": {

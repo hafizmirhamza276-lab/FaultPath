@@ -30,6 +30,12 @@
         "table_index": 1,
         "row_index": 1
       },
+      "remedy_provenance": {
+        "manual_page": "40-947",
+        "pdf_page": 1489,
+        "table_index": 1,
+        "row_index": 1
+      },
       "fact_id": "SM11:1:step:0",
       "branch_fact_ids": {},
       "remedy_fact_id": "SM11:1:remedy:0"
@@ -40,6 +46,12 @@
       "point_to_check": "Oil out of specification is used",
       "remedy": "Use recommended oil described in Operation and Maintenance Manual.",
       "provenance": {
+        "manual_page": "40-947",
+        "pdf_page": 1489,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "remedy_provenance": {
         "manual_page": "40-947",
         "pdf_page": 1489,
         "table_index": 1,
@@ -60,6 +72,12 @@
         "table_index": 1,
         "row_index": 3
       },
+      "remedy_provenance": {
+        "manual_page": "40-947",
+        "pdf_page": 1489,
+        "table_index": 1,
+        "row_index": 3
+      },
       "fact_id": "SM11:3:step:0",
       "branch_fact_ids": {},
       "remedy_fact_id": "SM11:3:remedy:0"
@@ -70,6 +88,12 @@
       "point_to_check": "Measured blowby pressure is higher than standard value.",
       "remedy": "Perform troubleshooting cause 5 to 10 sequentially.",
       "provenance": {
+        "manual_page": "40-947",
+        "pdf_page": 1489,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "remedy_provenance": {
         "manual_page": "40-947",
         "pdf_page": 1489,
         "table_index": 1,
@@ -90,6 +114,12 @@
         "table_index": 1,
         "row_index": 5
       },
+      "remedy_provenance": {
+        "manual_page": "40-947",
+        "pdf_page": 1489,
+        "table_index": 1,
+        "row_index": 5
+      },
       "fact_id": "SM11:5:step:0",
       "branch_fact_ids": {},
       "remedy_fact_id": "SM11:5:remedy:0"
@@ -100,6 +130,12 @@
       "point_to_check": "Check for high oil level (If oil is added too much, it becomes high temperature and is deteriorated rapidly).",
       "remedy": "Lower oil level to appropriate level.",
       "provenance": {
+        "manual_page": "40-947",
+        "pdf_page": 1489,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "remedy_provenance": {
         "manual_page": "40-947",
         "pdf_page": 1489,
         "table_index": 1,
@@ -120,6 +156,12 @@
         "table_index": 1,
         "row_index": 7
       },
+      "remedy_provenance": {
+        "manual_page": "40-947",
+        "pdf_page": 1489,
+        "table_index": 1,
+        "row_index": 7
+      },
       "fact_id": "SM11:7:step:0",
       "branch_fact_ids": {},
       "remedy_fact_id": "SM11:7:remedy:0"
@@ -130,6 +172,12 @@
       "point_to_check": "• Measured blowby pressure is above standard value. • Measure compression pressure (See standard value table). (Reference: See “TESTING AND ADJUSTING”, “Testing compression pressure”.)",
       "remedy": "Piston ring replacement or repair",
       "provenance": {
+        "manual_page": "40-947",
+        "pdf_page": 1489,
+        "table_index": 1,
+        "row_index": 8
+      },
+      "remedy_provenance": {
         "manual_page": "40-947",
         "pdf_page": 1489,
         "table_index": 1,
@@ -150,6 +198,12 @@
         "table_index": 1,
         "row_index": 9
       },
+      "remedy_provenance": {
+        "manual_page": "40-947",
+        "pdf_page": 1489,
+        "table_index": 1,
+        "row_index": 9
+      },
       "fact_id": "SM11:9:step:0",
       "branch_fact_ids": {},
       "remedy_fact_id": "SM11:9:remedy:0"
@@ -159,5 +213,12 @@
   "unresolved_pointers": [],
   "refs_failure_codes": [],
   "skipped_tables": [],
-  "merged_cells_inherited": []
+  "merged_cells_inherited": [],
+  "title_provenance": {
+    "manual_page": "40-947",
+    "pdf_page": 1489,
+    "table_index": null,
+    "row_index": null
+  },
+  "provenance_fallbacks": {}
 }

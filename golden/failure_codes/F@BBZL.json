@@ -31,6 +31,20 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-608",
+          "pdf_page": 1150,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-608",
+          "pdf_page": 1150,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-608",
@@ -51,6 +65,20 @@
       "branches": {
         "YES": "• The blowby pressure sensor is normal. • Go to the next inspection item.",
         "NO": "• The blowby pressure sensor is abnormal. • Replace the blowby pressure sensor. • Go to “Confirmation of repair”."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-608",
+          "pdf_page": 1150,
+          "table_index": 1,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-608",
+          "pdf_page": 1150,
+          "table_index": 1,
+          "row_index": 4
+        }
       },
       "measurements": [],
       "provenance": {
@@ -73,6 +101,20 @@
         "YES": "• The pump controller is normal. • Go to the next inspection item.",
         "NO": "• The pump controller is defective. • Replace the pump controller. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-609",
+          "pdf_page": 1151,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-609",
+          "pdf_page": 1151,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-609",
@@ -94,6 +136,20 @@
         "YES": "The repair is completed.",
         "NO": "• The engine controller can be defective. • Replace the engine. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-609",
+          "pdf_page": 1151,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-609",
+          "pdf_page": 1151,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-609",
@@ -114,6 +170,20 @@
       "branches": {
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-609",
+          "pdf_page": 1151,
+          "table_index": 0,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-609",
+          "pdf_page": 1151,
+          "table_index": 0,
+          "row_index": 6
+        }
       },
       "measurements": [],
       "provenance": {

@@ -26,6 +26,7 @@
       "cause": "Defective related systems",
       "procedure": "Check if other failure codes are shown at the same time. If other codes are shown, do the troubleshooting for them.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-240",
@@ -41,6 +42,7 @@
       "cause": "Air mixture in low-pressure circuit",
       "procedure": "Mixing of air in the low-temperature circuit is suspected. Check it with the procedure that follows. 1. Remove the pressure pickup plug (outlet side) of the fuel main filter. 2. Operate the feed pump of fuel prefilter. 3. Check how the fuel and air leaks from the pressure pickup plug.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-240",
@@ -56,6 +58,7 @@
       "cause": "Defective fuel return circuit device",
       "procedure": "For check of pressure in fuel return circuit, see Testing and Adjusting, “Examine Fuel Pressure”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Fuel return circuit pressure",
@@ -84,6 +87,7 @@
       "cause": "Defective common rail pressure sensor system",
       "procedure": "Do the troubleshooting for failure codes [CA451] and [CA452].",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-240",
@@ -99,6 +103,7 @@
       "cause": "Defective pressure limiter",
       "procedure": "For check of leakage from the pressure limiter, see Testing and Adjusting, “Examine Fuel Return Rate and Leakage”. Leakage of pressure limiter At low idle 0cc (No leakage)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-240",
@@ -114,6 +119,7 @@
       "cause": "Defective supply pump",
       "procedure": "If no failure is found by the above checks, the supply pump can be defective.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-240",

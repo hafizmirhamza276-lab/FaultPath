@@ -29,6 +29,20 @@
         "YES": "• The wiring harness and connectors are normal. • Go to the next check item.",
         "NO": "• The wiring harness or a connector is defective. • Repair or replace the defective wiring harness or connector. • Go to confirmation of repair."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-305",
+          "pdf_page": 847,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-305",
+          "pdf_page": 847,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-305",
@@ -50,6 +64,20 @@
         "YES": "The repair is completed.",
         "NO": "• Communication terminal can be defective. • Replace the communication terminal. • Go to confirmation of repair."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-305",
+          "pdf_page": 847,
+          "table_index": 1,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-305",
+          "pdf_page": 847,
+          "table_index": 1,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-305",
@@ -70,6 +98,20 @@
       "branches": {
         "YES": "Go back to the first check item.",
         "NO": "The repair is completed."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-305",
+          "pdf_page": 847,
+          "table_index": 1,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-305",
+          "pdf_page": 847,
+          "table_index": 1,
+          "row_index": 6
+        }
       },
       "measurements": [],
       "provenance": {

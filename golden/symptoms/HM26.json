@@ -31,28 +31,26 @@
         "YES": "• The swing PPC valve is normal. • Go to the next check item.",
         "NO": "• The swing PPC valve is defective. • Replace the swing PPC valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-892",
+          "pdf_page": 1434,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-892",
+          "pdf_page": 1434,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-892",
         "pdf_page": 1434,
         "table_index": 1,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-892",
-          "pdf_page": 1434,
-          "table_index": 1,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-892",
-          "pdf_page": 1434,
-          "table_index": 1,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM26:1:step:0",
       "branch_fact_ids": {
@@ -68,28 +66,26 @@
         "YES": "• The swing parking brake solenoid valve is correct. • Go to the next check item.",
         "NO": "• The swing parking brake solenoid valve is defective. • Replace the swing parking brake solenoid valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-893",
+          "pdf_page": 1435,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-893",
+          "pdf_page": 1435,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-893",
         "pdf_page": 1435,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-893",
-          "pdf_page": 1435,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-893",
-          "pdf_page": 1435,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM26:2:step:0",
       "branch_fact_ids": {
@@ -105,28 +101,26 @@
         "YES": "• The parking brake of swing motor is correct. • Go to the next check item.",
         "NO": "• The parking brake of swing motor is defective. • Replace the parking brake of swing motor. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-893",
+          "pdf_page": 1435,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-893",
+          "pdf_page": 1435,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-893",
         "pdf_page": 1435,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-893",
-          "pdf_page": 1435,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-893",
-          "pdf_page": 1435,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM26:3:step:0",
       "branch_fact_ids": {
@@ -142,28 +136,26 @@
         "YES": "Go to the check item of “Swing control valve”.",
         "NO": "Go to the check item of “Safety valve of swing motor”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-894",
+          "pdf_page": 1436,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-894",
+          "pdf_page": 1436,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-894",
         "pdf_page": 1436,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-894",
-          "pdf_page": 1436,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-894",
-          "pdf_page": 1436,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM26:4:step:0",
       "branch_fact_ids": {
@@ -179,28 +171,26 @@
         "YES": "• The swing control valve body and spool are correct. • Go to the next check item.",
         "NO": "• The swing control valve body and spool are defective. • Replace the body and spool of the swing control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-894",
+          "pdf_page": 1436,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-894",
+          "pdf_page": 1436,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-894",
         "pdf_page": 1436,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-894",
-          "pdf_page": 1436,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-894",
-          "pdf_page": 1436,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM26:5:step:0",
       "branch_fact_ids": {
@@ -216,28 +206,26 @@
         "YES": "• The swing motor safety valve is correct. • Go to the next check item.",
         "NO": "• Adjust the hydraulic pressure of the swing motor safety valve. • If it does not become correct even after adjustment, replace the safety valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-895",
+          "pdf_page": 1437,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-895",
+          "pdf_page": 1437,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-895",
         "pdf_page": 1437,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-895",
-          "pdf_page": 1437,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-895",
-          "pdf_page": 1437,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM26:6:step:0",
       "branch_fact_ids": {
@@ -253,28 +241,26 @@
         "YES": "• The swing motor is correct. • Go to the next check item.",
         "NO": "• The swing motor is defective. • Replace the swing motor. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-895",
+          "pdf_page": 1437,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-895",
+          "pdf_page": 1437,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-895",
         "pdf_page": 1437,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-895",
-          "pdf_page": 1437,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-895",
-          "pdf_page": 1437,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM26:7:step:0",
       "branch_fact_ids": {
@@ -290,28 +276,26 @@
         "YES": "• The swing machinery is correct. • Go to the next check item.",
         "NO": "• The swing machinery is defective. • Replace the swing machinery. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-896",
+          "pdf_page": 1438,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-896",
+          "pdf_page": 1438,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-896",
         "pdf_page": 1438,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-896",
-          "pdf_page": 1438,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-896",
-          "pdf_page": 1438,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM26:8:step:0",
       "branch_fact_ids": {
@@ -327,28 +311,26 @@
         "YES": "The repair is done.",
         "NO": "Return to the first check item."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-896",
+          "pdf_page": 1438,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-896",
+          "pdf_page": 1438,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-896",
         "pdf_page": 1438,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-896",
-          "pdf_page": 1438,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-896",
-          "pdf_page": 1438,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM26:9:step:0",
       "branch_fact_ids": {
@@ -569,6 +551,13 @@
       "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
     }
   ],
+  "title_provenance": {
+    "manual_page": "40-892",
+    "pdf_page": 1434,
+    "table_index": null,
+    "row_index": null
+  },
+  "provenance_fallbacks": {},
   "branch_provenance_own": 18,
   "branch_provenance_inherited": []
 }

@@ -31,6 +31,20 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-562",
+          "pdf_page": 1104,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-562",
+          "pdf_page": 1104,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-562",
@@ -51,6 +65,20 @@
       "branches": {
         "YES": "• The attachment flow rate adjustment EPC solenoid is normal. • Go to the next inspection item.",
         "NO": "• The attachment flow rate adjustment EPC solenoid is defective. • Replace the attachment flow rate adjustment EPC solenoid. • Go to “Confirmation of repair”."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-562",
+          "pdf_page": 1104,
+          "table_index": 1,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-562",
+          "pdf_page": 1104,
+          "table_index": 1,
+          "row_index": 4
+        }
       },
       "measurements": [],
       "provenance": {
@@ -73,6 +101,20 @@
         "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
         "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-563",
+          "pdf_page": 1105,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-563",
+          "pdf_page": 1105,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-563",
@@ -93,6 +135,20 @@
       "branches": {
         "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-563",
+          "pdf_page": 1105,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-563",
+          "pdf_page": 1105,
+          "table_index": 0,
+          "row_index": 4
+        }
       },
       "measurements": [],
       "provenance": {
@@ -115,6 +171,20 @@
         "YES": "The repair is completed.",
         "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-563",
+          "pdf_page": 1105,
+          "table_index": 0,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-563",
+          "pdf_page": 1105,
+          "table_index": 0,
+          "row_index": 6
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-563",
@@ -135,6 +205,20 @@
       "branches": {
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-563",
+          "pdf_page": 1105,
+          "table_index": 0,
+          "row_index": 7
+        },
+        "NO": {
+          "manual_page": "40-563",
+          "pdf_page": 1105,
+          "table_index": 0,
+          "row_index": 8
+        }
       },
       "measurements": [],
       "provenance": {

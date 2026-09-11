@@ -30,28 +30,26 @@
         "YES": "• The arm cylinder is correct. • Go to the next check item.",
         "NO": "• The arm cylinder is defective. • Repair or replace the arm cylinder. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-815",
+          "pdf_page": 1357,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-815",
+          "pdf_page": 1357,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-815",
         "pdf_page": 1357,
         "table_index": 1,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-815",
-          "pdf_page": 1357,
-          "table_index": 1,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-815",
-          "pdf_page": 1357,
-          "table_index": 1,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM11:1:step:0",
       "branch_fact_ids": {
@@ -67,28 +65,26 @@
         "YES": "• Safety valve for lock valve in arm control valve is normal. • Go to the next check item.",
         "NO": "• Safety valve for lock valve in arm control valve is defective. • Repair or replace safety valve for lock valve in arm control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-815",
+          "pdf_page": 1357,
+          "table_index": 1,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-815",
+          "pdf_page": 1357,
+          "table_index": 1,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-815",
         "pdf_page": 1357,
         "table_index": 1,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-815",
-          "pdf_page": 1357,
-          "table_index": 1,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-815",
-          "pdf_page": 1357,
-          "table_index": 1,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM11:2:step:0",
       "branch_fact_ids": {
@@ -104,28 +100,26 @@
         "YES": "• Lock valve in arm control valve is normal. • Go to the next check item.",
         "NO": "• Lock valve in arm control valve is defective. • Repair or replace the lock valve in arm control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-816",
+          "pdf_page": 1358,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-816",
+          "pdf_page": 1358,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-816",
         "pdf_page": 1358,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-816",
-          "pdf_page": 1358,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-816",
-          "pdf_page": 1358,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM11:3:step:0",
       "branch_fact_ids": {
@@ -141,28 +135,26 @@
         "YES": "• Suction safety valve on IN side of arm control valve is normal. • Go to the next check item.",
         "NO": "• Suction safety valve on IN side of arm control valve is defective. • Repair or replace the suction safety valve on IN side of arm control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-816",
+          "pdf_page": 1358,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-816",
+          "pdf_page": 1358,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-816",
         "pdf_page": 1358,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-816",
-          "pdf_page": 1358,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-816",
-          "pdf_page": 1358,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM11:4:step:0",
       "branch_fact_ids": {
@@ -178,28 +170,26 @@
         "YES": "• Arm control valve body and spool are normal. • Go to the next check item.",
         "NO": "• Arm control valve body and spool are defective. • Repair or replace the arm control valve body and spool. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-816",
+          "pdf_page": 1358,
+          "table_index": 0,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-816",
+          "pdf_page": 1358,
+          "table_index": 0,
+          "row_index": 6
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-816",
         "pdf_page": 1358,
         "table_index": 0,
         "row_index": 5
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-816",
-          "pdf_page": 1358,
-          "table_index": 0,
-          "row_index": 6,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-816",
-          "pdf_page": 1358,
-          "table_index": 0,
-          "row_index": 5,
-          "column_index": 4
-        }
       },
       "fact_id": "HM11:5:step:0",
       "branch_fact_ids": {
@@ -215,28 +205,26 @@
         "YES": "• Pressure compensation valve on IN side of arm control valve is normal. • Go to the next check item.",
         "NO": "• Pressure compensation valve on IN side of arm control valve is defective. • Repair or replace the pressure compensation valve on the IN side of the arm control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-817",
+          "pdf_page": 1359,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-817",
+          "pdf_page": 1359,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-817",
         "pdf_page": 1359,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-817",
-          "pdf_page": 1359,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-817",
-          "pdf_page": 1359,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM11:6:step:0",
       "branch_fact_ids": {
@@ -252,28 +240,26 @@
         "YES": "• Pressure compensation valve on the OUT side of the arm control valve is correct. • Go to the next check item.",
         "NO": "• Pressure compensation valve on the OUT side of the arm control valve is defective. • Repair or replace the pressure compensation valve on the OUT side of the arm control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-818",
+          "pdf_page": 1360,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-818",
+          "pdf_page": 1360,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-818",
         "pdf_page": 1360,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-818",
-          "pdf_page": 1360,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-818",
-          "pdf_page": 1360,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM11:7:step:0",
       "branch_fact_ids": {
@@ -289,28 +275,26 @@
         "YES": "The repair is done.",
         "NO": "Go back to the first check item."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-818",
+          "pdf_page": 1360,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-818",
+          "pdf_page": 1360,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-818",
         "pdf_page": 1360,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-818",
-          "pdf_page": 1360,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-818",
-          "pdf_page": 1360,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM11:8:step:0",
       "branch_fact_ids": {
@@ -416,6 +400,13 @@
   "refs_failure_codes": [],
   "skipped_tables": [],
   "merged_cells_inherited": [],
+  "title_provenance": {
+    "manual_page": "40-815",
+    "pdf_page": 1357,
+    "table_index": null,
+    "row_index": null
+  },
+  "provenance_fallbacks": {},
   "branch_provenance_own": 16,
   "branch_provenance_inherited": []
 }

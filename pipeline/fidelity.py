@@ -188,7 +188,11 @@ def enumerate_symptom_facts(recs: Dict[str, dict]) -> List[dict]:
     out = []
     for sid, r in recs.items():
         section = "smode" if r["tree_kind"] == "SymptomTreeFlat" else "hmode"
-        prov0 = {"manual_page": r["manual_pages"][0], "pdf_page": r["pdf_pages"][0]}
+        # The page that PRINTS the title, not the entry's first page. Falls
+        # back to pdf_pages[0] only when the extractor could not find it, and
+        # that fallback is counted in provenance_fallbacks.
+        prov0 = r.get("title_provenance") or {
+            "manual_page": r["manual_pages"][0], "pdf_page": r["pdf_pages"][0]}
         out.append(_fact(f"{sid}:0:symptom_title:0", "symptom_title", sid,
                          r["symptom"], prov0, section))
 
@@ -209,8 +213,9 @@ def enumerate_symptom_facts(recs: Dict[str, dict]) -> List[dict]:
                                  warn=warn))
             if st.get("remedy_fact_id"):
                 out.append(_fact(st["remedy_fact_id"], "remedy", sid,
-                                 st.get("remedy"), st["provenance"], section,
-                                 warn=warn))
+                                 st.get("remedy"),
+                                 st.get("remedy_provenance") or st["provenance"],
+                                 section, warn=warn))
             for m in st.get("measurements", []):
                 out.append(meas(m, warn))
             for br, fid in (st.get("branch_fact_ids") or {}).items():
@@ -248,9 +253,14 @@ def enumerate_facts(recs: Dict[str, dict]) -> List[dict]:
                 # A branch fact id whose branch text is gone is itself the
                 # finding: the id promises a fact the record no longer holds.
                 # Defaulting to "" makes it unresolvable rather than crashing.
+                #
+                # The branch's OWN page, captured by parse_causes at the moment
+                # the outcome was read. Section 40 steps straddle page breaks
+                # too; the step's page was right only by layout.
                 out.append({"fact_id": fid, "kind": "branch", "code": code,
                             "text": (st.get("branches") or {}).get(br, ""),
-                            "prov": st["provenance"],
+                            "prov": (st.get("branch_provenance") or {}).get(br)
+                                    or st["provenance"],
                             "warn": st.get("extraction_warning"), "redirect": False})
             if st.get("procedure"):
                 out.append({"fact_id": f"{st['fact_id']}:proc",

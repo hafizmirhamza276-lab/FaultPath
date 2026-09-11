@@ -26,6 +26,7 @@
       "cause": "Defective connection of sensor connector",
       "procedure": "Defective connection (incorrect connection) of Ne speed sensor and Bkup speed sensor can be the cause. Check it.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-180",
@@ -41,6 +42,7 @@
       "cause": "Defective Ne speed sensor system",
       "procedure": "Do the checks on causes 1 to 10 for failure code [CA689].",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-180",
@@ -56,6 +58,7 @@
       "cause": "Defective Bkup speed sensor system",
       "procedure": "Do the troubleshooting for failure code [CA778].",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-180",
@@ -71,6 +74,7 @@
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-180",

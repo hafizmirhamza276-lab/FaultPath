@@ -33,6 +33,20 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-307",
+          "pdf_page": 849,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-307",
+          "pdf_page": 849,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-307",
@@ -53,6 +67,20 @@
       "branches": {
         "YES": "• The battery is normal. • Go to the next inspection item.",
         "NO": "• The battery is defective. • If the battery electrolyte level is low, add electrolyte. After the electrolyte is refilled, charge the battery. • If the battery voltage is low, charge or replace the battery. • If the specific gravity of the battery electrolyte is low, charge the battery. After charging, if the specific gravity is lower than the specified value, replace the battery. • Go to “Confirmation of repair”."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-308",
+          "pdf_page": 850,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-308",
+          "pdf_page": 850,
+          "table_index": 0,
+          "row_index": 2
+        }
       },
       "measurements": [],
       "provenance": {
@@ -75,6 +103,20 @@
         "YES": "The fusible link is normal. • Go to the next inspection item.",
         "NO": "• The fusible link is defective. • It blown, go to “Ground fault in wiring harness”. • If the fusible link is not blown but has no continuity, replace it. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-308",
+          "pdf_page": 850,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-308",
+          "pdf_page": 850,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-308",
@@ -95,6 +137,20 @@
       "branches": {
         "YES": "• The fuse is normal. • Go to the next inspection item.",
         "NO": "• The fuse is defective. • It blown, go to “Ground fault in wiring harness”. • If the fuse is not blown but has no continuity, replace the fuse. • Go to “Confirmation of repair”."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-308",
+          "pdf_page": 850,
+          "table_index": 0,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-308",
+          "pdf_page": 850,
+          "table_index": 0,
+          "row_index": 6
+        }
       },
       "measurements": [],
       "provenance": {
@@ -117,6 +173,20 @@
         "YES": "• The wiring harness has no open circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-309",
+          "pdf_page": 851,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-309",
+          "pdf_page": 851,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-309",
@@ -137,6 +207,20 @@
       "branches": {
         "YES": "• The wiring harness has no ground faults. • Go to the next inspection item.",
         "NO": "• The wiring harness has a ground fault. • Repair or replace the defective wiring harness. • Replace the fuse if it is blown. • Go to “Confirmation of repair”."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-309",
+          "pdf_page": 851,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-309",
+          "pdf_page": 851,
+          "table_index": 0,
+          "row_index": 4
+        }
       },
       "measurements": [],
       "provenance": {
@@ -159,6 +243,20 @@
         "YES": "• The wiring harness has no short circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has a short circuit. • Repair or replace the defective wiring harness. • Replace the fuse if it is blown. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-310",
+          "pdf_page": 852,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-310",
+          "pdf_page": 852,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-310",
@@ -180,6 +278,20 @@
         "YES": "The repair is completed.",
         "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-310",
+          "pdf_page": 852,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-310",
+          "pdf_page": 852,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-310",
@@ -200,6 +312,20 @@
       "branches": {
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-310",
+          "pdf_page": 852,
+          "table_index": 0,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-310",
+          "pdf_page": 852,
+          "table_index": 0,
+          "row_index": 6
+        }
       },
       "measurements": [],
       "provenance": {

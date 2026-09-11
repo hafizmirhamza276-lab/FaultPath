@@ -26,6 +26,7 @@
       "cause": "Use of incorrect fuel",
       "procedure": "The fuel used can be incorrect. Check it.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-211",
@@ -41,6 +42,7 @@
       "cause": "Incorrect usage of machine",
       "procedure": "It is possible that the machine is used incorrectly. Instruct the operator to use it correctly.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-211",
@@ -56,6 +58,7 @@
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-211",

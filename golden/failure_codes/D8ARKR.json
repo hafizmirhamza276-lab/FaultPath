@@ -31,6 +31,7 @@
       "cause": "Defective power supply circuit of gateway function controller",
       "procedure": "1. Starting switch: OFF 2. Make sure that the system operating lamp is not lit. Turn the battery disconnect switch to the OFF position. 3. Disconnect the connector CK05. Connect a T-adapter to the female side. 4. Battery disconnect switch: ON REMARK If no failure is found, check No.2 is not necessary.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",
@@ -71,6 +72,7 @@
       "cause": "Open circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Make sure that the system operating lamp is not lit. Turn the battery disconnect switch to the OFF position. 3. Remove the fuse No.17 in the fuse box F01. 4. Disconnect the connector CK05. Connect a T-adapter to the female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -135,6 +137,7 @@
       "cause": "Defective gateway function controller ACC signal circuit",
       "procedure": "1. Starting switch: OFF 2. Make sure that the system operating lamp is not lit. Turn the battery disconnect switch to the OFF position. 3. Disconnect the connector CK05. Connect a T-adapter to the female side. 4. Battery disconnect switch: ON 5. Starting switch: ON REMARK If no failure is found, check No.4 is not necessary.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",
@@ -175,6 +178,7 @@
       "cause": "Open circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Make sure that the system operating lamp is not lit. Turn the battery disconnect switch to the OFF position. 3. Remove the fuse No.10 and No.20 in the fuse box F01. 4. Disconnect the connector CK05. Connect a T-adapter to the female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -239,6 +243,7 @@
       "cause": "Defective CAN 1 terminating resistor",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors K13 and CM02. Connect a T-adapter to each male side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -279,6 +284,7 @@
       "cause": "Open circuit in wiring harness (CAN 1 communication circuit)",
       "procedure": "1. Starting switch: OFF 2. Make sure that the system operating lamp is not lit. Turn the battery disconnect switch to the OFF position. 3. Disconnect the connectors CM02, CK05 and C23. Connect a T-adapter to each female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -355,6 +361,7 @@
       "cause": "Ground fault in wiring harness (CAN 1 communication circuit)",
       "procedure": "1. Starting switch: OFF 2. Make sure that the system operating lamp is not lit. Turn the battery disconnect switch to the OFF position. 3. Disconnect the connectors CK05,CM02,CP01 and LK13, and connect T- adapter to one of them on the female side. 4. Disconnect the connectors, terminals, and fuses of all the devices divided from connectors CK05 (7) and (26).",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -395,6 +402,7 @@
       "cause": "Hot short circuit in wiring harness (CAN 1 communication circuit)",
       "procedure": "1. Starting switch: OFF 2. Make sure that the system operating lamp is not lit. Turn the battery disconnect switch to the OFF position. 3. Insert a T-adapter into the connector K13. 4. Battery disconnect switch: ON 5. Starting switch: ON REMARK Voltage of CANH and CANL is 2.5±1 V including the case it is in communication state, so regard wiring harness as correct if measured voltage is 1 to 4 V.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",
@@ -435,6 +443,7 @@
       "cause": "Defective gateway function controller",
       "procedure": "If no failure is found by the previous checks, the gateway function controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-300",
@@ -450,6 +459,7 @@
       "cause": "Defective machine monitor",
       "procedure": "If no failure is found by the previous checks, the machine monitor is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-300",

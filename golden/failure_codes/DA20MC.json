@@ -29,6 +29,20 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-306",
+          "pdf_page": 848,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-306",
+          "pdf_page": 848,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-306",
@@ -50,6 +64,20 @@
         "YES": "The repair is completed.",
         "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-306",
+          "pdf_page": 848,
+          "table_index": 1,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-306",
+          "pdf_page": 848,
+          "table_index": 1,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-306",
@@ -70,6 +98,20 @@
       "branches": {
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-306",
+          "pdf_page": 848,
+          "table_index": 1,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-306",
+          "pdf_page": 848,
+          "table_index": 1,
+          "row_index": 6
+        }
       },
       "measurements": [],
       "provenance": {

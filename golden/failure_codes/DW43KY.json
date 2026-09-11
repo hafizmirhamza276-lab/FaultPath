@@ -30,6 +30,20 @@
         "YES": "• The wiring harnesses and connectors are normal. • Go to the next inspection item.",
         "NO": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-491",
+          "pdf_page": 1033,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-491",
+          "pdf_page": 1033,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-491",
@@ -50,6 +64,20 @@
       "branches": {
         "YES": "• The wiring harness has no hot short circuits. • Go to the next inspection item.",
         "NO": "• The wiring harness has a hot short circuit. • Repair or replace the defective wiring harness. • Go to “Confirmation of repair”."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-491",
+          "pdf_page": 1033,
+          "table_index": 1,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-491",
+          "pdf_page": 1033,
+          "table_index": 1,
+          "row_index": 4
+        }
       },
       "measurements": [],
       "provenance": {
@@ -72,6 +100,20 @@
         "YES": "The repair is completed.",
         "NO": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-492",
+          "pdf_page": 1034,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-492",
+          "pdf_page": 1034,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-492",
@@ -92,6 +134,20 @@
       "branches": {
         "YES": "Return to the first inspection item.",
         "NO": "The repair is completed."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-492",
+          "pdf_page": 1034,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-492",
+          "pdf_page": 1034,
+          "table_index": 0,
+          "row_index": 4
+        }
       },
       "measurements": [],
       "provenance": {

@@ -27,6 +27,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-235",
@@ -42,6 +43,7 @@
       "cause": "Defective engine oil pressure switch",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector OIL PRESSURE SWITCH, and connect a T- adapter to the male side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -70,6 +72,7 @@
       "cause": "Open or short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -98,6 +101,7 @@
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-235",

@@ -28,6 +28,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-192",
@@ -43,6 +44,7 @@
       "cause": "Defective engine oil pressure switch",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector OIL PRESSURE SWITCH, and connect a T- adapter to the male side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -71,6 +73,7 @@
       "cause": "Open or short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -99,6 +102,7 @@
       "cause": "Looseness or corrosion of battery terminal",
       "procedure": "The looseness or corrosion of battery terminal can be the cause. Check it.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-192",
@@ -114,6 +118,7 @@
       "cause": "Loose terminal or halfopen circuit at terminal",
       "procedure": "1. Starting switch: OFF Check the terminals of alternator, battery relay, and ground terminals (T12), etc.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-192",
@@ -129,6 +134,7 @@
       "cause": "Defective battery voltage",
       "procedure": "1. Starting switch: OFF 2. Do the troubleshooting when the starting switch is in the OFF position, and also when the engine is started.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",
@@ -157,6 +163,7 @@
       "cause": "Defective alternator",
       "procedure": "1. Starting switch: OFF 2. Insert a T-adapter into the connector E12. 3. Engine start (engine speed is medium or above)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",
@@ -185,6 +192,7 @@
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.) Reference 1. Turn the starting switch to the OFF position. Disconnect the ground cable of the battery. 2. Insert a T-adapter into the connector CE03. 3. Connect a battery ground. 4. Measure it when the starting switch is in the ON position and when the engine is started.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",

@@ -28,28 +28,26 @@
         "YES": "• The engine speed is correct. • Go to the next check item.",
         "NO": "• The engine speed is defective. • Examine the engine. For details, see “Engine Does Not Rotate Smoothly” in S mode. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-927",
+          "pdf_page": 1469,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-927",
+          "pdf_page": 1469,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-927",
         "pdf_page": 1469,
         "table_index": 1,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-927",
-          "pdf_page": 1469,
-          "table_index": 1,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-927",
-          "pdf_page": 1469,
-          "table_index": 1,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM36:1:step:0",
       "branch_fact_ids": {
@@ -65,28 +63,26 @@
         "YES": "• The alternator belt is correct. • Go to the next check item.",
         "NO": "• The alternator belt is defective. • Replace the alternator belt. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-927",
+          "pdf_page": 1469,
+          "table_index": 1,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-927",
+          "pdf_page": 1469,
+          "table_index": 1,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-927",
         "pdf_page": 1469,
         "table_index": 1,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-927",
-          "pdf_page": 1469,
-          "table_index": 1,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-927",
-          "pdf_page": 1469,
-          "table_index": 1,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM36:2:step:0",
       "branch_fact_ids": {
@@ -102,28 +98,26 @@
         "YES": "The repair is done.",
         "NO": "• The fan clutch can be defective. • Replace the fan clutch. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-927",
+          "pdf_page": 1469,
+          "table_index": 1,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-927",
+          "pdf_page": 1469,
+          "table_index": 1,
+          "row_index": 6
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-927",
         "pdf_page": 1469,
         "table_index": 1,
         "row_index": 5
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-927",
-          "pdf_page": 1469,
-          "table_index": 1,
-          "row_index": 6,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-927",
-          "pdf_page": 1469,
-          "table_index": 1,
-          "row_index": 5,
-          "column_index": 4
-        }
       },
       "fact_id": "HM36:3:step:0",
       "branch_fact_ids": {
@@ -139,28 +133,26 @@
         "YES": "The repair is done.",
         "NO": "Go back to the first check item."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-928",
+          "pdf_page": 1470,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-928",
+          "pdf_page": 1470,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-928",
         "pdf_page": 1470,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-928",
-          "pdf_page": 1470,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-928",
-          "pdf_page": 1470,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM36:4:step:0",
       "branch_fact_ids": {
@@ -234,6 +226,13 @@
       "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
     }
   ],
+  "title_provenance": {
+    "manual_page": "40-927",
+    "pdf_page": 1469,
+    "table_index": null,
+    "row_index": null
+  },
+  "provenance_fallbacks": {},
   "branch_provenance_own": 8,
   "branch_provenance_inherited": []
 }

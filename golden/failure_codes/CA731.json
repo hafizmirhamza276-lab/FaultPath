@@ -27,6 +27,7 @@
       "cause": "Damaged engine Ne speed sensor",
       "procedure": "The breakage of the engine Ne speed sensor can be the cause. Check it.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-251",
@@ -42,6 +43,7 @@
       "cause": "Breakage of engine Bkup speed sensor",
       "procedure": "The breakage of the engine Bkup speed sensor can be the cause. Check it.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-251",
@@ -57,6 +59,7 @@
       "cause": "Deformation or damage of the speed sensing wheel on the crankshaft side",
       "procedure": "The speed sensing wheel (1) on the crankshaft side can be deformed or damaged. Check it.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-251",
@@ -72,6 +75,7 @@
       "cause": "Defective installation or damage of speed sensing ring on camshaft side",
       "procedure": "There can be defective installation or breakage of the speed detection ring on the camshaft side. Check it as follows. 1. Set No. 1 cylinder to the compression top dead center (align stamp mark). 2. Remove the Bkup speed sensor. 3. Installation is correct if the twin groove (single rib) (B) of the speed sensing ring can be seen through the sensor mounting hole (H).",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-251",
@@ -87,6 +91,7 @@
       "cause": "Misaligned timing of crankshaft and camshaft",
       "procedure": "Timing of crankshaft and camshaft can be misaligned. Check it.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-251",
@@ -102,6 +107,7 @@
       "cause": "Defective connection of ground terminal",
       "procedure": "The connection of the ground terminal can be defective. Check directly the terminals that follow. • Ground terminal of machine ((-) terminal of battery) • Engine ground terminal • Engine controller ground terminal • Starting motor ground terminal",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-251",

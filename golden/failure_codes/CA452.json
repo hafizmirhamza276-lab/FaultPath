@@ -27,6 +27,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-243",
@@ -42,6 +43,7 @@
       "cause": "Defective common rail pressure sensor power supply system",
       "procedure": "If failure code [CA187] (ground fault of the sensor power supply line) or [CA227] is shown, do the troubleshooting for that code first.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-243",
@@ -57,6 +59,7 @@
       "cause": "Defective common rail pressure sensor",
       "procedure": "Check that the failure code [CA187] (ground fault of the sensor power supply line) is not shown. 1. Starting switch: OFF 2. Disconnect the connector FUEL RAIL PRESS. 3. Starting switch: ON If the failure code changes from [CA452] to [CA451], the sensor is defective.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-243",
@@ -72,6 +75,7 @@
       "cause": "Ground fault in wiring harness (contact with ground circuit)",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and FUEL RAIL PRESS, and connect T- adapter to female side of ECM.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -100,6 +104,7 @@
       "cause": "Short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and FUEL RAIL PRESS, and connect T- adapter to female side of ECM.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -128,6 +133,7 @@
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.) 1. Starting switch: OFF 2. Insert a T-adapter into the connector ECM. 3. Starting switch: ON",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",

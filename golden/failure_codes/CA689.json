@@ -27,6 +27,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-249",
@@ -42,6 +43,7 @@
       "cause": "Defective Ne speed sensor power supply system",
       "procedure": "If failure code [CA238] is also shown at the same time, do the troubleshooting for that code first.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-249",
@@ -57,6 +59,7 @@
       "cause": "Damaged engine Ne speed sensor or defective installation (looseness)",
       "procedure": "Do checks because the engine Ne speed sensor installation can be defective (loosened).",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-249",
@@ -72,6 +75,7 @@
       "cause": "Defective Ne speed sensor power supply input",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector CRANK SENSOR, and connect a T-adapter to the female side. 3. Starting switch: ON",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",
@@ -100,6 +104,7 @@
       "cause": "Open circuit in wiring harness (wire breakage or defective contact of connector)",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and CRANK SENSOR.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -152,6 +157,7 @@
       "cause": "Short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and CRANK SENSOR.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -192,6 +198,7 @@
       "cause": "Ground fault in wiring harness (contact with ground circuit)",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and CRANK SENSOR.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -220,6 +227,7 @@
       "cause": "Hot short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector CRANK SENSOR. 3. Starting switch: ON",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",
@@ -248,6 +256,7 @@
       "cause": "Breakage and looseness of speed sensing wheel",
       "procedure": "Check speed sensing wheel.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-250",
@@ -263,6 +272,7 @@
       "cause": "Defective Ne speed sensor",
       "procedure": "If no failure is found by the previous checks, the engine Ne speed sensor is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-250",
@@ -278,6 +288,7 @@
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-250",

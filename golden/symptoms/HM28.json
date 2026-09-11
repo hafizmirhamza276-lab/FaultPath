@@ -32,28 +32,26 @@
         "YES": "• The swing control valve body and spool are correct. • Go to the next check item.",
         "NO": "• The swing control valve body and spool are defective. • Replace the body and spool of the swing control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-900",
+          "pdf_page": 1442,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-900",
+          "pdf_page": 1442,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-900",
         "pdf_page": 1442,
         "table_index": 1,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-900",
-          "pdf_page": 1442,
-          "table_index": 1,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-900",
-          "pdf_page": 1442,
-          "table_index": 1,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM28:1:step:0",
       "branch_fact_ids": {
@@ -69,28 +67,26 @@
         "YES": "• LS shuttle valve in R.H. travel control valve is normal. • Go to the next check item.",
         "NO": "• LS shuttle valve in R.H. travel control valve is defective. • Clean the check valve seat of LS shuttle valve in R.H. travel control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-900",
+          "pdf_page": 1442,
+          "table_index": 1,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-900",
+          "pdf_page": 1442,
+          "table_index": 1,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-900",
         "pdf_page": 1442,
         "table_index": 1,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-900",
-          "pdf_page": 1442,
-          "table_index": 1,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-900",
-          "pdf_page": 1442,
-          "table_index": 1,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM28:2:step:0",
       "branch_fact_ids": {
@@ -106,28 +102,26 @@
         "YES": "• LS shuttle valve in L.H. travel control valve is normal. • Go to the next check item.",
         "NO": "• LS shuttle valve in L.H. travel control valve is defective. • Clean the check valve seat of LS shuttle valve in L.H. travel control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-901",
+          "pdf_page": 1443,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-901",
+          "pdf_page": 1443,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-901",
         "pdf_page": 1443,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-901",
-          "pdf_page": 1443,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-901",
-          "pdf_page": 1443,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM28:3:step:0",
       "branch_fact_ids": {
@@ -143,28 +137,26 @@
         "YES": "• LS shuttle valve in boom control valve is normal. • Go to the next check item.",
         "NO": "• LS shuttle valve in boom control valve is defective. • Clean the check valve seat of LS shuttle valve in boom control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-901",
+          "pdf_page": 1443,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-901",
+          "pdf_page": 1443,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-901",
         "pdf_page": 1443,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-901",
-          "pdf_page": 1443,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-901",
-          "pdf_page": 1443,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM28:4:step:0",
       "branch_fact_ids": {
@@ -180,28 +172,26 @@
         "YES": "• LS shuttle valve in arm control valve is normal. • Go to the next check item.",
         "NO": "• LS shuttle valve in arm control valve is defective. • Clean the check valve seat of LS shuttle valve in arm control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-901",
+          "pdf_page": 1443,
+          "table_index": 0,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-901",
+          "pdf_page": 1443,
+          "table_index": 0,
+          "row_index": 6
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-901",
         "pdf_page": 1443,
         "table_index": 0,
         "row_index": 5
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-901",
-          "pdf_page": 1443,
-          "table_index": 0,
-          "row_index": 6,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-901",
-          "pdf_page": 1443,
-          "table_index": 0,
-          "row_index": 5,
-          "column_index": 4
-        }
       },
       "fact_id": "HM28:5:step:0",
       "branch_fact_ids": {
@@ -217,28 +207,26 @@
         "YES": "• LS shuttle valve in bucket control valve is normal. • Go to the next check item.",
         "NO": "• LS shuttle valve in bucket control valve is defective. • Clean the check valve seat of LS shuttle valve in bucket control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-902",
+          "pdf_page": 1444,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-902",
+          "pdf_page": 1444,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-902",
         "pdf_page": 1444,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-902",
-          "pdf_page": 1444,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-902",
-          "pdf_page": 1444,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM28:6:step:0",
       "branch_fact_ids": {
@@ -254,28 +242,26 @@
         "YES": "• LS shuttle valve in service control valve is normal. • Go to the next check item.",
         "NO": "• LS shuttle valve in service control valve is defective. • Clean the check valve seat of LS shuttle valve in service control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-902",
+          "pdf_page": 1444,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-902",
+          "pdf_page": 1444,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-902",
         "pdf_page": 1444,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-902",
-          "pdf_page": 1444,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-902",
-          "pdf_page": 1444,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM28:7:step:0",
       "branch_fact_ids": {
@@ -291,28 +277,26 @@
         "YES": "• The swing parking brake solenoid valve is correct. • Go to the next check item.",
         "NO": "• The swing parking brake solenoid valve is defective. • Replace the swing parking brake solenoid valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-903",
+          "pdf_page": 1445,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-903",
+          "pdf_page": 1445,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-903",
         "pdf_page": 1445,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-903",
-          "pdf_page": 1445,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-903",
-          "pdf_page": 1445,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM28:8:step:0",
       "branch_fact_ids": {
@@ -328,28 +312,26 @@
         "YES": "• The parking brake of swing motor is correct. • Go to the next check item.",
         "NO": "• The parking brake of swing motor is defective. • Replace the parking brake of swing motor. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-903",
+          "pdf_page": 1445,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-903",
+          "pdf_page": 1445,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-903",
         "pdf_page": 1445,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-903",
-          "pdf_page": 1445,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-903",
-          "pdf_page": 1445,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM28:9:step:0",
       "branch_fact_ids": {
@@ -365,28 +347,26 @@
         "YES": "• The swing motor safety valve is correct. • Go to the next check item.",
         "NO": "• Safety valve of the swing motor is defective. • Replace the safety valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-904",
+          "pdf_page": 1446,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-904",
+          "pdf_page": 1446,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-904",
         "pdf_page": 1446,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-904",
-          "pdf_page": 1446,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-904",
-          "pdf_page": 1446,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM28:10:step:0",
       "branch_fact_ids": {
@@ -402,28 +382,26 @@
         "YES": "• The swing motor is correct. • Go to the next check item.",
         "NO": "• The swing motor is defective. • Replace the swing motor. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-904",
+          "pdf_page": 1446,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-904",
+          "pdf_page": 1446,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-904",
         "pdf_page": 1446,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-904",
-          "pdf_page": 1446,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-904",
-          "pdf_page": 1446,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM28:11:step:0",
       "branch_fact_ids": {
@@ -439,28 +417,26 @@
         "YES": "• The swing machinery is correct. • Go to the next check item.",
         "NO": "• The swing machinery is defective. • Replace the swing machinery. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-905",
+          "pdf_page": 1447,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-905",
+          "pdf_page": 1447,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-905",
         "pdf_page": 1447,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-905",
-          "pdf_page": 1447,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-905",
-          "pdf_page": 1447,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM28:12:step:0",
       "branch_fact_ids": {
@@ -476,28 +452,26 @@
         "YES": "The repair is done.",
         "NO": "Return to the first check item."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-905",
+          "pdf_page": 1447,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-905",
+          "pdf_page": 1447,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-905",
         "pdf_page": 1447,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-905",
-          "pdf_page": 1447,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-905",
-          "pdf_page": 1447,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM28:13:step:0",
       "branch_fact_ids": {
@@ -638,6 +612,13 @@
       "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
     }
   ],
+  "title_provenance": {
+    "manual_page": "40-900",
+    "pdf_page": 1442,
+    "table_index": null,
+    "row_index": null
+  },
+  "provenance_fallbacks": {},
   "branch_provenance_own": 26,
   "branch_provenance_inherited": []
 }

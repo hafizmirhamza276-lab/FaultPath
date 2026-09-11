@@ -27,6 +27,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-208",
@@ -42,6 +43,7 @@
       "cause": "Defective ambient pressure sensor power supply system",
       "procedure": "If failure code [CA352] or [CA386] is shown, do the troubleshooting for that code first. 1. Starting switch: OFF 2. Disconnect the connector AMB. AIR PRESSURE, and connect a T-adapter to the female side. 3. Starting switch: ON",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",
@@ -70,6 +72,7 @@
       "cause": "Short circuit in wiring harness (Open circuit or defective contact of connector)",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors AMB. AIR PRESSURE and ECM. Connect a T- adapter to each female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -122,6 +125,7 @@
       "cause": "Ground fault in wiring harness (contact with ground circuit)",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and AMB. AIR PRESSURE, and connect a T-adapter to one of them on the female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -150,6 +154,7 @@
       "cause": "Short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and AMB. AIR PRESSURE, and connect a T-adapter to one of them on the female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -178,6 +183,7 @@
       "cause": "Defective ambient pressure sensor (input voltage error in engine controller)",
       "procedure": "If no failure is found in causes 1 through 5 but found in cause 6, the sensor is defective. 1. Starting switch: OFF 2. Insert a T-adapter into the connector ECM. 3. Starting switch: ON",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",
@@ -206,6 +212,7 @@
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-209",

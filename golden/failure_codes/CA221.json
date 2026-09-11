@@ -27,6 +27,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-206",
@@ -42,6 +43,7 @@
       "cause": "Defective sensor 1 power supply system",
       "procedure": "If failure code [CA352] or [CA386] is also shown at the same time, do the troubleshooting for that code first.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-206",
@@ -57,6 +59,7 @@
       "cause": "Defective ambient pressure sensor",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector AMB. AIR PRESSURE 3. Starting switch: ON If the failure code changes from [CA221] to [CA222], the sensor is defective. 1. Starting switch: OFF 2. Insert a T-adapter into the connector ECM. 3. Starting switch: ON",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",
@@ -85,6 +88,7 @@
       "cause": "Short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and AMB. AIR PRESSURE, and connect a T-adapter to one of them on the female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -113,6 +117,7 @@
       "cause": "Hot short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector AMB. AIR PRESSURE 3. Connect a T-adapter to the female side of connector AMB. AIR PRES- SURE, or insert a T-adapter into the connector ECM. 4. Turn the starting switch to the ON position (with connector AMB. AIR PRESSURE disconnected).",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",
@@ -141,6 +146,7 @@
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-207",

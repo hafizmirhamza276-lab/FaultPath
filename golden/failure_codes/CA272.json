@@ -27,6 +27,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-216",
@@ -42,6 +43,7 @@
       "cause": "Defective actuator of supply pump",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector CP3 PUMP REGULATOR.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -70,6 +72,7 @@
       "cause": "Short circuit or ground fault in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -98,6 +101,7 @@
       "cause": "Hot short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector CP3 PUMP REGULATOR. 3. Insert a T-adapter into the connector ECM. 4. Turn the starting switch to the ON position (connector CP3 PUMP REGU- LATOR is disconnected), and measure after 1 minute or more. REMARK Because of PWM, average voltage is shown.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",
@@ -126,6 +130,7 @@
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-216",

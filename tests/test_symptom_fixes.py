@@ -28,7 +28,8 @@ sys.path.insert(0, os.path.join(REPO_ROOT, "pipeline"))
 from pipeline import fidelity                                    # noqa: E402
 from pipeline.extract_symptoms import (                          # noqa: E402
     merged_from_above, inherit_merged_cells, assign_branch_provenance,
-    is_relational)
+    is_relational, page_prints_title, parse_flat_causes)
+from pipeline.extract_golden import parse_causes                 # noqa: E402
 
 FAILED = []
 
@@ -163,6 +164,141 @@ check("a skipped stage carries its reason",
 check("a skipped stage contributes no passing gate",
       not [g for g in row["gates"] if g["status"] == orch.PASS],
       str(row["gates"]))
+
+
+print("\nSTRADDLING ROWS -- the case the current layout hides")
+# S4 is latent: every fact sits on its parent's page in THIS revision, so a
+# suite built only on real data proves nothing. Each kind below is given a row
+# that genuinely crosses a page break and must take its own page. Without
+# these the fix is unfalsifiable.
+
+PA = {"manual_page": "40-100", "pdf_page": 500, "table_index": 0, "row_index": 1}
+PB = {"manual_page": "40-101", "pdf_page": 501, "table_index": 0, "row_index": 0}
+
+# 1. Section 40 branch outcome: YES on page 500, NO on 501 ------------------
+s40 = parse_causes([
+    (["No.", "Cause", "Procedure", "", "", ""], PA),
+    (["7", "Defective sensor", "Check it.", "YES", "Sensor is normal.", ""], PA),
+    (["", "", "", "NO", "Sensor is defective.", ""], PB),
+], "A")
+bp = s40[0].get("branch_provenance", {})
+check("s40 straddling step: YES takes page 500",
+      bp.get("YES", {}).get("pdf_page") == 500, str(bp))
+check("s40 straddling step: NO takes page 501, NOT the step's 500",
+      bp.get("NO", {}).get("pdf_page") == 501, str(bp))
+check("s40 straddling step: the step itself still reports 500",
+      s40[0]["provenance"]["pdf_page"] == 500, str(s40[0]["provenance"]))
+
+# 2. H-Mode branch: same parser, and the symptom path must not undo it ------
+own3, inh3 = assign_branch_provenance(s40, [], [])
+check("hmode straddling branch keeps its parse-time page through the symptom path",
+      s40[0]["branch_provenance"]["NO"]["pdf_page"] == 501 and not inh3,
+      str(s40[0]["branch_provenance"]))
+
+# 3. S-Mode remedy on a flat table that crosses a page break ----------------
+flat = parse_flat_causes(
+    [["No.", "Cause", "Point to check", "Remedy"],
+     ["1", "Bad wiring", "Check harness.", "Repair the harness."],
+     ["2", "Bad relay", "Check relay.", "Replace the relay."]],
+    [PA, PA, PB])
+check("smode remedy on the far page of a break takes 501",
+      flat[1].get("remedy_provenance", {}).get("pdf_page") == 501, str(flat[1]))
+check("smode remedy on the near page still takes 500",
+      flat[0].get("remedy_provenance", {}).get("pdf_page") == 500, str(flat[0]))
+
+
+def remedy_from_first_row(prov_rows):
+    """The defect: every remedy takes the table's first page."""
+    return prov_rows[0]["pdf_page"]
+
+
+check("a first-row remedy rule would get the straddling case wrong",
+      remedy_from_first_row([PA, PA, PB]) == 500
+      and flat[1]["remedy_provenance"]["pdf_page"] == 501,
+      "per-row capture and first-row capture must disagree here")
+
+# 4. symptom_title printed on a LATER page than the entry's first -----------
+TITLE = "Work Equipment With Heavier Load Moves Slower"
+check("title absent from the first page is not claimed to be on it",
+      not page_prints_title("H-18 Details of failure ... nothing here", TITLE))
+check("title found on the page that prints it",
+      page_prints_title("H-18 " + TITLE + " 40 Troubleshooting", TITLE))
+check("title hyphenated across a line break is still found",
+      page_prints_title("H-18 Work Equipment With Heavi- er Load Moves Slower",
+                        TITLE),
+      "clean() de-hyphenates; a raw substring match moved HM18/34/35 to their "
+      "second page")
+check("a different title on the page is not matched",
+      not page_prints_title("H-19 Swing Speed Is Low", TITLE))
+
+
+# 5. fuzzy matching reattaching a fact to a NEIGHBOURING row ---------------
+#    A near-match would relocate the defect instead of removing it: the fact
+#    would get a confident page belonging to a different row. Refusing and
+#    counting the fallback is the only safe answer.
+near = [{"step": 9, "provenance": dict(PA),
+         "branches": {"NO": "Sensor is defective and must be replaced."}}]
+own4, inh4 = assign_branch_provenance(
+    near,
+    [["", "", "", "NO", "Sensor is defective."]],   # close, not equal
+    [PB])
+check("a near-miss row is refused rather than matched fuzzily",
+      inh4 == ["9:NO"] and own4 == 0
+      and near[0]["branch_provenance"]["NO"]["pdf_page"] == 500,
+      str(near[0]["branch_provenance"]))
+
+# 6. provenance CAPTURED BUT NOT USED by the resolver ----------------------
+#    The fix is worthless if fidelity keeps reading the parent's page. Build a
+#    record whose branch sits on a different page and assert the enumerated
+#    fact carries the branch's page, not the step's.
+rec_s40 = {"CODE1": {
+    "code": "CODE1", "pdf_pages": [500, 501], "standalone_measurements": [],
+    "steps": [{"step": 1, "cause": "c", "procedure": "",
+               "provenance": dict(PA),
+               "branches": {"NO": "Sensor is defective."},
+               "branch_fact_ids": {"NO": "CODE1:1:branch:0"},
+               "branch_provenance": {"NO": dict(PB)},
+               "measurements": [], "fact_id": "CODE1:1:step:0"}]}}
+f40 = {f["fact_id"]: f for f in fidelity.enumerate_facts(rec_s40)}
+check("fidelity reads Section 40 branch_provenance, not the step's page",
+      f40["CODE1:1:branch:0"]["prov"]["pdf_page"] == 501,
+      str(f40["CODE1:1:branch:0"]["prov"]))
+
+rec_sym = {"HMZZ": {
+    "symptom_id": "HMZZ", "tree_kind": "SymptomTreeFlat", "symptom": "t",
+    "pdf_pages": [500, 501], "manual_pages": ["40-100", "40-101"],
+    "title_provenance": {"manual_page": "40-101", "pdf_page": 501},
+    "standalone_measurements": [],
+    "steps": [{"step": 1, "cause": "c", "remedy": "Replace the relay.",
+               "provenance": dict(PA), "remedy_provenance": dict(PB),
+               "remedy_fact_id": "HMZZ:1:remedy:0", "fact_id": "HMZZ:1:step:0",
+               "branch_fact_ids": {}}]}}
+fsym = {f["fact_id"]: f for f in fidelity.enumerate_symptom_facts(rec_sym)}
+check("fidelity reads remedy_provenance, not the step's page",
+      fsym["HMZZ:1:remedy:0"]["prov"]["pdf_page"] == 501,
+      str(fsym["HMZZ:1:remedy:0"]["prov"]))
+check("fidelity reads title_provenance, not pdf_pages[0]",
+      fsym["HMZZ:0:symptom_title:0"]["prov"]["pdf_page"] == 501,
+      str(fsym["HMZZ:0:symptom_title:0"]["prov"]))
+
+# 7. these tests must be able to FAIL -------------------------------------
+#    A straddling assertion that passes on broken code proves nothing. Each
+#    check above is re-run against a deliberately broken variant, which must
+#    give the wrong answer. ("SKIPPED == 'SKIPPED'" got as far as passing.)
+broken_s40 = dict(rec_s40["CODE1"]["steps"][0])
+broken_s40.pop("branch_provenance")
+check("without branch_provenance the s40 fact falls back to the step's page",
+      fidelity.enumerate_facts({"CODE1": {**rec_s40["CODE1"],
+                                          "steps": [broken_s40]}})[1]
+      ["prov"]["pdf_page"] == 500,
+      "the fallback must be reachable, or the gate is measuring nothing")
+broken_sym = dict(rec_sym["HMZZ"]["steps"][0])
+broken_sym.pop("remedy_provenance")
+check("without remedy_provenance the remedy falls back to the step's page",
+      [f for f in fidelity.enumerate_symptom_facts(
+          {"HMZZ": {**rec_sym["HMZZ"], "steps": [broken_sym],
+                    "title_provenance": None}})
+       if f["kind"] == "remedy"][0]["prov"]["pdf_page"] == 500)
 
 
 print("\nNEGATIVE COVERAGE -- every new gate has a failing case")

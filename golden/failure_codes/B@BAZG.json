@@ -26,6 +26,7 @@
       "cause": "Low engine oil pressure (when system is normal)",
       "procedure": "Lowered engine oil pressure can be the cause. Check it and if oil pressure is lowered, repair to clear the cause of failure. • Do “Engine Oil Pressure Low” in S-mode.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-167",
@@ -41,6 +42,7 @@
       "cause": "Defective engine oil pressure monitor system",
       "procedure": "If no failure is found by the check on cause 1, engine oil pressure monitor system can be defective. Do the troubleshooting for failure code [CA435].",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-167",

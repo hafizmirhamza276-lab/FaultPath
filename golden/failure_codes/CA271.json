@@ -27,6 +27,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-214",
@@ -42,6 +43,7 @@
       "cause": "Defective actuator of supply pump",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector CP3 PUMP REGULATOR. 3. Starting switch: ON If the failure code changes from [CA271] to [CA272], the supply pump actuator is defective.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-214",
@@ -57,6 +59,7 @@
       "cause": "Short circuit or ground fault in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -97,6 +100,7 @@
       "cause": "Short circuit in wiring harness",
       "procedure": "If no failure is found by check on cause 3, this check is not required. 1. Starting switch: OFF 2. Disconnect the connectors ECM and CP3 PUMP REGULATOR. Connect a T-adapter to the female side of ECM.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -125,6 +129,7 @@
       "cause": "Ground fault in wiring harness (contact with ground circuit)",
       "procedure": "If no failure is found by check on cause 3, this check is not required. 1. Starting switch: OFF 2. Disconnect the connectors ECM and CP3 PUMP REGULATOR. Connect a T-adapter to the female side of ECM.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -153,6 +158,7 @@
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-214",

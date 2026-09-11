@@ -37,28 +37,26 @@
         "YES": "• R.H. PPC valve is normal. • Go to the next check item.",
         "NO": "• The R.H. PPC valve is defective. • Repair or replace the R.H. PPC valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-800",
+          "pdf_page": 1342,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-800",
+          "pdf_page": 1342,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-800",
         "pdf_page": 1342,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-800",
-          "pdf_page": 1342,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-800",
-          "pdf_page": 1342,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM08:1:step:0",
       "branch_fact_ids": {
@@ -74,28 +72,26 @@
         "YES": "• Merge-divider main EPC valve is normal. • Go to the next check item.",
         "NO": "• Merge-divider main EPC valve is defective. • Repair or replace the merge-divider main EPC valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-800",
+          "pdf_page": 1342,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-800",
+          "pdf_page": 1342,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-800",
         "pdf_page": 1342,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-800",
-          "pdf_page": 1342,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-800",
-          "pdf_page": 1342,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM08:2:step:0",
       "branch_fact_ids": {
@@ -111,28 +107,26 @@
         "YES": "• Merge-divider LS-EPC valve is normal. • Go to the next check item.",
         "NO": "• Merge-divider LS-EPC valve is defective. • Repair or replace the merge-divider LS-EPC valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-802",
+          "pdf_page": 1344,
+          "table_index": 0,
+          "row_index": 2
+        },
+        "NO": {
+          "manual_page": "40-802",
+          "pdf_page": 1344,
+          "table_index": 0,
+          "row_index": 3
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-802",
         "pdf_page": 1344,
         "table_index": 0,
         "row_index": 2
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-802",
-          "pdf_page": 1344,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-802",
-          "pdf_page": 1344,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        }
       },
       "fact_id": "HM08:3:step:0",
       "branch_fact_ids": {
@@ -148,28 +142,26 @@
         "YES": "• Merge-divider valve body and main spool are normal. • Go to the next check item.",
         "NO": "• Merge-divider valve body and main spool are defective. • Repair or replace the merge-divider valve body and main spool. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-804",
+          "pdf_page": 1346,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-804",
+          "pdf_page": 1346,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-804",
         "pdf_page": 1346,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-804",
-          "pdf_page": 1346,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-804",
-          "pdf_page": 1346,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM08:4:step:0",
       "branch_fact_ids": {
@@ -185,28 +177,26 @@
         "YES": "• Merge-divider body and LS spool are normal. • Go to the next check item.",
         "NO": "• Merge-divider body and LS spool are defective. • Repair or replace the merge-divider valve body and LS spool. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-804",
+          "pdf_page": 1346,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-804",
+          "pdf_page": 1346,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-804",
         "pdf_page": 1346,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-804",
-          "pdf_page": 1346,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-804",
-          "pdf_page": 1346,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM08:5:step:0",
       "branch_fact_ids": {
@@ -222,28 +212,26 @@
         "YES": "• Bucket control valve body and spool are normal. • Go to the next check item.",
         "NO": "• Bucket control valve body and spool are defective. • Repair or replace the bucket control valve body and spool. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-804",
+          "pdf_page": 1346,
+          "table_index": 0,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-804",
+          "pdf_page": 1346,
+          "table_index": 0,
+          "row_index": 6
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-804",
         "pdf_page": 1346,
         "table_index": 0,
         "row_index": 5
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-804",
-          "pdf_page": 1346,
-          "table_index": 0,
-          "row_index": 6,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-804",
-          "pdf_page": 1346,
-          "table_index": 0,
-          "row_index": 5,
-          "column_index": 4
-        }
       },
       "fact_id": "HM08:6:step:0",
       "branch_fact_ids": {
@@ -259,28 +247,26 @@
         "YES": "• Pressure compensation valve on IN side of bucket control valve is normal. • Go to the next check item.",
         "NO": "• Pressure compensation valve on IN side of bucket control valve is defective. • Repair or replace the pressure compensation valve on IN side of bucket control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-805",
+          "pdf_page": 1347,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-805",
+          "pdf_page": 1347,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-805",
         "pdf_page": 1347,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-805",
-          "pdf_page": 1347,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-805",
-          "pdf_page": 1347,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM08:7:step:0",
       "branch_fact_ids": {
@@ -296,28 +282,26 @@
         "YES": "• Pressure compensation valve on DUMP side of bucket control valve is normal. • Go to the next check item.",
         "NO": "• Pressure compensation valve on DUMP side of bucket control valve is defective. • Repair or replace the pressure compensation valve on DUMP side of bucket control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-806",
+          "pdf_page": 1348,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-806",
+          "pdf_page": 1348,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-806",
         "pdf_page": 1348,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-806",
-          "pdf_page": 1348,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-806",
-          "pdf_page": 1348,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM08:8:step:0",
       "branch_fact_ids": {
@@ -333,28 +317,26 @@
         "YES": "• Suction safety valve on IN side of bucket control valve is normal. • Go to the next check item.",
         "NO": "• Suction safety valve on IN side of bucket control valve is defective. • Repair or replace the suction safety valve on IN side of bucket control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-807",
+          "pdf_page": 1349,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-807",
+          "pdf_page": 1349,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-807",
         "pdf_page": 1349,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-807",
-          "pdf_page": 1349,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-807",
-          "pdf_page": 1349,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM08:9:step:0",
       "branch_fact_ids": {
@@ -370,28 +352,26 @@
         "YES": "• Suction safety valve on DUMP side of bucket control valve is normal. • Go to the next check item.",
         "NO": "• Suction safety valve on DUMP side of bucket control valve is defective. • Repair or replace the suction safety valve on DUMP side of bucket control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-807",
+          "pdf_page": 1349,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-807",
+          "pdf_page": 1349,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-807",
         "pdf_page": 1349,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-807",
-          "pdf_page": 1349,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-807",
-          "pdf_page": 1349,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM08:10:step:0",
       "branch_fact_ids": {
@@ -407,28 +387,26 @@
         "YES": "• LS shuttle valve in bucket control valve is normal. • Go to the next check item.",
         "NO": "• LS shuttle valve in bucket control valve is defective. • Clean the check valve seat of LS shuttle valve in bucket control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-808",
+          "pdf_page": 1350,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-808",
+          "pdf_page": 1350,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-808",
         "pdf_page": 1350,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-808",
-          "pdf_page": 1350,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-808",
-          "pdf_page": 1350,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM08:11:step:0",
       "branch_fact_ids": {
@@ -444,28 +422,26 @@
         "YES": "• LS shuttle valve in L.H. travel control valve is normal. • Go to the next check item.",
         "NO": "• LS shuttle valve in L.H. travel control valve is defective. • Clean the check valve seat of LS shuttle valve in L.H. travel control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-808",
+          "pdf_page": 1350,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-808",
+          "pdf_page": 1350,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-808",
         "pdf_page": 1350,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-808",
-          "pdf_page": 1350,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-808",
-          "pdf_page": 1350,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM08:12:step:0",
       "branch_fact_ids": {
@@ -481,28 +457,26 @@
         "YES": "• The bucket cylinder is correct. • Go to the next check item.",
         "NO": "• The bucket cylinder is defective. • Repair or replace the bucket cylinder. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-809",
+          "pdf_page": 1351,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-809",
+          "pdf_page": 1351,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-809",
         "pdf_page": 1351,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-809",
-          "pdf_page": 1351,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-809",
-          "pdf_page": 1351,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM08:13:step:0",
       "branch_fact_ids": {
@@ -518,28 +492,26 @@
         "YES": "The repair is done.",
         "NO": "Go back to the first check item."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-809",
+          "pdf_page": 1351,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-809",
+          "pdf_page": 1351,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-809",
         "pdf_page": 1351,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-809",
-          "pdf_page": 1351,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-809",
-          "pdf_page": 1351,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM08:14:step:0",
       "branch_fact_ids": {
@@ -950,6 +922,13 @@
       "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
     }
   ],
+  "title_provenance": {
+    "manual_page": "40-799",
+    "pdf_page": 1341,
+    "table_index": null,
+    "row_index": null
+  },
+  "provenance_fallbacks": {},
   "branch_provenance_own": 28,
   "branch_provenance_inherited": []
 }

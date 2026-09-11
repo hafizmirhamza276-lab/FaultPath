@@ -29,28 +29,26 @@
         "YES": "• 2-stage relief solenoid valve is normal. • Go to the next check item.",
         "NO": "• 2-stage relief solenoid valve is defective. • Repair or replace the 2-stage relief solenoid valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-831",
+          "pdf_page": 1373,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-831",
+          "pdf_page": 1373,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-831",
         "pdf_page": 1373,
         "table_index": 1,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-831",
-          "pdf_page": 1373,
-          "table_index": 1,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-831",
-          "pdf_page": 1373,
-          "table_index": 1,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM15:1:step:0",
       "branch_fact_ids": {
@@ -66,28 +64,26 @@
         "YES": "• Front main relief solenoid valve is normal. • Go to the next check item.",
         "NO": "• Front main relief solenoid valve is defective. • Repair or replace the front main relief solenoid valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-832",
+          "pdf_page": 1374,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-832",
+          "pdf_page": 1374,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-832",
         "pdf_page": 1374,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-832",
-          "pdf_page": 1374,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-832",
-          "pdf_page": 1374,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM15:2:step:0",
       "branch_fact_ids": {
@@ -103,28 +99,26 @@
         "YES": "• Rear main relief solenoid valve is normal. • Go to the next check item.",
         "NO": "• Rear main relief solenoid valve is defective. • Repair or replace the main relief solenoid valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-833",
+          "pdf_page": 1375,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-833",
+          "pdf_page": 1375,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-833",
         "pdf_page": 1375,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-833",
-          "pdf_page": 1375,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-833",
-          "pdf_page": 1375,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM15:3:step:0",
       "branch_fact_ids": {
@@ -140,28 +134,26 @@
         "YES": "The repair is done.",
         "NO": "Go back to the first check item."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-833",
+          "pdf_page": 1375,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-833",
+          "pdf_page": 1375,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-833",
         "pdf_page": 1375,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-833",
-          "pdf_page": 1375,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-833",
-          "pdf_page": 1375,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM15:4:step:0",
       "branch_fact_ids": {
@@ -366,6 +358,13 @@
       "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
     }
   ],
+  "title_provenance": {
+    "manual_page": "40-831",
+    "pdf_page": 1373,
+    "table_index": null,
+    "row_index": null
+  },
+  "provenance_fallbacks": {},
   "branch_provenance_own": 8,
   "branch_provenance_inherited": []
 }

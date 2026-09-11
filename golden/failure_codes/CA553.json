@@ -26,6 +26,7 @@
       "cause": "Defective related systems",
       "procedure": "Check if other failure codes are shown at the same time. If other codes are shown, do the troubleshooting for them.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-246",
@@ -41,6 +42,7 @@
       "cause": "Defective connection of ground terminal",
       "procedure": "The connection of the ground terminal can be defective. Check the terminals that follow. • Ground terminal of machine ((-) terminal of battery) • Engine ground terminal • Engine controller ground terminal • Starting motor ground terminal",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-246",
@@ -56,6 +58,7 @@
       "cause": "Defective common rail pressure sensor system",
       "procedure": "Do the troubleshooting for failure codes [CA451] and [CA452].",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-246",

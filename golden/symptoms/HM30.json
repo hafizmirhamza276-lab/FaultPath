@@ -28,28 +28,26 @@
         "YES": "• The swing motor safety valve is correct. • Go to the next check item.",
         "NO": "• Adjust the hydraulic pressure of the swing motor safety valve. • If it does not become correct even after adjustment, replace the safety valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-910",
+          "pdf_page": 1452,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-910",
+          "pdf_page": 1452,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-910",
         "pdf_page": 1452,
         "table_index": 1,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-910",
-          "pdf_page": 1452,
-          "table_index": 1,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-910",
-          "pdf_page": 1452,
-          "table_index": 1,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM30:1:step:0",
       "branch_fact_ids": {
@@ -65,28 +63,26 @@
         "YES": "• The swing motor is correct. • Go to the next check item.",
         "NO": "• The swing motor is defective. • Replace the swing motor. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-911",
+          "pdf_page": 1453,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-911",
+          "pdf_page": 1453,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-911",
         "pdf_page": 1453,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-911",
-          "pdf_page": 1453,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-911",
-          "pdf_page": 1453,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM30:2:step:0",
       "branch_fact_ids": {
@@ -102,28 +98,26 @@
         "YES": "The repair is done.",
         "NO": "Return to the first check item."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-911",
+          "pdf_page": 1453,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-911",
+          "pdf_page": 1453,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-911",
         "pdf_page": 1453,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-911",
-          "pdf_page": 1453,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-911",
-          "pdf_page": 1453,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM30:3:step:0",
       "branch_fact_ids": {
@@ -197,6 +191,13 @@
   "refs_failure_codes": [],
   "skipped_tables": [],
   "merged_cells_inherited": [],
+  "title_provenance": {
+    "manual_page": "40-910",
+    "pdf_page": 1452,
+    "table_index": null,
+    "row_index": null
+  },
+  "provenance_fallbacks": {},
   "branch_provenance_own": 6,
   "branch_provenance_inherited": []
 }

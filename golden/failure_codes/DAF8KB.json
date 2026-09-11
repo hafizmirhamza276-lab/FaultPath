@@ -27,6 +27,7 @@
       "cause": "Defective camera (internal short circuit)",
       "procedure": "1. Turn starting switch to OFF position. 2. Disconnect connector A45 or A46 of camera, and turn starting switch to ON position. If failure code is cleared after disconnecting camera to perform operation of reproducing procedure, internal defect of camera is detected.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-356",
@@ -42,6 +43,7 @@
       "cause": "Defective machine monitor",
       "procedure": "1. Turn starting switch to OFF position. 2. Disconnect connector CM04. 3. Connect T-adapter to male side of CM04. 4. Turn starting switch to ON position.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",
@@ -70,6 +72,7 @@
       "cause": "Ground fault in wiring harness (Contact with ground circuit)",
       "procedure": "1. Turn starting switch to OFF position. 2. Disconnect camera connector A45 and A46 from connector CM04. 3. Connect T-adapter to female side of connector CM04.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -98,6 +101,7 @@
       "cause": "Hot short circuit in wiring harness (contact with 24 V circuit)",
       "procedure": "1. Turn starting switch to OFF position. 2. Disconnect connector A45 and A46 of camera. 3. Insert T-adapter into connector CM04. 4. Turn starting switch to ON position. (Disconnect camera and check that it is normal, in advance.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",

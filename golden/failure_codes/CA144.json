@@ -27,6 +27,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-195",
@@ -42,6 +43,7 @@
       "cause": "Defective coolant temperature sensor",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector COOLANT TEMP. Connect the socket to the male side. REMARK When the coolant temperature is 0℃ or above, if the resistance of the coolant temperature sensor is 700Ω to 37kΩ, the coolant temperature sensor is regarded as correct.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -118,6 +120,7 @@
       "cause": "Open or short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the female side. Between ECM (female) (15) and (38) (coolant temperature: 0℃ and above) REMARK 700Ω to Resistance The resistance value accords with the characteris- 37kΩ tics table of the resistance of coolant temperature sensor on cause 2.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "",
@@ -146,6 +149,7 @@
       "cause": "Defective engine control ler",
       "procedure": "- If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-196",

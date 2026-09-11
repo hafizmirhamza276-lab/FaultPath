@@ -30,28 +30,26 @@
         "YES": "• The swing PPC valve is normal. • Go to the next check item.",
         "NO": "• The swing PPC valve is defective. • Replace the swing PPC valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-912",
+          "pdf_page": 1454,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-912",
+          "pdf_page": 1454,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-912",
         "pdf_page": 1454,
         "table_index": 1,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-912",
-          "pdf_page": 1454,
-          "table_index": 1,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-912",
-          "pdf_page": 1454,
-          "table_index": 1,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM31:1:step:0",
       "branch_fact_ids": {
@@ -67,28 +65,26 @@
         "YES": "• Swing RIGHT PPC slow return valve is correct. • Go to the next check item.",
         "NO": "• When the swing RIGHT PPC slow return valve is removed, examine the strainer for clogging. • If the strainer is clogged, clean the strainer or replace the swing RIGHT PPC slow return valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-913",
+          "pdf_page": 1455,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-913",
+          "pdf_page": 1455,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-913",
         "pdf_page": 1455,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-913",
-          "pdf_page": 1455,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-913",
-          "pdf_page": 1455,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM31:2:step:0",
       "branch_fact_ids": {
@@ -104,28 +100,26 @@
         "YES": "• The swing LEFT PPC slow return valve is correct. • Go to the next check item.",
         "NO": "• When the swing LEFT PPC slow return valve is removed, examine the strainer for clogging. • If the strainer is clogged, clean the strainer or replace the swing LEFT PPC slow return valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-913",
+          "pdf_page": 1455,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-913",
+          "pdf_page": 1455,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-913",
         "pdf_page": 1455,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-913",
-          "pdf_page": 1455,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-913",
-          "pdf_page": 1455,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM31:3:step:0",
       "branch_fact_ids": {
@@ -141,28 +135,26 @@
         "YES": "• The swing control valve body and spool are correct. • Go to the next check item.",
         "NO": "• The swing control valve body and spool are defective. • Replace the body and spool of the swing control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-913",
+          "pdf_page": 1455,
+          "table_index": 0,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-913",
+          "pdf_page": 1455,
+          "table_index": 0,
+          "row_index": 6
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-913",
         "pdf_page": 1455,
         "table_index": 0,
         "row_index": 5
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-913",
-          "pdf_page": 1455,
-          "table_index": 0,
-          "row_index": 6,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-913",
-          "pdf_page": 1455,
-          "table_index": 0,
-          "row_index": 5,
-          "column_index": 4
-        }
       },
       "fact_id": "HM31:4:step:0",
       "branch_fact_ids": {
@@ -178,28 +170,26 @@
         "YES": "• The left suction valve of the swing motor is correct. • Go to the next check item.",
         "NO": "• Examine the left suction valve of the swing motor for sticking, scratches, or other abnormalities when it is removed. • If the left suction valve of the swing motor is stuck or scratched, replace the valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-914",
+          "pdf_page": 1456,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-914",
+          "pdf_page": 1456,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-914",
         "pdf_page": 1456,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-914",
-          "pdf_page": 1456,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-914",
-          "pdf_page": 1456,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM31:5:step:0",
       "branch_fact_ids": {
@@ -215,28 +205,26 @@
         "YES": "• The right suction valve of swing motor is correct. • Go to the next check item.",
         "NO": "• Examine the right suction valve of the swing motor for sticking, scratches, or other abnormalities when it is removed. • If the right suction valve of the swing motor is stuck or scratched, replace the valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-914",
+          "pdf_page": 1456,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-914",
+          "pdf_page": 1456,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-914",
         "pdf_page": 1456,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-914",
-          "pdf_page": 1456,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-914",
-          "pdf_page": 1456,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM31:6:step:0",
       "branch_fact_ids": {
@@ -252,28 +240,26 @@
         "YES": "• The left check valve of swing motor is correct. • Go to the next check item.",
         "NO": "• Examine the left check valve of swing motor for sticking, scratches, or other abnormalities when it is removed. • If the left check valve of the swing motor is stuck or scratched, replace the valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-914",
+          "pdf_page": 1456,
+          "table_index": 0,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-914",
+          "pdf_page": 1456,
+          "table_index": 0,
+          "row_index": 6
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-914",
         "pdf_page": 1456,
         "table_index": 0,
         "row_index": 5
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-914",
-          "pdf_page": 1456,
-          "table_index": 0,
-          "row_index": 6,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-914",
-          "pdf_page": 1456,
-          "table_index": 0,
-          "row_index": 5,
-          "column_index": 4
-        }
       },
       "fact_id": "HM31:7:step:0",
       "branch_fact_ids": {
@@ -289,28 +275,26 @@
         "YES": "• The right check valve of swing motor is correct. • Go to the next check item.",
         "NO": "• Examine the right check valve of swing motor for sticking, scratches, or other abnormalities when it is removed. • If the right check valve of the swing motor is stuck or scratched, replace the valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-915",
+          "pdf_page": 1457,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-915",
+          "pdf_page": 1457,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-915",
         "pdf_page": 1457,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-915",
-          "pdf_page": 1457,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-915",
-          "pdf_page": 1457,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM31:8:step:0",
       "branch_fact_ids": {
@@ -326,28 +310,26 @@
         "YES": "The repair is done.",
         "NO": "Return to the first check item."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-915",
+          "pdf_page": 1457,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-915",
+          "pdf_page": 1457,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-915",
         "pdf_page": 1457,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-915",
-          "pdf_page": 1457,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-915",
-          "pdf_page": 1457,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM31:9:step:0",
       "branch_fact_ids": {
@@ -430,6 +412,13 @@
       "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
     }
   ],
+  "title_provenance": {
+    "manual_page": "40-912",
+    "pdf_page": 1454,
+    "table_index": null,
+    "row_index": null
+  },
+  "provenance_fallbacks": {},
   "branch_provenance_own": 18,
   "branch_provenance_inherited": []
 }

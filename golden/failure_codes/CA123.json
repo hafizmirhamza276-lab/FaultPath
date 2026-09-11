@@ -27,6 +27,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-183",
@@ -42,6 +43,7 @@
       "cause": "Defective power supply system of charge pressure sensor (boost pressure sensor)",
       "procedure": "If failure code [CA187] or [CA227] is shown, do the troubleshooting for that code first.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-183",
@@ -57,6 +59,7 @@
       "cause": "Short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors CAM SENSOR, FUEL RAIL PRESS, BOOST PRESS & IMT, and ECM. 3. Connect a T-adapter to the female side of ECM.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -97,6 +100,7 @@
       "cause": "Ground fault in wiring harness (contact with GND circuit)",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors ECM and BOOST PRESS & IMT, and connect T-adapter to female side of ECM.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -125,6 +129,7 @@
       "cause": "Open circuit in wiring harness",
       "procedure": "If no failure is found by the above checks, it is possible that there is an open circuit in the wiring harness. See “Diagnose Open Circuit of Hydraulic Pressure Sensor System Wiring Harness” of “RELATED INFORMATION ON TROUBLESHOOTING”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-183",
@@ -140,6 +145,7 @@
       "cause": "Defective boost pressure and temperature sensor (input voltage error in engine controller)",
       "procedure": "If no failure is found by the checks on causes 1 to 5 and a failure is found by the checks on cause 6, the sensor is defective. 1. Starting switch: OFF 2. Insert a T-adapter into the connector ECM. 3. Starting switch: ON",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",
@@ -168,6 +174,7 @@
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-184",

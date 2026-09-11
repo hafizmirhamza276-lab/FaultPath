@@ -34,28 +34,26 @@
         "YES": "• Front pump swash plate sensor is normal. • Go to the next check item.",
         "NO": "• Front pump swash plate sensor is defective. • Repair or replace the front pump swash plate sensor. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-766",
+          "pdf_page": 1308,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-766",
+          "pdf_page": 1308,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-766",
         "pdf_page": 1308,
         "table_index": 1,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-766",
-          "pdf_page": 1308,
-          "table_index": 1,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-766",
-          "pdf_page": 1308,
-          "table_index": 1,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM05:1:step:0",
       "branch_fact_ids": {
@@ -71,28 +69,26 @@
         "YES": "• Rear pump swash plate sensor is normal. • Go to the next check item.",
         "NO": "• Rear pump swash plate sensor is defective. • Repair or replace the rear pump swash plate sensor. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-767",
+          "pdf_page": 1309,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-767",
+          "pdf_page": 1309,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-767",
         "pdf_page": 1309,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-767",
-          "pdf_page": 1309,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-767",
-          "pdf_page": 1309,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM05:2:step:0",
       "branch_fact_ids": {
@@ -108,28 +104,26 @@
         "YES": "• Front pump main relief valve is normal. • Go to the next check item.",
         "NO": "• Front pump main relief valve is defective. • Adjust the front pump main relief valve. • If the oil pressure does not become normal even after the front pump main relief valve is adjusted, repair or replace it. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-767",
+          "pdf_page": 1309,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-767",
+          "pdf_page": 1309,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-767",
         "pdf_page": 1309,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-767",
-          "pdf_page": 1309,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-767",
-          "pdf_page": 1309,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM05:3:step:0",
       "branch_fact_ids": {
@@ -145,28 +139,26 @@
         "YES": "• Rear pump main relief valve is normal. • Go to the next check item.",
         "NO": "• Rear pump main relief valve is defective. • Adjust the rear pump main relief valve. • If the oil pressure does not become correct even after the rear pump main relief valve is adjusted, repair or replace it. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-768",
+          "pdf_page": 1310,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-768",
+          "pdf_page": 1310,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-768",
         "pdf_page": 1310,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-768",
-          "pdf_page": 1310,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-768",
-          "pdf_page": 1310,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM05:4:step:0",
       "branch_fact_ids": {
@@ -182,28 +174,26 @@
         "YES": "• Front pump PC-EPC valve is normal. • Go to the next check item.",
         "NO": "• Front pump PC-EPC valve is defective. • Adjust the front pump PC-EPC valve. • If the oil pressure does not become normal even after the front pump PC-EPC valve is adjusted, repair or replace it. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-768",
+          "pdf_page": 1310,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-768",
+          "pdf_page": 1310,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-768",
         "pdf_page": 1310,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-768",
-          "pdf_page": 1310,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-768",
-          "pdf_page": 1310,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM05:5:step:0",
       "branch_fact_ids": {
@@ -219,28 +209,26 @@
         "YES": "• Rear pump PC-EPC valve is normal. • Go to the next check item.",
         "NO": "• Rear pump PC-EPC valve is defective. • Adjust the rear pump PC-EPC valve. • Repair or replace the PC-EPC valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-769",
+          "pdf_page": 1311,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-769",
+          "pdf_page": 1311,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-769",
         "pdf_page": 1311,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-769",
-          "pdf_page": 1311,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-769",
-          "pdf_page": 1311,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM05:6:step:0",
       "branch_fact_ids": {
@@ -256,28 +244,26 @@
         "YES": "• Front pump PC valve is normal. • Go to the next check item.",
         "NO": "• Front pump PC valve is defective. • Adjust the front pump PC valve. • If the oil pressure does not become correct even after the front pump PC valve is adjusted, repair or replace the servo piston assembly. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-769",
+          "pdf_page": 1311,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-769",
+          "pdf_page": 1311,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-769",
         "pdf_page": 1311,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-769",
-          "pdf_page": 1311,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-769",
-          "pdf_page": 1311,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM05:7:step:0",
       "branch_fact_ids": {
@@ -293,28 +279,26 @@
         "YES": "• Rear pump PC valve is normal. • Go to the next check item.",
         "NO": "• Rear pump PC valve is defective. • Adjust the rear pump PC valve. • If oil pressure does not become normal after adjustment of the rear pump PC valve, repair or replace the servo piston assembly. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-770",
+          "pdf_page": 1312,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-770",
+          "pdf_page": 1312,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-770",
         "pdf_page": 1312,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-770",
-          "pdf_page": 1312,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-770",
-          "pdf_page": 1312,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM05:8:step:0",
       "branch_fact_ids": {
@@ -330,28 +314,26 @@
         "YES": "• The LS-EPC valve is correct. • Go to the next check item.",
         "NO": "• The LS-EPC valve is defective. • Repair or replace the LS-EPC valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-770",
+          "pdf_page": 1312,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-770",
+          "pdf_page": 1312,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-770",
         "pdf_page": 1312,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-770",
-          "pdf_page": 1312,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-770",
-          "pdf_page": 1312,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM05:9:step:0",
       "branch_fact_ids": {
@@ -367,28 +349,26 @@
         "YES": "• Front pump LS valve is normal. • Go to the next check item.",
         "NO": "• Front pump LS valve is defective. • Adjust the front pump LS valve. • If the oil pressure does not become normal even after the front pump LS valve is adjusted, repair or replace it. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-771",
+          "pdf_page": 1313,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-771",
+          "pdf_page": 1313,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-771",
         "pdf_page": 1313,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-771",
-          "pdf_page": 1313,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-771",
-          "pdf_page": 1313,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM05:10:step:0",
       "branch_fact_ids": {
@@ -404,28 +384,26 @@
         "YES": "• Rear pump LS valve is normal. • Go to the next check item.",
         "NO": "• Rear pump LS valve is defective. • Adjust the rear pump LS valve. • If the oil pressure does not become normal even after the rear pump LS valve is adjusted, repair or replace it. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-772",
+          "pdf_page": 1314,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-772",
+          "pdf_page": 1314,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-772",
         "pdf_page": 1314,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-772",
-          "pdf_page": 1314,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-772",
-          "pdf_page": 1314,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM05:11:step:0",
       "branch_fact_ids": {
@@ -441,28 +419,26 @@
         "YES": "• The servo piston is correct. • Go to the next check item.",
         "NO": "• The servo piston is defective. • Repair or replace the servo piston. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-772",
+          "pdf_page": 1314,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-772",
+          "pdf_page": 1314,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-772",
         "pdf_page": 1314,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-772",
-          "pdf_page": 1314,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-772",
-          "pdf_page": 1314,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM05:12:step:0",
       "branch_fact_ids": {
@@ -478,28 +454,26 @@
         "YES": "• The piston pump is correct. • Go to the next check item.",
         "NO": "• The piston pump is defective. • Repair or replace the piston pump. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-772",
+          "pdf_page": 1314,
+          "table_index": 0,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-772",
+          "pdf_page": 1314,
+          "table_index": 0,
+          "row_index": 6
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-772",
         "pdf_page": 1314,
         "table_index": 0,
         "row_index": 5
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-772",
-          "pdf_page": 1314,
-          "table_index": 0,
-          "row_index": 6,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-772",
-          "pdf_page": 1314,
-          "table_index": 0,
-          "row_index": 5,
-          "column_index": 4
-        }
       },
       "fact_id": "HM05:13:step:0",
       "branch_fact_ids": {
@@ -515,28 +489,26 @@
         "YES": "The repair is done.",
         "NO": "Go back to the first check item."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-773",
+          "pdf_page": 1315,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-773",
+          "pdf_page": 1315,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-773",
         "pdf_page": 1315,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-773",
-          "pdf_page": 1315,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-773",
-          "pdf_page": 1315,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM05:14:step:0",
       "branch_fact_ids": {
@@ -1107,6 +1079,13 @@
       "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
     }
   ],
+  "title_provenance": {
+    "manual_page": "40-766",
+    "pdf_page": 1308,
+    "table_index": null,
+    "row_index": null
+  },
+  "provenance_fallbacks": {},
   "branch_provenance_own": 28,
   "branch_provenance_inherited": []
 }

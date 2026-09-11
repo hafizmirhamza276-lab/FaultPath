@@ -30,6 +30,12 @@
         "table_index": 1,
         "row_index": 1
       },
+      "remedy_provenance": {
+        "manual_page": "40-954",
+        "pdf_page": 1496,
+        "table_index": 1,
+        "row_index": 1
+      },
       "fact_id": "SM18:1:step:0",
       "branch_fact_ids": {},
       "remedy_fact_id": "SM18:1:remedy:0"
@@ -40,6 +46,12 @@
       "point_to_check": "Confirm the presence of vibration by visual check",
       "remedy": "Check and retighten piping fixed bracket",
       "provenance": {
+        "manual_page": "40-954",
+        "pdf_page": 1496,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "remedy_provenance": {
         "manual_page": "40-954",
         "pdf_page": 1496,
         "table_index": 1,
@@ -60,6 +72,12 @@
         "table_index": 1,
         "row_index": 3
       },
+      "remedy_provenance": {
+        "manual_page": "40-954",
+        "pdf_page": 1496,
+        "table_index": 1,
+        "row_index": 3
+      },
       "fact_id": "SM18:3:step:0",
       "branch_fact_ids": {},
       "remedy_fact_id": "SM18:3:remedy:0"
@@ -70,6 +88,12 @@
       "point_to_check": "Check muffler.",
       "remedy": "Replace muffler",
       "provenance": {
+        "manual_page": "40-954",
+        "pdf_page": 1496,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "remedy_provenance": {
         "manual_page": "40-954",
         "pdf_page": 1496,
         "table_index": 1,
@@ -90,6 +114,12 @@
         "table_index": 1,
         "row_index": 5
       },
+      "remedy_provenance": {
+        "manual_page": "40-954",
+        "pdf_page": 1496,
+        "table_index": 1,
+        "row_index": 5
+      },
       "fact_id": "SM18:5:step:0",
       "branch_fact_ids": {},
       "remedy_fact_id": "SM18:5:remedy:0"
@@ -100,6 +130,12 @@
       "point_to_check": "Check valve clearance (Reference: See Testing and adjusting, “Testing and adjusting valve clearance”).",
       "remedy": "Valve clearance adjustment",
       "provenance": {
+        "manual_page": "40-954",
+        "pdf_page": 1496,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "remedy_provenance": {
         "manual_page": "40-954",
         "pdf_page": 1496,
         "table_index": 1,
@@ -120,6 +156,12 @@
         "table_index": 1,
         "row_index": 7
       },
+      "remedy_provenance": {
+        "manual_page": "40-954",
+        "pdf_page": 1496,
+        "table_index": 1,
+        "row_index": 7
+      },
       "fact_id": "SM18:7:step:0",
       "branch_fact_ids": {},
       "remedy_fact_id": "SM18:7:remedy:0"
@@ -130,6 +172,12 @@
       "point_to_check": "1. If metal particles are found in oil pan or oil filter, overhaul engine and check piston rings and inner wall of cylinder . 2. Measure pressure (See Standard value table) (Reference: See Testing and adjusting, “Testing compression pressure”)",
       "remedy": "Replace piston ring.",
       "provenance": {
+        "manual_page": "40-954",
+        "pdf_page": 1496,
+        "table_index": 1,
+        "row_index": 8
+      },
+      "remedy_provenance": {
         "manual_page": "40-954",
         "pdf_page": 1496,
         "table_index": 1,
@@ -150,6 +198,12 @@
         "table_index": 1,
         "row_index": 9
       },
+      "remedy_provenance": {
+        "manual_page": "40-954",
+        "pdf_page": 1496,
+        "table_index": 1,
+        "row_index": 9
+      },
       "fact_id": "SM18:9:step:0",
       "branch_fact_ids": {},
       "remedy_fact_id": "SM18:9:remedy:0"
@@ -165,6 +219,12 @@
         "table_index": 1,
         "row_index": 10
       },
+      "remedy_provenance": {
+        "manual_page": "40-954",
+        "pdf_page": 1496,
+        "table_index": 1,
+        "row_index": 10
+      },
       "fact_id": "SM18:10:step:0",
       "branch_fact_ids": {},
       "remedy_fact_id": "SM18:10:remedy:0"
@@ -174,5 +234,12 @@
   "unresolved_pointers": [],
   "refs_failure_codes": [],
   "skipped_tables": [],
-  "merged_cells_inherited": []
+  "merged_cells_inherited": [],
+  "title_provenance": {
+    "manual_page": "40-954",
+    "pdf_page": 1496,
+    "table_index": null,
+    "row_index": null
+  },
+  "provenance_fallbacks": {}
 }

@@ -27,6 +27,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-228",
@@ -42,6 +43,7 @@
       "cause": "Defective sensor or wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connectors that follow one by one, and turn the starting switch to the ON position each time. 3. When troubleshooting is done, go back to Step 1. If this code is cleared, disconnected sensor or engine wiring harness is defective. REMARK Other failure codes are shown at the same time. This occurs because the connector is disconnected. So ignore codes other than this failure code [CA352]. Connector Ambient pressure sensor AMB. AIR PRESSURE Engine wiring harness ECM",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-228",
@@ -57,6 +59,7 @@
       "cause": "Defective engine controller",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector ECM. Connect a T-adapter to the male side. 3. Disconnect the connector ECM. Turn the starting switch to the ON position in this condition.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Voltage",

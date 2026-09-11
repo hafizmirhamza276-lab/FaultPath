@@ -26,6 +26,7 @@
       "cause": "Overheating of engine coolant (when system is normal)",
       "procedure": "Lowered engine oil pressure can be the cause. Check it and if oil pressure is lowered, repair to clear the cause of failure. • For details, see “Coolant Temperature Increases Too High (Overheat)” in S-mode.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-173",
@@ -41,6 +42,7 @@
       "cause": "Defective engine coolant temperature sensor system",
       "procedure": "If no failure is found by the check on cause 1, the engine coolant temperature sensor system can be defective. Do the troubleshooting for failure codes [CA144] and [CA145].",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-173",

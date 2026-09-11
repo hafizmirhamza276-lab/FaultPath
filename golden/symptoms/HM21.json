@@ -37,28 +37,26 @@
         "YES": "• R.H. PPC valve is normal. • Go to the next check item.",
         "NO": "• The R.H. PPC valve is defective. • Repair or replace the R.H. PPC valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-843",
+          "pdf_page": 1385,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-843",
+          "pdf_page": 1385,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-843",
         "pdf_page": 1385,
         "table_index": 1,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-843",
-          "pdf_page": 1385,
-          "table_index": 1,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-843",
-          "pdf_page": 1385,
-          "table_index": 1,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:1:step:0",
       "branch_fact_ids": {
@@ -74,28 +72,26 @@
         "YES": "• L.H. PPC valve is normal. • Go to the next check item.",
         "NO": "• The L.H. PPC valve is defective. • Repair or replace the L.H. PPC valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-844",
+          "pdf_page": 1386,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-844",
+          "pdf_page": 1386,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-844",
         "pdf_page": 1386,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-844",
-          "pdf_page": 1386,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-844",
-          "pdf_page": 1386,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:2:step:0",
       "branch_fact_ids": {
@@ -111,28 +107,26 @@
         "YES": "• Self-pressure reducing valve is normal. • Go to the next check item.",
         "NO": "• Self-pressure reducing valve is defective. • Repair or replace the self-pressure reducing valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-845",
+          "pdf_page": 1387,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-845",
+          "pdf_page": 1387,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-845",
         "pdf_page": 1387,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-845",
-          "pdf_page": 1387,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-845",
-          "pdf_page": 1387,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:3:step:0",
       "branch_fact_ids": {
@@ -148,28 +142,26 @@
         "YES": "• Front pump LS valve is normal. • Go to the next check item.",
         "NO": "• Front pump LS valve is defective. • Adjust the front pump LS valve. • If the oil pressure does not become normal even after the front pump LS valve is adjusted, repair or replace it. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-845",
+          "pdf_page": 1387,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-845",
+          "pdf_page": 1387,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-845",
         "pdf_page": 1387,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-845",
-          "pdf_page": 1387,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-845",
-          "pdf_page": 1387,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:4:step:0",
       "branch_fact_ids": {
@@ -185,28 +177,26 @@
         "YES": "• Rear pump LS valve is normal. • Go to the next check item.",
         "NO": "• Rear pump LS valve is defective. • Adjust the rear pump LS valve. • If the oil pressure does not become normal even after the rear pump LS valve is adjusted, repair or replace it. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-846",
+          "pdf_page": 1388,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-846",
+          "pdf_page": 1388,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-846",
         "pdf_page": 1388,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-846",
-          "pdf_page": 1388,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-846",
-          "pdf_page": 1388,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:5:step:0",
       "branch_fact_ids": {
@@ -222,28 +212,26 @@
         "YES": "• The travel junction solenoid valve is normal. • Go to the next check item.",
         "NO": "• The travel junction solenoid valve is defective. • Repair or replace the travel junction solenoid valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-847",
+          "pdf_page": 1389,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-847",
+          "pdf_page": 1389,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-847",
         "pdf_page": 1389,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-847",
-          "pdf_page": 1389,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-847",
-          "pdf_page": 1389,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:6:step:0",
       "branch_fact_ids": {
@@ -259,28 +247,26 @@
         "YES": "• The travel junction valve is normal. • Go to the next check item.",
         "NO": "• The travel junction valve is defective. • Repair or replace the travel junction valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-847",
+          "pdf_page": 1389,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-847",
+          "pdf_page": 1389,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-847",
         "pdf_page": 1389,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-847",
-          "pdf_page": 1389,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-847",
-          "pdf_page": 1389,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:7:step:0",
       "branch_fact_ids": {
@@ -296,28 +282,26 @@
         "YES": "• The right travel control valve is normal. • Go to the next check item.",
         "NO": "• The right travel control valve is defective. • Repair or replace the right travel control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-848",
+          "pdf_page": 1390,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-848",
+          "pdf_page": 1390,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-848",
         "pdf_page": 1390,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-848",
-          "pdf_page": 1390,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-848",
-          "pdf_page": 1390,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:8:step:0",
       "branch_fact_ids": {
@@ -333,28 +317,26 @@
         "YES": "• The left travel control valve is normal. • Go to the next check item.",
         "NO": "• The left travel control valve is defective. • Repair or replace the left travel control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-848",
+          "pdf_page": 1390,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-848",
+          "pdf_page": 1390,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-848",
         "pdf_page": 1390,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-848",
-          "pdf_page": 1390,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-848",
-          "pdf_page": 1390,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:9:step:0",
       "branch_fact_ids": {
@@ -370,28 +352,26 @@
         "YES": "• Pressure compensation valve on R.H. front side of travel control valve is normal. • Go to the next check item.",
         "NO": "• Pressure compensation valve on R.H. front side of travel control valve is defective. • Repair or replace the pressure compensation valve on the R.H. front side of the travel control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-849",
+          "pdf_page": 1391,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-849",
+          "pdf_page": 1391,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-849",
         "pdf_page": 1391,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-849",
-          "pdf_page": 1391,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-849",
-          "pdf_page": 1391,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:10:step:0",
       "branch_fact_ids": {
@@ -407,28 +387,26 @@
         "YES": "• Pressure compensation valve on R.H. rear side of travel control valve is normal. • Go to the next check item.",
         "NO": "• Pressure compensation valve on R.H. rear side of travel control valve is defective. • Repair or replace the pressure compensation valve on the right REVERSE side of the travel control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-850",
+          "pdf_page": 1392,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-850",
+          "pdf_page": 1392,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-850",
         "pdf_page": 1392,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-850",
-          "pdf_page": 1392,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-850",
-          "pdf_page": 1392,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:11:step:0",
       "branch_fact_ids": {
@@ -444,28 +422,26 @@
         "YES": "• Pressure compensation valve on left FOR- WARD side of travel control valve is normal. • Go to the next check item.",
         "NO": "• Pressure compensation valve on left FOR- WARD side of travel control valve is defective. • Repair or replace the pressure compensation valve on the left FORWARD side of the travel control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-851",
+          "pdf_page": 1393,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-851",
+          "pdf_page": 1393,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-851",
         "pdf_page": 1393,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-851",
-          "pdf_page": 1393,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-851",
-          "pdf_page": 1393,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:12:step:0",
       "branch_fact_ids": {
@@ -481,28 +457,26 @@
         "YES": "• Pressure compensation valve on left RE- VERSE side of travel control valve is normal. • Go to the next check item.",
         "NO": "• Pressure compensation valve on left RE- VERSE side of travel control valve is defective. • Repair or replace the pressure compensation valve on the left REVERSE side of the travel control valve. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-852",
+          "pdf_page": 1394,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-852",
+          "pdf_page": 1394,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-852",
         "pdf_page": 1394,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-852",
-          "pdf_page": 1394,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-852",
-          "pdf_page": 1394,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:13:step:0",
       "branch_fact_ids": {
@@ -518,28 +492,26 @@
         "YES": "• Center swivel joint is normal. • Go to the next check item.",
         "NO": "• Center swivel joint is defective. • Repair or replace the center swivel joint. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-852",
+          "pdf_page": 1394,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-852",
+          "pdf_page": 1394,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-852",
         "pdf_page": 1394,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-852",
-          "pdf_page": 1394,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-852",
-          "pdf_page": 1394,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:14:step:0",
       "branch_fact_ids": {
@@ -555,28 +527,26 @@
         "YES": "• The right travel motor is normal. • Go to the next check item.",
         "NO": "• The right travel motor is defective. • Repair or replace the R.H. travel motor drain hose. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-853",
+          "pdf_page": 1395,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-853",
+          "pdf_page": 1395,
+          "table_index": 0,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-853",
         "pdf_page": 1395,
         "table_index": 0,
         "row_index": 1
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-853",
-          "pdf_page": 1395,
-          "table_index": 0,
-          "row_index": 2,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-853",
-          "pdf_page": 1395,
-          "table_index": 0,
-          "row_index": 1,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:15:step:0",
       "branch_fact_ids": {
@@ -592,28 +562,26 @@
         "YES": "• The left travel motor is normal. • Go to the next check item.",
         "NO": "• The left travel motor is defective. • Repair or replace the L.H. travel motor drain hose. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-853",
+          "pdf_page": 1395,
+          "table_index": 0,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-853",
+          "pdf_page": 1395,
+          "table_index": 0,
+          "row_index": 4
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-853",
         "pdf_page": 1395,
         "table_index": 0,
         "row_index": 3
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-853",
-          "pdf_page": 1395,
-          "table_index": 0,
-          "row_index": 4,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-853",
-          "pdf_page": 1395,
-          "table_index": 0,
-          "row_index": 3,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:16:step:0",
       "branch_fact_ids": {
@@ -629,28 +597,26 @@
         "YES": "• The final drive is correct. • Go to the next check item.",
         "NO": "• The final drive is defective. • Repair or replace the final drive. • Go to “Confirmation of repair”."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-853",
+          "pdf_page": 1395,
+          "table_index": 0,
+          "row_index": 5
+        },
+        "NO": {
+          "manual_page": "40-853",
+          "pdf_page": 1395,
+          "table_index": 0,
+          "row_index": 6
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-853",
         "pdf_page": 1395,
         "table_index": 0,
         "row_index": 5
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-853",
-          "pdf_page": 1395,
-          "table_index": 0,
-          "row_index": 6,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-853",
-          "pdf_page": 1395,
-          "table_index": 0,
-          "row_index": 5,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:17:step:0",
       "branch_fact_ids": {
@@ -666,28 +632,26 @@
         "YES": "The repair is done.",
         "NO": "Go back to the first check item."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-853",
+          "pdf_page": 1395,
+          "table_index": 0,
+          "row_index": 7
+        },
+        "NO": {
+          "manual_page": "40-853",
+          "pdf_page": 1395,
+          "table_index": 0,
+          "row_index": 8
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-853",
         "pdf_page": 1395,
         "table_index": 0,
         "row_index": 7
-      },
-      "branch_provenance": {
-        "NO": {
-          "manual_page": "40-853",
-          "pdf_page": 1395,
-          "table_index": 0,
-          "row_index": 8,
-          "column_index": 4
-        },
-        "YES": {
-          "manual_page": "40-853",
-          "pdf_page": 1395,
-          "table_index": 0,
-          "row_index": 7,
-          "column_index": 4
-        }
       },
       "fact_id": "HM21:18:step:0",
       "branch_fact_ids": {
@@ -1362,6 +1326,13 @@
       "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
     }
   ],
+  "title_provenance": {
+    "manual_page": "40-843",
+    "pdf_page": 1385,
+    "table_index": null,
+    "row_index": null
+  },
+  "provenance_fallbacks": {},
   "branch_provenance_own": 36,
   "branch_provenance_inherited": []
 }

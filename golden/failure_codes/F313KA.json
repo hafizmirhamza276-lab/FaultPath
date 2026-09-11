@@ -30,6 +30,20 @@
         "YES": "• The wiring harness and connectors are normal. • Go to the next check item.",
         "NO": "• The wiring harness or a connector is defective. • Repair or replace the defective wiring harness or connector. • Go to confirmation of repair."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-598",
+          "pdf_page": 1140,
+          "table_index": 1,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-598",
+          "pdf_page": 1140,
+          "table_index": 1,
+          "row_index": 2
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-598",
@@ -50,6 +64,20 @@
       "branches": {
         "YES": "• The communication terminal connector is normal. • Go to the next check item.",
         "NO": "• The communication terminal connector is defective. • Repair or replace the communication terminal connector. • Go to confirmation of repair."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-598",
+          "pdf_page": 1140,
+          "table_index": 1,
+          "row_index": 3
+        },
+        "NO": {
+          "manual_page": "40-598",
+          "pdf_page": 1140,
+          "table_index": 1,
+          "row_index": 4
+        }
       },
       "measurements": [
         {
@@ -96,6 +124,20 @@
       "branches": {
         "YES": "• The wiring harness has no open circuit. • Go to the next check item.",
         "NO": "• The wiring harness has an open circuit. • Repair or replace the defective wiring harness. • Go to confirmation of repair."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-599",
+          "pdf_page": 1141,
+          "table_index": 0,
+          "row_index": 1
+        },
+        "NO": {
+          "manual_page": "40-599",
+          "pdf_page": 1141,
+          "table_index": 0,
+          "row_index": 2
+        }
       },
       "measurements": [
         {
@@ -155,6 +197,20 @@
         "YES": "The repair is completed.",
         "NO": "• The gateway function controller can be defective. • Replace the gateway function controller. • Go to confirmation of repair."
       },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-599",
+          "pdf_page": 1141,
+          "table_index": 0,
+          "row_index": 6
+        },
+        "NO": {
+          "manual_page": "40-599",
+          "pdf_page": 1141,
+          "table_index": 0,
+          "row_index": 7
+        }
+      },
       "measurements": [],
       "provenance": {
         "manual_page": "40-599",
@@ -175,6 +231,20 @@
       "branches": {
         "YES": "Go back to the first check item.",
         "NO": "The repair is completed."
+      },
+      "branch_provenance": {
+        "YES": {
+          "manual_page": "40-599",
+          "pdf_page": 1141,
+          "table_index": 0,
+          "row_index": 8
+        },
+        "NO": {
+          "manual_page": "40-599",
+          "pdf_page": 1141,
+          "table_index": 0,
+          "row_index": 9
+        }
       },
       "measurements": [],
       "provenance": {

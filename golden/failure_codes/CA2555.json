@@ -28,6 +28,7 @@
       "cause": "Defective wiring harness connector",
       "procedure": "Check the wiring harness and connector. For details, see “Related Information to Troubleshooting”, “CHECKS BEFORE TROUBLESHOOTING”, “Electrical equipment”.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-265",
@@ -43,6 +44,7 @@
       "cause": "Defective preheating relay R18",
       "procedure": "1. Starting switch: OFF 2. Disconnect relay R18, and connect a T-adapter to the male side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -71,6 +73,7 @@
       "cause": "Open or short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector CE02. Connect a T-adapter to the female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -99,6 +102,7 @@
       "cause": "Open circuit in wiring harness",
       "procedure": "If no failure is found by check on cause 3, this check is not required. 1. Starting switch: OFF 2. Disconnect the connector CE02 and relay R18, and connect a T-adapter to the female side.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Resistance",
@@ -139,6 +143,7 @@
       "cause": "Short circuit in wiring harness",
       "procedure": "1. Starting switch: OFF 2. Disconnect the connector CE02 and relay R18, and connect a T-adapter to the female side of CE02. Do the check with the multimeter in the continuity mode.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [
         {
           "quantity": "Continuity",
@@ -167,6 +172,7 @@
       "cause": "Defective engine controller",
       "procedure": "If no failure is found by the previous checks, the engine controller is defective. (Because this is an internal defect, troubleshooting cannot be done.)",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-266",

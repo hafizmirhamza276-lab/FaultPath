@@ -26,6 +26,7 @@
       "cause": "Defective related systems",
       "procedure": "Check if other failure codes are shown at the same time. If other codes are shown, do the troubleshooting for them.",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-179",
@@ -41,6 +42,7 @@
       "cause": "Do the troubleshooting for failure code [CA441].",
       "procedure": "",
       "branches": {},
+      "branch_provenance": {},
       "measurements": [],
       "provenance": {
         "manual_page": "40-179",

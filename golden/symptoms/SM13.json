@@ -30,6 +30,12 @@
         "table_index": 1,
         "row_index": 1
       },
+      "remedy_provenance": {
+        "manual_page": "40-949",
+        "pdf_page": 1491,
+        "table_index": 1,
+        "row_index": 1
+      },
       "fact_id": "SM13:1:step:0",
       "branch_fact_ids": {},
       "remedy_fact_id": "SM13:1:remedy:0"
@@ -40,6 +46,12 @@
       "point_to_check": "Check oil cooler element.",
       "remedy": "Oil cooler element replacement",
       "provenance": {
+        "manual_page": "40-949",
+        "pdf_page": 1491,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "remedy_provenance": {
         "manual_page": "40-949",
         "pdf_page": 1491,
         "table_index": 1,
@@ -60,6 +72,12 @@
         "table_index": 1,
         "row_index": 3
       },
+      "remedy_provenance": {
+        "manual_page": "40-949",
+        "pdf_page": 1491,
+        "table_index": 1,
+        "row_index": 3
+      },
       "fact_id": "SM13:3:step:0",
       "branch_fact_ids": {},
       "remedy_fact_id": "SM13:3:remedy:0"
@@ -70,6 +88,12 @@
       "point_to_check": "• Many bubbles and blow-back are found in radiator. • Disassemble and inspect engine. Check cylinder head gasket for failure.",
       "remedy": "Cylinder head gasket replacement",
       "provenance": {
+        "manual_page": "40-949",
+        "pdf_page": 1491,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "remedy_provenance": {
         "manual_page": "40-949",
         "pdf_page": 1491,
         "table_index": 1,
@@ -90,6 +114,12 @@
         "table_index": 1,
         "row_index": 5
       },
+      "remedy_provenance": {
+        "manual_page": "40-949",
+        "pdf_page": 1491,
+        "table_index": 1,
+        "row_index": 5
+      },
       "fact_id": "SM13:5:step:0",
       "branch_fact_ids": {},
       "remedy_fact_id": "SM13:5:remedy:0"
@@ -99,5 +129,12 @@
   "unresolved_pointers": [],
   "refs_failure_codes": [],
   "skipped_tables": [],
-  "merged_cells_inherited": []
+  "merged_cells_inherited": [],
+  "title_provenance": {
+    "manual_page": "40-949",
+    "pdf_page": 1491,
+    "table_index": null,
+    "row_index": null
+  },
+  "provenance_fallbacks": {}
 }
