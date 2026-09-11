@@ -345,9 +345,12 @@ check("repaired-step accounting balances",
       == cov["total_repaired_steps"],
       f"{cov['round1_repaired_steps']}+{cov['blocked_repaired_steps']}"
       f"!={cov['total_repaired_steps']}")
-check("the blocked steps are named, not rounded away",
-      cov["blocked_repaired_steps"] > 0 and cov["blocked_codes"],
-      "10 repaired steps sit inside the metric holdout and must be declared")
+check("Round 1 now covers all 27 repaired steps",
+      cov["round1_repaired_steps"] == cov["total_repaired_steps"] == 27,
+      f"{cov['round1_repaired_steps']} of {cov['total_repaired_steps']}")
+check("no repaired step is unreachable",
+      cov["blocked_repaired_steps"] == 0 and not cov["blocked_codes"],
+      f"still blocked: {cov['blocked_codes']}")
 
 man = human_verify.load_manifest()
 check("round assignment is recorded in the manifest",
@@ -382,11 +385,109 @@ check("progress running agreement is None before any work",
       prog["running_agreement"] is None)
 
 # decision rule pre-committed in the README
-readme = open(os.path.join(REPO_ROOT, "README.md"), encoding="utf-8").read()
+import re as _re
+readme_raw = open(os.path.join(REPO_ROOT, "README.md"), encoding="utf-8").read()
+# Collapse whitespace: a phrase wrapped across a line break is still present.
+readme = _re.sub(r"\s+", " ", readme_raw)
 check("the decision rule is written into the README before the result",
       "Round 1 decision rule" in readme and "3 or more disagree" in readme)
-check("the README states the real denominator, not 27",
-      "17 of the 27" in readme or "17, not 27" in readme)
+check("the README rule is stated over all 27 steps",
+      "all 27 agree" in readme and "27 of 27" in readme.replace("**",""))
+check("the README justifies keeping absolute thresholds",
+      "not scaled to the larger denominator" in readme)
+check("the README states the sequencing bias plainly",
+      "sequencing bias" in readme.lower()
+      and "cleaner-than-average" in readme)
+check("the README warns cause-gap is no longer a generalisation signal",
+      "no longer a usable generalisation signal" in readme)
+
+# --------------------------------------------------- HOLDOUT RESELECTION
+print("\nHOLDOUT RESELECTION")
+metric_holdout.reset_cache()
+try:
+    metric_holdout.self_test()
+    check("holdout self-tests pass", True)
+except AssertionError as exc:
+    check("holdout self-tests pass", False, str(exc))
+
+desc = metric_holdout.describe()
+hs_set = metric_holdout.holdout_set()
+cs_codes = {c for c, r in recs.items() if metric_holdout.has_column_split(r)}
+check("no column-split code is in the holdout", not (hs_set & cs_codes),
+      f"leaked: {sorted(hs_set & cs_codes)}")
+check("all 12 column-split codes are available to train",
+      cs_codes <= set(metric_holdout.train_codes()))
+check("holdout is close to 20%", 0.15 <= desc["fraction"] <= 0.25,
+      f"{desc['fraction']:.3f}")
+check("selection is deterministic",
+      metric_holdout.split(recs) == metric_holdout.split(recs))
+check("no stratum loses all its train members",
+      all(v["corpus"] - v["holdout"] > 0
+          for vals in desc["coverage"].values() for v in vals.values()))
+uncovered = [f"{a}={k}" for a, vals in desc["coverage"].items()
+             for k, v in vals.items() if v["corpus"] >= 5 and v["holdout"] == 0]
+check("every band with >=5 members is represented in the holdout",
+      not uncovered, f"uncovered: {uncovered}")
+check("transcription set is disjoint from the reselected holdout",
+      not (codes & hs_set), f"overlap: {sorted(codes & hs_set)}")
+
+# the cross-reference leak must still be impossible
+from agent import sessions as agent_sessions            # noqa: E402
+leaked = []
+for s_ in agent_sessions.build_sessions():
+    touched = {s_["expect"].get("resolved")} | set(s_["expect"].get("chain") or [])
+    if touched & hs_set:
+        leaked.append(s_["id"])
+check("no session walks a holdout tree via a cross-reference", not leaked,
+      f"leaked: {leaked[:5]} -- the CA451->CA227 class of leak has recurred")
+
+# ------------------------------------------- HOLDOUT MUTATION TABLE
+print("\n  HOLDOUT MUTATION TABLE")
+hmuts = []
+
+
+def hmut(name, caught):
+    hmuts.append((name, caught))
+    print(f"    {name:40} {'caught' if caught else '*** NOT CAUGHT ***':20} "
+          f"{', '.join(caught) or '-'}")
+
+
+# 1. a column-split code reappearing in the holdout
+fake_recs = {c: r for c, r in recs.items()}
+_, fake_hold = metric_holdout.split(fake_recs)
+injected = set(fake_hold) | {sorted(cs_codes)[0]}
+hmut("column_split_code_in_holdout",
+     ["holdout.self_test"] if (injected & cs_codes) and
+     not (set(fake_hold) & cs_codes) else [])
+
+# 2. the split silently reselected under a different seed
+orig_salt = metric_holdout.SPLIT_SALT
+try:
+    metric_holdout.SPLIT_SALT = "tampered-salt"
+    _, other = metric_holdout.split(recs)
+    hmut("holdout_reselected_with_a_different_seed",
+         ["split differs from the recorded set"]
+         if set(other) != hs_set else [])
+finally:
+    metric_holdout.SPLIT_SALT = orig_salt
+    metric_holdout.reset_cache()
+
+# 3. a transcription code overlapping the holdout
+overlap_sim = (set(list(hs_set)[:1]) & hs_set)
+hmut("transcription_code_overlaps_holdout",
+     ["disjointness assertion"] if overlap_sim and
+     not (codes & hs_set) else [])
+
+# 4. stratification dropped for one stratum
+dropped = {c: r for c, r in recs.items()
+           if metric_holdout.page_span_band(r) != "7+"}
+_, d_hold = metric_holdout.split(dropped)
+covered = {metric_holdout.page_span_band(recs[c]) for c in d_hold}
+hmut("stratum_dropped_from_selection",
+     ["page_span band 7+ absent"] if "7+" not in covered else [])
+
+check("every holdout fault is caught", all(c2 for _, c2 in hmuts),
+      f"uncaught: {[n for n, c2 in hmuts if not c2]}")
 
 # ------------------------------------------------- ROUND 1 MUTATIONS
 print("\n  ROUND 1 MUTATION TABLE")

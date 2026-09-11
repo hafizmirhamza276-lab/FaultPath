@@ -1,9 +1,9 @@
 {
-  "code": "B@BCQA",
+  "code": "DWK0KA",
   "manual_id": "SEN06867-13",
   "manual_pages": [
-    "40-174",
-    "40-175"
+    "40-518",
+    "40-519"
   ],
   "transcriber": "",
   "date": "",
@@ -54,28 +54,9 @@
       "branch_no": "",
       "measurements": [],
       "notes": ""
-    },
-    {
-      "step": 6,
-      "cause": "",
-      "procedure": "",
-      "branch_yes": "",
-      "branch_no": "",
-      "measurements": [],
-      "notes": ""
     }
   ],
   "standalone_measurements": [
-    {
-      "quantity": "",
-      "point": "",
-      "criteria": ""
-    },
-    {
-      "quantity": "",
-      "point": "",
-      "criteria": ""
-    },
     {
       "quantity": "",
       "point": "",

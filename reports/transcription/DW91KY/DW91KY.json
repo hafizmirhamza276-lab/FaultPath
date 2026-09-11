@@ -1,9 +1,9 @@
 {
-  "code": "F318KY",
+  "code": "DW91KY",
   "manual_id": "SEN06867-13",
   "manual_pages": [
-    "40-606",
-    "40-607"
+    "40-509",
+    "40-510"
   ],
   "transcriber": "",
   "date": "",
@@ -25,13 +25,7 @@
       "procedure": "",
       "branch_yes": "",
       "branch_no": "",
-      "measurements": [
-        {
-          "quantity": "",
-          "point": "",
-          "criteria": ""
-        }
-      ],
+      "measurements": [],
       "notes": ""
     },
     {
@@ -53,7 +47,13 @@
       "notes": ""
     }
   ],
-  "standalone_measurements": [],
+  "standalone_measurements": [
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    }
+  ],
   "page_disagrees_with_template": false,
   "notes": ""
 }

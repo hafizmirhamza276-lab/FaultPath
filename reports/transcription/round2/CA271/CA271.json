@@ -1,10 +1,9 @@
 {
-  "code": "F313KB",
+  "code": "CA271",
   "manual_id": "SEN06867-13",
   "manual_pages": [
-    "40-600",
-    "40-601",
-    "40-602"
+    "40-214",
+    "40-215"
   ],
   "transcriber": "",
   "date": "",
@@ -26,18 +25,7 @@
       "procedure": "",
       "branch_yes": "",
       "branch_no": "",
-      "measurements": [
-        {
-          "quantity": "",
-          "point": "",
-          "criteria": ""
-        },
-        {
-          "quantity": "",
-          "point": "",
-          "criteria": ""
-        }
-      ],
+      "measurements": [],
       "notes": ""
     },
     {
@@ -47,6 +35,11 @@
       "branch_yes": "",
       "branch_no": "",
       "measurements": [
+        {
+          "quantity": "",
+          "point": "",
+          "criteria": ""
+        },
         {
           "quantity": "",
           "point": "",
@@ -87,15 +80,6 @@
     },
     {
       "step": 6,
-      "cause": "",
-      "procedure": "",
-      "branch_yes": "",
-      "branch_no": "",
-      "measurements": [],
-      "notes": ""
-    },
-    {
-      "step": 7,
       "cause": "",
       "procedure": "",
       "branch_yes": "",

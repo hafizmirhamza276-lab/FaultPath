@@ -1,17 +1,17 @@
 {
-  "code": "D8AQKR",
+  "code": "DAFQKR",
   "manual_id": "SEN06867-13",
   "manual_pages": [
-    "40-288",
-    "40-289",
-    "40-290",
-    "40-291",
-    "40-292",
-    "40-293",
-    "40-294",
-    "40-295",
-    "40-296",
-    "40-297"
+    "40-369",
+    "40-370",
+    "40-371",
+    "40-372",
+    "40-373",
+    "40-374",
+    "40-375",
+    "40-376",
+    "40-377",
+    "40-378"
   ],
   "transcriber": "",
   "date": "",
@@ -116,9 +116,52 @@
       "branch_no": "",
       "measurements": [],
       "notes": ""
+    },
+    {
+      "step": 12,
+      "cause": "",
+      "procedure": "",
+      "branch_yes": "",
+      "branch_no": "",
+      "measurements": [],
+      "notes": ""
+    },
+    {
+      "step": 13,
+      "cause": "",
+      "procedure": "",
+      "branch_yes": "",
+      "branch_no": "",
+      "measurements": [],
+      "notes": ""
     }
   ],
   "standalone_measurements": [
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
     {
       "quantity": "",
       "point": "",

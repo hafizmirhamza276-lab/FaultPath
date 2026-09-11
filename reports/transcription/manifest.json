@@ -1,30 +1,28 @@
 {
   "codes": [
     {
-      "code": "6AZ0ZG",
-      "reason": "stratified fill: action level L03",
+      "code": "DXE5KA",
+      "reason": "stratified fill: action level L01",
       "round": 2,
       "format": "A",
       "pages": [
-        "40-124",
-        "40-125",
-        "40-126",
-        "40-127"
+        "40-567",
+        "40-568",
+        "40-569"
       ],
       "pdf_pages": [
-        666,
-        669
+        1109,
+        1111
       ],
-      "n_steps": 8,
-      "n_measurements": 6,
+      "n_steps": 5,
+      "n_measurements": 5,
       "column_split": false,
       "pointer_only": false,
-      "template": "round2/6AZ0ZG/6AZ0ZG.json",
+      "template": "round2/DXE5KA/DXE5KA.json",
       "images": [
-        "6AZ0ZG_p666.png",
-        "6AZ0ZG_p667.png",
-        "6AZ0ZG_p668.png",
-        "6AZ0ZG_p669.png"
+        "DXE5KA_p1109.png",
+        "DXE5KA_p1110.png",
+        "DXE5KA_p1111.png"
       ]
     },
     {
@@ -51,72 +49,49 @@
       ]
     },
     {
-      "code": "CA227",
+      "code": "CA271",
       "reason": "format B coverage",
       "round": 2,
       "format": "B",
       "pages": [
-        "40-210"
+        "40-214",
+        "40-215"
       ],
       "pdf_pages": [
-        752,
-        752
-      ],
-      "n_steps": 0,
-      "n_measurements": 0,
-      "column_split": false,
-      "pointer_only": true,
-      "template": "round2/CA227/CA227.json",
-      "images": [
-        "CA227_p752.png"
-      ]
-    },
-    {
-      "code": "DW43KB",
-      "reason": "stratified fill: action level L01",
-      "round": 2,
-      "format": "A",
-      "pages": [
-        "40-488",
-        "40-489",
-        "40-490"
-      ],
-      "pdf_pages": [
-        1030,
-        1032
+        756,
+        757
       ],
       "n_steps": 6,
       "n_measurements": 4,
       "column_split": false,
       "pointer_only": false,
-      "template": "round2/DW43KB/DW43KB.json",
+      "template": "round2/CA271/CA271.json",
       "images": [
-        "DW43KB_p1030.png",
-        "DW43KB_p1031.png",
-        "DW43KB_p1032.png"
+        "CA271_p756.png",
+        "CA271_p757.png"
       ]
     },
     {
-      "code": "879CKA",
+      "code": "989M00",
       "reason": "stratified fill: action level -",
       "round": 2,
       "format": "A",
       "pages": [
-        "40-138",
-        "40-139"
+        "40-154",
+        "40-155"
       ],
       "pdf_pages": [
-        680,
-        681
+        696,
+        697
       ],
       "n_steps": 4,
       "n_measurements": 0,
       "column_split": false,
       "pointer_only": false,
-      "template": "round2/879CKA/879CKA.json",
+      "template": "round2/989M00/989M00.json",
       "images": [
-        "879CKA_p680.png",
-        "879CKA_p681.png"
+        "989M00_p696.png",
+        "989M00_p697.png"
       ]
     },
     {
@@ -161,26 +136,49 @@
       ]
     },
     {
-      "code": "879CKB",
-      "reason": "stratified fill: action level -",
+      "code": "DW91KY",
+      "reason": "column-split recovery: machine-repaired, never eye-verified",
+      "round": 1,
+      "format": "A",
+      "pages": [
+        "40-509",
+        "40-510"
+      ],
+      "pdf_pages": [
+        1051,
+        1052
+      ],
+      "n_steps": 4,
+      "n_measurements": 1,
+      "column_split": true,
+      "pointer_only": false,
+      "template": "DW91KY/DW91KY.json",
+      "images": [
+        "DW91KY_p1051.png",
+        "DW91KY_p1052.png"
+      ]
+    },
+    {
+      "code": "F313KA",
+      "reason": "KOMTRAX/communication cause-table layout (the third format)",
       "round": 2,
       "format": "A",
       "pages": [
-        "40-140",
-        "40-141"
+        "40-598",
+        "40-599"
       ],
       "pdf_pages": [
-        682,
-        683
+        1140,
+        1141
       ],
-      "n_steps": 4,
-      "n_measurements": 0,
+      "n_steps": 5,
+      "n_measurements": 5,
       "column_split": false,
       "pointer_only": false,
-      "template": "round2/879CKB/879CKB.json",
+      "template": "round2/F313KA/F313KA.json",
       "images": [
-        "879CKB_p682.png",
-        "879CKB_p683.png"
+        "F313KA_p1140.png",
+        "F313KA_p1141.png"
       ]
     },
     {
@@ -205,32 +203,63 @@
       ]
     },
     {
-      "code": "DY2CKB",
-      "reason": "stratified fill: action level -",
+      "code": "CA2311",
+      "reason": "pointer-only redirect",
+      "round": 2,
+      "format": "B",
+      "pages": [
+        "40-264"
+      ],
+      "pdf_pages": [
+        806,
+        806
+      ],
+      "n_steps": 1,
+      "n_measurements": 0,
+      "column_split": false,
+      "pointer_only": true,
+      "template": "round2/CA2311/CA2311.json",
+      "images": [
+        "CA2311_p806.png"
+      ]
+    },
+    {
+      "code": "DB2QKR",
+      "reason": "multi-page extreme: spans 10 manual pages",
       "round": 2,
       "format": "A",
       "pages": [
-        "40-587",
-        "40-588",
-        "40-589",
-        "40-590",
-        "40-591"
+        "40-390",
+        "40-391",
+        "40-392",
+        "40-393",
+        "40-394",
+        "40-395",
+        "40-396",
+        "40-397",
+        "40-398",
+        "40-399"
       ],
       "pdf_pages": [
-        1129,
-        1133
+        932,
+        941
       ],
-      "n_steps": 10,
-      "n_measurements": 9,
+      "n_steps": 13,
+      "n_measurements": 31,
       "column_split": false,
       "pointer_only": false,
-      "template": "round2/DY2CKB/DY2CKB.json",
+      "template": "round2/DB2QKR/DB2QKR.json",
       "images": [
-        "DY2CKB_p1129.png",
-        "DY2CKB_p1130.png",
-        "DY2CKB_p1131.png",
-        "DY2CKB_p1132.png",
-        "DY2CKB_p1133.png"
+        "DB2QKR_p932.png",
+        "DB2QKR_p933.png",
+        "DB2QKR_p934.png",
+        "DB2QKR_p935.png",
+        "DB2QKR_p936.png",
+        "DB2QKR_p937.png",
+        "DB2QKR_p938.png",
+        "DB2QKR_p939.png",
+        "DB2QKR_p940.png",
+        "DB2QKR_p941.png"
       ]
     },
     {
@@ -257,6 +286,45 @@
       ]
     },
     {
+      "code": "DAFQKR",
+      "reason": "multi-page extreme: spans 10 manual pages",
+      "round": 2,
+      "format": "A",
+      "pages": [
+        "40-369",
+        "40-370",
+        "40-371",
+        "40-372",
+        "40-373",
+        "40-374",
+        "40-375",
+        "40-376",
+        "40-377",
+        "40-378"
+      ],
+      "pdf_pages": [
+        911,
+        920
+      ],
+      "n_steps": 13,
+      "n_measurements": 32,
+      "column_split": false,
+      "pointer_only": false,
+      "template": "round2/DAFQKR/DAFQKR.json",
+      "images": [
+        "DAFQKR_p911.png",
+        "DAFQKR_p912.png",
+        "DAFQKR_p913.png",
+        "DAFQKR_p914.png",
+        "DAFQKR_p915.png",
+        "DAFQKR_p916.png",
+        "DAFQKR_p917.png",
+        "DAFQKR_p918.png",
+        "DAFQKR_p919.png",
+        "DAFQKR_p920.png"
+      ]
+    },
+    {
       "code": "DW91KA",
       "reason": "column-split recovery: machine-repaired, never eye-verified",
       "round": 1,
@@ -277,29 +345,6 @@
       "images": [
         "DW91KA_p1046.png",
         "DW91KA_p1047.png"
-      ]
-    },
-    {
-      "code": "B@BCQA",
-      "reason": "stratified fill: action level L02",
-      "round": 2,
-      "format": "A",
-      "pages": [
-        "40-174",
-        "40-175"
-      ],
-      "pdf_pages": [
-        716,
-        717
-      ],
-      "n_steps": 6,
-      "n_measurements": 3,
-      "column_split": false,
-      "pointer_only": false,
-      "template": "round2/B@BCQA/B@BCQA.json",
-      "images": [
-        "B@BCQA_p716.png",
-        "B@BCQA_p717.png"
       ]
     },
     {
@@ -353,29 +398,6 @@
       ]
     },
     {
-      "code": "CA441",
-      "reason": "stratified fill: action level L04",
-      "round": 2,
-      "format": "B",
-      "pages": [
-        "40-237",
-        "40-238"
-      ],
-      "pdf_pages": [
-        779,
-        780
-      ],
-      "n_steps": 6,
-      "n_measurements": 4,
-      "column_split": false,
-      "pointer_only": false,
-      "template": "round2/CA441/CA441.json",
-      "images": [
-        "CA441_p779.png",
-        "CA441_p780.png"
-      ]
-    },
-    {
       "code": "DWK0KY",
       "reason": "column-split recovery: machine-repaired, never eye-verified",
       "round": 1,
@@ -399,6 +421,29 @@
       ]
     },
     {
+      "code": "DWK0KA",
+      "reason": "column-split recovery: machine-repaired, never eye-verified",
+      "round": 1,
+      "format": "A",
+      "pages": [
+        "40-518",
+        "40-519"
+      ],
+      "pdf_pages": [
+        1060,
+        1061
+      ],
+      "n_steps": 5,
+      "n_measurements": 1,
+      "column_split": true,
+      "pointer_only": false,
+      "template": "DWK0KA/DWK0KA.json",
+      "images": [
+        "DWK0KA_p1060.png",
+        "DWK0KA_p1061.png"
+      ]
+    },
+    {
       "code": "DWA2KA",
       "reason": "column-split recovery: machine-repaired, never eye-verified",
       "round": 1,
@@ -419,6 +464,31 @@
       "images": [
         "DWA2KA_p1053.png",
         "DWA2KA_p1054.png"
+      ]
+    },
+    {
+      "code": "F318KB",
+      "reason": "KOMTRAX/communication cause-table layout (the third format)",
+      "round": 2,
+      "format": "A",
+      "pages": [
+        "40-603",
+        "40-604",
+        "40-605"
+      ],
+      "pdf_pages": [
+        1145,
+        1147
+      ],
+      "n_steps": 6,
+      "n_measurements": 4,
+      "column_split": false,
+      "pointer_only": false,
+      "template": "round2/F318KB/F318KB.json",
+      "images": [
+        "F318KB_p1145.png",
+        "F318KB_p1146.png",
+        "F318KB_p1147.png"
       ]
     },
     {
@@ -446,66 +516,6 @@
         "DY20KA_p1122.png",
         "DY20KA_p1123.png",
         "DY20KA_p1124.png"
-      ]
-    },
-    {
-      "code": "DA2RKR",
-      "reason": "multi-page extreme: spans 9 manual pages",
-      "round": 2,
-      "format": "A",
-      "pages": [
-        "40-345",
-        "40-346",
-        "40-347",
-        "40-348",
-        "40-349",
-        "40-350",
-        "40-351",
-        "40-352",
-        "40-353"
-      ],
-      "pdf_pages": [
-        887,
-        895
-      ],
-      "n_steps": 13,
-      "n_measurements": 32,
-      "column_split": false,
-      "pointer_only": false,
-      "template": "round2/DA2RKR/DA2RKR.json",
-      "images": [
-        "DA2RKR_p887.png",
-        "DA2RKR_p888.png",
-        "DA2RKR_p889.png",
-        "DA2RKR_p890.png",
-        "DA2RKR_p891.png",
-        "DA2RKR_p892.png",
-        "DA2RKR_p893.png",
-        "DA2RKR_p894.png",
-        "DA2RKR_p895.png"
-      ]
-    },
-    {
-      "code": "F318KY",
-      "reason": "KOMTRAX/communication cause-table layout (the third format)",
-      "round": 2,
-      "format": "A",
-      "pages": [
-        "40-606",
-        "40-607"
-      ],
-      "pdf_pages": [
-        1148,
-        1149
-      ],
-      "n_steps": 4,
-      "n_measurements": 1,
-      "column_split": false,
-      "pointer_only": false,
-      "template": "round2/F318KY/F318KY.json",
-      "images": [
-        "F318KY_p1148.png",
-        "F318KY_p1149.png"
       ]
     },
     {
@@ -557,6 +567,29 @@
       ]
     },
     {
+      "code": "DWK2KA",
+      "reason": "column-split recovery: machine-repaired, never eye-verified",
+      "round": 1,
+      "format": "A",
+      "pages": [
+        "40-525",
+        "40-526"
+      ],
+      "pdf_pages": [
+        1067,
+        1068
+      ],
+      "n_steps": 5,
+      "n_measurements": 5,
+      "column_split": true,
+      "pointer_only": false,
+      "template": "DWK2KA/DWK2KA.json",
+      "images": [
+        "DWK2KA_p1067.png",
+        "DWK2KA_p1068.png"
+      ]
+    },
+    {
       "code": "CA451",
       "reason": "column-split recovery: machine-repaired, never eye-verified",
       "round": 1,
@@ -580,97 +613,55 @@
       ]
     },
     {
-      "code": "F313KB",
-      "reason": "KOMTRAX/communication cause-table layout (the third format)",
-      "round": 2,
+      "code": "DWK2KY",
+      "reason": "column-split recovery: machine-repaired, never eye-verified",
+      "round": 1,
       "format": "A",
       "pages": [
-        "40-600",
-        "40-601",
-        "40-602"
+        "40-530",
+        "40-531"
       ],
       "pdf_pages": [
-        1142,
-        1144
+        1072,
+        1073
       ],
-      "n_steps": 7,
-      "n_measurements": 5,
-      "column_split": false,
+      "n_steps": 4,
+      "n_measurements": 1,
+      "column_split": true,
       "pointer_only": false,
-      "template": "round2/F313KB/F313KB.json",
+      "template": "DWK2KY/DWK2KY.json",
       "images": [
-        "F313KB_p1142.png",
-        "F313KB_p1143.png",
-        "F313KB_p1144.png"
-      ]
-    },
-    {
-      "code": "D8AQKR",
-      "reason": "multi-page extreme: spans 10 manual pages",
-      "round": 2,
-      "format": "A",
-      "pages": [
-        "40-288",
-        "40-289",
-        "40-290",
-        "40-291",
-        "40-292",
-        "40-293",
-        "40-294",
-        "40-295",
-        "40-296",
-        "40-297"
-      ],
-      "pdf_pages": [
-        830,
-        839
-      ],
-      "n_steps": 11,
-      "n_measurements": 27,
-      "column_split": false,
-      "pointer_only": false,
-      "template": "round2/D8AQKR/D8AQKR.json",
-      "images": [
-        "D8AQKR_p830.png",
-        "D8AQKR_p831.png",
-        "D8AQKR_p832.png",
-        "D8AQKR_p833.png",
-        "D8AQKR_p834.png",
-        "D8AQKR_p835.png",
-        "D8AQKR_p836.png",
-        "D8AQKR_p837.png",
-        "D8AQKR_p838.png",
-        "D8AQKR_p839.png"
+        "DWK2KY_p1072.png",
+        "DWK2KY_p1073.png"
       ]
     }
   ],
   "dpi": 200,
   "total_codes": 25,
   "rounds": {
-    "1": 8,
-    "2": 17
+    "1": 12,
+    "2": 13
   },
   "round1_repaired_step_coverage": {
     "total_repaired_steps": 27,
     "round1_codes": [
       "CA451",
       "DW91KA",
+      "DW91KY",
       "DWA2KA",
       "DWA2KY",
+      "DWK0KA",
       "DWK0KY",
+      "DWK2KA",
+      "DWK2KY",
       "DWK8KA",
       "DWK8KY",
       "DY20KA"
     ],
-    "round1_repaired_steps": 17,
-    "blocked_codes": [
-      "DW91KY",
-      "DWK0KA",
-      "DWK2KA",
-      "DWK2KY"
-    ],
-    "blocked_repaired_steps": 10,
+    "round1_repaired_steps": 27,
+    "blocked_codes": [],
+    "blocked_repaired_steps": 0,
     "reason_blocked": "inside the 20% metric holdout; transcribing them would make the human check and the generalisation check measure the same codes"
   },
-  "example_code": "CA553"
+  "example_code": "CA155"
 }

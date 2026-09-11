@@ -1,11 +1,9 @@
 {
-  "code": "6AZ0ZG",
+  "code": "DWK2KY",
   "manual_id": "SEN06867-13",
   "manual_pages": [
-    "40-124",
-    "40-125",
-    "40-126",
-    "40-127"
+    "40-530",
+    "40-531"
   ],
   "transcriber": "",
   "date": "",
@@ -47,70 +45,9 @@
       "branch_no": "",
       "measurements": [],
       "notes": ""
-    },
-    {
-      "step": 5,
-      "cause": "",
-      "procedure": "",
-      "branch_yes": "",
-      "branch_no": "",
-      "measurements": [],
-      "notes": ""
-    },
-    {
-      "step": 6,
-      "cause": "",
-      "procedure": "",
-      "branch_yes": "",
-      "branch_no": "",
-      "measurements": [],
-      "notes": ""
-    },
-    {
-      "step": 7,
-      "cause": "",
-      "procedure": "",
-      "branch_yes": "",
-      "branch_no": "",
-      "measurements": [],
-      "notes": ""
-    },
-    {
-      "step": 8,
-      "cause": "",
-      "procedure": "",
-      "branch_yes": "",
-      "branch_no": "",
-      "measurements": [],
-      "notes": ""
     }
   ],
   "standalone_measurements": [
-    {
-      "quantity": "",
-      "point": "",
-      "criteria": ""
-    },
-    {
-      "quantity": "",
-      "point": "",
-      "criteria": ""
-    },
-    {
-      "quantity": "",
-      "point": "",
-      "criteria": ""
-    },
-    {
-      "quantity": "",
-      "point": "",
-      "criteria": ""
-    },
-    {
-      "quantity": "",
-      "point": "",
-      "criteria": ""
-    },
     {
       "quantity": "",
       "point": "",

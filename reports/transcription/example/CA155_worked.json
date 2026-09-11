@@ -1,22 +1,22 @@
 {
-  "code": "CA553",
+  "code": "CA155",
   "manual_id": "SEN06867-13",
   "manual_pages": [
-    "40-246"
+    "40-203"
   ],
-  "transcriber": "",
-  "date": "",
-  "minutes_taken": null,
+  "transcriber": "worked example",
+  "date": "2026-09-11",
+  "minutes_taken": 12,
   "_instructions": "Type what the PAGE says. Do not consult any other file. Leave a field empty if the page does not show it. Use the notes field for anything unclear.",
   "steps": [
     {
       "step": 1,
-      "cause": "",
-      "procedure": "",
+      "cause": "<type the Cause column text here>",
+      "procedure": "<type the procedure column text here>",
       "branch_yes": "",
       "branch_no": "",
       "measurements": [],
-      "notes": ""
+      "notes": "if a letter is unreadable, write the word with a ? and leave the rest typed"
     },
     {
       "step": 2,

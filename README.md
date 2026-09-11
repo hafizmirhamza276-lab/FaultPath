@@ -634,11 +634,11 @@ Ranked by how much damage each causes if ignored:
 **Pre-committed before the result is known.** A threshold chosen after seeing
 the number is not a threshold.
 
-Round 1 is the 8 column-split codes — `CA451`, `DW91KA`, `DWA2KA`, `DWA2KY`,
-`DWK0KY`, `DWK8KA`, `DWK8KY`, `DY20KA`. They carry **17 of the 27**
-machine-repaired steps: text a parser reassembled from a mangled table, flagged
-`NEEDS_HUMAN_VERIFICATION` since the beginning, and never read by a person.
-About 3 hours rather than 13.
+Round 1 is all **12 column-split codes** — `CA451`, `DW91KA`, `DW91KY`,
+`DWA2KA`, `DWA2KY`, `DWK0KA`, `DWK0KY`, `DWK2KA`, `DWK2KY`, `DWK8KA`, `DWK8KY`,
+`DY20KA` — covering **all 27** machine-repaired steps. Text a parser reassembled
+from a mangled table, flagged `NEEDS_HUMAN_VERIFICATION` from the beginning and
+never read by a person. About 2.4–4.3 hours.
 
 ```
 python pipeline/human_verify.py --progress    # what is done, what is pending
@@ -647,23 +647,86 @@ python pipeline/human_verify.py               # the per-step table
 
 ### The rule
 
-| outcome over the 17 transcribed steps | decision |
+| outcome over the 27 steps | decision |
 |---|---|
-| **all 17 agree** | Extractor is sound on its highest-risk output. Proceed; Round 2 runs in the background alongside other work. |
+| **all 27 agree** | Extractor is sound on its highest-risk output. Proceed; Round 2 runs in the background alongside other work. |
 | **1–2 disagree** | Investigate each. Fix and re-verify before proceeding. Finding and fix stay in separate commits. |
 | **3 or more disagree** | Column-split recovery is not trustworthy. Stop feature work and revisit the parser. |
 
-The thresholds are absolute counts, not rates. One wrong step among 17 matters;
-a 94% agreement rate hides it, which is why `column_split_accuracy` is reported
-per step and never aggregated.
+**Absolute counts, deliberately not scaled to the larger denominator.** The
+thresholds were set at 1–2 and 3+ against 17 steps and are unchanged against 27.
+Scaling them (to ~2–3 and 5+) would mean deciding, after the denominator grew,
+that more broken steps are now acceptable. The question these thresholds answer
+is "how many reconstructed steps may be wrong before the reconstruction is
+untrustworthy", and that answer does not depend on how many we managed to check.
+One wrong step among 27 matters; a 96.3% agreement rate hides it, which is why
+`column_split_accuracy` is reported per step and never aggregated.
 
-### The 10 steps Round 1 cannot reach
+### No unreachable remainder
 
-Four column-split codes — `DW91KY`, `DWK0KA`, `DWK2KA`, `DWK2KY` — fall inside
-the 20% metric holdout. Transcribing them would make the human check and the
-generalisation check measure the same codes, so they stay unverified and the
-denominator is **17, not 27**. Stated rather than rounded up.
+Earlier, four of these codes sat in the metric holdout and 10 steps were out of
+reach. The holdout has been reselected to exclude column-split codes entirely,
+so Round 1 now covers 27 of 27. See *The metric holdout* below for what that
+reselection costs.
 
-If Round 1 comes back clean, those 10 remain the only machine-repaired steps in
-the corpus that no person has read. That is a known, bounded gap — not a clean
-bill of health for all 27.
+---
+
+## The metric holdout
+
+20% of failure codes, reserved so nothing tunes to them. Rebuilt (v2) under one
+added constraint: **no column-split code may be in the holdout.**
+
+Those 12 codes have steps the parser *reconstructed* from a mangled table.
+Asking "did we tune to our fixtures?" of content the parser partly invented is
+circular on its own terms — a disagreement there could be overfitting or could
+be the reconstruction, and the holdout cannot tell you which. They belong in the
+human-transcription pool, where a person reading the page settles it.
+
+Selection rule, implemented in `agent/holdout.py`:
+
+1. Eligible = all codes minus the 12 column-split codes.
+2. Stratify on `(format, action_level, page-span band, pointer-only)`.
+3. Largest-remainder allocation of 20% across strata — a plain floor sends every
+   stratum smaller than 5 to zero, and with a four-axis key most strata are small.
+4. Axis-coverage guarantee: any band with ≥5 members must appear in the holdout,
+   never taken from a stratum whose last train member it would be.
+
+Result: **32 of 174 codes (18.4%)**, all 26 strata eligible, every band with ≥5
+members represented. `L00` (1 code), `L00a` (1) and `L02` (3) have no holdout
+member by design — taking them would empty the stratum from train.
+
+### The sequencing bias, stated plainly
+
+The transcription set is defined by a property of the data, and the holdout is
+drawn from what remains. **That ordering is a bias and it has a direction:** the
+holdout now systematically excludes the pages the parser found hardest, so it
+measures generalisation on cleaner-than-average material and cannot detect
+tuning that only appears on difficult layouts.
+
+This is not fixable by reordering — the two constraints genuinely conflict. What
+closes it is the other half of the design: all 12 column-split codes go to human
+transcription. The holdout answers *"did we tune to our fixtures on
+cleanly-extracted codes"*; the human round answers *"did the parser read the hard
+pages correctly"*. Neither answers both, and quoting either as if it covered the
+whole corpus would be wrong.
+
+### What reselection did to the numbers
+
+| metric | old train | old holdout | old gap | new train | new holdout | new gap |
+|---|---:|---:|---:|---:|---:|---:|
+| fidelity measurement | 1.0000 | 1.0000 | 0.0000 | 1.0000 | 1.0000 | 0.0000 |
+| fidelity branch | 1.0000 | 1.0000 | 0.0000 | 1.0000 | 1.0000 | 0.0000 |
+| fidelity cause | 0.9639 | 0.9518 | 0.0120 | 0.9538 | **0.9942** | **0.0404** |
+| fidelity ALL | 0.9889 | 0.9861 | 0.0028 | 0.9861 | 0.9983 | 0.0122 |
+| every agent metric | — | — | 0.0000 | — | — | 0.0000 |
+
+The `cause` gap moved materially **and flipped direction** — the holdout now
+scores *better* than train. The cause is mechanical, not a sign the old split was
+measuring noise: the 39 unresolvable facts are concentrated in column-split
+codes, and moving all 12 into train necessarily lowers train's cause rate and
+raises the holdout's.
+
+The consequence is worth being explicit about: **`cause` fidelity gap is no
+longer a usable generalisation signal under this split.** It is dominated by
+where the known-unresolvable facts sit. The gated kinds — `measurement` and
+`branch`, both 0.0000 on both splits — and the agent metrics remain meaningful.

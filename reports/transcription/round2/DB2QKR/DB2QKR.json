@@ -1,12 +1,17 @@
 {
-  "code": "DY2CKB",
+  "code": "DB2QKR",
   "manual_id": "SEN06867-13",
   "manual_pages": [
-    "40-587",
-    "40-588",
-    "40-589",
-    "40-590",
-    "40-591"
+    "40-390",
+    "40-391",
+    "40-392",
+    "40-393",
+    "40-394",
+    "40-395",
+    "40-396",
+    "40-397",
+    "40-398",
+    "40-399"
   ],
   "transcriber": "",
   "date": "",
@@ -102,9 +107,146 @@
       "branch_no": "",
       "measurements": [],
       "notes": ""
+    },
+    {
+      "step": 11,
+      "cause": "",
+      "procedure": "",
+      "branch_yes": "",
+      "branch_no": "",
+      "measurements": [],
+      "notes": ""
+    },
+    {
+      "step": 12,
+      "cause": "",
+      "procedure": "",
+      "branch_yes": "",
+      "branch_no": "",
+      "measurements": [],
+      "notes": ""
+    },
+    {
+      "step": 13,
+      "cause": "",
+      "procedure": "",
+      "branch_yes": "",
+      "branch_no": "",
+      "measurements": [],
+      "notes": ""
     }
   ],
   "standalone_measurements": [
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
+    {
+      "quantity": "",
+      "point": "",
+      "criteria": ""
+    },
     {
       "quantity": "",
       "point": "",
