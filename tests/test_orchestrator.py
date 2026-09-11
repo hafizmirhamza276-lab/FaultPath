@@ -49,11 +49,15 @@ def fake(name, ok=True, skip=None, depends=None, marker=None):
 print("\nMODULE")
 t0 = time.perf_counter()
 
-check("stages are registered", len(orch.STAGES) == 8, str(len(orch.STAGES)))
+check("stages are registered", len(orch.STAGES) == 10, str(len(orch.STAGES)))
 names = [s.name for s in orch.ordered_stages()]
 check("dependency order is topological",
       names.index("extract") < names.index("fidelity") < names.index("qa_set")
-      < names.index("agent") < names.index("api"), str(names))
+      < names.index("agent") < names.index("api")
+      # the symptom audit gates the data fidelity is then measured over, so it
+      # has to sit between extraction and fidelity, not after it
+      and names.index("extract_symptoms") < names.index("audit_symptoms")
+      < names.index("fidelity"), str(names))
 check("every stage declares inputs, outputs, gates and a duration",
       all(s.inputs and s.gates and s.expected_s >= 0 for s in orch.STAGES))
 
@@ -128,8 +132,10 @@ check("known_gaps records the round as NOT PERFORMED",
 check("known_gaps reports resolver_verified", gaps["resolver_verified"] == 3266,
       str(gaps["resolver_verified"]))
 check("known_gaps reports the unresolved breakdown",
-      gaps["unresolved_facts"].get("KNOWN_LIMITATION") == 12
-      and gaps["unresolved_facts"].get("NEEDS_HUMAN_VERIFICATION") == 27,
+      gaps["unresolved_facts"].get("KNOWN_LIMITATION") == 504
+      and gaps["unresolved_facts"].get("NEEDS_HUMAN_VERIFICATION") == 27
+      # present AND zero. An absent key reads as "not measured".
+      and gaps["unresolved_facts"].get("DEFECT") == 0,
       str(gaps["unresolved_facts"]))
 
 counts = orch.regression_counts()

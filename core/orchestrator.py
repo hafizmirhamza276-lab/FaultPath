@@ -26,6 +26,7 @@ tests/test_orchestrator.py.
 """
 from __future__ import annotations
 
+import glob
 import hashlib
 import json
 import os
@@ -188,6 +189,47 @@ def s_audit(ctx) -> dict:
             "gates": [_gate("audit_exit_zero", r["returncode"], "==", 0, "audit")]}
 
 
+def s_extract_symptoms(ctx) -> dict:
+    r = _script("pipeline/extract_symptoms.py")
+    n = len(glob.glob(os.path.join(REPO_ROOT, "golden", "symptoms", "*M*.json")))
+    ctx["symptom_records"] = n
+    return {"detail": {**r, "records": n},
+            "gates": [_gate("extract_symptoms_exit_zero", r["returncode"],
+                            "==", 0, "extract_symptoms")]}
+
+
+def s_audit_symptoms(ctx) -> dict:
+    """Audit of the H-Mode and S-Mode symptom trees.
+
+    Positioned after extraction and before fidelity, so a symptom-audit failure
+    halts the run like any other stage. Fidelity measures whether stored facts
+    are on the pages they claim; this measures whether the facts are the right
+    shape in the first place, and a wrong shape makes a clean fidelity figure
+    meaningless -- S1's empty criteria resolved against every page in the
+    document until they were refused explicitly.
+
+    Gated on exit code AND on the HIGH count, which must be zero. The script's
+    own 12 self-tests abort it before any check runs, so a non-zero exit covers
+    a blind check as well as a failed one.
+    """
+    r = _script("pipeline/audit_symptoms.py")
+    findings = []
+    p = os.path.join(REPO_ROOT, "reports", "audit_symptoms.json")
+    if os.path.isfile(p):
+        with open(p, encoding="utf-8") as f:
+            findings = json.load(f)
+    sev = {}
+    for x in findings:
+        sev[x["severity"]] = sev.get(x["severity"], 0) + 1
+    ctx["audit_symptoms"] = {"findings": len(findings), "by_severity": sev}
+    return {"detail": {**r, "findings": len(findings), "by_severity": sev},
+            "gates": [
+                _gate("audit_symptoms_exit_zero", r["returncode"], "==", 0,
+                      "audit_symptoms"),
+                _gate("audit_symptoms_high", sev.get("HIGH", 0), "==", 0,
+                      "audit_symptoms")]}
+
+
 def s_fidelity(ctx) -> dict:
     from pipeline import fidelity
     from eval.citations import PageText
@@ -262,12 +304,27 @@ STAGES: List[Stage] = [
     Stage("audit", s_audit, inputs=["pipeline/audit_manual.py"],
           outputs=["reports/audit_findings.json"], gates="exit zero",
           expected_s=200, needs_pdf=True, depends=["extract"]),
+    # Symptom extraction was never a stage either. Auditing golden/symptoms
+    # without regenerating it first would audit whatever happened to be on
+    # disk, which is the shape of defect this project keeps removing.
+    Stage("extract_symptoms", s_extract_symptoms,
+          inputs=["pipeline/extract_symptoms.py"],
+          outputs=["golden/symptoms"],
+          gates="exit zero; the script's own self-tests run first",
+          expected_s=40, needs_pdf=True, depends=["extract"]),
+    Stage("audit_symptoms", s_audit_symptoms,
+          inputs=["pipeline/audit_symptoms.py", "golden/symptoms"],
+          outputs=["reports/audit_symptoms.json"],
+          gates="exit zero; HIGH findings == 0",
+          expected_s=5, needs_pdf=True, depends=["extract_symptoms"]),
     Stage("fidelity", s_fidelity,
-          inputs=["pipeline/fidelity.py", "eval/citations.py", "golden/failure_codes"],
+          inputs=["pipeline/fidelity.py", "eval/citations.py",
+                  "golden/failure_codes", "golden/symptoms"],
           outputs=["reports/unresolved_facts.json"],
-          gates="measurement 1.0, branch 1.0, page_containment 1.0, "
-                "known_overhang_stable", expected_s=25, needs_pdf=True,
-          depends=["extract"]),
+          gates="measurement 1.0, branch 1.0 (per section and overall), "
+                "page_containment 1.0, known_overhang_stable",
+          expected_s=90, needs_pdf=True,
+          depends=["extract", "extract_symptoms"]),
     Stage("structural", s_structural,
           inputs=["pipeline/structural.py", "golden/failure_codes"], outputs=[],
           gates="orphan_detection, step_count_agreement, step_contiguity",
@@ -560,12 +617,12 @@ def summary(rec: dict) -> None:
     print("\n" + "=" * 72)
     print("SUMMARY")
     print("=" * 72)
-    print(f"{'stage':14}{'status':9}{'secs':>8}  gates")
+    print(f"{'stage':18}{'status':9}{'secs':>8}  gates")
     for s in rec["stages"]:
         gp = sum(1 for g in s["gates"] if g["status"] == PASS)
         gf = sum(1 for g in s["gates"] if g["status"] == FAIL)
         note = f"  -- {s['skip_reason']}" if s["skip_reason"] else ""
-        print(f"{s['stage']:14}{s['status']:9}{s['seconds']:>8.1f}  "
+        print(f"{s['stage']:18}{s['status']:9}{s['seconds']:>8.1f}  "
               f"{gp} pass / {gf} fail{note}")
 
     failed = [g for g in rec["gates"] if g["status"] == FAIL]

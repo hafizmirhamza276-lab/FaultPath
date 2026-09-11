@@ -2,7 +2,8 @@
   "total_unresolved": 531,
   "by_classification": {
     "KNOWN_LIMITATION": 504,
-    "NEEDS_HUMAN_VERIFICATION": 27
+    "NEEDS_HUMAN_VERIFICATION": 27,
+    "DEFECT": 0
   },
   "human_verification": {
     "status": "NOT PERFORMED",

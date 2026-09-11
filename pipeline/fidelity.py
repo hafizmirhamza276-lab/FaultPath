@@ -446,7 +446,12 @@ def write_unresolved(result: dict, out_path: Optional[str] = None) -> dict:
             if c.get(extra) is not None:
                 entry[extra] = c[extra]
         items.append(entry)
-    counts = {}
+    # Every classification is reported, zeros included. DEFECT dropping out of
+    # the dict when it reaches 0 reads as "not measured", not as "none found",
+    # and a reader cannot tell those apart -- the same reason known_gaps()
+    # always prints human_verified: 0. A zero you can see is a result; a key
+    # that is absent is a question.
+    counts = {k: 0 for k in (KNOWN_LIMITATION, NEEDS_HUMAN, DEFECT)}
     for i in items:
         counts[i["classification"]] = counts.get(i["classification"], 0) + 1
     payload = {
