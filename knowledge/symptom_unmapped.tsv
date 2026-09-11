@@ -1,0 +1,28 @@
+# Plausible technician phrases that map to NO symptom tree in SEN06867-13.
+#
+# input <TAB> why_unmapped <TAB> added_by
+#
+# RECORDED, NOT FORCED. Each of these has an obvious "nearest" tree, and
+# attaching it there would produce a confident wrong answer with no error --
+# the quietest failure this system can have. A technician sent into
+# "Engine Lacks Power" because they typed "AC kaam nahi kar raha" loses an hour
+# and stops trusting the tool.
+#
+# This list is COVERAGE INFORMATION, not dead weight. It says what Section 40's
+# H-Mode and S-Mode trees do not cover, which is a fact about the manual worth
+# having in writing.
+
+oil leak ho raha hai	no hydraulic- or engine-leak symptom tree exists; leaks are covered in Testing and Adjusting, not in H-Mode or S-Mode	kps-eval
+hydraulic oil leak	same as above -- no leak tree	kps-eval
+AC kaam nahi kar raha	air conditioner has no symptom tree in this manual	kps-eval
+heater kaam nahi karta	cab heater has no symptom tree	kps-eval
+monitor blank hai	monitor panel faults are failure codes, not a symptom tree	kps-eval
+light nahi jal rahi	work lamps have no symptom tree	kps-eval
+horn nahi baj raha	horn has no symptom tree	kps-eval
+wiper kaam nahi karta	wiper has no symptom tree	kps-eval
+seat theek nahi hai	operator seat has no symptom tree	kps-eval
+door band nahi hoti	cab door has no symptom tree	kps-eval
+track se mitti nahi nikalti	track cleaning is a maintenance item, not a symptom tree	kps-eval
+grease nahi ja rahi	lubrication is a maintenance item, not a symptom tree	kps-eval
+paint utar raha hai	not a diagnostic symptom	kps-eval
+fuel filter kab badalna hai	a maintenance interval question, not a symptom	kps-eval

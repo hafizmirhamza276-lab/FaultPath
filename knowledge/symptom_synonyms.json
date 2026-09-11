@@ -1,0 +1,1872 @@
+{
+  "schema_version": 1,
+  "manual_id": "SEN06867-13",
+  "built_from": [
+    "knowledge/symptom_synonyms.source.tsv",
+    "knowledge/symptom_unmapped.tsv"
+  ],
+  "citation_policy": "The author supplies input -> symptom_id. Every manual phrasing and page in this file is RENDERED from golden/symptoms/ by pipeline/build_symptom_map.py and is never typed by hand, so a wrong id fails the build instead of shipping a convincing wrong citation.",
+  "trees_available": 57,
+  "entries": [
+    {
+      "input": "kuch bhi kaam nahi kar raha",
+      "normalised": "kuch bhi kaam nahi kar raha",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM01"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM01",
+          "manual_phrasing": "All Work Equipment, Swing and Travel Do Not Work",
+          "manual_page": "40-747",
+          "pdf_page": 1289,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 22
+    },
+    {
+      "input": "sab kuch band hai",
+      "normalised": "sab kuch band hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM01"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM01",
+          "manual_phrasing": "All Work Equipment, Swing and Travel Do Not Work",
+          "manual_page": "40-747",
+          "pdf_page": 1289,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 23
+    },
+    {
+      "input": "nothing works at all",
+      "normalised": "nothing works at all",
+      "lang": "english",
+      "target_symptom_ids": [
+        "HM01"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM01",
+          "manual_phrasing": "All Work Equipment, Swing and Travel Do Not Work",
+          "manual_page": "40-747",
+          "pdf_page": 1289,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 24
+    },
+    {
+      "input": "machine slow hai",
+      "normalised": "machine slow hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM02"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM02",
+          "manual_phrasing": "All Work Equipment, Swing, and Travel Lack Speed or Power",
+          "manual_page": "40-749",
+          "pdf_page": 1291,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 25
+    },
+    {
+      "input": "puri machine mein power kam hai",
+      "normalised": "puri machine mein power kam hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM02"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM02",
+          "manual_phrasing": "All Work Equipment, Swing, and Travel Lack Speed or Power",
+          "manual_page": "40-749",
+          "pdf_page": 1291,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 26
+    },
+    {
+      "input": "fine control theek nahi hai",
+      "normalised": "fine control theek nahi hai",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "HM03"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM03",
+          "manual_phrasing": "Fine Control Performance or Response is Unsatisfactory",
+          "manual_page": "40-759",
+          "pdf_page": 1301,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 27
+    },
+    {
+      "input": "pump se awaaz aa rahi hai",
+      "normalised": "pump se awaaz aa rahi hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM04"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM04",
+          "manual_phrasing": "Unusual Noise is Heard from Around Hydraulic Pump",
+          "manual_page": "40-764",
+          "pdf_page": 1306,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 28
+    },
+    {
+      "input": "hydraulic pump noise",
+      "normalised": "hydraulic pump noise",
+      "lang": "english",
+      "target_symptom_ids": [
+        "HM04"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM04",
+          "manual_phrasing": "Unusual Noise is Heard from Around Hydraulic Pump",
+          "manual_page": "40-764",
+          "pdf_page": 1306,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 29
+    },
+    {
+      "input": "engine rpm gir raha hai",
+      "normalised": "engine rpm gir raha hai",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "HM05"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM05",
+          "manual_phrasing": "Engine Speed Drops Largely or Engine Stops",
+          "manual_page": "40-766",
+          "pdf_page": 1308,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 30
+    },
+    {
+      "input": "boom slow hai",
+      "normalised": "boom slow hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM06"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM06",
+          "manual_phrasing": "Boom Speed or Power is Low",
+          "manual_page": "40-774",
+          "pdf_page": 1316,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 31
+    },
+    {
+      "input": "boom power kam hai",
+      "normalised": "boom power kam hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM06"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM06",
+          "manual_phrasing": "Boom Speed or Power is Low",
+          "manual_page": "40-774",
+          "pdf_page": 1316,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 32
+    },
+    {
+      "input": "arm slow hai",
+      "normalised": "arm slow hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM07"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM07",
+          "manual_phrasing": "Arm Speed or Power is Low",
+          "manual_page": "40-787",
+          "pdf_page": 1329,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 33
+    },
+    {
+      "input": "arm power kam hai",
+      "normalised": "arm power kam hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM07"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM07",
+          "manual_phrasing": "Arm Speed or Power is Low",
+          "manual_page": "40-787",
+          "pdf_page": 1329,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 34
+    },
+    {
+      "input": "bucket slow hai",
+      "normalised": "bucket slow hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM08"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM08",
+          "manual_phrasing": "Bucket Speed or Power is Low",
+          "manual_page": "40-799",
+          "pdf_page": 1341,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 35
+    },
+    {
+      "input": "bucket power kam hai",
+      "normalised": "bucket power kam hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM08"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM08",
+          "manual_phrasing": "Bucket Speed or Power is Low",
+          "manual_page": "40-799",
+          "pdf_page": 1341,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 36
+    },
+    {
+      "input": "single operation mein work equipment nahi chalta",
+      "normalised": "single operation mein work equipment nahi chalta",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "HM09"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM09",
+          "manual_phrasing": "Work Equipment Does Not Move in Single Operation",
+          "manual_page": "40-810",
+          "pdf_page": 1352,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 37
+    },
+    {
+      "input": "boom khud neeche aa raha hai",
+      "normalised": "boom khud neeche aa raha hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM10"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM10",
+          "manual_phrasing": "Hydraulic Drift of Boom is Large",
+          "manual_page": "40-813",
+          "pdf_page": 1355,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 38
+    },
+    {
+      "input": "boom drift",
+      "normalised": "boom drift",
+      "lang": "english",
+      "target_symptom_ids": [
+        "HM10"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM10",
+          "manual_phrasing": "Hydraulic Drift of Boom is Large",
+          "manual_page": "40-813",
+          "pdf_page": 1355,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 39
+    },
+    {
+      "input": "arm khud neeche aa raha hai",
+      "normalised": "arm khud neeche aa raha hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM11"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM11",
+          "manual_phrasing": "Hydraulic Drift of Arm is Large",
+          "manual_page": "40-815",
+          "pdf_page": 1357,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 40
+    },
+    {
+      "input": "arm drift",
+      "normalised": "arm drift",
+      "lang": "english",
+      "target_symptom_ids": [
+        "HM11"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM11",
+          "manual_phrasing": "Hydraulic Drift of Arm is Large",
+          "manual_page": "40-815",
+          "pdf_page": 1357,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 41
+    },
+    {
+      "input": "bucket drift",
+      "normalised": "bucket drift",
+      "lang": "english",
+      "target_symptom_ids": [
+        "HM12"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM12",
+          "manual_phrasing": "Hydraulic Drift of Bucket is Large",
+          "manual_page": "40-819",
+          "pdf_page": 1361,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 42
+    },
+    {
+      "input": "work equipment late chalta hai",
+      "normalised": "work equipment late chalta hai",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "HM14"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM14",
+          "manual_phrasing": "Time Lag of Work Equipment is Large",
+          "manual_page": "40-824",
+          "pdf_page": 1366,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 43
+    },
+    {
+      "input": "power max button kaam nahi karta",
+      "normalised": "power max button kaam nahi karta",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "HM15"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM15",
+          "manual_phrasing": "One-Touch Power Maximizing Function Does Not Operate",
+          "manual_page": "40-831",
+          "pdf_page": 1373,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 44
+    },
+    {
+      "input": "attachment circuit change nahi hota",
+      "normalised": "attachment circuit change nahi hota",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "HM16"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM16",
+          "manual_phrasing": "Attachment Circuit Cannot be Changed",
+          "manual_page": "40-834",
+          "pdf_page": 1376,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 45
+    },
+    {
+      "input": "attachment ka oil flow change nahi hota",
+      "normalised": "attachment ka oil flow change nahi hota",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "HM17"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM17",
+          "manual_phrasing": "Oil Flow in Attachment Circuit Cannot be Changed",
+          "manual_page": "40-837",
+          "pdf_page": 1379,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 46
+    },
+    {
+      "input": "swing aur travel sath mein travel slow",
+      "normalised": "swing aur travel sath mein travel slow",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "HM19"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM19",
+          "manual_phrasing": "In Combined Operation of Swing and Travel, Travel Speed Falls Largely",
+          "manual_page": "40-841",
+          "pdf_page": 1383,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 47
+    },
+    {
+      "input": "machine seedha nahi chalti",
+      "normalised": "machine seedha nahi chalti",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM21"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM21",
+          "manual_phrasing": "Machine Does Not Travel Straight",
+          "manual_page": "40-843",
+          "pdf_page": 1385,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 48
+    },
+    {
+      "input": "machine ek taraf mud jati hai",
+      "normalised": "machine ek taraf mud jati hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM21"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM21",
+          "manual_phrasing": "Machine Does Not Travel Straight",
+          "manual_page": "40-843",
+          "pdf_page": 1385,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 49
+    },
+    {
+      "input": "steering theek se kaam nahi karti",
+      "normalised": "steering theek se kaam nahi karti",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM22"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM22",
+          "manual_phrasing": "Machine is Not Steered Well or Steering Power is Low",
+          "manual_page": "40-854",
+          "pdf_page": 1396,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 50
+    },
+    {
+      "input": "steering power kam hai",
+      "normalised": "steering power kam hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM22"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM22",
+          "manual_phrasing": "Machine is Not Steered Well or Steering Power is Low",
+          "manual_page": "40-854",
+          "pdf_page": 1396,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 51
+    },
+    {
+      "input": "travel slow hai",
+      "normalised": "travel slow hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM23"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM23",
+          "manual_phrasing": "Travel Speed is Low",
+          "manual_page": "40-870",
+          "pdf_page": 1412,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 52
+    },
+    {
+      "input": "ek track nahi chal raha",
+      "normalised": "ek track nahi chal raha",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM24"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM24",
+          "manual_phrasing": "One of Tracks Does Not Run",
+          "manual_page": "40-880",
+          "pdf_page": 1422,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 53
+    },
+    {
+      "input": "one track does not move",
+      "normalised": "one track does not move",
+      "lang": "english",
+      "target_symptom_ids": [
+        "HM24"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM24",
+          "manual_phrasing": "One of Tracks Does Not Run",
+          "manual_page": "40-880",
+          "pdf_page": 1422,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 54
+    },
+    {
+      "input": "travel speed change nahi hoti",
+      "normalised": "travel speed change nahi hoti",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "HM25"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM25",
+          "manual_phrasing": "Travel Speed Does Not Change, or Travel Speed is Too Slow or Fast",
+          "manual_page": "40-889",
+          "pdf_page": 1431,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 55
+    },
+    {
+      "input": "swing nahi ho raha",
+      "normalised": "swing nahi ho raha",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM26"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM26",
+          "manual_phrasing": "Upper Structure Does Not Swing in Two Directions of Right and Left",
+          "manual_page": "40-892",
+          "pdf_page": 1434,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 56
+    },
+    {
+      "input": "swing dono taraf nahi ghumta",
+      "normalised": "swing dono taraf nahi ghumta",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM26"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM26",
+          "manual_phrasing": "Upper Structure Does Not Swing in Two Directions of Right and Left",
+          "manual_page": "40-892",
+          "pdf_page": 1434,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 57
+    },
+    {
+      "input": "swing sirf ek taraf ghumta hai",
+      "normalised": "swing sirf ek taraf ghumta hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM27"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM27",
+          "manual_phrasing": "Upper Structure Swings Only to the Right or Left",
+          "manual_page": "40-897",
+          "pdf_page": 1439,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 58
+    },
+    {
+      "input": "swing dono taraf slow hai",
+      "normalised": "swing dono taraf slow hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM28"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM28",
+          "manual_phrasing": "Swing Acceleration or Swing Speed is Low in Two Directions of Right and Left",
+          "manual_page": "40-900",
+          "pdf_page": 1442,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 59
+    },
+    {
+      "input": "swing ek taraf slow hai",
+      "normalised": "swing ek taraf slow hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM29"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM29",
+          "manual_phrasing": "Swing Acceleration Performance is Unsatisfactory or Swing Speed is Slow in Only One Direction",
+          "manual_page": "40-906",
+          "pdf_page": 1448,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 60
+    },
+    {
+      "input": "swing rukne ke baad aage chala jata hai",
+      "normalised": "swing rukne ke baad aage chala jata hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM30",
+        "HM31"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM30",
+          "manual_phrasing": "Upper Structure Overruns Too Much When It Stops Swing Operation (Right and Left)",
+          "manual_page": "40-910",
+          "pdf_page": 1452,
+          "tree_kind": "SymptomTreeBranching"
+        },
+        {
+          "symptom_id": "HM31",
+          "manual_phrasing": "Upper Structure Overruns Too Much When It Stops Swing Operation (Only One Direction)",
+          "manual_page": "40-912",
+          "pdf_page": 1454,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": true,
+      "added_by": "kps-eval",
+      "source_line": 61
+    },
+    {
+      "input": "swing rukte waqt jhatka lagta hai",
+      "normalised": "swing rukte waqt jhatka lagta hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM32"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM32",
+          "manual_phrasing": "Shock is Large When Upper Structure Stops Swing Operation",
+          "manual_page": "40-916",
+          "pdf_page": 1458,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 62
+    },
+    {
+      "input": "swing rukte waqt awaaz aati hai",
+      "normalised": "swing rukte waqt awaaz aati hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM33"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM33",
+          "manual_phrasing": "Large Unusual Noise is Heard Upper Structure Stops Swing Operation",
+          "manual_page": "40-918",
+          "pdf_page": 1460,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 63
+    },
+    {
+      "input": "dhalan par swing drift hota hai",
+      "normalised": "dhalan par swing drift hota hai",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "HM34",
+        "HM35"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM34",
+          "manual_phrasing": "Swing Drift on a Slope is Large (While Swing Parking Brake is Applied)",
+          "manual_page": "40-921",
+          "pdf_page": 1463,
+          "tree_kind": "SymptomTreeBranching"
+        },
+        {
+          "symptom_id": "HM35",
+          "manual_phrasing": "Swing Drift on a Slope is Large (While Swing Parking Brake is Released)",
+          "manual_page": "40-923",
+          "pdf_page": 1465,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": true,
+      "added_by": "kps-eval",
+      "source_line": 64
+    },
+    {
+      "input": "fan speed theek nahi hai",
+      "normalised": "fan speed theek nahi hai",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "HM36"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM36",
+          "manual_phrasing": "Fan Speed is Abnormal (Too High or Low, or Does Not Move)",
+          "manual_page": "40-927",
+          "pdf_page": 1469,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 65
+    },
+    {
+      "input": "fan se awaaz aa rahi hai",
+      "normalised": "fan se awaaz aa rahi hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM37"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM37",
+          "manual_phrasing": "Unusual Noise is Heard from Around Fan",
+          "manual_page": "40-929",
+          "pdf_page": 1471,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 66
+    },
+    {
+      "input": "engine start nahi ho raha",
+      "normalised": "engine start nahi ho raha",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "SM01"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM01",
+          "manual_phrasing": "Engine does not crank when starting switch is turned to “START” position.",
+          "manual_page": "40-931",
+          "pdf_page": 1473,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 69
+    },
+    {
+      "input": "engine crank nahi ho raha",
+      "normalised": "engine crank nahi ho raha",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "SM01"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM01",
+          "manual_phrasing": "Engine does not crank when starting switch is turned to “START” position.",
+          "manual_page": "40-931",
+          "pdf_page": 1473,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 70
+    },
+    {
+      "input": "starting motor ghoomta nahi",
+      "normalised": "starting motor ghoomta nahi",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "SM01"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM01",
+          "manual_phrasing": "Engine does not crank when starting switch is turned to “START” position.",
+          "manual_page": "40-931",
+          "pdf_page": 1473,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 71
+    },
+    {
+      "input": "engine ghoomta hai lekin exhaust nahi aata",
+      "normalised": "engine ghoomta hai lekin exhaust nahi aata",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "SM02"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM02",
+          "manual_phrasing": "Engine cranks but no exhaust gas comes out.",
+          "manual_page": "40-932",
+          "pdf_page": 1474,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 72
+    },
+    {
+      "input": "engine crank hota hai par start nahi hota",
+      "normalised": "engine crank hota hai par start nahi hota",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "SM03"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM03",
+          "manual_phrasing": "Fuel is being injected but engine does not start (misfiring: engine cranks but does not start).",
+          "manual_page": "40-933",
+          "pdf_page": 1475,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 73
+    },
+    {
+      "input": "misfiring ho rahi hai",
+      "normalised": "misfiring ho rahi hai",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "SM03"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM03",
+          "manual_phrasing": "Fuel is being injected but engine does not start (misfiring: engine cranks but does not start).",
+          "manual_page": "40-933",
+          "pdf_page": 1475,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 74
+    },
+    {
+      "input": "engine mushkil se start hota hai",
+      "normalised": "engine mushkil se start hota hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "SM04"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM04",
+          "manual_phrasing": "Engine startability is poor.",
+          "manual_page": "40-935",
+          "pdf_page": 1477,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 75
+    },
+    {
+      "input": "engine pick up nahi karta",
+      "normalised": "engine pick up nahi karta",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "SM05"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM05",
+          "manual_phrasing": "Engine does not pick-up smoothly.",
+          "manual_page": "40-937",
+          "pdf_page": 1479,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 76
+    },
+    {
+      "input": "chalte chalte engine band ho jata hai",
+      "normalised": "chalte chalte engine band ho jata hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "SM06"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM06",
+          "manual_phrasing": "Engine stops during operation.",
+          "manual_page": "40-939",
+          "pdf_page": 1481,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 77
+    },
+    {
+      "input": "engine unstable hai",
+      "normalised": "engine unstable hai",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "SM07"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM07",
+          "manual_phrasing": "Engine runs rough or is unstable.",
+          "manual_page": "40-941",
+          "pdf_page": 1483,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 78
+    },
+    {
+      "input": "engine hilta hai chalte waqt",
+      "normalised": "engine hilta hai chalte waqt",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "SM07"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM07",
+          "manual_phrasing": "Engine runs rough or is unstable.",
+          "manual_page": "40-941",
+          "pdf_page": 1483,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 79
+    },
+    {
+      "input": "engine mein power nahi hai",
+      "normalised": "engine mein power nahi hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "SM08"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM08",
+          "manual_phrasing": "Engine lacks power.",
+          "manual_page": "40-942",
+          "pdf_page": 1484,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 80
+    },
+    {
+      "input": "engine power kam hai",
+      "normalised": "engine power kam hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "SM08"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM08",
+          "manual_phrasing": "Engine lacks power.",
+          "manual_page": "40-942",
+          "pdf_page": 1484,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 81
+    },
+    {
+      "input": "kala dhuan aa raha hai",
+      "normalised": "kala dhuan aa raha hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "SM09"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM09",
+          "manual_phrasing": "Exhaust smoke is black.",
+          "manual_page": "40-944",
+          "pdf_page": 1486,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 82
+    },
+    {
+      "input": "black smoke from exhaust",
+      "normalised": "black smoke from exhaust",
+      "lang": "english",
+      "target_symptom_ids": [
+        "SM09"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM09",
+          "manual_phrasing": "Exhaust smoke is black.",
+          "manual_page": "40-944",
+          "pdf_page": 1486,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 83
+    },
+    {
+      "input": "engine oil zyada khatam ho raha hai",
+      "normalised": "engine oil zyada khatam ho raha hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "SM10"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM10",
+          "manual_phrasing": "Engine oil consumption is excessive",
+          "manual_page": "40-946",
+          "pdf_page": 1488,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 84
+    },
+    {
+      "input": "oil jaldi ganda ho jata hai",
+      "normalised": "oil jaldi ganda ho jata hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "SM11"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM11",
+          "manual_phrasing": "Oil becomes contaminated quickly",
+          "manual_page": "40-947",
+          "pdf_page": 1489,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 85
+    },
+    {
+      "input": "fuel zyada lag raha hai",
+      "normalised": "fuel zyada lag raha hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "SM12"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM12",
+          "manual_phrasing": "Fuel consumption is excessive.",
+          "manual_page": "40-948",
+          "pdf_page": 1490,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 86
+    },
+    {
+      "input": "diesel zyada kharch ho raha hai",
+      "normalised": "diesel zyada kharch ho raha hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "SM12"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM12",
+          "manual_phrasing": "Fuel consumption is excessive.",
+          "manual_page": "40-948",
+          "pdf_page": 1490,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 87
+    },
+    {
+      "input": "coolant mein oil aa raha hai",
+      "normalised": "coolant mein oil aa raha hai",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "SM13"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM13",
+          "manual_phrasing": "Oil is in coolant (or coolant spurts back or coolant level goes down)",
+          "manual_page": "40-949",
+          "pdf_page": 1491,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 88
+    },
+    {
+      "input": "oil pressure gir raha hai",
+      "normalised": "oil pressure gir raha hai",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "SM14"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM14",
+          "manual_phrasing": "Oil pressure drops.",
+          "manual_page": "40-950",
+          "pdf_page": 1492,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 89
+    },
+    {
+      "input": "engine oil mein fuel mil raha hai",
+      "normalised": "engine oil mein fuel mil raha hai",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "SM15"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM15",
+          "manual_phrasing": "Fuel mixes into engine oil.",
+          "manual_page": "40-951",
+          "pdf_page": 1493,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 90
+    },
+    {
+      "input": "engine oil milky hai",
+      "normalised": "engine oil milky hai",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "SM16"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM16",
+          "manual_phrasing": "Water mixes into engine oil (milky)",
+          "manual_page": "40-952",
+          "pdf_page": 1494,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 91
+    },
+    {
+      "input": "engine oil mein pani hai",
+      "normalised": "engine oil mein pani hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "SM16"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM16",
+          "manual_phrasing": "Water mixes into engine oil (milky)",
+          "manual_page": "40-952",
+          "pdf_page": 1494,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 92
+    },
+    {
+      "input": "engine garam ho raha hai",
+      "normalised": "engine garam ho raha hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "SM17"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM17",
+          "manual_phrasing": "Coolant temperature rises too high (overheating)",
+          "manual_page": "40-953",
+          "pdf_page": 1495,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 93
+    },
+    {
+      "input": "overheating ho rahi hai",
+      "normalised": "overheating ho rahi hai",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "SM17"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM17",
+          "manual_phrasing": "Coolant temperature rises too high (overheating)",
+          "manual_page": "40-953",
+          "pdf_page": 1495,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 94
+    },
+    {
+      "input": "coolant temperature zyada hai",
+      "normalised": "coolant temperature zyada hai",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "SM17"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM17",
+          "manual_phrasing": "Coolant temperature rises too high (overheating)",
+          "manual_page": "40-953",
+          "pdf_page": 1495,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 95
+    },
+    {
+      "input": "vibration zyada hai",
+      "normalised": "vibration zyada hai",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "SM19"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM19",
+          "manual_phrasing": "Vibration is excessive.",
+          "manual_page": "40-955",
+          "pdf_page": 1497,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 96
+    },
+    {
+      "input": "fuel line se hawa nahi nikalti",
+      "normalised": "fuel line se hawa nahi nikalti",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "SM20"
+      ],
+      "cites": [
+        {
+          "symptom_id": "SM20",
+          "manual_phrasing": "Air cannot be bled from fuel circuit.",
+          "manual_page": "40-956",
+          "pdf_page": 1498,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 97
+    },
+    {
+      "input": "engine band ho jata hai",
+      "normalised": "engine band ho jata hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM05",
+        "SM06"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM05",
+          "manual_phrasing": "Engine Speed Drops Largely or Engine Stops",
+          "manual_page": "40-766",
+          "pdf_page": 1308,
+          "tree_kind": "SymptomTreeBranching"
+        },
+        {
+          "symptom_id": "SM06",
+          "manual_phrasing": "Engine stops during operation.",
+          "manual_page": "40-939",
+          "pdf_page": 1481,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": true,
+      "added_by": "kps-eval",
+      "source_line": 103
+    },
+    {
+      "input": "awaaz aa rahi hai",
+      "normalised": "awaaz aa rahi hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM04",
+        "HM33",
+        "HM37",
+        "SM18"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM04",
+          "manual_phrasing": "Unusual Noise is Heard from Around Hydraulic Pump",
+          "manual_page": "40-764",
+          "pdf_page": 1306,
+          "tree_kind": "SymptomTreeBranching"
+        },
+        {
+          "symptom_id": "HM33",
+          "manual_phrasing": "Large Unusual Noise is Heard Upper Structure Stops Swing Operation",
+          "manual_page": "40-918",
+          "pdf_page": 1460,
+          "tree_kind": "SymptomTreeBranching"
+        },
+        {
+          "symptom_id": "HM37",
+          "manual_phrasing": "Unusual Noise is Heard from Around Fan",
+          "manual_page": "40-929",
+          "pdf_page": 1471,
+          "tree_kind": "SymptomTreeBranching"
+        },
+        {
+          "symptom_id": "SM18",
+          "manual_phrasing": "Unusual noise is heard.",
+          "manual_page": "40-954",
+          "pdf_page": 1496,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": true,
+      "added_by": "kps-eval",
+      "source_line": 104
+    },
+    {
+      "input": "unusual noise",
+      "normalised": "unusual noise",
+      "lang": "english",
+      "target_symptom_ids": [
+        "HM04",
+        "HM33",
+        "HM37",
+        "SM18"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM04",
+          "manual_phrasing": "Unusual Noise is Heard from Around Hydraulic Pump",
+          "manual_page": "40-764",
+          "pdf_page": 1306,
+          "tree_kind": "SymptomTreeBranching"
+        },
+        {
+          "symptom_id": "HM33",
+          "manual_phrasing": "Large Unusual Noise is Heard Upper Structure Stops Swing Operation",
+          "manual_page": "40-918",
+          "pdf_page": 1460,
+          "tree_kind": "SymptomTreeBranching"
+        },
+        {
+          "symptom_id": "HM37",
+          "manual_phrasing": "Unusual Noise is Heard from Around Fan",
+          "manual_page": "40-929",
+          "pdf_page": 1471,
+          "tree_kind": "SymptomTreeBranching"
+        },
+        {
+          "symptom_id": "SM18",
+          "manual_phrasing": "Unusual noise is heard.",
+          "manual_page": "40-954",
+          "pdf_page": 1496,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": true,
+      "added_by": "kps-eval",
+      "source_line": 105
+    },
+    {
+      "input": "swing slow hai",
+      "normalised": "swing slow hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM28",
+        "HM29"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM28",
+          "manual_phrasing": "Swing Acceleration or Swing Speed is Low in Two Directions of Right and Left",
+          "manual_page": "40-900",
+          "pdf_page": 1442,
+          "tree_kind": "SymptomTreeBranching"
+        },
+        {
+          "symptom_id": "HM29",
+          "manual_phrasing": "Swing Acceleration Performance is Unsatisfactory or Swing Speed is Slow in Only One Direction",
+          "manual_page": "40-906",
+          "pdf_page": 1448,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": true,
+      "added_by": "kps-eval",
+      "source_line": 106
+    },
+    {
+      "input": "power kam hai",
+      "normalised": "power kam hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM02",
+        "HM06",
+        "HM07",
+        "HM08",
+        "HM22",
+        "SM08"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM02",
+          "manual_phrasing": "All Work Equipment, Swing, and Travel Lack Speed or Power",
+          "manual_page": "40-749",
+          "pdf_page": 1291,
+          "tree_kind": "SymptomTreeBranching"
+        },
+        {
+          "symptom_id": "HM06",
+          "manual_phrasing": "Boom Speed or Power is Low",
+          "manual_page": "40-774",
+          "pdf_page": 1316,
+          "tree_kind": "SymptomTreeBranching"
+        },
+        {
+          "symptom_id": "HM07",
+          "manual_phrasing": "Arm Speed or Power is Low",
+          "manual_page": "40-787",
+          "pdf_page": 1329,
+          "tree_kind": "SymptomTreeBranching"
+        },
+        {
+          "symptom_id": "HM08",
+          "manual_phrasing": "Bucket Speed or Power is Low",
+          "manual_page": "40-799",
+          "pdf_page": 1341,
+          "tree_kind": "SymptomTreeBranching"
+        },
+        {
+          "symptom_id": "HM22",
+          "manual_phrasing": "Machine is Not Steered Well or Steering Power is Low",
+          "manual_page": "40-854",
+          "pdf_page": 1396,
+          "tree_kind": "SymptomTreeBranching"
+        },
+        {
+          "symptom_id": "SM08",
+          "manual_phrasing": "Engine lacks power.",
+          "manual_page": "40-942",
+          "pdf_page": 1484,
+          "tree_kind": "SymptomTreeFlat"
+        }
+      ],
+      "ambiguous": true,
+      "added_by": "kps-eval",
+      "source_line": 107
+    },
+    {
+      "input": "ek work equipment chhodne par dusra hilta hai",
+      "normalised": "ek work equipment chhodne par dusra hilta hai",
+      "lang": "roman_urdu",
+      "target_symptom_ids": [
+        "HM13"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM13",
+          "manual_phrasing": "When Single Work Equipment is Released Hydraulically, Other Work Equipment Moves",
+          "manual_page": "40-822",
+          "pdf_page": 1364,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 113
+    },
+    {
+      "input": "mixed operation mein bhaari load wala slow chalta hai",
+      "normalised": "mixed operation mein bhaari load wala slow chalta hai",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "HM18"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM18",
+          "manual_phrasing": "In Mixed Operation of Work Equipment, Work Equipment with Heavier Load Moves Slower",
+          "manual_page": "40-839",
+          "pdf_page": 1381,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 114
+    },
+    {
+      "input": "swing aur boom raise sath mein boom slow",
+      "normalised": "swing aur boom raise sath mein boom slow",
+      "lang": "mixed",
+      "target_symptom_ids": [
+        "HM20"
+      ],
+      "cites": [
+        {
+          "symptom_id": "HM20",
+          "manual_phrasing": "In Combined Operation of Swing and Boom Raise, Boom Rise Speed is Low",
+          "manual_page": "40-842",
+          "pdf_page": 1384,
+          "tree_kind": "SymptomTreeBranching"
+        }
+      ],
+      "ambiguous": false,
+      "added_by": "kps-eval",
+      "source_line": 115
+    }
+  ],
+  "unmapped": [
+    {
+      "input": "oil leak ho raha hai",
+      "normalised": "oil leak ho raha hai",
+      "reason": "no hydraulic- or engine-leak symptom tree exists; leaks are covered in Testing and Adjusting, not in H-Mode or S-Mode",
+      "added_by": "kps-eval",
+      "source_line": 15
+    },
+    {
+      "input": "hydraulic oil leak",
+      "normalised": "hydraulic oil leak",
+      "reason": "same as above -- no leak tree",
+      "added_by": "kps-eval",
+      "source_line": 16
+    },
+    {
+      "input": "AC kaam nahi kar raha",
+      "normalised": "ac kaam nahi kar raha",
+      "reason": "air conditioner has no symptom tree in this manual",
+      "added_by": "kps-eval",
+      "source_line": 17
+    },
+    {
+      "input": "heater kaam nahi karta",
+      "normalised": "heater kaam nahi karta",
+      "reason": "cab heater has no symptom tree",
+      "added_by": "kps-eval",
+      "source_line": 18
+    },
+    {
+      "input": "monitor blank hai",
+      "normalised": "monitor blank hai",
+      "reason": "monitor panel faults are failure codes, not a symptom tree",
+      "added_by": "kps-eval",
+      "source_line": 19
+    },
+    {
+      "input": "light nahi jal rahi",
+      "normalised": "light nahi jal rahi",
+      "reason": "work lamps have no symptom tree",
+      "added_by": "kps-eval",
+      "source_line": 20
+    },
+    {
+      "input": "horn nahi baj raha",
+      "normalised": "horn nahi baj raha",
+      "reason": "horn has no symptom tree",
+      "added_by": "kps-eval",
+      "source_line": 21
+    },
+    {
+      "input": "wiper kaam nahi karta",
+      "normalised": "wiper kaam nahi karta",
+      "reason": "wiper has no symptom tree",
+      "added_by": "kps-eval",
+      "source_line": 22
+    },
+    {
+      "input": "seat theek nahi hai",
+      "normalised": "seat theek nahi hai",
+      "reason": "operator seat has no symptom tree",
+      "added_by": "kps-eval",
+      "source_line": 23
+    },
+    {
+      "input": "door band nahi hoti",
+      "normalised": "door band nahi hoti",
+      "reason": "cab door has no symptom tree",
+      "added_by": "kps-eval",
+      "source_line": 24
+    },
+    {
+      "input": "track se mitti nahi nikalti",
+      "normalised": "track se mitti nahi nikalti",
+      "reason": "track cleaning is a maintenance item, not a symptom tree",
+      "added_by": "kps-eval",
+      "source_line": 25
+    },
+    {
+      "input": "grease nahi ja rahi",
+      "normalised": "grease nahi ja rahi",
+      "reason": "lubrication is a maintenance item, not a symptom tree",
+      "added_by": "kps-eval",
+      "source_line": 26
+    },
+    {
+      "input": "paint utar raha hai",
+      "normalised": "paint utar raha hai",
+      "reason": "not a diagnostic symptom",
+      "added_by": "kps-eval",
+      "source_line": 27
+    },
+    {
+      "input": "fuel filter kab badalna hai",
+      "normalised": "fuel filter kab badalna hai",
+      "reason": "a maintenance interval question, not a symptom",
+      "added_by": "kps-eval",
+      "source_line": 28
+    }
+  ]
+}

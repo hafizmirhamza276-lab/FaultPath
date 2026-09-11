@@ -1,0 +1,115 @@
+# Symptom synonym source table. HAND-AUTHORED, reviewable without reading code.
+#
+# input <TAB> target_symptom_ids <TAB> lang <TAB> added_by
+#
+# target_symptom_ids: one id, or several separated by "|" when the phrase is
+# genuinely ambiguous. An ambiguous entry is NOT a defect -- it is the honest
+# record that a technician's words do not pick one tree, and it makes the
+# matcher ask instead of guess.
+#
+# The CITATION IS NOT TYPED HERE. pipeline/build_symptom_map.py renders the
+# manual phrasing and page from golden/symptoms/ for each target id, the same
+# way eval/citations.py renders a citation from a fact_id. A citation nobody
+# types is a citation nobody can get wrong, and an id that does not exist fails
+# the build rather than shipping as a plausible-looking entry.
+#
+# Vocabulary is taken from the manual's own titles -- boom, arm, bucket, swing,
+# travel, track, attachment, fan, coolant, exhaust -- combined with the Roman
+# Urdu a technician actually types. No symptom is invented here: every target
+# is an id that exists in golden/symptoms/.
+
+# ---------------------------------------------------------------- H-Mode
+kuch bhi kaam nahi kar raha	HM01	roman_urdu	kps-eval
+sab kuch band hai	HM01	roman_urdu	kps-eval
+nothing works at all	HM01	english	kps-eval
+machine slow hai	HM02	roman_urdu	kps-eval
+puri machine mein power kam hai	HM02	roman_urdu	kps-eval
+fine control theek nahi hai	HM03	mixed	kps-eval
+pump se awaaz aa rahi hai	HM04	roman_urdu	kps-eval
+hydraulic pump noise	HM04	english	kps-eval
+engine rpm gir raha hai	HM05	mixed	kps-eval
+boom slow hai	HM06	roman_urdu	kps-eval
+boom power kam hai	HM06	roman_urdu	kps-eval
+arm slow hai	HM07	roman_urdu	kps-eval
+arm power kam hai	HM07	roman_urdu	kps-eval
+bucket slow hai	HM08	roman_urdu	kps-eval
+bucket power kam hai	HM08	roman_urdu	kps-eval
+single operation mein work equipment nahi chalta	HM09	mixed	kps-eval
+boom khud neeche aa raha hai	HM10	roman_urdu	kps-eval
+boom drift	HM10	english	kps-eval
+arm khud neeche aa raha hai	HM11	roman_urdu	kps-eval
+arm drift	HM11	english	kps-eval
+bucket drift	HM12	english	kps-eval
+work equipment late chalta hai	HM14	mixed	kps-eval
+power max button kaam nahi karta	HM15	mixed	kps-eval
+attachment circuit change nahi hota	HM16	mixed	kps-eval
+attachment ka oil flow change nahi hota	HM17	mixed	kps-eval
+swing aur travel sath mein travel slow	HM19	mixed	kps-eval
+machine seedha nahi chalti	HM21	roman_urdu	kps-eval
+machine ek taraf mud jati hai	HM21	roman_urdu	kps-eval
+steering theek se kaam nahi karti	HM22	roman_urdu	kps-eval
+steering power kam hai	HM22	roman_urdu	kps-eval
+travel slow hai	HM23	roman_urdu	kps-eval
+ek track nahi chal raha	HM24	roman_urdu	kps-eval
+one track does not move	HM24	english	kps-eval
+travel speed change nahi hoti	HM25	mixed	kps-eval
+swing nahi ho raha	HM26	roman_urdu	kps-eval
+swing dono taraf nahi ghumta	HM26	roman_urdu	kps-eval
+swing sirf ek taraf ghumta hai	HM27	roman_urdu	kps-eval
+swing dono taraf slow hai	HM28	roman_urdu	kps-eval
+swing ek taraf slow hai	HM29	roman_urdu	kps-eval
+swing rukne ke baad aage chala jata hai	HM30|HM31	roman_urdu	kps-eval
+swing rukte waqt jhatka lagta hai	HM32	roman_urdu	kps-eval
+swing rukte waqt awaaz aati hai	HM33	roman_urdu	kps-eval
+dhalan par swing drift hota hai	HM34|HM35	mixed	kps-eval
+fan speed theek nahi hai	HM36	mixed	kps-eval
+fan se awaaz aa rahi hai	HM37	roman_urdu	kps-eval
+
+# --------------------------------------------------------------- S-Mode
+engine start nahi ho raha	SM01	roman_urdu	kps-eval
+engine crank nahi ho raha	SM01	mixed	kps-eval
+starting motor ghoomta nahi	SM01	mixed	kps-eval
+engine ghoomta hai lekin exhaust nahi aata	SM02	mixed	kps-eval
+engine crank hota hai par start nahi hota	SM03	mixed	kps-eval
+misfiring ho rahi hai	SM03	mixed	kps-eval
+engine mushkil se start hota hai	SM04	roman_urdu	kps-eval
+engine pick up nahi karta	SM05	mixed	kps-eval
+chalte chalte engine band ho jata hai	SM06	roman_urdu	kps-eval
+engine unstable hai	SM07	mixed	kps-eval
+engine hilta hai chalte waqt	SM07	roman_urdu	kps-eval
+engine mein power nahi hai	SM08	roman_urdu	kps-eval
+engine power kam hai	SM08	roman_urdu	kps-eval
+kala dhuan aa raha hai	SM09	roman_urdu	kps-eval
+black smoke from exhaust	SM09	english	kps-eval
+engine oil zyada khatam ho raha hai	SM10	roman_urdu	kps-eval
+oil jaldi ganda ho jata hai	SM11	roman_urdu	kps-eval
+fuel zyada lag raha hai	SM12	roman_urdu	kps-eval
+diesel zyada kharch ho raha hai	SM12	roman_urdu	kps-eval
+coolant mein oil aa raha hai	SM13	mixed	kps-eval
+oil pressure gir raha hai	SM14	mixed	kps-eval
+engine oil mein fuel mil raha hai	SM15	mixed	kps-eval
+engine oil milky hai	SM16	mixed	kps-eval
+engine oil mein pani hai	SM16	roman_urdu	kps-eval
+engine garam ho raha hai	SM17	roman_urdu	kps-eval
+overheating ho rahi hai	SM17	mixed	kps-eval
+coolant temperature zyada hai	SM17	mixed	kps-eval
+vibration zyada hai	SM19	mixed	kps-eval
+fuel line se hawa nahi nikalti	SM20	mixed	kps-eval
+
+# ------------------------------------------------- deliberately ambiguous
+# These are the phrases a technician really types that do NOT pick one tree.
+# Recorded with every plausible target so the matcher asks. Collapsing any of
+# them to a single id would be the silent-wrong-tree failure.
+engine band ho jata hai	HM05|SM06	roman_urdu	kps-eval
+awaaz aa rahi hai	HM04|HM33|HM37|SM18	roman_urdu	kps-eval
+unusual noise	HM04|HM33|HM37|SM18	english	kps-eval
+swing slow hai	HM28|HM29	roman_urdu	kps-eval
+power kam hai	HM02|HM06|HM07|HM08|HM22|SM08	roman_urdu	kps-eval
+
+# ------------------------------- long compound titles, added for coverage
+# HM13, HM18 and HM20 had no synonym and were reachable only by their own
+# phrasing or by retrieval. Their titles are long compound sentences that no
+# technician types verbatim.
+ek work equipment chhodne par dusra hilta hai	HM13	roman_urdu	kps-eval
+mixed operation mein bhaari load wala slow chalta hai	HM18	mixed	kps-eval
+swing aur boom raise sath mein boom slow	HM20	mixed	kps-eval

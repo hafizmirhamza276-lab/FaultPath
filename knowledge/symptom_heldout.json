@@ -1,0 +1,1281 @@
+{
+  "schema_version": 1,
+  "manual_id": "SEN06867-13",
+  "sealed_n": 46,
+  "sealed_dropped": [
+    {
+      "phrasing": "steering power kam hai",
+      "symptom_id": "HM22",
+      "reason": "collides with the map or the contaminated slice"
+    },
+    {
+      "phrasing": "travel speed kam hai",
+      "symptom_id": "HM23",
+      "reason": "collides with the map or the contaminated slice"
+    },
+    {
+      "phrasing": "travel speed nahi chalta",
+      "symptom_id": "HM25",
+      "reason": "collides with the map or the contaminated slice"
+    },
+    {
+      "phrasing": "engine startability kharab hai",
+      "symptom_id": "SM04",
+      "reason": "collides with the map or the contaminated slice"
+    },
+    {
+      "phrasing": "engine power kam hai",
+      "symptom_id": "SM08",
+      "reason": "collides with the map or the contaminated slice"
+    },
+    {
+      "phrasing": "exhaust smoke kam hai",
+      "symptom_id": "SM09",
+      "reason": "collides with the map or the contaminated slice"
+    },
+    {
+      "phrasing": "oil contaminated ganda ho jata hai",
+      "symptom_id": "SM11",
+      "reason": "collides with the map or the contaminated slice"
+    },
+    {
+      "phrasing": "fuel consumption zyada hai",
+      "symptom_id": "SM12",
+      "reason": "collides with the map or the contaminated slice"
+    },
+    {
+      "phrasing": "oil pressure gir raha hai",
+      "symptom_id": "SM14",
+      "reason": "collides with the map or the contaminated slice"
+    },
+    {
+      "phrasing": "unusual noise aa rahi hai",
+      "symptom_id": "SM18",
+      "reason": "collides with the map or the contaminated slice"
+    }
+  ],
+  "sealed_cases": [
+    {
+      "input": "travel work nahi chalte",
+      "expected": [
+        "HM01"
+      ],
+      "derived_from": "All Work Equipment, Swing and Travel Do Not Work",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "speed power kam hai",
+      "expected": [
+        "HM02"
+      ],
+      "derived_from": "All Work Equipment, Swing, and Travel Lack Speed or Power",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "performance response theek nahi hai",
+      "expected": [
+        "HM03"
+      ],
+      "derived_from": "Fine Control Performance or Response is Unsatisfactory",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "hydraulic pump aa rahi hai",
+      "expected": [
+        "HM04"
+      ],
+      "derived_from": "Unusual Noise is Heard from Around Hydraulic Pump",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "largely engine gir raha hai",
+      "expected": [
+        "HM05"
+      ],
+      "derived_from": "Engine Speed Drops Largely or Engine Stops",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "speed power kam hai",
+      "expected": [
+        "HM06"
+      ],
+      "derived_from": "Boom Speed or Power is Low",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "speed power kam hai",
+      "expected": [
+        "HM07"
+      ],
+      "derived_from": "Arm Speed or Power is Low",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "speed power kam hai",
+      "expected": [
+        "HM08"
+      ],
+      "derived_from": "Bucket Speed or Power is Low",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "single operation nahi chalta",
+      "expected": [
+        "HM09"
+      ],
+      "derived_from": "Work Equipment Does Not Move in Single Operation",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "drift boom zyada hai",
+      "expected": [
+        "HM10"
+      ],
+      "derived_from": "Hydraulic Drift of Boom is Large",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "drift arm zyada hai",
+      "expected": [
+        "HM11"
+      ],
+      "derived_from": "Hydraulic Drift of Arm is Large",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "drift bucket zyada hai",
+      "expected": [
+        "HM12"
+      ],
+      "derived_from": "Hydraulic Drift of Bucket is Large",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "equipment moves ka masla hai",
+      "expected": [
+        "HM13"
+      ],
+      "derived_from": "When Single Work Equipment is Released Hydraulically, Other Work Equipment Moves",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "work equipment zyada hai",
+      "expected": [
+        "HM14"
+      ],
+      "derived_from": "Time Lag of Work Equipment is Large",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "function operate nahi chalta",
+      "expected": [
+        "HM15"
+      ],
+      "derived_from": "One-Touch Power Maximizing Function Does Not Operate",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "circuit changed nahi hota",
+      "expected": [
+        "HM16"
+      ],
+      "derived_from": "Attachment Circuit Cannot be Changed",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "circuit changed nahi hota",
+      "expected": [
+        "HM17"
+      ],
+      "derived_from": "Oil Flow in Attachment Circuit Cannot be Changed",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "load moves slow chalta hai",
+      "expected": [
+        "HM18"
+      ],
+      "derived_from": "In Mixed Operation of Work Equipment, Work Equipment with Heavier Load Moves Slower",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "speed largely gir jati hai",
+      "expected": [
+        "HM19"
+      ],
+      "derived_from": "In Combined Operation of Swing and Travel, Travel Speed Falls Largely",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "rise speed kam hai",
+      "expected": [
+        "HM20"
+      ],
+      "derived_from": "In Combined Operation of Swing and Boom Raise, Boom Rise Speed is Low",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "travel straight nahi chalta",
+      "expected": [
+        "HM21"
+      ],
+      "derived_from": "Machine Does Not Travel Straight",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "tracks run nahi chalta",
+      "expected": [
+        "HM24"
+      ],
+      "derived_from": "One of Tracks Does Not Run",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "right left nahi chalta",
+      "expected": [
+        "HM26"
+      ],
+      "derived_from": "Upper Structure Does Not Swing in Two Directions of Right and Left",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "right left ka masla hai",
+      "expected": [
+        "HM27"
+      ],
+      "derived_from": "Upper Structure Swings Only to the Right or Left",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "right left kam hai",
+      "expected": [
+        "HM28"
+      ],
+      "derived_from": "Swing Acceleration or Swing Speed is Low in Two Directions of Right and Left",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "one direction theek nahi hai",
+      "expected": [
+        "HM29"
+      ],
+      "derived_from": "Swing Acceleration Performance is Unsatisfactory or Swing Speed is Slow in Only One Direction",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "right left zyada aage nikal jata hai",
+      "expected": [
+        "HM30"
+      ],
+      "derived_from": "Upper Structure Overruns Too Much When It Stops Swing Operation (Right and Left)",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "one direction zyada aage nikal jata hai",
+      "expected": [
+        "HM31"
+      ],
+      "derived_from": "Upper Structure Overruns Too Much When It Stops Swing Operation (Only One Direction)",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "swing operation zyada hai",
+      "expected": [
+        "HM32"
+      ],
+      "derived_from": "Shock is Large When Upper Structure Stops Swing Operation",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "swing operation band ho jata hai",
+      "expected": [
+        "HM33"
+      ],
+      "derived_from": "Large Unusual Noise is Heard Upper Structure Stops Swing Operation",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "brake applied zyada hai",
+      "expected": [
+        "HM34"
+      ],
+      "derived_from": "Swing Drift on a Slope is Large (While Swing Parking Brake is Applied)",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "brake released zyada hai",
+      "expected": [
+        "HM35"
+      ],
+      "derived_from": "Swing Drift on a Slope is Large (While Swing Parking Brake is Released)",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "speed move nahi chalta",
+      "expected": [
+        "HM36"
+      ],
+      "derived_from": "Fan Speed is Abnormal (Too High or Low, or Does Not Move)",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "around fan aa rahi hai",
+      "expected": [
+        "HM37"
+      ],
+      "derived_from": "Unusual Noise is Heard from Around Fan",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "start position nahi chalta",
+      "expected": [
+        "SM01"
+      ],
+      "derived_from": "Engine does not crank when starting switch is turned to “START” position.",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "exhaust gas ka masla hai",
+      "expected": [
+        "SM02"
+      ],
+      "derived_from": "Engine cranks but no exhaust gas comes out.",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "cranks start nahi chalta",
+      "expected": [
+        "SM03"
+      ],
+      "derived_from": "Fuel is being injected but engine does not start (misfiring: engine cranks but does not start).",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "up smoothly nahi chalta",
+      "expected": [
+        "SM05"
+      ],
+      "derived_from": "Engine does not pick-up smoothly.",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "during operation band ho jata hai",
+      "expected": [
+        "SM06"
+      ],
+      "derived_from": "Engine stops during operation.",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "rough unstable unstable hai",
+      "expected": [
+        "SM07"
+      ],
+      "derived_from": "Engine runs rough or is unstable.",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "oil consumption zyada hai",
+      "expected": [
+        "SM10"
+      ],
+      "derived_from": "Engine oil consumption is excessive",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "coolant level mein aa raha hai",
+      "expected": [
+        "SM13"
+      ],
+      "derived_from": "Oil is in coolant (or coolant spurts back or coolant level goes down)",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "engine oil mein mil raha hai",
+      "expected": [
+        "SM15"
+      ],
+      "derived_from": "Fuel mixes into engine oil.",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "oil milky mein mil raha hai",
+      "expected": [
+        "SM16"
+      ],
+      "derived_from": "Water mixes into engine oil (milky)",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "temperature overheating zyada hai",
+      "expected": [
+        "SM17"
+      ],
+      "derived_from": "Coolant temperature rises too high (overheating)",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    },
+    {
+      "input": "fuel circuit nahi hota",
+      "expected": [
+        "SM20"
+      ],
+      "derived_from": "Air cannot be bled from fuel circuit.",
+      "derivation": "LAST content words of the title + the same fault-keyed predicate"
+    }
+  ],
+  "independence": {
+    "construction": "mechanical derivation from manual titles; the synonym map is not read while generating",
+    "labels": "the tree whose title the phrasing was derived from -- taken from the manual, not chosen by a person",
+    "disjointness": "every phrasing checked against the map raw and normalised; collisions dropped and listed",
+    "limitation": "the Roman Urdu predicate lexicon is hand-written and shares vocabulary with the map. Independence is structural, not adversarial. A truly independent set would come from technician logs, which this repo does not have."
+  },
+  "n": 91,
+  "dropped": [
+    {
+      "phrasing": "fine control theek nahi hai",
+      "symptom_id": "HM03",
+      "reason": "collides with a synonym-map input"
+    },
+    {
+      "phrasing": "hydraulic drift zyada hai",
+      "symptom_id": "HM11",
+      "reason": "duplicate of an earlier phrasing"
+    },
+    {
+      "phrasing": "hydraulic drift zyada hai",
+      "symptom_id": "HM12",
+      "reason": "duplicate of an earlier phrasing"
+    },
+    {
+      "phrasing": "travel speed kam hai",
+      "symptom_id": "HM23",
+      "reason": "duplicate of an earlier phrasing"
+    },
+    {
+      "phrasing": "upper structure zyada aage nikal jata hai",
+      "symptom_id": "HM31",
+      "reason": "duplicate of an earlier phrasing"
+    },
+    {
+      "phrasing": "upper structure much zyada aage nikal jata hai",
+      "symptom_id": "HM31",
+      "reason": "duplicate of an earlier phrasing"
+    },
+    {
+      "phrasing": "swing drift zyada hai",
+      "symptom_id": "HM35",
+      "reason": "duplicate of an earlier phrasing"
+    },
+    {
+      "phrasing": "swing drift slope zyada hai",
+      "symptom_id": "HM35",
+      "reason": "duplicate of an earlier phrasing"
+    },
+    {
+      "phrasing": "unusual noise aa rahi hai",
+      "symptom_id": "HM37",
+      "reason": "duplicate of an earlier phrasing"
+    },
+    {
+      "phrasing": "unusual noise around aa rahi hai",
+      "symptom_id": "HM37",
+      "reason": "duplicate of an earlier phrasing"
+    },
+    {
+      "phrasing": "engine startability kharab hai",
+      "symptom_id": "SM04",
+      "reason": "duplicate of an earlier phrasing"
+    },
+    {
+      "phrasing": "engine power kam hai",
+      "symptom_id": "SM08",
+      "reason": "collides with a synonym-map input"
+    },
+    {
+      "phrasing": "engine power kam hai",
+      "symptom_id": "SM08",
+      "reason": "collides with a synonym-map input"
+    },
+    {
+      "phrasing": "exhaust smoke kam hai",
+      "symptom_id": "SM09",
+      "reason": "duplicate of an earlier phrasing"
+    },
+    {
+      "phrasing": "oil contaminated ganda ho jata hai",
+      "symptom_id": "SM11",
+      "reason": "duplicate of an earlier phrasing"
+    },
+    {
+      "phrasing": "fuel consumption zyada hai",
+      "symptom_id": "SM12",
+      "reason": "duplicate of an earlier phrasing"
+    },
+    {
+      "phrasing": "oil pressure gir raha hai",
+      "symptom_id": "SM14",
+      "reason": "collides with a synonym-map input"
+    },
+    {
+      "phrasing": "oil pressure gir raha hai",
+      "symptom_id": "SM14",
+      "reason": "collides with a synonym-map input"
+    },
+    {
+      "phrasing": "coolant temperature zyada hai",
+      "symptom_id": "SM17",
+      "reason": "collides with a synonym-map input"
+    },
+    {
+      "phrasing": "unusual noise aa rahi hai",
+      "symptom_id": "SM18",
+      "reason": "duplicate of an earlier phrasing"
+    },
+    {
+      "phrasing": "unusual noise aa rahi hai",
+      "symptom_id": "SM18",
+      "reason": "duplicate of an earlier phrasing"
+    },
+    {
+      "phrasing": "vibration zyada hai",
+      "symptom_id": "SM19",
+      "reason": "collides with a synonym-map input"
+    },
+    {
+      "phrasing": "vibration zyada hai",
+      "symptom_id": "SM19",
+      "reason": "collides with a synonym-map input"
+    }
+  ],
+  "cases": [
+    {
+      "input": "all work nahi chalte",
+      "expected": [
+        "HM01"
+      ],
+      "derived_from": "All Work Equipment, Swing and Travel Do Not Work",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "all work equipment nahi chalte",
+      "expected": [
+        "HM01"
+      ],
+      "derived_from": "All Work Equipment, Swing and Travel Do Not Work",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "all work kam hai",
+      "expected": [
+        "HM02"
+      ],
+      "derived_from": "All Work Equipment, Swing, and Travel Lack Speed or Power",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "all work equipment kam hai",
+      "expected": [
+        "HM02"
+      ],
+      "derived_from": "All Work Equipment, Swing, and Travel Lack Speed or Power",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "fine control performance theek nahi hai",
+      "expected": [
+        "HM03"
+      ],
+      "derived_from": "Fine Control Performance or Response is Unsatisfactory",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "unusual noise aa rahi hai",
+      "expected": [
+        "HM04"
+      ],
+      "derived_from": "Unusual Noise is Heard from Around Hydraulic Pump",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "unusual noise around aa rahi hai",
+      "expected": [
+        "HM04"
+      ],
+      "derived_from": "Unusual Noise is Heard from Around Hydraulic Pump",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "engine speed gir raha hai",
+      "expected": [
+        "HM05"
+      ],
+      "derived_from": "Engine Speed Drops Largely or Engine Stops",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "engine speed largely gir raha hai",
+      "expected": [
+        "HM05"
+      ],
+      "derived_from": "Engine Speed Drops Largely or Engine Stops",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "boom speed kam hai",
+      "expected": [
+        "HM06"
+      ],
+      "derived_from": "Boom Speed or Power is Low",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "boom speed power kam hai",
+      "expected": [
+        "HM06"
+      ],
+      "derived_from": "Boom Speed or Power is Low",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "arm speed kam hai",
+      "expected": [
+        "HM07"
+      ],
+      "derived_from": "Arm Speed or Power is Low",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "arm speed power kam hai",
+      "expected": [
+        "HM07"
+      ],
+      "derived_from": "Arm Speed or Power is Low",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "bucket speed kam hai",
+      "expected": [
+        "HM08"
+      ],
+      "derived_from": "Bucket Speed or Power is Low",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "bucket speed power kam hai",
+      "expected": [
+        "HM08"
+      ],
+      "derived_from": "Bucket Speed or Power is Low",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "work equipment nahi chalta",
+      "expected": [
+        "HM09"
+      ],
+      "derived_from": "Work Equipment Does Not Move in Single Operation",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "work equipment move nahi chalta",
+      "expected": [
+        "HM09"
+      ],
+      "derived_from": "Work Equipment Does Not Move in Single Operation",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "hydraulic drift zyada hai",
+      "expected": [
+        "HM10"
+      ],
+      "derived_from": "Hydraulic Drift of Boom is Large",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "hydraulic drift boom zyada hai",
+      "expected": [
+        "HM10"
+      ],
+      "derived_from": "Hydraulic Drift of Boom is Large",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "hydraulic drift arm zyada hai",
+      "expected": [
+        "HM11"
+      ],
+      "derived_from": "Hydraulic Drift of Arm is Large",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "hydraulic drift bucket zyada hai",
+      "expected": [
+        "HM12"
+      ],
+      "derived_from": "Hydraulic Drift of Bucket is Large",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "single work ka masla hai",
+      "expected": [
+        "HM13"
+      ],
+      "derived_from": "When Single Work Equipment is Released Hydraulically, Other Work Equipment Moves",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "single work equipment ka masla hai",
+      "expected": [
+        "HM13"
+      ],
+      "derived_from": "When Single Work Equipment is Released Hydraulically, Other Work Equipment Moves",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "time lag zyada hai",
+      "expected": [
+        "HM14"
+      ],
+      "derived_from": "Time Lag of Work Equipment is Large",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "time lag work zyada hai",
+      "expected": [
+        "HM14"
+      ],
+      "derived_from": "Time Lag of Work Equipment is Large",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "one touch nahi chalta",
+      "expected": [
+        "HM15"
+      ],
+      "derived_from": "One-Touch Power Maximizing Function Does Not Operate",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "one touch power nahi chalta",
+      "expected": [
+        "HM15"
+      ],
+      "derived_from": "One-Touch Power Maximizing Function Does Not Operate",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "attachment circuit nahi hota",
+      "expected": [
+        "HM16"
+      ],
+      "derived_from": "Attachment Circuit Cannot be Changed",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "attachment circuit changed nahi hota",
+      "expected": [
+        "HM16"
+      ],
+      "derived_from": "Attachment Circuit Cannot be Changed",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "oil flow nahi hota",
+      "expected": [
+        "HM17"
+      ],
+      "derived_from": "Oil Flow in Attachment Circuit Cannot be Changed",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "oil flow attachment nahi hota",
+      "expected": [
+        "HM17"
+      ],
+      "derived_from": "Oil Flow in Attachment Circuit Cannot be Changed",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "mixed operation slow chalta hai",
+      "expected": [
+        "HM18"
+      ],
+      "derived_from": "In Mixed Operation of Work Equipment, Work Equipment with Heavier Load Moves Slower",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "mixed operation work slow chalta hai",
+      "expected": [
+        "HM18"
+      ],
+      "derived_from": "In Mixed Operation of Work Equipment, Work Equipment with Heavier Load Moves Slower",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "combined operation gir jati hai",
+      "expected": [
+        "HM19"
+      ],
+      "derived_from": "In Combined Operation of Swing and Travel, Travel Speed Falls Largely",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "combined operation swing gir jati hai",
+      "expected": [
+        "HM19"
+      ],
+      "derived_from": "In Combined Operation of Swing and Travel, Travel Speed Falls Largely",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "combined operation kam hai",
+      "expected": [
+        "HM20"
+      ],
+      "derived_from": "In Combined Operation of Swing and Boom Raise, Boom Rise Speed is Low",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "combined operation swing kam hai",
+      "expected": [
+        "HM20"
+      ],
+      "derived_from": "In Combined Operation of Swing and Boom Raise, Boom Rise Speed is Low",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "machine travel nahi chalta",
+      "expected": [
+        "HM21"
+      ],
+      "derived_from": "Machine Does Not Travel Straight",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "machine travel straight nahi chalta",
+      "expected": [
+        "HM21"
+      ],
+      "derived_from": "Machine Does Not Travel Straight",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "machine steered kam hai",
+      "expected": [
+        "HM22"
+      ],
+      "derived_from": "Machine is Not Steered Well or Steering Power is Low",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "machine steered well kam hai",
+      "expected": [
+        "HM22"
+      ],
+      "derived_from": "Machine is Not Steered Well or Steering Power is Low",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "travel speed kam hai",
+      "expected": [
+        "HM23"
+      ],
+      "derived_from": "Travel Speed is Low",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "one tracks nahi chalta",
+      "expected": [
+        "HM24"
+      ],
+      "derived_from": "One of Tracks Does Not Run",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "one tracks run nahi chalta",
+      "expected": [
+        "HM24"
+      ],
+      "derived_from": "One of Tracks Does Not Run",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "travel speed nahi chalta",
+      "expected": [
+        "HM25"
+      ],
+      "derived_from": "Travel Speed Does Not Change, or Travel Speed is Too Slow or Fast",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "travel speed change nahi chalta",
+      "expected": [
+        "HM25"
+      ],
+      "derived_from": "Travel Speed Does Not Change, or Travel Speed is Too Slow or Fast",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "upper structure nahi chalta",
+      "expected": [
+        "HM26"
+      ],
+      "derived_from": "Upper Structure Does Not Swing in Two Directions of Right and Left",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "upper structure swing nahi chalta",
+      "expected": [
+        "HM26"
+      ],
+      "derived_from": "Upper Structure Does Not Swing in Two Directions of Right and Left",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "upper structure ka masla hai",
+      "expected": [
+        "HM27"
+      ],
+      "derived_from": "Upper Structure Swings Only to the Right or Left",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "upper structure swings ka masla hai",
+      "expected": [
+        "HM27"
+      ],
+      "derived_from": "Upper Structure Swings Only to the Right or Left",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "swing acceleration kam hai",
+      "expected": [
+        "HM28"
+      ],
+      "derived_from": "Swing Acceleration or Swing Speed is Low in Two Directions of Right and Left",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "swing acceleration swing kam hai",
+      "expected": [
+        "HM28"
+      ],
+      "derived_from": "Swing Acceleration or Swing Speed is Low in Two Directions of Right and Left",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "swing acceleration theek nahi hai",
+      "expected": [
+        "HM29"
+      ],
+      "derived_from": "Swing Acceleration Performance is Unsatisfactory or Swing Speed is Slow in Only One Direction",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "swing acceleration performance theek nahi hai",
+      "expected": [
+        "HM29"
+      ],
+      "derived_from": "Swing Acceleration Performance is Unsatisfactory or Swing Speed is Slow in Only One Direction",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "upper structure zyada aage nikal jata hai",
+      "expected": [
+        "HM30"
+      ],
+      "derived_from": "Upper Structure Overruns Too Much When It Stops Swing Operation (Right and Left)",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "upper structure much zyada aage nikal jata hai",
+      "expected": [
+        "HM30"
+      ],
+      "derived_from": "Upper Structure Overruns Too Much When It Stops Swing Operation (Right and Left)",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "shock upper zyada hai",
+      "expected": [
+        "HM32"
+      ],
+      "derived_from": "Shock is Large When Upper Structure Stops Swing Operation",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "shock upper structure zyada hai",
+      "expected": [
+        "HM32"
+      ],
+      "derived_from": "Shock is Large When Upper Structure Stops Swing Operation",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "unusual noise band ho jata hai",
+      "expected": [
+        "HM33"
+      ],
+      "derived_from": "Large Unusual Noise is Heard Upper Structure Stops Swing Operation",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "unusual noise upper band ho jata hai",
+      "expected": [
+        "HM33"
+      ],
+      "derived_from": "Large Unusual Noise is Heard Upper Structure Stops Swing Operation",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "swing drift zyada hai",
+      "expected": [
+        "HM34"
+      ],
+      "derived_from": "Swing Drift on a Slope is Large (While Swing Parking Brake is Applied)",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "swing drift slope zyada hai",
+      "expected": [
+        "HM34"
+      ],
+      "derived_from": "Swing Drift on a Slope is Large (While Swing Parking Brake is Applied)",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "fan speed nahi chalta",
+      "expected": [
+        "HM36"
+      ],
+      "derived_from": "Fan Speed is Abnormal (Too High or Low, or Does Not Move)",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "fan speed move nahi chalta",
+      "expected": [
+        "HM36"
+      ],
+      "derived_from": "Fan Speed is Abnormal (Too High or Low, or Does Not Move)",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "engine crank nahi chalta",
+      "expected": [
+        "SM01"
+      ],
+      "derived_from": "Engine does not crank when starting switch is turned to “START” position.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "engine crank starting nahi chalta",
+      "expected": [
+        "SM01"
+      ],
+      "derived_from": "Engine does not crank when starting switch is turned to “START” position.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "engine cranks ka masla hai",
+      "expected": [
+        "SM02"
+      ],
+      "derived_from": "Engine cranks but no exhaust gas comes out.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "engine cranks exhaust ka masla hai",
+      "expected": [
+        "SM02"
+      ],
+      "derived_from": "Engine cranks but no exhaust gas comes out.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "fuel being nahi chalta",
+      "expected": [
+        "SM03"
+      ],
+      "derived_from": "Fuel is being injected but engine does not start (misfiring: engine cranks but does not start).",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "fuel being injected nahi chalta",
+      "expected": [
+        "SM03"
+      ],
+      "derived_from": "Fuel is being injected but engine does not start (misfiring: engine cranks but does not start).",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "engine startability kharab hai",
+      "expected": [
+        "SM04"
+      ],
+      "derived_from": "Engine startability is poor.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "engine pick nahi chalta",
+      "expected": [
+        "SM05"
+      ],
+      "derived_from": "Engine does not pick-up smoothly.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "engine pick up nahi chalta",
+      "expected": [
+        "SM05"
+      ],
+      "derived_from": "Engine does not pick-up smoothly.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "engine during band ho jata hai",
+      "expected": [
+        "SM06"
+      ],
+      "derived_from": "Engine stops during operation.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "engine during operation band ho jata hai",
+      "expected": [
+        "SM06"
+      ],
+      "derived_from": "Engine stops during operation.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "engine runs unstable hai",
+      "expected": [
+        "SM07"
+      ],
+      "derived_from": "Engine runs rough or is unstable.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "engine runs rough unstable hai",
+      "expected": [
+        "SM07"
+      ],
+      "derived_from": "Engine runs rough or is unstable.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "exhaust smoke kam hai",
+      "expected": [
+        "SM09"
+      ],
+      "derived_from": "Exhaust smoke is black.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "engine oil zyada hai",
+      "expected": [
+        "SM10"
+      ],
+      "derived_from": "Engine oil consumption is excessive",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "engine oil consumption zyada hai",
+      "expected": [
+        "SM10"
+      ],
+      "derived_from": "Engine oil consumption is excessive",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "oil contaminated ganda ho jata hai",
+      "expected": [
+        "SM11"
+      ],
+      "derived_from": "Oil becomes contaminated quickly",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "fuel consumption zyada hai",
+      "expected": [
+        "SM12"
+      ],
+      "derived_from": "Fuel consumption is excessive.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "oil coolant mein aa raha hai",
+      "expected": [
+        "SM13"
+      ],
+      "derived_from": "Oil is in coolant (or coolant spurts back or coolant level goes down)",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "oil coolant coolant mein aa raha hai",
+      "expected": [
+        "SM13"
+      ],
+      "derived_from": "Oil is in coolant (or coolant spurts back or coolant level goes down)",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "fuel engine mein mil raha hai",
+      "expected": [
+        "SM15"
+      ],
+      "derived_from": "Fuel mixes into engine oil.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "fuel engine oil mein mil raha hai",
+      "expected": [
+        "SM15"
+      ],
+      "derived_from": "Fuel mixes into engine oil.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "water engine mein mil raha hai",
+      "expected": [
+        "SM16"
+      ],
+      "derived_from": "Water mixes into engine oil (milky)",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "water engine oil mein mil raha hai",
+      "expected": [
+        "SM16"
+      ],
+      "derived_from": "Water mixes into engine oil (milky)",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "coolant temperature overheating zyada hai",
+      "expected": [
+        "SM17"
+      ],
+      "derived_from": "Coolant temperature rises too high (overheating)",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "air bled nahi hota",
+      "expected": [
+        "SM20"
+      ],
+      "derived_from": "Air cannot be bled from fuel circuit.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    },
+    {
+      "input": "air bled fuel nahi hota",
+      "expected": [
+        "SM20"
+      ],
+      "derived_from": "Air cannot be bled from fuel circuit.",
+      "derivation": "content words of the manual title + a predicate keyed on its fault word"
+    }
+  ]
+}
