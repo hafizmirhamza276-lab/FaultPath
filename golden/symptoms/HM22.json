@@ -49,6 +49,22 @@
         "table_index": 0,
         "row_index": 1
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-855",
+          "pdf_page": 1397,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-855",
+          "pdf_page": 1397,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM22:1:step:0",
       "branch_fact_ids": {
         "NO": "HM22:1:branch:0",
@@ -69,6 +85,22 @@
         "pdf_page": 1398,
         "table_index": 0,
         "row_index": 1
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-856",
+          "pdf_page": 1398,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-856",
+          "pdf_page": 1398,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
       },
       "fact_id": "HM22:2:step:0",
       "branch_fact_ids": {
@@ -91,6 +123,22 @@
         "table_index": 0,
         "row_index": 1
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-857",
+          "pdf_page": 1399,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-857",
+          "pdf_page": 1399,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM22:3:step:0",
       "branch_fact_ids": {
         "NO": "HM22:3:branch:0",
@@ -111,6 +159,22 @@
         "pdf_page": 1399,
         "table_index": 0,
         "row_index": 3
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-857",
+          "pdf_page": 1399,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-857",
+          "pdf_page": 1399,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
       },
       "fact_id": "HM22:4:step:0",
       "branch_fact_ids": {
@@ -133,6 +197,22 @@
         "table_index": 0,
         "row_index": 5
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-858",
+          "pdf_page": 1400,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-857",
+          "pdf_page": 1399,
+          "table_index": 0,
+          "row_index": 5,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM22:5:step:0",
       "branch_fact_ids": {
         "NO": "HM22:5:branch:0",
@@ -153,6 +233,22 @@
         "pdf_page": 1401,
         "table_index": 0,
         "row_index": 2
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-859",
+          "pdf_page": 1401,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-859",
+          "pdf_page": 1401,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        }
       },
       "fact_id": "HM22:6:step:0",
       "branch_fact_ids": {
@@ -175,6 +271,22 @@
         "table_index": 0,
         "row_index": 1
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-861",
+          "pdf_page": 1403,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-861",
+          "pdf_page": 1403,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM22:7:step:0",
       "branch_fact_ids": {
         "NO": "HM22:7:branch:0",
@@ -195,6 +307,22 @@
         "pdf_page": 1403,
         "table_index": 0,
         "row_index": 3
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-861",
+          "pdf_page": 1403,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-861",
+          "pdf_page": 1403,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
       },
       "fact_id": "HM22:8:step:0",
       "branch_fact_ids": {
@@ -217,6 +345,22 @@
         "table_index": 0,
         "row_index": 5
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-861",
+          "pdf_page": 1403,
+          "table_index": 0,
+          "row_index": 6,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-861",
+          "pdf_page": 1403,
+          "table_index": 0,
+          "row_index": 5,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM22:9:step:0",
       "branch_fact_ids": {
         "NO": "HM22:9:branch:0",
@@ -237,6 +381,22 @@
         "pdf_page": 1403,
         "table_index": 0,
         "row_index": 7
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-861",
+          "pdf_page": 1403,
+          "table_index": 0,
+          "row_index": 8,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-861",
+          "pdf_page": 1403,
+          "table_index": 0,
+          "row_index": 7,
+          "column_index": 4
+        }
       },
       "fact_id": "HM22:10:step:0",
       "branch_fact_ids": {
@@ -259,6 +419,22 @@
         "table_index": 0,
         "row_index": 1
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-862",
+          "pdf_page": 1404,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-862",
+          "pdf_page": 1404,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM22:11:step:0",
       "branch_fact_ids": {
         "NO": "HM22:11:branch:0",
@@ -279,6 +455,22 @@
         "pdf_page": 1405,
         "table_index": 0,
         "row_index": 1
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-863",
+          "pdf_page": 1405,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-863",
+          "pdf_page": 1405,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
       },
       "fact_id": "HM22:12:step:0",
       "branch_fact_ids": {
@@ -301,6 +493,22 @@
         "table_index": 0,
         "row_index": 3
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-863",
+          "pdf_page": 1405,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-863",
+          "pdf_page": 1405,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM22:13:step:0",
       "branch_fact_ids": {
         "NO": "HM22:13:branch:0",
@@ -321,6 +529,22 @@
         "pdf_page": 1406,
         "table_index": 0,
         "row_index": 1
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-864",
+          "pdf_page": 1406,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-864",
+          "pdf_page": 1406,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
       },
       "fact_id": "HM22:14:step:0",
       "branch_fact_ids": {
@@ -343,6 +567,22 @@
         "table_index": 0,
         "row_index": 3
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-864",
+          "pdf_page": 1406,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-864",
+          "pdf_page": 1406,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM22:15:step:0",
       "branch_fact_ids": {
         "NO": "HM22:15:branch:0",
@@ -363,6 +603,22 @@
         "pdf_page": 1406,
         "table_index": 0,
         "row_index": 5
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-864",
+          "pdf_page": 1406,
+          "table_index": 0,
+          "row_index": 6,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-864",
+          "pdf_page": 1406,
+          "table_index": 0,
+          "row_index": 5,
+          "column_index": 4
+        }
       },
       "fact_id": "HM22:16:step:0",
       "branch_fact_ids": {
@@ -385,6 +641,22 @@
         "table_index": 0,
         "row_index": 1
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-865",
+          "pdf_page": 1407,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-865",
+          "pdf_page": 1407,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM22:17:step:0",
       "branch_fact_ids": {
         "NO": "HM22:17:branch:0",
@@ -405,6 +677,22 @@
         "pdf_page": 1408,
         "table_index": 0,
         "row_index": 1
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-866",
+          "pdf_page": 1408,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-866",
+          "pdf_page": 1408,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
       },
       "fact_id": "HM22:18:step:0",
       "branch_fact_ids": {
@@ -427,6 +715,22 @@
         "table_index": 0,
         "row_index": 3
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-866",
+          "pdf_page": 1408,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-866",
+          "pdf_page": 1408,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM22:19:step:0",
       "branch_fact_ids": {
         "NO": "HM22:19:branch:0",
@@ -447,6 +751,22 @@
         "pdf_page": 1409,
         "table_index": 0,
         "row_index": 1
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-867",
+          "pdf_page": 1409,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-867",
+          "pdf_page": 1409,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
       },
       "fact_id": "HM22:20:step:0",
       "branch_fact_ids": {
@@ -469,6 +789,22 @@
         "table_index": 0,
         "row_index": 3
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-867",
+          "pdf_page": 1409,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-867",
+          "pdf_page": 1409,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM22:21:step:0",
       "branch_fact_ids": {
         "NO": "HM22:21:branch:0",
@@ -489,6 +825,22 @@
         "pdf_page": 1409,
         "table_index": 0,
         "row_index": 5
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-867",
+          "pdf_page": 1409,
+          "table_index": 0,
+          "row_index": 6,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-867",
+          "pdf_page": 1409,
+          "table_index": 0,
+          "row_index": 5,
+          "column_index": 4
+        }
       },
       "fact_id": "HM22:22:step:0",
       "branch_fact_ids": {
@@ -511,6 +863,22 @@
         "table_index": 0,
         "row_index": 1
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-868",
+          "pdf_page": 1410,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-868",
+          "pdf_page": 1410,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM22:23:step:0",
       "branch_fact_ids": {
         "NO": "HM22:23:branch:0",
@@ -531,6 +899,22 @@
         "pdf_page": 1410,
         "table_index": 0,
         "row_index": 3
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-868",
+          "pdf_page": 1410,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-868",
+          "pdf_page": 1410,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
       },
       "fact_id": "HM22:24:step:0",
       "branch_fact_ids": {
@@ -553,6 +937,22 @@
         "table_index": 0,
         "row_index": 5
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-868",
+          "pdf_page": 1410,
+          "table_index": 0,
+          "row_index": 6,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-868",
+          "pdf_page": 1410,
+          "table_index": 0,
+          "row_index": 5,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM22:25:step:0",
       "branch_fact_ids": {
         "NO": "HM22:25:branch:0",
@@ -573,6 +973,22 @@
         "pdf_page": 1411,
         "table_index": 0,
         "row_index": 1
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-869",
+          "pdf_page": 1411,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-869",
+          "pdf_page": 1411,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
       },
       "fact_id": "HM22:26:step:0",
       "branch_fact_ids": {
@@ -595,6 +1011,22 @@
         "table_index": 0,
         "row_index": 3
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-869",
+          "pdf_page": 1411,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-869",
+          "pdf_page": 1411,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM22:27:step:0",
       "branch_fact_ids": {
         "NO": "HM22:27:branch:0",
@@ -615,6 +1047,22 @@
         "pdf_page": 1411,
         "table_index": 0,
         "row_index": 5
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-869",
+          "pdf_page": 1411,
+          "table_index": 0,
+          "row_index": 6,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-869",
+          "pdf_page": 1411,
+          "table_index": 0,
+          "row_index": 5,
+          "column_index": 4
+        }
       },
       "fact_id": "HM22:28:step:0",
       "branch_fact_ids": {
@@ -640,7 +1088,7 @@
     },
     {
       "quantity": "Travel PPC valve output pressure",
-      "point": "• Fuel control dial at Hi • Control lever: • Right travel lever: Forward/ Reverse • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Boom travel PPC circuit hydraulic hose / • Fuel control dial at Hi • Control lever: • Right travel lever: Forward/ Reverse • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
       "provenance": {
         "manual_page": "40-855",
@@ -668,7 +1116,7 @@
     },
     {
       "quantity": "Travel PPC valve output pressure",
-      "point": "• Fuel control dial at Hi • Control lever: Left travel lever in FOR- WARD/ RE- VERSE • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Arm and travel PPC circuit hydraulic hose / • Fuel control dial at Hi • Control lever: Left travel lever in FOR- WARD/ RE- VERSE • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
       "provenance": {
         "manual_page": "40-856",
@@ -696,7 +1144,7 @@
     },
     {
       "quantity": "Solenoid valve outlet pressure",
-      "point": "• Fuel control dial at Hi • Control lever: Travel lever one side operated • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Travel junction solenoid valve outlet hose / • Fuel control dial at Hi • Control lever: Travel lever one side operated • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "Approximately 2.9 MPa {approximately 30 kgf/cm2}",
       "provenance": {
         "manual_page": "40-857",
@@ -724,7 +1172,7 @@
     },
     {
       "quantity": "Main EPC output pressure",
-      "point": "• Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Oil pressure sensor mounting port (PP1S) of front pump / • Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
       "provenance": {
         "manual_page": "40-858",
@@ -752,7 +1200,7 @@
     },
     {
       "quantity": "EPC Current",
-      "point": "• Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Monitoring code: 08000 / • Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "800 to 1000 mA",
       "provenance": {
         "manual_page": "40-859",
@@ -780,7 +1228,7 @@
     },
     {
       "quantity": "LS- EPC output pressure",
-      "point": "• Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Oil pressure sensor mounting port (PP1S) of front pump / • Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
       "provenance": {
         "manual_page": "40-860",
@@ -808,7 +1256,7 @@
     },
     {
       "quantity": "EPC Current",
-      "point": "• Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Monitoring code: 08001 / • Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "800 to 1000 mA",
       "provenance": {
         "manual_page": "40-860",
@@ -836,7 +1284,7 @@
     },
     {
       "quantity": "Main relief pressure",
-      "point": "• Fuel control dial at Hi • Control lever: R.H. travel rearward relief • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Front pump discharged pressure pickup port / • Fuel control dial at Hi • Control lever: R.H. travel rearward relief • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "36.2 to 40.2 MPa {370 to 410 kgf/cm2}",
       "provenance": {
         "manual_page": "40-862",
@@ -878,7 +1326,7 @@
     },
     {
       "quantity": "Main relief pressure",
-      "point": "• Fuel control dial at Hi • Control lever: R.H. travel rearward relief • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Rear pump discharged pressure pickup port / • Fuel control dial at Hi • Control lever: R.H. travel rearward relief • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "36.1 to 38.8 MPa {368 to 395 kgf/cm2}",
       "provenance": {
         "manual_page": "40-865",
@@ -1216,5 +1664,171 @@
     }
   ],
   "refs_failure_codes": [],
-  "skipped_tables": []
+  "skipped_tables": [],
+  "merged_cells_inherited": [
+    {
+      "manual_page": "40-855",
+      "pdf_page": 1397,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-855",
+      "pdf_page": 1397,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-856",
+      "pdf_page": 1398,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-856",
+      "pdf_page": 1398,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-857",
+      "pdf_page": 1399,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-857",
+      "pdf_page": 1399,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-858",
+      "pdf_page": 1400,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-858",
+      "pdf_page": 1400,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-859",
+      "pdf_page": 1401,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-859",
+      "pdf_page": 1401,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-860",
+      "pdf_page": 1402,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-860",
+      "pdf_page": 1402,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-860",
+      "pdf_page": 1402,
+      "table_index": 1,
+      "row_index": 4,
+      "column_index": 0,
+      "inherited_from_row": 3,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-860",
+      "pdf_page": 1402,
+      "table_index": 1,
+      "row_index": 4,
+      "column_index": 1,
+      "inherited_from_row": 3,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-862",
+      "pdf_page": 1404,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-862",
+      "pdf_page": 1404,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-865",
+      "pdf_page": 1407,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-865",
+      "pdf_page": 1407,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    }
+  ],
+  "branch_provenance_own": 56,
+  "branch_provenance_inherited": []
 }

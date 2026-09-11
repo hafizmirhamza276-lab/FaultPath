@@ -44,6 +44,22 @@
         "table_index": 0,
         "row_index": 1
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-800",
+          "pdf_page": 1342,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-800",
+          "pdf_page": 1342,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM08:1:step:0",
       "branch_fact_ids": {
         "NO": "HM08:1:branch:0",
@@ -64,6 +80,22 @@
         "pdf_page": 1342,
         "table_index": 0,
         "row_index": 3
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-800",
+          "pdf_page": 1342,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-800",
+          "pdf_page": 1342,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
       },
       "fact_id": "HM08:2:step:0",
       "branch_fact_ids": {
@@ -86,6 +118,22 @@
         "table_index": 0,
         "row_index": 2
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-802",
+          "pdf_page": 1344,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-802",
+          "pdf_page": 1344,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM08:3:step:0",
       "branch_fact_ids": {
         "NO": "HM08:3:branch:0",
@@ -106,6 +154,22 @@
         "pdf_page": 1346,
         "table_index": 0,
         "row_index": 1
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-804",
+          "pdf_page": 1346,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-804",
+          "pdf_page": 1346,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
       },
       "fact_id": "HM08:4:step:0",
       "branch_fact_ids": {
@@ -128,6 +192,22 @@
         "table_index": 0,
         "row_index": 3
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-804",
+          "pdf_page": 1346,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-804",
+          "pdf_page": 1346,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM08:5:step:0",
       "branch_fact_ids": {
         "NO": "HM08:5:branch:0",
@@ -148,6 +228,22 @@
         "pdf_page": 1346,
         "table_index": 0,
         "row_index": 5
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-804",
+          "pdf_page": 1346,
+          "table_index": 0,
+          "row_index": 6,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-804",
+          "pdf_page": 1346,
+          "table_index": 0,
+          "row_index": 5,
+          "column_index": 4
+        }
       },
       "fact_id": "HM08:6:step:0",
       "branch_fact_ids": {
@@ -170,6 +266,22 @@
         "table_index": 0,
         "row_index": 1
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-805",
+          "pdf_page": 1347,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-805",
+          "pdf_page": 1347,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM08:7:step:0",
       "branch_fact_ids": {
         "NO": "HM08:7:branch:0",
@@ -190,6 +302,22 @@
         "pdf_page": 1348,
         "table_index": 0,
         "row_index": 1
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-806",
+          "pdf_page": 1348,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-806",
+          "pdf_page": 1348,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
       },
       "fact_id": "HM08:8:step:0",
       "branch_fact_ids": {
@@ -212,6 +340,22 @@
         "table_index": 0,
         "row_index": 1
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-807",
+          "pdf_page": 1349,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-807",
+          "pdf_page": 1349,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM08:9:step:0",
       "branch_fact_ids": {
         "NO": "HM08:9:branch:0",
@@ -232,6 +376,22 @@
         "pdf_page": 1349,
         "table_index": 0,
         "row_index": 3
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-807",
+          "pdf_page": 1349,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-807",
+          "pdf_page": 1349,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
       },
       "fact_id": "HM08:10:step:0",
       "branch_fact_ids": {
@@ -254,6 +414,22 @@
         "table_index": 0,
         "row_index": 1
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-808",
+          "pdf_page": 1350,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-808",
+          "pdf_page": 1350,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM08:11:step:0",
       "branch_fact_ids": {
         "NO": "HM08:11:branch:0",
@@ -274,6 +450,22 @@
         "pdf_page": 1350,
         "table_index": 0,
         "row_index": 3
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-808",
+          "pdf_page": 1350,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-808",
+          "pdf_page": 1350,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
       },
       "fact_id": "HM08:12:step:0",
       "branch_fact_ids": {
@@ -296,6 +488,22 @@
         "table_index": 0,
         "row_index": 1
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-809",
+          "pdf_page": 1351,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-809",
+          "pdf_page": 1351,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM08:13:step:0",
       "branch_fact_ids": {
         "NO": "HM08:13:branch:0",
@@ -316,6 +524,22 @@
         "pdf_page": 1351,
         "table_index": 0,
         "row_index": 3
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-809",
+          "pdf_page": 1351,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-809",
+          "pdf_page": 1351,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
       },
       "fact_id": "HM08:14:step:0",
       "branch_fact_ids": {
@@ -341,7 +565,7 @@
     },
     {
       "quantity": "PPC valve output pressure",
-      "point": "• Fuel control dial at Hi • Operation lever: Bucket CURL or bucket DUMP • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Bucket PPC circuit hydraulic hose / • Fuel control dial at Hi • Operation lever: Bucket CURL or bucket DUMP • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
       "provenance": {
         "manual_page": "40-800",
@@ -369,7 +593,7 @@
     },
     {
       "quantity": "Main EPC output pressure",
-      "point": "• Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Oil pressure sensor mounting port (PP1S) of front pump / • Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
       "provenance": {
         "manual_page": "40-801",
@@ -397,7 +621,7 @@
     },
     {
       "quantity": "EPC Current",
-      "point": "• Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Monitoring code: 08000 / • Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "800 to 1000 mA",
       "provenance": {
         "manual_page": "40-802",
@@ -425,7 +649,7 @@
     },
     {
       "quantity": "LS- EPC output pressure",
-      "point": "• Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Oil pressure sensor mounting port (PP1S) of front pump / • Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
       "provenance": {
         "manual_page": "40-803",
@@ -453,7 +677,7 @@
     },
     {
       "quantity": "EPC Current",
-      "point": "• Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Monitoring code: 08001 / • Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "800 to 1000 mA",
       "provenance": {
         "manual_page": "40-803",
@@ -565,7 +789,7 @@
     },
     {
       "quantity": "LS Differential Pressure",
-      "point": "• Fuel control dial at Hi • Operation lever: Bucket CURL, dump fine operation • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Pressure pickup port for rear pump discharged pressure and pressure pickup port for rear load pressure / • Fuel control dial at Hi • Operation lever: Bucket CURL, dump fine operation • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "1.70 to 1.85 MPa {17.0 to 18.5 kgf/cm2}",
       "provenance": {
         "manual_page": "40-808",
@@ -615,5 +839,117 @@
     }
   ],
   "refs_failure_codes": [],
-  "skipped_tables": []
+  "skipped_tables": [],
+  "merged_cells_inherited": [
+    {
+      "manual_page": "40-800",
+      "pdf_page": 1342,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-800",
+      "pdf_page": 1342,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-801",
+      "pdf_page": 1343,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-801",
+      "pdf_page": 1343,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-802",
+      "pdf_page": 1344,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-802",
+      "pdf_page": 1344,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-803",
+      "pdf_page": 1345,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-803",
+      "pdf_page": 1345,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-803",
+      "pdf_page": 1345,
+      "table_index": 1,
+      "row_index": 4,
+      "column_index": 0,
+      "inherited_from_row": 3,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-803",
+      "pdf_page": 1345,
+      "table_index": 1,
+      "row_index": 4,
+      "column_index": 1,
+      "inherited_from_row": 3,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-808",
+      "pdf_page": 1350,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-808",
+      "pdf_page": 1350,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    }
+  ],
+  "branch_provenance_own": 28,
+  "branch_provenance_inherited": []
 }

@@ -43,6 +43,22 @@
         "table_index": 1,
         "row_index": 1
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-749",
+          "pdf_page": 1291,
+          "table_index": 1,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-749",
+          "pdf_page": 1291,
+          "table_index": 1,
+          "row_index": 1,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM02:1:step:0",
       "branch_fact_ids": {
         "NO": "HM02:1:branch:0",
@@ -63,6 +79,22 @@
         "pdf_page": 1292,
         "table_index": 0,
         "row_index": 1
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-750",
+          "pdf_page": 1292,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-750",
+          "pdf_page": 1292,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
       },
       "fact_id": "HM02:2:step:0",
       "branch_fact_ids": {
@@ -85,6 +117,22 @@
         "table_index": 0,
         "row_index": 3
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-750",
+          "pdf_page": 1292,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-750",
+          "pdf_page": 1292,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM02:3:step:0",
       "branch_fact_ids": {
         "NO": "HM02:3:branch:0",
@@ -105,6 +153,22 @@
         "pdf_page": 1293,
         "table_index": 0,
         "row_index": 1
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-751",
+          "pdf_page": 1293,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-751",
+          "pdf_page": 1293,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
       },
       "fact_id": "HM02:4:step:0",
       "branch_fact_ids": {
@@ -127,6 +191,22 @@
         "table_index": 0,
         "row_index": 3
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-751",
+          "pdf_page": 1293,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-751",
+          "pdf_page": 1293,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM02:5:step:0",
       "branch_fact_ids": {
         "NO": "HM02:5:branch:0",
@@ -147,6 +227,22 @@
         "pdf_page": 1294,
         "table_index": 0,
         "row_index": 1
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-752",
+          "pdf_page": 1294,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-752",
+          "pdf_page": 1294,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
       },
       "fact_id": "HM02:6:step:0",
       "branch_fact_ids": {
@@ -169,6 +265,22 @@
         "table_index": 0,
         "row_index": 3
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-752",
+          "pdf_page": 1294,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-752",
+          "pdf_page": 1294,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM02:7:step:0",
       "branch_fact_ids": {
         "NO": "HM02:7:branch:0",
@@ -189,6 +301,22 @@
         "pdf_page": 1295,
         "table_index": 0,
         "row_index": 1
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-753",
+          "pdf_page": 1295,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-753",
+          "pdf_page": 1295,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
       },
       "fact_id": "HM02:8:step:0",
       "branch_fact_ids": {
@@ -211,6 +339,22 @@
         "table_index": 0,
         "row_index": 1
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-754",
+          "pdf_page": 1296,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-754",
+          "pdf_page": 1296,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM02:9:step:0",
       "branch_fact_ids": {
         "NO": "HM02:9:branch:0",
@@ -231,6 +375,22 @@
         "pdf_page": 1296,
         "table_index": 0,
         "row_index": 3
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-754",
+          "pdf_page": 1296,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-754",
+          "pdf_page": 1296,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
       },
       "fact_id": "HM02:10:step:0",
       "branch_fact_ids": {
@@ -253,6 +413,22 @@
         "table_index": 0,
         "row_index": 1
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-755",
+          "pdf_page": 1297,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-755",
+          "pdf_page": 1297,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM02:11:step:0",
       "branch_fact_ids": {
         "NO": "HM02:11:branch:0",
@@ -273,6 +449,22 @@
         "pdf_page": 1297,
         "table_index": 0,
         "row_index": 3
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-755",
+          "pdf_page": 1297,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-755",
+          "pdf_page": 1297,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
       },
       "fact_id": "HM02:12:step:0",
       "branch_fact_ids": {
@@ -295,6 +487,22 @@
         "table_index": 0,
         "row_index": 1
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-756",
+          "pdf_page": 1298,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-756",
+          "pdf_page": 1298,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM02:13:step:0",
       "branch_fact_ids": {
         "NO": "HM02:13:branch:0",
@@ -315,6 +523,22 @@
         "pdf_page": 1299,
         "table_index": 0,
         "row_index": 1
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-757",
+          "pdf_page": 1299,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-757",
+          "pdf_page": 1299,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
       },
       "fact_id": "HM02:14:step:0",
       "branch_fact_ids": {
@@ -337,6 +561,22 @@
         "table_index": 0,
         "row_index": 3
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-757",
+          "pdf_page": 1299,
+          "table_index": 0,
+          "row_index": 4,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-757",
+          "pdf_page": 1299,
+          "table_index": 0,
+          "row_index": 3,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM02:15:step:0",
       "branch_fact_ids": {
         "NO": "HM02:15:branch:0",
@@ -358,6 +598,22 @@
         "table_index": 0,
         "row_index": 5
       },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-757",
+          "pdf_page": 1299,
+          "table_index": 0,
+          "row_index": 6,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-757",
+          "pdf_page": 1299,
+          "table_index": 0,
+          "row_index": 5,
+          "column_index": 4
+        }
+      },
       "fact_id": "HM02:16:step:0",
       "branch_fact_ids": {
         "NO": "HM02:16:branch:0",
@@ -378,6 +634,22 @@
         "pdf_page": 1300,
         "table_index": 0,
         "row_index": 1
+      },
+      "branch_provenance": {
+        "NO": {
+          "manual_page": "40-758",
+          "pdf_page": 1300,
+          "table_index": 0,
+          "row_index": 2,
+          "column_index": 4
+        },
+        "YES": {
+          "manual_page": "40-758",
+          "pdf_page": 1300,
+          "table_index": 0,
+          "row_index": 1,
+          "column_index": 4
+        }
       },
       "fact_id": "HM02:17:step:0",
       "branch_fact_ids": {
@@ -403,7 +675,7 @@
     },
     {
       "quantity": "Sensor output voltage",
-      "point": "• Fuel control dial at Hi • One-side track running idle off ground • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Monitoring code: 01138 F Pump Swash Plate Sensor volt / • Fuel control dial at Hi • One-side track running idle off ground • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "2.72 to 3.98 V",
       "provenance": {
         "manual_page": "40-749",
@@ -431,7 +703,7 @@
     },
     {
       "quantity": "Sensor output voltage",
-      "point": "• Fuel control dial at Hi • One-side track running idle off ground • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Monitoring code: 01140 R Pump Swash Plate Sensor volt / • Fuel control dial at Hi • One-side track running idle off ground • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "2.72 to 3.98 V",
       "provenance": {
         "manual_page": "40-750",
@@ -529,7 +801,7 @@
     },
     {
       "quantity": "PC- EPC valve output pressure",
-      "point": "• Control lever: All levers in neutral • Fuel control dial at Hi • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Pressure pickup port for front PC mode change over pressure / • Control lever: All levers in neutral • Fuel control dial at Hi • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "0.70 to 1.09 MPa {7.1 to 11.1 kgf/cm2}",
       "provenance": {
         "manual_page": "40-753",
@@ -557,7 +829,7 @@
     },
     {
       "quantity": "PC- EPC valve output pressure",
-      "point": "• Control lever: All levers in neutral • Fuel control dial at Hi • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Pressure pickup port for rear PC mode change over pressure / • Control lever: All levers in neutral • Fuel control dial at Hi • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "0.70 to 1.09 MPa {7.1 to 11.1 kgf/cm2}",
       "provenance": {
         "manual_page": "40-754",
@@ -585,8 +857,8 @@
     },
     {
       "quantity": "PC valve output pressure",
-      "point": "Pressure pickup port for front pump control pressure",
-      "criteria": "",
+      "point": "Pressure pickup port for front pump control pressure / • Control lever: Boom RAISE relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Oil pressure ratio pump discharged pressure: PC valve discharged pressure 1:0.6 (approximately 3/5)",
       "provenance": {
         "manual_page": "40-754",
         "pdf_page": 1296,
@@ -595,7 +867,7 @@
       },
       "admitted_by": "section40_classifier",
       "fact_id": "HM02:0:meas:14",
-      "criteria_kind": "numeric"
+      "criteria_kind": "relational"
     },
     {
       "quantity": "Pump supply pressure",
@@ -613,8 +885,8 @@
     },
     {
       "quantity": "PC valve output pressure",
-      "point": "Pressure pickup port for rear pump control pressure",
-      "criteria": "",
+      "point": "Pressure pickup port for rear pump control pressure / • Control lever: Arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Oil pressure ratio pump discharged pressure: PC valve discharged pressure 1:0.6 (approximately 3/5)",
       "provenance": {
         "manual_page": "40-755",
         "pdf_page": 1297,
@@ -623,7 +895,7 @@
       },
       "admitted_by": "section40_classifier",
       "fact_id": "HM02:0:meas:16",
-      "criteria_kind": "numeric"
+      "criteria_kind": "relational"
     },
     {
       "quantity": "LS- EPC valve output pressure",
@@ -641,7 +913,7 @@
     },
     {
       "quantity": "LS- EPC valve output pressure",
-      "point": "• Control lever: Travel lever fine control • Travel speed: Hi • Hydraulic oil temperature: 45 to 55°C",
+      "point": "Pressure pickup port for LS set change over pressure / • Control lever: Travel lever fine control • Travel speed: Hi • Hydraulic oil temperature: 45 to 55°C",
       "criteria": "0 MPa {0 kgf/cm2}",
       "provenance": {
         "manual_page": "40-755",
@@ -669,8 +941,8 @@
     },
     {
       "quantity": "PC valve output pressure",
-      "point": "Pressure pickup port for front pump load pressure",
-      "criteria": "",
+      "point": "Pressure pickup port for front pump load pressure / • Control lever: All levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Oil pressure ratio pump discharged pressure: PC valve discharged pressure 1:1 (almost same pressure)",
       "provenance": {
         "manual_page": "40-756",
         "pdf_page": 1298,
@@ -679,7 +951,7 @@
       },
       "admitted_by": "section40_classifier",
       "fact_id": "HM02:0:meas:20",
-      "criteria_kind": "numeric"
+      "criteria_kind": "relational"
     },
     {
       "quantity": "Pump supply pressure",
@@ -697,8 +969,8 @@
     },
     {
       "quantity": "PC valve output pressure",
-      "point": "Pressure pickup port for front pump load pressure",
-      "criteria": "",
+      "point": "Pressure pickup port for front pump load pressure / • Control lever: Travel lever half stroke • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Oil pressure ratio pump discharged pressure: PC valve discharged pressure 1:0.6 (approximately 3/5)",
       "provenance": {
         "manual_page": "40-756",
         "pdf_page": 1298,
@@ -707,7 +979,7 @@
       },
       "admitted_by": "section40_classifier",
       "fact_id": "HM02:0:meas:22",
-      "criteria_kind": "numeric"
+      "criteria_kind": "relational"
     },
     {
       "quantity": "Pump supply pressure",
@@ -725,8 +997,8 @@
     },
     {
       "quantity": "PC valve output pressure",
-      "point": "Pressure pickup port for rear pump load pressure",
-      "criteria": "",
+      "point": "Pressure pickup port for rear pump load pressure / • Control lever: All levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Oil pressure ratio pump discharged pressure: PC valve discharged pressure 1:1 (almost same pressure)",
       "provenance": {
         "manual_page": "40-757",
         "pdf_page": 1299,
@@ -735,7 +1007,7 @@
       },
       "admitted_by": "section40_classifier",
       "fact_id": "HM02:0:meas:24",
-      "criteria_kind": "numeric"
+      "criteria_kind": "relational"
     },
     {
       "quantity": "Pump supply pressure",
@@ -753,8 +1025,8 @@
     },
     {
       "quantity": "PC valve output pressure",
-      "point": "Pressure pickup port for rear pump load pressure",
-      "criteria": "",
+      "point": "Pressure pickup port for rear pump load pressure / • Control lever: Travel lever half stroke • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Oil pressure ratio pump discharged pressure: PC valve discharged pressure 1:0.6 (approximately 3/5)",
       "provenance": {
         "manual_page": "40-757",
         "pdf_page": 1299,
@@ -763,7 +1035,7 @@
       },
       "admitted_by": "section40_classifier",
       "fact_id": "HM02:0:meas:26",
-      "criteria_kind": "numeric"
+      "criteria_kind": "relational"
     }
   ],
   "unresolved_pointers": [
@@ -789,5 +1061,207 @@
     }
   ],
   "refs_failure_codes": [],
-  "skipped_tables": []
+  "skipped_tables": [],
+  "merged_cells_inherited": [
+    {
+      "manual_page": "40-749",
+      "pdf_page": 1291,
+      "table_index": 2,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-749",
+      "pdf_page": 1291,
+      "table_index": 2,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-750",
+      "pdf_page": 1292,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-750",
+      "pdf_page": 1292,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-753",
+      "pdf_page": 1295,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-753",
+      "pdf_page": 1295,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-754",
+      "pdf_page": 1296,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-754",
+      "pdf_page": 1296,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-754",
+      "pdf_page": 1296,
+      "table_index": 2,
+      "row_index": 2,
+      "column_index": 2,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-754",
+      "pdf_page": 1296,
+      "table_index": 2,
+      "row_index": 2,
+      "column_index": 3,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-755",
+      "pdf_page": 1297,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 2,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-755",
+      "pdf_page": 1297,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 3,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-755",
+      "pdf_page": 1297,
+      "table_index": 2,
+      "row_index": 2,
+      "column_index": 0,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-755",
+      "pdf_page": 1297,
+      "table_index": 2,
+      "row_index": 2,
+      "column_index": 1,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-756",
+      "pdf_page": 1298,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 2,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-756",
+      "pdf_page": 1298,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 3,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-756",
+      "pdf_page": 1298,
+      "table_index": 1,
+      "row_index": 4,
+      "column_index": 2,
+      "inherited_from_row": 3,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-756",
+      "pdf_page": 1298,
+      "table_index": 1,
+      "row_index": 4,
+      "column_index": 3,
+      "inherited_from_row": 3,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-757",
+      "pdf_page": 1299,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 2,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-757",
+      "pdf_page": 1299,
+      "table_index": 1,
+      "row_index": 2,
+      "column_index": 3,
+      "inherited_from_row": 1,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-757",
+      "pdf_page": 1299,
+      "table_index": 1,
+      "row_index": 4,
+      "column_index": 2,
+      "inherited_from_row": 3,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    },
+    {
+      "manual_page": "40-757",
+      "pdf_page": 1299,
+      "table_index": 1,
+      "row_index": 4,
+      "column_index": 3,
+      "inherited_from_row": 3,
+      "reason": "criteria cell vertically merged with the row above; the covering cell's criterion governs both rows"
+    }
+  ],
+  "branch_provenance_own": 34,
+  "branch_provenance_inherited": []
 }

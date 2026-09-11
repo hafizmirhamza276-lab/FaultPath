@@ -214,9 +214,15 @@ def enumerate_symptom_facts(recs: Dict[str, dict]) -> List[dict]:
             for m in st.get("measurements", []):
                 out.append(meas(m, warn))
             for br, fid in (st.get("branch_fact_ids") or {}).items():
+                # The branch's OWN page, captured at parse time. Falls back to
+                # the step's only where the extractor could not match the
+                # outcome to a row -- and that fallback is counted in the
+                # record, so it cannot pass unnoticed.
+                bprov = (st.get("branch_provenance") or {}).get(br) \
+                    or st["provenance"]
                 out.append(_fact(fid, "branch", sid,
                                  (st.get("branches") or {}).get(br, ""),
-                                 st["provenance"], section, warn=warn))
+                                 bprov, section, warn=warn))
     return out
 
 

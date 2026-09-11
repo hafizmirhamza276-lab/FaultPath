@@ -80,10 +80,92 @@ RELATIONAL_RE = re.compile(
 
 
 def is_relational(criteria: str) -> bool:
+    """A criterion that states a CONDITION rather than a VALUE.
+
+    Three tests, in order, and the first one is the guard:
+
+      1. it carries a criterion value  -> numeric, always. Nothing below can
+         override this, so no criterion holding a bound can be swept out of
+         the numeric bucket by a phrasing rule.
+      2. it states a ratio             -> relational
+         "Oil pressure ratio pump discharged pressure : PC valve discharged
+         pressure 1:0.6" -- two quantities compared, no bound on either.
+      3. it contains no digit at all   -> relational
+         "Pressure for each flow setting" is what the manual prints where a
+         value would go: the figure depends on a setting stated elsewhere.
+         There is no number to reproduce, so scoring it by numeric comparison
+         measures nothing.
+
+    Test 3 is safe only because test 1 runs first and returns early. A
+    criterion with a value always has a digit, so the two can never disagree --
+    but the ordering is what makes that true, not the arithmetic.
+    """
     c = (criteria or "").strip()
     if not c:
         return False
-    return bool(RELATIONAL_RE.search(c)) and not CRIT_VALUE.search(c)
+    if CRIT_VALUE.search(c):
+        return False
+    if RELATIONAL_RE.search(c):
+        return True
+    return not re.search(r"\d", c)
+
+
+# ------------------------------------------------------ merged table cells
+#
+# A criteria cell merged with the row above and an empty criteria cell are the
+# same thing in the extracted text -- "" either way -- and are not the same
+# thing at all. The merged one is governed by a criterion the table draws once;
+# the empty one has nothing in it. Telling them apart from the text is
+# impossible, so this reads the geometry.
+#
+# pdfplumber reports a cell covered by a merge as None. That alone is not
+# enough: a HORIZONTALLY merged header cell is also None, and inheriting
+# downward from one would be wrong. The vertical case is identified by finding
+# the cell that actually covers this position -- a cell in an earlier row, same
+# column, whose bottom edge reaches into this row.
+
+def merged_from_above(cells, ri, ci):
+    """Row index of the cell vertically covering (ri, ci), or None.
+
+    `cells` is the per-row cell-rect grid from find_tables(): cells[r][c] is a
+    bbox (x0, top, x1, bottom) or None where a merge covers it.
+    """
+    if ri == 0 or ci >= len(cells[ri]) or cells[ri][ci] is not None:
+        return None
+    own = next((c for c in cells[ri] if c is not None), None)
+    if own is None:
+        return None
+    row_bottom = own[3]
+    for r in range(ri - 1, -1, -1):
+        if ci >= len(cells[r]):
+            continue
+        above = cells[r][ci]
+        if above is None:
+            continue
+        # covers this row only if its bottom edge reaches our bottom edge
+        return r if above[3] >= row_bottom - 0.5 else None
+    return None
+
+
+def inherit_merged_cells(tbl, cells):
+    """Fill cells covered by a vertical merge with the text that governs them.
+
+    Returns (table, [(row, col, source_row)]). The table is copied, never
+    mutated in place: the caller still needs the raw text to tell a genuinely
+    empty cell from this one.
+    """
+    out = [list(r) for r in tbl]
+    filled = []
+    for ri in range(len(out)):
+        for ci in range(len(out[ri])):
+            if (out[ri][ci] or "").strip():
+                continue
+            src = merged_from_above(cells, ri, ci)
+            if src is None or not (tbl[src][ci] or "").strip():
+                continue
+            out[ri][ci] = tbl[src][ci]
+            filled.append((ri, ci, src))
+    return out, filled
 
 
 def _strip_leading_blank_rows(tbl):
@@ -297,6 +379,52 @@ def find_pointers(text: str, prov: dict, section40_codes: set) -> list:
     return out
 
 
+def assign_branch_provenance(steps, rows, provs):
+    """Give each branch outcome the page it was actually read from.
+
+    A step that straddles a page break has its YES outcome printed on one page
+    and its NO outcome on the next. Both inherit the step's provenance, so one
+    of them cites a page its text is not on -- and a citation naming the wrong
+    page is worse than none, because it manufactures confidence.
+
+    This is the manual_pages[0] defect one level down. CLAUDE.md already states
+    the general form: "75% of measurements are not on their code's first page,
+    so a per-code page is not a citation." A per-STEP page is not one either.
+
+    Matching is EXACT against a cleaned cell, never fuzzy. A near-match would
+    silently attach a branch to a neighbouring row, which is the failure this
+    is meant to remove rather than relocate. Anything not matched exactly keeps
+    the step's provenance and is counted, so the fallback can never be silent.
+    """
+    index = {}
+    for row, prov in zip(rows, provs):
+        for ci, cell in enumerate(row):
+            t = clean(cell or "")
+            if t:
+                index.setdefault(t, []).append(dict(prov, column_index=ci))
+
+    own, inherited = 0, []
+    for st in steps:
+        st["branch_provenance"] = {}
+        for br, txt in sorted((st.get("branches") or {}).items()):
+            hits = index.get(txt or "")
+            if hits and len(hits) == 1:
+                st["branch_provenance"][br] = hits[0]
+                own += 1
+            elif hits:
+                # Ambiguous: the same outcome text appears in more than one
+                # row. Prefer a hit on the step's own page -- that is the row
+                # the step was built from -- and fall back only if none is.
+                same = [h for h in hits
+                        if h.get("pdf_page") == st["provenance"].get("pdf_page")]
+                st["branch_provenance"][br] = (same or hits)[0]
+                own += 1
+            else:
+                st["branch_provenance"][br] = dict(st["provenance"])
+                inherited.append(f"{st['step']}:{br}")
+    return own, inherited
+
+
 def symptom_id(mode: str, ordinal: int) -> str:
     """HM01..HM37 / SM01..SM20. Fits the existing fact-id character class so
     the citation resolver needs no new id grammar."""
@@ -318,6 +446,7 @@ def extract_entry(pdf, sid, title, start, end, mode, section40_codes):
         steps=[], standalone_measurements=[],
         unresolved_pointers=[], refs_failure_codes=[],
         skipped_tables=[],
+        merged_cells_inherited=[],
     )
 
     cause_rows, flat_rows = [], []
@@ -334,9 +463,9 @@ def extract_entry(pdf, sid, title, start, end, mode, section40_codes):
         for ft in page.find_tables():
             xs = sorted({round(c[0], 1) for r in ft.rows for c in r.cells if c}
                         | {round(ft.bbox[2], 1)})
-            tables.append((ft.extract(), xs))
+            tables.append((ft.extract(), xs, [list(r.cells) for r in ft.rows]))
         page_last = None
-        for ti, (tbl, tbounds) in enumerate(tables):
+        for ti, (tbl, tbounds, tcells) in enumerate(tables):
             prov = {"manual_page": mp, "pdf_page": pno, "table_index": ti}
             flat_text = " ".join(clean(c) for r in tbl for c in r if c)
 
@@ -372,9 +501,19 @@ def extract_entry(pdf, sid, title, start, end, mode, section40_codes):
                 else:
                     flat_rows.append(([r for _, r in body], provs))
             elif kind == "measurement":
-                src = tbl
+                # Inherit vertically merged cells BEFORE parsing. A criterion
+                # the table draws once governs every row it spans; reading the
+                # covered row as empty records a measurement with no value.
+                src, filled = inherit_merged_cells(tbl, tcells)
+                for ri, ci, sr in filled:
+                    rec["merged_cells_inherited"].append(
+                        {**prov, "row_index": ri, "column_index": ci,
+                         "inherited_from_row": sr,
+                         "reason": "criteria cell vertically merged with the "
+                                   "row above; the covering cell's criterion "
+                                   "governs both rows"})
                 if rule.startswith("blank_leading_row"):
-                    src, _ = _strip_leading_blank_rows(tbl)
+                    src, _ = _strip_leading_blank_rows(src)
                 elif rule == "proven_continuation":
                     # No header row to skip: parse_measurement_table drops
                     # tbl[0], so a header is prepended to keep every data row.
@@ -399,6 +538,9 @@ def extract_entry(pdf, sid, title, start, end, mode, section40_codes):
             mprov += provs[sl]
         if merged:
             rec["steps"] = parse_causes(list(zip(merged, mprov)), "A")
+            own, inherited = assign_branch_provenance(rec["steps"], merged, mprov)
+            rec["branch_provenance_own"] = own
+            rec["branch_provenance_inherited"] = inherited
     else:
         for rows, provs in flat_rows:
             rec["steps"] += parse_flat_causes(rows, provs)
@@ -475,6 +617,79 @@ def self_test() -> None:
     assert not is_relational("0 MPa {0 kgf/cm2}"), \
         "relational bucket swallows a real dual-unit value"
     assert not is_relational("Max. 1 Ω"), "relational bucket swallows a bound"
+
+    # C3 -- a criterion expressed as a condition rather than a value.
+    assert is_relational("Pressure for each flow setting"), \
+        "a criterion with no number in it was typed numeric"
+    # ...and the guard that makes rule 3 safe: anything carrying a value stays
+    # numeric no matter how it is phrased.
+    for keeps_value in ("0.70 to 1.09 MPa {7.1 to 11.1 kgf/cm2}", "Min. 100kΩ",
+                        "0 mA", "800 to 1000 mA", "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
+                        "Pressure ratio 1 to 5Ω"):
+        assert not is_relational(keeps_value), \
+            "a criterion carrying a value was swept into the relational " \
+            "bucket: %r" % keeps_value
+    assert not is_relational(""), "an empty criterion was typed relational"
+
+    # S1 -- merged versus empty, the same text from opposite sides.
+    #   grid: row 0 has a cell in col 1 spanning down into row 1 (bottom 60.0);
+    #         row 1 col 1 is None (covered). Col 2 is present-but-blank in both.
+    # The real criterion, not a stand-in -- a toy string can be typed
+    # differently from the text the fix actually has to carry.
+    RATIO = ("Oil pressure ratio pump discharged pressure: PC valve "
+             "discharged pressure 1:0.6 (approximately 3/5)")
+    GRID = [[(0, 0, 10, 30), (10, 0, 20, 60), (20, 0, 30, 30)],
+            [(0, 30, 10, 60), None, (20, 30, 30, 60)]]
+    TXT = [["Pump supply", RATIO, ""],
+           ["PC valve", "", ""]]
+    assert merged_from_above(GRID, 1, 1) == 0, \
+        "a vertically merged cell was not traced to the cell covering it"
+    assert merged_from_above(GRID, 1, 2) is None, \
+        "an EMPTY cell was treated as merged -- it has its own rect and is " \
+        "simply blank"
+    assert merged_from_above(GRID, 0, 1) is None, \
+        "a cell in the first row was treated as inheriting from above"
+    # a horizontally merged header cell is also None, and must NOT inherit
+    HGRID = [[(0, 0, 20, 30), None, (20, 0, 30, 30)],
+             [(0, 30, 10, 60), (10, 30, 20, 60), (20, 30, 30, 60)]]
+    assert merged_from_above(HGRID, 0, 1) is None, \
+        "a horizontally merged header cell was read as a vertical merge"
+
+    filled_tbl, filled = inherit_merged_cells(TXT, GRID)
+    assert filled_tbl[1][1] == RATIO, \
+        "a merged cell did not inherit the criterion governing it"
+    assert filled_tbl[1][2] == "", \
+        "an empty cell was filled from above -- empty and merged are not the " \
+        "same thing"
+    assert filled == [(1, 1, 0)], \
+        "the inheritance record does not name exactly the cell it filled: %r" % (filled,)
+    assert TXT[1][1] == "", "inherit_merged_cells mutated the raw table"
+    # the inherited text must carry its TYPE with it, not just its characters
+    assert is_relational(filled_tbl[1][1]), \
+        "an inherited relational criterion was retyped as numeric"
+
+    # S2 -- a branch outcome takes the page its own row was read from.
+    ROWS = [["5", "cause", "proc", "", "• Valve is normal."],
+            ["", "", "", "", "• Valve is defective."]]
+    PROVS = [{"manual_page": "40-857", "pdf_page": 1399, "table_index": 0,
+              "row_index": 5},
+             {"manual_page": "40-858", "pdf_page": 1400, "table_index": 0,
+              "row_index": 2}]
+    steps = [{"step": 5, "provenance": dict(PROVS[0]),
+              "branches": {"YES": "• Valve is normal.",
+                           "NO": "• Valve is defective."}}]
+    own, inherited = assign_branch_provenance(steps, ROWS, PROVS)
+    assert not inherited, "a branch outcome fell back to its step's page: %r" % (inherited,)
+    assert steps[0]["branch_provenance"]["YES"]["pdf_page"] == 1399, \
+        "YES did not take the page its own row was read from"
+    assert steps[0]["branch_provenance"]["NO"]["pdf_page"] == 1400, \
+        "NO inherited the step's page instead of its own -- the S2 defect"
+    # and the fallback must be counted, never silent
+    lost = [{"step": 6, "provenance": dict(PROVS[0]),
+             "branches": {"YES": "text that is in no row"}}]
+    own2, inherited2 = assign_branch_provenance(lost, ROWS, PROVS)
+    assert inherited2 == ["6:YES"] and own2 == 0, \
+        "an unmatched branch inherited the step's page without being counted"
 
     meas_hdr = [["Item", "Measurement position", "", "Standard value"],
                 ["EPC Current", "Monitoring code: 08000", "", "0 mA"]]

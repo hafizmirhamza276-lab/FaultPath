@@ -89,5 +89,6 @@
     }
   ],
   "refs_failure_codes": [],
-  "skipped_tables": []
+  "skipped_tables": [],
+  "merged_cells_inherited": []
 }

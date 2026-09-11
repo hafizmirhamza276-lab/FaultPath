@@ -153,8 +153,11 @@ if PDF and os.path.exists(PDF):
     pages = PageText()
     for sid, r in sorted(HM.items()):
         for st in r.get("steps", []):
-            prov = st["provenance"]
             for br, fid in (st.get("branch_fact_ids") or {}).items():
+                # The branch's OWN captured page. Falling back to the step's
+                # is exactly the defect, so the fallback is what gets audited.
+                prov = (st.get("branch_provenance") or {}).get(br) \
+                    or st["provenance"]
                 txt = (st.get("branches") or {}).get(br, "")
                 if not txt.strip():
                     continue
@@ -181,6 +184,36 @@ if PDF and os.path.exists(PDF):
             "it manufactures confidence. This is the same defect class the "
             "project already fixed for measurements in Section 40, where a "
             "per-code page was replaced by span-level provenance.")
+
+# --- S4: fact kinds that still inherit their parent's page ---------------
+#
+# S2 surfaced one instance, and one instance of this shape usually means the
+# pattern is there. Swept every fact kind in both sections: does it capture its
+# own page, or take its parent's? Reported whether or not it currently
+# misfires, because "no instance today" is a property of the data and not a
+# guarantee from the code.
+
+add("S4", "LOW", "STRUCT",
+    "Fact kinds that take their parent's page rather than capturing their own",
+    "Swept across both sections after the S2 fix. H-Mode branch outcomes now "
+    "capture their own page (666/666, 1 of which differs from its step's and "
+    "is the case S2 found). These still inherit, and each was checked against "
+    "the PDF to see whether the inheritance currently produces a wrong page.",
+    ["S-Mode remedy: 209 inherit the step's page; 209/209 resolve there, so no "
+     "instance is wrong today",
+     "Section 40 branch outcome: 1437 inherit the step's page; 1437/1437 "
+     "resolve there. Identical shape to S2 in a section whose parser paths are "
+     "out of scope to change -- latent, not manifest",
+     "symptom_title: 57 use the entry's first page -- literally the "
+     "manual_pages[0] pattern; 57/57 resolve there",
+     "step_procedure (both sections): inherits, and is not verbatim-citable "
+     "anyway (S3), so it has no single page to capture"],
+    "None of these is wrong in this revision. All four are wrong the moment a "
+    "row straddles a page break the way HM22 step 5 does, and nothing in the "
+    "code prevents that -- only the current layout does. Section 40's 1437 "
+    "branches are the one to watch, because the fix that worked for H-Mode "
+    "cannot be applied there without touching a parser path that is out of "
+    "scope.")
 
 # --- S3: reassembled step procedures ------------------------------------
 #
