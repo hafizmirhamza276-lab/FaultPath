@@ -9,6 +9,7 @@ machine's answer produces agreement rather than verification, looks identical to
 success, and would turn this entire exercise into a rubber stamp.
 """
 import ast
+import collections
 import copy
 import json
 import os
@@ -49,14 +50,58 @@ except AssertionError as exc:
 
 unres = json.load(open(os.path.join(REPO_ROOT, "reports",
                                     "unresolved_facts.json"), encoding="utf-8"))
-check("unresolved_facts.json still holds 39", unres["total_unresolved"] == 39,
-      str(unres["total_unresolved"]))
+
+
+def _section(fact_id: str) -> str:
+    """Section from the fact id's own prefix, not from a stored field.
+
+    Symptom ids are HMnn / SMnn; everything else is a Section 40 failure code.
+    """
+    head = (fact_id or "").split(":")[0]
+    return ("hmode" if head.startswith("HM") else
+            "smode" if head.startswith("SM") else "section40")
+
+
+# EXPECTED PER (section, kind, classification), NOT AS A TOTAL.
+#
+# This assertion used to read `total_unresolved == 39`, and it went red for four
+# commits without anything it cared about changing. 12 + 27 = 39 was the
+# section40/cause bucket, and that bucket has never moved. What moved was the
+# enumeration: fidelity began emitting step_procedure, a fact kind that did not
+# previously exist here, and the unqualified total absorbed it.
+#
+# A total cannot tell you which of its parts changed, and it cannot tell you
+# that a new part appeared at all. These can.
+EXPECTED_UNRESOLVED = {
+    ("section40", "cause", "NEEDS_HUMAN_VERIFICATION"): 27,
+    ("section40", "cause", "KNOWN_LIMITATION"): 12,
+    ("section40", "step_procedure", "KNOWN_LIMITATION"): 347,
+    ("hmode", "step_procedure", "KNOWN_LIMITATION"): 145,
+}
+
+observed = collections.Counter(
+    (_section(i["fact_id"]), i["kind"], i["classification"])
+    for i in unres["items"])
+
+_drift = [f"{k}: expected {EXPECTED_UNRESOLVED.get(k, 0)}, got {observed.get(k, 0)}"
+          for k in sorted(set(observed) | set(EXPECTED_UNRESOLVED), key=str)
+          if observed.get(k, 0) != EXPECTED_UNRESOLVED.get(k, 0)]
+check("unresolved facts match the expected split by section, kind and class",
+      not _drift, "\n          ".join(_drift))
+
+# THE GUARD THAT WOULD HAVE CAUGHT THE ORIGINAL DRIFT. A bucket the expectation
+# has never heard of is the exact event that broke the old assertion, and it has
+# to fail by NAMING the newcomer rather than by moving a total.
+check("no unresolved bucket exists that the expectation does not name",
+      set(observed) <= set(EXPECTED_UNRESOLVED),
+      f"unnamed buckets: {sorted(set(observed) - set(EXPECTED_UNRESOLVED), key=str)}")
+
+check("the parts account for the whole",
+      sum(observed.values()) == unres["total_unresolved"],
+      f"parts {sum(observed.values())} vs total {unres['total_unresolved']}")
+
 check("no fact is classified DEFECT",
       unres["by_classification"].get("DEFECT", 0) == 0,
-      str(unres["by_classification"]))
-check("12 KNOWN_LIMITATION and 27 NEEDS_HUMAN_VERIFICATION",
-      unres["by_classification"].get("KNOWN_LIMITATION") == 12
-      and unres["by_classification"].get("NEEDS_HUMAN_VERIFICATION") == 27,
       str(unres["by_classification"]))
 oh = [i for i in unres["items"] if "overhang_pt" in i]
 check("each overhang entry records the true text and the overhang",
@@ -230,6 +275,56 @@ check("comparator shares no helper with the extractor or resolver", not shared,
 print(f"    comparator imports: {sorted(imported - {'annotations'})}")
 
 # b) mutation check
+# --------------------------------- NEGATIVE COVERAGE: the unresolved split
+#
+# The assertion above replaced `total_unresolved == 39`, which went red for four
+# commits. A replacement that cannot fail on the event that broke its
+# predecessor is not a replacement. The first planted fault IS that event.
+print("\n  UNRESOLVED-SPLIT MUTATION TABLE")
+
+
+def _evaluate_split(items):
+    """The same three predicates the checks above use, over planted items."""
+    obs = collections.Counter(
+        (_section(i["fact_id"]), i["kind"], i["classification"]) for i in items)
+    return {"drift": dict(obs) != EXPECTED_UNRESOLVED,
+            "unnamed": sorted(set(obs) - set(EXPECTED_UNRESOLVED), key=str),
+            "parts_whole": sum(obs.values()) == len(items)}
+
+
+_base_items = unres["items"]
+_split_muts = [
+    ("new_fact_kind_enters_enumeration",
+     _base_items + [{"fact_id": "CA451:6:meas:0", "kind": "measurement",
+                     "classification": "KNOWN_LIMITATION"}]),
+    ("section40_cause_silently_reclassified",
+     [dict(i, classification="KNOWN_LIMITATION")
+      if i["kind"] == "cause" and i["classification"] == "NEEDS_HUMAN_VERIFICATION"
+      else i for i in _base_items]),
+    ("defect_reappears",
+     _base_items + [{"fact_id": "CA451:6:step:0", "kind": "cause",
+                     "classification": "DEFECT"}]),
+    ("smode_starts_producing_unresolved",
+     _base_items + [{"fact_id": "SM01:1:step:0:proc", "kind": "step_procedure",
+                     "classification": "KNOWN_LIMITATION"}]),
+    ("an_hmode_entry_vanishes",
+     [i for i in _base_items if _section(i["fact_id"]) != "hmode"]
+     + [i for i in _base_items if _section(i["fact_id"]) == "hmode"][:144]),
+]
+_split_missed = []
+for _name, _items in _split_muts:
+    _r = _evaluate_split(_items)
+    _caught = _r["drift"] or bool(_r["unnamed"])
+    print(f"    {_name:42} {'caught' if _caught else 'MISSED':10} "
+          f"{('names ' + _r['unnamed'][0][1]) if _r['unnamed'] else 'count drift'}")
+    if not _caught:
+        _split_missed.append(_name)
+check("every planted change to the unresolved split is caught",
+      not _split_missed, str(_split_missed))
+check("the control is clean -- the checks are not simply always-on",
+      not _evaluate_split(_base_items)["drift"]
+      and not _evaluate_split(_base_items)["unnamed"])
+
 print("\n  MUTATION TABLE")
 rec = recs["CA451"]
 steps = tools.real_steps(rec)
