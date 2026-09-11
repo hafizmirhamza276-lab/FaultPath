@@ -99,11 +99,34 @@ def _real_steps(rec: dict) -> List[dict]:
     return [s for s in rec.get("steps", []) if not s.get("redirect")]
 
 
+def load_manifest(kit_dir: Optional[str] = None) -> dict:
+    p = os.path.join(kit_dir or KIT_DIR, "manifest.json")
+    if not os.path.isfile(p):
+        return {"codes": []}
+    with open(p, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def round_of(code: str, manifest: Optional[dict] = None) -> Optional[int]:
+    """READ from the manifest, never inferred.
+
+    Deriving the round from a record's own properties would put the rule in two
+    places, and two places deciding the same thing drift apart silently.
+    """
+    m = manifest if manifest is not None else load_manifest()
+    for c in m.get("codes", []):
+        if c.get("code") == code:
+            return c.get("round")
+    return None
+
+
 def load_transcriptions(kit_dir: Optional[str] = None) -> Dict[str, dict]:
     """Completed transcriptions only. A template with no transcriber name has
     not been done, and counting it as agreement would be a rubber stamp."""
     out = {}
-    for p in sorted(glob.glob(os.path.join(kit_dir or KIT_DIR, "*", "*.json"))):
+    root = kit_dir or KIT_DIR
+    for p in sorted(glob.glob(os.path.join(root, "*", "*.json"))
+                    + glob.glob(os.path.join(root, "round2", "*", "*.json"))):
         if os.path.basename(os.path.dirname(p)) == "example":
             continue
         with open(p, encoding="utf-8") as f:
@@ -280,6 +303,66 @@ def column_split_accuracy(rows: List[dict], recs: Dict[str, dict]) -> dict:
             "note": "no machine-repaired step transcribed yet" if not rs else ""}
 
 
+def coverage(trs: Dict[str, dict], recs: Dict[str, dict],
+             manifest: dict) -> dict:
+    """The denominator, made impossible to lose.
+
+    A partial result presented as a whole-corpus number is the quiet
+    overstatement this project keeps removing. Every report carries this.
+    """
+    total_facts = 0
+    for r in recs.values():
+        total_facts += len(r.get("standalone_measurements", []))
+        for st in r.get("steps", []):
+            total_facts += 1 + len(st.get("measurements", []))                 + len(st.get("branch_fact_ids") or {})
+    done_facts = 0
+    for code in trs:
+        r = recs.get(code)
+        if not r:
+            continue
+        done_facts += len(r.get("standalone_measurements", []))
+        for st in r.get("steps", []):
+            done_facts += 1 + len(st.get("measurements", []))                 + len(st.get("branch_fact_ids") or {})
+    selected = [c["code"] for c in manifest.get("codes", [])]
+    r1 = [c["code"] for c in manifest.get("codes", []) if c.get("round") == 1]
+    return {"codes_transcribed": len(trs), "codes_selected": len(selected),
+            "round1_codes": len(r1),
+            "round1_transcribed": len([c for c in trs if c in set(r1)]),
+            "facts_covered": done_facts, "facts_total": total_facts,
+            "statement": (f"{len(trs)} of {len(selected)} codes, "
+                          f"{done_facts} of {total_facts} facts"),
+            "is_partial": done_facts < total_facts}
+
+
+def column_split_per_step(rows: List[dict], recs: Dict[str, dict],
+                          trs: Dict[str, dict]) -> List[dict]:
+    """Every machine-repaired step, one row each. NEVER aggregated.
+
+    One wrong step among 27 matters; 96.3% hides it. The reader gets the
+    evidence -- what the extractor recovered, what the human typed, the verdict
+    -- whether or not anything disagrees.
+    """
+    by_fact = {}
+    for r in rows:
+        if r["field"] == "cause" and r["fact_id"]:
+            by_fact[r["fact_id"]] = r
+    out = []
+    for code, rec in sorted(recs.items()):
+        for st in rec.get("steps", []):
+            if st.get("extraction_warning") != "column_split_recovered":
+                continue
+            fid = st.get("fact_id")
+            row = by_fact.get(fid)
+            out.append({
+                "fact_id": fid, "code": code, "step": st.get("step"),
+                "manual_page": (st.get("provenance") or {}).get("manual_page"),
+                "extractor": st.get("cause"),
+                "human": row["human"] if row else None,
+                "verdict": row["verdict"] if row else "NOT_TRANSCRIBED",
+                "transcribed": code in trs})
+    return out
+
+
 def run(kit_dir: Optional[str] = None, adjudications: Optional[dict] = None,
         verification: Optional[dict] = None) -> dict:
     recs = load_records()
@@ -292,9 +375,13 @@ def run(kit_dir: Optional[str] = None, adjudications: Optional[dict] = None,
 
     from core import loader
     ver = verification if verification is not None else loader.load_verification()
+    manifest = load_manifest(kit_dir)
     out = summarise(rows)
+    out["coverage"] = coverage(trs, recs, manifest)
     out["resolver_blind_spots"] = resolver_blind_spots(rows, ver)
     out["column_split_accuracy"] = column_split_accuracy(rows, recs)
+    out["column_split_steps"] = column_split_per_step(rows, recs, trs)
+    out["rounds"] = {c: round_of(c, manifest) for c in sorted(trs)}
     out["codes_transcribed"] = sorted(trs)
     out["human_verified_fact_ids"] = verified_fact_ids(rows)
     out["rows"] = rows
@@ -337,15 +424,103 @@ def self_test() -> None:
     assert verified_fact_ids(ok) == ["X:1:meas:0"]
 
 
+# ---------------------------------------------------------------- progress
+
+def progress(kit_dir: Optional[str] = None, round_no: Optional[int] = 1) -> dict:
+    """Which codes are done, which are pending, and the running rate.
+
+    Transcription accuracy degrades well before hour eight, so the work should
+    be split across sessions. Making it easy to stop and resume is the point --
+    a transcriber who pushes on because picking the thread back up is awkward
+    produces exactly the agreement-by-fatigue this design is built against.
+    """
+    manifest = load_manifest(kit_dir)
+    trs = load_transcriptions(kit_dir)
+    recs = load_records()
+    wanted = [c for c in manifest.get("codes", [])
+              if round_no is None or c.get("round") == round_no]
+    rows: List[dict] = []
+    for c in trs:
+        if c in recs:
+            rows += diff_code(trs[c], recs[c])
+    rows = apply_adjudications(rows, load_adjudications())
+    done = [c for c in wanted if c["code"] in trs]
+    pending = [c for c in wanted if c["code"] not in trs]
+    agree = sum(1 for r in rows if r["verdict"] in (EXACT, NORMALISED))
+    mins = [trs[c["code"]].get("minutes_taken") for c in done
+            if trs[c["code"]].get("minutes_taken")]
+    return {
+        "round": round_no,
+        "done": [c["code"] for c in done],
+        "pending": [c["code"] for c in pending],
+        "done_count": len(done), "total": len(wanted),
+        "fields_compared": len(rows),
+        "running_agreement": (agree / len(rows)) if rows else None,
+        "disagreements": sum(1 for r in rows if r["verdict"] == DISAGREE),
+        "minutes_spent": sum(mins) if mins else 0,
+        "minutes_remaining_estimate": (
+            round(sum(mins) / len(done) * len(pending)) if mins and done else None),
+    }
+
+
+def print_progress(kit_dir: Optional[str] = None, round_no: int = 1) -> dict:
+    p = progress(kit_dir, round_no)
+    print(f"ROUND {p['round']}: {p['done_count']} of {p['total']} codes transcribed")
+    if p["done"]:
+        print(f"  done    : {', '.join(p['done'])}")
+    print(f"  pending : {', '.join(p['pending']) if p['pending'] else '-- none --'}")
+    if p["fields_compared"]:
+        print(f"  fields compared   : {p['fields_compared']}")
+        print(f"  running agreement : {p['running_agreement']:.4f}")
+        print(f"  disagreements     : {p['disagreements']}")
+    else:
+        print("  nothing compared yet")
+    if p["minutes_spent"]:
+        print(f"  time spent        : {p['minutes_spent']} min")
+        if p["minutes_remaining_estimate"]:
+            print(f"  remaining (est)   : {p['minutes_remaining_estimate']} min")
+    return p
+
+
+def print_column_split_table(result: dict) -> None:
+    """The 27 machine-repaired steps, one row each. Never a single rate."""
+    rows = result.get("column_split_steps") or []
+    cov = result.get("coverage", {})
+    print(f"\nCOLUMN-SPLIT STEPS -- {len(rows)} machine-repaired steps, "
+          f"reported individually")
+    print(f"coverage: {cov.get('statement', 'unknown')}")
+    print(f"{'fact_id':22}{'page':9}{'verdict':17}extractor / human")
+    for r in rows:
+        print(f"{r['fact_id']:22}{str(r['manual_page']):9}{r['verdict']:17}"
+              f"{(r['extractor'] or '')[:44]!r}")
+        if r["human"] is not None:
+            print(f"{'':48}{(r['human'] or '')[:44]!r}")
+    done = [r for r in rows if r["verdict"] != "NOT_TRANSCRIBED"]
+    dis = [r for r in done if r["verdict"] == DISAGREE]
+    print(f"\n{len(done)} of {len(rows)} transcribed; {len(dis)} disagree")
+    if len(rows) != len(done):
+        print(f"{len(rows) - len(done)} not yet transcribed -- a rate over these "
+              "would be an average of the ones we happened to do")
+
+
 if __name__ == "__main__":
     self_test()
+    if "--progress" in sys.argv:
+        rn = 1
+        if "--round" in sys.argv:
+            rn = int(sys.argv[sys.argv.index("--round") + 1])
+        print_progress(round_no=rn)
+        sys.exit(0)
     res = run()
+    print_column_split_table(res)
     if not res["codes_transcribed"]:
-        print("no completed transcriptions yet.")
+        print("\nno completed transcriptions yet.")
         print(f"kit is at {os.path.relpath(KIT_DIR, REPO_ROOT)}; a transcription "
               "counts as complete once its 'transcriber' field is filled.")
         sys.exit(0)
-    print(f"codes transcribed: {len(res['codes_transcribed'])}")
+    print(f"\nCOVERAGE: {res['coverage']['statement']}"
+          + ("  (PARTIAL)" if res["coverage"]["is_partial"] else ""))
+    print(f"rounds transcribed: {res['rounds']}")
     print(f"fields compared  : {res['fields_compared']}")
     print(f"agreement        : {res['human_agreement_rate']:.4f}")
     for k, v in sorted(res["by_kind"].items()):

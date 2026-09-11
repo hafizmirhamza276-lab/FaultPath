@@ -108,6 +108,14 @@ def select(records: Dict[str, dict] = None) -> List[dict]:
         take(cands[0], f"stratified fill: action level {lvl}")
 
     out = [{"code": c, "reason": chosen[c],
+            # ROUND ASSIGNMENT, recorded here and written to the manifest --
+            # never inferred at runtime. Round 1 is every column-split code:
+            # machine-repaired text no person has ever read, flagged
+            # NEEDS_HUMAN_VERIFICATION since the beginning. ~3 hours instead of
+            # 13, and it covers the highest-risk facts in the corpus.
+            "round": 1 if any(
+                s.get("extraction_warning") == "column_split_recovered"
+                for s in pool[c]["steps"]) else 2,
             "format": pool[c]["format"],
             "pages": sorted(set(pool[c]["manual_pages"])),
             "pdf_pages": pool[c]["pdf_pages"],
@@ -120,6 +128,42 @@ def select(records: Dict[str, dict] = None) -> List[dict]:
             "pointer_only": pool[c]["is_pointer_only"]}
            for c in sorted(chosen, key=_rank)]
     return out[:TARGET]
+
+
+def round1_codes(records=None):
+    """The Round 1 set. Derived once, from the manifest's own rule."""
+    return [d for d in select(records) if d["round"] == 1]
+
+
+def round2_codes(records=None):
+    return [d for d in select(records) if d["round"] == 2]
+
+
+def repaired_step_coverage(records=None) -> dict:
+    """How many of the 27 machine-repaired steps Round 1 can actually reach.
+
+    NOT 27. Four column-split codes fall inside the 20% metric holdout and
+    cannot be transcribed without destroying its independence, so 10 repaired
+    steps are out of reach by design. Stating the real denominator matters more
+    than reaching a round number.
+    """
+    recs = records or tools.records()
+    def steps_of(codes):
+        return sum(1 for c in codes for s in recs[c]["steps"]
+                   if s.get("extraction_warning") == "column_split_recovered")
+    all_cs = {c for c, r in recs.items()
+              if any(s.get("extraction_warning") == "column_split_recovered"
+                     for s in r["steps"])}
+    r1 = {d["code"] for d in round1_codes(recs)}
+    blocked = all_cs & metric_holdout.holdout_set()
+    return {"total_repaired_steps": steps_of(all_cs),
+            "round1_codes": sorted(r1),
+            "round1_repaired_steps": steps_of(r1),
+            "blocked_codes": sorted(blocked),
+            "blocked_repaired_steps": steps_of(blocked),
+            "reason_blocked": "inside the 20% metric holdout; transcribing them "
+                              "would make the human check and the generalisation "
+                              "check measure the same codes"}
 
 
 def example_code(records: Dict[str, dict] = None) -> str:

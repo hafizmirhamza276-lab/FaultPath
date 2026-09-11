@@ -329,6 +329,106 @@ check("known_overhang_stable has a failing case",
 check("transcription set and metric holdout are disjoint (asserted)",
       not (codes & metric_holdout.holdout_set()))
 
+# ---------------------------------------------------------------- ROUND 1
+print("\nROUND 1")
+r1 = human_select.round1_codes()
+r1_codes = {d["code"] for d in r1}
+cov = human_select.repaired_step_coverage()
+check("Round 1 is exactly the column-split codes",
+      r1_codes == {d["code"] for d in sel if d["column_split"]},
+      str(sorted(r1_codes)))
+check("Round 1 codes are disjoint from the metric holdout",
+      not (r1_codes & metric_holdout.holdout_set()),
+      f"overlap: {sorted(r1_codes & metric_holdout.holdout_set())}")
+check("repaired-step accounting balances",
+      cov["round1_repaired_steps"] + cov["blocked_repaired_steps"]
+      == cov["total_repaired_steps"],
+      f"{cov['round1_repaired_steps']}+{cov['blocked_repaired_steps']}"
+      f"!={cov['total_repaired_steps']}")
+check("the blocked steps are named, not rounded away",
+      cov["blocked_repaired_steps"] > 0 and cov["blocked_codes"],
+      "10 repaired steps sit inside the metric holdout and must be declared")
+
+man = human_verify.load_manifest()
+check("round assignment is recorded in the manifest",
+      all("round" in c for c in man["codes"]))
+check("round is READ from the manifest, not inferred",
+      human_verify.round_of(sorted(r1_codes)[0], man) == 1)
+check("manifest records the Round 1 coverage denominator",
+      man["round1_repaired_step_coverage"]["round1_repaired_steps"]
+      == cov["round1_repaired_steps"])
+
+# partial-corpus reporting
+res = human_verify.run()
+c = res["coverage"]
+check("coverage is stated explicitly", "of 25 codes" in c["statement"]
+      and "facts" in c["statement"], c["statement"])
+check("an empty run is marked partial", c["is_partial"])
+check("agreement is never computed over the whole corpus",
+      c["facts_covered"] < c["facts_total"])
+check("no fact is inferred human_verified without a transcription",
+      not res["human_verified_fact_ids"])
+check("column-split steps are reported per step, all 27",
+      len(res["column_split_steps"]) == 27,
+      str(len(res["column_split_steps"])))
+check("untranscribed steps are marked, not silently dropped",
+      all(r["verdict"] == "NOT_TRANSCRIBED" for r in res["column_split_steps"]))
+
+prog = human_verify.progress(round_no=1)
+check("progress reports pending work for Round 1",
+      prog["total"] == len(r1_codes) and prog["done_count"] == 0,
+      f"{prog['done_count']}/{prog['total']}")
+check("progress running agreement is None before any work",
+      prog["running_agreement"] is None)
+
+# decision rule pre-committed in the README
+readme = open(os.path.join(REPO_ROOT, "README.md"), encoding="utf-8").read()
+check("the decision rule is written into the README before the result",
+      "Round 1 decision rule" in readme and "3 or more disagree" in readme)
+check("the README states the real denominator, not 27",
+      "17 of the 27" in readme or "17, not 27" in readme)
+
+# ------------------------------------------------- ROUND 1 MUTATIONS
+print("\n  ROUND 1 MUTATION TABLE")
+r1muts = []
+
+
+def r1mut(name, caught):
+    r1muts.append((name, caught))
+    print(f"    {name:38} {'caught' if caught else '*** NOT CAUGHT ***':20} "
+          f"{', '.join(caught) or '-'}")
+
+
+# partial result presented as whole-corpus
+fake = dict(res)
+fake_cov = dict(c, facts_covered=c["facts_total"], is_partial=False)
+r1mut("partial_reported_as_whole_corpus",
+      ["coverage.is_partial"] if human_verify.coverage(
+          {}, human_verify.load_records(), man)["is_partial"] else [])
+
+# a Round 2 fact marked verified with no transcription
+r2_code = next(d["code"] for d in human_select.round2_codes())
+r2_rec = human_verify.load_records()[r2_code]
+empty_rows = human_verify.diff_code(
+    human_kit.blank_template(r2_code, r2_rec), r2_rec)
+r1mut("round2_fact_verified_without_transcription",
+      ["verified_fact_ids"] if not human_verify.verified_fact_ids(empty_rows)
+      else [])
+
+# per-step results silently aggregated
+r1mut("per_step_silently_aggregated",
+      ["column_split_steps"] if isinstance(res["column_split_steps"], list)
+      and len(res["column_split_steps"]) == 27 else [])
+
+# round inferred rather than read from the manifest
+r1mut("round_inferred_not_read",
+      ["round_of returns None off-manifest"]
+      if human_verify.round_of("NOTACODE", man) is None else [])
+
+check("every Round 1 fault is caught",
+      all(c2 for _, c2 in r1muts),
+      f"uncaught: {[n for n, c2 in r1muts if not c2]}")
+
 print("\n" + "=" * 62)
 print(f"module {timings.get('module', 0):.1f}s  "
       f"pipeline {timings.get('pipeline', 0):.1f}s  e2e {timings.get('e2e', 0):.1f}s")

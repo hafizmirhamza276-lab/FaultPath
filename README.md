@@ -626,3 +626,44 @@ Ranked by how much damage each causes if ignored:
 5. **The 27 column-split recoveries are machine-repaired, not verified.** They
    carry `extraction_warning` and should be checked by eye before being treated
    as ground truth.
+
+---
+
+## Human verification: Round 1 decision rule
+
+**Pre-committed before the result is known.** A threshold chosen after seeing
+the number is not a threshold.
+
+Round 1 is the 8 column-split codes — `CA451`, `DW91KA`, `DWA2KA`, `DWA2KY`,
+`DWK0KY`, `DWK8KA`, `DWK8KY`, `DY20KA`. They carry **17 of the 27**
+machine-repaired steps: text a parser reassembled from a mangled table, flagged
+`NEEDS_HUMAN_VERIFICATION` since the beginning, and never read by a person.
+About 3 hours rather than 13.
+
+```
+python pipeline/human_verify.py --progress    # what is done, what is pending
+python pipeline/human_verify.py               # the per-step table
+```
+
+### The rule
+
+| outcome over the 17 transcribed steps | decision |
+|---|---|
+| **all 17 agree** | Extractor is sound on its highest-risk output. Proceed; Round 2 runs in the background alongside other work. |
+| **1–2 disagree** | Investigate each. Fix and re-verify before proceeding. Finding and fix stay in separate commits. |
+| **3 or more disagree** | Column-split recovery is not trustworthy. Stop feature work and revisit the parser. |
+
+The thresholds are absolute counts, not rates. One wrong step among 17 matters;
+a 94% agreement rate hides it, which is why `column_split_accuracy` is reported
+per step and never aggregated.
+
+### The 10 steps Round 1 cannot reach
+
+Four column-split codes — `DW91KY`, `DWK0KA`, `DWK2KA`, `DWK2KY` — fall inside
+the 20% metric holdout. Transcribing them would make the human check and the
+generalisation check measure the same codes, so they stay unverified and the
+denominator is **17, not 27**. Stated rather than rounded up.
+
+If Round 1 comes back clean, those 10 remain the only machine-repaired steps in
+the corpus that no person has read. That is a known, bounded gap — not a clean
+bill of health for all 27.

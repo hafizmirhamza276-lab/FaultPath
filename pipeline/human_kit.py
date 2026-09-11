@@ -179,23 +179,37 @@ A worked example of a completed transcription is in example/.
 
 def build(codes: Optional[List[dict]] = None, out_dir: Optional[str] = None,
           pdf_path: Optional[str] = None, render: bool = True) -> dict:
+    """Round 1 material sits at the top level; Round 2 goes in round2/.
+
+    A transcriber opening the directory should see only the work in front of
+    them. Making someone work out which 17 folders to ignore is how the wrong
+    folder gets transcribed.
+    """
     sel = codes or human_select.select()
     out = out_dir or OUT_DIR
     os.makedirs(out, exist_ok=True)
     recs = tools.records()
 
-    manifest = {"codes": [], "dpi": DPI, "total_codes": len(sel)}
+    cov = human_select.repaired_step_coverage(recs)
+    manifest = {"codes": [], "dpi": DPI, "total_codes": len(sel),
+                "rounds": {"1": sum(1 for d in sel if d["round"] == 1),
+                           "2": sum(1 for d in sel if d["round"] == 2)},
+                "round1_repaired_step_coverage": cov}
     for d in sel:
         code = d["code"]
-        cdir = os.path.join(out, code)
+        # Round assignment is READ from the selection record, never inferred
+        # here. Two places deciding the same thing is how they drift apart.
+        cdir = (os.path.join(out, code) if d["round"] == 1
+                else os.path.join(out, "round2", code))
         os.makedirs(cdir, exist_ok=True)
         tmpl = blank_template(code, recs[code])
         assert_blank(tmpl)
         with open(os.path.join(cdir, f"{code}.json"), "w", encoding="utf-8") as f:
             json.dump(tmpl, f, indent=2, ensure_ascii=False)
         imgs = render_pages(code, recs[code], cdir, pdf_path) if render else []
-        manifest["codes"].append({**d, "template": f"{code}/{code}.json",
-                                  "images": imgs})
+        rel = (f"{code}/{code}.json" if d["round"] == 1
+               else f"round2/{code}/{code}.json")
+        manifest["codes"].append({**d, "template": rel, "images": imgs})
 
     with open(os.path.join(out, "INSTRUCTIONS.txt"), "w", encoding="utf-8") as f:
         f.write(INSTRUCTIONS)
@@ -228,9 +242,11 @@ def build(codes: Optional[List[dict]] = None, out_dir: Optional[str] = None,
     return manifest
 
 
-def estimate_effort(sel: Optional[List[dict]] = None) -> dict:
+def estimate_effort(sel: Optional[List[dict]] = None, round_no=None) -> dict:
     """Rough planning figure, stated as a range with its assumptions visible."""
     sel = sel or human_select.select()
+    if round_no is not None:
+        sel = [d for d in sel if d["round"] == round_no]
     steps = sum(d["n_steps"] for d in sel)
     meas = sum(d["n_measurements"] for d in sel)
     pages = sum(len(d["pages"]) for d in sel)
