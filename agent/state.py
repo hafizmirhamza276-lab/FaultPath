@@ -79,6 +79,12 @@ class Emission(BaseModel):
     original_text: str = ""
     fact_ids: List[str] = Field(default_factory=list)
     citations: List[Dict[str, Any]] = Field(default_factory=list)
+    # The ground-truth strings this message was composed from. Carried so the
+    # process boundary can re-run the guard on the SAME evidence the graph used
+    # -- an independent check, not a stricter one. A boundary guard holding less
+    # evidence would block correctly-grounded text and make the API behave
+    # differently from the graph, which is the one thing it must never do.
+    grounded_text: List[str] = Field(default_factory=list)
     node: str = ""
     blocked: bool = False
     block_reason: str = ""

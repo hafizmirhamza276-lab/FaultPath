@@ -139,6 +139,11 @@ class JsonlSink:
             self._fh.flush()
             self._since_flush = 0
 
+    def flush(self):
+        if self._fh:
+            self._fh.flush()
+            self._since_flush = 0
+
     def close(self):
         if self._fh:
             self._fh.flush()
@@ -195,6 +200,16 @@ class RunLogger:
         row = dict(row, run_id=self.run_id)
         with open(self.index_path, "a", encoding="utf-8") as f:
             f.write(json.dumps(row, ensure_ascii=False, default=str) + "\n")
+
+    def flush(self):
+        """Force buffered events to disk.
+
+        Needed by any reader that wants the current tail -- the trace endpoint
+        serves a session that is still in progress, and a 200-line buffer would
+        show it as empty.
+        """
+        if self.jsonl:
+            self.jsonl.flush()
 
     def close(self):
         if self.jsonl:

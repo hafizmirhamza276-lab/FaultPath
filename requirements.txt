@@ -8,3 +8,8 @@ pymupdf==1.28.2
 # Agent graph. Pinned: the graph is deterministic, so its runtime must be too.
 langgraph==1.2.11
 pydantic==2.13.5
+
+# API transport. The service is thin; these pins keep it that way.
+fastapi==0.141.1
+uvicorn==0.34.0
+httpx==0.28.1

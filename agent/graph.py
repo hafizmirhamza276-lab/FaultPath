@@ -26,6 +26,7 @@ from __future__ import annotations
 
 import os
 import sys
+import time
 from typing import Optional, Tuple
 
 from langgraph.graph import StateGraph, END
@@ -71,6 +72,7 @@ class Agent:
         st.emissions = st.emissions + [Emission(
             text=safe, original_text=text, fact_ids=fact_ids,
             citations=citations, node=node, blocked=blocked,
+            grounded_text=[g for g in grounded_text if g],
             block_reason=(f"ungrounded numbers: {bad}" if blocked else ""))]
         if blocked:
             self.log.event("validation", "message_blocked",
@@ -499,13 +501,37 @@ class Agent:
         drive the graph through this one function.
         """
         before = len(st.emissions)
+        nodes_before = len(st.node_sequence)
         st.inbox = message
         st.trace_id = new_trace_id()
         self.log.trace(st.trace_id)
+
+        t0 = time.perf_counter()
         out = self.graph.invoke(st, {"recursion_limit": 60})
         st = SessionState.model_validate(out)
+        dt = (time.perf_counter() - t0) * 1000.0
         st.inbox = None
         new = st.emissions[before:]
+
+        # One event per turn carrying the whole path and its effect. Enough to
+        # reconstruct the answer without re-running it: which nodes ran, what
+        # the technician said, which facts the reply rests on, and whether
+        # anything was blocked on the way out.
+        self.log.event(
+            "decision", "turn",
+            {"session_id": st.session_id,
+             "technician": message,
+             "nodes": st.node_sequence[nodes_before:],
+             "active_code": st.active_code,
+             "step_cursor": st.step_cursor,
+             "awaiting": st.awaiting.value,
+             "outcome": st.outcome.value,
+             "fact_ids": [f for e in new for f in e.fact_ids],
+             "citations": [c.get("manual_page") for e in new
+                           for c in e.citations],
+             "blocked": [e.node for e in new if e.blocked],
+             "emitted_chars": sum(len(e.text) for e in new)},
+            duration_ms=dt, level="detail")
         return st, "\n".join(e.text for e in new)
 
     def start(self, session_id: str) -> SessionState:

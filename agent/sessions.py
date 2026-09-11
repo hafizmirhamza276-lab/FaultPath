@@ -24,6 +24,7 @@ from typing import Dict, List, Optional
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from agent import holdout as _holdout  # noqa: E402
 from agent import tools  # noqa: E402
 
 MODEL = "PC200-10M0"
@@ -176,10 +177,17 @@ def scripted_turns(code: str, fail_at: Optional[int] = None,
 
 # --------------------------------------------------------------- corpus
 
-def build_sessions() -> List[Dict]:
-    """~40 sessions across every behaviour the graph has to get right."""
+def build_sessions(exclude=None) -> List[Dict]:
+    """~40 sessions across every behaviour the graph has to get right.
+
+    Held-out codes are excluded BY DEFAULT, not by the caller remembering to.
+    A holdout a fixture can reach by accident stops measuring generalisation
+    while still reporting a number, which is the failure mode this whole guard
+    exists for.
+    """
     recs = tools.records()
-    codes = sorted(recs)
+    exclude = set(exclude) if exclude is not None else _holdout.holdout_set()
+    codes = [c for c in sorted(recs) if c not in exclude]
     fmt_a = [c for c in codes if recs[c]["format"] == "A"
              and tools.step_count(c) >= 2 and not recs[c]["is_pointer_only"]]
     fmt_b = [c for c in codes if recs[c]["format"] == "B"
@@ -190,6 +198,13 @@ def build_sessions() -> List[Dict]:
     out: List[Dict] = []
 
     def add(kind, code, turns, expect, note=""):
+        # A session must not WALK a held-out tree either. Cross-references do
+        # not respect the split: a train code's precondition or redirect target
+        # can be held out, and following it would tune us to a code that is
+        # supposed to be measuring generalisation.
+        touched = {expect.get("resolved")} | set(expect.get("chain") or [])
+        if touched & exclude:
+            return
         out.append({"id": f"{kind}_{code}_{len(out):02d}", "kind": kind,
                     "code": code, "turns": turns, "expect": expect, "note": note})
 
