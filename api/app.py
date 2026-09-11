@@ -43,7 +43,7 @@ from api import contracts as C                                   # noqa: E402
 from api.metrics import METRICS                                  # noqa: E402
 from api.store import (SessionStore, RateLimited, TurnConflict,  # noqa: E402
                        SessionLimit)
-from core.logging import RunLogger, read_events                  # noqa: E402
+from core.run_log import RunLogger, read_events                  # noqa: E402
 
 LOGS_DIR = os.path.join(REPO_ROOT, "eval_out", "logs")
 

@@ -15,7 +15,7 @@ against, plus the audit of the source document it is built on.
 ```
 pipeline/extract_golden.py   PDF -> structured diagnostic trees (deterministic)
 pipeline/audit_manual.py     source-document data-quality audit
-core/logging.py              structured JSONL observability, run_id + trace_id
+core/run_log.py              structured JSONL observability, run_id + trace_id
 eval/build_qa_set.py         trees -> golden Q&A set
 eval/citations.py            fact_id -> Citation, and the resolver back to the PDF
 eval/run_eval.py             Tier-1 CLI; eval/compare.py  run-to-run diff

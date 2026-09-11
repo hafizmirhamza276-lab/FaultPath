@@ -27,7 +27,7 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from core.logging import RunLogger, NullLogger, new_trace_id  # noqa: E402
+from core.run_log import RunLogger, NullLogger, new_trace_id  # noqa: E402
 from eval import chunkers                                    # noqa: E402
 from eval import citations as citemod                        # noqa: E402
 from eval.adapters import LocalBM25Retriever                 # noqa: E402

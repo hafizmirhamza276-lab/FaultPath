@@ -1,7 +1,21 @@
 #!/usr/bin/env python3
 """
-logging.py
+run_log.py
 Structured, replayable observability.
+
+NAMED run_log.py, NOT logging.py, AND IT MATTERS. Python resolves the directory
+of the executed script first, so `python core/orchestrator.py` puts core/ at
+sys.path[0]. A module here called logging.py becomes THE logging module for that
+whole process -- including for third-party libraries that import the standard
+one. pdfplumber does, and died on `logging.getLogger` with:
+
+    AttributeError: module 'logging' has no attribute 'getLogger'
+
+That was latent for as long as every orchestrator stage shelled out to a
+subprocess; the first stage to import pdfplumber in-process hit it immediately.
+No compatibility shim was left behind: a shim keeps the shadowing filename on
+disk, and the filename is the defect. Do not rename this back, and do not add a
+core/logging.py beside it.
 
 The bar: log enough to reconstruct any answer WITHOUT re-running it. Query as
 received and as normalised, filters applied, every chunk returned with score and

@@ -12,8 +12,10 @@ Fake stages are used throughout the module level so the logic is tested without
 a 6-minute pipeline behind it.
 """
 import ast
+import inspect
 import json
 import os
+import subprocess
 import sys
 import time
 
@@ -49,7 +51,7 @@ def fake(name, ok=True, skip=None, depends=None, marker=None):
 print("\nMODULE")
 t0 = time.perf_counter()
 
-check("stages are registered", len(orch.STAGES) == 10, str(len(orch.STAGES)))
+check("stages are registered", len(orch.STAGES) == 11, str(len(orch.STAGES)))
 names = [s.name for s in orch.ordered_stages()]
 check("dependency order is topological",
       names.index("extract") < names.index("fidelity") < names.index("qa_set")
@@ -57,7 +59,35 @@ check("dependency order is topological",
       # the symptom audit gates the data fidelity is then measured over, so it
       # has to sit between extraction and fidelity, not after it
       and names.index("extract_symptoms") < names.index("audit_symptoms")
-      < names.index("fidelity"), str(names))
+      < names.index("fidelity")
+      and names.index("extract_symptoms") < names.index("symptom_map"),
+      str(names))
+
+# The rename that unblocked symptom_map. core/logging.py shadowed the standard
+# library for any process whose script lives in core/, which is every
+# orchestrator run. This asserts the shadowing file is gone rather than merely
+# unimported: a compatibility shim would satisfy an import check and reinstate
+# the defect, because the FILENAME is the defect.
+_core_dir = os.path.join(REPO_ROOT, "core")
+check("no core/logging.py shadowing the standard library",
+      not os.path.exists(os.path.join(_core_dir, "logging.py")))
+check("symptom_map runs in-process, not shelled out",
+      "_script(\"core/symptom_match" not in inspect.getsource(orch.s_symptom_map)
+      and "from core.symptom_match import" in inspect.getsource(orch.s_symptom_map))
+
+# The shadow probe. This is the check that would have failed BEFORE the rename
+# and passes after, which is the only thing that makes the rename meaningful --
+# the whole suite passed with the bug present.
+_shadow = subprocess.run(
+    [sys.executable, "-c",
+     "import sys, logging, pdfplumber; "
+     "sys.stdout.write(logging.getLogger('probe').name + '|' + logging.__file__)"],
+    cwd=_core_dir, capture_output=True, text=True,
+    env={**os.environ, "PYTHONPATH": REPO_ROOT, "PYTHONIOENCODING": "utf-8"})
+check("a process rooted in core/ imports pdfplumber and the real logging",
+      _shadow.returncode == 0 and _shadow.stdout.startswith("probe|")
+      and not _shadow.stdout.split("|")[1].startswith(REPO_ROOT),
+      (_shadow.stdout + _shadow.stderr)[-300:])
 check("every stage declares inputs, outputs, gates and a duration",
       all(s.inputs and s.gates and s.expected_s >= 0 for s in orch.STAGES))
 

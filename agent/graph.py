@@ -40,7 +40,7 @@ from agent.guards import enforce                                   # noqa: E402
 from agent.llm import LLM, MockLLM                                 # noqa: E402
 from agent.state import (SessionState, Awaiting, EntryMode, Outcome,  # noqa: E402
                          Reading, Verdict, Emission, MAX_DEPTH, MAX_REASKS)
-from core.logging import NullLogger, new_trace_id                  # noqa: E402
+from core.run_log import NullLogger, new_trace_id                  # noqa: E402
 
 
 class Agent:

@@ -372,29 +372,23 @@ STAGES: List[Stage] = [
           outputs=["reports/audit_symptoms.json"],
           gates="exit zero; HIGH findings == 0",
           expected_s=5, needs_pdf=True, depends=["extract_symptoms"]),
-    # ------------------------------------------------------------------
-    # symptom_map is WRITTEN AND TESTED but NOT REGISTERED. Registering it
-    # halts every run, and the cause is not in this stage.
-    #
-    #   core/logging.py shadows the standard library's logging module for any
-    #   process whose script lives in core/. `python core/orchestrator.py`
-    #   puts core/ at sys.path[0], so when this stage imports pdfplumber in
-    #   process, pdfplumber's own `import logging` resolves to core/logging.py
-    #   and dies on `logging.getLogger`. Observed as:
-    #       AttributeError: module 'logging' has no attribute 'getLogger'
-    #
-    # Latent until now only because no previously registered stage imported a
-    # third-party library in process -- the others shell out through _script().
-    #
-    # NOT WORKED AROUND. Running this stage as a subprocess would hide a defect
-    # that will bite the next in-process import just as hard. The fix is to
-    # rename core/logging.py, which is referenced across eval/, agent/ and
-    # api/, and that is a separate change. Reported with this commit.
-    #
-    # SYMPTOM_MAP_STAGE below holds the stage, ready to slot in here once the
-    # shadowing is fixed. It passes 14/14 of its own gates when invoked
-    # directly, which is how it is exercised until then.
-    # ------------------------------------------------------------------
+    # Registered in-process, deliberately. It was held out of STAGES until
+    # core/logging.py was renamed to core/run_log.py: that file shadowed the
+    # standard library for any process whose script lives in core/, so this
+    # stage's in-process pdfplumber import died on `logging.getLogger`. Running
+    # it through _script() would have made the symptom disappear while leaving
+    # the defect for the next in-process import. See core/run_log.py's header.
+    Stage("symptom_map", s_symptom_map,
+          inputs=["core/symptom_match.py", "pipeline/build_symptom_map.py",
+                  "pipeline/build_symptom_heldout.py",
+                  "knowledge/symptom_synonyms.source.tsv",
+                  "knowledge/symptom_unmapped.tsv", "golden/symptoms"],
+          outputs=["knowledge/symptom_synonyms.json",
+                   "knowledge/symptom_heldout.json"],
+          gates="map builds against ground truth; wrong_tree 0 on every set "
+                "including sealed; entry accuracy >= 0.95; ask rate reported "
+                "but never gated against wrong_tree",
+          expected_s=15, needs_pdf=True, depends=["extract_symptoms"]),
     Stage("fidelity", s_fidelity,
           inputs=["pipeline/fidelity.py", "eval/citations.py",
                   "golden/failure_codes", "golden/symptoms"],
@@ -424,22 +418,6 @@ STAGES: List[Stage] = [
           outputs=[], gates="module + pipeline + e2e; HTTP matches in-process",
           expected_s=30, depends=["agent"]),
 ]
-
-# Written, tested, and deliberately absent from STAGES. See the note above the
-# fidelity stage: core/logging.py shadows the standard library for any process
-# whose script lives in core/, and registering this stage halts every run on a
-# defect that is not its own.
-SYMPTOM_MAP_STAGE = Stage(
-    "symptom_map", s_symptom_map,
-    inputs=["core/symptom_match.py", "pipeline/build_symptom_map.py",
-            "pipeline/build_symptom_heldout.py",
-            "knowledge/symptom_synonyms.source.tsv",
-            "knowledge/symptom_unmapped.tsv", "golden/symptoms"],
-    outputs=["knowledge/symptom_synonyms.json",
-             "knowledge/symptom_heldout.json"],
-    gates="map builds against ground truth; wrong_tree 0 on every set "
-          "including sealed; entry accuracy >= 0.95",
-    expected_s=15, needs_pdf=True, depends=["extract_symptoms"])
 
 STAGE_BY_NAME = {s.name: s for s in STAGES}
 

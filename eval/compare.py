@@ -34,7 +34,7 @@ def load(path):
 
 def index_rows():
     sys.path.insert(0, REPO_ROOT)
-    from core.logging import read_index
+    from core.run_log import read_index
     return read_index(LOGS_DIR)
 
 
