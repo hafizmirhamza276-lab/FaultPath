@@ -31,11 +31,30 @@ OUT_DIR = os.environ.get("OUT_DIR", os.path.join(REPO_ROOT, "reports"))
 UNRESOLVED_PATH = os.path.join(OUT_DIR, "unresolved_facts.json")
 
 FACT_KINDS = ("measurement", "branch", "cause", "step_procedure",
-              "title", "action_level")
+              "remedy", "symptom_title", "title", "action_level")
 
 # Safety-critical kinds. Gated at 100% -- they already pass, so this pins
 # current behaviour rather than asserting an aspiration.
 GATED_KINDS = ("measurement", "branch")
+
+# Every section is gated on its own. Section 40 is mature; a new section
+# riding its denominator would be scored on someone else's work.
+SECTIONS = ("section40", "hmode", "smode")
+
+# ------------------------------------------------------- relational criteria
+#
+# A relational criterion states a RATIO between two measured quantities rather
+# than a value for one -- "Oil pressure ratio pump discharged pressure : PC
+# valve discharged pressure 1:0.6 (approximately 3/5)". There is no number to
+# reproduce for the row on its own, so it cannot be scored by the numeric
+# comparison that backs `numeric_exactness`.
+#
+# It is EXCLUDED FROM THE NUMERIC DENOMINATOR BY DECLARATION, and its count is
+# reported next to the figure it is excluded from. Dropping it silently would
+# inflate the numeric rate by shrinking the denominator; folding it in would
+# fail a row for lacking a number it was never supposed to have. Both are
+# wrong, and only one of them is visible.
+RELATIONAL = "relational"
 
 KNOWN_LIMITATION = "KNOWN_LIMITATION"
 NEEDS_HUMAN = "NEEDS_HUMAN_VERIFICATION"
@@ -141,6 +160,66 @@ def load_records(gold: Optional[str] = None) -> Dict[str, dict]:
     return recs
 
 
+def load_symptom_records(gold: Optional[str] = None) -> Dict[str, dict]:
+    recs = {}
+    for p in sorted(glob.glob(os.path.join(gold or GOLD, "symptoms", "*.json"))):
+        if os.path.basename(p) == "index.json":
+            continue
+        with open(p, encoding="utf-8") as f:
+            r = json.load(f)
+        recs[r["symptom_id"]] = r
+    return recs
+
+
+def _fact(fid, kind, code, text, prov, section, warn=None, redirect=False,
+          relational=False):
+    return {"fact_id": fid, "kind": kind, "code": code, "text": text or "",
+            "prov": prov, "warn": warn, "redirect": redirect,
+            "section": section, "relational": relational}
+
+
+def enumerate_symptom_facts(recs: Dict[str, dict]) -> List[dict]:
+    """Facts from the H-Mode and S-Mode symptom trees.
+
+    Sectioned by tree_kind rather than by id prefix: the section a fact belongs
+    to is a property of the record, and reading it off a filename would break
+    silently the first time an id scheme changes.
+    """
+    out = []
+    for sid, r in recs.items():
+        section = "smode" if r["tree_kind"] == "SymptomTreeFlat" else "hmode"
+        prov0 = {"manual_page": r["manual_pages"][0], "pdf_page": r["pdf_pages"][0]}
+        out.append(_fact(f"{sid}:0:symptom_title:0", "symptom_title", sid,
+                         r["symptom"], prov0, section))
+
+        def meas(m, warn=None):
+            rel = m.get("criteria_kind") == RELATIONAL
+            return _fact(m["fact_id"], "measurement", sid, m["criteria"],
+                         m["provenance"], section, warn=warn, relational=rel)
+
+        for m in r.get("standalone_measurements", []):
+            out.append(meas(m))
+        for st in r.get("steps", []):
+            warn = st.get("extraction_warning")
+            out.append(_fact(st["fact_id"], "cause", sid, st.get("cause"),
+                             st["provenance"], section, warn=warn))
+            if st.get("procedure"):
+                out.append(_fact(f"{st['fact_id']}:proc", "step_procedure", sid,
+                                 st["procedure"], st["provenance"], section,
+                                 warn=warn))
+            if st.get("remedy_fact_id"):
+                out.append(_fact(st["remedy_fact_id"], "remedy", sid,
+                                 st.get("remedy"), st["provenance"], section,
+                                 warn=warn))
+            for m in st.get("measurements", []):
+                out.append(meas(m, warn))
+            for br, fid in (st.get("branch_fact_ids") or {}).items():
+                out.append(_fact(fid, "branch", sid,
+                                 (st.get("branches") or {}).get(br, ""),
+                                 st["provenance"], section, warn=warn))
+    return out
+
+
 def enumerate_facts(recs: Dict[str, dict]) -> List[dict]:
     """Every fact with a fact_id, its kind, and the page it claims to be on."""
     out = []
@@ -167,6 +246,15 @@ def enumerate_facts(recs: Dict[str, dict]) -> List[dict]:
                             "text": (st.get("branches") or {}).get(br, ""),
                             "prov": st["provenance"],
                             "warn": st.get("extraction_warning"), "redirect": False})
+            if st.get("procedure"):
+                out.append({"fact_id": f"{st['fact_id']}:proc",
+                            "kind": "step_procedure", "code": code,
+                            "text": st["procedure"], "prov": st["provenance"],
+                            "warn": st.get("extraction_warning"),
+                            "redirect": bool(st.get("redirect"))})
+    for f in out:
+        f.setdefault("section", "section40")
+        f.setdefault("relational", False)
     return out
 
 
@@ -175,18 +263,32 @@ def enumerate_facts(recs: Dict[str, dict]) -> List[dict]:
 def check_facts(recs=None, pages=None) -> dict:
     """Resolve every fact against the PDF and report by kind."""
     from eval.citations import resolve, PageText
-    recs = recs or load_records()
+    if recs is None:
+        recs = dict(load_records())
+        recs.update(load_symptom_records())
     pages = pages or PageText()
-    facts = enumerate_facts(recs)
+    facts = [f for f in enumerate_facts(
+                 {k: v for k, v in recs.items() if "code" in v})]
+    facts += enumerate_symptom_facts(
+        {k: v for k, v in recs.items() if "symptom_id" in v})
 
-    rows, by_kind = [], {}
+    rows, by_kind, by_sec = [], {}, {}
     for f in facts:
         entry = {"fact_id": f["fact_id"], "kind": f["kind"], "code": f["code"],
+                 "section": f["section"], "relational": f["relational"],
                  "manual_page": f["prov"].get("manual_page"),
                  "pdf_page": f["prov"].get("pdf_page"),
                  "warn": f["warn"], "redirect": f["redirect"],
                  "resolved": None, "reason": "", "verbatim": f["text"]}
-        if pages.available():
+        if not (f["text"] or "").strip():
+            # An empty verbatim is not a fact that resolves, it is a fact with
+            # nothing in it. The resolver would find "" on any page in the
+            # document and return True, so admitting it would push the rate UP
+            # while measuring nothing -- the same shape as an audit check that
+            # cannot fail. Refused explicitly.
+            entry["resolved"] = False
+            entry["reason"] = "empty verbatim text"
+        elif pages.available():
             # The citation is built from the RECORDS PASSED IN, not re-rendered
             # from disk. An earlier version called citations.render(), which
             # reloads golden/ -- so a corrupted digit or a shifted page in the
@@ -200,10 +302,17 @@ def check_facts(recs=None, pages=None) -> dict:
             entry["resolved"] = res["resolved"]
             entry["reason"] = res["reason"]
         rows.append(entry)
-        k = by_kind.setdefault(f["kind"], {"total": 0, "resolved": 0})
-        k["total"] += 1
-        if entry["resolved"]:
-            k["resolved"] += 1
+        for bucket, key in ((by_kind, f["kind"]),
+                            (by_sec, (f["section"], f["kind"]))):
+            k = bucket.setdefault(key, {"total": 0, "resolved": 0,
+                                        "relational": 0})
+            if f["relational"]:
+                # counted, reported, and kept out of the scored denominator
+                k["relational"] += 1
+                continue
+            k["total"] += 1
+            if entry["resolved"]:
+                k["resolved"] += 1
 
     # page_containment: a fact must sit inside its own code's page span.
     # A fact resolving on another code's page is worse than not resolving.
@@ -214,20 +323,34 @@ def check_facts(recs=None, pages=None) -> dict:
         if p is None or not (lo <= p <= hi):
             outside.append(f["fact_id"])
 
+    scored = [r for r in rows if not r["relational"]]
+
     # verbatim_integrity: resolved text matches after the DOCUMENTED
     # normalisation only. Digits are never normalised.
-    integrity = sum(1 for r in rows
+    #
+    # Counted over `scored`, NOT over `rows`. Its denominator is `resolved`,
+    # which excludes relational facts; counting the numerator over every row
+    # let a resolving relational fact into the top and not the bottom, and the
+    # ratio came out at 1.0028. A rate above 1.0 is the arithmetic announcing
+    # that two different populations were divided.
+    integrity = sum(1 for r in scored
                     if r["resolved"] and "whitespace/hyphenation" not in r["reason"])
 
-    total = len(rows)
-    resolved = sum(1 for r in rows if r["resolved"])
+    total = len(scored)
+    resolved = sum(1 for r in scored if r["resolved"])
+
+    def rated(bucket):
+        return {k: {**v, "rate": (v["resolved"] / v["total"]) if v["total"] else 0.0}
+                for k, v in sorted(bucket.items())}
+
     return {
         "available": pages.available(),
         "total_facts": total,
         "resolved": resolved,
+        "relational_excluded": sum(1 for r in rows if r["relational"]),
         "fact_resolution_rate": (resolved / total) if total else 0.0,
-        "by_kind": {k: {**v, "rate": (v["resolved"] / v["total"]) if v["total"] else 0.0}
-                    for k, v in sorted(by_kind.items())},
+        "by_kind": rated(by_kind),
+        "by_section": {f"{s}/{k}": v for (s, k), v in rated(by_sec).items()},
         "page_containment": 1.0 - (len(outside) / total if total else 0.0),
         "page_containment_failures": outside,
         "verbatim_integrity": (integrity / resolved) if resolved else 0.0,
@@ -261,6 +384,24 @@ def classify(row: dict) -> dict:
                           "for a pointer-only code whose cause table is a single "
                           "unnumbered row; it is not text printed on the page and "
                           "must not be citable as if it were."}
+
+    if row.get("kind") == "step_procedure":
+        return {"classification": KNOWN_LIMITATION,
+                "reason": "reassembled step procedure. Built from several cells "
+                          "of a step's row, including embedded measurement "
+                          "sub-tables, so the stored string is accurate but is "
+                          "not a contiguous run on the page. Audit S3. Ungated, "
+                          "not verbatim-citable, and no numeric metric is "
+                          "scored on it."}
+
+    if row.get("kind") == "measurement" and reason == "empty verbatim text":
+        return {"classification": DEFECT,
+                "reason": "empty criteria string. The criteria cell is "
+                          "vertically merged with the row above, whose "
+                          "relational criterion governs both rows; this row "
+                          "inherits nothing and is typed numeric anyway. "
+                          "Audit S1 -- needs a parser change, not a scorer "
+                          "tolerance."}
 
     if row["warn"] == "column_split_recovered":
         return {"classification": NEEDS_HUMAN,
@@ -382,6 +523,17 @@ def gates(result: dict) -> List[dict]:
                     "op": ">=", "threshold": 1.0,
                     "status": "PASS" if k["rate"] >= 1.0 else "FAIL",
                     "n": k["total"]})
+        # ...and again per section. A corpus-wide rate lets a mature section
+        # carry a weak new one: 274 H-Mode measurements against Section 40's
+        # 872 move the combined figure by a quarter of what they should.
+        for sec in SECTIONS:
+            k = result.get("by_section", {}).get(f"{sec}/{kind}")
+            if not k or not k["total"]:
+                continue
+            out.append({"gate": f"fact_resolution_rate[{sec}/{kind}]",
+                        "value": k["rate"], "op": ">=", "threshold": 1.0,
+                        "status": "PASS" if k["rate"] >= 1.0 else "FAIL",
+                        "n": k["total"]})
     out.append({"gate": "page_containment", "value": result["page_containment"],
                 "op": ">=", "threshold": 1.0,
                 "status": "PASS" if result["page_containment"] >= 1.0 else "FAIL",
@@ -413,6 +565,54 @@ def self_test() -> None:
             "page_containment": 1.0, "verbatim_integrity": 1.0, "rows": []}
     assert all(x["status"] == "PASS" for x in gates(good)), \
         "fidelity gates cannot pass on a clean corpus"
+
+    # A per-section gate must fail on a weak section even when the corpus-wide
+    # rate is carried to 1.0 by a larger, mature one. This is the whole reason
+    # the section split exists: 254 H-Mode measurements against Section 40's
+    # 872 move a combined figure by a quarter of what they should.
+    masked = {
+        "total_facts": 1000, "resolved": 1000,
+        "by_kind": {"measurement": {"total": 1000, "resolved": 1000, "rate": 1.0}},
+        "by_section": {
+            "section40/measurement": {"total": 990, "resolved": 990, "rate": 1.0},
+            "hmode/measurement": {"total": 10, "resolved": 5, "rate": 0.5}},
+        "page_containment": 1.0, "verbatim_integrity": 1.0, "rows": []}
+    mg = gates(masked)
+    assert any(x["gate"] == "fact_resolution_rate[hmode/measurement]"
+               and x["status"] == "FAIL" for x in mg), \
+        "a weak section passes when a mature section carries the combined rate"
+    assert any(x["gate"] == "fact_resolution_rate[section40/measurement]"
+               and x["status"] == "PASS" for x in mg), \
+        "the section split fails a section that is genuinely clean"
+
+    # An empty verbatim must never count as resolved. The resolver finds "" on
+    # every page, so admitting one would raise the rate while measuring
+    # nothing -- a gate that cannot fail, wearing the costume of one that passed.
+    from eval.citations import PageText
+    empty = check_facts(recs={"ZZ999": {
+        "code": "ZZ999", "pdf_pages": [1, 1],
+        "standalone_measurements": [{
+            "fact_id": "ZZ999:0:meas:0", "criteria": "",
+            "provenance": {"manual_page": "x", "pdf_page": 1,
+                           "table_index": 0, "row_index": 0}}],
+        "steps": []}}, pages=PageText())
+    assert empty["by_kind"]["measurement"]["resolved"] == 0, \
+        "an empty criteria string was counted as a resolved fact"
+
+    # Relational facts leave the scored denominator but stay counted.
+    rel = check_facts(recs={"HMZZ": {
+        "symptom_id": "HMZZ", "tree_kind": "SymptomTreeBranching",
+        "symptom": "test", "pdf_pages": [1, 1], "manual_pages": ["x"],
+        "steps": [], "standalone_measurements": [{
+            "fact_id": "HMZZ:0:meas:0", "criteria": "ratio 1:0.6",
+            "criteria_kind": RELATIONAL,
+            "provenance": {"manual_page": "x", "pdf_page": 1,
+                           "table_index": 0, "row_index": 0}}]}},
+        pages=PageText())
+    assert rel["by_kind"]["measurement"]["total"] == 0, \
+        "a relational criterion entered the numeric denominator"
+    assert rel["relational_excluded"] == 1, \
+        "a relational criterion was excluded without being counted"
     # classification must never fall through to silence
     assert classify({"fact_id": "X:1:step:0", "redirect": False, "warn": None,
                      "reason": ""})["classification"] == DEFECT, \
@@ -432,6 +632,23 @@ if __name__ == "__main__":
     print(f"{'kind':16}{'resolved':>10}{'total':>8}{'rate':>10}")
     for k, v in res["by_kind"].items():
         print(f"{k:16}{v['resolved']:>10}{v['total']:>8}{v['rate']:>10.4f}")
+    # By section as well as by kind. A combined rate lets Section 40's
+    # maturity mask a weak new section, which is the failure this split exists
+    # to prevent.
+    print(f"\n{'kind':16}{'section40':>24}{'hmode':>24}{'smode':>24}")
+    for k in ("measurement", "branch", "cause", "step_procedure", "remedy",
+              "symptom_title"):
+        cells = []
+        for s in SECTIONS:
+            v = res["by_section"].get(f"{s}/{k}")
+            if not v or not (v["total"] + v["relational"]):
+                cells.append("n/a")
+            else:
+                extra = f" +{v['relational']}R" if v["relational"] else ""
+                cells.append(f"{v['rate']:.4f} {v['resolved']}/{v['total']}{extra}")
+        print(f"{k:16}" + "".join(f"{c:>24}" for c in cells))
+    print(f"\n  +NR = relational criteria, carried and counted but excluded "
+          f"from the scored denominator by declaration ({res['relational_excluded']} total)")
     print(f"\npage_containment    {res['page_containment']:.4f}")
     print(f"verbatim_integrity  {res['verbatim_integrity']:.4f}")
     payload = write_unresolved(res)
