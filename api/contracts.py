@@ -31,6 +31,11 @@ class Citation(BaseModel):
     manual_page: Optional[str] = None
     pdf_page: Optional[int] = None
     verbatim_text: str
+    # How far this fact has been checked against the source document.
+    # "unverified" is surfaced, never hidden: a caller must be able to tell a
+    # confirmed value from one nobody has looked at.
+    verification: Literal["human_verified", "resolver_verified",
+                          "unverified"] = "unverified"
 
 
 class StartSessionRequest(BaseModel):

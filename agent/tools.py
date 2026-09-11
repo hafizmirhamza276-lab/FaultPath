@@ -322,12 +322,21 @@ def render_citations(fact_ids: List[str]) -> List[dict]:
     if REPO_ROOT not in sys.path:
         sys.path.insert(0, REPO_ROOT)
     from eval.citations import render, UnknownFact
+    from core.loader import load_verification, UNVERIFIED
+    ver = load_verification().get("facts", {})
     out = []
     for fid in fact_ids or []:
         try:
-            out += render([fid])
+            cits = render([fid])
         except UnknownFact:
             continue          # an invented id yields no citation, by design
+        for c in cits:
+            # How far this fact has been checked travels WITH the citation. A
+            # technician reading a value deserves to know whether anything
+            # confirmed it against the page, and dropping the status at the
+            # boundary would make "verified" and "nobody looked" indistinguishable.
+            c["verification"] = ver.get(fid, UNVERIFIED)
+        out += cits
     return out
 
 

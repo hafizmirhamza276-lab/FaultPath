@@ -27,6 +27,9 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 LEVELS = [
     ("ground-truth", "tests/test_extraction.py"),
+    # Fidelity runs early: it asks whether golden/ says what the PDF says, and
+    # every level after it assumes the answer is yes.
+    ("fidelity", "tests/test_fidelity.py"),
     ("harness", "tests/test_eval_harness.py"),
     ("agent", "tests/test_agent_replay.py"),
     ("module", "tests/test_api_module.py"),
