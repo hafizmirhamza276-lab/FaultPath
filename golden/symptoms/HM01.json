@@ -1,0 +1,204 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "H-Mode",
+  "symptom_id": "HM01",
+  "tree_kind": "SymptomTreeBranching",
+  "symptom": "All Work Equipment, Swing and Travel Do Not Work",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": "All work equipment, swing and travel do not work.",
+  "related_information": "Pre-troubleshooting If a failure code is shown, do the troubleshooting for that code first. Reference information Do all the troubleshooting while the working mode is set to Power mode (P).",
+  "pdf_pages": [
+    1289,
+    1290
+  ],
+  "manual_pages": [
+    "40-747",
+    "40-748"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "PPC lock solenoid valve",
+      "procedure": "1. Do the troubleshooting. For details, see Testing and Adjusting, “Examine Outlet Pressure of Solenoid Valve”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • PPC lock: 0 MPa {0 Lock kgf/cm2} • Hydraulic oil tempera- Soleture: 45 noid PPC lock solto 55°C output enoid valve presoutlet hose • Fuel sure control dial at Hi • PPC lock: Re- 2.9 MPa {30 leased kgf/cm2} • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• PPC lock solenoid valve is normal. • Go to the next check item.",
+        "NO": "• PPC lock solenoid valve is defective. • Repair or replace the PPC lock solenoid valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-747",
+        "pdf_page": 1289,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM01:1:step:0",
+      "branch_fact_ids": {
+        "NO": "HM01:1:branch:0",
+        "YES": "HM01:1:branch:1"
+      }
+    },
+    {
+      "step": 2,
+      "cause": "Self-pressure reducing valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine Oil Pressure of Control Circuit”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Control lever: All levers in neutral Control • Fuel circuit 2.84 to 3.43 Oil pressure control source MPa {29 to 35 pickup plug dial at Hi preskgf/cm2} sure • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Self-pressure reducing is normal. • Go to the next check item.",
+        "NO": "• Self-pressure reducing is defective. • Repair or replace the self-pressure reducing. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-748",
+        "pdf_page": 1290,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM01:2:step:0",
+      "branch_fact_ids": {
+        "NO": "HM01:2:branch:0",
+        "YES": "HM01:2:branch:1"
+      }
+    },
+    {
+      "step": 3,
+      "cause": "Piston pump",
+      "procedure": "1. Stop the engine. 2. Release the pressure that remains in the hydraulic tank and piping. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 3. Remove the main oil pressure measurement plug. 4. Turn the starting switch to the ON position. 5. Examine it. For details, see Testing and Adjusting, “Procedure to Perform No-Injection Cranking”. 6. Does oil flow out of the main oil pressure measurement plug?",
+      "branches": {
+        "YES": "• The piston pump is correct. • Go to the next check item.",
+        "NO": "• The piston pump is defective. • Repair or replace the piston pump. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-748",
+        "pdf_page": 1290,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM01:3:step:0",
+      "branch_fact_ids": {
+        "NO": "HM01:3:branch:0",
+        "YES": "HM01:3:branch:1"
+      }
+    },
+    {
+      "step": 4,
+      "cause": "Damper",
+      "procedure": "1. The pump shaft is possibly not in rotation because of an internal defect in the damper. Do an examination. 2. Does the pump shaft rotate?",
+      "branches": {
+        "YES": "• The damper is correct. • Go to the next check item.",
+        "NO": "• The damper is defective. • Repair or replace the damper. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-748",
+        "pdf_page": 1290,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "HM01:4:step:0",
+      "branch_fact_ids": {
+        "NO": "HM01:4:branch:0",
+        "YES": "HM01:4:branch:1"
+      }
+    },
+    {
+      "step": 5,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Stop the engine. 2. Connect all the component parts. 3. Start the engine. 4. Operate the lever to do the troubleshooting. 5. Do the work equipment, swing and travel operate normally?",
+      "branches": {
+        "YES": "The repair is done.",
+        "NO": "Go back to the first check item."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-748",
+        "pdf_page": 1290,
+        "table_index": 0,
+        "row_index": 7
+      },
+      "fact_id": "HM01:5:step:0",
+      "branch_fact_ids": {
+        "NO": "HM01:5:branch:0",
+        "YES": "HM01:5:branch:1"
+      }
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Solenoid output pressure",
+      "point": "PPC lock solenoid valve outlet hose / • Fuel control dial at Hi • PPC lock: Lock • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0 MPa {0 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-747",
+        "pdf_page": 1289,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "HM01:0:meas:0",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Solenoid output pressure",
+      "point": "• Fuel control dial at Hi • PPC lock: Released • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.9 MPa {30 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-747",
+        "pdf_page": 1289,
+        "table_index": 2,
+        "row_index": 2
+      },
+      "fact_id": "HM01:0:meas:1",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Control circuit source pressure",
+      "point": "Oil pressure pickup plug / • Control lever: All levers in neutral • Fuel control dial at Hi • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-748",
+        "pdf_page": 1290,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM01:0:meas:2",
+      "criteria_kind": "numeric"
+    }
+  ],
+  "unresolved_pointers": [
+    {
+      "text": "do the troubleshooting for that code first.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-747",
+        "pdf_page": 1289,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "Do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-747",
+        "pdf_page": 1289,
+        "table_index": 1
+      }
+    },
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-748",
+        "pdf_page": 1290,
+        "table_index": 0
+      }
+    }
+  ],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

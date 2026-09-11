@@ -1,0 +1,298 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "S-Mode",
+  "symptom_id": "SM06",
+  "tree_kind": "SymptomTreeFlat",
+  "symptom": "Engine stops during operation.",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": null,
+  "related_information": "If any failure code is displayed, perform troubleshooting for that code first.",
+  "pdf_pages": [
+    1481,
+    1482
+  ],
+  "manual_pages": [
+    "40-939",
+    "40-940"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Fuel level is low.",
+      "point_to_check": "If fuel tank is checked, it is empty.",
+      "remedy": "Refueling",
+      "provenance": {
+        "manual_page": "40-939",
+        "pdf_page": 1481,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "SM06:1:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:1:remedy:0"
+    },
+    {
+      "step": 2,
+      "cause": "Clogging fuel tank cap air bleeding hole",
+      "point_to_check": "Fuel tank cap air bleeding hole is clogged.",
+      "remedy": "Flush air breather hole in fuel tank cap surrounding area.",
+      "provenance": {
+        "manual_page": "40-939",
+        "pdf_page": 1481,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "SM06:2:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:2:remedy:0"
+    },
+    {
+      "step": 3,
+      "cause": "Clogged fuel filter element",
+      "point_to_check": "Check used hours of fuel filter element. If it is used over specified time, fuel filter element may be clogged.",
+      "remedy": "Fuel filter element replacement",
+      "provenance": {
+        "manual_page": "40-939",
+        "pdf_page": 1481,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "SM06:3:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:3:remedy:0"
+    },
+    {
+      "step": 4,
+      "cause": "Foreign materials are mixed into fuel.",
+      "point_to_check": "If drain fuel from fuel tank, rust or water comes out.",
+      "remedy": "Fuel replacement",
+      "provenance": {
+        "manual_page": "40-939",
+        "pdf_page": 1481,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "SM06:4:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:4:remedy:0"
+    },
+    {
+      "step": 5,
+      "cause": "Air mixed in fuel piping system",
+      "point_to_check": "When performing bleeding air from the fuel system, air comes out. (For details, see Testing and Adjusting, “Bleed Air from Fuel System”).",
+      "remedy": "• Perform air bleeding operation • Correct or replace fuel piping",
+      "provenance": {
+        "manual_page": "40-939",
+        "pdf_page": 1481,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "SM06:5:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:5:remedy:0"
+    },
+    {
+      "step": 6,
+      "cause": "Leakage from fuel piping system",
+      "point_to_check": "Fuel leaks from fuel piping. (For details, see Testing and Adjusting, “Examine Fuel Circuit for Leakage”).",
+      "remedy": "Correct or replace fuel piping related parts",
+      "provenance": {
+        "manual_page": "40-939",
+        "pdf_page": 1481,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "fact_id": "SM06:6:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:6:remedy:0"
+    },
+    {
+      "step": 7,
+      "cause": "Fuel leakage at Injector and inlet connector",
+      "point_to_check": "Return rate from injector is high. (See Testing and Adjusting, “How to Examine Fuel Discharge, Return, and Leakage”)",
+      "remedy": "Tighten or replace inlet connector",
+      "provenance": {
+        "manual_page": "40-939",
+        "pdf_page": 1481,
+        "table_index": 1,
+        "row_index": 7
+      },
+      "fact_id": "SM06:7:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:7:remedy:0"
+    },
+    {
+      "step": 8,
+      "cause": "Defective supply pump",
+      "point_to_check": "See Testing and Adjusting, “Testing fuel discharge rate, return rate, and leakage”",
+      "remedy": "Supply pump and pressure limiter replacement",
+      "provenance": {
+        "manual_page": "40-939",
+        "pdf_page": 1481,
+        "table_index": 1,
+        "row_index": 8
+      },
+      "fact_id": "SM06:8:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:8:remedy:0"
+    },
+    {
+      "step": 9,
+      "cause": "Defective air intake hose (air cleaner to turbocharger inlet)",
+      "point_to_check": "Visually check for damages of air intake hose.",
+      "remedy": "Air intake hose replacement",
+      "provenance": {
+        "manual_page": "40-939",
+        "pdf_page": 1481,
+        "table_index": 1,
+        "row_index": 9
+      },
+      "fact_id": "SM06:9:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:9:remedy:0"
+    },
+    {
+      "step": 10,
+      "cause": "Defective air intake manifold",
+      "point_to_check": "Check for internal damages of air intake manifold.",
+      "remedy": "Air intake manifold replacement",
+      "provenance": {
+        "manual_page": "40-939",
+        "pdf_page": 1481,
+        "table_index": 1,
+        "row_index": 10
+      },
+      "fact_id": "SM06:10:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:10:remedy:0"
+    },
+    {
+      "step": 11,
+      "cause": "Defective boost piping and connection (between turbocharger outlet and intake manifold)",
+      "point_to_check": "Air comes out of boost piping.",
+      "remedy": "Boost piping repair or replacement",
+      "provenance": {
+        "manual_page": "40-939",
+        "pdf_page": 1481,
+        "table_index": 1,
+        "row_index": 11
+      },
+      "fact_id": "SM06:11:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:11:remedy:0"
+    },
+    {
+      "step": 12,
+      "cause": "Defective exhaust pipe (between exhaust manifold and muffler inlet)",
+      "point_to_check": "Check exhaust pipes for damage and exhaust gas leakage (Check heat insulation cover and soot on heat insulation plate)",
+      "remedy": "Exhaust piping replacement",
+      "provenance": {
+        "manual_page": "40-939",
+        "pdf_page": 1481,
+        "table_index": 1,
+        "row_index": 12
+      },
+      "fact_id": "SM06:12:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:12:remedy:0"
+    },
+    {
+      "step": 13,
+      "cause": "Broken valve or rocker arm",
+      "point_to_check": "Check valve and rocker arm (when stops with unusual noise).",
+      "remedy": "Valve or rocker arm replacement",
+      "provenance": {
+        "manual_page": "40-939",
+        "pdf_page": 1481,
+        "table_index": 1,
+        "row_index": 13
+      },
+      "fact_id": "SM06:13:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:13:remedy:0"
+    },
+    {
+      "step": 14,
+      "cause": "Breakage or seizure of piston and connecting rod",
+      "point_to_check": "• Oil drained from oil pan contains metallic powder. • Remove oil pan and check piston and connecting rod (Reference: Stopping with unusual noise or stopping caused by overheating)",
+      "remedy": "Piston and connecting rod replacement",
+      "provenance": {
+        "manual_page": "40-939",
+        "pdf_page": 1481,
+        "table_index": 1,
+        "row_index": 14
+      },
+      "fact_id": "SM06:14:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:14:remedy:0"
+    },
+    {
+      "step": 15,
+      "cause": "Breakage or seizure of crankshaft main bearing",
+      "point_to_check": "• Metal particles are contained in oil drained from oil pan. • Remove oil pan and check crankshaft main bearing.",
+      "remedy": "Crankshaft main bearing replacement",
+      "provenance": {
+        "manual_page": "40-939",
+        "pdf_page": 1481,
+        "table_index": 1,
+        "row_index": 15
+      },
+      "fact_id": "SM06:15:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:15:remedy:0"
+    },
+    {
+      "step": 16,
+      "cause": "Defective engine controller power supply wiring",
+      "point_to_check": "Check power supply wiring of engine controller. (Reference: See Troubleshooting, Failure code [CA343].)",
+      "remedy": "Correct engine controller power supply wiring",
+      "provenance": {
+        "manual_page": "40-940",
+        "pdf_page": 1482,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "SM06:16:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:16:remedy:0"
+    },
+    {
+      "step": 17,
+      "cause": "Defective starting switch wiring",
+      "point_to_check": "Check starting switch wiring.",
+      "remedy": "Perform troubleshooting of “ENGINE DOES NOT START (ENGINE DOES NOT CRANK)” in E mode, and take corrective action.",
+      "provenance": {
+        "manual_page": "40-940",
+        "pdf_page": 1482,
+        "table_index": 0,
+        "row_index": 2
+      },
+      "fact_id": "SM06:17:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:17:remedy:0"
+    },
+    {
+      "step": 18,
+      "cause": "Malfunction of hydraulic system",
+      "point_to_check": "See H mode, “Engine speed lowers significantly or engine stalls”.",
+      "remedy": "Diagnose and take remedies for H mode",
+      "provenance": {
+        "manual_page": "40-940",
+        "pdf_page": 1482,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "SM06:18:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM06:18:remedy:0"
+    }
+  ],
+  "standalone_measurements": [],
+  "unresolved_pointers": [],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

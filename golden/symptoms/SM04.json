@@ -1,0 +1,298 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "S-Mode",
+  "symptom_id": "SM04",
+  "tree_kind": "SymptomTreeFlat",
+  "symptom": "Engine startability is poor.",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": null,
+  "related_information": "• If any failure code is displayed, perform troubleshooting for that code first. • Common rail fuel injection system (CRI) controls fuel injection timing electronically. Even when start operation is performed, engine does not start until crankshaft is rotated at least twice. This is not abnormal.",
+  "pdf_pages": [
+    1477,
+    1478
+  ],
+  "manual_pages": [
+    "40-935",
+    "40-936"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective battery",
+      "point_to_check": "Gravity of electrolyte and voltage of battery are low.",
+      "remedy": "Filling of battery electrolyte",
+      "provenance": {
+        "manual_page": "40-935",
+        "pdf_page": 1477,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "SM04:1:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:1:remedy:0"
+    },
+    {
+      "step": 2,
+      "cause": "Fuel level is low.",
+      "point_to_check": "If fuel tank is checked, it is empty.",
+      "remedy": "Refueling",
+      "provenance": {
+        "manual_page": "40-935",
+        "pdf_page": 1477,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "SM04:2:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:2:remedy:0"
+    },
+    {
+      "step": 3,
+      "cause": "Unspecified fuel is used.",
+      "point_to_check": "• Unspecified fuel is used. • It does not use a fuel that meets the temperature. (Reference: It starts at warm weather, but engine startability is poor at cold weather.) • Deposited wax (milky) is found in clear bowl of fuel prefilter.",
+      "remedy": "Use recommended fuel described in Operation and Maintenance Manual.",
+      "provenance": {
+        "manual_page": "40-935",
+        "pdf_page": 1477,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "SM04:3:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:3:remedy:0"
+    },
+    {
+      "step": 4,
+      "cause": "Clogging fuel tank cap air bleeding hole",
+      "point_to_check": "Fuel tank cap air bleeding hole is clogged.",
+      "remedy": "Flush air breather hole in fuel tank cap surrounding area.",
+      "provenance": {
+        "manual_page": "40-935",
+        "pdf_page": 1477,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "SM04:4:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:4:remedy:0"
+    },
+    {
+      "step": 5,
+      "cause": "Clogged fuel filter element",
+      "point_to_check": "Check used hours of fuel filter element. If it is used over specified time, fuel filter element may be clogged.",
+      "remedy": "Fuel filter element replacement",
+      "provenance": {
+        "manual_page": "40-935",
+        "pdf_page": 1477,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "SM04:5:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:5:remedy:0"
+    },
+    {
+      "step": 6,
+      "cause": "Foreign materials are mixed into fuel.",
+      "point_to_check": "If drain fuel from fuel tank, rust or water comes out.",
+      "remedy": "Fuel replacement",
+      "provenance": {
+        "manual_page": "40-935",
+        "pdf_page": 1477,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "fact_id": "SM04:6:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:6:remedy:0"
+    },
+    {
+      "step": 7,
+      "cause": "Air mixed in fuel piping system",
+      "point_to_check": "When performing bleeding air from the fuel system, air comes out. (For details, see Testing and Adjusting, “Bleed Air from Fuel System”).",
+      "remedy": "• Perform air bleeding operation • Correct or replace fuel piping",
+      "provenance": {
+        "manual_page": "40-935",
+        "pdf_page": 1477,
+        "table_index": 1,
+        "row_index": 7
+      },
+      "fact_id": "SM04:7:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:7:remedy:0"
+    },
+    {
+      "step": 8,
+      "cause": "Leakage from fuel piping system",
+      "point_to_check": "Fuel leaks from fuel piping. (For details, see Testing and Adjusting, “Examine Fuel Circuit for Leakage”).",
+      "remedy": "Correct or replace fuel piping related parts",
+      "provenance": {
+        "manual_page": "40-935",
+        "pdf_page": 1477,
+        "table_index": 1,
+        "row_index": 8
+      },
+      "fact_id": "SM04:8:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:8:remedy:0"
+    },
+    {
+      "step": 9,
+      "cause": "Fuel leakage at Injector and inlet connector",
+      "point_to_check": "Return rate from injector is high. (See Testing and Adjusting, “How to Examine Fuel Discharge, Return, and Leakage”)",
+      "remedy": "Tighten or replace inlet connector",
+      "provenance": {
+        "manual_page": "40-935",
+        "pdf_page": 1477,
+        "table_index": 1,
+        "row_index": 9
+      },
+      "fact_id": "SM04:9:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:9:remedy:0"
+    },
+    {
+      "step": 10,
+      "cause": "Defective common rail",
+      "point_to_check": "Check leakage from common rail pressure limiter. For details, see Testing and adjusting, “Testing fuel delivery, return rate, and leakage”.",
+      "remedy": "Common rail replacement",
+      "provenance": {
+        "manual_page": "40-935",
+        "pdf_page": 1477,
+        "table_index": 1,
+        "row_index": 10
+      },
+      "fact_id": "SM04:10:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:10:remedy:0"
+    },
+    {
+      "step": 11,
+      "cause": "Defective supply pump",
+      "point_to_check": "NOTICE Be sure to check for above “Defective common rail”. Check common rail pressure with machine monitor. If it does not increase even during cranking, supply pump is defective. REMARK Common rail pressure can be checked with monitoring function (Code: 36400 (MPa)).",
+      "remedy": "Supply pump replacement",
+      "provenance": {
+        "manual_page": "40-935",
+        "pdf_page": 1477,
+        "table_index": 1,
+        "row_index": 11
+      },
+      "fact_id": "SM04:11:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:11:remedy:0"
+    },
+    {
+      "step": 12,
+      "cause": "Defective priming pump",
+      "point_to_check": "Priming pump has no or heavy resistance to operation.",
+      "remedy": "Priming pump replacement",
+      "provenance": {
+        "manual_page": "40-935",
+        "pdf_page": 1477,
+        "table_index": 1,
+        "row_index": 12
+      },
+      "fact_id": "SM04:12:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:12:remedy:0"
+    },
+    {
+      "step": 13,
+      "cause": "Clogged air cleaner element",
+      "point_to_check": "Air cleaner dust indicator is at caution level.",
+      "remedy": "Air cleaner element check and cleaning",
+      "provenance": {
+        "manual_page": "40-936",
+        "pdf_page": 1478,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "SM04:13:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:13:remedy:0"
+    },
+    {
+      "step": 14,
+      "cause": "Defective intake air heater",
+      "point_to_check": "• Installation part of intake air heater is not warmed during preheat operation. • Engine preheating monitor does not operate normally during preheat operation or when it is low temperature.",
+      "remedy": "Intake air heater replacement",
+      "provenance": {
+        "manual_page": "40-936",
+        "pdf_page": 1478,
+        "table_index": 0,
+        "row_index": 2
+      },
+      "fact_id": "SM04:14:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:14:remedy:0"
+    },
+    {
+      "step": 15,
+      "cause": "Defective injector",
+      "point_to_check": "• A low-temperature cylinder is found when touching the exhaust manifold right after the engine starts. • A cylinder running at the unchanged speed is found during operation in the cylinder cut-out mode. (Reference: See Testing and Adjusting, “Handle Cylinder Cut-out Mode Operation”.) REMARK If a black smoke is seen continuously during warmup operation after storage for a few days, injector may be defective.",
+      "remedy": "Replace injector.",
+      "provenance": {
+        "manual_page": "40-936",
+        "pdf_page": 1478,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "SM04:15:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:15:remedy:0"
+    },
+    {
+      "step": 16,
+      "cause": "Defective engine controller",
+      "point_to_check": "In case of an internal defect, troubleshooting is impossible as an assembly. Replace whole assembly.",
+      "remedy": "Engine controller replacement",
+      "provenance": {
+        "manual_page": "40-936",
+        "pdf_page": 1478,
+        "table_index": 0,
+        "row_index": 4
+      },
+      "fact_id": "SM04:16:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:16:remedy:0"
+    },
+    {
+      "step": 17,
+      "cause": "Defective contact of valve and valve seat",
+      "point_to_check": "• Measure compression pressure (See Standard value table). (Reference: See Testing and adjusting, “Testing compression pressure”.) • Check valve clearance (Reference: See Testing and adjusting, “Testing and adjusting valve clearance”).",
+      "remedy": "Valve or valve seat repair or replacement",
+      "provenance": {
+        "manual_page": "40-936",
+        "pdf_page": 1478,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "SM04:17:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:17:remedy:0"
+    },
+    {
+      "step": 18,
+      "cause": "Defective piston ring",
+      "point_to_check": "• Check exhaust gas color . (See standard value table.) (Reference: See Testing and adjusting, “Exhaust gas color”). • Measure compression pressure (See standard value table). (Reference: See “TESTING AND ADJUSTING”, “Testing compression pressure”.) • Check piston ring and piston ring groove.",
+      "remedy": "Piston ring and piston replacement",
+      "provenance": {
+        "manual_page": "40-936",
+        "pdf_page": 1478,
+        "table_index": 0,
+        "row_index": 6
+      },
+      "fact_id": "SM04:18:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM04:18:remedy:0"
+    }
+  ],
+  "standalone_measurements": [],
+  "unresolved_pointers": [],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

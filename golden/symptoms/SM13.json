@@ -1,0 +1,102 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "S-Mode",
+  "symptom_id": "SM13",
+  "tree_kind": "SymptomTreeFlat",
+  "symptom": "Oil is in coolant (or coolant spurts back or coolant level goes down)",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": null,
+  "related_information": "If any failure code is displayed, perform troubleshooting for that code first.",
+  "pdf_pages": [
+    1491,
+    1491
+  ],
+  "manual_pages": [
+    "40-949"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Engine oil is milky.",
+      "point_to_check": "Engine oil is increasing and milky.",
+      "remedy": "Perform troubleshooting of “WATER MIXES INTO EN- GINE OIL (MILKY)” in S mode, and take corrective action.",
+      "provenance": {
+        "manual_page": "40-949",
+        "pdf_page": 1491,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "SM13:1:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM13:1:remedy:0"
+    },
+    {
+      "step": 2,
+      "cause": "Breakage of oil cooler element",
+      "point_to_check": "Check oil cooler element.",
+      "remedy": "Oil cooler element replacement",
+      "provenance": {
+        "manual_page": "40-949",
+        "pdf_page": 1491,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "SM13:2:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM13:2:remedy:0"
+    },
+    {
+      "step": 3,
+      "cause": "Breakage of cylinder head",
+      "point_to_check": "• There are many bubbles in radiator and coolant blows back. • Disassemble engine and check cylinder head for abnormality by pressure test.",
+      "remedy": "Cylinder head replacement",
+      "provenance": {
+        "manual_page": "40-949",
+        "pdf_page": 1491,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "SM13:3:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM13:3:remedy:0"
+    },
+    {
+      "step": 4,
+      "cause": "Breakage of head gasket",
+      "point_to_check": "• Many bubbles and blow-back are found in radiator. • Disassemble and inspect engine. Check cylinder head gasket for failure.",
+      "remedy": "Cylinder head gasket replacement",
+      "provenance": {
+        "manual_page": "40-949",
+        "pdf_page": 1491,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "SM13:4:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM13:4:remedy:0"
+    },
+    {
+      "step": 5,
+      "cause": "Cracking or hole caused by pitting in cylinder block",
+      "point_to_check": "• Engine oil is increasing and milky. • Disassemble engine and check inside of cylinder block for cracking or hole caused by pitting.",
+      "remedy": "Cylinder block replacement",
+      "provenance": {
+        "manual_page": "40-949",
+        "pdf_page": 1491,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "SM13:5:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM13:5:remedy:0"
+    }
+  ],
+  "standalone_measurements": [],
+  "unresolved_pointers": [],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

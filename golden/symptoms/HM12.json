@@ -1,0 +1,229 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "H-Mode",
+  "symptom_id": "HM12",
+  "tree_kind": "SymptomTreeBranching",
+  "symptom": "Hydraulic Drift of Bucket is Large",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": "The hydraulic drift of the bucket is large.",
+  "related_information": "Pre-troubleshooting If a failure code is shown, do the troubleshooting for that code first.",
+  "pdf_pages": [
+    1361,
+    1363
+  ],
+  "manual_pages": [
+    "40-819",
+    "40-820",
+    "40-821"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Bucket cylinder",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine Oil Leakage”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: Oil Bucket cylin- Bucket Max. 20 Leakder head side IN relief cc/min age hose • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• The bucket cylinder is correct. • Go to the next check item.",
+        "NO": "• The bucket cylinder is defective. • Repair or replace the bucket cylinder. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-819",
+        "pdf_page": 1361,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM12:1:step:0",
+      "branch_fact_ids": {
+        "NO": "HM12:1:branch:0",
+        "YES": "HM12:1:branch:1"
+      }
+    },
+    {
+      "step": 2,
+      "cause": "Suction safety valve on OUT side of bucket control valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Control lever: Bucket OUT re- Main Rear pump 33.1 to 37.2 relief discharged lief MPa {338 to prespressure pick- • Hydraul- 380 kgf/cm2} sure up port ic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Suction safety valve on OUT side of bucket control valve is normal. • Go to the next check item.",
+        "NO": "• Suction safety valve on OUT side of bucket control valve is defective. • Repair or replace the suction safety valve on OUT side of bucket control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-819",
+        "pdf_page": 1361,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "HM12:2:step:0",
+      "branch_fact_ids": {
+        "NO": "HM12:2:branch:0",
+        "YES": "HM12:2:branch:1"
+      }
+    },
+    {
+      "step": 3,
+      "cause": "Bucket control valve",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping to examine. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Examine the control valve body and the boom spool to see if they are not twisted or stuck and that they do not have any damage or dirt on them. (They must move smoothly and not be stuck.) REMARK Be careful that dirt does not enter during recovery work.",
+      "branches": {
+        "YES": "• Bucket control valve body and spool are normal. • Go to the next check item.",
+        "NO": "• Bucket control valve body and spool are defective. • Repair or replace the bucket control valve body and spool. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-820",
+        "pdf_page": 1362,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM12:3:step:0",
+      "branch_fact_ids": {
+        "NO": "HM12:3:branch:0",
+        "YES": "HM12:3:branch:1"
+      }
+    },
+    {
+      "step": 4,
+      "cause": "Pressure compensation valve on IN side of bucket control valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. 2. Does the troubleshooting result of the main relief pressure agree with the judgment criteria? 3. Do relief of other work equipment and examine. 4. Is the bucket stopped? 5. Interchange the pressure compensation valves on IN and OUT sides of bucket control valve, and examine. 6. Is there no change, and does the phenomenon reproduce? REMARK The area ratios of the pressure compensation valves on the IN side and OUT sides are different. Be sure to set them back to their initial positions after troubleshooting. Measurement position, condi- Standard val- Item tion ue • Control lever: Bucket Main Rear pump IN relief 33.1 to 37.2 relief discharged • Hydraul- MPa {338 to prespressure pickic oil 380 kgf/cm2} sure up port temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Pressure compensation valve on IN side of bucket control valve is normal. • Go to the next check item.",
+        "NO": "• Pressure compensation valve on IN side of bucket control valve is defective. • Repair or replace the pressure compensation valve on IN side of bucket control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-820",
+        "pdf_page": 1362,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM12:4:step:0",
+      "branch_fact_ids": {
+        "NO": "HM12:4:branch:0",
+        "YES": "HM12:4:branch:1"
+      }
+    },
+    {
+      "step": 5,
+      "cause": "Pressure compensation valve on OUT side of bucket control valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. 2. Does the troubleshooting result of the main relief pressure agree with the judgment criteria? 3. Do relief of other work equipment and examine. 4. Is the bucket stopped? 5. Interchange the pressure compensation valves on IN and OUT sides of bucket control valve, and examine. 6. Is there no change, and does the phenomenon reproduce? REMARK The area ratios of the pressure compensation valves on the IN side and OUT sides are different. Be sure to set them back to their initial positions after troubleshooting. Measurement position, condi- Standard val- Item tion ue • Control lever: Bucket OUT re- Main Rear pump 33.1 to 37.2 relief discharged lief MPa {338 to prespressure pick- • Hydraul- 380 kgf/cm2} sure up port ic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Pressure compensation valve on OUT side of bucket control valve is normal. • Go to the next check item.",
+        "NO": "• Pressure compensation valve on OUT side of bucket control valve is defective. • Repair or replace the pressure compensation valve on OUT side of bucket control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-821",
+        "pdf_page": 1363,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM12:5:step:0",
+      "branch_fact_ids": {
+        "NO": "HM12:5:branch:0",
+        "YES": "HM12:5:branch:1"
+      }
+    },
+    {
+      "step": 6,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Stop the engine. 2. Connect all the component parts. 3. Start the engine. 4. Operate the lever to do the troubleshooting. 5. Does bucket operate normally?",
+      "branches": {
+        "YES": "The repair is done.",
+        "NO": "Go back to the first check item."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-821",
+        "pdf_page": 1363,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM12:6:step:0",
+      "branch_fact_ids": {
+        "NO": "HM12:6:branch:0",
+        "YES": "HM12:6:branch:1"
+      }
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Oil Leakage",
+      "point": "Bucket cylinder head side hose / • Fuel control dial at Hi • Control lever: Bucket IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Max. 20 cc/min",
+      "provenance": {
+        "manual_page": "40-819",
+        "pdf_page": 1361,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "HM12:0:meas:0",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main relief pressure",
+      "point": "Rear pump discharged pressure pickup port / • Control lever: Bucket OUT relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "33.1 to 37.2 MPa {338 to 380 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-819",
+        "pdf_page": 1361,
+        "table_index": 3,
+        "row_index": 1
+      },
+      "fact_id": "HM12:0:meas:1",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main relief pressure",
+      "point": "Rear pump discharged pressure pickup port / • Control lever: Bucket IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "33.1 to 37.2 MPa {338 to 380 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-820",
+        "pdf_page": 1362,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM12:0:meas:2",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main relief pressure",
+      "point": "Rear pump discharged pressure pickup port / • Control lever: Bucket OUT relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "33.1 to 37.2 MPa {338 to 380 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-821",
+        "pdf_page": 1363,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM12:0:meas:3",
+      "criteria_kind": "numeric"
+    }
+  ],
+  "unresolved_pointers": [
+    {
+      "text": "do the troubleshooting for that code first.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-819",
+        "pdf_page": 1361,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-821",
+        "pdf_page": 1363,
+        "table_index": 0
+      }
+    }
+  ],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

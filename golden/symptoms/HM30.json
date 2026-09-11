@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "H-Mode",
+  "symptom_id": "HM30",
+  "tree_kind": "SymptomTreeBranching",
+  "symptom": "Upper Structure Overruns Too Much When It Stops Swing Operation (Right and Left)",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": "The upper structure overruns too much when it stops swing operation (right and left).",
+  "related_information": "Pre-troubleshooting If a failure code is shown, do the troubleshooting for that code first. Monitoring code • F pump pressure can be examined with the monitoring function. (Code: 01100) • R pump pressure can be examined with the monitoring function. (Code: 01101)",
+  "pdf_pages": [
+    1452,
+    1453
+  ],
+  "manual_pages": [
+    "40-910",
+    "40-911"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Swing motor safety valve",
+      "procedure": "1. Do the troubleshooting. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. 2. Does the measurement result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: Swing relief Swing Rear pump 27.4 to 31.3 relief discharged • Swing MPa {280 to prespressure picklock 320 kgf/cm2} sure up port switch: ON • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• The swing motor safety valve is correct. • Go to the next check item.",
+        "NO": "• Adjust the hydraulic pressure of the swing motor safety valve. • If it does not become correct even after adjustment, replace the safety valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-910",
+        "pdf_page": 1452,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM30:1:step:0",
+      "branch_fact_ids": {
+        "NO": "HM30:1:branch:0",
+        "YES": "HM30:1:branch:1"
+      }
+    },
+    {
+      "step": 2,
+      "cause": "Swing motor",
+      "procedure": "1. Do the troubleshooting. For details, see Testing and Adjusting, “Examine Oil Leakage”. 2. Does the measurement result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: Swing relief Oil Swing motor • Swing Leak- Max. 10 ℓ/min drain hose lock age switch: ON • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• The swing motor is correct. • Go to the next check item.",
+        "NO": "• The swing motor is defective. • Replace the swing motor. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-911",
+        "pdf_page": 1453,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM30:2:step:0",
+      "branch_fact_ids": {
+        "NO": "HM30:2:branch:0",
+        "YES": "HM30:2:branch:1"
+      }
+    },
+    {
+      "step": 3,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Stop the engine. 2. Connect all the component parts. 3. Start the engine. 4. Does the machine swing normally?",
+      "branches": {
+        "YES": "The repair is done.",
+        "NO": "Return to the first check item."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-911",
+        "pdf_page": 1453,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM30:3:step:0",
+      "branch_fact_ids": {
+        "NO": "HM30:3:branch:0",
+        "YES": "HM30:3:branch:1"
+      }
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Swing relief pressure",
+      "point": "Rear pump discharged pressure pickup port / • Fuel control dial at Hi • Control lever: Swing relief • Swing lock switch: ON • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "27.4 to 31.3 MPa {280 to 320 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-910",
+        "pdf_page": 1452,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "HM30:0:meas:0",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Oil Leakage",
+      "point": "Swing motor drain hose / • Fuel control dial at Hi • Control lever: Swing relief • Swing lock switch: ON • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Max. 10 ℓ/min",
+      "provenance": {
+        "manual_page": "40-911",
+        "pdf_page": 1453,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM30:0:meas:1",
+      "criteria_kind": "numeric"
+    }
+  ],
+  "unresolved_pointers": [
+    {
+      "text": "do the troubleshooting for that code first.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-910",
+        "pdf_page": 1452,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "Do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-910",
+        "pdf_page": 1452,
+        "table_index": 1
+      }
+    },
+    {
+      "text": "Do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-911",
+        "pdf_page": 1453,
+        "table_index": 0
+      }
+    }
+  ],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

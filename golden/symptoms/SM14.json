@@ -1,0 +1,237 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "S-Mode",
+  "symptom_id": "SM14",
+  "tree_kind": "SymptomTreeFlat",
+  "symptom": "Oil pressure drops.",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": null,
+  "related_information": "• If any failure code is displayed, perform troubleshooting for that code first. • Check if machine is operated on slopes steeper than angle specified in Operation and Maintenance Manual.",
+  "pdf_pages": [
+    1492,
+    1492
+  ],
+  "manual_pages": [
+    "40-950"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Insufficient oil in oil pan",
+      "point_to_check": "Oil level in oil pan is insufficient. Oil pressure monitor indicates low oil pressure on slopes.",
+      "remedy": "Oil refiling",
+      "provenance": {
+        "manual_page": "40-950",
+        "pdf_page": 1492,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "SM14:1:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM14:1:remedy:0"
+    },
+    {
+      "step": 2,
+      "cause": "Defective oil pressure switch or wiring harness",
+      "point_to_check": "Check oil pressure switch, wiring harness, and connectors",
+      "remedy": "Oil pressure switch, wiring harness, and connectors replacement",
+      "provenance": {
+        "manual_page": "40-950",
+        "pdf_page": 1492,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "SM14:2:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM14:2:remedy:0"
+    },
+    {
+      "step": 3,
+      "cause": "Fuel mixed in oil",
+      "point_to_check": "• Perform oil analysis and check for mixing of oil • Oil smells of diesel fuel.",
+      "remedy": "If fuel is mixed into oil, perform troubleshooting of “FUEL MIXES INTO EN- GINE OIL” in S mode, and take corrective action.",
+      "provenance": {
+        "manual_page": "40-950",
+        "pdf_page": 1492,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "SM14:3:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM14:3:remedy:0"
+    },
+    {
+      "step": 4,
+      "cause": "Water mixed in oil",
+      "point_to_check": "• Perform oil analysis and check for mixing of water • Oil is milky.",
+      "remedy": "If water is mixed into oil, perform troubleshooting of “WATER MIXES INTO EN- GINE OIL (MILKY)” in S mode, and take corrective action.",
+      "provenance": {
+        "manual_page": "40-950",
+        "pdf_page": 1492,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "SM14:4:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM14:4:remedy:0"
+    },
+    {
+      "step": 5,
+      "cause": "Clogged oil filter",
+      "point_to_check": "• Check oil filter. (Reference: Oil filter is used for more than specified period, oil is deteriorated badly, etc.) • Oil filter may be blocked by water.",
+      "remedy": "Oil filter replacement",
+      "provenance": {
+        "manual_page": "40-950",
+        "pdf_page": 1492,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "SM14:5:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM14:5:remedy:0"
+    },
+    {
+      "step": 6,
+      "cause": "Flattened or clogged hydraulic piping",
+      "point_to_check": "Hydraulic piping is flattened or clogged.",
+      "remedy": "Hydraulic piping replacement",
+      "provenance": {
+        "manual_page": "40-950",
+        "pdf_page": 1492,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "fact_id": "SM14:6:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM14:6:remedy:0"
+    },
+    {
+      "step": 7,
+      "cause": "Defective oil pump",
+      "point_to_check": "• Check oil pump (for wear or breakage of gear) • Oil pump is heavy in turning or has play.",
+      "remedy": "Oil pump replacement",
+      "provenance": {
+        "manual_page": "40-950",
+        "pdf_page": 1492,
+        "table_index": 1,
+        "row_index": 7
+      },
+      "fact_id": "SM14:7:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM14:7:remedy:0"
+    },
+    {
+      "step": 8,
+      "cause": "Defective regulator valve",
+      "point_to_check": "Check whether the valve spring is deformed and damaged",
+      "remedy": "Regulator valve exchange",
+      "provenance": {
+        "manual_page": "40-950",
+        "pdf_page": 1492,
+        "table_index": 1,
+        "row_index": 8
+      },
+      "fact_id": "SM14:8:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM14:8:remedy:0"
+    },
+    {
+      "step": 9,
+      "cause": "Defective oil pump relief valve",
+      "point_to_check": "Valve and spring of oil pump relief valve are weakening and damaged.",
+      "remedy": "Oil pump relief valve exchange",
+      "provenance": {
+        "manual_page": "40-950",
+        "pdf_page": 1492,
+        "table_index": 1,
+        "row_index": 9
+      },
+      "fact_id": "SM14:9:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM14:9:remedy:0"
+    },
+    {
+      "step": 10,
+      "cause": "Cracking or clogged oil pump suction piping",
+      "point_to_check": "Check around oil pump suction piping (for cracking in piping).",
+      "remedy": "Oil pump suction piping replacement",
+      "provenance": {
+        "manual_page": "40-950",
+        "pdf_page": 1492,
+        "table_index": 1,
+        "row_index": 10
+      },
+      "fact_id": "SM14:10:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM14:10:remedy:0"
+    },
+    {
+      "step": 11,
+      "cause": "Defective seal between oil pump and oil pump suction piping",
+      "point_to_check": "Check sealing portion.",
+      "remedy": "Seal replacement",
+      "provenance": {
+        "manual_page": "40-950",
+        "pdf_page": 1492,
+        "table_index": 1,
+        "row_index": 11
+      },
+      "fact_id": "SM14:11:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM14:11:remedy:0"
+    },
+    {
+      "step": 12,
+      "cause": "Wear of main journal bearing",
+      "point_to_check": "• Check main journal bearing. • Metal particles are contained in oil drained from oil pan.",
+      "remedy": "Bearing of main journal replacement",
+      "provenance": {
+        "manual_page": "40-950",
+        "pdf_page": 1492,
+        "table_index": 1,
+        "row_index": 12
+      },
+      "fact_id": "SM14:12:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM14:12:remedy:0"
+    },
+    {
+      "step": 13,
+      "cause": "Wear of pin journal bearing",
+      "point_to_check": "• Check pin journal bearing. • Oil drained from oil pan contains metallic powder.",
+      "remedy": "Bearing of pin journal replacement",
+      "provenance": {
+        "manual_page": "40-950",
+        "pdf_page": 1492,
+        "table_index": 1,
+        "row_index": 13
+      },
+      "fact_id": "SM14:13:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM14:13:remedy:0"
+    },
+    {
+      "step": 14,
+      "cause": "Breakage or removal of piston cooling nozzle",
+      "point_to_check": "Check of piston cooling nozzle",
+      "remedy": "Piston cooling nozzle replacement",
+      "provenance": {
+        "manual_page": "40-950",
+        "pdf_page": 1492,
+        "table_index": 1,
+        "row_index": 14
+      },
+      "fact_id": "SM14:14:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM14:14:remedy:0"
+    }
+  ],
+  "standalone_measurements": [],
+  "unresolved_pointers": [],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

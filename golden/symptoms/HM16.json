@@ -1,0 +1,181 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "H-Mode",
+  "symptom_id": "HM16",
+  "tree_kind": "SymptomTreeBranching",
+  "symptom": "Attachment Circuit Cannot be Changed",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": "When an attachment is equipped, attachment circuit does not changeover.",
+  "related_information": "Pre-troubleshooting If a failure code is shown, do the troubleshooting for that code first. Monitoring code • The swing LEFT PPC pressure can be examined with the monitoring function. (Code: 09001) • The swing RIGHT PPC pressure can be examined with the monitoring function. (Code: 09002) Reference information • When the ATT mode is selected: The service circuit changes to the double acting circuit. The safety valve is set to low pressure. • When the B mode is selected: The service circuit changes to the single acting circuit. The safety valve is set to high pressure. • The safety valve setting changes only for port B. The port A side stays at low pressure setting at all times.",
+  "pdf_pages": [
+    1376,
+    1378
+  ],
+  "manual_pages": [
+    "40-834",
+    "40-835",
+    "40-836"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Attachment return selector solenoid valve",
+      "procedure": "1. Do the troubleshooting. For details, see Testing and Adjusting, “Examine Outlet Pressure of Solenoid Valve”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Working mode: ATT • Fuel control 0 MPa {0 dial at Hi kgf/cm2} • Hydraulic oil tempera- Sole- Attachment ture: 45 noid selector soleto 55°C outlet noid valve presoutlet hose • Working sure mode: B • Fuel control dial at Hi 2.9 MPa {30 kgf/cm2} • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Attachment return selector solenoid valve is normal. • Go to the next check item.",
+        "NO": "• Attachment return selector solenoid valve is defective. • Repair or replace attachment return selector solenoid valve is normal. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-835",
+        "pdf_page": 1377,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM16:1:step:0",
+      "branch_fact_ids": {
+        "NO": "HM16:1:branch:0",
+        "YES": "HM16:1:branch:1"
+      }
+    },
+    {
+      "step": 2,
+      "cause": "Attachment return selector valve",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping to do the troubleshooting. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Is the attachment return selector valve clean, with no twists, seizure, scratches, or spring deterioration?",
+      "branches": {
+        "YES": "• The attachment return selector valve is normal. • Go to the next check item.",
+        "NO": "• Attachment return selector valve is defective. • Repair or replace the attachment return selector valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-835",
+        "pdf_page": 1377,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM16:2:step:0",
+      "branch_fact_ids": {
+        "NO": "HM16:2:branch:0",
+        "YES": "HM16:2:branch:1"
+      }
+    },
+    {
+      "step": 3,
+      "cause": "Safety valve of service control valve",
+      "procedure": "1. Adjust the safety valve. 2. Does the oil pressure remain abnormal?",
+      "branches": {
+        "YES": "• Safety valve of service control valve is defective. • Repair or replace safety valve of service control valve. • Go to “Confirmation of repair”.",
+        "NO": "• Safety valve of service control valve is normal. • Go to the next check item."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-836",
+        "pdf_page": 1378,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM16:3:step:0",
+      "branch_fact_ids": {
+        "NO": "HM16:3:branch:0",
+        "YES": "HM16:3:branch:1"
+      }
+    },
+    {
+      "step": 4,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Stop the engine. 2. Connect all the component parts. 3. Start the engine to do the troubleshooting. 4. Are the attachment changeovers made correctly?",
+      "branches": {
+        "YES": "The repair is done.",
+        "NO": "Go back to the first check item."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-836",
+        "pdf_page": 1378,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM16:4:step:0",
+      "branch_fact_ids": {
+        "NO": "HM16:4:branch:0",
+        "YES": "HM16:4:branch:1"
+      }
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Solenoid outlet pressure",
+      "point": "Attachment selector solenoid valve outlet hose / • Working mode: ATT • Fuel control dial at Hi • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0 MPa {0 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-835",
+        "pdf_page": 1377,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM16:0:meas:0",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Solenoid outlet pressure",
+      "point": "• Working mode: B • Fuel control dial at Hi • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.9 MPa {30 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-835",
+        "pdf_page": 1377,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM16:0:meas:1",
+      "criteria_kind": "numeric"
+    }
+  ],
+  "unresolved_pointers": [
+    {
+      "text": "do the troubleshooting for that code first.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-834",
+        "pdf_page": 1376,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "Do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-835",
+        "pdf_page": 1377,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-835",
+        "pdf_page": 1377,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-836",
+        "pdf_page": 1378,
+        "table_index": 0
+      }
+    }
+  ],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

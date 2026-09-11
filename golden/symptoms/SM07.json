@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "S-Mode",
+  "symptom_id": "SM07",
+  "tree_kind": "SymptomTreeFlat",
+  "symptom": "Engine runs rough or is unstable.",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": null,
+  "related_information": "If any failure code is displayed, perform troubleshooting for that code first.",
+  "pdf_pages": [
+    1483,
+    1483
+  ],
+  "manual_pages": [
+    "40-941"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Fuel level is low.",
+      "point_to_check": "If fuel tank is checked, it is empty.",
+      "remedy": "Refueling",
+      "provenance": {
+        "manual_page": "40-941",
+        "pdf_page": 1483,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "SM07:1:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM07:1:remedy:0"
+    },
+    {
+      "step": 2,
+      "cause": "Clogging fuel tank cap air bleeding hole",
+      "point_to_check": "Fuel tank cap air bleeding hole is clogged.",
+      "remedy": "Flush air breather hole in fuel tank cap surrounding area.",
+      "provenance": {
+        "manual_page": "40-941",
+        "pdf_page": 1483,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "SM07:2:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM07:2:remedy:0"
+    },
+    {
+      "step": 3,
+      "cause": "Clogged fuel filter element",
+      "point_to_check": "Check used hours of fuel filter element. If it is used over specified time, fuel filter element may be clogged.",
+      "remedy": "Fuel filter element replacement",
+      "provenance": {
+        "manual_page": "40-941",
+        "pdf_page": 1483,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "SM07:3:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM07:3:remedy:0"
+    },
+    {
+      "step": 4,
+      "cause": "Foreign materials are mixed into fuel.",
+      "point_to_check": "If drain fuel from fuel tank, rust or water comes out.",
+      "remedy": "Fuel replacement",
+      "provenance": {
+        "manual_page": "40-941",
+        "pdf_page": 1483,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "SM07:4:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM07:4:remedy:0"
+    },
+    {
+      "step": 5,
+      "cause": "Air mixed in fuel piping system",
+      "point_to_check": "When performing bleeding air from the fuel system, air comes out. (For details, see Testing and Adjusting, “Bleed Air from Fuel System”).",
+      "remedy": "• Perform air bleeding operation • Correct or replace fuel piping",
+      "provenance": {
+        "manual_page": "40-941",
+        "pdf_page": 1483,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "SM07:5:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM07:5:remedy:0"
+    },
+    {
+      "step": 6,
+      "cause": "Leakage from fuel piping system",
+      "point_to_check": "Fuel leaks from fuel piping. (For details, see Testing and Adjusting, “Examine Fuel Circuit for Leakage”).",
+      "remedy": "Correct or replace fuel piping related parts",
+      "provenance": {
+        "manual_page": "40-941",
+        "pdf_page": 1483,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "fact_id": "SM07:6:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM07:6:remedy:0"
+    },
+    {
+      "step": 7,
+      "cause": "Fuel leakage at Injector and inlet connector",
+      "point_to_check": "Return rate from injector is high. (See Testing and Adjusting, “How to Examine Fuel Discharge, Return, and Leakage”)",
+      "remedy": "Tighten or replace inlet connector",
+      "provenance": {
+        "manual_page": "40-941",
+        "pdf_page": 1483,
+        "table_index": 1,
+        "row_index": 7
+      },
+      "fact_id": "SM07:7:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM07:7:remedy:0"
+    },
+    {
+      "step": 8,
+      "cause": "Leakage from boost system",
+      "point_to_check": "Check boost system (between turbocharger outlet and aftercooler, aftercooler and between aftercooler and air intake manifold) for leakage.",
+      "remedy": "Boost piping repair or replacement",
+      "provenance": {
+        "manual_page": "40-941",
+        "pdf_page": 1483,
+        "table_index": 1,
+        "row_index": 8
+      },
+      "fact_id": "SM07:8:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM07:8:remedy:0"
+    }
+  ],
+  "standalone_measurements": [],
+  "unresolved_pointers": [],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

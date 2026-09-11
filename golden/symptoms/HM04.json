@@ -1,0 +1,186 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "H-Mode",
+  "symptom_id": "HM04",
+  "tree_kind": "SymptomTreeBranching",
+  "symptom": "Unusual Noise is Heard from Around Hydraulic Pump",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": "Unusual noise is heard from around the hydraulic pump.",
+  "related_information": null,
+  "pdf_pages": [
+    1306,
+    1307
+  ],
+  "manual_pages": [
+    "40-764",
+    "40-765"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Hydraulic oil",
+      "procedure": "1. Examine the hydraulic oil level. 2. Is there no sign of hydraulic oil leakage to the outside, and is the hydraulic oil level correct?",
+      "branches": {
+        "YES": "• Pump shaft seal is normal. • Go to the next check item.",
+        "NO": "• Hydraulic oil may flow in flywheel case due to breakage of pump shaft seal. • Replace the pump shaft seal. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-764",
+        "pdf_page": 1306,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM04:1:step:0",
+      "branch_fact_ids": {
+        "NO": "HM04:1:branch:0",
+        "YES": "HM04:1:branch:1"
+      }
+    },
+    {
+      "step": 2,
+      "cause": "Hydraulic oil",
+      "procedure": "1. Examine the hydraulic oil. 2. Are there no bubbles in hydraulic oil, or is the no oil cloudy white? Is it normal?",
+      "branches": {
+        "YES": "• The hydraulic oil is correct. • Go to the next check item.",
+        "NO": "• Hydraulic oil level is defective. • Replace the hydraulic oil. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-764",
+        "pdf_page": 1306,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "HM04:2:step:0",
+      "branch_fact_ids": {
+        "NO": "HM04:2:branch:0",
+        "YES": "HM04:2:branch:1"
+      }
+    },
+    {
+      "step": 3,
+      "cause": "Hydraulic tank cap",
+      "procedure": "1. Examine the hydraulic tank cap. 2. Is hydraulic tank cap unclogged? Is it clean?",
+      "branches": {
+        "YES": "• Hydraulic tank cap is normal. • Go to the next check item.",
+        "NO": "• Pressure in the hydraulic tank may be negative due to clogging of hydraulic tank cap. • Clean the hydraulic tank cap. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-764",
+        "pdf_page": 1306,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "HM04:3:step:0",
+      "branch_fact_ids": {
+        "NO": "HM04:3:branch:0",
+        "YES": "HM04:3:branch:1"
+      }
+    },
+    {
+      "step": 4,
+      "cause": "Hydraulic tank strainer",
+      "procedure": "1. Examine the hydraulic tank strainer. 2. Is the hydraulic tank strainer is clogged? Is it clean?",
+      "branches": {
+        "YES": "• The hydraulic tank strainer is correct. • Go to the next check item.",
+        "NO": "• Pressure in the hydraulic tank may be negative due to clogging of hydraulic tank strainer. • Clean the hydraulic tank strainer. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-765",
+        "pdf_page": 1307,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM04:4:step:0",
+      "branch_fact_ids": {
+        "NO": "HM04:4:branch:0",
+        "YES": "HM04:4:branch:1"
+      }
+    },
+    {
+      "step": 5,
+      "cause": "Hydraulic tank return filter",
+      "procedure": "1. Examine the hydraulic tank return filter. 2. Is hydraulic tank return filter clogged due to sticking of metal particles? Is it clean?",
+      "branches": {
+        "YES": "• Hydraulic tank return filter is normal. • Go to the next check item.",
+        "NO": "• Hydraulic tank return filter is defective. • Clean or replace the hydraulic tank return filter. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-765",
+        "pdf_page": 1307,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM04:5:step:0",
+      "branch_fact_ids": {
+        "NO": "HM04:5:branch:0",
+        "YES": "HM04:5:branch:1"
+      }
+    },
+    {
+      "step": 6,
+      "cause": "Piston pump",
+      "procedure": "1. Stop the engine. 2. Release the pressure that remains in the hydraulic tank and piping. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 3. Remove the main oil pressure measurement plug. 4. Turn the starting switch to the ON position. 5. Examine it. For details, see Testing and Adjusting, “Procedure to Perform No-Injection Cranking”. 6. Does oil flow out of the main oil pressure measurement plug?",
+      "branches": {
+        "YES": "• The piston pump is correct. • Go to the next check item.",
+        "NO": "• The piston pump is defective. • Repair or replace the piston pump. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-765",
+        "pdf_page": 1307,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "HM04:6:step:0",
+      "branch_fact_ids": {
+        "NO": "HM04:6:branch:0",
+        "YES": "HM04:6:branch:1"
+      }
+    },
+    {
+      "step": 7,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Stop the engine. 2. Connect all the component parts. 3. Start the engine to do the troubleshooting. 4. Is the sound around the hydraulic pump normal?",
+      "branches": {
+        "YES": "The repair is done.",
+        "NO": "Go back to the first check item."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-765",
+        "pdf_page": 1307,
+        "table_index": 0,
+        "row_index": 7
+      },
+      "fact_id": "HM04:7:step:0",
+      "branch_fact_ids": {
+        "NO": "HM04:7:branch:0",
+        "YES": "HM04:7:branch:1"
+      }
+    }
+  ],
+  "standalone_measurements": [],
+  "unresolved_pointers": [
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-765",
+        "pdf_page": 1307,
+        "table_index": 0
+      }
+    }
+  ],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

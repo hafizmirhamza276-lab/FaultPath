@@ -1,0 +1,257 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "H-Mode",
+  "symptom_id": "HM33",
+  "tree_kind": "SymptomTreeBranching",
+  "symptom": "Large Unusual Noise is Heard Upper Structure Stops Swing Operation",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": "Large unusual noise is heard at swing stop.",
+  "related_information": "Pre-troubleshooting If a failure code is shown, do the troubleshooting for that code first.",
+  "pdf_pages": [
+    1460,
+    1462
+  ],
+  "manual_pages": [
+    "40-918",
+    "40-919",
+    "40-920"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Variable back pressure solenoid valve",
+      "procedure": "1. Do the troubleshooting. For details, see Testing and Adjusting, “Examine Outlet Pressure of Solenoid Valve”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Neutral 0 MPa {0 • Hydraulkgf/cm2} ic oil temperature: 45 to 55°C • Fuel Solecontrol Variable back noid dial at Hi pressure soleoutlet noid valve • Control presoutlet hose lever: sure Swing LEFT, 2.84 to 3.43 swing MPa {29 to 35 RIGHT kgf/cm2} operation • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Variable back pressure valve solenoid valve is normal. • Go to the next check item.",
+        "NO": "• Variable back pressure valve solenoid valve is defective. • Replace the variable back pressure valve solenoid valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-918",
+        "pdf_page": 1460,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM33:1:step:0",
+      "branch_fact_ids": {
+        "NO": "HM33:1:branch:0",
+        "YES": "HM33:1:branch:1"
+      }
+    },
+    {
+      "step": 2,
+      "cause": "Back pressure valve",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping to do the troubleshooting. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Is the back pressure valve clean, with no stuck spool, seizure, or spring deterioration?",
+      "branches": {
+        "YES": "• The back pressure valve is normal. • Go to the next check item.",
+        "NO": "• The back pressure valve is defective. • Repair or replace the back pressure valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-918",
+        "pdf_page": 1460,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "HM33:2:step:0",
+      "branch_fact_ids": {
+        "NO": "HM33:2:branch:0",
+        "YES": "HM33:2:branch:1"
+      }
+    },
+    {
+      "step": 3,
+      "cause": "Swing motor safety valve",
+      "procedure": "1. Do the troubleshooting. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: Swing relief Swing Rear pump 27.4 to 31.3 relief discharged • Swing MPa {280 to prespressure picklock 320 kgf/cm2} sure up port switch: ON • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• The swing motor safety valve is correct. • Go to the next check item.",
+        "NO": "• Adjust the hydraulic pressure of the swing motor safety valve. • If it does not become correct even after adjustment, replace the safety valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-919",
+        "pdf_page": 1461,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM33:3:step:0",
+      "branch_fact_ids": {
+        "NO": "HM33:3:branch:0",
+        "YES": "HM33:3:branch:1"
+      }
+    },
+    {
+      "step": 4,
+      "cause": "Left suction valve of swing motor",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Interchange the right and left suction valves of the swing motor. 3. Is there no change, and does the phenomenon reproduce?",
+      "branches": {
+        "YES": "• The left suction valve of the swing motor is correct. • Go to the next check item.",
+        "NO": "• Examine the left suction valve of the swing motor for sticking, scratches, or other abnormalities when it is removed. • If the left suction valve of the swing motor is stuck or scratched, replace the valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-919",
+        "pdf_page": 1461,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM33:4:step:0",
+      "branch_fact_ids": {
+        "NO": "HM33:4:branch:0",
+        "YES": "HM33:4:branch:1"
+      }
+    },
+    {
+      "step": 5,
+      "cause": "Right suction valve of swing motor",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Interchange the right and left suction valves of the swing motor. 3. Is there no change, and does the phenomenon reproduce?",
+      "branches": {
+        "YES": "• The right suction valve of swing motor is correct. • Go to the next check item.",
+        "NO": "• Examine the right suction valve of the swing motor for sticking, scratches, or other abnormalities when it is removed. • If the right suction valve of the swing motor is stuck or scratched, replace the valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-920",
+        "pdf_page": 1462,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM33:5:step:0",
+      "branch_fact_ids": {
+        "NO": "HM33:5:branch:0",
+        "YES": "HM33:5:branch:1"
+      }
+    },
+    {
+      "step": 6,
+      "cause": "Swing machinery",
+      "procedure": "Is the swing machinery clean, with no unusual noise, abnormal heat, or metal powder in the drain oil?",
+      "branches": {
+        "YES": "• The swing machinery is correct. • Go to the next check item.",
+        "NO": "• The swing machinery is defective. • Replace the swing machinery. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-920",
+        "pdf_page": 1462,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM33:6:step:0",
+      "branch_fact_ids": {
+        "NO": "HM33:6:branch:0",
+        "YES": "HM33:6:branch:1"
+      }
+    },
+    {
+      "step": 7,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Stop the engine. 2. Connect all the component parts. 3. Start the engine. 4. Does the machine swing normally?",
+      "branches": {
+        "YES": "The repair is done.",
+        "NO": "Return to the first check item."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-920",
+        "pdf_page": 1462,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "HM33:7:step:0",
+      "branch_fact_ids": {
+        "NO": "HM33:7:branch:0",
+        "YES": "HM33:7:branch:1"
+      }
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Solenoid outlet pressure",
+      "point": "Variable back pressure solenoid valve outlet hose / • Fuel control dial at Hi • Neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0 MPa {0 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-918",
+        "pdf_page": 1460,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "HM33:0:meas:0",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Solenoid outlet pressure",
+      "point": "• Fuel control dial at Hi • Control lever: Swing LEFT, swing RIGHT operation • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-918",
+        "pdf_page": 1460,
+        "table_index": 2,
+        "row_index": 2
+      },
+      "fact_id": "HM33:0:meas:1",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Swing relief pressure",
+      "point": "Rear pump discharged pressure pickup port / • Fuel control dial at Hi • Control lever: Swing relief • Swing lock switch: ON • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "27.4 to 31.3 MPa {280 to 320 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-919",
+        "pdf_page": 1461,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM33:0:meas:2",
+      "criteria_kind": "numeric"
+    }
+  ],
+  "unresolved_pointers": [
+    {
+      "text": "do the troubleshooting for that code first.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-918",
+        "pdf_page": 1460,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "Do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-918",
+        "pdf_page": 1460,
+        "table_index": 1
+      }
+    },
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-918",
+        "pdf_page": 1460,
+        "table_index": 1
+      }
+    },
+    {
+      "text": "Do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-919",
+        "pdf_page": 1461,
+        "table_index": 0
+      }
+    }
+  ],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

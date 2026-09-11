@@ -1,0 +1,111 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "H-Mode",
+  "symptom_id": "HM19",
+  "tree_kind": "SymptomTreeBranching",
+  "symptom": "In Combined Operation of Swing and Travel, Travel Speed Falls Largely",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": "In combined operation of swing and travel, travel speed falls largely",
+  "related_information": "Pre-troubleshooting If the operation is slow even in travel only, do the troubleshooting for “Travel Speed is Low” in H mode first.",
+  "pdf_pages": [
+    1383,
+    1383
+  ],
+  "manual_pages": [
+    "40-841"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "LS shuttle valve in L.H. travel control valve",
+      "procedure": "1. Examine the check valve seat of shuttle valve in L.H. travel control valve. 2. Is there no flaw or dirt at check valve seat section? Is it clean?",
+      "branches": {
+        "YES": "• LS shuttle valve in L.H. travel control valve is normal. • Go to the next check item.",
+        "NO": "• LS shuttle valve in L.H. travel control valve is defective. • Clean or replace the check valve seat of LS shuttle valve in L.H. travel control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-841",
+        "pdf_page": 1383,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM19:1:step:0",
+      "branch_fact_ids": {
+        "NO": "HM19:1:branch:0",
+        "YES": "HM19:1:branch:1"
+      }
+    },
+    {
+      "step": 2,
+      "cause": "LS shuttle valve in swing control valve",
+      "procedure": "1. Examine the check valve seat in the shuttle valve of the swing control valve. 2. Is there no flaw or dirt at check valve seat section? Is it clean?",
+      "branches": {
+        "YES": "• LS shuttle valve in swing control valve is normal. • Go to the next check item.",
+        "NO": "• LS shuttle valve in swing control valve is defective. • Clean or replace the check valve seat of LS shuttle valve in swing control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-841",
+        "pdf_page": 1383,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "HM19:2:step:0",
+      "branch_fact_ids": {
+        "NO": "HM19:2:branch:0",
+        "YES": "HM19:2:branch:1"
+      }
+    },
+    {
+      "step": 3,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Stop the engine. 2. Connect all the component parts. 3. Start the engine to do the troubleshooting. 4. Does the work equipment operate normally?",
+      "branches": {
+        "YES": "The repair is done.",
+        "NO": "Go back to the first check item."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-841",
+        "pdf_page": 1383,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "HM19:3:step:0",
+      "branch_fact_ids": {
+        "NO": "HM19:3:branch:0",
+        "YES": "HM19:3:branch:1"
+      }
+    }
+  ],
+  "standalone_measurements": [],
+  "unresolved_pointers": [
+    {
+      "text": "do the troubleshooting for “Travel Speed is Low” in H mode first.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-841",
+        "pdf_page": 1383,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-841",
+        "pdf_page": 1383,
+        "table_index": 1
+      }
+    }
+  ],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

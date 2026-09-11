@@ -1,0 +1,253 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "S-Mode",
+  "symptom_id": "SM03",
+  "tree_kind": "SymptomTreeFlat",
+  "symptom": "Fuel is being injected but engine does not start (misfiring: engine cranks but does not start).",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": null,
+  "related_information": "If any failure code is displayed, perform troubleshooting for that code first.",
+  "pdf_pages": [
+    1475,
+    1476
+  ],
+  "manual_pages": [
+    "40-933",
+    "40-934"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Defective battery",
+      "point_to_check": "Gravity of electrolyte and voltage of battery are low.",
+      "remedy": "Filling of battery electrolyte",
+      "provenance": {
+        "manual_page": "40-933",
+        "pdf_page": 1475,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "SM03:1:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM03:1:remedy:0"
+    },
+    {
+      "step": 2,
+      "cause": "Fuel level is low.",
+      "point_to_check": "If fuel tank is checked, it is empty.",
+      "remedy": "Refueling",
+      "provenance": {
+        "manual_page": "40-933",
+        "pdf_page": 1475,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "SM03:2:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM03:2:remedy:0"
+    },
+    {
+      "step": 3,
+      "cause": "Clogging fuel tank cap air bleeding hole",
+      "point_to_check": "Fuel tank cap air bleeding hole is clogged.",
+      "remedy": "Flush air breather hole in fuel tank cap surrounding area.",
+      "provenance": {
+        "manual_page": "40-933",
+        "pdf_page": 1475,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "SM03:3:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM03:3:remedy:0"
+    },
+    {
+      "step": 4,
+      "cause": "Clogged fuel filter element",
+      "point_to_check": "Check used hours of fuel filter element. If it is used over specified time, fuel filter element may be clogged.",
+      "remedy": "Fuel filter element replacement",
+      "provenance": {
+        "manual_page": "40-933",
+        "pdf_page": 1475,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "SM03:4:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM03:4:remedy:0"
+    },
+    {
+      "step": 5,
+      "cause": "Foreign materials are mixed into fuel.",
+      "point_to_check": "If drain fuel from fuel tank, rust or water comes out.",
+      "remedy": "Fuel replacement",
+      "provenance": {
+        "manual_page": "40-933",
+        "pdf_page": 1475,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "SM03:5:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM03:5:remedy:0"
+    },
+    {
+      "step": 6,
+      "cause": "Air mixed in fuel piping system",
+      "point_to_check": "When performing bleeding air from the fuel system, air comes out. (For details, see Testing and Adjusting, “Bleed Air from Fuel System”).",
+      "remedy": "• Perform air bleeding operation • Correct or replace fuel piping",
+      "provenance": {
+        "manual_page": "40-933",
+        "pdf_page": 1475,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "fact_id": "SM03:6:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM03:6:remedy:0"
+    },
+    {
+      "step": 7,
+      "cause": "Leakage from fuel piping system",
+      "point_to_check": "Fuel leaks from fuel piping. (For details, see Testing and Adjusting, “Examine Fuel Circuit for Leakage”).",
+      "remedy": "Correct or replace fuel piping related parts",
+      "provenance": {
+        "manual_page": "40-933",
+        "pdf_page": 1475,
+        "table_index": 1,
+        "row_index": 7
+      },
+      "fact_id": "SM03:7:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM03:7:remedy:0"
+    },
+    {
+      "step": 8,
+      "cause": "Fuel leakage at Injector and inlet connector",
+      "point_to_check": "Return rate from injector is high. (See Testing and Adjusting, “How to Examine Fuel Discharge, Return, and Leakage”)",
+      "remedy": "Tighten or replace inlet connector",
+      "provenance": {
+        "manual_page": "40-933",
+        "pdf_page": 1475,
+        "table_index": 1,
+        "row_index": 8
+      },
+      "fact_id": "SM03:8:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM03:8:remedy:0"
+    },
+    {
+      "step": 9,
+      "cause": "Defective priming pump",
+      "point_to_check": "Priming pump has no or heavy resistance to operation.",
+      "remedy": "Priming pump replacement",
+      "provenance": {
+        "manual_page": "40-933",
+        "pdf_page": 1475,
+        "table_index": 1,
+        "row_index": 9
+      },
+      "fact_id": "SM03:9:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM03:9:remedy:0"
+    },
+    {
+      "step": 10,
+      "cause": "Clogged air cleaner element",
+      "point_to_check": "Air cleaner dust indicator is at caution level.",
+      "remedy": "Air cleaner element check and cleaning",
+      "provenance": {
+        "manual_page": "40-933",
+        "pdf_page": 1475,
+        "table_index": 1,
+        "row_index": 10
+      },
+      "fact_id": "SM03:10:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM03:10:remedy:0"
+    },
+    {
+      "step": 11,
+      "cause": "Defective intake air heater",
+      "point_to_check": "• Installation part of intake air heater is not warmed during preheat operation. • Engine preheating monitor does not operate normally during preheat operation or when it is low temperature.",
+      "remedy": "Intake air heater replacement",
+      "provenance": {
+        "manual_page": "40-933",
+        "pdf_page": 1475,
+        "table_index": 1,
+        "row_index": 11
+      },
+      "fact_id": "SM03:11:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM03:11:remedy:0"
+    },
+    {
+      "step": 12,
+      "cause": "Worn valve, rocker arm, etc.",
+      "point_to_check": "• Check valve clearance (Reference: See Testing and adjusting, “Testing and adjusting valve clearance”). • When engine is operated, unusual noise is heard from around cylinder head.",
+      "remedy": "Valve or rocker arm replacement",
+      "provenance": {
+        "manual_page": "40-933",
+        "pdf_page": 1475,
+        "table_index": 1,
+        "row_index": 12
+      },
+      "fact_id": "SM03:12:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM03:12:remedy:0"
+    },
+    {
+      "step": 13,
+      "cause": "Defective piston ring",
+      "point_to_check": "Check compression pressure (Reference: See “TEST- ING AND ADJUSTING”, “Testing compression pressure”).",
+      "remedy": "Piston ring and piston replacement",
+      "provenance": {
+        "manual_page": "40-933",
+        "pdf_page": 1475,
+        "table_index": 1,
+        "row_index": 13
+      },
+      "fact_id": "SM03:13:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM03:13:remedy:0"
+    },
+    {
+      "step": 14,
+      "cause": "Defective injector (clogged injector, defective spray)",
+      "point_to_check": "Perform cylinder cutout mode operation to identify cylinder that does not change in speed (see “30 Testing and Adjusting”, “HANDLING CYLINDER CUTOUT MODE OPERATION”).",
+      "remedy": "Replace injector.",
+      "provenance": {
+        "manual_page": "40-933",
+        "pdf_page": 1475,
+        "table_index": 1,
+        "row_index": 14
+      },
+      "fact_id": "SM03:14:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM03:14:remedy:0"
+    },
+    {
+      "step": 15,
+      "cause": "Defective engine controller",
+      "point_to_check": "In case of an internal defect, troubleshooting is impossible as an assembly. Replace whole assembly.",
+      "remedy": "Engine controller replacement",
+      "provenance": {
+        "manual_page": "40-934",
+        "pdf_page": 1476,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "SM03:15:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM03:15:remedy:0"
+    }
+  ],
+  "standalone_measurements": [],
+  "unresolved_pointers": [],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

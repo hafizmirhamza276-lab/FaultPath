@@ -1,0 +1,680 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "H-Mode",
+  "symptom_id": "HM24",
+  "tree_kind": "SymptomTreeBranching",
+  "symptom": "One of Tracks Does Not Run",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": "The track does not move. (Only on one side).",
+  "related_information": "Pre-troubleshooting If a failure code is shown, do the troubleshooting for that code first. Monitoring code • Travel PPC pressure can be examined with the monitoring function. (Code: 01882) • F pump pressure can be examined with the monitoring function. (Code: 01100) • R pump pressure can be examined with the monitoring function. (Code: 01101)",
+  "pdf_pages": [
+    1422,
+    1430
+  ],
+  "manual_pages": [
+    "40-880",
+    "40-881",
+    "40-882",
+    "40-883",
+    "40-884",
+    "40-885",
+    "40-886",
+    "40-887",
+    "40-888"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Right travel PPC valve",
+      "procedure": "1. Do the troubleshooting. For details, see Testing and Adjusting, “Examine PPC Valve Outlet Pressure”. 2. Does the measurement result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: R.H. travel 0 MPa {0 levers in kgf/cm2} neutral • Hydraulic oil tempera- PPC ture: 45 valve Boom PPC to 55°C output circuit hypresdraulic hose • Fuel sure control dial at Hi • Control lever: R.H.trav- 2.84 to 3.43 el For- MPa {29 to 35 ward/ kgf/cm2} Reverse • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• The R.H. travel PPC valve is correct. • Go to the next check item.",
+        "NO": "• The R.H. travel PPC valve is defective. • Replace the right travel PPC valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-880",
+        "pdf_page": 1422,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM24:1:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:1:branch:0",
+        "YES": "HM24:1:branch:1"
+      }
+    },
+    {
+      "step": 2,
+      "cause": "Left travel PPC valve",
+      "procedure": "1. Do the troubleshooting. For details, see Testing and Adjusting, “Examine PPC Valve Outlet Pressure”. 2. Does the measurement result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: Left travel lever 0 MPa {0 in NEU- kgf/cm2} TRAL • Hydraulic oil temperature: 45 PPC to 55°C valve Arm PPC ciroutput cuit hydraulic • Fuel preshose control sure dial at Hi • Control lever: Left travel lever 2.84 to 3.43 in FOR- MPa {29 to 35 WARD/ kgf/cm2} RE- VERSE • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• The left travel PPC valve is normal. • Go to the next check item.",
+        "NO": "• The left travel PPC valve is defective. • Replace the left travel PPC valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-881",
+        "pdf_page": 1423,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM24:2:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:2:branch:0",
+        "YES": "HM24:2:branch:1"
+      }
+    },
+    {
+      "step": 3,
+      "cause": "Main pump pressure",
+      "procedure": "1. Open the Front Pump Pressure screen. For details, see Testing and Adjusting, “How to Examine Monitoring Information” of “Service Mode”. 2. Start the engine. 3. Operate each travel lever to do the troubleshooting. 4. Does the measurement result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Monitoring code: 01100 Front Approximately • Control lever: L.H. travpump 4 MPa {apel lever operation presproximately sure • Hydraulic oil tempera- 41 kgf/cm2} ture: 45 to 55°C • Monitoring code: 01101 Rear Approximately • Control lever: R.H. travpump 4 MPa {apel lever operation presproximately sure • Hydraulic oil tempera- 41 kgf/cm2} ture: 45 to 55°C",
+      "branches": {
+        "YES": "Go to the check item of right travel control valve.",
+        "NO": "• If the front pump pressure is low, go to the check item of suction valve of right travel control valve. • If the rear pump pressure is low, go to the check item of suction valve of left travel control valve."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-882",
+        "pdf_page": 1424,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM24:3:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:3:branch:0",
+        "YES": "HM24:3:branch:1"
+      }
+    },
+    {
+      "step": 4,
+      "cause": "Right travel control valve",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping to do the troubleshooting. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Examine the control valve body and the travel spool to see if they are not twisted or stuck. (They must move smoothly and not be stuck.) Are they clean? REMARK Be careful that dirt does not enter during recovery work.",
+      "branches": {
+        "YES": "• The body and spool of R.H. travel operation valve is normal. • Go to the next check item.",
+        "NO": "• The body and spool of R.H. travel operation valve is defective. • Replace the body and spool of the right travel control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-882",
+        "pdf_page": 1424,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM24:4:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:4:branch:0",
+        "YES": "HM24:4:branch:1"
+      }
+    },
+    {
+      "step": 5,
+      "cause": "Left travel control valve",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping to do the troubleshooting. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Examine the control valve body and the travel spool to see if they are not twisted or stuck. (They must move smoothly and not be stuck.) Are they clean? REMARK Be careful that dirt does not enter during recovery work.",
+      "branches": {
+        "YES": "• The body and spool of L.H. travel operation valve is normal. • Go to the next check item.",
+        "NO": "• The body and spool of L.H. travel operation valve is defective. • Replace the body and spool of the left travel control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-882",
+        "pdf_page": 1424,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "HM24:5:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:5:branch:0",
+        "YES": "HM24:5:branch:1"
+      }
+    },
+    {
+      "step": 6,
+      "cause": "Suction valve of R.H. travel control valve",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Examine the suction valve of the right travel control valve. 3. Is the suction valve on the R.H. travel control valve normal?",
+      "branches": {
+        "YES": "• The suction valve of the right travel control valve is normal. • Go to the next check item.",
+        "NO": "• The suction valve of the right travel control valve is defective. • Replace the suction valve of the right travel control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-883",
+        "pdf_page": 1425,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM24:6:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:6:branch:0",
+        "YES": "HM24:6:branch:1"
+      }
+    },
+    {
+      "step": 7,
+      "cause": "Suction valve of L.H. travel control valve",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Examine the suction valve of the left travel control valve. 3. Is the suction valve on the L.H. travel control valve normal?",
+      "branches": {
+        "YES": "• The suction valve of the left travel control valve is normal. • Go to the next check item.",
+        "NO": "• The suction valve of the left travel control valve is defective. • Replace the suction valve of the left travel control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-883",
+        "pdf_page": 1425,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM24:7:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:7:branch:0",
+        "YES": "HM24:7:branch:1"
+      }
+    },
+    {
+      "step": 8,
+      "cause": "Safety valve of R.H. travel motor",
+      "procedure": "1. Do the troubleshooting. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. • If any abnormality is found in troubleshooting result, proceed to next troubleshooting. • If no abnormality is found in troubleshooting result, proceed to next check item. 2. Interchange the safety valves of the right and left travel motors. 3. Is there no change, and does the phenomenon reproduce? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: R.H. 36.1 to 38.8 travel MPa {368 to forward 395 kgf/cm2} relief • Hydraulic oil temperature: 45 Main Front pump to 55°C relief discharged prespressure pick- • Fuel sure up port control dial at Hi • Control lever: R.H. 36.1 to 38.8 travel MPa {368 to rearward 395 kgf/cm2} relief • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Safety valve of R.H. travel motor is normal. • Go to the next check item.",
+        "NO": "• Safety valve of R.H. travel motor is defective. • Replace the safety valve of R.H. travel motor. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-884",
+        "pdf_page": 1426,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM24:8:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:8:branch:0",
+        "YES": "HM24:8:branch:1"
+      }
+    },
+    {
+      "step": 9,
+      "cause": "Safety valve of L.H. travel motor",
+      "procedure": "1. Do the troubleshooting. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. • If any abnormality is found in troubleshooting result, proceed to next troubleshooting. • If no abnormality is found in troubleshooting result, proceed to next check item. 2. Interchange the safety valves of the right and left travel motors. 3. Is there no change, and does the phenomenon reproduce? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: L.H. 36.1 to 38.8 travel MPa {368 to forward 395 kgf/cm2} relief • Hydraulic oil temperature: 45 Main Rear pump to 55°C relief discharged prespressure pick- • Fuel sure up port control dial at Hi • Control lever: L.H. 36.1 to 38.8 travel MPa {368 to rearward 395 kgf/cm2} relief • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Safety valve of L.H. travel motor is normal. • Go to the next check item.",
+        "NO": "• Safety valve of L.H. travel motor is defective. • Replace the safety valve of L.H. travel motor. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-885",
+        "pdf_page": 1427,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM24:9:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:9:branch:0",
+        "YES": "HM24:9:branch:1"
+      }
+    },
+    {
+      "step": 10,
+      "cause": "Check valve of R.H. travel motor",
+      "procedure": "1. Interchange the check valves between the forward and reverse sides of the same travel motor. 2. Is there no change, and does the phenomenon reproduce?",
+      "branches": {
+        "YES": "• Check valve of the R.H. travel motor is normal. • Go to the next check item.",
+        "NO": "• Check valve of the R.H. travel motor is defective. • Replace the check valve of the right travel motor. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-886",
+        "pdf_page": 1428,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM24:10:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:10:branch:0",
+        "YES": "HM24:10:branch:1"
+      }
+    },
+    {
+      "step": 11,
+      "cause": "Check valve of the L.H. travel motor",
+      "procedure": "1. Interchange the check valves between the forward and reverse sides of the same travel motor. 2. Is there no change, and does the phenomenon reproduce?",
+      "branches": {
+        "YES": "• Check valve of the L.H. travel motor is normal. • Go to the next check item.",
+        "NO": "• Check valve of the L.H. travel motor is defective. • Replace the check valve of the left travel motor. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-886",
+        "pdf_page": 1428,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM24:11:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:11:branch:0",
+        "YES": "HM24:11:branch:1"
+      }
+    },
+    {
+      "step": 12,
+      "cause": "R.H. travel motor parking brake",
+      "procedure": "1. Idle run the right track off the ground while the brake is applied to do the troubleshooting. 2. Is the right track stopped?",
+      "branches": {
+        "YES": "• R.H. travel motor parking brake is normal. • Go to the next check item.",
+        "NO": "• R.H. travel motor parking brake is defective. • Replace the parking brake of the right travel motor. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-886",
+        "pdf_page": 1428,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "HM24:12:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:12:branch:0",
+        "YES": "HM24:12:branch:1"
+      }
+    },
+    {
+      "step": 13,
+      "cause": "L.H. travel motor parking brake",
+      "procedure": "1. Idle run the left track off the ground while the brake is applied to do the troubleshooting. 2. Is the left track stopped?",
+      "branches": {
+        "YES": "• L.H. travel motor parking brake is normal. • Go to the next check item.",
+        "NO": "• L.H. travel motor parking brake is defective. • Replace the parking brake of the left travel motor. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-886",
+        "pdf_page": 1428,
+        "table_index": 0,
+        "row_index": 7
+      },
+      "fact_id": "HM24:13:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:13:branch:0",
+        "YES": "HM24:13:branch:1"
+      }
+    },
+    {
+      "step": 14,
+      "cause": "R.H. travel motor",
+      "procedure": "1. Do the troubleshooting. For details, see Testing and Adjusting, “Examine Oil Leakage”. 2. Does the measurement result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: Oil R.H. travel Travel Max. 27.2 Leakmotor drain relief ℓ/min age hose • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• The right travel motor is normal. • Go to the next check item.",
+        "NO": "• The right travel motor is defective. • Replace the right travel motor. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-887",
+        "pdf_page": 1429,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM24:14:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:14:branch:0",
+        "YES": "HM24:14:branch:1"
+      }
+    },
+    {
+      "step": 15,
+      "cause": "L.H. travel motor",
+      "procedure": "1. Do the troubleshooting. For details, see Testing and Adjusting, “Examine Oil Leakage”. 2. Does the measurement result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: Oil L.H. travel Travel Max. 27.2 Leakmotor drain relief ℓ/min age hose • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• The left travel motor is normal. • Go to the next check item.",
+        "NO": "• The left travel motor is defective. • Replace the left travel motor. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-887",
+        "pdf_page": 1429,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM24:15:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:15:branch:0",
+        "YES": "HM24:15:branch:1"
+      }
+    },
+    {
+      "step": 16,
+      "cause": "Final drive",
+      "procedure": "Is the final drive clean, with no unusual noise, abnormal heat, or metal powder in the drain oil?",
+      "branches": {
+        "YES": "• The final drive is correct. • Go to the next check item.",
+        "NO": "• The final drive is defective. • Replace the final drive. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-887",
+        "pdf_page": 1429,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "HM24:16:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:16:branch:0",
+        "YES": "HM24:16:branch:1"
+      }
+    },
+    {
+      "step": 17,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Stop the engine. 2. Connect all the component parts. 3. Start the engine to do the troubleshooting. 4. Does the machine travel normally?",
+      "branches": {
+        "YES": "The repair is done.",
+        "NO": "Return to the first check item."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-888",
+        "pdf_page": 1430,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM24:17:step:0",
+      "branch_fact_ids": {
+        "NO": "HM24:17:branch:0",
+        "YES": "HM24:17:branch:1"
+      }
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "PPC valve output pressure",
+      "point": "Boom PPC circuit hydraulic hose / • Fuel control dial at Hi • Control lever: R.H. travel levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0 MPa {0 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-880",
+        "pdf_page": 1422,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "HM24:0:meas:0",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "PPC valve output pressure",
+      "point": "• Fuel control dial at Hi • Control lever: R.H.travel Forward/ Reverse • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-880",
+        "pdf_page": 1422,
+        "table_index": 2,
+        "row_index": 2
+      },
+      "fact_id": "HM24:0:meas:1",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "PPC valve output pressure",
+      "point": "Arm PPC circuit hydraulic hose / • Fuel control dial at Hi • Control lever: Left travel lever in NEU- TRAL • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0 MPa {0 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-881",
+        "pdf_page": 1423,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM24:0:meas:2",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "PPC valve output pressure",
+      "point": "• Fuel control dial at Hi • Control lever: Left travel lever in FOR- WARD/ RE- VERSE • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-881",
+        "pdf_page": 1423,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM24:0:meas:3",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Front pump pressure",
+      "point": "• Monitoring code: 01100 • Control lever: L.H. travel lever operation • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Approximately 4 MPa {approximately 41 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-882",
+        "pdf_page": 1424,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM24:0:meas:4",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Rear pump pressure",
+      "point": "• Monitoring code: 01101 • Control lever: R.H. travel lever operation • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Approximately 4 MPa {approximately 41 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-882",
+        "pdf_page": 1424,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM24:0:meas:5",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main relief pressure",
+      "point": "Front pump discharged pressure pickup port / • Fuel control dial at Hi • Control lever: R.H. travel forward relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "36.1 to 38.8 MPa {368 to 395 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-884",
+        "pdf_page": 1426,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM24:0:meas:6",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main relief pressure",
+      "point": "• Fuel control dial at Hi • Control lever: R.H. travel rearward relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "36.1 to 38.8 MPa {368 to 395 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-884",
+        "pdf_page": 1426,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM24:0:meas:7",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main relief pressure",
+      "point": "Rear pump discharged pressure pickup port / • Fuel control dial at Hi • Control lever: L.H. travel forward relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "36.1 to 38.8 MPa {368 to 395 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-885",
+        "pdf_page": 1427,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM24:0:meas:8",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main relief pressure",
+      "point": "• Fuel control dial at Hi • Control lever: L.H. travel rearward relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "36.1 to 38.8 MPa {368 to 395 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-885",
+        "pdf_page": 1427,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM24:0:meas:9",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Oil Leakage",
+      "point": "R.H. travel motor drain hose / • Fuel control dial at Hi • Control lever: Travel relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Max. 27.2 ℓ/min",
+      "provenance": {
+        "manual_page": "40-887",
+        "pdf_page": 1429,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM24:0:meas:10",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Oil Leakage",
+      "point": "L.H. travel motor drain hose / • Fuel control dial at Hi • Control lever: Travel relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Max. 27.2 ℓ/min",
+      "provenance": {
+        "manual_page": "40-887",
+        "pdf_page": 1429,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "HM24:0:meas:11",
+      "criteria_kind": "numeric"
+    }
+  ],
+  "unresolved_pointers": [
+    {
+      "text": "do the troubleshooting for that code first.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-880",
+        "pdf_page": 1422,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "Do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-880",
+        "pdf_page": 1422,
+        "table_index": 1
+      }
+    },
+    {
+      "text": "Do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-881",
+        "pdf_page": 1423,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-882",
+        "pdf_page": 1424,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-882",
+        "pdf_page": 1424,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-882",
+        "pdf_page": 1424,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "Do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-884",
+        "pdf_page": 1426,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "Do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-885",
+        "pdf_page": 1427,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-886",
+        "pdf_page": 1428,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-886",
+        "pdf_page": 1428,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "Do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-887",
+        "pdf_page": 1429,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "Do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-887",
+        "pdf_page": 1429,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-888",
+        "pdf_page": 1430,
+        "table_index": 0
+      }
+    }
+  ],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

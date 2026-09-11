@@ -1,0 +1,162 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "S-Mode",
+  "symptom_id": "SM17",
+  "tree_kind": "SymptomTreeFlat",
+  "symptom": "Coolant temperature rises too high (overheating)",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": null,
+  "related_information": "If any failure code is displayed, perform troubleshooting for that code first.",
+  "pdf_pages": [
+    1495,
+    1495
+  ],
+  "manual_pages": [
+    "40-953"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Clogged radiator core",
+      "point_to_check": "Check for clogging of radiator core and crushing of fin.",
+      "remedy": "Cleaning of radiator core",
+      "provenance": {
+        "manual_page": "40-953",
+        "pdf_page": 1495,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "SM17:1:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM17:1:remedy:0"
+    },
+    {
+      "step": 2,
+      "cause": "Malfunction of thermostat",
+      "point_to_check": "Thermostat does not open at cracking temperature. REMARK Cracking temperature of thermostat: 79.4 ± 83.3 °C (Full open temperature: 95 °C)",
+      "remedy": "Thermostat replacement",
+      "provenance": {
+        "manual_page": "40-953",
+        "pdf_page": 1495,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "SM17:2:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM17:2:remedy:0"
+    },
+    {
+      "step": 3,
+      "cause": "Defective coolant temperature gauge",
+      "point_to_check": "The error is detected in coolant temperature gauge system, but measured coolant temperature in radiator is normal.",
+      "remedy": "Coolant temperature sensor, monitor or wiring harness replacement",
+      "provenance": {
+        "manual_page": "40-953",
+        "pdf_page": 1495,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "SM17:3:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM17:3:remedy:0"
+    },
+    {
+      "step": 4,
+      "cause": "Increase of fuel injection amount",
+      "point_to_check": "Fuel injection amount is excessive.",
+      "remedy": "Perform troubleshooting of “FUEL CONSUMPTION IS EXCESSIVE” in S mode, and take corrective action.",
+      "provenance": {
+        "manual_page": "40-953",
+        "pdf_page": 1495,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "SM17:4:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM17:4:remedy:0"
+    },
+    {
+      "step": 5,
+      "cause": "Low coolant level",
+      "point_to_check": "Check coolant level for decrease.",
+      "remedy": "Refilling with coolant",
+      "provenance": {
+        "manual_page": "40-953",
+        "pdf_page": 1495,
+        "table_index": 1,
+        "row_index": 5
+      },
+      "fact_id": "SM17:5:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM17:5:remedy:0"
+    },
+    {
+      "step": 6,
+      "cause": "Coolant leakage",
+      "point_to_check": "Check coolant piping for coolant leakage.",
+      "remedy": "Coolant piping replacement",
+      "provenance": {
+        "manual_page": "40-953",
+        "pdf_page": 1495,
+        "table_index": 1,
+        "row_index": 6
+      },
+      "fact_id": "SM17:6:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM17:6:remedy:0"
+    },
+    {
+      "step": 7,
+      "cause": "Broken water pump",
+      "point_to_check": "Visually check water pump (check of water leakage through shaft seal, breakage of impeller, breakage of shaft)",
+      "remedy": "Water pump replacement",
+      "provenance": {
+        "manual_page": "40-953",
+        "pdf_page": 1495,
+        "table_index": 1,
+        "row_index": 7
+      },
+      "fact_id": "SM17:7:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM17:7:remedy:0"
+    },
+    {
+      "step": 8,
+      "cause": "Defective cylinder head or head gasket",
+      "point_to_check": "Check if there are many bubbles in radiator and if coolant blows back.",
+      "remedy": "Perform troubleshooting of “OIL IS IN COOLANT” in S mode, and take corrective action.",
+      "provenance": {
+        "manual_page": "40-953",
+        "pdf_page": 1495,
+        "table_index": 1,
+        "row_index": 8
+      },
+      "fact_id": "SM17:8:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM17:8:remedy:0"
+    },
+    {
+      "step": 9,
+      "cause": "Defective piston ring",
+      "point_to_check": "• Check exhaust gas color . (See standard value table.) (Reference: See Testing and adjusting, “Exhaust gas color”). • Measure compression pressure (See standard value table). (Reference: See “TESTING AND ADJUSTING”, “Testing compression pressure”.) • Check piston ring and piston ring groove.",
+      "remedy": "Piston ring and piston replacement",
+      "provenance": {
+        "manual_page": "40-953",
+        "pdf_page": 1495,
+        "table_index": 1,
+        "row_index": 9
+      },
+      "fact_id": "SM17:9:step:0",
+      "branch_fact_ids": {},
+      "remedy_fact_id": "SM17:9:remedy:0"
+    }
+  ],
+  "standalone_measurements": [],
+  "unresolved_pointers": [],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

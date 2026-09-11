@@ -1,0 +1,572 @@
+[
+  {
+    "symptom_id": "HM01",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "All Work Equipment, Swing and Travel Do Not Work",
+    "manual_page": "40-747",
+    "n_steps": 5,
+    "n_measurements": 3,
+    "n_pointers": 3
+  },
+  {
+    "symptom_id": "HM02",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "All Work Equipment, Swing, and Travel Lack Speed or Power",
+    "manual_page": "40-749",
+    "n_steps": 17,
+    "n_measurements": 27,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM03",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Fine Control Performance or Response is Unsatisfactory",
+    "manual_page": "40-759",
+    "n_steps": 8,
+    "n_measurements": 14,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM04",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Unusual Noise is Heard from Around Hydraulic Pump",
+    "manual_page": "40-764",
+    "n_steps": 7,
+    "n_measurements": 0,
+    "n_pointers": 1
+  },
+  {
+    "symptom_id": "HM05",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Engine Speed Drops Largely or Engine Stops",
+    "manual_page": "40-766",
+    "n_steps": 14,
+    "n_measurements": 24,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM06",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Boom Speed or Power is Low",
+    "manual_page": "40-774",
+    "n_steps": 19,
+    "n_measurements": 16,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM07",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Arm Speed or Power is Low",
+    "manual_page": "40-787",
+    "n_steps": 18,
+    "n_measurements": 14,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM08",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Bucket Speed or Power is Low",
+    "manual_page": "40-799",
+    "n_steps": 14,
+    "n_measurements": 13,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM09",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Work Equipment Does Not Move in Single Operation",
+    "manual_page": "40-810",
+    "n_steps": 6,
+    "n_measurements": 6,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM10",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Hydraulic Drift of Boom is Large",
+    "manual_page": "40-813",
+    "n_steps": 4,
+    "n_measurements": 2,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM11",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Hydraulic Drift of Arm is Large",
+    "manual_page": "40-815",
+    "n_steps": 8,
+    "n_measurements": 5,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM12",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Hydraulic Drift of Bucket is Large",
+    "manual_page": "40-819",
+    "n_steps": 6,
+    "n_measurements": 4,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM13",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "When Single Work Equipment is Released Hydraulically, Other Work Equipment Moves",
+    "manual_page": "40-822",
+    "n_steps": 5,
+    "n_measurements": 0,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM14",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Time Lag of Work Equipment is Large",
+    "manual_page": "40-824",
+    "n_steps": 14,
+    "n_measurements": 6,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM15",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "One-Touch Power Maximizing Function Does Not Operate",
+    "manual_page": "40-831",
+    "n_steps": 4,
+    "n_measurements": 6,
+    "n_pointers": 5
+  },
+  {
+    "symptom_id": "HM16",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Attachment Circuit Cannot be Changed",
+    "manual_page": "40-834",
+    "n_steps": 4,
+    "n_measurements": 2,
+    "n_pointers": 4
+  },
+  {
+    "symptom_id": "HM17",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Oil Flow in Attachment Circuit Cannot be Changed",
+    "manual_page": "40-837",
+    "n_steps": 3,
+    "n_measurements": 5,
+    "n_pointers": 5
+  },
+  {
+    "symptom_id": "HM18",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "In Mixed Operation of Work Equipment, Work Equipment with Heavier Load Moves Slower",
+    "manual_page": "40-839",
+    "n_steps": 5,
+    "n_measurements": 0,
+    "n_pointers": 6
+  },
+  {
+    "symptom_id": "HM19",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "In Combined Operation of Swing and Travel, Travel Speed Falls Largely",
+    "manual_page": "40-841",
+    "n_steps": 3,
+    "n_measurements": 0,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM20",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "In Combined Operation of Swing and Boom Raise, Boom Rise Speed is Low",
+    "manual_page": "40-842",
+    "n_steps": 2,
+    "n_measurements": 0,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM21",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Machine Does Not Travel Straight",
+    "manual_page": "40-843",
+    "n_steps": 18,
+    "n_measurements": 23,
+    "n_pointers": 21
+  },
+  {
+    "symptom_id": "HM22",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Machine is Not Steered Well or Steering Power is Low",
+    "manual_page": "40-854",
+    "n_steps": 28,
+    "n_measurements": 16,
+    "n_pointers": 28
+  },
+  {
+    "symptom_id": "HM23",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Travel Speed is Low",
+    "manual_page": "40-870",
+    "n_steps": 16,
+    "n_measurements": 13,
+    "n_pointers": 20
+  },
+  {
+    "symptom_id": "HM24",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "One of Tracks Does Not Run",
+    "manual_page": "40-880",
+    "n_steps": 17,
+    "n_measurements": 12,
+    "n_pointers": 13
+  },
+  {
+    "symptom_id": "HM25",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Travel Speed Does Not Change, or Travel Speed is Too Slow or Fast",
+    "manual_page": "40-889",
+    "n_steps": 3,
+    "n_measurements": 7,
+    "n_pointers": 5
+  },
+  {
+    "symptom_id": "HM26",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Upper Structure Does Not Swing in Two Directions of Right and Left",
+    "manual_page": "40-892",
+    "n_steps": 9,
+    "n_measurements": 7,
+    "n_pointers": 7
+  },
+  {
+    "symptom_id": "HM27",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Upper Structure Swings Only to the Right or Left",
+    "manual_page": "40-897",
+    "n_steps": 8,
+    "n_measurements": 3,
+    "n_pointers": 4
+  },
+  {
+    "symptom_id": "HM28",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Swing Acceleration or Swing Speed is Low in Two Directions of Right and Left",
+    "manual_page": "40-900",
+    "n_steps": 13,
+    "n_measurements": 4,
+    "n_pointers": 5
+  },
+  {
+    "symptom_id": "HM29",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Swing Acceleration Performance is Unsatisfactory or Swing Speed is Slow in Only One Direction",
+    "manual_page": "40-906",
+    "n_steps": 10,
+    "n_measurements": 3,
+    "n_pointers": 3
+  },
+  {
+    "symptom_id": "HM30",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Upper Structure Overruns Too Much When It Stops Swing Operation (Right and Left)",
+    "manual_page": "40-910",
+    "n_steps": 3,
+    "n_measurements": 2,
+    "n_pointers": 3
+  },
+  {
+    "symptom_id": "HM31",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Upper Structure Overruns Too Much When It Stops Swing Operation (Only One Direction)",
+    "manual_page": "40-912",
+    "n_steps": 9,
+    "n_measurements": 2,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM32",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Shock is Large When Upper Structure Stops Swing Operation",
+    "manual_page": "40-916",
+    "n_steps": 5,
+    "n_measurements": 2,
+    "n_pointers": 3
+  },
+  {
+    "symptom_id": "HM33",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Large Unusual Noise is Heard Upper Structure Stops Swing Operation",
+    "manual_page": "40-918",
+    "n_steps": 7,
+    "n_measurements": 3,
+    "n_pointers": 4
+  },
+  {
+    "symptom_id": "HM34",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Swing Drift on a Slope is Large (While Swing Parking Brake is Applied)",
+    "manual_page": "40-921",
+    "n_steps": 3,
+    "n_measurements": 3,
+    "n_pointers": 4
+  },
+  {
+    "symptom_id": "HM35",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Swing Drift on a Slope is Large (While Swing Parking Brake is Released)",
+    "manual_page": "40-923",
+    "n_steps": 10,
+    "n_measurements": 1,
+    "n_pointers": 4
+  },
+  {
+    "symptom_id": "HM36",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Fan Speed is Abnormal (Too High or Low, or Does Not Move)",
+    "manual_page": "40-927",
+    "n_steps": 4,
+    "n_measurements": 2,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "HM37",
+    "section": "H-Mode",
+    "tree_kind": "SymptomTreeBranching",
+    "symptom": "Unusual Noise is Heard from Around Fan",
+    "manual_page": "40-929",
+    "n_steps": 4,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM01",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Engine does not crank when starting switch is turned to “START” position.",
+    "manual_page": "40-931",
+    "n_steps": 3,
+    "n_measurements": 0,
+    "n_pointers": 2
+  },
+  {
+    "symptom_id": "SM02",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Engine cranks but no exhaust gas comes out.",
+    "manual_page": "40-932",
+    "n_steps": 11,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM03",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Fuel is being injected but engine does not start (misfiring: engine cranks but does not start).",
+    "manual_page": "40-933",
+    "n_steps": 15,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM04",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Engine startability is poor.",
+    "manual_page": "40-935",
+    "n_steps": 18,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM05",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Engine does not pick-up smoothly.",
+    "manual_page": "40-937",
+    "n_steps": 15,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM06",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Engine stops during operation.",
+    "manual_page": "40-939",
+    "n_steps": 18,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM07",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Engine runs rough or is unstable.",
+    "manual_page": "40-941",
+    "n_steps": 8,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM08",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Engine lacks power.",
+    "manual_page": "40-942",
+    "n_steps": 22,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM09",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Exhaust smoke is black.",
+    "manual_page": "40-944",
+    "n_steps": 14,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM10",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Engine oil consumption is excessive",
+    "manual_page": "40-946",
+    "n_steps": 12,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM11",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Oil becomes contaminated quickly",
+    "manual_page": "40-947",
+    "n_steps": 9,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM12",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Fuel consumption is excessive.",
+    "manual_page": "40-948",
+    "n_steps": 7,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM13",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Oil is in coolant (or coolant spurts back or coolant level goes down)",
+    "manual_page": "40-949",
+    "n_steps": 5,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM14",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Oil pressure drops.",
+    "manual_page": "40-950",
+    "n_steps": 14,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM15",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Fuel mixes into engine oil.",
+    "manual_page": "40-951",
+    "n_steps": 4,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM16",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Water mixes into engine oil (milky)",
+    "manual_page": "40-952",
+    "n_steps": 3,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM17",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Coolant temperature rises too high (overheating)",
+    "manual_page": "40-953",
+    "n_steps": 9,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM18",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Unusual noise is heard.",
+    "manual_page": "40-954",
+    "n_steps": 10,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM19",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Vibration is excessive.",
+    "manual_page": "40-955",
+    "n_steps": 7,
+    "n_measurements": 0,
+    "n_pointers": 0
+  },
+  {
+    "symptom_id": "SM20",
+    "section": "S-Mode",
+    "tree_kind": "SymptomTreeFlat",
+    "symptom": "Air cannot be bled from fuel circuit.",
+    "manual_page": "40-956",
+    "n_steps": 5,
+    "n_measurements": 0,
+    "n_pointers": 0
+  }
+]

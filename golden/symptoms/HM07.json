@@ -1,0 +1,637 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "H-Mode",
+  "symptom_id": "HM07",
+  "tree_kind": "SymptomTreeBranching",
+  "symptom": "Arm Speed or Power is Low",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": "The arm speed is slow or the power is low.",
+  "related_information": "Pre-troubleshooting If a failure code is shown, do the troubleshooting for that code first. Monitoring code • Arm IN PPC Pressure can be examined with the monitoring function. (Code: 07200) • Arm OUT PPC Pressure can be examined with the monitoring function. (Code: 07201) • Merge-divider Main Sol Current can be examined with the monitoring function. (Code: 08000) • Merge-divider LS Sol Current can be examined with the monitoring function. (Code: 08001) • F pump pressure can be examined with the monitoring function. (Code: 01100) • R pump pressure can be examined with the monitoring function. (Code: 01101)",
+  "pdf_pages": [
+    1329,
+    1340
+  ],
+  "manual_pages": [
+    "40-787",
+    "40-788",
+    "40-789",
+    "40-790",
+    "40-791",
+    "40-792",
+    "40-793",
+    "40-794",
+    "40-795",
+    "40-796",
+    "40-797",
+    "40-798"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Left PPC valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine PPC Valve Outlet Pressure”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: All levers in 0 MPa {0 neutral kgf/cm2} • Hydraulic oil temperature: 45 PPC to 55°C valve Arm PPC ciroutput cuit hydraulic • Fuel preshose control sure dial at Hi • Control lever: Arm IN 2.84 to 3.43 or arm MPa {29 to 35 OUT kgf/cm2} • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• L.H. PPC valve is normal. • Go to the next check item.",
+        "NO": "• The L.H. PPC valve is defective. • Repair or replace the L.H. PPC valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-788",
+        "pdf_page": 1330,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM07:1:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:1:branch:0",
+        "YES": "HM07:1:branch:1"
+      }
+    },
+    {
+      "step": 2,
+      "cause": "Merge-divider main EPC valve",
+      "procedure": "1. Stop the engine. 2. Release the pressure that remains in the hydraulic tank and piping. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 3. Take out the oil pressure sensor mounting port (PP1S) of front pump, and install the hydraulic multimeter. 4. Run the engine with fuel control dial at Hi, and set the work equipment control lever in NEU- TRAL or bucket CURL relief or arm IN relief to examine. 5. Does the troubleshooting result of the main EPC output pressure agree with the standard value? 6. After troubleshooting, restore them. 7. Open the Merge-divider Main Sol current screen. For details, see Testing and Adjusting “How to",
+      "branches": {
+        "YES": "• Merge-divider main EPC valve is normal. • Go to the next check item.",
+        "NO": "• Merge-divider main EPC valve is defective. • Repair or replace the merge-divider main EPC valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-788",
+        "pdf_page": 1330,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM07:2:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:2:branch:0",
+        "YES": "HM07:2:branch:1"
+      }
+    },
+    {
+      "step": 3,
+      "cause": "Merge-divider LS-EPC valve",
+      "procedure": "1. Stop the engine. 2. Release the pressure that remains in the hydraulic tank and piping. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 3. Take out the oil pressure sensor mounting port (PP1S) of front pump, and install the hydraulic multimeter. 4. Run the engine with fuel control dial at Hi, and set the work equipment control lever in NEU- TRAL or bucket CURL relief or arm IN relief to examine. 5. Does the troubleshooting result of the LS-EPC output pressure agree with the standard value? 6. After troubleshooting, restore them. 7. Show the Merge-divider LS Sol Current screen. For details, see Testing and Adjusting How to Examine Monitoring Information of “Service Mode”. 8. Examine by operation of the work equipment lever. 9. Does the EPC current result agree with the standard value? Measurement position, condi- Standard val- Item tion ue",
+      "branches": {
+        "YES": "• Merge-divider LS-EPC valve is normal. • Go to the next check item.",
+        "NO": "• Merge-divider LS-EPC valve is defective. • Repair or replace the merge-divider LS-EPC valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-790",
+        "pdf_page": 1332,
+        "table_index": 0,
+        "row_index": 2
+      },
+      "fact_id": "HM07:3:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:3:branch:0",
+        "YES": "HM07:3:branch:1"
+      }
+    },
+    {
+      "step": 4,
+      "cause": "Merge-divider main spool",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping to examine. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Examine the merge-divider valve body and the main spool to see if they are twisted or stuck. Are they clean? (They must move smoothly and not be stuck.) REMARK Be careful that dirt does not enter during recovery work.",
+      "branches": {
+        "YES": "• Merge-divider valve body and main spool are normal. • Go to the next check item.",
+        "NO": "• Merge-divider valve body and main spool are defective. • Repair or replace the merge-divider valve body and main spool. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-792",
+        "pdf_page": 1334,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM07:4:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:4:branch:0",
+        "YES": "HM07:4:branch:1"
+      }
+    },
+    {
+      "step": 5,
+      "cause": "Merge-divider LS spool",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping to examine. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Examine the merge-divider valve body and the LS spool to see if they are not twisted or stuck. Are they clean? (They must move smoothly and not be stuck.) REMARK Be careful that dirt does not enter during recovery work.",
+      "branches": {
+        "YES": "• Merge-divider body and LS spool are normal. • Go to the next check item.",
+        "NO": "• Merge-divider body and LS spool are defective. • Repair or replace the merge-divider valve body and LS spool. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-792",
+        "pdf_page": 1334,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM07:5:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:5:branch:0",
+        "YES": "HM07:5:branch:1"
+      }
+    },
+    {
+      "step": 6,
+      "cause": "Arm control valve",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping to examine. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Are the control valve body and the arm spool clean, with no twisting, seizure, scratches, or dirt? (They must move smoothly and not be stuck.) REMARK Be careful that dirt does not enter during recovery work.",
+      "branches": {
+        "YES": "• Arm control valve body and spool are normal. • Go to the next check item.",
+        "NO": "• Arm control valve body and spool are defective. • Repair or replace the arm control valve body and spool. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-792",
+        "pdf_page": 1334,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "HM07:6:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:6:branch:0",
+        "YES": "HM07:6:branch:1"
+      }
+    },
+    {
+      "step": 7,
+      "cause": "Pressure compensation valve on IN side of arm control valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. 2. Does the troubleshooting result of the main relief pressure agree with the judgment criteria? 3. Examine it. For details, see Testing and Adjusting, “Examine parts which cause hydraulic drift of work equipment”. 4. Does the troubleshooting result of hydraulic drift agree with the standard value? 5. Do relief of other work equipment and examine. 6. Is the arm stopped? 7. Interchange the pressure compensation valves on IN and OUT sides of arm control valve, and examine. 8. Is there no change, and does the phenomenon reproduce? REMARK The area ratios of the pressure compensation valves on the IN side and OUT sides are different. Be sure to set them back to their initial positions after troubleshooting. Measurement position, condi- Standard val- Item tion ue • Control lever: Arm IN Main Front pump relief 33.1 to 37.2 relief discharged • Hydraul- MPa {338 to prespressure pickic oil 380 kgf/cm2} sure up port temperature: 45 to 55°C Hy- 240 mm or draulic Arm cylinder less drift",
+      "branches": {
+        "YES": "• Pressure compensation valve on IN side of arm control valve is normal. • Go to the next check item.",
+        "NO": "• Pressure compensation valve on IN side of arm control valve is defective. • Repair or replace the pressure compensation valve on the IN side of the arm control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-793",
+        "pdf_page": 1335,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM07:7:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:7:branch:0",
+        "YES": "HM07:7:branch:1"
+      }
+    },
+    {
+      "step": 8,
+      "cause": "Pressure compensation valve on OUT side of arm control valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. 2. Does the troubleshooting result of the main relief pressure agree with the judgment criteria? 3. Examine it. For details, see Testing and Adjusting, “Examine parts which cause hydraulic drift of work equipment”. 4. Does the troubleshooting result of hydraulic drift agree with the standard value? 5. Do relief of other work equipment and examine. 6. Is the arm stopped? 7. Interchange the pressure compensation valves on IN and OUT sides of arm control valve, and examine. 8. Is there no change, and does the phenomenon reproduce? REMARK The area ratios of the pressure compensation valves on the IN side and OUT sides are different. Be sure to set them back to their initial positions after troubleshooting. Measurement position, condi- Standard val- Item tion ue • Control lever: Arm OUT re- Main Front pump 33.1 to 37.2 relief discharged lief MPa {338 to prespressure pick- • Hydraul- 380 kgf/cm2} sure up port ic oil temperature: 45 to 55°C Hy- 240 mm or draulic Arm cylinder less drift",
+      "branches": {
+        "YES": "• Pressure compensation valve on the OUT side of the arm control valve is correct. • Go to the next check item.",
+        "NO": "• Pressure compensation valve on the OUT side of the arm control valve is defective. • Repair or replace the pressure compensation valve on the OUT side of the arm control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-794",
+        "pdf_page": 1336,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM07:8:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:8:branch:0",
+        "YES": "HM07:8:branch:1"
+      }
+    },
+    {
+      "step": 9,
+      "cause": "Regeneration valve in arm control valve",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping to examine. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Are the control valve body and arm regeneration valve normal, with no twisting, seizures, scratches, dirt, check valve spring deterioration, or deformation? (They must move smoothly and not be stuck.) REMARK Be careful that dirt does not enter during recovery work.",
+      "branches": {
+        "YES": "• The regeneration valve in arm control valve is correct. • Go to the next check item.",
+        "NO": "• The regeneration valve in arm control valve is defective. • Repair or replace the regeneration valve in arm control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-795",
+        "pdf_page": 1337,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM07:9:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:9:branch:0",
+        "YES": "HM07:9:branch:1"
+      }
+    },
+    {
+      "step": 10,
+      "cause": "Quick return valve in arm control valve",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping to examine. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Are the quick return valve body, pilot spool, and check valve correct, with no twisting, seizures, scratches, dirt, check valve spring deterioration, or deformation? (They must move smoothly and not be stuck.) REMARK Be careful that dirt does not enter during recovery work.",
+      "branches": {
+        "YES": "• Quick return valve is normal. • Go to the next check item.",
+        "NO": "• Quick return valve is defective. • Repair or replace the quick return valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-795",
+        "pdf_page": 1337,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM07:10:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:10:branch:0",
+        "YES": "HM07:10:branch:1"
+      }
+    },
+    {
+      "step": 11,
+      "cause": "Safety valve for lock valve in arm control valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue Control lever: Main Front pump Boom RAISE 33.1 to 37.2 relief discharged relief, arm IN MPa {338 to prespressure pickrelief or arm 380 kgf/cm2} sure up port OUT relief",
+      "branches": {
+        "YES": "• Safety valve for lock valve in arm control valve is normal. • Go to the next check item.",
+        "NO": "• Safety valve for lock valve in arm control valve is defective. • Repair or replace safety valve for lock valve in arm control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-795",
+        "pdf_page": 1337,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "HM07:11:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:11:branch:0",
+        "YES": "HM07:11:branch:1"
+      }
+    },
+    {
+      "step": 12,
+      "cause": "Lock valve in arm control valve (if equipped)",
+      "procedure": "Is there seizure, stuck, flaw or sticking of dirt on lock valve body, pilot piston, or poppet? Are they clean? REMARK Be careful that dirt does not enter during recovery work.",
+      "branches": {
+        "YES": "• Lock valve in arm control valve is normal. • Go to the next check item.",
+        "NO": "• Lock valve in arm control valve is defective. • Repair or replace the lock valve in arm control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-795",
+        "pdf_page": 1337,
+        "table_index": 0,
+        "row_index": 7
+      },
+      "fact_id": "HM07:12:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:12:branch:0",
+        "YES": "HM07:12:branch:1"
+      }
+    },
+    {
+      "step": 13,
+      "cause": "Suction valve on OUT side of arm control valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Control lever: Arm OUT re- Main Front pump 33.1 to 37.2 relief discharged lief MPa {338 to prespressure pick- • Hydraul- 380 kgf/cm2} sure up port ic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Suction valve on OUT side of arm control valve is normal. • Go to the next check item.",
+        "NO": "• Suction valve on OUT side of arm control valve is defective. • Repair or replace the suction valve on OUT side of arm control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-796",
+        "pdf_page": 1338,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM07:13:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:13:branch:0",
+        "YES": "HM07:13:branch:1"
+      }
+    },
+    {
+      "step": 14,
+      "cause": "Suction safety valve on IN side of arm control valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Control lever: Arm IN Main Front pump relief 33.1 to 37.2 relief discharged • Hydraul- MPa {338 to prespressure pickic oil 380 kgf/cm2} sure up port temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Suction safety valve on IN side of arm control valve is normal. • Go to the next check item.",
+        "NO": "• Suction safety valve on IN side of arm control valve is defective. • Repair or replace the suction safety valve on IN side of arm control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-796",
+        "pdf_page": 1338,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM07:14:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:14:branch:0",
+        "YES": "HM07:14:branch:1"
+      }
+    },
+    {
+      "step": 15,
+      "cause": "LS shuttle valve in arm control valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Testing and adjusting pump LS control circuit pressure”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: All 2.5 to 4.5 levers in MPa {26 to 46 neutral kgf/cm2} • Hydraulic oil temperature: 45 Pressure to 55°C pickup port for front pump • Fuel LS Difdischarged control ferential Prespressure and dial at Hi pressure picksure • Left work up port for equipfront load pressure ment control lever: 1.70 to 1.85 Arm IN, MPa {17.0 to dump 18.5 kgf/cm2} fine operation • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• LS shuttle valve in arm control valve is normal. • Go to the next check item.",
+        "NO": "• LS shuttle valve in arm control valve is defective. • Clean the check valve seat of LS shuttle valve in arm control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-797",
+        "pdf_page": 1339,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM07:15:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:15:branch:0",
+        "YES": "HM07:15:branch:1"
+      }
+    },
+    {
+      "step": 16,
+      "cause": "LS shuttle valve in R.H. travel control valve",
+      "procedure": "1. Examine the check valve seat of shuttle valve in R.H. travel control valve. 2. Is there no flaw or dirt at check valve seat section? Is it clean?",
+      "branches": {
+        "YES": "• LS shuttle valve in R.H. travel control valve is normal. • Go to the next check item.",
+        "NO": "• LS shuttle valve in R.H. travel control valve is defective. • Clean the check valve seat of LS shuttle valve in R.H. travel control valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-797",
+        "pdf_page": 1339,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM07:16:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:16:branch:0",
+        "YES": "HM07:16:branch:1"
+      }
+    },
+    {
+      "step": 17,
+      "cause": "Arm cylinder",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine Oil Leakage”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: Oil Arm cylinder Arm IN Max. 20 Leakhead side relief cc/min age hose • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• The arm cylinder is correct. • Go to the next check item.",
+        "NO": "• The arm cylinder is defective. • Repair or replace the arm cylinder. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-798",
+        "pdf_page": 1340,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM07:17:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:17:branch:0",
+        "YES": "HM07:17:branch:1"
+      }
+    },
+    {
+      "step": 18,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Stop the engine. 2. Connect all the component parts. 3. Start the engine. 4. Operate the lever to do the troubleshooting. 5. Does the arm operate correctly?",
+      "branches": {
+        "YES": "The repair is done.",
+        "NO": "Go back to the first check item."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-798",
+        "pdf_page": 1340,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM07:18:step:0",
+      "branch_fact_ids": {
+        "NO": "HM07:18:branch:0",
+        "YES": "HM07:18:branch:1"
+      }
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "PPC valve output pressure",
+      "point": "Arm PPC circuit hydraulic hose / • Fuel control dial at Hi • Control lever: All levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0 MPa {0 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-788",
+        "pdf_page": 1330,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM07:0:meas:0",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "PPC valve output pressure",
+      "point": "• Fuel control dial at Hi • Control lever: Arm IN or arm OUT • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-788",
+        "pdf_page": 1330,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM07:0:meas:1",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main EPC output pressure",
+      "point": "Oil pressure sensor mounting port (PP1S) of front pump / • Control lever: All levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0 to 0.49 MPa {0 to 5 kgf/ cm2}",
+      "provenance": {
+        "manual_page": "40-789",
+        "pdf_page": 1331,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM07:0:meas:2",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main EPC output pressure",
+      "point": "• Work equipment control lever: Bucket CURL + arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-789",
+        "pdf_page": 1331,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM07:0:meas:3",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main relief pressure",
+      "point": "Front pump discharged pressure pickup port / • Control lever: Arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "33.1 to 37.2 MPa {338 to 380 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-793",
+        "pdf_page": 1335,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM07:0:meas:4",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Hydraulic drift",
+      "point": "Arm cylinder",
+      "criteria": "240 mm or less",
+      "provenance": {
+        "manual_page": "40-793",
+        "pdf_page": 1335,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM07:0:meas:5",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main relief pressure",
+      "point": "Front pump discharged pressure pickup port / • Control lever: Arm OUT relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "33.1 to 37.2 MPa {338 to 380 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-794",
+        "pdf_page": 1336,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM07:0:meas:6",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Hydraulic drift",
+      "point": "Arm cylinder",
+      "criteria": "240 mm or less",
+      "provenance": {
+        "manual_page": "40-794",
+        "pdf_page": 1336,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM07:0:meas:7",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main relief pressure",
+      "point": "Front pump discharged pressure pickup port / Control lever: Boom RAISE relief, arm IN relief or arm OUT relief",
+      "criteria": "33.1 to 37.2 MPa {338 to 380 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-795",
+        "pdf_page": 1337,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM07:0:meas:8",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main relief pressure",
+      "point": "Front pump discharged pressure pickup port / • Control lever: Arm OUT relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "33.1 to 37.2 MPa {338 to 380 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-796",
+        "pdf_page": 1338,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM07:0:meas:9",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main relief pressure",
+      "point": "Front pump discharged pressure pickup port / • Control lever: Arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "33.1 to 37.2 MPa {338 to 380 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-796",
+        "pdf_page": 1338,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "HM07:0:meas:10",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "LS Differential Pressure",
+      "point": "Pressure pickup port for front pump discharged pressure and pressure pickup port for front load pressure / • Fuel control dial at Hi • Control lever: All levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.5 to 4.5 MPa {26 to 46 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-797",
+        "pdf_page": 1339,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM07:0:meas:11",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "LS Differential Pressure",
+      "point": "• Fuel control dial at Hi • Left work equipment control lever: Arm IN, dump fine operation • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "1.70 to 1.85 MPa {17.0 to 18.5 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-797",
+        "pdf_page": 1339,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM07:0:meas:12",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Oil Leakage",
+      "point": "Arm cylinder head side hose / • Fuel control dial at Hi • Control lever: Arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Max. 20 cc/min",
+      "provenance": {
+        "manual_page": "40-798",
+        "pdf_page": 1340,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM07:0:meas:13",
+      "criteria_kind": "numeric"
+    }
+  ],
+  "unresolved_pointers": [
+    {
+      "text": "do the troubleshooting for that code first.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-787",
+        "pdf_page": 1329,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-798",
+        "pdf_page": 1340,
+        "table_index": 0
+      }
+    }
+  ],
+  "refs_failure_codes": [],
+  "skipped_tables": [
+    {
+      "manual_page": "40-790",
+      "pdf_page": 1332,
+      "table_index": 1,
+      "reason": "table_kind=unknown",
+      "first_cell": "",
+      "shape": "3x4"
+    },
+    {
+      "manual_page": "40-791",
+      "pdf_page": 1333,
+      "table_index": 1,
+      "reason": "table_kind=unknown",
+      "first_cell": "",
+      "shape": "5x4"
+    }
+  ]
+}

@@ -1,0 +1,766 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "H-Mode",
+  "symptom_id": "HM02",
+  "tree_kind": "SymptomTreeBranching",
+  "symptom": "All Work Equipment, Swing, and Travel Lack Speed or Power",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": "All work equipment, swing, and travel lack speed or power",
+  "related_information": "Pre-troubleshooting If a failure code is shown, do the troubleshooting for that code first. Monitoring code • F pump pressure can be examined with the monitoring function. (Code: 01100) • R pump pressure can be examined with the monitoring function. (Code: 01101) Reference information For other than the swing, see if the speed becomes correct when the swing lock switch is ON. If the speed is normal, examine the malfunction of the front and rear pump swash plate sensor.",
+  "pdf_pages": [
+    1291,
+    1300
+  ],
+  "manual_pages": [
+    "40-749",
+    "40-750",
+    "40-751",
+    "40-752",
+    "40-753",
+    "40-754",
+    "40-755",
+    "40-756",
+    "40-757",
+    "40-758"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Front pump swash plate sensor",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine Pump Swash Plate Sensor”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: All levers in 0.72 to 1.98 V neutral • Hydraulic oil temperature: 45 Monitoring to 55°C Sensor code: 01138 F output Pump Swash • Fuel voltage Plate Sensor control volt dial at Hi • One-side track running idle off 2.72 to 3.98 V ground • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Front pump swash plate sensor is normal. • Go to the next check item.",
+        "NO": "• Front pump swash plate sensor is defective. • Repair or replace the front pump swash plate sensor. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-749",
+        "pdf_page": 1291,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM02:1:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:1:branch:0",
+        "YES": "HM02:1:branch:1"
+      }
+    },
+    {
+      "step": 2,
+      "cause": "Rear pump swash plate sensor",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine Pump Swash Plate Sensor”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: All levers in 0.72 to 1.98 V neutral • Hydraulic oil temperature: 45 Monitoring to 55°C Sensor code: 01140 output R Pump • Fuel voltage Swash Plate control Sensor volt dial at Hi • One-side track running idle off 2.72 to 3.98 V ground • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Rear pump swash plate sensor is normal. • Go to the next check item.",
+        "NO": "• Rear pump swash plate sensor is defective. • Repair or replace the rear pump swash plate sensor. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-750",
+        "pdf_page": 1292,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM02:2:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:2:branch:0",
+        "YES": "HM02:2:branch:1"
+      }
+    },
+    {
+      "step": 3,
+      "cause": "Front pump unload valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Control lever: All levers in Unload Front pump neutral 2.5 to 4.5 discharged pres- • Hydraul- MPa {26 to 46 pressure picksure ic oil kgf/cm2} up port temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Front pump unload valve is normal. • Go to the next check item.",
+        "NO": "• Front pump unload valve is defective. • Repair or replace the front pump unload valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-750",
+        "pdf_page": 1292,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM02:3:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:3:branch:0",
+        "YES": "HM02:3:branch:1"
+      }
+    },
+    {
+      "step": 4,
+      "cause": "Rear pump unload valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Control lever: All levers in Unload Rear pump neutral 2.5 to 4.5 discharged pres- • Hydraul- MPa {26 to 46 pressure picksure ic oil kgf/cm2} up port temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Rear pump unload valve is normal. • Go to the next check item.",
+        "NO": "• Rear pump unload valve is defective. • Repair or replace the rear pump unload valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-751",
+        "pdf_page": 1293,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM02:4:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:4:branch:0",
+        "YES": "HM02:4:branch:1"
+      }
+    },
+    {
+      "step": 5,
+      "cause": "Front pump main relief valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Control lever: Boom RAISE Main Front pump 33.1 to 37.2 relief discharged relief MPa {338 to prespressure pick- • Hydraul- 380 kgf/cm2} sure up port ic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Front pump main relief valve is normal. • Go to the next check item.",
+        "NO": "• Front pump main relief valve is defective. • Adjust the front pump main relief valve. • If the oil pressure does not become normal even after the front pump main relief valve is adjusted, repair or replace it. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-751",
+        "pdf_page": 1293,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM02:5:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:5:branch:0",
+        "YES": "HM02:5:branch:1"
+      }
+    },
+    {
+      "step": 6,
+      "cause": "Rear pump main relief valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and Adjust Oil Pressure in Work Equipment, Swing, and Travel Circuits”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Control lever: Arm IN Main Rear pump relief 33.1 to 37.2 relief discharged • Hydraul- MPa {338 to prespressure pickic oil 380 kgf/cm2} sure up port temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Rear pump main relief valve is normal. • Go to the next check item.",
+        "NO": "• Rear pump main relief valve is defective. • Adjust the rear pump main relief valve. • If the oil pressure does not become correct even after the rear pump main relief valve is adjusted, repair or replace it. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-752",
+        "pdf_page": 1294,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM02:6:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:6:branch:0",
+        "YES": "HM02:6:branch:1"
+      }
+    },
+    {
+      "step": 7,
+      "cause": "Self-pressure reducing valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine Oil Pressure of Control Circuit”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Control lever: All levers in neutral Control • Fuel circuit 2.84 to 3.43 Oil pressure control source MPa {29 to 35 pickup plug dial at Hi preskgf/cm2} sure • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Self-pressure reducing is normal. • Go to the next check item.",
+        "NO": "• Self-pressure reducing is defective. • Repair or replace the self-pressure reducing. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-752",
+        "pdf_page": 1294,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM02:7:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:7:branch:0",
+        "YES": "HM02:7:branch:1"
+      }
+    },
+    {
+      "step": 8,
+      "cause": "Front pump PC-EPC valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and adjust oil pressure in pump PC control circuit”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Control lever: All levers in neutral • Fuel control 2.9 MPa {30 dial at Lo kgf/cm2} • Hydraulic oil tempera- PC- Pressure ture: 45 EPC pickup port for to 55°C valve front PC output mode change • Control presover pressure lever: All sure levers in neutral • Fuel 0.70 to 1.09 control MPa {7.1 to dial at Hi 11.1 kgf/cm2} • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Front pump PC-EPC valve is normal. • Go to the next check item.",
+        "NO": "• Front pump PC-EPC valve is defective. • Adjust the front pump PC-EPC valve. • If the oil pressure does not become normal even after the front pump PC-EPC valve is adjusted, repair or replace it. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-753",
+        "pdf_page": 1295,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM02:8:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:8:branch:0",
+        "YES": "HM02:8:branch:1"
+      }
+    },
+    {
+      "step": 9,
+      "cause": "Rear pump PC- EPC valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and adjust oil pressure in pump PC control circuit”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Control lever: All levers in neutral • Fuel control 2.9 MPa {30 dial at Lo kgf/cm2} • Hydraulic oil tempera- PC- Pressure ture: 45 EPC pickup port for to 55°C valve rear PC mode output change over • Control prespressure lever: All sure levers in neutral • Fuel 0.70 to 1.09 control MPa {7.1 to dial at Hi 11.1 kgf/cm2} • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• Rear pump PC-EPC valve is normal. • Go to the next check item.",
+        "NO": "• Rear pump PC-EPC valve is defective. • Adjust the rear pump PC-EPC valve. • Repair or replace the PC-EPC valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-754",
+        "pdf_page": 1296,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM02:9:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:9:branch:0",
+        "YES": "HM02:9:branch:1"
+      }
+    },
+    {
+      "step": 10,
+      "cause": "Front pump PC valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and adjust oil pressure in pump PC control circuit”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue Pump Front pump • Control supply discharged lever: Oil pressure prespressure pick- Boom ratio pump sure up port RAISE discharged pressure: PC relief valve dis- PC Pressure • Hydraulcharged presvalve pickup port for ic oil sure 1:0.6 output front pump tempera- (approximateprescontrol presture: 45 ly 3/5) sure sure to 55°C",
+      "branches": {
+        "YES": "• Front pump PC valve is normal. • Go to the next check item.",
+        "NO": "• Front pump PC valve is defective. • Adjust the front pump PC valve. • If the oil pressure does not become normal even after the front pump PC valve is adjusted, repair or replace the servo piston assembly. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-754",
+        "pdf_page": 1296,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM02:10:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:10:branch:0",
+        "YES": "HM02:10:branch:1"
+      }
+    },
+    {
+      "step": 11,
+      "cause": "Rear pump PC valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Examine and adjust oil pressure in pump PC control circuit”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue Pump Rear pump • Control Oil pressure supply discharged lever: ratio pump prespressure pick- Arm IN discharged sure up port relief pressure: PC PC Pressure • Hydraulvalve disvalve pickup port for ic oil charged presoutput rear pump temperasure 1:0.6 (approximateprescontrol presture: 45 ly 3/5) sure sure to 55°C",
+      "branches": {
+        "YES": "• Rear pump PC valve is normal. • Go to the next check item.",
+        "NO": "• Rear pump PC valve is defective. • Adjust the rear pump PC valve. • If oil pressure does not become normal after adjustment of the rear pump PC valve, repair or replace the servo piston assembly. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-755",
+        "pdf_page": 1297,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM02:11:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:11:branch:0",
+        "YES": "HM02:11:branch:1"
+      }
+    },
+    {
+      "step": 12,
+      "cause": "LS-EPC valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Testing and adjusting pump LS control circuit pressure”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Control lever: All levers in neutral • Travel Approximately speed: 2.9 MPa {ap- Lo proximately 30 kgf/cm2} • Hydraulic oil tempera- LS- ture: 45 Pressure EPC to 55°C pickup port for valve output LS set • Control change over preslever: pressure sure Travel lever fine control • Travel 0 MPa {0 speed: kgf/cm2} Hi • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• The LS-EPC valve is correct. • Go to the next check item.",
+        "NO": "• The LS-EPC valve is defective. • Repair or replace the LS-EPC valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-755",
+        "pdf_page": 1297,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM02:12:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:12:branch:0",
+        "YES": "HM02:12:branch:1"
+      }
+    },
+    {
+      "step": 13,
+      "cause": "Front pump LS valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Testing and adjusting pump LS control circuit pressure”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue Pump Front pump • Control Oil pressure supply discharged lever: All ratio pump prespressure picklevers in discharged sure up port neutral pressure: PC PC • Hydraulvalve disvalve Pressure ic oil charged presoutput pickup port for temperasure 1:1 (alfront pump most same presture: 45 load pressure pressure) sure to 55°C Pump Front pump • Control supply discharged lever: Oil pressure prespressure pick- Travel ratio pump sure up port lever half discharged pressure: PC stroke valve dis- PC Pressure • Hydraulcharged presvalve pickup port for ic oil sure 1:0.6 output front pump tempera- (approximatepresload pressure ture: 45 ly 3/5) sure to 55°C",
+      "branches": {
+        "YES": "• Front pump LS valve is normal. • Go to the next check item.",
+        "NO": "• Front pump LS valve is defective. • Adjust the front pump LS valve. • If the oil pressure does not become normal even after the front pump LS valve is adjusted, repair or replace it. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-756",
+        "pdf_page": 1298,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM02:13:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:13:branch:0",
+        "YES": "HM02:13:branch:1"
+      }
+    },
+    {
+      "step": 14,
+      "cause": "Rear pump LS valve",
+      "procedure": "1. Examine it. For details, see Testing and Adjusting, “Testing and adjusting pump LS control circuit pressure”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue Pump Rear pump • Control Oil pressure supply discharged lever: All ratio pump prespressure picklevers in discharged sure up port neutral pressure: PC PC • Hydraulvalve disvalve Pressure ic oil charged presoutput pickup port for temperasure 1:1 (alrear pump most same presture: 45 load pressure pressure) sure to 55°C Pump Rear pump • Control supply discharged lever: Oil pressure prespressure pick- Travel ratio pump sure up port lever half discharged pressure: PC stroke valve dis- PC Pressure • Hydraulcharged presvalve pickup port for ic oil sure 1:0.6 output rear pump tempera- (approximatepresload pressure ture: 45 ly 3/5) sure to 55°C",
+      "branches": {
+        "YES": "• Rear pump LS valve is normal. • Go to the next check item.",
+        "NO": "• Rear pump LS valve is defective. • Adjust the rear pump LS valve. • If the oil pressure does not become normal even after the rear pump LS valve is adjusted, repair or replace it. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-757",
+        "pdf_page": 1299,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM02:14:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:14:branch:0",
+        "YES": "HM02:14:branch:1"
+      }
+    },
+    {
+      "step": 15,
+      "cause": "Servo piston",
+      "procedure": "1. Examine the inside of pump servo equipment. 2. Are the orifice and filter not clogged and clean?",
+      "branches": {
+        "YES": "• The servo piston is correct. • Go to the next check item.",
+        "NO": "• Servo piston is defective. • Repair or replace the servo piston. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-757",
+        "pdf_page": 1299,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM02:15:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:15:branch:0",
+        "YES": "HM02:15:branch:1"
+      }
+    },
+    {
+      "step": 16,
+      "cause": "Piston pump",
+      "procedure": "1. Stop the engine. 2. Release the pressure that remains in the hydraulic tank and piping. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 3. Remove the main oil pressure measurement plug. 4. Turn the starting switch to the ON position. 5. Examine it. For details, see Testing and Adjusting, “Procedure to Perform No-Injection Cranking”. 6. Does oil flow out of the main oil pressure measurement plug?",
+      "branches": {
+        "YES": "• The piston pump is correct. • Go to the next check item.",
+        "NO": "• The piston pump is defective. • Repair or replace the piston pump. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-757",
+        "pdf_page": 1299,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "HM02:16:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:16:branch:0",
+        "YES": "HM02:16:branch:1"
+      }
+    },
+    {
+      "step": 17,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Stop the engine. 2. Connect all the component parts. 3. Start the engine. 4. Operate the lever to do the troubleshooting. 5. Do the work equipment, swing and travel operate normally?",
+      "branches": {
+        "YES": "The repair is done.",
+        "NO": "Go back to the first check item."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-758",
+        "pdf_page": 1300,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM02:17:step:0",
+      "branch_fact_ids": {
+        "NO": "HM02:17:branch:0",
+        "YES": "HM02:17:branch:1"
+      }
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "Sensor output voltage",
+      "point": "Monitoring code: 01138 F Pump Swash Plate Sensor volt / • Fuel control dial at Hi • Control lever: All levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0.72 to 1.98 V",
+      "provenance": {
+        "manual_page": "40-749",
+        "pdf_page": 1291,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "HM02:0:meas:0",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Sensor output voltage",
+      "point": "• Fuel control dial at Hi • One-side track running idle off ground • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.72 to 3.98 V",
+      "provenance": {
+        "manual_page": "40-749",
+        "pdf_page": 1291,
+        "table_index": 2,
+        "row_index": 2
+      },
+      "fact_id": "HM02:0:meas:1",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Sensor output voltage",
+      "point": "Monitoring code: 01140 R Pump Swash Plate Sensor volt / • Fuel control dial at Hi • Control lever: All levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0.72 to 1.98 V",
+      "provenance": {
+        "manual_page": "40-750",
+        "pdf_page": 1292,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM02:0:meas:2",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Sensor output voltage",
+      "point": "• Fuel control dial at Hi • One-side track running idle off ground • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.72 to 3.98 V",
+      "provenance": {
+        "manual_page": "40-750",
+        "pdf_page": 1292,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM02:0:meas:3",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Unload pressure",
+      "point": "Front pump discharged pressure pickup port / • Control lever: All levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.5 to 4.5 MPa {26 to 46 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-750",
+        "pdf_page": 1292,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "HM02:0:meas:4",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Unload pressure",
+      "point": "Rear pump discharged pressure pickup port / • Control lever: All levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.5 to 4.5 MPa {26 to 46 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-751",
+        "pdf_page": 1293,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM02:0:meas:5",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main relief pressure",
+      "point": "Front pump discharged pressure pickup port / • Control lever: Boom RAISE relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "33.1 to 37.2 MPa {338 to 380 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-751",
+        "pdf_page": 1293,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "HM02:0:meas:6",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Main relief pressure",
+      "point": "Rear pump discharged pressure pickup port / • Control lever: Arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "33.1 to 37.2 MPa {338 to 380 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-752",
+        "pdf_page": 1294,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM02:0:meas:7",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Control circuit source pressure",
+      "point": "Oil pressure pickup plug / • Control lever: All levers in neutral • Fuel control dial at Hi • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-752",
+        "pdf_page": 1294,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "HM02:0:meas:8",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "PC- EPC valve output pressure",
+      "point": "Pressure pickup port for front PC mode change over pressure / • Control lever: All levers in neutral • Fuel control dial at Lo • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.9 MPa {30 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-753",
+        "pdf_page": 1295,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM02:0:meas:9",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "PC- EPC valve output pressure",
+      "point": "• Control lever: All levers in neutral • Fuel control dial at Hi • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0.70 to 1.09 MPa {7.1 to 11.1 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-753",
+        "pdf_page": 1295,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM02:0:meas:10",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "PC- EPC valve output pressure",
+      "point": "Pressure pickup port for rear PC mode change over pressure / • Control lever: All levers in neutral • Fuel control dial at Lo • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.9 MPa {30 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-754",
+        "pdf_page": 1296,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM02:0:meas:11",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "PC- EPC valve output pressure",
+      "point": "• Control lever: All levers in neutral • Fuel control dial at Hi • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0.70 to 1.09 MPa {7.1 to 11.1 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-754",
+        "pdf_page": 1296,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM02:0:meas:12",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Pump supply pressure",
+      "point": "Front pump discharged pressure pickup port / • Control lever: Boom RAISE relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Oil pressure ratio pump discharged pressure: PC valve discharged pressure 1:0.6 (approximately 3/5)",
+      "provenance": {
+        "manual_page": "40-754",
+        "pdf_page": 1296,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "HM02:0:meas:13",
+      "criteria_kind": "relational"
+    },
+    {
+      "quantity": "PC valve output pressure",
+      "point": "Pressure pickup port for front pump control pressure",
+      "criteria": "",
+      "provenance": {
+        "manual_page": "40-754",
+        "pdf_page": 1296,
+        "table_index": 2,
+        "row_index": 2
+      },
+      "fact_id": "HM02:0:meas:14",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Pump supply pressure",
+      "point": "Rear pump discharged pressure pickup port / • Control lever: Arm IN relief • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Oil pressure ratio pump discharged pressure: PC valve discharged pressure 1:0.6 (approximately 3/5)",
+      "provenance": {
+        "manual_page": "40-755",
+        "pdf_page": 1297,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM02:0:meas:15",
+      "criteria_kind": "relational"
+    },
+    {
+      "quantity": "PC valve output pressure",
+      "point": "Pressure pickup port for rear pump control pressure",
+      "criteria": "",
+      "provenance": {
+        "manual_page": "40-755",
+        "pdf_page": 1297,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM02:0:meas:16",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "LS- EPC valve output pressure",
+      "point": "Pressure pickup port for LS set change over pressure / • Control lever: All levers in neutral • Travel speed: Lo • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Approximately 2.9 MPa {approximately 30 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-755",
+        "pdf_page": 1297,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "HM02:0:meas:17",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "LS- EPC valve output pressure",
+      "point": "• Control lever: Travel lever fine control • Travel speed: Hi • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0 MPa {0 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-755",
+        "pdf_page": 1297,
+        "table_index": 2,
+        "row_index": 2
+      },
+      "fact_id": "HM02:0:meas:18",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Pump supply pressure",
+      "point": "Front pump discharged pressure pickup port / • Control lever: All levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Oil pressure ratio pump discharged pressure: PC valve discharged pressure 1:1 (almost same pressure)",
+      "provenance": {
+        "manual_page": "40-756",
+        "pdf_page": 1298,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM02:0:meas:19",
+      "criteria_kind": "relational"
+    },
+    {
+      "quantity": "PC valve output pressure",
+      "point": "Pressure pickup port for front pump load pressure",
+      "criteria": "",
+      "provenance": {
+        "manual_page": "40-756",
+        "pdf_page": 1298,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM02:0:meas:20",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Pump supply pressure",
+      "point": "Front pump discharged pressure pickup port / • Control lever: Travel lever half stroke • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Oil pressure ratio pump discharged pressure: PC valve discharged pressure 1:0.6 (approximately 3/5)",
+      "provenance": {
+        "manual_page": "40-756",
+        "pdf_page": 1298,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "HM02:0:meas:21",
+      "criteria_kind": "relational"
+    },
+    {
+      "quantity": "PC valve output pressure",
+      "point": "Pressure pickup port for front pump load pressure",
+      "criteria": "",
+      "provenance": {
+        "manual_page": "40-756",
+        "pdf_page": 1298,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "HM02:0:meas:22",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Pump supply pressure",
+      "point": "Rear pump discharged pressure pickup port / • Control lever: All levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Oil pressure ratio pump discharged pressure: PC valve discharged pressure 1:1 (almost same pressure)",
+      "provenance": {
+        "manual_page": "40-757",
+        "pdf_page": 1299,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM02:0:meas:23",
+      "criteria_kind": "relational"
+    },
+    {
+      "quantity": "PC valve output pressure",
+      "point": "Pressure pickup port for rear pump load pressure",
+      "criteria": "",
+      "provenance": {
+        "manual_page": "40-757",
+        "pdf_page": 1299,
+        "table_index": 1,
+        "row_index": 2
+      },
+      "fact_id": "HM02:0:meas:24",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "Pump supply pressure",
+      "point": "Rear pump discharged pressure pickup port / • Control lever: Travel lever half stroke • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "Oil pressure ratio pump discharged pressure: PC valve discharged pressure 1:0.6 (approximately 3/5)",
+      "provenance": {
+        "manual_page": "40-757",
+        "pdf_page": 1299,
+        "table_index": 1,
+        "row_index": 3
+      },
+      "fact_id": "HM02:0:meas:25",
+      "criteria_kind": "relational"
+    },
+    {
+      "quantity": "PC valve output pressure",
+      "point": "Pressure pickup port for rear pump load pressure",
+      "criteria": "",
+      "provenance": {
+        "manual_page": "40-757",
+        "pdf_page": 1299,
+        "table_index": 1,
+        "row_index": 4
+      },
+      "fact_id": "HM02:0:meas:26",
+      "criteria_kind": "numeric"
+    }
+  ],
+  "unresolved_pointers": [
+    {
+      "text": "do the troubleshooting for that code first.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-749",
+        "pdf_page": 1291,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-758",
+        "pdf_page": 1300,
+        "table_index": 0
+      }
+    }
+  ],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}

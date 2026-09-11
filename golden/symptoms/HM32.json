@@ -1,0 +1,191 @@
+{
+  "schema_version": 2,
+  "manual_id": "SEN06867-13",
+  "revision": 13,
+  "model": "PC200-10M0",
+  "serial_range": "700001 and up",
+  "section": "H-Mode",
+  "symptom_id": "HM32",
+  "tree_kind": "SymptomTreeBranching",
+  "symptom": "Shock is Large When Upper Structure Stops Swing Operation",
+  "symptom_source": "bookmark title",
+  "detail_of_failure": "Shock is large when the upper structure stops swing operation.",
+  "related_information": "Pre-troubleshooting If a failure code is shown, do the troubleshooting for that code first. Monitoring code • The swing LEFT PPC pressure can be examined with the monitoring function. (Code: 09001) • The swing RIGHT PPC pressure can be examined with the monitoring function. (Code: 09002)",
+  "pdf_pages": [
+    1458,
+    1459
+  ],
+  "manual_pages": [
+    "40-916",
+    "40-917"
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "cause": "Swing PPC valve",
+      "procedure": "1. Do the troubleshooting. For details, see Testing and Adjusting, “Examine PPC Valve Outlet Pressure”. 2. Does the troubleshooting result agree with the standard value? Measurement position, condi- Standard val- Item tion ue • Fuel control dial at Hi • Control lever: All levers in 0 MPa {0 neutral kgf/cm2} • Hydraulic oil temperature: 45 to 55°C PPC Swing PPC • Fuel Outlet Presvalve outlet control hose sure dial at Hi • Swing control lever: Swing 2.84 to 3.43 LEFT, MPa {29 to 35 swing kgf/cm2} RIGHT • Hydraulic oil temperature: 45 to 55°C",
+      "branches": {
+        "YES": "• The swing PPC valve is normal. • Go to the next check item.",
+        "NO": "• The swing PPC valve is defective. • Replace the swing PPC valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-916",
+        "pdf_page": 1458,
+        "table_index": 1,
+        "row_index": 1
+      },
+      "fact_id": "HM32:1:step:0",
+      "branch_fact_ids": {
+        "NO": "HM32:1:branch:0",
+        "YES": "HM32:1:branch:1"
+      }
+    },
+    {
+      "step": 2,
+      "cause": "Swing RIGHT PPC slow return valve",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Interchange the swing RIGHT and LEFT slow return valves. 3. Is there no change, and does the phenomenon reproduce?",
+      "branches": {
+        "YES": "• Swing RIGHT PPC slow return valve is correct. • Go to the next check item.",
+        "NO": "• When the swing RIGHT PPC slow return valve is removed, examine the strainer for clogging. • If the strainer is clogged, clean the strainer or replace the swing RIGHT PPC slow return valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-917",
+        "pdf_page": 1459,
+        "table_index": 0,
+        "row_index": 1
+      },
+      "fact_id": "HM32:2:step:0",
+      "branch_fact_ids": {
+        "NO": "HM32:2:branch:0",
+        "YES": "HM32:2:branch:1"
+      }
+    },
+    {
+      "step": 3,
+      "cause": "Swing LEFT PPC slow return valve",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Interchange the swing RIGHT and LEFT slow return valves. 3. Is there no change, and does the phenomenon reproduce?",
+      "branches": {
+        "YES": "• The swing LEFT PPC slow return valve is correct. • Go to the next check item.",
+        "NO": "• When the swing LEFT PPC slow return valve is removed, examine the strainer for clogging. • If the strainer is clogged, clean the strainer or replace the swing LEFT PPC slow return valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-917",
+        "pdf_page": 1459,
+        "table_index": 0,
+        "row_index": 3
+      },
+      "fact_id": "HM32:3:step:0",
+      "branch_fact_ids": {
+        "NO": "HM32:3:branch:0",
+        "YES": "HM32:3:branch:1"
+      }
+    },
+    {
+      "step": 4,
+      "cause": "Swing motor reverse prevention valve",
+      "procedure": "1. Release the pressure that remains in the hydraulic tank and piping to do the troubleshooting. For details, see Testing and Adjusting, “Release Remained Pressure in Hydraulic Circuit”. 2. Is the reverse prevention valve of the travel motor clean, with no stuck spool, seizure, or spring deterioration?",
+      "branches": {
+        "YES": "• The swing motor reverse prevention valve is correct. • Go to the next check item.",
+        "NO": "• The swing motor reverse prevention valve is defective. • Replace the swing motor reverse prevention valve. • Go to “Confirmation of repair”."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-917",
+        "pdf_page": 1459,
+        "table_index": 0,
+        "row_index": 5
+      },
+      "fact_id": "HM32:4:step:0",
+      "branch_fact_ids": {
+        "NO": "HM32:4:branch:0",
+        "YES": "HM32:4:branch:1"
+      }
+    },
+    {
+      "step": 5,
+      "cause": "Confirmation of repair",
+      "procedure": "1. Stop the engine. 2. Connect all the component parts. 3. Start the engine. 4. Does the machine swing normally?",
+      "branches": {
+        "YES": "The repair is done.",
+        "NO": "Return to the first check item."
+      },
+      "measurements": [],
+      "provenance": {
+        "manual_page": "40-917",
+        "pdf_page": 1459,
+        "table_index": 0,
+        "row_index": 7
+      },
+      "fact_id": "HM32:5:step:0",
+      "branch_fact_ids": {
+        "NO": "HM32:5:branch:0",
+        "YES": "HM32:5:branch:1"
+      }
+    }
+  ],
+  "standalone_measurements": [
+    {
+      "quantity": "PPC Outlet Pressure",
+      "point": "Swing PPC valve outlet hose / • Fuel control dial at Hi • Control lever: All levers in neutral • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "0 MPa {0 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-916",
+        "pdf_page": 1458,
+        "table_index": 2,
+        "row_index": 1
+      },
+      "fact_id": "HM32:0:meas:0",
+      "criteria_kind": "numeric"
+    },
+    {
+      "quantity": "PPC Outlet Pressure",
+      "point": "• Fuel control dial at Hi • Swing control lever: Swing LEFT, swing RIGHT • Hydraulic oil temperature: 45 to 55°C",
+      "criteria": "2.84 to 3.43 MPa {29 to 35 kgf/cm2}",
+      "provenance": {
+        "manual_page": "40-916",
+        "pdf_page": 1458,
+        "table_index": 2,
+        "row_index": 2
+      },
+      "fact_id": "HM32:0:meas:1",
+      "criteria_kind": "numeric"
+    }
+  ],
+  "unresolved_pointers": [
+    {
+      "text": "do the troubleshooting for that code first.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-916",
+        "pdf_page": 1458,
+        "table_index": 0
+      }
+    },
+    {
+      "text": "Do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-916",
+        "pdf_page": 1458,
+        "table_index": 1
+      }
+    },
+    {
+      "text": "do the troubleshooting.",
+      "resolved_to": null,
+      "resolution": "prose only; not resolved by design -- a guessed target sends a technician into the wrong tree",
+      "provenance": {
+        "manual_page": "40-917",
+        "pdf_page": 1459,
+        "table_index": 0
+      }
+    }
+  ],
+  "refs_failure_codes": [],
+  "skipped_tables": []
+}
