@@ -44,29 +44,20 @@ if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 sys.path.insert(0, os.path.join(REPO_ROOT, "pipeline"))
 
-# DEFECT WORKED AROUND HERE, AND NAMED RATHER THAN HIDDEN.
+# clean() comes from the extractor itself, and this import is now a plain one.
 #
-# extract_golden.py resolves the source PDF at import time from
-# `sys.argv[1] if len(sys.argv) > 1 else $KOMATSU_PDF`, and sys.exit()s if that
-# is not a file. So importing clean() -- a pure string function that needs no
-# PDF at all -- fails inside ANY process that has arguments of its own:
-# `python core/orchestrator.py --force` makes argv[1] "--force", and the stage
-# dies before it starts. It halted a full run exactly that way.
+# It used to be wrapped in an argv-blanking workaround, because extract_golden
+# resolved the PDF path from sys.argv at MODULE scope and exited if it was not
+# a file -- so importing a pure string function needed a manual, and any
+# process with arguments of its own resolved the manual to its own first flag.
+# That workaround treated the symptom. The guard has since moved into
+# require_pdf(), called from main(), so there is nothing left to work around.
 #
-# The right fix is to move clean() into a module that does not sit behind a PDF
-# guard, which means touching a Section 40 parser path and is out of scope.
-# This blanks argv for the duration of the import only. It is a workaround, not
-# a repair, and the underlying defect is reported with this commit.
-#
-# Re-implementing clean() here was the alternative and is worse: two
-# normalisation pipelines is precisely the defect that sent three symptom
-# titles to the wrong page one module ago.
-_argv = sys.argv
-try:
-    sys.argv = sys.argv[:1]
-    from extract_golden import clean                              # noqa: E402
-finally:
-    sys.argv = _argv
+# Re-implementing clean() here was never the alternative: two normalisation
+# pipelines is precisely the defect that sent three symptom titles to the wrong
+# page one module ago. Both sides of every comparison go through the same
+# function, and that function has exactly one definition.
+from extract_golden import clean                                  # noqa: E402
 
 GOLD = os.environ.get("GOLD_DIR", os.path.join(REPO_ROOT, "golden"))
 KNOWLEDGE = os.path.join(REPO_ROOT, "knowledge")

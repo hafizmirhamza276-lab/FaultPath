@@ -18,19 +18,48 @@ import fitz  # PyMuPDF, for bookmarks + manual page numbers
 # defaults; an explicit argv path overrides both.
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-PDF = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("KOMATSU_PDF", "")
-OUT = sys.argv[2] if len(sys.argv) > 2 else os.environ.get(
-    "GOLD_DIR", os.path.join(REPO_ROOT, "golden")
-)
+# RESOLVED AT CALL TIME, NOT IMPORT TIME. Both halves of this, deliberately.
+#
+# These four lines used to run at module scope, and the cost was paid twice:
+#
+#   argv  `python core/orchestrator.py --force` made argv[1] "--force", so any
+#         process with arguments of its own that imported this module resolved
+#         the manual to "--force" and exited. That halted a full run once and
+#         was WORKED AROUND in core/symptom_match.py by blanking sys.argv
+#         across the import -- which is why it came back.
+#   guard  importing clean() -- a pure string function that touches no PDF --
+#         required the PDF to be present. The agent must run offline with no
+#         network, no key and no manual, and the symptom matcher needs clean()
+#         on both sides of every comparison.
+#
+# Nothing about WHAT is extracted changes; only WHEN the guard fires. Proven by
+# diff: re-extraction after this change is byte-identical to the committed
+# golden/ across all 174 files and index.json.
+#
+# A script still refuses to run without the manual -- require_pdf() is the
+# first line of main(). The guard did not weaken, it moved.
 
-if not PDF or not os.path.isfile(PDF):
-    sys.exit(
-        "ERROR: source manual PDF not found.\n"
-        "  Pass the path as the first argument, or set KOMATSU_PDF.\n"
-        f"  Tried: {PDF or '<unset>'}\n"
-        "  The manual is Komatsu copyrighted material and is deliberately not\n"
-        "  stored in this repo -- see CLAUDE.md."
-    )
+def source_pdf() -> str:
+    return sys.argv[1] if len(sys.argv) > 1 else os.environ.get("KOMATSU_PDF", "")
+
+
+def out_dir() -> str:
+    return sys.argv[2] if len(sys.argv) > 2 else os.environ.get(
+        "GOLD_DIR", os.path.join(REPO_ROOT, "golden"))
+
+
+def require_pdf() -> str:
+    """The guard, unchanged, at the point of USE rather than the point of import."""
+    p = source_pdf()
+    if not p or not os.path.isfile(p):
+        sys.exit(
+            "ERROR: source manual PDF not found.\n"
+            "  Pass the path as the first argument, or set KOMATSU_PDF.\n"
+            f"  Tried: {p or '<unset>'}\n"
+            "  The manual is Komatsu copyrighted material and is deliberately not\n"
+            "  stored in this repo -- see CLAUDE.md."
+        )
+    return p
 
 # Bumped when the record shape changes. v2 adds span-level provenance
 # (manual_page, pdf_page, table_index, row_index) and fact_id to every step and
@@ -496,6 +525,8 @@ def parse_code_table(pdf, start=655, end=662):
 
 
 def main():
+    PDF = require_pdf()
+    OUT = out_dir()
     os.makedirs(f"{OUT}/failure_codes", exist_ok=True)
 
     doc = fitz.open(PDF)
@@ -579,7 +610,8 @@ def run_regression_guard():
 
     print("\n" + "=" * 60)
     print("running regression guard")
-    rc = subprocess.call([sys.executable, guard], env={**os.environ, "GOLD_DIR": OUT})
+    rc = subprocess.call([sys.executable, guard],
+                         env={**os.environ, "GOLD_DIR": out_dir()})
     if rc != 0:
         sys.exit(
             "\nREGRESSION GUARD FAILED -- the regenerated dataset is NOT a valid\n"

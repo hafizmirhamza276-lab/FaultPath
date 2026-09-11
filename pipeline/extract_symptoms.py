@@ -42,13 +42,26 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if REPO_ROOT not in sys.path:
     sys.path.insert(0, REPO_ROOT)
 
-PDF = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("KOMATSU_PDF", "")
 OUT = os.environ.get("GOLD_DIR", os.path.join(REPO_ROOT, "golden"))
 
-if not PDF or not os.path.isfile(PDF):
-    sys.exit("ERROR: source manual PDF not found.\n"
-             "  Pass the path as the first argument, or set KOMATSU_PDF.\n"
-             f"  Tried: {PDF or '<unset>'}")
+
+# Same move as extract_golden's require_pdf(), for the same reason: this module
+# is imported for its helpers (tests/test_symptom_fixes.py does), and reading
+# argv at module scope resolved the manual to the importing process's own first
+# flag. The guard still refuses a run without the PDF -- it is the first line
+# of main() -- it just no longer refuses an import.
+
+def source_pdf() -> str:
+    return sys.argv[1] if len(sys.argv) > 1 else os.environ.get("KOMATSU_PDF", "")
+
+
+def require_pdf() -> str:
+    p = source_pdf()
+    if not p or not os.path.isfile(p):
+        sys.exit("ERROR: source manual PDF not found.\n"
+                 "  Pass the path as the first argument, or set KOMATSU_PDF.\n"
+                 f"  Tried: {p or '<unset>'}")
+    return p
 
 # Read-only reuse of the Section 40 helpers, where the layout is genuinely the
 # same. Nothing here writes to Section 40 or changes its behaviour.
@@ -843,6 +856,7 @@ def self_test() -> None:
 
 def main() -> int:
     self_test()
+    PDF = require_pdf()
     out_dir = os.path.join(OUT, "symptoms")
     os.makedirs(out_dir, exist_ok=True)
 
