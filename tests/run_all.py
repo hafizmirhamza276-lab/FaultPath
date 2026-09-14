@@ -25,11 +25,20 @@ import time
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# EVERY ENTRY HERE MUST HAVE AN ORCHESTRATOR STAGE, and every test script run
+# by a stage must appear here. tests/test_orchestrator.py derives both sides
+# and fails the run on either kind of orphan -- see its parity check.
+#
+# That check exists because six of ten test files were orphans when it was
+# written: four levels no stage ran, and two files in neither list that had
+# only ever run when someone typed their names.
 LEVELS = [
     ("ground-truth", "tests/test_extraction.py"),
     # Fidelity runs early: it asks whether golden/ says what the PDF says, and
     # every level after it assumes the answer is yes.
     ("fidelity", "tests/test_fidelity.py"),
+    ("symptom-fixes", "tests/test_symptom_fixes.py"),
+    ("symptom-map", "tests/test_symptom_map.py"),
     ("human-verify", "tests/test_human_verify.py"),
     ("harness", "tests/test_eval_harness.py"),
     ("agent", "tests/test_agent_replay.py"),

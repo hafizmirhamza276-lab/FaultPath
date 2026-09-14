@@ -171,8 +171,16 @@ def _script(path: str, args=()) -> dict:
 
 def s_extract(ctx) -> dict:
     r = _script("pipeline/extract_golden.py")
-    return {"detail": r, "gates": [
-        _gate("extract_exit_zero", r["returncode"], "==", 0, "extract")]}
+    # The regression guard runs again here, explicitly, even though
+    # extract_golden.py already invokes it and exits non-zero on failure.
+    # Redundant by 0.5s and worth it: run_all.py's "ground-truth" level is
+    # tests/test_extraction.py, and the parity check pairs levels to stages by
+    # the SCRIPT each runs. A guard reachable only from inside another script
+    # is invisible to that pairing, which is how an orphan starts.
+    g = _script("tests/test_extraction.py")
+    return {"detail": {**r, "guard": g}, "gates": [
+        _gate("extract_exit_zero", r["returncode"], "==", 0, "extract"),
+        _gate("ground_truth_exit_zero", g["returncode"], "==", 0, "extract")]}
 
 
 def s_audit(ctx) -> dict:
@@ -193,9 +201,15 @@ def s_extract_symptoms(ctx) -> dict:
     r = _script("pipeline/extract_symptoms.py")
     n = len(glob.glob(os.path.join(REPO_ROOT, "golden", "symptoms", "*M*.json")))
     ctx["symptom_records"] = n
-    return {"detail": {**r, "records": n},
+    # The guard for the S1/S2/C3/S4 parser fixes. It had no stage and no level
+    # until the parity check found it: it had only ever run when someone typed
+    # its name, which is not a guard, it is a habit.
+    g = _script("tests/test_symptom_fixes.py")
+    return {"detail": {**r, "records": n, "guard": g},
             "gates": [_gate("extract_symptoms_exit_zero", r["returncode"],
-                            "==", 0, "extract_symptoms")]}
+                            "==", 0, "extract_symptoms"),
+                      _gate("symptom_fixes_guarded", g["returncode"], "==", 0,
+                            "extract_symptoms")]}
 
 
 def s_audit_symptoms(ctx) -> dict:
@@ -282,6 +296,10 @@ def s_symptom_map(ctx) -> dict:
     ctx["symptom_map"] = detail
     detail["entries"] = len(smap["entries"])
     detail["unmapped_recorded"] = len(smap["unmapped"])
+    guard = _script("tests/test_symptom_map.py")
+    detail["guard"] = guard
+    out_gates.append(_gate("symptom_map_guarded", guard["returncode"], "==", 0,
+                           "symptom_map"))
     return {"detail": detail, "gates": out_gates}
 
 
@@ -299,9 +317,38 @@ def s_fidelity(ctx) -> dict:
     ctx["unresolved"] = payload
     gates = [_gate(g["gate"], g["value"], g["op"], g["threshold"], "fidelity")
              for g in fidelity.gates(res)]
+    g = _script("tests/test_fidelity.py")
+    gates.append(_gate("fidelity_test_exit_zero", g["returncode"], "==", 0,
+                       "fidelity"))
     return {"detail": {"by_kind": {k: v["rate"] for k, v in res["by_kind"].items()},
-                       "unresolved": payload["by_classification"]},
+                       "unresolved": payload["by_classification"],
+                       "guard": g},
             "gates": gates}
+
+
+def s_human_verify(ctx) -> dict:
+    """The human-transcription round and the reclassification it rests on.
+
+    This level had NO STAGE and was red for four commits while the orchestrator
+    reported every gate green -- a false green, which is the one outcome this
+    module exists to prevent. See reports/false_green_findings.md.
+    """
+    r = _script("tests/test_human_verify.py")
+    return {"detail": r, "gates": [
+        _gate("human_verify_exit_zero", r["returncode"], "==", 0,
+              "human_verify")]}
+
+
+def s_self_test(ctx) -> dict:
+    """The orchestrator's own tests, including the level/stage parity check.
+
+    Run as a subprocess, which is not a workaround here but the only correct
+    shape: an orchestrator that imported its own test module in-process would
+    be asserting over the objects it is currently executing.
+    """
+    r = _script("tests/test_orchestrator.py")
+    return {"detail": r, "gates": [
+        _gate("self_test_exit_zero", r["returncode"], "==", 0, "self_test")]}
 
 
 def s_structural(ctx) -> dict:
@@ -417,6 +464,22 @@ STAGES: List[Stage] = [
           inputs=["tests/test_api_module.py", "tests/test_api_e2e.py", "api", "agent"],
           outputs=[], gates="module + pipeline + e2e; HTTP matches in-process",
           expected_s=30, depends=["agent"]),
+    # --- levels that had no stage until the parity check found them ---
+    Stage("human_verify", s_human_verify,
+          inputs=["tests/test_human_verify.py", "pipeline/human_verify.py",
+                  "pipeline/human_select.py", "pipeline/human_kit.py",
+                  "reports/unresolved_facts.json"],
+          outputs=[],
+          gates="unresolved split per section/kind/class; no unnamed bucket; "
+                "DEFECT 0; transcription round recorded",
+          expected_s=15, needs_pdf=True, depends=["fidelity"]),
+    Stage("self_test", s_self_test,
+          inputs=["tests/test_orchestrator.py", "core/orchestrator.py",
+                  "tests/run_all.py"],
+          outputs=[],
+          gates="level/stage parity in both directions; no orphan test file; "
+                "gate arithmetic; determinism of the record",
+          expected_s=25, needs_pdf=True, depends=["api"]),
 ]
 
 STAGE_BY_NAME = {s.name: s for s in STAGES}

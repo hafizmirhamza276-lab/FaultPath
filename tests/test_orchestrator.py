@@ -12,11 +12,13 @@ Fake stages are used throughout the module level so the logic is tested without
 a 6-minute pipeline behind it.
 """
 import ast
+import glob
 import inspect
 import json
 import os
 import subprocess
 import sys
+import textwrap
 import time
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -51,17 +53,118 @@ def fake(name, ok=True, skip=None, depends=None, marker=None):
 print("\nMODULE")
 t0 = time.perf_counter()
 
-check("stages are registered", len(orch.STAGES) == 11, str(len(orch.STAGES)))
+check("stages are registered", len(orch.STAGES) == 13, str(len(orch.STAGES)))
 names = [s.name for s in orch.ordered_stages()]
 check("dependency order is topological",
       names.index("extract") < names.index("fidelity") < names.index("qa_set")
       < names.index("agent") < names.index("api")
+      # human_verify reads the unresolved split fidelity writes, and self_test
+      # asserts over the stage list every earlier stage is part of, so it runs
+      # last of all.
+      and names.index("fidelity") < names.index("human_verify")
+      and names.index("api") < names.index("self_test")
+      and names.index("self_test") == len(names) - 1
       # the symptom audit gates the data fidelity is then measured over, so it
       # has to sit between extraction and fidelity, not after it
       and names.index("extract_symptoms") < names.index("audit_symptoms")
       < names.index("fidelity")
       and names.index("extract_symptoms") < names.index("symptom_map"),
       str(names))
+
+# ============================================ LEVEL / STAGE PARITY
+#
+# WHY THIS EXISTS. tests/test_human_verify.py was red for four commits while
+# the orchestrator reported 11 stages green and 36/36 gates pass. Nothing was
+# watching it: it was a level in run_all.py with no stage. Auditing that one
+# level found six of ten test files orphaned -- four levels no stage ran, and
+# two files (test_symptom_fixes.py, test_symptom_map.py) in NEITHER list, which
+# had only ever run when someone typed their names.
+#
+# BOTH SIDES ARE DERIVED. run_all.py's LEVELS is read out of its parsed AST and
+# each stage's test scripts out of its run function's source. Nothing here is a
+# hand-written list of what ought to be present -- a hand-maintained list drifts
+# exactly the way the expectation it is meant to protect just did.
+#
+# Pairing is by SCRIPT, not by name: the "module" level is run by the "api"
+# stage, and matching on names would have to encode that by hand.
+#
+# This is orphan_detection, pointed at the orchestrator's own test surface.
+
+
+def _levels_from_run_all() -> dict:
+    """{level_name: script} parsed out of run_all.py. Never imported -- running
+    it would run the whole suite."""
+    tree = ast.parse(open(os.path.join(REPO_ROOT, "tests", "run_all.py"),
+                          encoding="utf-8").read())
+    for n in ast.walk(tree):
+        if isinstance(n, ast.Assign) and any(
+                getattr(t, "id", "") == "LEVELS" for t in n.targets):
+            return {e.elts[0].value: e.elts[1].value for e in n.value.elts}
+    return {}
+
+
+def _scripts_run_by(stage) -> set:
+    """Test scripts a stage executes, read from its own source.
+
+    Derived, so a stage that stops running a test is caught by the same check
+    as a stage that never ran one.
+    """
+    body = inspect.getsource(stage.run)
+    return {os.path.basename(c.value)
+            for c in ast.walk(ast.parse(textwrap.dedent(body)))
+            if isinstance(c, ast.Constant) and isinstance(c.value, str)
+            and c.value.startswith("tests/") and c.value.endswith(".py")}
+
+
+def parity(stages, levels, on_disk):
+    """(levels_without_stage, stage_scripts_without_level, files_in_neither)."""
+    run = {f for s in stages for f in _scripts_run_by(s)}
+    lvl = {os.path.basename(p) for p in levels.values()}
+    return sorted(lvl - run), sorted(run - lvl), sorted(on_disk - lvl - run)
+
+
+_levels = _levels_from_run_all()
+_on_disk = {os.path.basename(p)
+            for p in glob.glob(os.path.join(REPO_ROOT, "tests", "test_*.py"))}
+_no_stage, _no_level, _neither = parity(orch.STAGES, _levels, _on_disk)
+
+check("run_all.py's LEVELS was parsed, not assumed", len(_levels) >= 8,
+      str(_levels))
+check("every level in run_all.py is run by a stage", not _no_stage,
+      f"levels with no stage: {_no_stage}")
+check("every test script a stage runs is a level in run_all.py", not _no_level,
+      f"stage scripts with no level: {_no_level}")
+check("no test file exists outside both lists", not _neither,
+      f"in neither: {_neither}")
+
+# SELF-TEST. A parity check that cannot fail is the same defect it exists to
+# catch -- and this one reports zero on a healthy repo, which is precisely the
+# shape audit checks E4 and H2 were in when they were read as clean.
+_fake_level = dict(_levels, planted="tests/test_planted_orphan.py")
+_p_no_stage, _, _ = parity(orch.STAGES, _fake_level, _on_disk)
+check("parity self-test: a level with no stage fails the run",
+      _p_no_stage == ["test_planted_orphan.py"], str(_p_no_stage))
+
+
+def _planted_stage_run(ctx):
+    _script_marker = "tests/test_unlisted_by_run_all.py"   # noqa: F841
+    return {"gates": []}
+
+
+_planted = orch.Stage("planted", _planted_stage_run,
+                      inputs=["core/orchestrator.py"], outputs=[],
+                      gates="synthetic", expected_s=0.0)
+_, _p_no_level, _ = parity(list(orch.STAGES) + [_planted], _levels, _on_disk)
+check("parity self-test: a stage running an unlisted test fails the run",
+      _p_no_level == ["test_unlisted_by_run_all.py"], str(_p_no_level))
+
+_, _, _p_neither = parity(orch.STAGES, _levels,
+                          _on_disk | {"test_written_but_never_wired.py"})
+check("parity self-test: a test file in neither list fails the run",
+      _p_neither == ["test_written_but_never_wired.py"], str(_p_neither))
+
+print(f"    {len(_levels)} levels / {len(orch.STAGES)} stages / "
+      f"{len(_on_disk)} test files -- parity in both directions")
 
 # The rename that unblocked symptom_map. core/logging.py shadowed the standard
 # library for any process whose script lives in core/, which is every
@@ -191,8 +294,18 @@ if pages.available():
     via = orch.s_fidelity(ctx)
     dg = {g["gate"]: g["value"] for g in fidelity.gates(direct)}
     og = {g["gate"]: g["value"] for g in via["gates"]}
+    # Every gate the MODULE defines must appear with the same value. Compared
+    # as a subset, not as equality, because the stage also gates on its guard
+    # script's exit code -- a gate the module has no opinion about.
     check("orchestrator and standalone agree on every fidelity gate",
-          dg == og, f"standalone={dg} orchestrated={og}")
+          all(og.get(k) == v for k, v in dg.items()),
+          f"standalone={dg} orchestrated={og}")
+    # ...and the stage must not QUIETLY DROP one. Subset comparison alone would
+    # pass an s_fidelity that forgot half the gates, which is the failure this
+    # cross-check exists for.
+    check("the stage adds the guard gate and drops none of the module's",
+          set(og) == set(dg) | {"fidelity_test_exit_zero"},
+          f"extra={sorted(set(og) - set(dg))} missing={sorted(set(dg) - set(og))}")
 else:
     print("  SKIP  PDF unavailable; cross-check of fidelity values not run")
 timings["pipeline"] = time.perf_counter() - t0
