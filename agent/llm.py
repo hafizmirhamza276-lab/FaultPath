@@ -207,6 +207,11 @@ class MockLLM(LLM):
                 f"This step measures {payload.get('quantity', 'the value')} at "
                 f"{payload.get('point', 'the given point')}. Please give me "
                 f"that reading."))
+        if kind == "code_takes_over":
+            return Phrasing(text=(
+                f"Since {payload['code']} is showing, we work that first -- "
+                f"the manual says to clear any failure code before "
+                f"troubleshooting the symptom. Switching to it now."))
         if kind == "precondition":
             return Phrasing(text=(
                 f"The manual says {payload['solve_first']} must be solved "
@@ -229,13 +234,68 @@ class MockLLM(LLM):
                 bits.append("Tell me the exact reading.")
             else:
                 bits.append("Is it normal? Answer yes or no.")
+            if payload.get("pointer"):
+                bits.append(f"(The manual's full procedure for this is in "
+                            f"another section, page {payload.get('pointer_page')}.)")
             return Phrasing(text=" ".join(bits))
+        if kind == "ask_symptom_choice":
+            # EVERY candidate, each with its page. The agent does not pick, and
+            # this template has no way to express a pick even if it wanted one.
+            lead = ("I need one more thing to be sure. " if not payload.get("repeat")
+                    else "I still cannot tell which one you mean. ")
+            lines = [f"{i}. {c['symptom']} (page {c['manual_page']})"
+                     for i, c in enumerate(payload["candidates"], 1)]
+            return Phrasing(text=(
+                lead + "The manual has more than one troubleshooting tree that "
+                "could fit what you described:\n" + "\n".join(lines) +
+                "\nWhich one matches? Give me the number."))
+        if kind == "symptom_unmapped":
+            return Phrasing(text=(
+                "This manual has no troubleshooting tree for that. I am not "
+                "going to send you into the closest-looking one, because that "
+                "wastes an hour and answers a different fault. If a failure "
+                "code is showing on the monitor, give me that and I can work "
+                "it properly."))
+        if kind == "flat_row":
+            bits = [f"Check {payload['step']}: {payload['cause']}."]
+            if payload.get("point_to_check"):
+                bits.append(f"What you would see: {payload['point_to_check']}")
+            # NOT "is it normal, yes or no". This tree has no YES/NO outcomes
+            # to read back, and confirming here means the fault is FOUND.
+            bits.append("Is that what you are seeing on this machine?")
+            return Phrasing(text=" ".join(bits))
+        if kind == "ask_observation_again":
+            return Phrasing(text=(
+                "I could not tell from that whether it matches. Looking at the "
+                "machine right now: does it match, or not?"))
         if kind == "conclude":
-            return Phrasing(text=(
-                f"Diagnosis: {payload['diagnosis']} "
-                f"{payload.get('action', '')}").strip())
+            bits = [f"Diagnosis: {payload['diagnosis']}"]
+            if payload.get("remedy"):
+                bits.append(f"Remedy: {payload['remedy']}")
+            if payload.get("pointer"):
+                bits.append(
+                    f"Note: the manual does not carry the procedure here -- it "
+                    f"refers you to another section (page "
+                    f"{payload.get('pointer_page')}). I am not going to guess "
+                    f"which tree that is.")
+            if payload.get("action"):
+                bits.append(payload["action"])
+            return Phrasing(text=" ".join(b for b in bits if b).strip())
         if kind == "escalate":
+            reason = payload.get("reason") or ""
+            # The generic wording says "this code", which is false in a symptom
+            # session and flatly wrong when the reason is that no tree exists.
+            if reason == "symptom_unmapped":
+                return Phrasing(text=(
+                    "Handing over with what you told me recorded, so nobody "
+                    "has to ask you twice."))
+            if reason == "rows_exhausted":
+                return Phrasing(text=(
+                    "That is every cause the manual lists for this symptom, "
+                    "and none of them matched what you are seeing. Handing "
+                    "over with all of it recorded."))
+            noun = "symptom" if payload.get("symptom") else "code"
             return Phrasing(text=(
-                "I have run out of checks the manual defines for this code. "
+                f"I have run out of checks the manual defines for this {noun}. "
                 "Handing over with everything recorded so far."))
         return Phrasing(text=payload.get("text", ""))

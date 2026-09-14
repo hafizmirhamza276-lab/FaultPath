@@ -32,7 +32,7 @@ DEFAULT_PDF = os.environ.get(
                                 "komatsu-manuals", "SEN06867-13.pdf"))
 
 FACT_ID_RE = re.compile(r"^(?P<code>[A-Z0-9@#]{4,7}):(?P<step>\d+):"
-                        r"(?P<kind>step|meas|branch|header):(?P<index>\d+)$")
+                        r"(?P<kind>step|meas|branch|header|remedy):(?P<index>\d+)$")
 
 
 class UnknownFact(KeyError):
@@ -45,11 +45,32 @@ class UnknownFact(KeyError):
 
 
 def _load():
+    """Failure codes AND symptom trees, in one index keyed by fact-id prefix.
+
+    One index rather than two, because a fact id names its record by prefix and
+    nothing downstream should have to know which corpus a fact came from in
+    order to cite it. HMnn / SMnn never collide with a failure code -- the
+    codes are drawn from the manual's own list and none is two letters plus two
+    digits -- and the check below fails loudly rather than silently overwriting
+    if that ever stops being true.
+    """
     recs = {}
     for p in sorted(glob.glob(os.path.join(GOLD, "failure_codes", "*.json"))):
         with open(p, encoding="utf-8") as f:
             r = json.load(f)
         recs[r["code"]] = r
+    for p in sorted(glob.glob(os.path.join(GOLD, "symptoms", "*.json"))):
+        if os.path.basename(p) == "index.json":
+            continue
+        with open(p, encoding="utf-8") as f:
+            r = json.load(f)
+        sid = r["symptom_id"]
+        if sid in recs:
+            raise RuntimeError(
+                f"fact-id prefix collision: {sid} is both a failure code and a "
+                "symptom id. Citations would silently resolve to whichever "
+                "loaded last.")
+        recs[sid] = r
     return recs
 
 
@@ -86,7 +107,7 @@ def _fact(fact_id):
     if kind == "step":
         return rec, st.get("cause") or st.get("procedure") or "", st["provenance"]
     if kind == "meas":
-        if idx >= len(st["measurements"]):
+        if idx >= len(st.get("measurements") or []):
             raise UnknownFact(f"no measurement {idx} on {code} step {step}")
         mm = st["measurements"][idx]
         return rec, mm["criteria"], mm["provenance"]
@@ -94,7 +115,32 @@ def _fact(fact_id):
         names = sorted(st.get("branches") or {})
         if idx >= len(names):
             raise UnknownFact(f"no branch {idx} on {code} step {step}")
-        return rec, st["branches"][names[idx]], st["provenance"]
+        # THE BRANCH'S OWN PROVENANCE, not its step's.
+        #
+        # This used to read st["provenance"], which is the defect the S4 fix
+        # was supposed to close: provenance was captured per branch at parse
+        # time and then not used by the thing that renders the page. A branch
+        # outcome whose row straddles a page break was cited to the step's
+        # page -- the same shape as the 635 citations that pointed at a code's
+        # first page rather than the fact's own.
+        #
+        # Live, not hypothetical: HM22 step 5's NO branch prints on 40-858
+        # while its step is on 40-857. One instance today across 2,103 branch
+        # and remedy facts, and the fix is not sized by the instance count.
+        prov = (st.get("branch_provenance") or {}).get(names[idx]) \
+            or st["provenance"]
+        return rec, st["branches"][names[idx]], prov
+    if kind == "remedy":
+        # Flat S-Mode rows. The manual gives the remedy its own cell, so it
+        # gets its own fact id and its own provenance rather than being cited
+        # as part of the cause it sits beside.
+        if not st.get("remedy"):
+            raise UnknownFact(f"no remedy on {code} step {step}")
+        if idx != 0:
+            raise UnknownFact(f"no remedy {idx} on {code} step {step} "
+                              "(a row carries at most one)")
+        return rec, st["remedy"], (st.get("remedy_provenance")
+                                   or st["provenance"])
     if kind == "header":
         prov = rec.get("header_provenance") or {}
         fields = ["title", "action_level", "detail_of_failure",

@@ -3,11 +3,18 @@
 test_api_e2e.py
 PIPELINE and E2E levels, plus the overfitting guard.
 
-PIPELINE  the 49 scripted sessions through the graph in-process; agent metrics
-          must still hold -- good 7/7, bad 0/7.
-E2E       the same sessions over HTTP; transcripts and state sequences must be
-          IDENTICAL to the pipeline run. Any divergence means the API is doing
-          something the graph is not, which is the one thing it must never do.
+PIPELINE  the 45 scripted code sessions through the graph in-process; agent
+          metrics must still hold -- good 7/7, bad 0/7.
+E2E       the same sessions over HTTP, plus the 6 symptom sessions. Transcripts
+          and state sequences must be IDENTICAL to the pipeline run. Any
+          divergence means the API is doing something the graph is not, which
+          is the one thing it must never do -- and it caught exactly that: the
+          graph guarded an ASK on evidence it did not record, so the boundary
+          guard, holding only what was recorded, blocked a message the graph
+          had allowed.
+
+          The symptom level is no longer deferred. It covers a flat S-Mode tree
+          reaching a remedy and an ASK resolved across two turns.
 
 Then: held-out split, independent derivation from the PDF, the mutation table,
 and negative coverage per gate.
@@ -22,7 +29,9 @@ sys.path.insert(0, REPO_ROOT)
 from fastapi.testclient import TestClient                      # noqa: E402
 from agent.graph import Agent                                  # noqa: E402
 from agent.runner import BadAgent, run_all, run_session        # noqa: E402
-from agent.sessions import build_sessions                      # noqa: E402
+from agent import tools                                        # noqa: E402
+from agent.sessions import (build_sessions,                    # noqa: E402
+                            build_symptom_sessions)
 from api.app import create_app                                 # noqa: E402
 from api.store import SessionStore                             # noqa: E402
 from eval.metrics.agent import build as build_metrics, AGENT_GATES  # noqa: E402
@@ -58,6 +67,7 @@ def gates_for(agg):
 
 
 SESSIONS = build_sessions()
+SYM_SESSIONS = build_symptom_sessions()
 
 # ======================================================= PIPELINE
 print(f"\nPIPELINE -- {len(SESSIONS)} sessions in-process")
@@ -122,6 +132,103 @@ for s, g, (sid, _, view, status) in zip(SESSIONS, good_rows, http_results):
         state_mismatch.append(s["id"])
 check("HTTP state matches the in-process state", not state_mismatch,
       f"diverged: {state_mismatch[:5]}")
+
+
+# --------------------------------------------- E2E: the symptom path
+#
+# NO LONGER DEFERRED. This level used to print that symptom entry was a stub
+# and skip it, which is the right way to declare a gap but not a substitute for
+# closing one.
+print(f"\nE2E -- {len(SYM_SESSIONS)} symptom sessions over HTTP")
+t0 = time.perf_counter()
+sym_proc = [run_session(Agent(), s) for s in SYM_SESSIONS]
+sym_http = [drive_http(s) for s in SYM_SESSIONS]
+timings["e2e_symptom"] = time.perf_counter() - t0
+
+sym_mismatch = []
+for s, g, (sid, http_msgs, view, status) in zip(SYM_SESSIONS, sym_proc, sym_http):
+    if [t["assistant"] for t in g["transcript"]][:len(http_msgs)] != http_msgs:
+        sym_mismatch.append(s["id"])
+check("HTTP symptom transcripts are identical to the in-process run",
+      not sym_mismatch, f"diverged: {sym_mismatch}")
+
+sym_state_mismatch = []
+for s, g, (sid, _, view, status) in zip(SYM_SESSIONS, sym_proc, sym_http):
+    if (view.get("active_symptom") != g["symptom_id"]
+            or view.get("tree_kind") != g["tree_kind"]
+            or view.get("remedy") != g["remedy"]
+            or view["diagnosis"] != g["diagnosis"]
+            or view["fact_ids_used"] != g["fact_ids_used"]):
+        sym_state_mismatch.append(s["id"])
+check("HTTP symptom state matches the in-process state", not sym_state_mismatch,
+      f"diverged: {sym_state_mismatch}")
+
+# A FLAT S-MODE TREE REACHING A REMEDY, over HTTP, end to end.
+_flat_sess = next(s for s in SYM_SESSIONS if s["kind"] == "symptom_flat_remedy")
+_sid, _msgs, _view, _status = next(
+    h for s, h in zip(SYM_SESSIONS, sym_http) if s["id"] == _flat_sess["id"])
+check("a flat S-Mode tree reaches remedy over HTTP",
+      _status == "concluded"
+      and _view["tree_kind"] == "SymptomTreeFlat"
+      and _view["remedy"] == _flat_sess["expect"]["remedy"]
+      and _view["diagnosis"] == _flat_sess["expect"]["diagnosis"],
+      f"status={_status} remedy={_view.get('remedy')!r}")
+check("the flat tree was asked to observe, never to answer yes or no",
+      "is that what you are seeing" in " ".join(_msgs).lower()
+      and "answer yes or no" not in " ".join(_msgs).lower())
+check("remedy crosses the boundary in its own field, not inside diagnosis",
+      _view["remedy"] not in (_view["diagnosis"] or ""))
+
+# CITATIONS RESOLVE over HTTP -- rendered by the API, not by the test.
+_r = client.post("/sessions", json={"message": _flat_sess["turns"][0]})
+_csid = _r.json()["session_id"]
+_last = _r.json()
+for _i, _m in enumerate(_flat_sess["turns"][1:], start=1):
+    _last = client.post(f"/sessions/{_csid}/messages",
+                        json={"message": _m, "turn_index": _i}).json()
+check("the concluding HTTP response carries citations",
+      len(_last["citations"]) > 0, str(_last["citations"])[:200])
+check("every HTTP citation names a fact id, a manual page and a pdf page",
+      all(c.get("fact_id") and c.get("manual_page") and c.get("pdf_page")
+          for c in _last["citations"]),
+      str(_last["citations"])[:300])
+_pages = {c["manual_page"] for c in _last["citations"]}
+check("the cited pages are the S-Mode pages this tree lives on",
+      _pages <= set(tools.lookup_symptom("SM01")["manual_pages"]), str(_pages))
+
+# AN ASK RESOLVED OVER TWO TURNS, which is the whole point of ASK being a
+# first-class state rather than an error: the session survives the question.
+_a = client.post("/sessions", json={"message": "swing slow hai"}).json()
+_asid = _a["session_id"]
+_a2 = client.post(f"/sessions/{_asid}/messages",
+                  json={"message": "PC200-10M0, serial 700123",
+                        "turn_index": 1}).json()
+check("ASK surfaces as its own awaiting state over HTTP",
+      _a2["awaiting"] == "symptom_choice", _a2["awaiting"])
+check("ASK returns the candidates, so a UI need not parse the prose",
+      len(_a2["symptom_candidates"]) >= 2
+      and all(c.get("manual_page") for c in _a2["symptom_candidates"]),
+      str(_a2["symptom_candidates"])[:200])
+check("the agent has entered no tree while the question is open",
+      client.get(f"/sessions/{_asid}").json()["active_symptom"] is None)
+_a3 = client.post(f"/sessions/{_asid}/messages",
+                  json={"message": "2", "turn_index": 2}).json()
+_aview = client.get(f"/sessions/{_asid}").json()
+check("the technician's pick resolves the ASK on the next turn",
+      _aview["active_symptom"] == "HM29"
+      and _a3["awaiting"] != "symptom_choice",
+      f"{_aview['active_symptom']} awaiting={_a3['awaiting']}")
+
+# An unmapped input must not acquire a tree over HTTP either.
+_u = client.post("/sessions", json={"message": "AC kaam nahi kar raha"}).json()
+_u2 = client.post(f"/sessions/{_u['session_id']}/messages",
+                  json={"message": "PC200-10M0, serial 700123",
+                        "turn_index": 1}).json()
+_uview = client.get(f"/sessions/{_u['session_id']}").json()
+check("an unmapped symptom ends the session without entering a tree",
+      _uview["active_symptom"] is None and _uview["diagnosis"] is None
+      and _u2["session_status"] == "escalated",
+      f"{_uview['active_symptom']} {_u2['session_status']}")
 
 
 # ------------------------------------------------- HTTP-only behaviours

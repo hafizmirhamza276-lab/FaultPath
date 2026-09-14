@@ -342,12 +342,169 @@ def render_citations(fact_ids: List[str]) -> List[dict]:
 
 # --------------------------------------------------------------- symptom
 
-def search_symptoms(text: str) -> List[dict]:
-    """STUB. H-Mode (pp. 1288-1471) and S-Mode (pp. 1472-1498) symptom trees are
-    not extracted, so symptom entry has no ground truth to execute.
+_SYMPTOMS: Optional[Dict[str, dict]] = None
+_MATCHER = None
 
-    Returns [] rather than falling back to similarity search over the failure
-    codes. A symptom is not a code, and answering one with the other is how a
-    technician ends up troubleshooting the wrong subsystem.
+
+def symptoms() -> Dict[str, dict]:
+    """golden/symptoms/, keyed by symptom id. Same schema guard as the codes."""
+    global _SYMPTOMS
+    if _SYMPTOMS is None:
+        out = {}
+        for p in sorted(glob.glob(os.path.join(GOLD, "symptoms", "*.json"))):
+            if os.path.basename(p) == "index.json":
+                continue
+            with open(p, encoding="utf-8") as f:
+                r = json.load(f)
+            if r.get("schema_version") != EXPECTED_SCHEMA:
+                raise SchemaMismatch(
+                    f"{r.get('symptom_id')}: schema_version "
+                    f"{r.get('schema_version')!r}, expected {EXPECTED_SCHEMA}. "
+                    "Re-run pipeline/extract_symptoms.py.")
+            out[r["symptom_id"]] = r
+        _SYMPTOMS = out
+    return _SYMPTOMS
+
+
+def matcher():
+    """The four-layer matcher, built once.
+
+    Deterministic and offline. core.symptom_match imports no model client, which
+    tests/test_symptom_map.py asserts over its parsed AST.
     """
-    return []
+    global _MATCHER
+    if _MATCHER is None:
+        import sys
+        if REPO_ROOT not in sys.path:
+            sys.path.insert(0, REPO_ROOT)
+        from core.symptom_match import SymptomMatcher
+        _MATCHER = SymptomMatcher(trees=symptoms())
+    return _MATCHER
+
+
+def search_symptoms(text: str) -> dict:
+    """Technician's words -> a tree, a question, or an honest nothing.
+
+    Returns the matcher's own result verbatim: one of MATCHED / ASK / UNMAPPED
+    with its candidates. It is NOT reduced to a best guess here. The whole
+    point of ASK is that the decision belongs to the technician, and a function
+    that returned "the top hit" would put it back in the software.
+    """
+    return matcher().match(text or "")
+
+
+def lookup_symptom(symptom_id: str) -> Optional[dict]:
+    return symptoms().get((symptom_id or "").strip().upper())
+
+
+def symptom_exists(symptom_id: str) -> bool:
+    return lookup_symptom(symptom_id) is not None
+
+
+def tree_kind(symptom_id: str) -> Optional[str]:
+    rec = lookup_symptom(symptom_id)
+    return rec.get("tree_kind") if rec else None
+
+
+def symptom_steps(rec: dict) -> List[dict]:
+    return list(rec.get("steps") or [])
+
+
+def get_symptom_step(symptom_id: str, n: int) -> Optional[dict]:
+    rec = lookup_symptom(symptom_id)
+    if not rec:
+        return None
+    steps = symptom_steps(rec)
+    if n < 1 or n > len(steps):
+        return None
+    return steps[n - 1]
+
+
+def symptom_step_count(symptom_id: str) -> int:
+    rec = lookup_symptom(symptom_id)
+    return len(symptom_steps(rec)) if rec else 0
+
+
+def resolve_symptom_choice(reply: str, candidates: List[dict]) -> Optional[str]:
+    """Which candidate the technician picked. None when it is still unclear.
+
+    Deterministic and narrow ON PURPOSE. Four accepted forms -- the symptom id,
+    its 1-based position in the list as offered, a Roman Urdu ordinal, or a
+    distinctive word from exactly one candidate's title. Anything else returns
+    None and the question is asked again.
+
+    "Close enough" resolution here would undo the entire reason for asking: a
+    matcher that refused to guess, followed by a picker that guesses, is a
+    matcher that guesses.
+    """
+    if not candidates:
+        return None
+    t = " ".join((reply or "").lower().split())
+    if not t:
+        return None
+    ids = [c["symptom_id"] for c in candidates]
+
+    for sid in ids:
+        if re.search(rf"\b{re.escape(sid.lower())}\b", t):
+            return sid
+
+    ordinals = {"1": 1, "2": 2, "3": 3, "4": 4,
+                "first": 1, "second": 2, "third": 3, "fourth": 4,
+                "pehla": 1, "pehle": 1, "dusra": 2, "dusre": 2, "doosra": 2,
+                "teesra": 3, "tisra": 3, "chautha": 4}
+    for word, pos in ordinals.items():
+        if re.search(rf"\b{re.escape(word)}\b", t) and pos <= len(candidates):
+            return ids[pos - 1]
+
+    # A word that appears in exactly ONE candidate's title. Ambiguous words
+    # decide nothing -- that is what made these candidates in the first place.
+    from core.symptom_match import tokens
+    reply_words = set(tokens(t))
+    owners = {}
+    for c in candidates:
+        for w in set(tokens(c["symptom"])):
+            owners.setdefault(w, set()).add(c["symptom_id"])
+    hits = {next(iter(owners[w])) for w in reply_words
+            if w in owners and len(owners[w]) == 1}
+    return hits.pop() if len(hits) == 1 else None
+
+
+# ------------------------------------------------------- prose pointers
+
+# The manual's own wording for "the answer is somewhere else". 182 of these
+# exist across the symptom trees; the extractor deliberately leaves them
+# unresolved, because a guessed target sends a technician into the wrong tree.
+def prose_pointers(symptom_id: str) -> List[dict]:
+    rec = lookup_symptom(symptom_id)
+    return list((rec or {}).get("unresolved_pointers") or [])
+
+
+def step_prose_pointer(symptom_id: str, step: dict) -> Optional[dict]:
+    """The pointer this step's REMEDY is, if the remedy is one.
+
+    Matched by exact text against the record's own unresolved_pointers rather
+    than by re-running a regex over the remedy. The extractor already decided
+    what is a pointer and recorded its provenance; deciding again here would be
+    a second opinion that can disagree with the first.
+    """
+    remedy = (step or {}).get("remedy") or ""
+    if not remedy:
+        return None
+    for p in prose_pointers(symptom_id):
+        if p.get("text") == remedy:
+            return dict(p, is_remedy=True)
+    return None
+
+
+def step_detail_pointer(symptom_id: str, step: dict) -> Optional[dict]:
+    """A pointer inside the step's PROCEDURE -- supplementary detail, not the
+    outcome. The step is still executable; the manual is saying where the long
+    form lives. Surfaced so the technician knows, never followed."""
+    proc = (step or {}).get("procedure") or ""
+    if not proc:
+        return None
+    for p in prose_pointers(symptom_id):
+        txt = p.get("text") or ""
+        if txt and txt in proc:
+            return dict(p, is_remedy=False)
+    return None

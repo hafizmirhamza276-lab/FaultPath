@@ -39,7 +39,8 @@ from agent import tools                                            # noqa: E402
 from agent.guards import enforce                                   # noqa: E402
 from agent.llm import LLM, MockLLM                                 # noqa: E402
 from agent.state import (SessionState, Awaiting, EntryMode, Outcome,  # noqa: E402
-                         Reading, Verdict, Emission, MAX_DEPTH, MAX_REASKS)
+                         Reading, Verdict, Emission, TreeKind,
+                         MAX_DEPTH, MAX_REASKS)
 from core.run_log import NullLogger, new_trace_id                  # noqa: E402
 
 
@@ -62,17 +63,44 @@ class Agent:
         # Structural integers the phrasing legitimately uses for sequencing.
         extra = [str(payload.get("step") or ""), str(st.step_cursor),
                  str(len(st.readings))]
+
+        # EVERY PIECE OF EVIDENCE IS BUILT ONCE AND BOTH USED AND RECORDED.
+        #
+        # The guard here and the guard at the API boundary must see the SAME
+        # evidence, or the API blocks messages the graph allowed and the two
+        # diverge -- which is the one thing the boundary must never do. It is
+        # not enough to pass extra evidence to enforce(); it has to go into the
+        # Emission too, because that is all the boundary gets. Guarding on more
+        # than is recorded is the same defect as recording more than is
+        # guarded, and the E2E transcript comparison catches it either way.
+        #
+        # A symptom id is to a symptom session what the failure code is to a
+        # code session: it comes from golden/, the model never types it, and
+        # "HM28" carries a 28 that a candidate list legitimately prints. The
+        # candidates' manual pages come from each record's title_provenance --
+        # ground truth, not a number the phrasing invented. The 1..n printed
+        # beside them are sequencing integers, the same category as "Step 3",
+        # and bounded by the list actually offered rather than being a licence
+        # for arbitrary small numbers.
+        evidence = [g for g in grounded_text if g]
+        if st.active_symptom:
+            evidence.append(st.active_symptom)
+        for i, c in enumerate(st.symptom_candidates, start=1):
+            evidence += [str(c.get("symptom_id") or ""),
+                         str(c.get("manual_page") or ""), str(i)]
+        evidence = [e for e in evidence if e]
+
         safe, blocked, bad = enforce(
             text, citations=citations, fact_ids=fact_ids,
             code=st.active_code, model=st.model, serial=st.serial,
             technician_text=st.inbox or "", extra=[e for e in extra if e],
-            grounded_text=grounded_text)
+            grounded_text=evidence)
 
         st.use_facts(fact_ids)
         st.emissions = st.emissions + [Emission(
             text=safe, original_text=text, fact_ids=fact_ids,
             citations=citations, node=node, blocked=blocked,
-            grounded_text=[g for g in grounded_text if g],
+            grounded_text=evidence,
             block_reason=(f"ungrounded numbers: {bad}" if blocked else ""))]
         if blocked:
             self.log.event("validation", "message_blocked",
@@ -86,6 +114,43 @@ class Agent:
 
     def n_intake(self, st: SessionState) -> SessionState:
         st.note("intake")
+
+        # RESOLVING AN ASK COMES FIRST, and must return before the code hunt.
+        # Candidate ids are code-SHAPED -- "HM28" is four upper-case chars with
+        # digits -- so the unknown-code branch below would read a technician
+        # answering our own question as a failure code this manual does not
+        # have, and escalate on it.
+        if st.awaiting == Awaiting.SYMPTOM_CHOICE and st.symptom_candidates:
+            # A real failure code still wins. A technician who produces one
+            # mid-question has handed us the better entry point: a code is a
+            # dict lookup, a symptom is a match.
+            parsed = self.llm.parse_intake(st.inbox or "")
+            known = [c for c in parsed.codes if tools.code_exists(c)]
+            if known:
+                st.entry_mode = EntryMode.CODE
+                st.enter_code(known[0])
+                st.pending_codes = [c for c in known[1:] if c != st.active_code]
+                st.awaiting = Awaiting.NOTHING
+                self.log.event("decision", "symptom_to_code",
+                               {"code": known[0],
+                                "abandoned": st.entry_switch_log[-1:]},
+                               level="detail")
+                return st
+            pick = tools.resolve_symptom_choice(st.inbox or "",
+                                                st.symptom_candidates)
+            if pick:
+                st.enter_symptom(pick, tools.tree_kind(pick), "confirmed")
+                st.awaiting = Awaiting.NOTHING
+                self.log.event("decision", "symptom_confirmed",
+                               {"symptom_id": pick}, level="detail")
+                return st
+            # Still ambiguous. Ask again rather than take the first candidate;
+            # guessing here would undo the entire reason for having asked.
+            st.awaiting = Awaiting.SYMPTOM_CHOICE
+            return self.emit(st, {"kind": "ask_symptom_choice",
+                                  "candidates": st.symptom_candidates,
+                                  "repeat": True}, "intake")
+
         parsed = self.llm.parse_intake(st.inbox or "")
         if parsed.model and not st.model:
             st.model = parsed.model
@@ -101,11 +166,9 @@ class Agent:
                    and any(ch.isdigit() or ch in "@#" for ch in c)]
         if known:
             st.entry_mode = EntryMode.CODE
-            if st.active_code and known[0] != st.active_code:
-                # Technician changed the code mid-session: restart traversal.
-                st.step_cursor = 0
-                st.diagnosis = None
-            st.active_code = known[0]
+            # enter_code restarts traversal on a change and abandons any
+            # symptom tree in progress, recording the switch either way.
+            st.enter_code(known[0])
             st.pending_codes = [c for c in known[1:] if c != st.active_code]
         elif unknown:
             # A code-shaped token that is not in this manual. Say so; do not
@@ -118,6 +181,19 @@ class Agent:
         elif parsed.symptom:
             st.entry_mode = EntryMode.SYMPTOM
             st.symptom_text = parsed.symptom
+        elif (st.inbox or "").strip():
+            # Candidates were proposed, none is real, and none is code-shaped:
+            # they are upper-case WORDS, not codes. The manual's own S-Mode
+            # title is 'Engine does not crank when starting switch is turned to
+            # "START" position.' -- START is five upper-case characters, so the
+            # extractor offers it and the whole title stops being a symptom.
+            #
+            # Disposed of here rather than in llm.py on purpose: the model
+            # proposes candidates, code decides what they are. Tightening the
+            # model's regex instead would drop DAFQKR and B@BAZG, which carry
+            # no digit either.
+            st.entry_mode = EntryMode.SYMPTOM
+            st.symptom_text = st.inbox
         self.log.event("decision", "intake",
                        {"codes": parsed.codes, "model": parsed.model,
                         "serial": parsed.serial, "mode": st.entry_mode.value},
@@ -141,25 +217,71 @@ class Agent:
         if not st.machine_identified:
             st.awaiting = Awaiting.MACHINE
             return self.emit(st, {"kind": "ask_machine"}, "identify_machine")
-        st.awaiting = Awaiting.NOTHING
+        # Clearing unconditionally would wipe an unanswered SYMPTOM_CHOICE on
+        # the way past, and resolve_entry would then re-run the matcher and ask
+        # the same question a second time in the same turn.
+        if st.awaiting != Awaiting.SYMPTOM_CHOICE:
+            st.awaiting = Awaiting.NOTHING
         return st
 
     def n_resolve_entry(self, st: SessionState) -> SessionState:
+        """Settle on a tree: a failure code, a symptom tree, a question, or no.
+
+        THREE OUTCOMES FROM THE MATCHER, and only one of them is an answer.
+        MATCHED enters. ASK presents every candidate with its manual page and
+        waits -- it does not pick. UNMAPPED says so and offers what it can.
+
+        Neither ASK nor UNMAPPED is an error path. A technician who is asked
+        loses ten seconds; one sent silently into the wrong tree loses an hour.
+        """
         st.note("resolve_entry")
         if st.escalation_note and st.escalation_note.get("reason") == "unknown_code":
             return st
-        if st.entry_mode == EntryMode.CODE and st.active_code:
+        if st.entry_resolved:
+            return st
+        # The question is already out and unanswered. Re-running the matcher
+        # here would ask it twice in one turn -- and worse, a differently
+        # worded reply could quietly change the candidate list the technician
+        # is answering about.
+        if st.awaiting == Awaiting.SYMPTOM_CHOICE:
             return st
         if st.entry_mode == EntryMode.SYMPTOM:
-            hits = tools.search_symptoms(st.symptom_text or "")
-            if not hits:
-                st.escalation_note = {
-                    "reason": "symptom_entry_unavailable",
-                    "symptom": st.symptom_text,
-                    "detail": ("H-Mode and S-Mode symptom trees are not "
-                               "extracted, so there is no ground truth to "
-                               "execute for a symptom.")}
+            res = tools.search_symptoms(st.symptom_text or "")
+            self.log.event("decision", "symptom_match",
+                           {"query": st.symptom_text, "layer": res["layer"],
+                            "outcome": res["outcome"],
+                            "candidates": res["symptom_ids"]}, level="detail")
+
+            if res["outcome"] == "MATCHED":
+                sid = res["symptom_ids"][0]
+                st.enter_symptom(sid, tools.tree_kind(sid), res["layer"])
                 return st
+
+            if res["outcome"] == "ASK":
+                # Every candidate, with its page. The technician decides.
+                st.symptom_candidates = list(res["candidates"])
+                st.awaiting = Awaiting.SYMPTOM_CHOICE
+                return self.emit(
+                    st, {"kind": "ask_symptom_choice",
+                         "candidates": res["candidates"], "repeat": False},
+                    "resolve_entry",
+                    grounded_text=[c["symptom"] for c in res["candidates"]])
+
+            # UNMAPPED. Say so, and offer the honest alternatives: a failure
+            # code, or the section where the topic actually lives. NEVER the
+            # nearest tree -- "oil leak ho raha hai" belongs to Testing and
+            # Adjusting, and answering it out of H-Mode would be confident,
+            # fluent and wrong.
+            st.escalation_note = {
+                "reason": "symptom_unmapped",
+                "symptom": st.symptom_text,
+                "match_note": res.get("note") or "",
+                "detail": ("No H-Mode or S-Mode symptom tree in SEN06867-13 "
+                           "covers this. Not routed to the nearest tree.")}
+            return self.emit(
+                st, {"kind": "symptom_unmapped", "symptom": st.symptom_text or "",
+                     "note": res.get("note") or ""}, "resolve_entry")
+
         st.awaiting = Awaiting.ENTRY
         return self.emit(st, {"kind": "ask_entry"}, "resolve_entry")
 
@@ -173,6 +295,30 @@ class Agent:
             st.pending_codes = list(dict.fromkeys(st.pending_codes + extra))
             st.preflight_done = True
             st.awaiting = Awaiting.NOTHING
+
+            # A REAL CODE NAMED DURING A SYMPTOM SESSION TAKES OVER.
+            #
+            # This is the manual's own instruction, not a preference: every
+            # H-Mode tree's related_information opens "Pre-troubleshooting: If
+            # a failure code is shown, do the troubleshooting for that code
+            # first." 35 of the 182 prose pointers ARE that sentence.
+            #
+            # In a code session the same reply means something different --
+            # those are concurrent codes to work afterwards, and pending_codes
+            # is right for them. Only the symptom session hands over.
+            if st.active_symptom and extra:
+                took = extra[0]
+                abandoned = st.active_symptom
+                st.entry_mode = EntryMode.CODE
+                st.enter_code(took)
+                st.pending_codes = [c for c in st.pending_codes if c != took]
+                self.log.event("decision", "symptom_to_code",
+                               {"from_symptom": abandoned, "to_code": took,
+                                "why": "manual: do the failure code first"},
+                               level="detail")
+                st = self.emit(st, {"kind": "code_takes_over",
+                                    "code": took}, "preflight",
+                               grounded_text=[took])
 
         if not st.preflight_done:
             st.awaiting = Awaiting.OTHER_CODES
@@ -198,6 +344,11 @@ class Agent:
     def n_resolve_pointer(self, st: SessionState) -> SessionState:
         """Nine codes are pure redirects. Seven cycles exist. Both handled."""
         st.note("resolve_pointer")
+        # A symptom tree has no pointer-only form: the 182 prose pointers are
+        # inside steps, not whole records, and they are surfaced where they
+        # occur rather than followed. Nothing to resolve here.
+        if st.active_symptom and not st.active_code:
+            return st
         code = st.active_code or ""
         rec = tools.lookup_code(code)
         if rec is None:
@@ -231,13 +382,27 @@ class Agent:
         return st
 
     def n_execute_step(self, st: SessionState) -> SessionState:
-        """ONE step. Never the tree."""
+        """ONE step. Never the tree.
+
+        TREE KIND DECIDES WHAT MAY BE ASKED. A branching tree stores a YES and
+        a NO outcome per step, so asking yes/no reads the manual back. A flat
+        S-Mode tree stores cause / point to check / remedy and no branch
+        outcomes at all; asking "is it normal, yes or no?" there invents an
+        interaction the manual does not have.
+        """
         st.note("execute_step")
         n = st.step_cursor + 1
-        step = tools.get_step(st.active_code or "", n)
+
+        if st.tree_kind == TreeKind.FLAT:
+            return self._execute_flat_row(st, n)
+        if st.active_symptom:
+            step = tools.get_symptom_step(st.active_symptom, n)
+        else:
+            step = tools.get_step(st.active_code or "", n)
         if step is None:
             st.escalation_note = st.escalation_note or {
-                "reason": "steps_exhausted", "code": st.active_code,
+                "reason": "steps_exhausted",
+                "code": st.active_code or st.active_symptom,
                 "steps_run": st.step_cursor}
             return st
 
@@ -262,13 +427,67 @@ class Agent:
                                       ("quantity", "point", "criteria")}
             fact_ids.append(ms[0].get("fact_id"))
             grounded += [ms[0].get("point") or "", ms[0].get("criteria") or ""]
+        # A detail pointer is supplementary: the step is still executable, and
+        # the manual is saying where the long form lives. Surfaced, not
+        # followed, and never used to fabricate the detail it points at.
+        if st.active_symptom:
+            dp = tools.step_detail_pointer(st.active_symptom, step)
+            if dp:
+                payload["pointer"] = dp["text"]
+                payload["pointer_page"] = (dp.get("provenance") or {}).get(
+                    "manual_page")
+                # The page too, not just the text. It is the extractor's own
+                # provenance for this pointer, so it is ground truth -- but it
+                # has to be SAID to be ground truth or the guard blocks the
+                # message, which is the guard working, not the guard being
+                # wrong.
+                grounded += [dp["text"], str(payload["pointer_page"] or "")]
+
         st.awaiting = Awaiting.READING
+        return self.emit(st, payload, "execute_step", fact_ids, grounded)
+
+    def _execute_flat_row(self, st: SessionState, n: int) -> SessionState:
+        """One row of a flat S-Mode tree: cause, point to check, and a wait.
+
+        The REMEDY IS WITHHELD until the point to check is confirmed. The
+        manual prints all three columns side by side, but a guided session that
+        shows the remedy alongside the question is not guiding -- it is letting
+        the technician read the answer off the back of the card.
+        """
+        step = tools.get_symptom_step(st.active_symptom or "", n)
+        if step is None:
+            st.escalation_note = st.escalation_note or {
+                "reason": "rows_exhausted", "symptom": st.active_symptom,
+                "rows_checked": st.step_cursor,
+                "detail": ("Every cause the manual lists for this symptom was "
+                           "checked and none matched.")}
+            return st
+        st.step_cursor = n
+        payload = {
+            "kind": "flat_row",
+            "step": step["step"],
+            "cause": step.get("cause") or "",
+            "point_to_check": (step.get("point_to_check") or "")[:400],
+            # NOT "yes_no". The reply confirms an observation, and the routing
+            # it drives is the opposite of a branching step's.
+            "expects": "observation",
+        }
+        fact_ids = [step.get("fact_id")]
+        grounded = [payload["cause"], payload["point_to_check"]]
+        st.awaiting = Awaiting.OBSERVATION
         return self.emit(st, payload, "execute_step", fact_ids, grounded)
 
     def n_parse_reading(self, st: SessionState) -> SessionState:
         """Technician reply -> structured. Vague is rejected, never guessed."""
         st.note("parse_reading")
-        step = tools.get_step(st.active_code or "", st.step_cursor)
+
+        if st.tree_kind == TreeKind.FLAT:
+            return self._parse_observation(st)
+
+        if st.active_symptom:
+            step = tools.get_symptom_step(st.active_symptom, st.step_cursor)
+        else:
+            step = tools.get_step(st.active_code or "", st.step_cursor)
         ms = (step or {}).get("measurements") or []
         expecting = "value" if ms else "yes_no"
 
@@ -318,10 +537,51 @@ class Agent:
         st.awaiting = Awaiting.NOTHING
         return st
 
+    def _parse_observation(self, st: SessionState) -> SessionState:
+        """Flat row: does the technician see what this row describes.
+
+        The LLM's contract is unchanged -- it still returns a yes_no parse,
+        because "does this describe what you see" is answered the same way in
+        Roman Urdu as "is it normal". What changes is the VERDICT recorded, and
+        it is deliberately a different pair. Reusing YES/NO here would leave
+        n_evaluate_step unable to tell an advance from a stop, and the two mean
+        opposite things on the two tree kinds.
+        """
+        parsed = self.llm.parse_reading(st.inbox or "", "yes_no")
+        rd = Reading(step=st.step_cursor, raw=st.inbox or "", kind=parsed.kind,
+                     value=parsed.value, unit=parsed.unit)
+
+        if parsed.kind != "yes_no":
+            rd.verdict = Verdict.VAGUE
+            st.readings = st.readings + [rd]
+            st.reask_count = st.reask_count + 1
+            if st.reask_count > MAX_REASKS:
+                st.escalation_note = {"reason": "no_usable_observation",
+                                      "step": st.step_cursor,
+                                      "attempts": st.reask_count}
+                return st
+            st.awaiting = Awaiting.OBSERVATION
+            return self.emit(st, {"kind": "ask_observation_again"},
+                             "parse_reading")
+
+        st.reask_count = 0
+        rd.verdict = (Verdict.OBSERVED if parsed.yes_no == "YES"
+                      else Verdict.NOT_OBSERVED)
+        st.readings = st.readings + [rd]
+        st.awaiting = Awaiting.NOTHING
+        return st
+
     def n_evaluate_step(self, st: SessionState) -> SessionState:
         """PURE CODE. The comparison already happened in tools; this routes."""
         st.note("evaluate_step")
-        step = tools.get_step(st.active_code or "", st.step_cursor)
+
+        if st.tree_kind == TreeKind.FLAT:
+            return self._evaluate_flat_row(st)
+
+        if st.active_symptom:
+            step = tools.get_symptom_step(st.active_symptom, st.step_cursor)
+        else:
+            step = tools.get_step(st.active_code or "", st.step_cursor)
         if step is None:
             st.escalation_note = {"reason": "steps_exhausted"}
             return st
@@ -359,6 +619,49 @@ class Agent:
             return st
         return st
 
+    def _evaluate_flat_row(self, st: SessionState) -> SessionState:
+        """Flat tree routing, WITH THE POLARITY THE MANUAL ACTUALLY HAS.
+
+            branching step   YES = the check was normal  -> ADVANCE
+            flat row         OBSERVED = you see the fault -> STOP, remedy
+
+        These are opposite, and the reason the verdict pairs are separate. A
+        flat tree walked with branching polarity runs every row, matches
+        nothing, and hands over -- plausible output, no error, wrong answer.
+        """
+        step = tools.get_symptom_step(st.active_symptom or "", st.step_cursor)
+        if step is None:
+            st.escalation_note = {"reason": "rows_exhausted"}
+            return st
+        rd = st.readings[-1]
+
+        self.log.event("decision", "evaluate_flat_row",
+                       {"symptom": st.active_symptom, "row": st.step_cursor,
+                        "verdict": rd.verdict.value}, level="detail")
+
+        if rd.verdict != Verdict.OBSERVED:
+            return st                      # not this cause; try the next row
+
+        # This row is the answer. Cause and remedy are separate facts with
+        # separate ids, because the manual gives them separate cells.
+        st.diagnosis = step.get("cause") or ""
+        st.remedy = step.get("remedy") or ""
+        st.remedy_fact_id = step.get("remedy_fact_id")
+        st.use_facts([step.get("fact_id"), st.remedy_fact_id])
+
+        # The remedy may itself be one of the 182 prose pointers -- the manual
+        # answering "go and look over there". Recorded as a pointer rather than
+        # delivered as an instruction, and never followed.
+        ptr = tools.step_prose_pointer(st.active_symptom or "", step)
+        if ptr:
+            st.prose_pointer = {
+                "text": ptr["text"],
+                "manual_page": (ptr.get("provenance") or {}).get("manual_page"),
+                "pdf_page": (ptr.get("provenance") or {}).get("pdf_page"),
+                "resolution": ptr.get("resolution") or "",
+            }
+        return st
+
     def n_conclude(self, st: SessionState) -> SessionState:
         st.note("conclude")
         st.outcome = Outcome.CONCLUDED
@@ -368,9 +671,26 @@ class Agent:
             action = f"Next, work {st.pending_codes[0]}."
         # The diagnosis text and any hand-off code both come from golden/.
         grounded = [st.diagnosis or ""] + list(st.pending_codes)
-        return self.emit(st, {"kind": "conclude", "diagnosis": st.diagnosis or "",
-                              "action": action}, "conclude",
-                         fact_ids=list(st.fact_ids_used)[-4:],
+        payload = {"kind": "conclude", "diagnosis": st.diagnosis or "",
+                   "action": action}
+        fact_ids = list(st.fact_ids_used)[-4:]
+
+        # REMEDY IS A FIRST-CLASS FIELD, not a sentence appended to the
+        # diagnosis. The manual gives it its own column and its own cell, so it
+        # gets its own payload key, its own fact id and its own citation.
+        if st.remedy:
+            payload["remedy"] = st.remedy
+            grounded.append(st.remedy)
+            if st.remedy_fact_id and st.remedy_fact_id not in fact_ids:
+                fact_ids.append(st.remedy_fact_id)
+        if st.prose_pointer:
+            # The manual refers you elsewhere. Say where, say that we do not
+            # hold it, and stop. Following it would mean guessing a target.
+            payload["pointer"] = st.prose_pointer["text"]
+            payload["pointer_page"] = st.prose_pointer.get("manual_page")
+            grounded += [st.prose_pointer["text"],
+                         str(payload["pointer_page"] or "")]
+        return self.emit(st, payload, "conclude", fact_ids=fact_ids,
                          grounded_text=grounded)
 
     def n_escalate(self, st: SessionState) -> SessionState:
@@ -385,7 +705,9 @@ class Agent:
                                             for r in st.readings],
                                   visited=list(st.visited_codes),
                                   fact_ids=list(st.fact_ids_used))
-        return self.emit(st, {"kind": "escalate"}, "escalate")
+        return self.emit(st, {"kind": "escalate",
+                              "reason": st.escalation_note.get("reason") or "",
+                              "symptom": st.active_symptom or ""}, "escalate")
 
     def n_pause(self, st: SessionState) -> SessionState:
         return st
@@ -411,7 +733,13 @@ class Agent:
             return "identify_machine"
         if st.awaiting == Awaiting.OTHER_CODES:
             return "preflight"
-        if st.awaiting == Awaiting.READING:
+        # An answer to our own ASK goes to intake, which resolves the pick (or
+        # takes a real failure code instead) and falls through to
+        # resolve_entry. No new edge: the choice is technician text becoming
+        # entry state, which is exactly what intake is for.
+        if st.awaiting == Awaiting.SYMPTOM_CHOICE:
+            return "intake"
+        if st.awaiting in (Awaiting.READING, Awaiting.OBSERVATION):
             return "intake" if Agent._names_other_code(st) else "parse_reading"
         return "intake"
 
@@ -423,7 +751,11 @@ class Agent:
     def e_after_entry(st: SessionState) -> str:
         if st.escalation_note:
             return "escalate"
-        return "pause" if st.awaiting == Awaiting.ENTRY else "preflight"
+        # ASK is a pause, not a failure: the question has been sent and the
+        # session is waiting on a person, exactly like the machine gate.
+        if st.awaiting in (Awaiting.ENTRY, Awaiting.SYMPTOM_CHOICE):
+            return "pause"
+        return "preflight"
 
     @staticmethod
     def e_after_preflight(st: SessionState) -> str:
@@ -441,7 +773,9 @@ class Agent:
     def e_after_parse(st: SessionState) -> str:
         if st.escalation_note:
             return "escalate"
-        return "pause" if st.awaiting == Awaiting.READING else "evaluate_step"
+        if st.awaiting in (Awaiting.READING, Awaiting.OBSERVATION):
+            return "pause"
+        return "evaluate_step"
 
     @staticmethod
     def e_after_evaluate(st: SessionState) -> str:
@@ -449,7 +783,9 @@ class Agent:
             return "conclude"
         if st.escalation_note:
             return "escalate"
-        if st.step_cursor >= tools.step_count(st.active_code or ""):
+        total = (tools.symptom_step_count(st.active_symptom)
+                 if st.active_symptom else tools.step_count(st.active_code or ""))
+        if st.step_cursor >= total:
             return "escalate"
         return "execute_step"
 

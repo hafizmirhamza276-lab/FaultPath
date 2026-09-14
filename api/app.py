@@ -51,9 +51,23 @@ _AWAIT_MAP = {
     Awaiting.MACHINE: "machine",
     Awaiting.OTHER_CODES: "other_codes",
     Awaiting.READING: "reading",
+    # Surfaced distinctly, not folded into "reading". A caller has to be able
+    # to tell "answer this measurement" from "pick one of these trees" and from
+    # "confirm what you are looking at" -- three different questions that want
+    # three different things from a technician, and a UI that renders them the
+    # same way is the ASK outcome quietly becoming a guess.
+    Awaiting.SYMPTOM_CHOICE: "symptom_choice",
+    Awaiting.OBSERVATION: "observation",
     Awaiting.ENTRY: "none",
     Awaiting.NOTHING: "none",
 }
+
+
+def _total_steps(state) -> "int | None":
+    """Tree length for whichever corpus this session is executing."""
+    if state.active_symptom:
+        return tools.symptom_step_count(state.active_symptom) or None
+    return tools.step_count(state.active_code or "") or None
 _STATUS_MAP = {Outcome.RUNNING: "running", Outcome.CONCLUDED: "concluded",
                Outcome.ESCALATED: "escalated"}
 
@@ -105,7 +119,7 @@ def create_app(agent: Optional[Agent] = None,
 
     def _respond(state: SessionState, rec, message: str, trace_id: str,
                  turn_index: int, blocked: bool) -> C.AgentResponse:
-        total = tools.step_count(state.active_code or "") or None
+        total = _total_steps(state)
         last = state.emissions[-1] if state.emissions else None
         cites = [C.Citation(**c) for c in (last.citations if last else [])]
         return C.AgentResponse(
@@ -119,6 +133,9 @@ def create_app(agent: Optional[Agent] = None,
             step_number=state.step_cursor or None,
             total_steps=total,
             diagnosis=state.diagnosis,
+            remedy=state.remedy,
+            prose_pointer=state.prose_pointer,
+            symptom_candidates=list(state.symptom_candidates),
             session_status=("abandoned" if rec.status == "abandoned"
                             else _STATUS_MAP.get(state.outcome, "running")),
             blocked=blocked,
@@ -238,10 +255,15 @@ def create_app(agent: Optional[Agent] = None,
             session_status=("abandoned" if rec.status == "abandoned"
                             else _STATUS_MAP.get(state.outcome, "running")),
             model=state.model, serial=state.serial, manual_id=state.manual_id,
-            active_code=state.active_code, entry_mode=state.entry_mode.value,
+            active_code=state.active_code,
+            active_symptom=state.active_symptom,
+            tree_kind=getattr(state.tree_kind, "value", None),
+            symptom_candidates=list(state.symptom_candidates),
+            remedy=state.remedy, prose_pointer=state.prose_pointer,
+            entry_mode=state.entry_mode.value,
             awaiting=_AWAIT_MAP.get(state.awaiting, "none"),
             step_number=state.step_cursor,
-            total_steps=tools.step_count(state.active_code or "") or None,
+            total_steps=_total_steps(state),
             visited_codes=list(state.visited_codes),
             pending_codes=list(state.pending_codes),
             fact_ids_used=list(state.fact_ids_used),

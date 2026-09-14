@@ -175,6 +175,205 @@ def scripted_turns(code: str, fail_at: Optional[int] = None,
     return turns
 
 
+# ----------------------------------------------- symptom reference walk
+
+# Confirming a flat row and denying one. Kept as constants because the whole
+# flat-tree polarity argument turns on which of these ends the session, and a
+# literal buried in a fixture is a bad place for that to live.
+ROW_MATCHES = "haan, bilkul yahi dikh raha hai"
+ROW_DOES_NOT = "nahi, aisa nahi hai"
+
+
+def symptom_reference_walk(symptom_id: str, match_at: Optional[int] = None,
+                           max_steps: int = 40) -> Dict:
+    """Execute a symptom tree directly from golden/, without the graph.
+
+    Written without importing agent.graph, for the same reason reference_walk
+    is: an expectation computed by the thing it is checking agrees with itself
+    by construction.
+
+    THE TWO TREE KINDS ARE WALKED DIFFERENTLY, AND OPPOSITELY.
+
+      branching  YES means the check was normal -> follow the YES branch, which
+                 usually advances. This is reference_walk's logic.
+      flat       there are no branches. Rows are candidate causes, and
+                 confirming a row's point-to-check means the fault is FOUND:
+                 the walk STOPS there and the row's remedy is the answer.
+
+    match_at is the row the scripted technician confirms. For a branching tree
+    it is the step that comes back not-normal, which is the same thing said in
+    the other polarity.
+    """
+    rec = tools.lookup_symptom(symptom_id)
+    if rec is None:
+        return {"symptom_id": symptom_id, "tree_kind": None, "steps": [],
+                "outcome": "escalate", "reason": "unknown_symptom",
+                "diagnosis": None, "remedy": None, "pointer": None}
+
+    kind = rec["tree_kind"]
+    steps_taken: List[int] = []
+    diagnosis = remedy = pointer = None
+    outcome = "escalate"
+    n = tools.symptom_step_count(symptom_id)
+
+    if kind == "SymptomTreeFlat":
+        for i in range(1, min(n, max_steps) + 1):
+            steps_taken.append(i)
+            if match_at is not None and i == match_at:
+                step = tools.get_symptom_step(symptom_id, i)
+                diagnosis = step.get("cause") or ""
+                remedy = step.get("remedy") or ""
+                p = tools.step_prose_pointer(symptom_id, step)
+                pointer = p["text"] if p else None
+                outcome = "conclude"
+                break
+        return {"symptom_id": symptom_id, "tree_kind": kind,
+                "steps": steps_taken, "outcome": outcome,
+                "diagnosis": diagnosis, "remedy": remedy, "pointer": pointer,
+                "reason": None if outcome == "conclude" else "rows_exhausted"}
+
+    i = 1
+    while i <= n and len(steps_taken) < max_steps:
+        step = tools.get_symptom_step(symptom_id, i)
+        steps_taken.append(i)
+        failing = (match_at is not None and i == match_at)
+        ms = step.get("measurements") or []
+        branches = step.get("branches") or {}
+
+        if ms:
+            ans = failing_answer_for(step) if failing else answer_for(step, "pass_all")
+            q = tools.parse_quantity(ans)
+            verdict = tools.check_reading(ms[0]["criteria"],
+                                          q[0] if q else None, q[1] if q else None)
+            taken = "YES" if verdict == "PASS" else "NO" if verdict == "FAIL" else None
+        else:
+            taken = "NO" if failing else "YES"
+            verdict = "YES" if taken == "YES" else "NO"
+
+        if taken and taken in branches:
+            if tools.branch_disposition(branches[taken]) == "CONCLUDE":
+                diagnosis, outcome = branches[taken], "conclude"
+                break
+            i += 1
+            continue
+        if verdict in ("FAIL", "NO"):
+            diagnosis = step.get("cause") or step.get("procedure")
+            outcome = "conclude"
+            break
+        i += 1
+
+    return {"symptom_id": symptom_id, "tree_kind": kind, "steps": steps_taken,
+            "outcome": outcome, "diagnosis": diagnosis, "remedy": None,
+            "pointer": None,
+            "reason": None if outcome == "conclude" else "steps_exhausted"}
+
+
+def scripted_symptom_turns(symptom_id: str, opening: str,
+                           match_at: Optional[int] = None,
+                           pick: Optional[str] = None) -> List[str]:
+    """The technician's side of a symptom session that follows the walk."""
+    ref = symptom_reference_walk(symptom_id, match_at=match_at)
+    turns = [opening, f"{MODEL}, serial {SERIAL}"]
+    if pick:                      # an ASK had to be answered first
+        turns.append(pick)
+    turns.append("koi aur code nahi")
+    for i in ref["steps"]:
+        if ref["tree_kind"] == "SymptomTreeFlat":
+            turns.append(ROW_MATCHES if i == match_at else ROW_DOES_NOT)
+        else:
+            step = tools.get_symptom_step(symptom_id, i)
+            turns.append(failing_answer_for(step) if i == match_at
+                         else answer_for(step, "pass_all"))
+    return turns
+
+
+def build_symptom_sessions() -> List[Dict]:
+    """Six scenarios, each naming a behaviour the graph has to get right.
+
+    Not a sample of trees -- one session per DISTINCT BEHAVIOUR. Running fifty
+    branching symptom trees would grow the number and test one thing.
+    """
+    out: List[Dict] = []
+
+    def add(kind, sid, turns, expect, note="", code=None):
+        # code and symptom_id are separate fields even though a session has at
+        # most one of them: the protocol rules ask "did it end up on the code
+        # it was given" and "did it end up on the tree it was given", and those
+        # are different questions about different corpora.
+        out.append({"id": f"{kind}_{sid}_{len(out):02d}", "kind": kind,
+                    "code": code, "symptom_id": sid, "turns": turns,
+                    "expect": expect, "note": note})
+
+    # 1. clear symptom entering a BRANCHING H-Mode tree. The opening is the
+    #    manual's own title, which layer 1 matches byte for byte.
+    hm = "HM01"
+    ref = symptom_reference_walk(hm, match_at=1)
+    add("symptom_branching", hm,
+        scripted_symptom_turns(hm, tools.lookup_symptom(hm)["symptom"], match_at=1),
+        ref, "exact title -> MATCHED on layer 1; branching tree, YES/NO is "
+             "reading the manual back")
+
+    # 2. clear symptom entering a FLAT S-Mode tree and reaching a real remedy.
+    #    Row 3 of SM01 is 'Replace if the item is broken' -- an instruction, not
+    #    a redirect.
+    sm = "SM01"
+    ref = symptom_reference_walk(sm, match_at=3)
+    add("symptom_flat_remedy", sm,
+        scripted_symptom_turns(sm, tools.lookup_symptom(sm)["symptom"], match_at=3),
+        ref, "flat tree: no YES/NO exists; confirming a row STOPS the walk and "
+             "its remedy is the answer")
+
+    # 3. ambiguous symptom -> ASK -> resolved when the technician picks.
+    #    'swing slow hai' is a curated synonym pointing at two trees, and the
+    #    map records it that way rather than choosing one.
+    ref = symptom_reference_walk("HM29", match_at=1)
+    add("symptom_ask", "HM29",
+        scripted_symptom_turns("HM29", "swing slow hai", match_at=1, pick="2"),
+        ref, "two candidates; the agent presents both with pages and waits")
+
+    # 4. unmapped symptom. A real technician phrase with an obvious nearest
+    #    tree and no correct one.
+    add("symptom_unmapped", "-",
+        ["oil leak ho raha hai", f"{MODEL}, serial {SERIAL}"],
+        {"symptom_id": None, "tree_kind": None, "steps": [],
+         "outcome": "escalate", "reason": "symptom_unmapped",
+         "diagnosis": None, "remedy": None, "pointer": None},
+        "no leak tree exists; must say so, not route to the nearest")
+
+    # 5. a symptom tree whose REMEDY IS A PROSE POINTER.
+    #
+    #    SM01 rows 1 and 2 are the ONLY two of the 182 prose pointers that are
+    #    a step's remedy -- 145 sit in step procedure text as supplementary
+    #    detail and 35 in related_information, which preflight already handles.
+    #    So this fixture is the only real instance in the corpus, and one
+    #    passing test here is not broad coverage of pointer handling.
+    ref = symptom_reference_walk(sm, match_at=1)
+    add("symptom_pointer", sm,
+        scripted_symptom_turns(sm, tools.lookup_symptom(sm)["symptom"], match_at=1),
+        ref, "the manual refers you elsewhere; surface the page, do not follow")
+
+    # 6. a technician who produces a failure code partway through a symptom
+    #    session. A code is a dict lookup and beats a match, so the session
+    #    must switch to it and abandon the symptom tree.
+    code = next(c for c in sorted(tools.records())
+                if tools.records()[c]["format"] == "A"
+                and not tools.records()[c]["is_pointer_only"]
+                and tools.step_count(c) >= 2
+                and c not in _holdout.holdout_set())
+    cref = reference_walk(code, fail_at=1)
+    turns = [tools.lookup_symptom(hm)["symptom"], f"{MODEL}, serial {SERIAL}",
+             f"ruko, monitor pe {code} bhi aa gaya", "koi aur code nahi"]
+    for i in cref["steps"]:
+        step = tools.get_step(cref["resolved"], i)
+        turns.append(failing_answer_for(step) if i == 1
+                     else answer_for(step, "pass_all"))
+    add("symptom_to_code", code, turns, cref,
+        f"entered on a symptom, switched to {code} when the monitor produced it",
+        code=code)
+
+    return out
+
+
 # --------------------------------------------------------------- corpus
 
 def build_sessions(exclude=None) -> List[Dict]:

@@ -59,12 +59,19 @@ class AgentResponse(BaseModel):
     trace_id: str
     turn_index: int
     message: str
-    awaiting: Literal["machine", "other_codes", "reading", "none"]
+    awaiting: Literal["machine", "other_codes", "reading",
+                     "symptom_choice", "observation", "none"]
     citations: List[Citation] = Field(default_factory=list)
     fact_ids: List[str] = Field(default_factory=list)
     step_number: Optional[int] = None
     total_steps: Optional[int] = None
     diagnosis: Optional[str] = None
+    # A remedy is not a diagnosis. The manual gives it its own cell, so it
+    # crosses the API boundary in its own field rather than concatenated into
+    # the diagnosis string where a caller would have to split it back out.
+    remedy: Optional[str] = None
+    prose_pointer: Optional[dict] = None
+    symptom_candidates: List[dict] = Field(default_factory=list)
     session_status: Literal["running", "concluded", "escalated", "abandoned"]
     blocked: bool = False
 
@@ -86,8 +93,17 @@ class SessionView(BaseModel):
     serial: Optional[str] = None
     manual_id: str
     active_code: Optional[str] = None
+    # The symptom half of the entry. Separate fields from active_code rather
+    # than one overloaded "entry" string: a caller has to be able to ask which
+    # corpus this session is executing without parsing an identifier.
+    active_symptom: Optional[str] = None
+    tree_kind: Optional[str] = None
+    symptom_candidates: List[dict] = Field(default_factory=list)
+    remedy: Optional[str] = None
+    prose_pointer: Optional[dict] = None
     entry_mode: str
-    awaiting: Literal["machine", "other_codes", "reading", "none"]
+    awaiting: Literal["machine", "other_codes", "reading",
+                     "symptom_choice", "observation", "none"]
     step_number: int
     total_steps: Optional[int] = None
     visited_codes: List[str] = Field(default_factory=list)

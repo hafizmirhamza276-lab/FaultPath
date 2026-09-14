@@ -309,12 +309,85 @@ class ProtocolRule(_AgentMetric):
         assert m.compute(case, {"protocol": {"x": True}}) == 1.0
 
 
+# ------------------------------------------- symptom, scored separately
+
+SYMPTOM_RULES = (
+    ("symptom_right_tree", "symptom_right_tree"),
+    ("symptom_asks_on_ambiguity", "symptom_asks_on_ambiguity"),
+    ("symptom_unmapped_not_routed", "symptom_unmapped_not_routed"),
+    ("symptom_flat_polarity", "symptom_flat_polarity"),
+    ("symptom_pointer_surfaced", "symptom_pointer_surfaced"),
+    ("symptom_code_takes_over", "symptom_code_takes_over"),
+)
+
+
+class SymptomRule(_AgentMetric):
+    """One symptom-path rule. Five numbers, never one average.
+
+    symptom_right_tree and symptom_asks_on_ambiguity in particular must not be
+    blended: an agent that never asks and is usually right would score well on
+    a mean of the two while being exactly the guessing machine the ASK outcome
+    exists to prevent. Entering the wrong tree costs an hour; asking costs ten
+    seconds, and the arithmetic has to keep saying so.
+    """
+
+    def __init__(self, name, key):
+        self.name = name
+        self.key = key
+
+    def compute(self, case, result):
+        if not self.applies(case):
+            return None
+        v = (result.get("symptom") or {}).get(self.key)
+        return None if v is None else float(v)
+
+    def self_test(self):
+        m = SymptomRule("symptom_x", "x")
+        case = {"type": "agent_session"}
+        assert m.compute(case, {"symptom": {"x": False}}) == 0.0, \
+            "a symptom rule cannot fail"
+        assert m.compute(case, {"symptom": {"x": True}}) == 1.0
+        # A session the rule does not apply to is not scored, rather than
+        # counted as a pass -- which would let coverage masquerade as quality.
+        assert m.compute(case, {"symptom": {"x": None}}) is None
+
+
+class RemedyCorrect(_AgentMetric):
+    """The remedy the manual gives for the row that matched.
+
+    Scored apart from diagnosis_correct because they are different cells of
+    the table and fail for different reasons: the wrong row gives a wrong
+    diagnosis AND a wrong remedy, but the right row with prose-pointer text
+    replaced by an invented instruction gives a right diagnosis and a wrong
+    remedy. One number could not tell those apart.
+    """
+    name = "remedy_correct"
+
+    def compute(self, case, result):
+        if not self.applies(case):
+            return None
+        if not case["expect"].get("remedy"):
+            return None
+        return float(bool(result.get("remedy_correct")))
+
+    def self_test(self):
+        m = RemedyCorrect()
+        case = {"type": "agent_session", "expect": {"remedy": "Replace it"}}
+        assert m.compute(case, {"remedy_correct": False}) == 0.0, \
+            "remedy_correct cannot fail"
+        assert m.compute(case, {"remedy_correct": True}) == 1.0
+        assert m.compute({"type": "agent_session", "expect": {}},
+                         {"remedy_correct": True}) is None
+
+
 def build():
     return [
         PathCorrectness(), StepsToDiagnosis(), PrematureConclusion(),
         GateEnforcement(), CycleSafety(), VagueAnswerHandling(),
         DiagnosisCorrect(), OutcomeCorrect(), UngroundedValueBlocked(),
-    ] + [ProtocolRule(n, k) for n, k in PROTOCOL_RULES]
+        RemedyCorrect(),
+    ] + [ProtocolRule(n, k) for n, k in PROTOCOL_RULES] \
+      + [SymptomRule(n, k) for n, k in SYMPTOM_RULES]
 
 
 # Gates for the agent. gate_enforcement and cycle_safety are absolutes.
@@ -326,4 +399,19 @@ AGENT_GATES = [
         ("vague_answer_handling", ">=", 1.0),
     ("premature_conclusion", "<=", 0.05),
     ("ungrounded_value_rate", "<=", 0.0),
+]
+
+# Symptom gates. All five are absolutes at 1.0, and each has a deliberately
+# bad agent fault aimed at it -- see BadSymptomAgent. Note what is NOT here:
+# there is no gate on how OFTEN the agent asks. A ceiling on the ask rate is
+# how a system gets tuned into guessing, and symptom_wrong_tree_rate already
+# carries the cost of guessing wrong.
+SYMPTOM_GATES = [
+    ("symptom_right_tree", ">=", 1.0),
+    ("symptom_asks_on_ambiguity", ">=", 1.0),
+    ("symptom_unmapped_not_routed", ">=", 1.0),
+    ("symptom_flat_polarity", ">=", 1.0),
+    ("symptom_pointer_surfaced", ">=", 1.0),
+    ("symptom_code_takes_over", ">=", 1.0),
+    ("remedy_correct", ">=", 1.0),
 ]
