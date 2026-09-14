@@ -18,6 +18,13 @@
       "Additional Hyd Oil Filter Clogging"
     ],
     "must_cite_page": "40-121",
+    "fact_ids": [
+      "602KNX:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "602KNX"
   },
@@ -168,6 +175,13 @@
       "Quick Coupler System Abnormality"
     ],
     "must_cite_page": "40-124",
+    "fact_ids": [
+      "6AZ0ZG:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "6AZ0ZG"
   },
@@ -370,6 +384,13 @@
       "A/C Recirculation Air Temperature Sensor Open Circuit"
     ],
     "must_cite_page": "40-128",
+    "fact_ids": [
+      "879AKA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "879AKA"
   },
@@ -442,6 +463,13 @@
       "Air Conditioner Recirculation Air Temperature Sensor Short Circuit"
     ],
     "must_cite_page": "40-130",
+    "fact_ids": [
+      "879AKB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "879AKB"
   },
@@ -514,6 +542,13 @@
       "Air Conditioner Outside Air Temperature Sensor Open Circuit"
     ],
     "must_cite_page": "40-132",
+    "fact_ids": [
+      "879BKA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "879BKA"
   },
@@ -664,6 +699,13 @@
       "Air Conditioner Outside Air Temperature Sensor Short Circuit"
     ],
     "must_cite_page": "40-135",
+    "fact_ids": [
+      "879BKB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "879BKB"
   },
@@ -814,6 +856,13 @@
       "Ventilating Sensor Open Circuit"
     ],
     "must_cite_page": "40-138",
+    "fact_ids": [
+      "879CKA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "879CKA"
   },
@@ -886,6 +935,13 @@
       "Ventilating Sensor Short Circuit"
     ],
     "must_cite_page": "40-140",
+    "fact_ids": [
+      "879CKB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "879CKB"
   },
@@ -958,6 +1014,13 @@
       "Sunlight Sensor Open Circuit or Short Circuit"
     ],
     "must_cite_page": "40-142",
+    "fact_ids": [
+      "879DKZ:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "879DKZ"
   },
@@ -1212,6 +1275,13 @@
       "Ventilation Damper Malfunction"
     ],
     "must_cite_page": "40-145",
+    "fact_ids": [
+      "879EMC:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "879EMC"
   },
@@ -1284,6 +1354,13 @@
       "Air Mix Damper Malfunction"
     ],
     "must_cite_page": "40-147",
+    "fact_ids": [
+      "879FMC:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "879FMC"
   },
@@ -1356,6 +1433,13 @@
       "Refrigerant Pressure Input Signal Out of Range"
     ],
     "must_cite_page": "40-149",
+    "fact_ids": [
+      "879GKX:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "879GKX"
   },
@@ -1480,6 +1564,13 @@
       "Engine Controller Lock Caution 1"
     ],
     "must_cite_page": "40-152",
+    "fact_ids": [
+      "989L00:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "989L00"
   },
@@ -1552,6 +1643,13 @@
       "Engine Controller Lock Caution 2"
     ],
     "must_cite_page": "40-154",
+    "fact_ids": [
+      "989M00:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "989M00"
   },
@@ -1624,6 +1722,13 @@
       "Engine Controller Lock Caution 3"
     ],
     "must_cite_page": "40-156",
+    "fact_ids": [
+      "989N00:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "989N00"
   },
@@ -1696,6 +1801,13 @@
       "Abrupt Engine Stop by Auto Idling Stop 3"
     ],
     "must_cite_page": "40-157",
+    "fact_ids": [
+      "A900FR:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "A900FR"
   },
@@ -1743,6 +1855,13 @@
       "Abrupt Engine Stop by Auto Idling Stop 1"
     ],
     "must_cite_page": "40-158",
+    "fact_ids": [
+      "A900N6:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "A900N6"
   },
@@ -1790,6 +1909,13 @@
       "Abrupt Engine Stop by Auto Idling Stop 2"
     ],
     "must_cite_page": "40-159",
+    "fact_ids": [
+      "A900NY:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "A900NY"
   },
@@ -1837,6 +1963,13 @@
       "Air Cleaner Clogging"
     ],
     "must_cite_page": "40-160",
+    "fact_ids": [
+      "AA10NX:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "AA10NX"
   },
@@ -2013,6 +2146,13 @@
       "Charge Voltage Low"
     ],
     "must_cite_page": "40-163",
+    "fact_ids": [
+      "AB00KE:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "AB00KE"
   },
@@ -2189,6 +2329,13 @@
       "Engine Oil Pressure Low"
     ],
     "must_cite_page": "40-167",
+    "fact_ids": [
+      "B@BAZG:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "B@BAZG"
   },
@@ -2236,6 +2383,13 @@
       "Eng Oil Level Low"
     ],
     "must_cite_page": "40-168",
+    "fact_ids": [
+      "B@BAZK:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "B@BAZK"
   },
@@ -2412,6 +2566,13 @@
       "Eng Water Overheat"
     ],
     "must_cite_page": "40-173",
+    "fact_ids": [
+      "B@BCNS:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "B@BCNS"
   },
@@ -2459,6 +2620,13 @@
       "Eng Water Level Low"
     ],
     "must_cite_page": "40-174",
+    "fact_ids": [
+      "B@BCQA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "B@BCQA"
   },
@@ -2609,6 +2777,13 @@
       "Eng Water Level Low"
     ],
     "must_cite_page": "40-171",
+    "fact_ids": [
+      "B@BCZK:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "B@BCZK"
   },
@@ -2759,6 +2934,13 @@
       "Hydraulic Oil Overheat"
     ],
     "must_cite_page": "40-176",
+    "fact_ids": [
+      "B@HANS:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "B@HANS"
   },
@@ -2987,6 +3169,13 @@
       "Engine Controller Internal Abnormality"
     ],
     "must_cite_page": "40-179",
+    "fact_ids": [
+      "CA111:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA111"
   },
@@ -3008,6 +3197,7 @@
       "CA441"
     ],
     "must_cite_page": "40-179",
+    "uncited_reason": "the redirect is located, but 3 of 9 would cite synthetic 'Redirect' text that cannot resolve and 4 more would cite a verbatim string that does not name the target",
     "must_not_refuse": true,
     "trap": "Answering from this code's own page alone gives the technician nothing.",
     "source_code": "CA111"
@@ -3031,6 +3221,13 @@
       "Engine NE and Bkup Speed Sensor Error"
     ],
     "must_cite_page": "40-180",
+    "fact_ids": [
+      "CA115:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA115"
   },
@@ -3078,6 +3275,13 @@
       "Charge Air Pressure Sensor High Error"
     ],
     "must_cite_page": "40-181",
+    "fact_ids": [
+      "CA122:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA122"
   },
@@ -3202,6 +3406,7 @@
       "CA227"
     ],
     "must_cite_page": "40-181",
+    "uncited_reason": "the ordering is derived from word order within one sentence, not stated by the manual; 6 of 10 sentences name two codes",
     "must_not_refuse": true,
     "trap": "Starting with the wrong code wastes the whole session.",
     "source_code": "CA122"
@@ -3225,6 +3430,13 @@
       "Charge Air Pressure Sensor Low Error"
     ],
     "must_cite_page": "40-183",
+    "fact_ids": [
+      "CA123:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA123"
   },
@@ -3375,6 +3587,7 @@
       "CA187"
     ],
     "must_cite_page": "40-183",
+    "uncited_reason": "the ordering is derived from word order within one sentence, not stated by the manual; 6 of 10 sentences name two codes",
     "must_not_refuse": true,
     "trap": "Starting with the wrong code wastes the whole session.",
     "source_code": "CA123"
@@ -3398,6 +3611,13 @@
       "Throttle Sensor High Error"
     ],
     "must_cite_page": "40-185",
+    "fact_ids": [
+      "CA131:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA131"
   },
@@ -3678,6 +3898,7 @@
       "CA2185"
     ],
     "must_cite_page": "40-185",
+    "uncited_reason": "the ordering is derived from word order within one sentence, not stated by the manual; 6 of 10 sentences name two codes",
     "must_not_refuse": true,
     "trap": "Starting with the wrong code wastes the whole session.",
     "source_code": "CA131"
@@ -3701,6 +3922,13 @@
       "Throttle Sensor Low Error"
     ],
     "must_cite_page": "40-187",
+    "fact_ids": [
+      "CA132:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA132"
   },
@@ -4059,6 +4287,7 @@
       "CA2186"
     ],
     "must_cite_page": "40-187",
+    "uncited_reason": "the ordering is derived from word order within one sentence, not stated by the manual; 6 of 10 sentences name two codes",
     "must_not_refuse": true,
     "trap": "Starting with the wrong code wastes the whole session.",
     "source_code": "CA132"
@@ -4082,6 +4311,13 @@
       "Eng Oil Press Sensor High Error"
     ],
     "must_cite_page": "40-189",
+    "fact_ids": [
+      "CA135:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA135"
   },
@@ -4311,6 +4547,13 @@
       "Eng Oil Press Sensor Low Error"
     ],
     "must_cite_page": "40-192",
+    "fact_ids": [
+      "CA141:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA141"
   },
@@ -4514,6 +4757,13 @@
       "Coolant Temperature Sensor High Error"
     ],
     "must_cite_page": "40-195",
+    "fact_ids": [
+      "CA144:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA144"
   },
@@ -4717,6 +4967,13 @@
       "Coolant Temperature Sensor Low Error"
     ],
     "must_cite_page": "40-197",
+    "fact_ids": [
+      "CA145:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA145"
   },
@@ -4972,6 +5229,13 @@
       "Charge Air Temperature Sensor High Error"
     ],
     "must_cite_page": "40-199",
+    "fact_ids": [
+      "CA153:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA153"
   },
@@ -5227,6 +5491,13 @@
       "Charge Air Temperature Sensor Low Error"
     ],
     "must_cite_page": "40-201",
+    "fact_ids": [
+      "CA154:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA154"
   },
@@ -5508,6 +5779,13 @@
       "Charge Air Temperature High Speed Derate"
     ],
     "must_cite_page": "40-203",
+    "fact_ids": [
+      "CA155:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA155"
   },
@@ -5555,6 +5833,13 @@
       "Sensor 2 Supply Voltage Low Error"
     ],
     "must_cite_page": "40-204",
+    "fact_ids": [
+      "CA187:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA187"
   },
@@ -5628,6 +5913,13 @@
       "Throttle Sensor Supply Voltage High Error"
     ],
     "must_cite_page": "40-259",
+    "fact_ids": [
+      "CA2185:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA2185"
   },
@@ -5779,6 +6071,13 @@
       "Throttle Sensor Supply Voltage Low Error"
     ],
     "must_cite_page": "40-261",
+    "fact_ids": [
+      "CA2186:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA2186"
   },
@@ -5904,6 +6203,13 @@
       "Ambient Pressure Sensor High Error"
     ],
     "must_cite_page": "40-206",
+    "fact_ids": [
+      "CA221:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA221"
   },
@@ -6028,6 +6334,7 @@
       "CA352"
     ],
     "must_cite_page": "40-206",
+    "uncited_reason": "the ordering is derived from word order within one sentence, not stated by the manual; 6 of 10 sentences name two codes",
     "must_not_refuse": true,
     "trap": "Starting with the wrong code wastes the whole session.",
     "source_code": "CA221"
@@ -6051,6 +6358,13 @@
       "Ambient Pressure Sensor Low Error"
     ],
     "must_cite_page": "40-208",
+    "fact_ids": [
+      "CA222:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA222"
   },
@@ -6279,6 +6593,7 @@
       "CA352"
     ],
     "must_cite_page": "40-208",
+    "uncited_reason": "the ordering is derived from word order within one sentence, not stated by the manual; 6 of 10 sentences name two codes",
     "must_not_refuse": true,
     "trap": "Starting with the wrong code wastes the whole session.",
     "source_code": "CA222"
@@ -6302,6 +6617,13 @@
       "Common Rail Pressure Low Error 2"
     ],
     "must_cite_page": "40-263",
+    "fact_ids": [
+      "CA2249:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA2249"
   },
@@ -6323,6 +6645,7 @@
       "CA559"
     ],
     "must_cite_page": "40-263",
+    "uncited_reason": "the redirect is located, but 3 of 9 would cite synthetic 'Redirect' text that cannot resolve and 4 more would cite a verbatim string that does not name the target",
     "must_not_refuse": true,
     "trap": "Answering from this code's own page alone gives the technician nothing.",
     "source_code": "CA2249"
@@ -6346,6 +6669,13 @@
       "Sensor 2 Supply Voltage High Error"
     ],
     "must_cite_page": "40-210",
+    "fact_ids": [
+      "CA227:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA227"
   },
@@ -6367,6 +6697,7 @@
       "CA187"
     ],
     "must_cite_page": "40-210",
+    "uncited_reason": "the redirect is located, but 3 of 9 would cite synthetic 'Redirect' text that cannot resolve and 4 more would cite a verbatim string that does not name the target",
     "must_not_refuse": true,
     "trap": "Answering from this code's own page alone gives the technician nothing.",
     "source_code": "CA227"
@@ -6390,6 +6721,13 @@
       "IMV Solenoid Error"
     ],
     "must_cite_page": "40-264",
+    "fact_ids": [
+      "CA2311:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA2311"
   },
@@ -6411,6 +6749,7 @@
       "CA271"
     ],
     "must_cite_page": "40-264",
+    "uncited_reason": "the redirect is located, but 3 of 9 would cite synthetic 'Redirect' text that cannot resolve and 4 more would cite a verbatim string that does not name the target",
     "must_not_refuse": true,
     "trap": "Answering from this code's own page alone gives the technician nothing.",
     "source_code": "CA2311"
@@ -6434,6 +6773,13 @@
       "Engine Overspeed"
     ],
     "must_cite_page": "40-211",
+    "fact_ids": [
+      "CA234:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA234"
   },
@@ -6481,6 +6827,13 @@
       "NE Speed Sensor Supply Voltage Error"
     ],
     "must_cite_page": "40-212",
+    "fact_ids": [
+      "CA238:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA238"
   },
@@ -6554,6 +6907,13 @@
       "Intake Air Heater Relay Open Circuit Error"
     ],
     "must_cite_page": "40-265",
+    "fact_ids": [
+      "CA2555:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA2555"
   },
@@ -6705,6 +7065,13 @@
       "Intake Air Heater Relay Short Circuit Error"
     ],
     "must_cite_page": "40-268",
+    "fact_ids": [
+      "CA2556:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA2556"
   },
@@ -6804,6 +7171,13 @@
       "PCV 1 Short Circuit Error"
     ],
     "must_cite_page": "40-214",
+    "fact_ids": [
+      "CA271:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA271"
   },
@@ -6955,6 +7329,13 @@
       "PCV 1 Open Circuit Error"
     ],
     "must_cite_page": "40-216",
+    "fact_ids": [
+      "CA272:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA272"
   },
@@ -7080,6 +7461,13 @@
       "Injector #1 (L#1) Open Circuit Error or Short Circuit Error"
     ],
     "must_cite_page": "40-218",
+    "fact_ids": [
+      "CA322:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA322"
   },
@@ -7309,6 +7697,13 @@
       "Injector #3 (L#3) Open Circuit Error or Short Circuit Error"
     ],
     "must_cite_page": "40-220",
+    "fact_ids": [
+      "CA324:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA324"
   },
@@ -7538,6 +7933,13 @@
       "Injector #2 (L#2) Open Circuit Error or Short Circuit Error"
     ],
     "must_cite_page": "40-222",
+    "fact_ids": [
+      "CA331:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA331"
   },
@@ -7767,6 +8169,13 @@
       "Injector #4 (L#4) Open Circuit Error or Short Circuit Error"
     ],
     "must_cite_page": "40-224",
+    "fact_ids": [
+      "CA332:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA332"
   },
@@ -7996,6 +8405,13 @@
       "Calibration Code Incompatibility"
     ],
     "must_cite_page": "40-226",
+    "fact_ids": [
+      "CA342:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA342"
   },
@@ -8017,6 +8433,7 @@
       "CA441"
     ],
     "must_cite_page": "40-226",
+    "uncited_reason": "the redirect is located, but 3 of 9 would cite synthetic 'Redirect' text that cannot resolve and 4 more would cite a verbatim string that does not name the target",
     "must_not_refuse": true,
     "trap": "Answering from this code's own page alone gives the technician nothing.",
     "source_code": "CA342"
@@ -8040,6 +8457,13 @@
       "Injectors Drive Circuit Error"
     ],
     "must_cite_page": "40-227",
+    "fact_ids": [
+      "CA351:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA351"
   },
@@ -8061,6 +8485,7 @@
       "CA441"
     ],
     "must_cite_page": "40-227",
+    "uncited_reason": "the redirect is located, but 3 of 9 would cite synthetic 'Redirect' text that cannot resolve and 4 more would cite a verbatim string that does not name the target",
     "must_not_refuse": true,
     "trap": "Answering from this code's own page alone gives the technician nothing.",
     "source_code": "CA351"
@@ -8084,6 +8509,13 @@
       "Sensor 1 Supply Voltage Low Error"
     ],
     "must_cite_page": "40-228",
+    "fact_ids": [
+      "CA352:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA352"
   },
@@ -8157,6 +8589,13 @@
       "Sensor 1 Supply Voltage High Error"
     ],
     "must_cite_page": "40-230",
+    "fact_ids": [
+      "CA386:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA386"
   },
@@ -8178,6 +8617,7 @@
       "CA352"
     ],
     "must_cite_page": "40-230",
+    "uncited_reason": "the redirect is located, but 3 of 9 would cite synthetic 'Redirect' text that cannot resolve and 4 more would cite a verbatim string that does not name the target",
     "must_not_refuse": true,
     "trap": "Answering from this code's own page alone gives the technician nothing.",
     "source_code": "CA386"
@@ -8201,6 +8641,13 @@
       "Water in Fuel Sensor High Error"
     ],
     "must_cite_page": "40-231",
+    "fact_ids": [
+      "CA428:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA428"
   },
@@ -8352,6 +8799,13 @@
       "Water in Fuel Sensor Low Error"
     ],
     "must_cite_page": "40-233",
+    "fact_ids": [
+      "CA429:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA429"
   },
@@ -8529,6 +8983,13 @@
       "Engine Oil Pressure SW Error"
     ],
     "must_cite_page": "40-235",
+    "fact_ids": [
+      "CA435:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA435"
   },
@@ -8628,6 +9089,13 @@
       "Power Voltage Low Error"
     ],
     "must_cite_page": "40-237",
+    "fact_ids": [
+      "CA441:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA441"
   },
@@ -8779,6 +9247,13 @@
       "Power Voltage High Error"
     ],
     "must_cite_page": "40-239",
+    "fact_ids": [
+      "CA442:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA442"
   },
@@ -8800,6 +9275,7 @@
       "CA441"
     ],
     "must_cite_page": "40-239",
+    "uncited_reason": "the redirect is located, but 3 of 9 would cite synthetic 'Redirect' text that cannot resolve and 4 more would cite a verbatim string that does not name the target",
     "must_not_refuse": true,
     "trap": "Answering from this code's own page alone gives the technician nothing.",
     "source_code": "CA442"
@@ -8823,6 +9299,13 @@
       "Common Rail Pressure High Error 2"
     ],
     "must_cite_page": "40-240",
+    "fact_ids": [
+      "CA449:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA449"
   },
@@ -8896,6 +9379,13 @@
       "Common Rail Pressure Sensor High Error"
     ],
     "must_cite_page": "40-241",
+    "fact_ids": [
+      "CA451:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA451"
   },
@@ -9020,6 +9510,7 @@
       "CA227"
     ],
     "must_cite_page": "40-241",
+    "uncited_reason": "the ordering is derived from word order within one sentence, not stated by the manual; 6 of 10 sentences name two codes",
     "must_not_refuse": true,
     "trap": "Starting with the wrong code wastes the whole session.",
     "source_code": "CA451"
@@ -9043,6 +9534,13 @@
       "Common Rail Pressure Sensor Low Error"
     ],
     "must_cite_page": "40-243",
+    "fact_ids": [
+      "CA452:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA452"
   },
@@ -9167,6 +9665,7 @@
       "CA187"
     ],
     "must_cite_page": "40-243",
+    "uncited_reason": "the ordering is derived from word order within one sentence, not stated by the manual; 6 of 10 sentences name two codes",
     "must_not_refuse": true,
     "trap": "Starting with the wrong code wastes the whole session.",
     "source_code": "CA452"
@@ -9190,6 +9689,13 @@
       "Charge Air Temperature High Torque Derate"
     ],
     "must_cite_page": "40-245",
+    "fact_ids": [
+      "CA488:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA488"
   },
@@ -9237,6 +9743,13 @@
       "Common Rail Pressure High Error 1"
     ],
     "must_cite_page": "40-246",
+    "fact_ids": [
+      "CA553:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA553"
   },
@@ -9284,6 +9797,13 @@
       "Common Rail Pressure Low Error 1"
     ],
     "must_cite_page": "40-247",
+    "fact_ids": [
+      "CA559:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA559"
   },
@@ -9539,6 +10059,13 @@
       "Engine NE Speed Sensor Error"
     ],
     "must_cite_page": "40-249",
+    "fact_ids": [
+      "CA689:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA689"
   },
@@ -9793,6 +10320,7 @@
       "CA238"
     ],
     "must_cite_page": "40-249",
+    "uncited_reason": "the ordering is derived from word order within one sentence, not stated by the manual; 6 of 10 sentences name two codes",
     "must_not_refuse": true,
     "trap": "Starting with the wrong code wastes the whole session.",
     "source_code": "CA689"
@@ -9816,6 +10344,13 @@
       "Engine Bkup Speed Sensor Phase Error"
     ],
     "must_cite_page": "40-251",
+    "fact_ids": [
+      "CA731:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA731"
   },
@@ -9863,6 +10398,13 @@
       "All Continuous Data Lost Error"
     ],
     "must_cite_page": "40-253",
+    "fact_ids": [
+      "CA757:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA757"
   },
@@ -9884,6 +10426,7 @@
       "CA441"
     ],
     "must_cite_page": "40-253",
+    "uncited_reason": "the redirect is located, but 3 of 9 would cite synthetic 'Redirect' text that cannot resolve and 4 more would cite a verbatim string that does not name the target",
     "must_not_refuse": true,
     "trap": "Answering from this code's own page alone gives the technician nothing.",
     "source_code": "CA757"
@@ -9907,6 +10450,13 @@
       "Engine Backup Speed Sensor Error"
     ],
     "must_cite_page": "40-254",
+    "fact_ids": [
+      "CA778:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "CA778"
   },
@@ -10161,6 +10711,7 @@
       "CA187"
     ],
     "must_cite_page": "40-254",
+    "uncited_reason": "the ordering is derived from word order within one sentence, not stated by the manual; 6 of 10 sentences name two codes",
     "must_not_refuse": true,
     "trap": "Starting with the wrong code wastes the whole session.",
     "source_code": "CA778"
@@ -10184,6 +10735,13 @@
       "Battery Relay Output Short Circuit"
     ],
     "must_cite_page": "40-270",
+    "fact_ids": [
+      "D110KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "D110KB"
   },
@@ -10334,6 +10892,13 @@
       "Personal code relay open circuit or short circuit"
     ],
     "must_cite_page": "40-274",
+    "fact_ids": [
+      "D19JKZ:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "D19JKZ"
   },
@@ -10562,6 +11127,13 @@
       "KOMTRAX Malfunction"
     ],
     "must_cite_page": "40-278",
+    "fact_ids": [
+      "D811MC:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "D811MC"
   },
@@ -10634,6 +11206,13 @@
       "GPS Antenna Open Circuit"
     ],
     "must_cite_page": "40-279",
+    "fact_ids": [
+      "D862KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "D862KA"
   },
@@ -10706,6 +11285,13 @@
       "System Operating Lamp Open Circuit (KOMTRAX)"
     ],
     "must_cite_page": "40-281",
+    "fact_ids": [
+      "D8ALKA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "D8ALKA"
   },
@@ -10856,6 +11442,13 @@
       "System Operating Lamp Short Circuit (KOMTRAX)"
     ],
     "must_cite_page": "40-285",
+    "fact_ids": [
+      "D8ALKB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "D8ALKB"
   },
@@ -10954,6 +11547,13 @@
       "CAN 2 Defective Communication (KOMTRAX)"
     ],
     "must_cite_page": "40-288",
+    "fact_ids": [
+      "D8AQKR:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "D8AQKR"
   },
@@ -11728,6 +12328,13 @@
       "CAN1 Defective Communication (Gateway Controller)"
     ],
     "must_cite_page": "40-298",
+    "fact_ids": [
+      "D8ARKR:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "D8ARKR"
   },
@@ -12373,6 +12980,13 @@
       "Malfunction (Gateway Controller)"
     ],
     "must_cite_page": "40-304",
+    "fact_ids": [
+      "D8G1KT:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "D8G1KT"
   },
@@ -12445,6 +13059,13 @@
       "Malfunction (Communication terminal)"
     ],
     "must_cite_page": "40-305",
+    "fact_ids": [
+      "D8G6KT:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "D8G6KT"
   },
@@ -12517,6 +13138,13 @@
       "Pump Controller Malfunction"
     ],
     "must_cite_page": "40-306",
+    "fact_ids": [
+      "DA20MC:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DA20MC"
   },
@@ -12589,6 +13217,13 @@
       "Pump Controller Solenoid Power Voltage Low Error"
     ],
     "must_cite_page": "40-307",
+    "fact_ids": [
+      "DA22KK:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DA22KK"
   },
@@ -12843,6 +13478,13 @@
       "5 V Sensor Power Supply Output 1 Voltage Low"
     ],
     "must_cite_page": "40-312",
+    "fact_ids": [
+      "DA25KP:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DA25KP"
   },
@@ -12993,6 +13635,13 @@
       "5 V Sensor Power Supply Output 2 Voltage Low"
     ],
     "must_cite_page": "40-316",
+    "fact_ids": [
+      "DA26KP:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DA26KP"
   },
@@ -13143,6 +13792,13 @@
       "Model Selection Signal Mismatch (Pump Controller)"
     ],
     "must_cite_page": "40-322",
+    "fact_ids": [
+      "DA29KQ:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DA29KQ"
   },
@@ -14021,6 +14677,13 @@
       "System Operating Lamp Open Circuit (Pump Controller)"
     ],
     "must_cite_page": "40-327",
+    "fact_ids": [
+      "DA2LKA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DA2LKA"
   },
@@ -14171,6 +14834,13 @@
       "System Operating Lamp Short Circuit (Pump Controller)"
     ],
     "must_cite_page": "40-331",
+    "fact_ids": [
+      "DA2LKB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DA2LKB"
   },
@@ -14269,6 +14939,13 @@
       "Controller Area Network 2 Defective Communication (Pump Controller)"
     ],
     "must_cite_page": "40-334",
+    "fact_ids": [
+      "DA2QKR:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DA2QKR"
   },
@@ -15277,6 +15954,13 @@
       "Controller Area Network 1 Defective Communication (Pump Controller)"
     ],
     "must_cite_page": "40-345",
+    "fact_ids": [
+      "DA2RKR:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DA2RKR"
   },
@@ -16181,6 +16865,13 @@
       "Monitor ROM Abnormality"
     ],
     "must_cite_page": "40-354",
+    "fact_ids": [
+      "DAF0MB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DAF0MB"
   },
@@ -16253,6 +16944,13 @@
       "Monitor Malfunction"
     ],
     "must_cite_page": "40-355",
+    "fact_ids": [
+      "DAF0MC:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DAF0MC"
   },
@@ -16325,6 +17023,13 @@
       "Camera Power Supply Short Circuit (Machine monitor system)"
     ],
     "must_cite_page": "40-356",
+    "fact_ids": [
+      "DAF8KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DAF8KB"
   },
@@ -16450,6 +17155,13 @@
       "Model Selection Signal Mismatch (Monitor)"
     ],
     "must_cite_page": "40-358",
+    "fact_ids": [
+      "DAF9KQ:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DAF9KQ"
   },
@@ -16572,6 +17284,13 @@
       "System Operating Lamp Open Circuit (Monitor)"
     ],
     "must_cite_page": "40-362",
+    "fact_ids": [
+      "DAFLKA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DAFLKA"
   },
@@ -16722,6 +17441,13 @@
       "System Operating Lamp Short Circuit (Monitor)"
     ],
     "must_cite_page": "40-366",
+    "fact_ids": [
+      "DAFLKB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DAFLKB"
   },
@@ -16820,6 +17546,13 @@
       "CAN 2 Defective Communication (Monitor)"
     ],
     "must_cite_page": "40-369",
+    "fact_ids": [
+      "DAFQKR:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DAFQKR"
   },
@@ -17724,6 +18457,13 @@
       "Model Selection Signal Mismatch (Air Conditioner)"
     ],
     "must_cite_page": "40-379",
+    "fact_ids": [
+      "DAZ9KQ:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DAZ9KQ"
   },
@@ -17796,6 +18536,13 @@
       "CAN 2 defective communication (Air conditioner)"
     ],
     "must_cite_page": "40-381",
+    "fact_ids": [
+      "DAZQKR:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DAZQKR"
   },
@@ -18518,6 +19265,13 @@
       "CAN 2 defective communication (Engine controller)"
     ],
     "must_cite_page": "40-390",
+    "fact_ids": [
+      "DB2QKR:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DB2QKR"
   },
@@ -19396,6 +20150,13 @@
       "Additional Hyd Oil Filter Clog Switch Open Circuit"
     ],
     "must_cite_page": "40-400",
+    "fact_ids": [
+      "DDPAKA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DDPAKA"
   },
@@ -19546,6 +20307,13 @@
       "Hydraulic Oil Temperature Sensor Open Circuit"
     ],
     "must_cite_page": "40-403",
+    "fact_ids": [
+      "DGH2KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DGH2KA"
   },
@@ -19800,6 +20568,13 @@
       "Hydraulic Oil Temperature Sensor Ground Fault"
     ],
     "must_cite_page": "40-406",
+    "fact_ids": [
+      "DGH2KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DGH2KB"
   },
@@ -20054,6 +20829,13 @@
       "Air Cleaner Clog Sensor Open Circuit"
     ],
     "must_cite_page": "40-409",
+    "fact_ids": [
+      "DHA4KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHA4KA"
   },
@@ -20230,6 +21012,13 @@
       "Blow By Pressure Sensor Defective Function"
     ],
     "must_cite_page": "40-412",
+    "fact_ids": [
+      "DHE5MA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHE5MA"
   },
@@ -20484,6 +21273,13 @@
       "Front Pump Pressure Sensor Defective Function"
     ],
     "must_cite_page": "40-416",
+    "fact_ids": [
+      "DHPAMA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHPAMA"
   },
@@ -20738,6 +21534,13 @@
       "Rear Pump Pressure Sensor Defective Function"
     ],
     "must_cite_page": "40-420",
+    "fact_ids": [
+      "DHPBMA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHPBMA"
   },
@@ -20992,6 +21795,13 @@
       "Arm IN PPC Pressure Sensor Defective Function"
     ],
     "must_cite_page": "40-424",
+    "fact_ids": [
+      "DHS3MA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHS3MA"
   },
@@ -21246,6 +22056,13 @@
       "Bucket CURL PPC Pressure Sensor Defective Function"
     ],
     "must_cite_page": "40-428",
+    "fact_ids": [
+      "DHS4MA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHS4MA"
   },
@@ -21500,6 +22317,13 @@
       "Boom RAISE PPC Pressure Sensor Defective Function"
     ],
     "must_cite_page": "40-432",
+    "fact_ids": [
+      "DHS8MA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHS8MA"
   },
@@ -21754,6 +22578,13 @@
       "Boom LOWER PPC pressure sensor malfunction"
     ],
     "must_cite_page": "40-436",
+    "fact_ids": [
+      "DHS9MA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHS9MA"
   },
@@ -22008,6 +22839,13 @@
       "Swing Right PPC Pressure Sensor Defective Function"
     ],
     "must_cite_page": "40-440",
+    "fact_ids": [
+      "DHSAMA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHSAMA"
   },
@@ -22262,6 +23100,13 @@
       "Swing Left PPC Pressure Sensor Defective Function"
     ],
     "must_cite_page": "40-444",
+    "fact_ids": [
+      "DHSBMA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHSBMA"
   },
@@ -22516,6 +23361,13 @@
       "Arm OUT PPC Pressure Sensor Defective Function"
     ],
     "must_cite_page": "40-448",
+    "fact_ids": [
+      "DHSCMA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHSCMA"
   },
@@ -22770,6 +23622,13 @@
       "Bucket DUMP PPC Pressure Sensor Defective Function"
     ],
     "must_cite_page": "40-452",
+    "fact_ids": [
+      "DHSDMA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHSDMA"
   },
@@ -23024,6 +23883,13 @@
       "Travel Forward Left PPC Pressure Sensor Defective Function"
     ],
     "must_cite_page": "40-456",
+    "fact_ids": [
+      "DHSFMA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHSFMA"
   },
@@ -23278,6 +24144,13 @@
       "Travel forward RIGHT PPC pressure sensor malfunction"
     ],
     "must_cite_page": "40-460",
+    "fact_ids": [
+      "DHSGMA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHSGMA"
   },
@@ -23532,6 +24405,13 @@
       "Travel Reverse Left PPC Pressure Sensor Defective Function"
     ],
     "must_cite_page": "40-464",
+    "fact_ids": [
+      "DHSHMA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHSHMA"
   },
@@ -23786,6 +24666,13 @@
       "Travel reverse RIGHT PPC pressure sensor malfunction"
     ],
     "must_cite_page": "40-468",
+    "fact_ids": [
+      "DHSJMA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DHSJMA"
   },
@@ -24040,6 +24927,13 @@
       "WIF Sensor Input Signal Out of Range"
     ],
     "must_cite_page": "40-472",
+    "fact_ids": [
+      "DJG1KX:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DJG1KX"
   },
@@ -24216,6 +25110,13 @@
       "Return Filter Bypass Stroke Sensor 1 Defective Function"
     ],
     "must_cite_page": "40-475",
+    "fact_ids": [
+      "DKR2MA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DKR2MA"
   },
@@ -24470,6 +25371,13 @@
       "Return Filter1 Clogging"
     ],
     "must_cite_page": "40-479",
+    "fact_ids": [
+      "DKR2NX:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DKR2NX"
   },
@@ -24542,6 +25450,13 @@
       "Camera 3 Picture Reverse Drive Input Out of Range"
     ],
     "must_cite_page": "40-481",
+    "fact_ids": [
+      "DR31KX:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DR31KX"
   },
@@ -24564,6 +25479,13 @@
       "Travel Alarm Short Circuit"
     ],
     "must_cite_page": "40-482",
+    "fact_ids": [
+      "DV20KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DV20KB"
   },
@@ -24740,6 +25662,13 @@
       "Travel Speed Solenoid Open Circuit"
     ],
     "must_cite_page": "40-485",
+    "fact_ids": [
+      "DW43KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DW43KA"
   },
@@ -24942,6 +25871,13 @@
       "Travel Speed Solenoid Short Circuit"
     ],
     "must_cite_page": "40-488",
+    "fact_ids": [
+      "DW43KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DW43KB"
   },
@@ -25118,6 +26054,13 @@
       "Travel Speed Solenoid Hot Short Circuit"
     ],
     "must_cite_page": "40-491",
+    "fact_ids": [
+      "DW43KY:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DW43KY"
   },
@@ -25216,6 +26159,13 @@
       "Swing Parking Brake Solenoid Open Circuit"
     ],
     "must_cite_page": "40-493",
+    "fact_ids": [
+      "DW45KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DW45KA"
   },
@@ -25522,6 +26472,13 @@
       "Swing Parking Brake Solenoid Short Circuit"
     ],
     "must_cite_page": "40-497",
+    "fact_ids": [
+      "DW45KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DW45KB"
   },
@@ -25802,6 +26759,13 @@
       "Short circuit in swing parking brake solenoid power supply line"
     ],
     "must_cite_page": "40-501",
+    "fact_ids": [
+      "DW45KY:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DW45KY"
   },
@@ -25900,6 +26864,13 @@
       "Travel Junction Solenoid Open Circuit"
     ],
     "must_cite_page": "40-504",
+    "fact_ids": [
+      "DW91KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DW91KA"
   },
@@ -26102,6 +27073,13 @@
       "Travel Junction Solenoid Short Circuit"
     ],
     "must_cite_page": "40-506",
+    "fact_ids": [
+      "DW91KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DW91KB"
   },
@@ -26278,6 +27256,13 @@
       "Travel Junction Solenoid Hot Short Circuit"
     ],
     "must_cite_page": "40-509",
+    "fact_ids": [
+      "DW91KY:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DW91KY"
   },
@@ -26376,6 +27361,13 @@
       "Attachment Single or 2-Way Change Solenoid Open Circuit"
     ],
     "must_cite_page": "40-511",
+    "fact_ids": [
+      "DWA2KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DWA2KA"
   },
@@ -26474,6 +27466,13 @@
       "Attachment Single or 2-Way Change Solenoid Short Circuit"
     ],
     "must_cite_page": "40-513",
+    "fact_ids": [
+      "DWA2KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DWA2KB"
   },
@@ -26650,6 +27649,13 @@
       "Attachment Single or 2-Way Change Solenoid Hot Short Circuit"
     ],
     "must_cite_page": "40-516",
+    "fact_ids": [
+      "DWA2KY:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DWA2KY"
   },
@@ -26748,6 +27754,13 @@
       "2-Stage Relief Solenoid Open Circuit"
     ],
     "must_cite_page": "40-518",
+    "fact_ids": [
+      "DWK0KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DWK0KA"
   },
@@ -26846,6 +27859,13 @@
       "2-Stage Relief Solenoid Short Circuit"
     ],
     "must_cite_page": "40-520",
+    "fact_ids": [
+      "DWK0KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DWK0KB"
   },
@@ -27022,6 +28042,13 @@
       "2-Stage Relief Solenoid Hot Short Circuit"
     ],
     "must_cite_page": "40-523",
+    "fact_ids": [
+      "DWK0KY:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DWK0KY"
   },
@@ -27120,6 +28147,13 @@
       "Variable Back Pressure Solenoid Open Circuit"
     ],
     "must_cite_page": "40-525",
+    "fact_ids": [
+      "DWK2KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DWK2KA"
   },
@@ -27322,6 +28356,13 @@
       "Variable Back Pressure Solenoid Short Circuit"
     ],
     "must_cite_page": "40-527",
+    "fact_ids": [
+      "DWK2KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DWK2KB"
   },
@@ -27498,6 +28539,13 @@
       "Variable Back Pressure Solenoid Hot Short Circuit"
     ],
     "must_cite_page": "40-530",
+    "fact_ids": [
+      "DWK2KY:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DWK2KY"
   },
@@ -27596,6 +28644,13 @@
       "Swing Pressure Cutoff Solenoid Open Circuit"
     ],
     "must_cite_page": "40-532",
+    "fact_ids": [
+      "DWK8KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DWK8KA"
   },
@@ -27694,6 +28749,13 @@
       "Swing Pressure Cutoff Solenoid Short Circuit"
     ],
     "must_cite_page": "40-534",
+    "fact_ids": [
+      "DWK8KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DWK8KB"
   },
@@ -27870,6 +28932,13 @@
       "Swing Pressure Cutoff Solenoid Hot Short Circuit"
     ],
     "must_cite_page": "40-537",
+    "fact_ids": [
+      "DWK8KY:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DWK8KY"
   },
@@ -27968,6 +29037,13 @@
       "Front Pump PC-EPC Solenoid Open Circuit"
     ],
     "must_cite_page": "40-539",
+    "fact_ids": [
+      "DXA8KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DXA8KA"
   },
@@ -28326,6 +29402,13 @@
       "Front Pump PC-EPC Solenoid Short Circuit"
     ],
     "must_cite_page": "40-542",
+    "fact_ids": [
+      "DXA8KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DXA8KB"
   },
@@ -28658,6 +29741,13 @@
       "Rear Pump PC-EPC Solenoid Open Circuit"
     ],
     "must_cite_page": "40-546",
+    "fact_ids": [
+      "DXA9KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DXA9KA"
   },
@@ -29016,6 +30106,13 @@
       "Rear Pump PC-EPC Solenoid Short Circuit"
     ],
     "must_cite_page": "40-549",
+    "fact_ids": [
+      "DXA9KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DXA9KB"
   },
@@ -29348,6 +30445,13 @@
       "LS-EPC Solenoid Open Circuit"
     ],
     "must_cite_page": "40-553",
+    "fact_ids": [
+      "DXE0KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DXE0KA"
   },
@@ -29550,6 +30654,13 @@
       "LS-EPC Solenoid Short Circuit"
     ],
     "must_cite_page": "40-556",
+    "fact_ids": [
+      "DXE0KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DXE0KB"
   },
@@ -29752,6 +30863,13 @@
       "Attachment Flow Regulating EPC Solenoid Open Circuit"
     ],
     "must_cite_page": "40-559",
+    "fact_ids": [
+      "DXE4KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DXE4KA"
   },
@@ -29954,6 +31072,13 @@
       "Attachment Flow Regulating EPC Solenoid Short Circuit"
     ],
     "must_cite_page": "40-562",
+    "fact_ids": [
+      "DXE4KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DXE4KB"
   },
@@ -30130,6 +31255,13 @@
       "Attachment Flow EPC Hot Short Circuit"
     ],
     "must_cite_page": "40-565",
+    "fact_ids": [
+      "DXE4KY:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DXE4KY"
   },
@@ -30228,6 +31360,13 @@
       "Merge-divider Main Solenoid Open Circuit"
     ],
     "must_cite_page": "40-567",
+    "fact_ids": [
+      "DXE5KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DXE5KA"
   },
@@ -30430,6 +31569,13 @@
       "Merge-divider Main Solenoid Short Circuit"
     ],
     "must_cite_page": "40-570",
+    "fact_ids": [
+      "DXE5KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DXE5KB"
   },
@@ -30632,6 +31778,13 @@
       "Merge-divider LS Solenoid Open Circuit"
     ],
     "must_cite_page": "40-573",
+    "fact_ids": [
+      "DXE6KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DXE6KA"
   },
@@ -30834,6 +31987,13 @@
       "Merge-divider LS Solenoid Short Circuit"
     ],
     "must_cite_page": "40-576",
+    "fact_ids": [
+      "DXE6KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DXE6KB"
   },
@@ -31036,6 +32196,13 @@
       "Wiper Motor Open Circuit"
     ],
     "must_cite_page": "40-579",
+    "fact_ids": [
+      "DY20KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DY20KA"
   },
@@ -31446,6 +32613,13 @@
       "Wiper Motor Defective Function"
     ],
     "must_cite_page": "40-583",
+    "fact_ids": [
+      "DY20MA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DY20MA"
   },
@@ -31856,6 +33030,13 @@
       "Washer Motor Short Circuit"
     ],
     "must_cite_page": "40-587",
+    "fact_ids": [
+      "DY2CKB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DY2CKB"
   },
@@ -32110,6 +33291,13 @@
       "Wiper Motor (Normal Rotation) Short Circuit"
     ],
     "must_cite_page": "40-592",
+    "fact_ids": [
+      "DY2DKB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DY2DKB"
   },
@@ -32286,6 +33474,13 @@
       "Wiper Motor (Reverse Rotation) Short Circuit"
     ],
     "must_cite_page": "40-595",
+    "fact_ids": [
+      "DY2EKB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "DY2EKB"
   },
@@ -32462,6 +33657,13 @@
       "Communication Terminal Startup Signal Open Circuit"
     ],
     "must_cite_page": "40-598",
+    "fact_ids": [
+      "F313KA:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "F313KA"
   },
@@ -32664,6 +33866,13 @@
       "Communication Terminal Startup Signal Short Circuit"
     ],
     "must_cite_page": "40-600",
+    "fact_ids": [
+      "F313KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "F313KB"
   },
@@ -32866,6 +34075,13 @@
       "Communication Terminal Power Supply 1 Short Circuit"
     ],
     "must_cite_page": "40-603",
+    "fact_ids": [
+      "F318KB:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "F318KB"
   },
@@ -33042,6 +34258,13 @@
       "Communication Terminal Power Supply 1 Hot Short Circuit"
     ],
     "must_cite_page": "40-606",
+    "fact_ids": [
+      "F318KY:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "F318KY"
   },
@@ -33140,6 +34363,13 @@
       "Blow By Pressure High Error"
     ],
     "must_cite_page": "40-608",
+    "fact_ids": [
+      "F@BBZL:0:header:4"
+    ],
+    "uncited_fields": {
+      "title": "no correct provenance exists. header_provenance points at the code's DETAIL page, but for 132 of 174 codes the title is printed only in the failure-code index table (pp. 655-662), which parse_code_table reads without recording per-row provenance. Citing the detail page would produce a citation that does not resolve. Needs an extraction change; deliberately not made here.",
+      "action_level": "provenance is correct but a resolution check on it would be vacuous. Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed absent-marker. Asking whether '-' appears somewhere on a page is not evidence, and citing it would raise citation_resolvability without raising confidence."
+    },
     "must_not_refuse": true,
     "source_code": "F@BBZL"
   },

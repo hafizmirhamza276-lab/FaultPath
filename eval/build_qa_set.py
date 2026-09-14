@@ -155,10 +155,49 @@ def is_numeric_symptom_criterion(m):
 
 # ------------------------------------------------------------------ case types
 
+# Why two of direct_lookup's three header fields carry no fact id.
+#
+# RECORDED IN THE DATA, not only in a commit message: "uncited" and "uncited
+# for a reason someone checked" have to be distinguishable by reading the repo.
+# Each case emits this under `uncited_fields`.
+UNCITED_HEADER_FIELDS = {
+    "title": (
+        "no correct provenance exists. header_provenance points at the code's "
+        "DETAIL page, but for 132 of 174 codes the title is printed only in "
+        "the failure-code index table (pp. 655-662), which parse_code_table "
+        "reads without recording per-row provenance. Citing the detail page "
+        "would produce a citation that does not resolve. Needs an extraction "
+        "change; deliberately not made here."),
+    "action_level": (
+        "provenance is correct but a resolution check on it would be vacuous. "
+        "Every value is 1-3 characters from a 7-value vocabulary -- L01 x66, "
+        "L03 x49, '-' x47, L04 x7 -- and 47 of them ARE the manual's printed "
+        "absent-marker. Asking whether '-' appears somewhere on a page is not "
+        "evidence, and citing it would raise citation_resolvability without "
+        "raising confidence."),
+}
+
+
 def case_direct_lookup(rec):
-    """code -> title, action level, what the operator sees."""
+    """code -> title, action level, what the operator sees.
+
+    CITES machine_effect ONLY, of the three fields in `expected`.
+
+    machine_effect is substantive -- 104 distinct values, mostly full
+    sentences -- it lives on the detail page that header_provenance names, and
+    it resolves against the PDF for 173 of 173. The other two do not qualify
+    and say why in UNCITED_HEADER_FIELDS.
+
+    Citing one of three is deliberate rather than partial. citation_resolvability
+    then reports that the citations which exist are sound, while
+    uncited_claim_rate keeps reporting that the headline claim -- the title --
+    is still ungrounded. Two metrics, two different true statements. Citing all
+    three would make the bucket read as grounded when the title is not.
+    """
     if not rec.get("machine_effect"):
         return None
+    # Index 4 of the header field order in eval/citations.py:_fact.
+    fid = f"{rec['code']}:0:header:4"
     return {
         "type": "direct_lookup",
         "section": SECTION40,
@@ -173,6 +212,8 @@ def case_direct_lookup(rec):
         "must_contain": [rec.get("title")] if rec.get("title") else [],
         "must_cite_page": page_of(rec),
         "must_not_refuse": True,
+        "fact_ids": [fid],
+        "uncited_fields": dict(UNCITED_HEADER_FIELDS),
         "source_code": rec["code"],
     }
 
@@ -302,6 +343,17 @@ def case_precondition(rec, known_codes):
         "must_contain": [first],
         "must_cite_page": page_of(rec),
         "must_not_refuse": True,
+        # UNCITED, CHECKED. The claim is DERIVED, not stated. The manual says
+        # "If failure code [CA227] or [CA187] is shown, do the troubleshooting"
+        # -- it names codes, it does not state an ordering. solve_first is this
+        # builder's first-in-textual-order reading, and 6 of the 10 sentences
+        # name two codes. CA451 says [CA227] or [CA187] and CA123 says [CA187]
+        # or [CA227]; they resolve differently only because of word order.
+        # Attaching provenance would ground a derived reading in a page that
+        # does not assert it.
+        "uncited_reason": (
+            "the ordering is derived from word order within one sentence, not "
+            "stated by the manual; 6 of 10 sentences name two codes"),
         "trap": TRAP_PRECOND,
         "source_code": rec["code"],
     }
@@ -325,6 +377,17 @@ def case_cross_ref_hop(rec):
         "must_contain": [refs[0]],
         "must_cite_page": page_of(rec),
         "must_not_refuse": True,
+        # UNCITED, CHECKED. The redirect IS stated on a page and the step that
+        # states it already has a fact_id -- but citing it would be worse than
+        # not. Of the 9 pointer codes: 3 (CA227, CA386, CA442) carry the
+        # synthetic "Redirect" cause, which the resolver correctly refuses, so
+        # the citation would not resolve; for 4 more the step's cause wins over
+        # its procedure in _fact, so the cited verbatim text does not name the
+        # target. Only 2 of 9 would be sound.
+        "uncited_reason": (
+            "the redirect is located, but 3 of 9 would cite synthetic "
+            "'Redirect' text that cannot resolve and 4 more would cite a "
+            "verbatim string that does not name the target"),
         "trap": TRAP_HOP,
         "source_code": rec["code"],
     }
@@ -565,7 +628,8 @@ def assign_ids(cases):
 
 KEY_ORDER = ["id", "type", "section", "difficulty", "question", "filters", "expected",
              "must_contain", "must_contain_verbatim", "must_cite_page",
-             "fact_ids", "must_not_refuse", "must_refuse",
+             "fact_ids", "uncited_fields", "uncited_reason",
+             "must_not_refuse", "must_refuse",
              "must_not_contain_numbers", "trap", "source_code"]
 
 

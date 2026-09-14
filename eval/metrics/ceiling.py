@@ -71,29 +71,59 @@ _exclude(
     "system does not choose the chunking, and the chunking sets the ceiling "
     "(ceiling_recall 1.0000 structural vs 0.9914 fixed_512, same answers).")
 
-# 2. THE TWO CITATION METRICS CAPPED BY THE CASE DEFINITIONS, not by the answer.
+# 2. citation_resolvability -- capped by three buckets left uncited ON PURPOSE.
 #
-#    MEASURED, not assumed -- an earlier guess that these were bounded by the
-#    27 machine-repaired causes was WRONG: every citation a qa_set fact_id
-#    renders resolves against the PDF.
+#    This reason has been wrong twice and is now measured. The first version
+#    blamed the 27 machine-repaired causes: WRONG, every citation a qa_set
+#    fact_id renders resolves against the PDF. The second blamed four case
+#    types carrying no fact_ids, which was right for THIS metric and wrong for
+#    uncited_claim_rate below -- the two were sharing one reason and only one
+#    of them fitted it.
 #
-#    The real cause is that three case types carry no fact_ids at all
-#    (direct_lookup, cross_ref_hop, precondition), as does the generated
-#    injection set. run_eval then falls back to synthesising a page-only
-#    citation stub with verbatim_text "" and pdf_page None, so:
-#      citation_resolvability -> 0.0 for those types, by construction
-#      uncited_claim_rate     -> 1.0 for those types, `if not cites: return 1.0`
-#    Both are exactly 0.0000 / 1.0000 on those buckets and perfect elsewhere,
-#    which is the signature of a structural cap rather than a weak answer.
-#
-#    Fixing it means giving those case types fact_ids in qa_set.json. That is a
-#    change to the ground truth and is deliberately not made here.
+#    direct_lookup now cites machine_effect and scores 1.0000. What remains at
+#    0.0 is cross_ref_hop (9), precondition (10) and the generated injection
+#    set (15), each uncited after being checked, with the reason recorded in
+#    the case itself under `uncited_reason`:
+#      cross_ref_hop  3 of 9 would cite synthetic "Redirect" text that cannot
+#                     resolve, and 4 more a verbatim string not naming the
+#                     target. Only 2 of 9 would be sound.
+#      precondition   the ordering is DERIVED from word order inside one
+#                     sentence; the manual states no ordering.
+#      injection      an adversarial prompt has nothing to cite, which is the
+#                     same precedent the adversarial_* cases set.
 _exclude(
-    ["citation_resolvability", "uncited_claim_rate"],
-    "capped by case definitions: direct_lookup, cross_ref_hop, precondition "
-    "and injection cases carry no fact_ids, so run_eval synthesises a "
-    "page-only citation stub with no verbatim text, which cannot resolve and "
-    "cannot support a claim. Perfect on every bucket that has fact_ids.")
+    ["citation_resolvability"],
+    "three buckets are uncited after being checked -- cross_ref_hop (would "
+    "cite unresolvable synthetic text), precondition (the claim is derived, "
+    "not stated) and injection (nothing to cite). Each records its reason in "
+    "the case. Perfect on every bucket that carries a fact_id.")
+
+# 3. uncited_claim_rate -- capped by a DELIBERATE TENSION BETWEEN TWO METRICS,
+#    not by missing fact_ids. This is the correction: step_ordering scores
+#    0.9630 WITH fact_ids, so "no fact_ids" never explained this metric.
+#
+#    The good system answers procedure-shaped questions by delivering every
+#    step cause -- "Full procedure: Step 1: ... Step N: ..." -- so completeness
+#    has something to measure, while naming only the QUERIED fact's id. The
+#    other steps' atoms are then uncited by construction. The buckets with that
+#    addendum are the high ones (step_ordering 0.9630, branch_following 0.6626,
+#    cross_ref_hop 0.6481); the ones without it are low (numeric_exactness
+#    0.0041, symptom_remedy 0.0000).
+#
+#    THE WEAKER OF THE TWO EXCLUSIONS, and said so rather than dressed up. A
+#    perfect system arguably SHOULD ground every claim it makes -- that is the
+#    stated design premise -- which would put this in CEILING. Reaching 0.0
+#    means citing every delivered step's fact id, which is a real change to the
+#    good system and to the completeness/uncited balance, not a reclassification.
+#    Revisit together, not separately.
+_exclude(
+    ["uncited_claim_rate"],
+    "capped by a deliberate tension with completeness: the good system "
+    "delivers every step cause so completeness can be measured, while citing "
+    "only the queried fact, leaving the rest uncited by construction. NOT "
+    "because of missing fact_ids -- step_ordering scores 0.9630 with them. "
+    "The weaker exclusion: a perfect system arguably should reach 0.0, and "
+    "doing so means changing what the good system cites.")
 
 
 # ----------------------------------------------------------------- ceiling
