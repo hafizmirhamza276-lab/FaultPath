@@ -27,8 +27,13 @@ from .base import (Metric, normalise, contains, numbers_in, numbers_in_record,
 
 CODE_RE = re.compile(r"\b([A-Z0-9@#]{4,7})\b")
 
+# symptom_remedy is here because it is a real, answerable question with a
+# verbatim expectation. A type absent from this tuple is not "not scored" --
+# it is silently skipped, and every generation metric then reports a clean
+# number over a set it never looked at.
 NON_ADVERSARIAL = ("numeric_exactness", "direct_lookup", "step_ordering",
-                   "branch_following", "precondition", "cross_ref_hop")
+                   "branch_following", "precondition", "cross_ref_hop",
+                   "symptom_remedy")
 
 
 class _GenMetric(Metric):

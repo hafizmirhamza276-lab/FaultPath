@@ -222,15 +222,68 @@ else:
     with open(QA_PATH, encoding="utf-8") as f:
         qa = json.load(f)
 
-    check("qa_set.json holds 1,330 cases", len(qa) == 1330, f"got {len(qa)}")
+    # EXPECTED PER (section, type), NOT AS A TOTAL.
+    #
+    # This replaced `len(qa) == 1330`. That assertion was not wrong -- it was
+    # UNDER-SPECIFIED, in exactly the way the unresolved-facts expectation was
+    # in a74b002: it pinned an unqualified total while meaning a Section 40
+    # one. When symptom cases were added, the total it pinned absorbed a
+    # second corpus and the assertion became false without any Section 40
+    # count having changed. The Section 40 numbers below are the original
+    # 1,330, unmoved and now named.
+    QA_EXPECTED = {
+        ("section40", "numeric_exactness"): 846,
+        ("section40", "direct_lookup"): 173,
+        ("section40", "step_ordering"): 164,
+        ("section40", "branch_following"): 116,
+        ("section40", "precondition"): 10,
+        ("section40", "cross_ref_hop"): 9,
+        ("section40", "adversarial_unknown"): 6,
+        ("section40", "adversarial_model"): 6,
+        ("symptoms", "numeric_exactness"): 232,
+        ("symptoms", "step_ordering"): 57,
+        ("symptoms", "branch_following"): 37,
+        ("symptoms", "symptom_remedy"): 209,
+    }
+    qa_built = collections.Counter((c.get("section"), c["type"]) for c in qa)
+    qa_drift = [f"{k}: expected {QA_EXPECTED.get(k, 0)}, got {qa_built.get(k, 0)}"
+                for k in sorted(set(qa_built) | set(QA_EXPECTED), key=str)
+                if qa_built.get(k, 0) != QA_EXPECTED.get(k, 0)]
+    check("qa_set.json matches the expected split by section and type",
+          not qa_drift, "\n          ".join(qa_drift))
+    # The two guards that a pinned total cannot give you: a bucket nobody named
+    # (which is the event that broke the old assertion, and must fail by naming
+    # the newcomer), and parts that do not sum to the whole.
+    check("no qa_set bucket exists that the expectation does not name",
+          set(qa_built) <= set(QA_EXPECTED),
+          f"unnamed: {sorted(set(qa_built) - set(QA_EXPECTED), key=str)}")
+    check("the qa_set parts account for the whole",
+          sum(qa_built.values()) == len(qa),
+          f"parts {sum(qa_built.values())} vs total {len(qa)}")
+    check("every qa_set case declares a section",
+          all(c.get("section") in ("section40", "symptoms") for c in qa))
     check("all case ids are unique",
           len({c["id"] for c in qa}) == len(qa))
 
-    # Every pinned verbatim string must be a criterion that currently exists in
-    # golden/ for the code the case names. This is the staleness check.
+    # Every pinned verbatim string must be a criterion -- or, for a flat
+    # S-Mode row, a remedy -- that currently exists in golden/ for the record
+    # the case names. This is the staleness check, and it now spans both
+    # corpora because the cases do. Extending its source of truth is not
+    # loosening it: every pinned string is still required to exist.
     truth = {}
     for code, rec in recs.items():
         truth[code] = {m["criteria"] for m in all_measurements(rec)}
+    for p in sorted(glob.glob(os.path.join(GOLD, "symptoms", "*.json"))):
+        if os.path.basename(p) == "index.json":
+            continue
+        with open(p, encoding="utf-8") as f:
+            sr = json.load(f)
+        vals = {m["criteria"] for m in (sr.get("standalone_measurements") or [])}
+        for st in sr.get("steps", []):
+            vals |= {m["criteria"] for m in (st.get("measurements") or [])}
+            if st.get("remedy"):
+                vals.add(st["remedy"])
+        truth[sr["symptom_id"]] = vals
 
     orphans = []
     for c in qa:
@@ -254,12 +307,19 @@ else:
     check("refusal cases carry no answer content", not leaky,
           ", ".join(leaky[:5]))
 
-    counts = collections.Counter(c["type"] for c in qa)
-    for t, want in (("numeric_exactness", 846), ("direct_lookup", 173),
-                    ("step_ordering", 164), ("branch_following", 116),
-                    ("precondition", 10), ("cross_ref_hop", 9),
-                    ("adversarial_unknown", 6), ("adversarial_model", 6)):
-        check(f"qa {t} == {want}", counts.get(t, 0) == want, f"got {counts.get(t,0)}")
+    # The per-type counts that used to live here were the SAME
+    # under-specification one level finer: `numeric_exactness == 846` pinned a
+    # type total while meaning a Section 40 one, so it broke the moment a
+    # second corpus contributed to the same type. QA_EXPECTED above carries
+    # both halves keyed on (section, type) and is checked with the two guards a
+    # total cannot give you. Re-asserting the type totals here would only
+    # restore the ambiguity.
+    #
+    # What is worth keeping separately is the SECTION 40 SUBTOTAL: the original
+    # 1,330, which must not move because symptom cases were added beside it.
+    s40 = [c for c in qa if c.get("section") == "section40"]
+    check("the Section 40 half of qa_set is still exactly 1,330 cases",
+          len(s40) == 1330, f"got {len(s40)}")
 
 # ==================================================================== summary
 print("\n" + "=" * 60)

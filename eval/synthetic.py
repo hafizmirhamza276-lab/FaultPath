@@ -106,8 +106,22 @@ class GoodSystem(_Base):
         elif t == "cross_ref_hop":
             ans = (f"{case['source_code']} has no standalone procedure. Do the "
                    f"troubleshooting for {exp.get('redirect_to')} instead.")
+        elif t == "symptom_remedy":
+            # A flat S-Mode row. The observation IS the finding, so the answer
+            # names the cause and its remedy and stops -- no "next step".
+            ans = (f"What you are seeing matches {exp.get('cause','')}. "
+                   f"Remedy: {exp.get('remedy','')}")
         else:
-            ans = ""
+            # NOT a silent fallback. An unregistered type reaching here would
+            # answer "" and score zero across every generation metric, and the
+            # 7/7 gate would break with nothing pointing at the cause. This is
+            # the harness's own version of the defect the type tuples above
+            # guard against, so it fails loudly instead.
+            raise ValueError(
+                f"GoodSystem has no branch for case type {t!r}. A new type must "
+                "be added here as well as to NON_ADVERSARIAL and "
+                "RETRIEVAL_TYPES, or the good system scores 0 on it and the "
+                "gate fails for a reason that looks like a regression.")
         # Deliver every step cause for procedure-shaped questions, so
         # completeness has something to measure.
         if t in ("step_ordering", "cross_ref_hop", "branch_following") and rec:
@@ -225,6 +239,19 @@ class WeakSystem(_Base):
             ans = f"Start with {exp.get('then')} step 1."
         elif t == "cross_ref_hop":
             ans = "This code has no procedure in the manual."
+        elif t == "symptom_remedy":
+            # FAILS ON THE POLARITY, specifically -- not by emitting generic
+            # junk that happens to miss. It reads the flat row as though it
+            # were a branching step: the technician confirming the point to
+            # check is taken to mean the check came back NORMAL, so it reports
+            # no fault and advances to the next row. Fluent, confident, and the
+            # exact inversion the flat/branching distinction exists to prevent.
+            #
+            # A gate that a generic wrong answer can fail is not measuring
+            # polarity; it is measuring that the answer was wrong somehow.
+            ans = (f"That check is normal, so {exp.get('cause','')} is not the "
+                   f"problem. Go to step {(exp.get('step') or 0) + 1} and "
+                   "continue through the remaining checks.")
         else:
             ans = "Check the wiring."
         # Types its own page number instead of naming a fact id -- the failure

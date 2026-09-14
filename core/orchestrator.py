@@ -366,15 +366,31 @@ def s_structural(ctx) -> dict:
 
 
 def s_qa_set(ctx) -> dict:
+    """Rebuild the golden Q&A set and pin BOTH HALVES, not one total.
+
+    This gate used to read `qa_set_cases == 1330`, which is the same
+    under-specification that made tests/test_human_verify.py go red for four
+    commits: a total pinned while a section was meant. When symptom cases
+    landed, that total would have absorbed a second corpus, and bumping it to
+    1865 alone would leave the next widening free to hide inside it.
+
+    Two gates instead. The per-(section, type) split is asserted in
+    tests/test_extraction.py, which the extract stage runs; these are the
+    coarse backstop that fails if either half moves.
+    """
     r = _script("eval/build_qa_set.py")
-    n = 0
+    n = n_s40 = 0
     p = os.path.join(GOLD, "qa_set.json")
     if os.path.isfile(p):
         with open(p, encoding="utf-8") as f:
-            n = len(json.load(f))
-    return {"detail": {**r, "cases": n},
+            qa = json.load(f)
+        n = len(qa)
+        n_s40 = sum(1 for c in qa if c.get("section") == "section40")
+    return {"detail": {**r, "cases": n, "section40_cases": n_s40,
+                       "symptom_cases": n - n_s40},
             "gates": [_gate("qa_set_exit_zero", r["returncode"], "==", 0, "qa_set"),
-                      _gate("qa_set_cases", n, "==", 1330, "qa_set")]}
+                      _gate("qa_set_cases", n, "==", 1865, "qa_set"),
+                      _gate("qa_set_section40_cases", n_s40, "==", 1330, "qa_set")]}
 
 
 def s_harness(ctx) -> dict:
@@ -450,7 +466,8 @@ STAGES: List[Stage] = [
           expected_s=20, needs_pdf=True, depends=["extract"]),
     Stage("qa_set", s_qa_set,
           inputs=["eval/build_qa_set.py", "golden/failure_codes"],
-          outputs=["golden/qa_set.json"], gates="exit zero; 1,330 cases",
+          outputs=["golden/qa_set.json"],
+          gates="exit zero; 1,865 cases total and 1,330 of them Section 40",
           expected_s=5, depends=["extract", "fidelity"]),
     Stage("harness", s_harness,
           inputs=["tests/test_eval_harness.py", "eval", "golden/qa_set.json"],

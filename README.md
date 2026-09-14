@@ -47,7 +47,8 @@ METRICS.md             metric definitions and interpretation guide
 golden/
   failure_codes/*.json  174 failure codes, fully structured
   index.json            summary index
-  qa_set.json           1,330 golden test cases
+  qa_set.json           1,865 golden test cases: 1,330 Section 40 +
+                        535 symptom, each carrying a "section" field
 reports/
   audit_findings.json   machine-readable audit output
 eval_out/               reports, per-case CSV, metrics JSON, run history

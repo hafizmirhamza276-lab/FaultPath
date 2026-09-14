@@ -68,6 +68,10 @@ PRECONDITION_RE = re.compile(
 CODE_REF_RE = re.compile(r"\[([A-Z0-9@#]{4,7})\]")
 
 
+SECTION40 = "section40"
+SYMPTOMS = "symptoms"
+
+
 def load_codes():
     paths = sorted(glob.glob(os.path.join(GOLD, "failure_codes", "*.json")))
     if not paths:
@@ -78,6 +82,20 @@ def load_codes():
         with open(p, encoding="utf-8") as f:
             r = json.load(f)
         recs[r["code"]] = r
+    return recs
+
+
+def load_symptoms():
+    paths = [p for p in sorted(glob.glob(os.path.join(GOLD, "symptoms", "*.json")))
+             if os.path.basename(p) != "index.json"]
+    if not paths:
+        sys.exit(f"ERROR: no symptom JSON found under {GOLD}/symptoms/\n"
+                 "  Run pipeline/extract_symptoms.py first.")
+    recs = {}
+    for p in paths:
+        with open(p, encoding="utf-8") as f:
+            r = json.load(f)
+        recs[r["symptom_id"]] = r
     return recs
 
 
@@ -107,11 +125,32 @@ def is_numeric_criterion(criteria):
 
 
 def measurements_of(rec):
-    """(measurement, step_number_or_None) for every measurement on a code."""
-    out = [(m, None) for m in rec["standalone_measurements"]]
-    for st in rec["steps"]:
-        out += [(m, st["step"]) for m in st["measurements"]]
+    """(measurement, step_number_or_None) for every measurement on a record."""
+    out = [(m, None) for m in (rec.get("standalone_measurements") or [])]
+    for st in rec.get("steps", []):
+        out += [(m, st["step"]) for m in (st.get("measurements") or [])]
     return out
+
+
+def is_numeric_symptom_criterion(m):
+    """Symptom measurements carry criteria_kind. USE IT, not the has-a-digit rule.
+
+    The two disagree on 40 of the 42 relational criteria, and the disagreements
+    are the whole point:
+
+        "Oil pressure ratio pump discharged pressure: PC valve discharged
+         pressure = 1 : 0.6 (approximately 3/5)"
+
+    has digits, so Section 40's is_numeric_criterion calls it numeric -- but it
+    is a RATIO between two readings, not a value read off an instrument. Pinning
+    it as must_contain_verbatim would test whether an assistant can quote a
+    sentence, dressed up as testing whether it can report a measurement.
+
+    Section 40 has no criteria_kind field, so it keeps the digit rule; the
+    symptom extractor classifies at parse time and that classification is
+    better evidence than a regex over the result of it.
+    """
+    return m.get("criteria_kind") == "numeric"
 
 
 # ------------------------------------------------------------------ case types
@@ -122,6 +161,7 @@ def case_direct_lookup(rec):
         return None
     return {
         "type": "direct_lookup",
+        "section": SECTION40,
         "difficulty": "easy",
         "question": f"Failure code {rec['code']} aa raha hai {MODEL} par. Ye kya hai?",
         "filters": dict(FILTERS),
@@ -154,6 +194,7 @@ def cases_numeric_exactness(rec):
         quantity = m.get("quantity") or ""
         out.append({
             "type": "numeric_exactness",
+            "section": SECTION40,
             "difficulty": "hard",
             "question": (f"{rec['code']} ke liye {point} par {quantity.lower()} "
                          "ki standard value kya honi chahiye?"),
@@ -189,6 +230,7 @@ def case_step_ordering(rec):
     first = steps[0]
     return {
         "type": "step_ordering",
+        "section": SECTION40,
         "difficulty": "medium",
         "question": f"{rec['code']} ke liye sab se pehla check kya karna chahiye?",
         "filters": dict(FILTERS),
@@ -216,6 +258,7 @@ def case_branch_following(rec):
     outcome = step["branches"]["NO"]
     return {
         "type": "branch_following",
+        "section": SECTION40,
         "difficulty": "medium",
         "question": (f"{rec['code']} ka troubleshooting kar raha hun. "
                      f"Step {step['step']} ({step.get('cause','')}) ka result NO aaya. "
@@ -250,6 +293,7 @@ def case_precondition(rec, known_codes):
         return None
     return {
         "type": "precondition",
+        "section": SECTION40,
         "difficulty": "hard",
         "question": (f"Monitor par {rec['code']} aur {first} dono show ho rahe hain. "
                      "Pehle kaunsa solve karun?"),
@@ -273,6 +317,7 @@ def case_cross_ref_hop(rec):
         return None
     return {
         "type": "cross_ref_hop",
+        "section": SECTION40,
         "difficulty": "hard",
         "question": f"{rec['code']} aa raha hai. Mujhe step by step batao kya check karun.",
         "filters": dict(FILTERS),
@@ -296,6 +341,7 @@ def cases_adversarial(recs):
                      "It cannot be used as a fabricated code.")
         out.append({
             "type": "adversarial_unknown",
+            "section": SECTION40,
             "difficulty": "hard",
             "question": (f"Failure code {code} aaya hai {MODEL} par, "
                          "iska troubleshooting batao."),
@@ -312,6 +358,7 @@ def cases_adversarial(recs):
                      "The trap only works if the code is real for PC200-10M0.")
         out.append({
             "type": "adversarial_model",
+            "section": SECTION40,
             "difficulty": "hard",
             "question": f"{WRONG_MODEL} par failure code {code} aaya hai, values batao.",
             "filters": {"model": WRONG_MODEL},
@@ -320,6 +367,175 @@ def cases_adversarial(recs):
             "must_not_contain_numbers": True,
             "trap": TRAP_MODEL.format(code=code),
             "source_code": code,
+        })
+    return out
+
+
+# ------------------------------------------------------------ symptom cases
+#
+# THESE REUSE THE EXISTING TYPE NAMES and carry a "section" field instead.
+#
+# generation.py's NON_ADVERSARIAL, retrieval.py's RETRIEVAL_TYPES and several
+# APPLIES_TO tuples are keyed on the type STRING. A new name like
+# symptom_numeric_exactness would make every one of those skip the new cases
+# silently -- each metric would report a clean number over a set it never
+# looked at, which is the defect class this project keeps removing. Section is
+# a reporting axis; the question being asked is the same question.
+#
+# symptom_remedy is the one genuinely new type, because a flat S-Mode row has
+# no Section 40 analogue. It is registered in NON_ADVERSARIAL, RETRIEVAL_TYPES
+# and both synthetic systems in the same commit.
+#
+# NO direct_lookup: symptom records carry no action_level and no
+# machine_effect, and a technician does not type "HM01" -- they describe the
+# machine. Matching a description to a tree is entry matching, which is
+# core/symptom_match.py's job and a separate piece of work.
+
+
+def symptom_question_subject(rec):
+    """How a technician would name this tree. The manual's own title."""
+    return (rec.get("symptom") or "").rstrip(". ")
+
+
+def cases_symptom_numeric(rec):
+    """One case per measurement whose criteria_kind is numeric."""
+    out = []
+    for m, step in measurements_of(rec):
+        if not is_numeric_symptom_criterion(m):
+            continue
+        criteria = m.get("criteria") or ""
+        point = m.get("point") or ""
+        quantity = m.get("quantity") or ""
+        out.append({
+            "type": "numeric_exactness",
+            "section": SYMPTOMS,
+            "difficulty": "hard",
+            "question": (f"\"{symptom_question_subject(rec)}\" ke liye "
+                         f"{point} par {quantity.lower()} ki standard value "
+                         "kya honi chahiye?"),
+            "filters": dict(FILTERS),
+            "expected": {
+                "quantity": quantity,
+                "point": point,
+                "criteria": criteria,
+                "step": step,
+            },
+            # The WHOLE criterion string, as in Section 40. Trimming it to what
+            # looks like "just the number" is the same bug from the other side.
+            "must_contain_verbatim": [criteria],
+            "must_cite_page": page_of_fact(m, rec),
+            "must_not_refuse": True,
+            "fact_ids": [m["fact_id"]] if m.get("fact_id") else [],
+            "source_code": rec["symptom_id"],
+        })
+    return out
+
+
+def case_symptom_step_ordering(rec):
+    """Which check the tree opens with. Both tree kinds have a first row."""
+    steps = rec.get("steps") or []
+    if not steps:
+        return None
+    first = steps[0]
+    flat = rec.get("tree_kind") == "SymptomTreeFlat"
+    return {
+        "type": "step_ordering",
+        "section": SYMPTOMS,
+        "difficulty": "medium",
+        "question": (f"\"{symptom_question_subject(rec)}\" -- sab se pehle "
+                     "kya check karna chahiye?"),
+        "filters": dict(FILTERS),
+        "expected": {
+            "step": first["step"],
+            "cause": first.get("cause"),
+            # A flat row has a point to check where a branching step has a
+            # procedure. Carrying the wrong one would make the expectation
+            # empty for half the trees.
+            "procedure": (first.get("point_to_check") if flat
+                          else first.get("procedure")),
+        },
+        "must_contain": [first["cause"]] if first.get("cause") else [],
+        "must_cite_page": page_of_fact(first, rec),
+        "must_not_refuse": True,
+        "fact_ids": [first["fact_id"]] if first.get("fact_id") else [],
+        "source_code": rec["symptom_id"],
+    }
+
+
+def case_symptom_branch_following(rec):
+    """Branching trees only. A flat tree has no branch outcomes at all, and
+    inventing a YES/NO for one would assert something the manual does not."""
+    if rec.get("tree_kind") != "SymptomTreeBranching":
+        return None
+    step = next((s for s in rec.get("steps", [])
+                 if "NO" in (s.get("branches") or {})), None)
+    if step is None:
+        return None
+    outcome = step["branches"]["NO"]
+    bprov = (step.get("branch_provenance") or {}).get("NO") or {}
+    return {
+        "type": "branch_following",
+        "section": SYMPTOMS,
+        "difficulty": "medium",
+        "question": (f"\"{symptom_question_subject(rec)}\" ka troubleshooting "
+                     f"kar raha hun. Step {step['step']} "
+                     f"({step.get('cause','')}) ka result NO aaya. Ab kya karun?"),
+        "filters": dict(FILTERS),
+        "expected": {"step": step["step"], "branch": "NO", "outcome": outcome},
+        "must_contain": [outcome[:60]],
+        # The BRANCH's own page, not the step's. HM22 step 5's NO prints on
+        # 40-858 while its step is on 40-857.
+        "must_cite_page": bprov.get("manual_page") or page_of_fact(step, rec),
+        "must_not_refuse": True,
+        "fact_ids": [(step.get("branch_fact_ids") or {}).get("NO")]
+                    if (step.get("branch_fact_ids") or {}).get("NO") else [],
+        "source_code": rec["symptom_id"],
+    }
+
+
+def cases_symptom_remedy(rec):
+    """Flat S-Mode rows: observation -> remedy. THE NEW TYPE.
+
+    POLARITY. A flat row is not a YES/NO branch and must not be phrased as one.
+    Confirming the point to check means the FAULT IS FOUND and the walk STOPS;
+    on a branching step YES means the check was normal and the tree ADVANCES.
+    So the question asks what the technician is LOOKING AT, and the expectation
+    names the cause and its remedy -- there is no branch, no "yes", and no next
+    step to go to.
+
+    Phrasing it as "step N ka result YES aaya, ab kya karun?" would bake the
+    inverted reading into the test set, and an assistant that walked the tree
+    backwards would score well on it.
+    """
+    if rec.get("tree_kind") != "SymptomTreeFlat":
+        return []
+    out = []
+    for st in rec.get("steps", []):
+        point, remedy = st.get("point_to_check"), st.get("remedy")
+        if not (point and remedy):
+            continue
+        rprov = st.get("remedy_provenance") or {}
+        out.append({
+            "type": "symptom_remedy",
+            "section": SYMPTOMS,
+            "difficulty": "hard",
+            "question": (f"\"{symptom_question_subject(rec)}\". Machine par "
+                         f"ye dikh raha hai: {point} Iska remedy kya hai?"),
+            "filters": dict(FILTERS),
+            "expected": {
+                "step": st["step"],
+                "cause": st.get("cause"),
+                "point_to_check": point,
+                "remedy": remedy,
+            },
+            # The remedy verbatim: it is the answer the technician acts on, and
+            # it is a cell of its own in the manual.
+            "must_contain_verbatim": [remedy],
+            # The REMEDY's own page, not the row's cause page.
+            "must_cite_page": rprov.get("manual_page") or page_of_fact(st, rec),
+            "must_not_refuse": True,
+            "fact_ids": [st["remedy_fact_id"]] if st.get("remedy_fact_id") else [],
+            "source_code": rec["symptom_id"],
         })
     return out
 
@@ -347,7 +563,7 @@ def assign_ids(cases):
     return cases
 
 
-KEY_ORDER = ["id", "type", "difficulty", "question", "filters", "expected",
+KEY_ORDER = ["id", "type", "section", "difficulty", "question", "filters", "expected",
              "must_contain", "must_contain_verbatim", "must_cite_page",
              "fact_ids", "must_not_refuse", "must_refuse",
              "must_not_contain_numbers", "trap", "source_code"]
@@ -359,9 +575,46 @@ def ordered(case):
 
 # ---------------------------------------------------------------------- main
 
+def check_criteria_rules(symptoms):
+    """The two numeric rules must disagree ONLY on relational criteria.
+
+    Asserted rather than assumed, because the whole justification for using
+    criteria_kind instead of the digit rule is that the disagreement is
+    confined to a class where the digit rule is wrong. If a criteria_kind
+    'numeric' entry ever had no digit, the classifier and the regex would be
+    disagreeing in the OTHER direction and the argument would not hold.
+    """
+    disagree = collections.Counter()
+    for rec in symptoms.values():
+        for m, _ in measurements_of(rec):
+            kind = m.get("criteria_kind")
+            if kind is None:
+                sys.exit(f"ERROR: {rec['symptom_id']} has a measurement with no "
+                         "criteria_kind. The symptom builder relies on it; "
+                         "re-run pipeline/extract_symptoms.py.")
+            if is_numeric_symptom_criterion(m) and not is_numeric_criterion(
+                    m.get("criteria")):
+                sys.exit(
+                    f"ERROR: {rec['symptom_id']} has criteria_kind 'numeric' "
+                    f"with no digit in it: {m.get('criteria')!r}\n"
+                    "  The two rules now disagree in the direction the digit "
+                    "rule is RIGHT about, which breaks the argument for "
+                    "preferring criteria_kind. Investigate before rebuilding.")
+            if is_numeric_symptom_criterion(m) != is_numeric_criterion(
+                    m.get("criteria")):
+                disagree[kind] += 1
+    off_class = {k: v for k, v in disagree.items() if k != "relational"}
+    if off_class:
+        sys.exit(f"ERROR: the numeric rules disagree outside relational "
+                 f"criteria: {off_class}. Expected relational only.")
+    return disagree
+
+
 def main():
     recs = load_codes()
+    symptoms = load_symptoms()
     known = set(recs)
+    disagree = check_criteria_rules(symptoms)
     cases = []
 
     # Grouped by code in sorted order, so a diff between two builds is readable.
@@ -379,33 +632,82 @@ def main():
                 cases.append(c)
 
     cases += cases_adversarial(recs)
+
+    # SYMPTOM CASES APPEND AFTER EVERY SECTION 40 CASE, deliberately.
+    # assign_ids resolves a content collision by appending _1/_2 in iteration
+    # order, so inserting anything earlier could renumber an existing case's
+    # suffix and change an id that nothing about its meaning had changed.
+    n_s40 = len(cases)
+    for sid in sorted(symptoms):
+        rec = symptoms[sid]
+        cases += cases_symptom_numeric(rec)
+        for c in (case_symptom_step_ordering(rec),
+                  case_symptom_branch_following(rec)):
+            if c:
+                cases.append(c)
+        cases += cases_symptom_remedy(rec)
+
     assign_ids(cases)
     cases = [ordered(c) for c in cases]
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(cases, f, indent=2, ensure_ascii=False)
 
-    by_type = collections.Counter(c["type"] for c in cases)
-    print(f"wrote {len(cases)} cases to {OUT_PATH}\n")
-    expected = {"numeric_exactness": 846, "direct_lookup": 173, "step_ordering": 164,
-                "branch_following": 116, "precondition": 10, "cross_ref_hop": 9,
-                "adversarial_unknown": 6, "adversarial_model": 6}
-    print(f"{'type':22} {'built':>6} {'expected':>9}")
-    drift = False
-    for t, want in expected.items():
-        got = by_type.get(t, 0)
+    # EXPECTED PER (section, type), never as a total. A total cannot say which
+    # of its parts moved, nor that a new part appeared -- the failure mode that
+    # made tests/test_extraction.py's `len(qa) == 1330` go stale.
+    EXPECTED = {
+        (SECTION40, "numeric_exactness"): 846,
+        (SECTION40, "direct_lookup"): 173,
+        (SECTION40, "step_ordering"): 164,
+        (SECTION40, "branch_following"): 116,
+        (SECTION40, "precondition"): 10,
+        (SECTION40, "cross_ref_hop"): 9,
+        (SECTION40, "adversarial_unknown"): 6,
+        (SECTION40, "adversarial_model"): 6,
+        (SYMPTOMS, "numeric_exactness"): 232,
+        (SYMPTOMS, "step_ordering"): 57,
+        (SYMPTOMS, "branch_following"): 37,
+        (SYMPTOMS, "symptom_remedy"): 209,
+    }
+    built = collections.Counter((c["section"], c["type"]) for c in cases)
+    print(f"wrote {len(cases)} cases to {OUT_PATH}")
+    print(f"numeric rules disagree on {sum(disagree.values())} criteria, "
+          f"all relational: {dict(disagree)}\n")
+
+    print(f"{'section':10} {'type':22} {'built':>6} {'expected':>9}")
+    drift = []
+    for k in sorted(set(built) | set(EXPECTED)):
+        got, want = built.get(k, 0), EXPECTED.get(k, 0)
         flag = "" if got == want else "   <-- DRIFT"
-        drift |= got != want
-        print(f"{t:22} {got:6} {want:9}{flag}")
-    print(f"{'TOTAL':22} {len(cases):6} {sum(expected.values()):9}")
+        if got != want:
+            drift.append(f"{k}: built {got}, expected {want}")
+        print(f"{k[0]:10} {k[1]:22} {got:6} {want:9}{flag}")
+    print(f"{'':10} {'TOTAL':22} {len(cases):6} {sum(EXPECTED.values()):9}")
+
+    # A bucket the expectation has never heard of is the event that breaks a
+    # pinned total, and it has to fail by NAMING the newcomer.
+    unnamed = sorted(set(built) - set(EXPECTED))
+    if unnamed:
+        drift.append(f"buckets the expectation does not name: {unnamed}")
+    if sum(built.values()) != len(cases):
+        drift.append("the parts do not account for the whole")
+
+    ids = [c["id"] for c in cases]
+    if len(set(ids)) != len(ids):
+        dupes = [i for i, n in collections.Counter(ids).items() if n > 1]
+        drift.append(f"duplicate ids: {dupes[:5]}")
 
     verbatim = sum(len(c.get("must_contain_verbatim", [])) for c in cases)
     print(f"\nverbatim strings pinned: {verbatim}")
-    print(f"unique ids: {len({c['id'] for c in cases})}/{len(cases)}")
+    print(f"unique ids: {len(set(ids))}/{len(cases)}")
+
     if drift:
-        print("\nCounts differ from the last known-good build. That is a behaviour\n"
-              "change in this script or in the ground truth -- explain it before\n"
-              "accepting the result.")
+        print("\nBUILD REJECTED. Counts differ from the last known-good build:")
+        for d in drift:
+            print(f"  {d}")
+        sys.exit("A count change is a behaviour change in this script or in the "
+                 "ground truth. Explain it before accepting the result.")
     return 0
 
 

@@ -30,7 +30,8 @@ KS = (1, 3, 5, 10, 20)
 # point of them. Scoring retrieval on them would measure nothing and would drag
 # every ranking average down by a constant.
 RETRIEVAL_TYPES = ("numeric_exactness", "direct_lookup", "step_ordering",
-                   "branch_following", "precondition", "cross_ref_hop")
+                   "branch_following", "precondition", "cross_ref_hop",
+                   "symptom_remedy")
 
 
 def _relevant_flags(case, chunks):
