@@ -76,15 +76,21 @@ gated there.
 |---|---|
 | Audit | Both sections, self-tests on every check |
 | Evaluation | Tier 1 deterministic; 1,330 golden Q&A cases |
-| Agent | LangGraph, 12 nodes, replay determinism proven over 49 sessions |
+| Agent | LangGraph, 12 nodes, replay determinism over 45 code + 6 symptom sessions |
 | API | FastAPI + Pydantic; HTTP output proven identical to in-process |
-| Orchestrator | 11 stages, gating, resume, run records |
+| Orchestrator | 13 stages, 42 gates, gating, resume, run records |
 | Symptom map | 82 synonym entries, 57/57 trees covered, 14 unmapped |
+| Symptom agent | `tree_kind` dispatch; ASK and UNMAPPED are first-class states |
 | Holdout | 32 of 174 codes (18.4%), stratified, no column-split codes |
 
-**In flight at handover:** agent integration of the symptom path — `require_pdf`
-move, the level/stage parity check, and `tree_kind` driving agent behaviour.
-That commit completes the foundation.
+Two figures here were wrong and are corrected above: the agent suite is **45**
+code sessions, not 49, and it has been 45 throughout — 49 was a miscount that
+propagated into several summaries. The orchestrator is **13** stages, not 11,
+since every `run_all.py` level became a stage.
+
+**No longer in flight:** the `require_pdf` move, the level/stage parity check
+and `tree_kind` driving agent behaviour are all landed. See
+`reports/symptom_agent_integration.md` and `reports/false_green_findings.md`.
 
 ---
 
