@@ -107,10 +107,29 @@ class GoodSystem(_Base):
             ans = (f"{case['source_code']} has no standalone procedure. Do the "
                    f"troubleshooting for {exp.get('redirect_to')} instead.")
         elif t == "symptom_remedy":
-            # A flat S-Mode row. The observation IS the finding, so the answer
-            # names the cause and its remedy and stops -- no "next step".
-            ans = (f"What you are seeing matches {exp.get('cause','')}. "
-                   f"Remedy: {exp.get('remedy','')}")
+            # A flat S-Mode row: observation -> cause -> remedy, and the answer
+            # carries all three.
+            #
+            # It used to name the cause and the remedy only, scoring 2 of 3
+            # golden facts. That was a DEFECT IN THE ANSWER, not a quirk of the
+            # metric: a remedy delivered without the observation that triggers
+            # it tells a technician to replace a part without saying under what
+            # condition, which is wrong on the manual's terms whether or not
+            # anything is measuring. The manual gives the row three cells and
+            # an answer that drops one is incomplete.
+            #
+            # It also mattered for the harness. GoodSystem is the CEILING, and
+            # a bucket whose ceiling is 0.67 leaves content_recall no headroom
+            # there -- it cannot separate a good real system from a mediocre
+            # one on symptom_remedy, and the aggregate silently mixes two
+            # different ceilings. A false ceiling is worse than a visible gap.
+            #
+            # POLARITY: confirming the point to check means the fault is FOUND
+            # and the walk STOPS. Phrased as an observation being confirmed,
+            # never as a YES/NO branch outcome, and with no next step to go to.
+            ans = (f"What you are seeing -- {exp.get('point_to_check','')} -- "
+                   f"is {exp.get('cause','')}. That is the fault; no further "
+                   f"checks are needed. Remedy: {exp.get('remedy','')}")
         else:
             # NOT a silent fallback. An unregistered type reaching here would
             # answer "" and score zero across every generation metric, and the

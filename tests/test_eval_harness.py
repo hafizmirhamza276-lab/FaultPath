@@ -21,6 +21,7 @@ Three things, in order of how badly they bite:
 Deterministic throughout. Two invocations produce identical numbers; that is
 asserted rather than assumed.
 """
+import collections
 import json
 import os
 import subprocess
@@ -109,6 +110,70 @@ check(f"good passes all {len(good['gates'])} gates", not good_fail,
 check("weak fails ALL gates", not weak_pass,
       f"weak PASSED {weak_pass} -- each of those gates has a hole and is not "
       f"measuring what it claims")
+
+# ------------------------------------------------- the ceiling, per bucket
+#
+# GOOD SYSTEM IS THE CEILING, AND THE CEILING IS ASSERTED, NOT ASSUMED.
+#
+# content_recall measures whether an answer carries every fact the question
+# requires. GoodSystem answers straight out of the ground truth, so it should
+# carry all of them in EVERY bucket. Where it does not, the ceiling for that
+# bucket is below 1.0 and the metric has no headroom there: it cannot separate
+# a good real system from a mediocre one, and the aggregate quietly averages
+# two different ceilings.
+#
+# That is exactly what happened to symptom_remedy, which sat at 0.6699 while
+# every other bucket was 1.0000 -- GoodSystem named the cause and the remedy
+# but not the observation that triggers it. The aggregate read 0.9628 and
+# looked fine.
+#
+# ASSERTED PER (section, type), NOT ON THE AGGREGATE. An aggregate cannot show
+# a single bucket falling, which is the whole failure mode. Same reasoning as
+# the raise on GoodSystem's unregistered-type fallback: a case type the good
+# system cannot fully answer must fail loudly rather than lower the ceiling in
+# silence.
+QA_BY_ID = {c["id"]: c for c in json.load(
+    open(os.path.join(REPO_ROOT, "golden", "qa_set.json"), encoding="utf-8"))}
+
+
+def content_recall_buckets(run_record):
+    acc = collections.defaultdict(list)
+    for row in run_record["rows"]:
+        case = QA_BY_ID.get(row["id"])
+        if case is None:
+            continue
+        v = (row.get("metrics") or {}).get("content_recall")
+        if v is not None:
+            acc[(case.get("section"), case["type"])].append(v)
+    return {k: sum(v) / len(v) for k, v in sorted(acc.items())}
+
+
+good_cr = content_recall_buckets(good)
+weak_cr = content_recall_buckets(weak)
+print(f"\n  content_recall ceiling  {'section':10} {'type':20} {'n':>5} "
+      f"{'good':>8} {'weak':>8}")
+below = []
+for k, v in good_cr.items():
+    n = sum(1 for row in good["rows"]
+            if QA_BY_ID.get(row["id"], {}).get("section") == k[0]
+            and QA_BY_ID.get(row["id"], {}).get("type") == k[1]
+            and (row.get("metrics") or {}).get("content_recall") is not None)
+    print(f"  {'':22} {k[0]:10} {k[1]:20} {n:>5} {v:8.4f} "
+          f"{weak_cr.get(k, float('nan')):8.4f}")
+    if v < 1.0:
+        below.append(f"{k[0]}/{k[1]}={v:.4f}")
+check("the good system scores content_recall 1.0000 in EVERY bucket",
+      not below,
+      f"buckets below the ceiling: {below}\n"
+      "          The good system answers out of the ground truth, so a bucket "
+      "under 1.0\n          means its answer is missing a required fact -- a "
+      "defect in the answer,\n          and a ceiling the metric cannot "
+      "measure above.")
+check("content_recall still discriminates in every bucket the weak system "
+      "answers", all(weak_cr.get(k, 0.0) < v for k, v in good_cr.items()),
+      f"no separation in: "
+      f"{[k for k, v in good_cr.items() if weak_cr.get(k, 0.0) >= v]}")
+
 
 # Direction check per gate: the weak system must be worse, not merely different.
 for gate, op, _ in run_eval.GATES:
