@@ -38,6 +38,7 @@ from eval.metrics import retrieval as m_retrieval        # noqa: E402
 from eval.metrics import generation as m_generation      # noqa: E402
 from eval.metrics import conversation as m_conversation  # noqa: E402
 from eval.metrics import safety as m_safety              # noqa: E402
+from eval.metrics import ceiling                         # noqa: E402
 from eval import run_eval                                # noqa: E402
 
 failures = []
@@ -111,68 +112,130 @@ check("weak fails ALL gates", not weak_pass,
       f"weak PASSED {weak_pass} -- each of those gates has a hole and is not "
       f"measuring what it claims")
 
-# ------------------------------------------------- the ceiling, per bucket
+# ------------------------------------------- the ceiling, EVERY metric
 #
 # GOOD SYSTEM IS THE CEILING, AND THE CEILING IS ASSERTED, NOT ASSUMED.
 #
-# content_recall measures whether an answer carries every fact the question
-# requires. GoodSystem answers straight out of the ground truth, so it should
-# carry all of them in EVERY bucket. Where it does not, the ceiling for that
-# bucket is below 1.0 and the metric has no headroom there: it cannot separate
-# a good real system from a mediocre one, and the aggregate quietly averages
-# two different ceilings.
+# A bucket where the good system is below perfect is a bucket where the metric
+# has no headroom: it cannot separate a good real system from a mediocre one,
+# and the aggregate quietly averages two different ceilings. content_recall sat
+# at 0.6699 on symptom_remedy while every other bucket was 1.0000, and the
+# aggregate read 0.9628 and looked fine.
 #
-# That is exactly what happened to symptom_remedy, which sat at 0.6699 while
-# every other bucket was 1.0000 -- GoodSystem named the cause and the remedy
-# but not the observation that triggers it. The aggregate read 0.9628 and
-# looked fine.
-#
-# ASSERTED PER (section, type), NOT ON THE AGGREGATE. An aggregate cannot show
-# a single bucket falling, which is the whole failure mode. Same reasoning as
-# the raise on GoodSystem's unregistered-type fallback: a case type the good
-# system cannot fully answer must fail loudly rather than lower the ceiling in
-# silence.
+# Generalised from one metric to all of them via eval/metrics/ceiling.py, which
+# declares CEILING and NOT_CEILING and is checked against the live registry --
+# the LEVELS/STAGES parity pattern. Naming three metrics here instead would
+# leave the fourth silently unguarded.
+print("\nthe good system is the ceiling, per metric per bucket")
+
+unclassified, in_both = ceiling.classify(registry)
+check("every Tier-1 metric is declared CEILING or NOT_CEILING",
+      not unclassified,
+      f"unclassified: {unclassified}\n"
+      "          A new metric must be declared in eval/metrics/ceiling.py. "
+      "Landing in\n          neither set means nothing asserts whether the "
+      "good system should be\n          perfect on it, which is how a false "
+      "ceiling gets in unnoticed.")
+check("no metric is declared both CEILING and NOT_CEILING", not in_both,
+      f"in both: {in_both}")
+print(f"    {len(ceiling.CEILING)} ceiling / {len(ceiling.NOT_CEILING)} "
+      f"excluded / {len([m for m in registry if getattr(m, 'TIER', 1) == 1])} "
+      f"Tier-1 metrics in the registry")
+
 QA_BY_ID = {c["id"]: c for c in json.load(
     open(os.path.join(REPO_ROOT, "golden", "qa_set.json"), encoding="utf-8"))}
 
+failed_ceilings = ceiling.ceiling_failures(good, QA_BY_ID, registry)
+check("the good system scores the perfect value in EVERY bucket of EVERY "
+      "ceiling metric", not failed_ceilings,
+      "\n          ".join(
+          f"{m} {b}: got {g if g is None else round(g, 4)}, want {w}"
+          for m, b, g, w in failed_ceilings[:10]))
 
-def content_recall_buckets(run_record):
-    acc = collections.defaultdict(list)
-    for row in run_record["rows"]:
-        case = QA_BY_ID.get(row["id"])
-        if case is None:
-            continue
-        v = (row.get("metrics") or {}).get("content_recall")
-        if v is not None:
-            acc[(case.get("section"), case["type"])].append(v)
-    return {k: sum(v) / len(v) for k, v in sorted(acc.items())}
+# The other half of a usable ceiling: the weak system must be strictly worse
+# somewhere. A metric both systems max out cannot discriminate either.
+#
+# A bucket the weak system NEVER SCORED is not a bucket it maxed out. Defaulting
+# an absent score to the perfect value read clean_refusal and
+# citation_span_precision as undiscriminating when in fact the weak system
+# simply produces nothing for them -- it never refuses, so clean_refusal has no
+# refusal to score. Absent and perfect are different facts and are reported as
+# different facts.
+non_discriminating, unscored_by_weak = [], []
+for name in sorted(ceiling.CEILING):
+    m = next((x for x in registry if x.name == name), None)
+    if m is None:
+        continue
+    want = ceiling.perfect_value(m)
+    gb = ceiling.bucket_scores(good, QA_BY_ID, name)
+    wb = ceiling.bucket_scores(weak, QA_BY_ID, name)
+    shared = [k for k in gb if k in wb]
+    if not gb:
+        continue
+    if not shared:
+        unscored_by_weak.append(name)
+    elif all(abs(wb[k] - want) <= 1e-9 for k in shared):
+        non_discriminating.append(name)
+print(f"    ceiling metrics the weak system also maxes out: "
+      f"{non_discriminating or 'none'}")
+print(f"    ceiling metrics the weak system never produces a score for: "
+      f"{unscored_by_weak or 'none'}")
+
+# content_recall in full, the metric this guard started from.
+print(f"\n  content_recall  {'section':10} {'type':20} {'good':>8} {'weak':>8}")
+_gcr = ceiling.bucket_scores(good, QA_BY_ID, "content_recall")
+_wcr = ceiling.bucket_scores(weak, QA_BY_ID, "content_recall")
+for k, v in _gcr.items():
+    print(f"  {'':16} {str(k[0]):10} {str(k[1]):20} {v:8.4f} "
+          f"{_wcr.get(k, float('nan')):8.4f}")
+
+# ------------------------------------------------------------ self-tests
+#
+# Three, in the same style as the LEVELS/STAGES parity check's three. A guard
+# that reports zero on a healthy repo has to be shown capable of reporting
+# something else.
+print("\n  CEILING GUARD SELF-TESTS")
 
 
-good_cr = content_recall_buckets(good)
-weak_cr = content_recall_buckets(weak)
-print(f"\n  content_recall ceiling  {'section':10} {'type':20} {'n':>5} "
-      f"{'good':>8} {'weak':>8}")
-below = []
-for k, v in good_cr.items():
-    n = sum(1 for row in good["rows"]
-            if QA_BY_ID.get(row["id"], {}).get("section") == k[0]
-            and QA_BY_ID.get(row["id"], {}).get("type") == k[1]
-            and (row.get("metrics") or {}).get("content_recall") is not None)
-    print(f"  {'':22} {k[0]:10} {k[1]:20} {n:>5} {v:8.4f} "
-          f"{weak_cr.get(k, float('nan')):8.4f}")
-    if v < 1.0:
-        below.append(f"{k[0]}/{k[1]}={v:.4f}")
-check("the good system scores content_recall 1.0000 in EVERY bucket",
-      not below,
-      f"buckets below the ceiling: {below}\n"
-      "          The good system answers out of the ground truth, so a bucket "
-      "under 1.0\n          means its answer is missing a required fact -- a "
-      "defect in the answer,\n          and a ceiling the metric cannot "
-      "measure above.")
-check("content_recall still discriminates in every bucket the weak system "
-      "answers", all(weak_cr.get(k, 0.0) < v for k, v in good_cr.items()),
-      f"no separation in: "
-      f"{[k for k, v in good_cr.items() if weak_cr.get(k, 0.0) >= v]}")
+class _FakeMetric:
+    def __init__(self, name, hib=True):
+        self.name, self.HIGHER_IS_BETTER, self.TIER = name, hib, 1
+
+
+_probe_reg = list(registry) + [_FakeMetric("brand_new_metric")]
+_unc, _ = ceiling.classify(_probe_reg)
+check("  a metric in neither set fails the run, naming it",
+      _unc == ["brand_new_metric"], str(_unc))
+
+# A ceiling metric falling in ONE bucket must fail, and the failure must name
+# the bucket -- an aggregate would hide a single bucket behind nine good ones.
+_planted = json.loads(json.dumps(good))
+_hit = 0
+for row in _planted["rows"]:
+    case = QA_BY_ID.get(row["id"])
+    if case and case.get("section") == "symptoms" \
+            and case["type"] == "symptom_remedy" \
+            and (row.get("metrics") or {}).get("content_recall") is not None:
+        row["metrics"]["content_recall"] = 0.5
+        _hit += 1
+_planted_fail = ceiling.ceiling_failures(_planted, QA_BY_ID, registry)
+_named = [(m, b) for m, b, _, _ in _planted_fail
+          if m == "content_recall" and b == ("symptoms", "symptom_remedy")]
+check("  a ceiling metric falling in one bucket fails, naming the bucket",
+      bool(_named) and len(_planted_fail) == 1,
+      f"planted in {_hit} rows -> failures {_planted_fail[:3]}")
+# ...and the aggregate over that same planted run is still 0.94, which is why
+# this is asserted per bucket and not on the mean.
+_agg = ceiling.bucket_scores(_planted, QA_BY_ID, "content_recall")
+_mean = sum(_agg.values()) / len(_agg)
+check("  the same fault is invisible in the aggregate", _mean > 0.9,
+      f"aggregate {_mean:.4f} -- a per-bucket check is the only thing that "
+      f"sees it")
+
+check("  control: the unmodified run has no ceiling failure and no "
+      "unclassified metric",
+      not ceiling.ceiling_failures(good, QA_BY_ID, registry)
+      and not ceiling.classify(registry)[0])
 
 
 # Direction check per gate: the weak system must be worse, not merely different.

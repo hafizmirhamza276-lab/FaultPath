@@ -243,6 +243,13 @@ else:
         ("symptoms", "numeric_exactness"): 232,
         ("symptoms", "step_ordering"): 57,
         ("symptoms", "branch_following"): 37,
+        # 209 flat rows carry BOTH point_to_check and remedy.
+        #
+        # 207 of these cases derive THREE golden facts and 2 derive only two.
+        # That split is the SOURCE DOCUMENT, not the builder: SM09 step 1 and
+        # SM11 step 1 print "Unspecified fuel is used." in both the Cause and
+        # the Point-to-check column of the manual's own table, so golden_facts
+        # dedupes them to one string. Nothing is being dropped.
         ("symptoms", "symptom_remedy"): 209,
     }
     qa_built = collections.Counter((c.get("section"), c["type"]) for c in qa)
