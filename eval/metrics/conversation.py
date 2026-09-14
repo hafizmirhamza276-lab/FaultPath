@@ -284,13 +284,40 @@ def _first_real_step(rec):
     return None
 
 
+def _is_failure_code(rec):
+    """A Section 40 failure-code record, judged by what it carries.
+
+    Positive on the fields these scenarios actually read, not negative on
+    "has no symptom_id": a new record shape that happened to lack a symptom_id
+    would pass a negative test and then fail on the first field access. This
+    asks for what is needed.
+    """
+    return ("code" in rec and "is_pointer_only" in rec and "format" in rec
+            and "refs_failure_codes" in rec)
+
+
 def build_scenarios(records, qa_cases):
     """Deterministic multi-turn scenarios, one family per protocol rule.
 
     Built from sorted golden data with no randomness, so the scenario set is
     identical on every machine and two runs are comparable case by case.
+
+    SECTION 40 ONLY, SELECTED ON THE RECORD'S OWN SHAPE. `records` may now hold
+    symptom trees as well, and every scenario family below reads a failure-code
+    field -- is_pointer_only, format, refs_failure_codes -- that a symptom tree
+    does not have.
+
+    Filtered with an explicit predicate rather than with .get() defaults. A
+    default would let a symptom tree into a code scenario and build a scenario
+    with an empty expectation: a case that scores, passes, and measures nothing.
+    A KeyError would at least have been loud. This is neither -- the tree is
+    simply not eligible, and saying so once here is clearer than defending
+    against it in eight places.
+
+    Symptom-entry scenarios are a separate family and are not invented here by
+    reusing code-shaped ones.
     """
-    codes = sorted(records)
+    codes = sorted(c for c, r in records.items() if _is_failure_code(r))
     scen = []
 
     def add(rule, code, turns, expected, note):

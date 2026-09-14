@@ -74,8 +74,10 @@ def load_cases():
         return json.load(f)
 
 
-def load_records():
-    return {r["code"]: r for r in chunkers.load_records()}
+def load_records(scope="all"):
+    """Records keyed by chunkers.key(), so a symptom tree keys on its
+    symptom_id and a failure code on its code, with no second convention."""
+    return {chunkers.key(r): r for r in chunkers.load_records(scope)}
 
 
 def machine_repaired_codes(records):
@@ -177,6 +179,9 @@ def run_self_tests(registry):
 def main():
     ap = argparse.ArgumentParser(description="Tier-1 deterministic evaluation")
     ap.add_argument("--chunker", default="structural", choices=sorted(chunkers.CHUNKERS))
+    ap.add_argument("--corpus", default="all", choices=sorted(chunkers.SCOPES),
+                    help="which sections enter the retrieval corpus. "
+                         "'section40' regenerates the pre-symptom baseline.")
     ap.add_argument("--retriever", default="bm25", choices=sorted(RETRIEVERS))
     ap.add_argument("--system", default=None, choices=sorted(SYSTEMS),
                     help="synthetic system under test; omit for retrieval only")
@@ -197,12 +202,13 @@ def main():
            RunLogger(log_dir=LOGS_DIR, quiet=args.quiet, verbose=args.verbose))
 
     with log.timed("decision", "load_inputs") as t:
-        records = load_records()
+        records = load_records(args.corpus)
         cases = load_cases()
         corpus = chunkers.build(args.chunker, list(records.values()))
         retriever = RETRIEVERS[args.retriever](corpus)
         t.add(codes=len(records), cases=len(cases), chunks=len(corpus),
-              chunker=args.chunker, retriever=args.retriever)
+              chunker=args.chunker, retriever=args.retriever,
+              corpus=args.corpus)
 
     repaired = machine_repaired_codes(records)
     pages = citemod.PageText()
@@ -350,8 +356,13 @@ def main():
         "timestamp": time.strftime("%Y%m%dT%H%M%S", time.gmtime(started)),
         "git": git_state(),
         "determinism": determinism,
+        # `corpus` is part of the config, not a footnote. Two runs with
+        # different scopes are not comparable, and compare.py has to be able to
+        # say so rather than diff their numbers as though they were.
         "config": {"chunker": args.chunker, "retriever": args.retriever,
+                   "corpus": args.corpus,
                    "system": args.system, "k": args.k,
+                   "corpus_records": len(records),
                    "corpus_chunks": len(corpus), "cases": len(all_cases)},
         "case_id_scheme": "sha256(type|source_code|question|expected)[:10]",
         "metrics": metrics[1],
@@ -412,6 +423,7 @@ def report(rec):
     m = rec["metrics"]
     print("=" * 68)
     print(f"RUN {rec['label']}   chunker={rec['config']['chunker']} "
+          f"corpus={rec['config'].get('corpus', 'all')} "
           f"retriever={rec['config']['retriever']} system={rec['config']['system']}")
     print(f"corpus={rec['config']['corpus_chunks']} chunks  "
           f"cases={rec['config']['cases']}  "

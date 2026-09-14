@@ -34,6 +34,7 @@ eval/
   build_qa_set.py      trees -> golden Q&A test cases (deterministic, no LLM)
   adapters.py          Retriever + Generator seams; LocalBM25Retriever ships
   chunkers.py          corpus builder: structural / fixed_2000 / fixed_512
+                       over both sections; --corpus all|section40|symptoms
   metrics/             retrieval, generation, conversation, safety
   synthetic.py         good/weak systems that verify the harness itself
   run_eval.py          Tier-1 CLI -> eval_out/runs/<timestamp>_<label>.json
@@ -84,6 +85,29 @@ judge score can never be quoted as a Tier-1 figure.
 Same corpus, same retriever (BM25), three chunkings. Everything else held still,
 so the spread is the cost of the chunking decision alone.
 
+The corpus is **both sections**: 174 failure codes plus the 57 H-Mode and
+S-Mode symptom trees. Scored over the same 1,318 Section 40 retrieval cases in
+both tables, so the two are comparable line by line.
+
+#### `--corpus all` — 231 records (the baseline)
+
+| | structural | fixed_2000 | fixed_512 |
+|---|---:|---:|---:|
+| chunks | 231 | 729 | 2,573 |
+| **ceiling_recall** | **1.0000** | **0.9997** | **0.9914** |
+| recall@5 | 0.9979 | 0.9683 | 0.7871 |
+| answer_coverage@5 | 0.9970 | 0.9514 | 0.6775 |
+| fragmentation_gap@10 | 0.0004 | 0.0086 | 0.0988 |
+| context_precision | 0.7841 | 0.7024 | 0.6228 |
+| mrr | 0.9917 | 0.9569 | 0.8132 |
+| gates | 7/7 | 7/7 | **6/7** |
+
+#### `--corpus section40` — 174 records (regenerable)
+
+Not history: `python eval/run_eval.py --chunker structural --corpus section40`
+reproduces this table digit for digit, which is how the widening was shown to
+be inert.
+
 | | structural | fixed_2000 | fixed_512 |
 |---|---:|---:|---:|
 | chunks | 174 | 491 | 1,708 |
@@ -99,6 +123,42 @@ Read `ceiling_recall` first: it is set by ingestion and chunking, and every
 other retrieval number lives under it. `fixed_512` cannot reach 1.0 at any k
 because some facts — full step procedures — are longer than 512 characters and
 exist in no single chunk. No amount of ranking work recovers them.
+
+#### What the 57 symptom trees cost
+
+Measured before they were added, by running the evaluation six times over the
+same Section 40 cases with and without them.
+
+**Ranking does not move.** On `structural` — the chunking the system uses —
+`ceiling_recall`, `recall@5`, `answer_coverage@5`, `fragmentation_gap@10` and
+`mrr` all change by exactly `0.0000`, and `first_relevant_rank` is identical at
+1.0281. The answer keeps its rank; the new records do not displace it. All
+seven gates are unchanged in both directions, including which one `fixed_512`
+fails (`hit_rate@5`).
+
+**Precision metrics drop, and it is dilution rather than degradation.** On
+`structural`, `context_precision` falls 0.8497 → 0.7841 (−0.0655) and
+`precision@10` 0.8080 → 0.7596. Two facts explain it:
+
+- Symptom trees are larger documents. 57 chunks averaging 6,855 characters
+  against 174 averaging 4,338 — **24.7% of the chunks but 34.7% of the corpus
+  tokens.** `context_precision` is token-weighted, so a single symptom chunk in
+  the tail of the top 10 costs more than a failure-code chunk would. 25.2% of
+  Section 40 cases now retrieve at least one, contributing a mean 14.6% of
+  top-10 tokens.
+- Relevance here is judged by **content**, not by id: a chunk counts as relevant
+  if it contains a golden fact string. Section 40 codes share criteria strings —
+  `Max. 1 Ω` appears across many — so unrelated code chunks were being counted
+  relevant. Symptom trees, whose text differs, are not. Some of this fall is
+  precision metrics becoming more honest, not retrieval becoming worse.
+
+The cost is prompt length, not accuracy. It is paid once at the token meter and
+again in diluted attention, and it is worth knowing before anyone reads
+`context_precision` as a regression.
+
+`--corpus` is recorded in every run record's `config`, so `eval/compare.py`
+reports a scope change as a config difference rather than diffing two
+incomparable runs as though they were the same experiment.
 
 ## Wiring in a real system
 
