@@ -124,6 +124,15 @@ def compare(a, b):
         hib = ea.get("higher_is_better", True)
         if d == 0:
             status = "UNCHANGED"
+        elif hib is None:
+            # NO BETTER DIRECTION. Reported as movement and never judged.
+            #
+            # symptom_ask_rate is the reason this exists: a matcher that asks
+            # less is not better, it is more willing to guess. Calling a rise a
+            # REGRESSION would score asking as a failure, which is the pressure
+            # that turns a matcher into a guesser; calling a fall an
+            # IMPROVEMENT would do the same thing from the other side.
+            status = "MOVED"
         elif (d > 0) == hib:
             status = "IMPROVED"
         else:
@@ -216,7 +225,35 @@ def report_orchestrator(a, b):
             if rc_a.get(k) != rc_b.get(k):
                 print(f"  {k}: {rc_a.get(k)} -> {rc_b.get(k)}")
 
-    return 1 if (broke or rc_a != rc_b) else 0
+    # Measurements carried on an orchestrator record that are not qa_set cases
+    # -- the symptom matcher's entry metrics. Diffed with the SAME compare()
+    # the eval path uses, so direction is classified rather than merely
+    # reported: a gate catches crossing a line, this catches 0.9890 sliding to
+    # 0.9500 while staying above 0.95.
+    metric_rows = []
+    if a.get("metrics") or b.get("metrics"):
+        metric_rows = compare({"metrics": a.get("metrics", {})},
+                              {"metrics": b.get("metrics", {})})
+        moved_m = [r for r in metric_rows if r["status"] != "UNCHANGED"]
+        print(f"\n{'metric':46}{'A':>10}{'B':>10}{'delta':>10}  status")
+        for r in (moved_m or metric_rows):
+            av = "-" if r["a"] is None else f"{r['a']:.4f}"
+            bv = "-" if r["b"] is None else f"{r['b']:.4f}"
+            dv = "-" if r["delta"] is None else f"{r['delta']:+.4f}"
+            tag = " (contaminated)" if "[held_out]" in r["metric"] else ""
+            print(f"{r['metric']:46}{av:>10}{bv:>10}{dv:>10}  "
+                  f"{r['status']}{tag}")
+        if not moved_m:
+            print("  (none moved)")
+
+    regressed = [r for r in metric_rows if r["status"] == "REGRESSED"]
+    if regressed:
+        print("\nMETRICS REGRESSED")
+        for r in regressed:
+            print(f"  {r['metric']}: {r['a']:.4f} -> {r['b']:.4f} "
+                  f"({r['delta']:+.4f})")
+
+    return 1 if (broke or rc_a != rc_b or regressed) else 0
 
 
 def gate_diff(a, b):

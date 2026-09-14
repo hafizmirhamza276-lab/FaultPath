@@ -166,6 +166,114 @@ check("parity self-test: a test file in neither list fails the run",
 print(f"    {len(_levels)} levels / {len(orch.STAGES)} stages / "
       f"{len(_on_disk)} test files -- parity in both directions")
 
+# ============================ SYMPTOM ENTRY METRICS: REGRESSION DETECTION
+#
+# The matcher's entry metrics are NOT registered as eval Tier-1 metrics, and
+# that is a decision rather than an omission. Metric.compute(case, result)
+# scores a system's response to a case over a retrieved corpus; the matcher
+# takes a phrase and returns a routing decision, with no system, no retriever
+# and no chunking. Registering it would mean either making the matcher
+# masquerade as a Generator, or writing metrics that ignore their `result` and
+# call the matcher themselves -- and the second produces a run record that
+# lies: identical numbers under --system good and --system weak, while
+# config.system names which system was supposedly under test.
+#
+# So they stay where they live, and regression detection comes to them. What
+# was missing is the point of this block: a GATE CATCHES CROSSING A LINE, not
+# 0.9890 sliding to 0.9500 while staying above 0.95.
+from core.symptom_match import METRIC_DIRECTION      # noqa: E402
+from eval.compare import compare as _compare         # noqa: E402
+
+check("every symptom entry metric declares a diff direction",
+      set(METRIC_DIRECTION) == {
+          "symptom_entry_accuracy", "symptom_direct_entry_rate",
+          "symptom_ask_rate", "symptom_wrong_tree_rate",
+          "symptom_ask_without_answer_rate", "unmapped_rate"},
+      str(sorted(METRIC_DIRECTION)))
+check("ASK has NO better direction, so a diff can never judge it",
+      METRIC_DIRECTION["symptom_ask_rate"] is None
+      and METRIC_DIRECTION["symptom_direct_entry_rate"] is None,
+      "a matcher that asks less is not better, it is more willing to guess")
+check("wrong tree is lower-is-better and entry accuracy higher-is-better",
+      METRIC_DIRECTION["symptom_wrong_tree_rate"] is False
+      and METRIC_DIRECTION["symptom_entry_accuracy"] is True)
+
+
+def _sym_record(overrides=None):
+    """A minimal orchestrator record carrying the symptom metrics block."""
+    from core.symptom_match import run_record_metrics
+    scored = {
+        "titles": {"n": 57, "symptom_entry_accuracy": 1.0,
+                   "symptom_direct_entry_rate": 1.0, "symptom_ask_rate": 0.0,
+                   "symptom_wrong_tree_rate": 0.0,
+                   "symptom_ask_without_answer_rate": 0.0, "unmapped_rate": 0.0},
+        "held_out": {"n": 91, "symptom_entry_accuracy": 0.989,
+                     "symptom_direct_entry_rate": 0.0, "symptom_ask_rate": 1.0,
+                     "symptom_wrong_tree_rate": 0.0,
+                     "symptom_ask_without_answer_rate": 0.011,
+                     "unmapped_rate": 0.0},
+        "sealed": {"n": 46, "symptom_entry_accuracy": 1.0,
+                   "symptom_direct_entry_rate": 0.0, "symptom_ask_rate": 1.0,
+                   "symptom_wrong_tree_rate": 0.0,
+                   "symptom_ask_without_answer_rate": 0.0, "unmapped_rate": 0.0},
+    }
+    m = run_record_metrics(scored)
+    for k, v in (overrides or {}).items():
+        m[k] = dict(m[k], value=v)
+    return {"metrics": m}
+
+
+_base = _sym_record()
+check("the sealed/contaminated split survives into the record",
+      _base["metrics"]["symptom_entry_accuracy[sealed]"]["contaminated"] is False
+      and _base["metrics"]["symptom_entry_accuracy[held_out]"]["contaminated"] is True,
+      "the contamination label has to travel with the number, or a "
+      "contaminated figure gets quoted without it")
+check("no blended number across sets is emitted",
+      not [k for k in _base["metrics"] if "[" not in k],
+      f"unscoped: {[k for k in _base['metrics'] if '[' not in k]}")
+
+# THE CASE THIS EXISTS FOR. Above the gate both times; a gate sees nothing.
+_slide = _compare(_base, _sym_record({"symptom_entry_accuracy[held_out]": 0.95}))
+_row = next(r for r in _slide
+            if r["metric"] == "symptom_entry_accuracy[held_out]")
+check("a within-gate slide in entry accuracy is REGRESSED, not UNCHANGED",
+      _row["status"] == "REGRESSED",
+      f"0.9890 -> 0.9500 reported {_row['status']}; the gate is >= 0.95 and "
+      f"would pass both runs")
+
+_worse = _compare(_base, _sym_record({"symptom_wrong_tree_rate[sealed]": 0.02}))
+check("a rise in wrong_tree_rate is REGRESSED",
+      next(r for r in _worse
+           if r["metric"] == "symptom_wrong_tree_rate[sealed]")["status"]
+      == "REGRESSED")
+
+# ASK must be diffable and unjudgeable, in BOTH directions. Asking more and
+# asking less are both movement and neither is a regression.
+for _key, _v, _lbl in (("symptom_ask_rate[titles]", 0.30, "up"),
+                       ("symptom_ask_rate[held_out]", 0.40, "down"),
+                       ("symptom_direct_entry_rate[titles]", 0.50, "down")):
+    _r = next(r for r in _compare(_base, _sym_record({_key: _v}))
+              if r["metric"] == _key)
+    check(f"  {_key} moving {_lbl} is MOVED, never judged",
+          _r["status"] == "MOVED",
+          f"reported {_r['status']} ({_r['delta']:+.4f}) -- scoring ASK as a "
+          f"regression is the pressure that turns a matcher into a guesser")
+
+check("control: an unchanged record produces no regression",
+      not [r for r in _compare(_base, _sym_record())
+           if r["status"] == "REGRESSED"])
+
+# Choice (b) means these are deliberately NOT in the eval registry, so the
+# ceiling guard from 01e1845 does not and should not cover them. Asserted so
+# nobody later assumes it does.
+from eval.metrics import ceiling as _ceiling          # noqa: E402
+check("symptom entry metrics are absent from the eval ceiling classification",
+      not (set(METRIC_DIRECTION) & (set(_ceiling.CEILING)
+                                    | set(_ceiling.NOT_CEILING))),
+      "they are not Metric instances and are not scored over qa_set cases")
+
+
 # The rename that unblocked symptom_map. core/logging.py shadowed the standard
 # library for any process whose script lives in core/, which is every
 # orchestrator run. This asserts the shadowing file is gone rather than merely

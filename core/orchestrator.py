@@ -255,7 +255,8 @@ def s_symptom_map(ctx) -> dict:
     accuracy is gated lower and separately, because asking is not a failure and
     a single number that mixes the two would let a guessing matcher score well.
     """
-    from core.symptom_match import SymptomMatcher, score, gates as sym_gates
+    from core.symptom_match import (SymptomMatcher, score, gates as sym_gates,
+                                    run_record_metrics)
     build = _script("pipeline/build_symptom_map.py")
     if build["returncode"] != 0:
         return {"detail": build,
@@ -285,14 +286,24 @@ def s_symptom_map(ctx) -> dict:
         _gate("symptom_heldout_builds", held["returncode"], "==", 0,
               "symptom_map"),
     ], {}
+    scored = {}
     for name, cases in sets.items():
-        s = score(m, cases)
-        detail[name] = {k: round(v, 4) for k, v in s.items()
+        sc = score(m, cases)
+        scored[name] = sc
+        detail[name] = {k: round(v, 4) for k, v in sc.items()
                         if isinstance(v, float)}
-        detail[name]["n"] = s["n"]
-        for g in sym_gates(s):
+        detail[name]["n"] = sc["n"]
+        for g in sym_gates(sc):
             out_gates.append(_gate(f"{g['gate']}[{name}]", g["value"], g["op"],
                                    g["threshold"], "symptom_map"))
+    # ALL SIX metrics per set, in the shape compare.py already diffs.
+    #
+    # Only three of the six reach a gate, and a gate catches crossing a line --
+    # not 0.9890 sliding to 0.9500 while staying above 0.95. The other three
+    # (ask_rate, direct_entry_rate, unmapped_rate) lived in `detail`, which
+    # report_orchestrator never diffed at all, so they had no regression
+    # detection of any kind.
+    ctx["symptom_metrics"] = run_record_metrics(scored)
     ctx["symptom_map"] = detail
     detail["entries"] = len(smap["entries"])
     detail["unmapped_recorded"] = len(smap["unmapped"])
@@ -724,6 +735,11 @@ def run(only_from: Optional[str] = None, resume: bool = False,
         "kind": "orchestrator",
         "stages": results,
         "gates": [g for r in results for g in r["gates"]],
+        # Measurements that are NOT scored over qa_set cases and so have no
+        # place in an eval run record -- today, the symptom matcher's entry
+        # metrics. Same {value, n, higher_is_better} shape compare.py consumes,
+        # so they diff with the existing machinery rather than new machinery.
+        "metrics": ctx.get("symptom_metrics", {}),
         "regression_counts": regression_counts(),
         "known_gaps": known_gaps(),
         "splits": splits(),

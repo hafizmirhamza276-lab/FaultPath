@@ -310,6 +310,63 @@ def score(matcher: "SymptomMatcher", cases: List[dict]) -> dict:
     }
 
 
+# Direction, for run-to-run diffing. THREE VALUES, NOT TWO.
+#
+#   True   higher is better -- a fall is a regression
+#   False  lower is better  -- a rise is a regression
+#   None   NO BETTER DIRECTION. Movement is reported and never judged.
+#
+# The third value exists for ASK. symptom_ask_rate has no good direction: a
+# matcher that asks less is not better, it is more willing to guess, and a
+# matcher that asks more is not better either. Marking it higher-is-better
+# would report every extra question as an improvement; marking it
+# lower-is-better would report asking as a REGRESSION, which is precisely the
+# pressure that turns a matcher into a guesser. So it is diffed and never
+# classified, and symptom_direct_entry_rate is the same metric from the other
+# side.
+#
+# unmapped_rate IS lower-is-better here, and the reason is set-specific: every
+# case in the four evaluation sets has a correct tree, so an unmapped result on
+# them is a miss. That would not hold for a set built from the unmapped list,
+# and this direction should be revisited if such a set is ever scored.
+METRIC_DIRECTION = {
+    "symptom_entry_accuracy": True,
+    "symptom_wrong_tree_rate": False,
+    "symptom_ask_without_answer_rate": False,
+    "unmapped_rate": False,
+    "symptom_ask_rate": None,
+    "symptom_direct_entry_rate": None,
+}
+
+
+def run_record_metrics(scored: dict) -> dict:
+    """{set_name: score(...)} -> the {name: {value, n, ...}} shape compare.py
+    already consumes, with the set in the metric NAME.
+
+    THE SET IS IN THE NAME, NEVER BLENDED AWAY. symptom_entry_accuracy[sealed]
+    and symptom_entry_accuracy[held_out] are different measurements over
+    different populations, and sealed is the one that counts -- held_out is
+    labelled contaminated because retrieval scoring was revised after seeing
+    its failures. One averaged number over both would be an improvement in
+    coverage and a regression in honesty, so no aggregate is emitted here.
+    """
+    out = {}
+    for set_name, s in scored.items():
+        for metric, direction in METRIC_DIRECTION.items():
+            if metric not in s:
+                continue
+            out[f"{metric}[{set_name}]"] = {
+                "value": s[metric],
+                "n": s["n"],
+                "higher_is_better": direction,
+                "set": set_name,
+                # Travels WITH the number. A contaminated figure quoted without
+                # its label is the failure this flag exists to prevent.
+                "contaminated": set_name == "held_out",
+            }
+    return out
+
+
 def gates(s: dict) -> List[dict]:
     """Wrong tree is the serious one and is gated at zero.
 
