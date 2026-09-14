@@ -92,6 +92,72 @@ timings["module"] = time.perf_counter() - t0
 
 
 # ========================================================= PIPELINE
+# ------------------------------------------- every fact kind is reachable
+#
+# kind == "header" was dead for as long as it existed: _fact() looked up the
+# step before dispatching on kind and raised for step 0, where a record-level
+# fact necessarily sits. Nothing minted header ids, so nothing exercised the
+# path, and render_citations turns UnknownFact into "no citation" -- correct
+# for an invented id and indistinguishable from a branch that cannot fire.
+# See reports/resolver_dead_branch.md.
+#
+# Derived from the fact-id grammar rather than a hand-written list, so a kind
+# added to FACT_ID_RE and not made reachable fails here.
+print("\nevery fact kind the grammar admits is reachable")
+from eval.citations import (FACT_ID_RE, _fact,            # noqa: E402
+                            UnknownFact, records as cite_records)
+
+_KINDS = set(FACT_ID_RE.pattern.split("kind>")[1].split(")")[0].split("|"))
+
+
+def _first_probe(pred, mk):
+    """A real fact id of some kind, found in the corpus rather than guessed.
+
+    Hand-picked probes go stale: the first attempt used CA131 step 1 for a
+    branch and that step has none, so the check failed on the probe rather than
+    on the thing it was probing.
+    """
+    for key in sorted(cite_records()):
+        rec = cite_records()[key]
+        for st in rec.get("steps", []):
+            if pred(rec, st):
+                return mk(key, st)
+    return None
+
+
+_PROBES = {
+    "step": _first_probe(lambda r, s: s.get("fact_id"),
+                         lambda k, s: f"{k}:{s['step']}:step:0"),
+    "meas": "CA451:6:meas:0",
+    "branch": _first_probe(lambda r, s: (s.get("branches") or {}),
+                           lambda k, s: f"{k}:{s['step']}:branch:0"),
+    "header": "CA131:0:header:4",
+    "remedy": _first_probe(lambda r, s: s.get("remedy_fact_id"),
+                           lambda k, s: s["remedy_fact_id"]),
+}
+print(f"  probes: {_PROBES}")
+check("a probe exists for every kind in the fact-id grammar",
+      set(_PROBES) == _KINDS, f"grammar {sorted(_KINDS)} probes {sorted(_PROBES)}")
+_unreachable = []
+for _kind, _fid in sorted(_PROBES.items()):
+    try:
+        _rec, _text, _prov = _fact(_fid)
+        if not _prov.get("manual_page"):
+            _unreachable.append(f"{_kind}: resolved with no page")
+    except UnknownFact as exc:
+        _unreachable.append(f"{_kind} ({_fid}): {exc}")
+check("every fact kind resolves to a record, text and a page", not _unreachable,
+      "; ".join(_unreachable))
+
+# A header belongs to the record, not to a step. The dead branch invited the
+# opposite reading, so the repaired one refuses a non-zero step explicitly.
+try:
+    _fact("CA131:1:header:0")
+    check("a header fact id with a non-zero step is refused", False,
+          "returned a record-level field as though it belonged to step 1")
+except UnknownFact:
+    check("a header fact id with a non-zero step is refused", True)
+
 print("\nPIPELINE -- fidelity and structure over the full corpus")
 t0 = time.perf_counter()
 from eval.citations import PageText                      # noqa: E402

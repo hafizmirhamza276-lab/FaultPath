@@ -100,6 +100,25 @@ def _fact(fact_id):
             raise UnknownFact(f"no standalone measurement {idx} on {code}")
         return rec, ms[idx]["criteria"], ms[idx]["provenance"]
 
+    # RECORD-LEVEL FACTS RESOLVE BEFORE THE STEP LOOKUP, because they sit at
+    # step 0 and no record has a step 0. This branch used to live below the
+    # lookup, where nothing could reach it -- see
+    # reports/resolver_dead_branch.md. It read as support for citing a code's
+    # header and provided none.
+    if kind == "header":
+        prov = rec.get("header_provenance") or {}
+        fields = ["title", "action_level", "detail_of_failure",
+                  "controller_action", "machine_effect", "related_information"]
+        if idx >= len(fields):
+            raise UnknownFact(f"no header field {idx}")
+        if step != 0:
+            # A header belongs to the record, not to a step. Accepting a
+            # non-zero step would return a record-level field as though it were
+            # that step's, which is the confusion the dead branch invited.
+            raise UnknownFact(
+                f"header facts sit at step 0, got step {step} on {code}")
+        return rec, rec.get(fields[idx]) or "", prov
+
     st = next((s for s in rec["steps"] if s["step"] == step), None)
     if st is None:
         raise UnknownFact(f"no step {step} on {code}")
@@ -141,13 +160,6 @@ def _fact(fact_id):
                               "(a row carries at most one)")
         return rec, st["remedy"], (st.get("remedy_provenance")
                                    or st["provenance"])
-    if kind == "header":
-        prov = rec.get("header_provenance") or {}
-        fields = ["title", "action_level", "detail_of_failure",
-                  "controller_action", "machine_effect", "related_information"]
-        if idx >= len(fields):
-            raise UnknownFact(f"no header field {idx}")
-        return rec, rec.get(fields[idx]) or "", prov
     raise UnknownFact(f"unknown fact kind: {kind}")
 
 
