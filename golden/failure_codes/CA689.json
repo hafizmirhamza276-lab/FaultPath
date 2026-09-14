@@ -318,6 +318,12 @@
     "table_index": 0,
     "row_index": 0
   },
+  "title_provenance": {
+    "manual_page": "40-115",
+    "pdf_page": 657,
+    "table_index": 0,
+    "row_index": 22
+  },
   "controller": "ENG",
   "system_category": "Electrical system",
   "in_code_table": true

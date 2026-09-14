@@ -106,11 +106,27 @@ def _fact(fact_id):
     # reports/resolver_dead_branch.md. It read as support for citing a code's
     # header and provided none.
     if kind == "header":
-        prov = rec.get("header_provenance") or {}
         fields = ["title", "action_level", "detail_of_failure",
                   "controller_action", "machine_effect", "related_information"]
         if idx >= len(fields):
             raise UnknownFact(f"no header field {idx}")
+        # THE TITLE IS NOT ON THE HEADER BLOCK'S PAGE for 132 of 174 codes.
+        #
+        # It is read from the failure-code index table (pp. 655-662), and
+        # header_provenance correctly locates the DETAIL page where
+        # action_level and machine_effect live. Resolving header:0 against it
+        # produced a citation that did not resolve, which is why titles were
+        # left uncited until the index table recorded per-row provenance.
+        #
+        # `title_provenance or header_provenance` is not a fallback: it is the
+        # right page in each branch. title_provenance is None exactly when the
+        # title did NOT come from the index table -- one code, DAF8KB, which
+        # carries in_code_table False and whose title IS on its detail page.
+        if fields[idx] == "title":
+            prov = (rec.get("title_provenance")
+                    or rec.get("header_provenance") or {})
+        else:
+            prov = rec.get("header_provenance") or {}
         if step != 0:
             # A header belongs to the record, not to a step. Accepting a
             # non-zero step would return a record-level field as though it were

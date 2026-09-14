@@ -140,5 +140,6 @@
     "table_index": 0,
     "row_index": 0
   },
-  "in_code_table": false
+  "in_code_table": false,
+  "title_provenance": null
 }

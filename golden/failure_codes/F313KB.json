@@ -348,6 +348,12 @@
     "table_index": 0,
     "row_index": 0
   },
+  "title_provenance": {
+    "manual_page": "40-120",
+    "pdf_page": 662,
+    "table_index": 0,
+    "row_index": 10
+  },
   "controller": "GW",
   "system_category": "Electrical system",
   "in_code_table": true

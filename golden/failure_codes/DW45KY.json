@@ -250,6 +250,12 @@
     "table_index": 0,
     "row_index": 0
   },
+  "title_provenance": {
+    "manual_page": "40-118",
+    "pdf_page": 660,
+    "table_index": 0,
+    "row_index": 21
+  },
   "controller": "PUMP",
   "system_category": "Electrical system",
   "in_code_table": true

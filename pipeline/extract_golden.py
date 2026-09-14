@@ -505,13 +505,26 @@ def extract_code(pdf, code, start, end):
 def parse_code_table(pdf, start=655, end=662):
     """The 'Failure Code Table' lists every code with its canonical screen name,
     controller, action level and system category. Used for enrichment AND as an
-    independent cross-check of the per-code detail pages."""
+    independent cross-check of the per-code detail pages.
+
+    EACH ROW CARRIES ITS OWN PROVENANCE, because the title is read from HERE and
+    not from the code's detail page. For 132 of 174 codes the title appears
+    nowhere on the detail page, so header_provenance -- which correctly locates
+    the header block where action_level and machine_effect live -- is the wrong
+    page for the title. Citing it produced a citation that did not resolve.
+
+    Four keys, the same ones the symptom records already populate, and
+    row_index counts the header row as 0 so the first data row is 1 -- matching
+    the convention in extract_symptoms.py rather than inventing a second one.
+    """
     canon = {}
     for pno in range(start, end + 1):
-        for tbl in pdf.pages[pno - 1].extract_tables():
+        page = pdf.pages[pno - 1]
+        mp = manual_page(page)
+        for ti, tbl in enumerate(page.extract_tables()):
             if not tbl or norm_label(tbl[0][0] or "") != "failure code":
                 continue
-            for row in tbl[1:]:
+            for ri, row in enumerate(tbl[1:], start=1):
                 c = [clean(x) for x in row]
                 if not c or not re.fullmatch(r"[A-Z0-9@#]{4,7}", c[0]):
                     continue
@@ -520,6 +533,8 @@ def parse_code_table(pdf, start=655, end=662):
                     "controller": c[2] if len(c) > 2 else None,
                     "action_level": (c[3] if len(c) > 3 and c[3] not in ("", "-") else None),
                     "system_category": c[4] if len(c) > 4 else None,
+                    "provenance": {"manual_page": mp, "pdf_page": pno,
+                                   "table_index": ti, "row_index": ri},
                 }
     return canon
 
@@ -549,6 +564,14 @@ def main():
                 rec = extract_code(pdf, code, s, e)
                 cn = canon.get(code)
                 if cn:
+                    # WHERE THE TITLE CAME FROM, recorded only when it actually
+                    # came from the index table. When the table has no title for
+                    # a code, rec["title"] is whatever the detail page gave and
+                    # this stays None rather than pointing at a row that did not
+                    # supply it. A field added beside header_provenance, which is
+                    # unchanged and still correct for the header block.
+                    rec["title_provenance"] = (dict(cn["provenance"])
+                                               if cn["title"] else None)
                     rec["title"] = cn["title"] or rec["title"]
                     rec["controller"] = cn["controller"]
                     rec["system_category"] = cn["system_category"]
@@ -559,6 +582,7 @@ def main():
                     rec["in_code_table"] = True
                 else:
                     rec["in_code_table"] = False
+                    rec["title_provenance"] = None
             except Exception as exc:  # keep going; report at the end
                 # A swallowed exception here drops the code from the dataset
                 # entirely. Print the traceback so a silent shrink is loud.

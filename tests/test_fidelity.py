@@ -158,6 +158,39 @@ try:
 except UnknownFact:
     check("a header fact id with a non-zero step is refused", True)
 
+# header:0 IS THE TITLE, AND THE TITLE IS NOT ON THE HEADER BLOCK'S PAGE for
+# 132 of 174 codes -- it is read from the failure-code index table. Asserted
+# over the whole corpus rather than sampled, because the whole point of
+# capturing title_provenance was that the obvious page is the wrong one.
+_wrong_page, _no_prov = [], []
+for _code, _rec in sorted(cite_records().items()):
+    if "code" not in _rec:
+        continue                       # symptom records have no header block
+    _tp = _rec.get("title_provenance")
+    if _tp is None:
+        # Correct only where the title did not come from the index table.
+        if _rec.get("in_code_table"):
+            _no_prov.append(_code)
+        continue
+    _, _text, _prov = _fact(f"{_code}:0:header:0")
+    if _prov.get("manual_page") != _tp["manual_page"]:
+        _wrong_page.append(_code)
+check("header:0 resolves against title_provenance, not the header block",
+      not _wrong_page, f"{len(_wrong_page)} codes cite the header page for a "
+                       f"title that is not on it: {_wrong_page[:5]}")
+check("every code in the index table carries title_provenance", not _no_prov,
+      f"missing: {_no_prov[:5]}")
+
+# The one code outside the index table keeps the header page, and that is the
+# right page for it -- its title really is printed there.
+_off = [c for c, r in cite_records().items()
+        if "code" in r and not r.get("in_code_table")]
+check("a code absent from the index table falls back to the header block",
+      len(_off) == 1 and cite_records()[_off[0]].get("title_provenance") is None
+      and _fact(f"{_off[0]}:0:header:0")[2].get("manual_page")
+      == cite_records()[_off[0]]["header_provenance"]["manual_page"],
+      f"codes outside the index table: {_off}")
+
 print("\nPIPELINE -- fidelity and structure over the full corpus")
 t0 = time.perf_counter()
 from eval.citations import PageText                      # noqa: E402
