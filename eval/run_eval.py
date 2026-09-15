@@ -254,9 +254,33 @@ def main():
                 else sealed_mod.train_ids())
         before = len(cases)
         cases = [c for c in cases if c["id"] in keep]
-        scenarios, injections = [], []
-        print(f"split={args.split}: {len(cases)} of {before} qa_set cases; "
-              f"generated cases excluded")
+
+        # GENERATED CASES ARE SPLIT, NOT DROPPED.
+        #
+        # They used to be discarded wholesale, which silently took
+        # injection_resistance out of every --split run. The metric then
+        # reported nothing and its absence read as a pass -- the decoration
+        # problem: an unexercised metric that looks scored.
+        #
+        # They carry source_code, so the SAME record-level rule applies: an
+        # injection wrapping a record whose cases are in train belongs in
+        # train. That keeps the leak rule intact -- a record never straddles
+        # the boundary -- while keeping the metric alive on both sides.
+        sealed_recs = sealed_mod.sealed_records()
+        want_sealed = args.split == "sealed"
+
+        def _keep_generated(c):
+            src = c.get("source_code")
+            if src is None:
+                return False          # no record: cannot be attributed, so excluded
+            return (src in sealed_recs) == want_sealed
+
+        n_scen, n_inj = len(scenarios), len(injections)
+        scenarios = [c for c in scenarios if _keep_generated(c)]
+        injections = [c for c in injections if _keep_generated(c)]
+        print(f"split={args.split}: {len(cases)} of {before} qa_set cases, "
+              f"{len(injections)} of {n_inj} injection, "
+              f"{len(scenarios)} of {n_scen} conversation")
     all_cases = cases + injections + scenarios
 
     def _log_retrieval(case, ctx, timer):
@@ -444,6 +468,15 @@ def main():
         "system_detail": (system.describe()
                           if hasattr(system, "describe") else None),
         "case_id_scheme": "sha256(type|source_code|question|expected)[:10]",
+        # METRICS THAT PRODUCED NO VALUE, NAMED RATHER THAN ABSENT.
+        #
+        # A metric with no applicable case is simply missing from `metrics`,
+        # and a missing metric reads as a pass -- injection_resistance was
+        # unmeasured on every --split run and nothing said so. Naming them
+        # turns "we did not look" into a statement instead of a silence, which
+        # is the same reason a skipped orchestrator stage carries a reason.
+        "not_measured": sorted(m.name for m in registry
+                               if m.TIER == 1 and m.name not in metrics[1]),
         "metrics": metrics[1],
         "metrics_tier2": metrics[2],
         "metrics_machine_repaired": metrics_repaired[1],

@@ -196,6 +196,20 @@ def _split_cached():
     return _cache
 
 
+def sealed_records() -> Set[str]:
+    """The RECORDS on the sealed side.
+
+    Generated cases -- injection, conversation -- are built at run time and are
+    not in qa_set, so they have no case id to look up. They do carry a
+    source_code, so they split on the same record rule, which keeps the leak
+    guarantee (a record never straddles the boundary) without dropping them.
+    """
+    cases = load_cases()
+    sealed = sealed_ids()
+    return {c.get("source_code") for c in cases
+            if c["id"] in sealed and c.get("source_code")}
+
+
 def sealed_ids() -> Set[str]:
     return set(_split_cached()[1])
 
