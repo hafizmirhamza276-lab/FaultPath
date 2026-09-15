@@ -54,6 +54,31 @@ the TAIL and displace other irrelevant chunks, not the answer -- which is why
 recall and mrr do not move while a token-weighted precision does. The cost is
 real and it is a prompt-length cost, not an accuracy one.
 
+PER-MEASUREMENT PROVENANCE, and what carrying it cost
+-----------------------------------------------------
+Each measurement line now ends with its OWN page -- see _meas_page. Measured,
+both scopes, three chunkings, before and after:
+
+  --corpus all          structural         fixed_2000         fixed_512
+  ceiling_recall     1.0000  +0.0000    0.9987  +0.0003    0.9809  +0.0004
+  recall@5           0.9974  +0.0000    0.9633  +0.0032    0.8080  +0.0245
+  answer_coverage@5  0.9968  +0.0000    0.9493  -0.0032    0.7102  +0.0448
+  fragmentation@10   0.0003  +0.0000    0.0075  +0.0075    0.0857  -0.0280
+  context_precision  0.7146  +0.0019    0.6491  -0.0088    0.5920  +0.0124
+  mrr                0.9872  -0.0003    0.9468  -0.0071    0.8239  +0.0269
+  chunks              231 -> 231         729 -> 740       2573 -> 2607
+
+CEILING_RECALL DID NOT FALL ANYWHERE, in either scope. Text was appended, not
+displaced, and the check that would have caught displacement is the one that
+mattered: a fall would have meant a measurement string was pushed out of every
+chunk by the page suffix.
+
+structural is flat to four decimals, because one chunk per record means a
+longer line cannot cross a boundary. fixed_512 moves most and moves BETTER --
+recall@5 +0.0245, answer_coverage@5 +0.0448, mrr +0.0269, fragmentation -0.0280
+-- because a page number makes each measurement line more distinctive, and
+small chunks live or die on distinctiveness. The extra 34 chunks are the cost.
+
 context_precision is not gated. The seven gates are numeric_exactness,
 fabricated_values, citation_accuracy, refusal_correctness, over_refusal,
 hit_rate@5 and filter_correctness, and they are unchanged in both directions,
@@ -141,6 +166,35 @@ def render(rec):
     return _render_symptom(rec) if is_symptom(rec) else _render_code(rec)
 
 
+def _meas_page(m):
+    """The measurement's OWN page, as a suffix for its rendered line.
+
+    THE THIRD INSTANCE of one pattern: provenance captured carefully and then
+    dropped at a layer boundary.
+
+      1. branch_provenance was captured by the S4 fix and consumed by
+         fidelity, but eval/citations.py kept reading the STEP's page, so a
+         branch straddling a page break was cited to the wrong one.
+      2. title_provenance did not exist at all -- header_provenance located the
+         detail page, and for 132 of 174 codes the title is not printed there.
+      3. THIS. Every measurement carries {manual_page, pdf_page, table_index,
+         row_index}, and the renderer emitted none of it, so the only page in a
+         chunk was the record's first. 75.0% of Section 40 measurements and
+         82.8% of symptom measurements are not on that page.
+
+    Three occurrences is a property of this codebase, not a coincidence: the
+    capture side is treated as the hard part and the carry side as plumbing.
+    The measurable consequence here was a model citing at 23.7% against a
+    ceiling of 23.1% -- at the ceiling, and the ceiling was the bug.
+
+    The record-level "Manual page:" header line is NOT removed. It is still
+    correct for header facts, which genuinely belong to the record rather than
+    to any one row.
+    """
+    page = (m.get("provenance") or {}).get("manual_page")
+    return f" (page {page})" if page else ""
+
+
 def _render_code(rec):
     """Flatten one failure code to text.
 
@@ -166,7 +220,7 @@ def _render_code(rec):
 
     for m in rec.get("standalone_measurements", []):
         L.append(f"Measurement. {m['quantity']}. Measuring point: {m['point']}. "
-                 f"Standard value: {m['criteria']}")
+                 f"Standard value: {m['criteria']}{_meas_page(m)}")
 
     for st in rec.get("steps", []):
         L.append(f"Step {st['step']}. Cause: {st.get('cause','')}. "
@@ -176,7 +230,7 @@ def _render_code(rec):
         for m in st.get("measurements", []):
             L.append(f"Step {st['step']} measurement. {m['quantity']}. "
                      f"Measuring point: {m['point']}. "
-                     f"Standard value: {m['criteria']}")
+                     f"Standard value: {m['criteria']}{_meas_page(m)}")
         if st.get("extraction_warning"):
             L.append(f"Step {st['step']} provenance: {st['extraction_warning']}")
     if rec.get("default_conclusion"):
@@ -217,7 +271,7 @@ def _render_symptom(rec):
 
     for m in rec.get("standalone_measurements") or []:
         L.append(f"Measurement. {m['quantity']}. Measuring point: {m['point']}. "
-                 f"Standard value: {m['criteria']}")
+                 f"Standard value: {m['criteria']}{_meas_page(m)}")
 
     flat = rec.get("tree_kind") == "SymptomTreeFlat"
     for st in rec.get("steps", []):
@@ -235,7 +289,7 @@ def _render_symptom(rec):
         for m in st.get("measurements") or []:
             L.append(f"Step {n} measurement. {m['quantity']}. "
                      f"Measuring point: {m['point']}. "
-                     f"Standard value: {m['criteria']}")
+                     f"Standard value: {m['criteria']}{_meas_page(m)}")
         if st.get("extraction_warning"):
             L.append(f"Step {n} provenance: {st['extraction_warning']}")
 

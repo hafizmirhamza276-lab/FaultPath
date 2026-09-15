@@ -92,38 +92,44 @@ both tables, so the two are comparable line by line.
 
 #### `--corpus all` — 231 records (the baseline)
 
-| | structural | fixed_2000 | fixed_512 |
-|---|---:|---:|---:|
-| chunks | 231 | 729 | 2,573 |
-| **ceiling_recall** | **1.0000** | **0.9997** | **0.9914** |
-| recall@5 | 0.9979 | 0.9683 | 0.7871 |
-| answer_coverage@5 | 0.9970 | 0.9514 | 0.6775 |
-| fragmentation_gap@10 | 0.0004 | 0.0086 | 0.0988 |
-| context_precision | 0.7841 | 0.7024 | 0.6228 |
-| mrr | 0.9917 | 0.9569 | 0.8132 |
-| gates | 7/7 | 7/7 | **6/7** |
-
-#### `--corpus section40` — 174 records (regenerable)
-
-Not history: `python eval/run_eval.py --chunker structural --corpus section40`
-reproduces this table digit for digit, which is how the widening was shown to
-be inert.
+Scored over 1,853 retrieval cases from the full 1,865-case qa_set.
 
 | | structural | fixed_2000 | fixed_512 |
 |---|---:|---:|---:|
-| chunks | 174 | 491 | 1,708 |
-| **ceiling_recall** | **1.0000** | **0.9997** | **0.9914** |
-| recall@5 | 0.9979 | 0.9665 | 0.7896 |
-| answer_coverage@5 | 0.9970 | 0.9492 | 0.6844 |
-| fragmentation_gap@10 | 0.0004 | 0.0138 | 0.1069 |
-| context_precision | 0.8497 | 0.7020 | 0.6452 |
-| mrr | 0.9917 | 0.9556 | 0.8104 |
+| chunks | 231 | 740 | 2,607 |
+| **ceiling_recall** | **1.0000** | **0.9990** | **0.9814** |
+| recall@5 | 0.9974 | 0.9665 | 0.8324 |
+| answer_coverage@5 | 0.9968 | 0.9460 | 0.7550 |
+| fragmentation_gap@10 | 0.0003 | 0.0149 | 0.0577 |
+| context_precision | 0.7165 | 0.6403 | 0.6044 |
+| mrr | 0.9869 | 0.9396 | 0.8509 |
 | gates | 7/7 | 7/7 | **6/7** |
 
-Read `ceiling_recall` first: it is set by ingestion and chunking, and every
-other retrieval number lives under it. `fixed_512` cannot reach 1.0 at any k
-because some facts — full step procedures — are longer than 512 characters and
-exist in no single chunk. No amount of ranking work recovers them.
+#### `--corpus section40` — 174 records
+
+| | structural | fixed_2000 | fixed_512 |
+|---|---:|---:|---:|
+| chunks | 174 | 501 | 1,733 |
+| **ceiling_recall** | **0.7204** | **0.7202** | **0.7153** |
+| recall@5 | 0.7178 | 0.6992 | 0.5926 |
+| answer_coverage@5 | 0.7091 | 0.6730 | 0.5370 |
+| fragmentation_gap@10 | 0.0086 | 0.0210 | 0.0492 |
+| context_precision | 0.6154 | 0.5147 | 0.4316 |
+| mrr | 0.7242 | 0.6945 | 0.5889 |
+| gates | **5/7** | **5/7** | **5/7** |
+
+**This table is no longer an inertness proof, and the reason is worth stating.**
+It once read 1.0000 / 0.9997 / 0.9914 for `ceiling_recall` over 1,318 Section 40
+cases, and the claim was that `--corpus section40` reproduced it digit for
+digit. That stopped being true in `9d9b7c1`, when symptom cases took qa_set from
+1,318 to 1,865: a Section-40-only corpus cannot serve a symptom case, so
+`ceiling_recall` now reads 0.7204 — the corpus is missing 57 records the case set
+asks about. Nothing checked the claim, so nothing noticed. There is no
+case-section filter to restore the old comparison, and inventing one to make a
+doc line true again would be the wrong order of operations.
+
+What the scope still does is real: it builds the corpus from Section 40 alone.
+What it no longer does is reproduce a historical table.
 
 #### What the 57 symptom trees cost
 
