@@ -112,6 +112,19 @@ class FabricatedValues(_GenMetric):
 
     def _allowed(self, case):
         allowed = set(numbers_in(case.get("question", "")))
+        # The FILTERS are given to the system, exactly as the question is.
+        #
+        # A prompt states "Manual: SEN06867-13" because the case says so, and
+        # the metric then scored the answer for inventing 06867 and 13. Ten of
+        # the 36 values flagged on adversarial_unknown were this, and none of
+        # them was invented -- they were read back from the case's own data.
+        #
+        # Measured, not assumed: the DENIED CODE's digits were never flagged,
+        # because a fabricated code appears in the question and was already
+        # allowed. The original diagnosis -- that refusals are penalised for
+        # naming what they refuse -- did not survive checking.
+        for v in (case.get("filters") or {}).values():
+            allowed |= set(numbers_in(str(v)))
         rec = self.records.get(case.get("source_code"))
         if rec:
             allowed |= numbers_in_record(rec)
@@ -139,6 +152,16 @@ class FabricatedValues(_GenMetric):
         case = {"type": "numeric_exactness", "question": "X ke liye?",
                 "source_code": "X"}
         assert m.compute(case, {"answer": "Max. 1"}) == 0.0
+        # A value stated in the case's own FILTERS is given to the system, not
+        # invented by it. Scoring it was a defect worth 10 of the 36 values
+        # flagged on adversarial_unknown.
+        filt = {"type": "adversarial_unknown", "question": "CA999 aaya hai?",
+                "filters": {"manual_id": "SEN06867-13"}, "source_code": None}
+        assert m.compute(filt, {"answer": "CA999 is not in SEN06867-13."}) == 0.0,             "a number read back from case['filters'] must not count as invented"
+        # ...and the exemption must not become a blanket pass for adversarial
+        # cases: a value the answer ASSERTS is still fabricated.
+        assert m.compute(filt, {"answer": "CA999 is not in SEN06867-13. "
+                                          "Torque to 250 Nm."}) > 0.0,             "a genuinely invented value inside an adversarial case must still fail"
         assert m.compute(case, {"answer": "Max. 7 and 9"}) == 1.0, \
             "fabricated_values cannot fail on invented numbers"
 
