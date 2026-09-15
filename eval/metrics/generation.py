@@ -55,6 +55,39 @@ def _atoms(text):
                                     if any(ch.isdigit() for ch in c)}
 
 
+PAGE_TOKEN = re.compile(r"\b\d{2}-\d{1,4}\b")
+
+
+def claim_text(answer):
+    """The answer with its PROVENANCE METADATA removed.
+
+    fabricated_values exists to catch invented VALUES. A page number is not a
+    value -- it is provenance, and whether provenance is correct is already
+    measured three times over by citation_accuracy, citation_resolvability and
+    citation_span_precision. Scoring it here as well conflates citing the wrong
+    page with inventing a torque spec, which are different failures with
+    different fixes.
+
+    STRIPPED BY SHAPE, NOT BY MARKER. The answer format separates claim from
+    citation only BY CONVENTION: measured over 1,839 page tokens in real model
+    answers, 1,698 sat inside a "Page:" marker and 141 did not ("Source: Page
+    40-132"). A marker-based strip would have missed 7.7% of them and the
+    exclusion would have depended on how the model happened to phrase itself.
+
+    Safe because the shape is unambiguous IN THIS CORPUS: zero golden criteria
+    across both sections contain a page-shaped token, so nothing that is
+    actually a value is removed. Asserted in self_test rather than assumed.
+
+    Not scoped to "pages that exist": that would pass an invented page which
+    happens to match a real one and fail one that does not, making the verdict
+    turn on coincidence while duplicating citation_accuracy badly.
+
+    numbers_in() splits "40-132" into "40" and "132", which is why an
+    uncited-page problem showed up as two fabricated values apiece.
+    """
+    return PAGE_TOKEN.sub(" ", str(answer or ""))
+
+
 # ------------------------------------------------------------------ exactness
 
 class NumericExactness(_GenMetric):
@@ -135,7 +168,7 @@ class FabricatedValues(_GenMetric):
 
     def compute(self, case, result):
         allowed = self._allowed(case)
-        found = numbers_in(result.get("answer", ""))
+        found = numbers_in(claim_text(result.get("answer", "")))
         if not found:
             return 0.0
         bad = [n for n in found if n not in allowed]
@@ -144,7 +177,7 @@ class FabricatedValues(_GenMetric):
     def flagged(self, case, result):
         """The actual invented values, for the per-case row."""
         allowed = self._allowed(case)
-        return sorted({n for n in numbers_in(result.get("answer", ""))
+        return sorted({n for n in numbers_in(claim_text(result.get("answer", "")))
                        if n not in allowed})
 
     def self_test(self):
@@ -160,6 +193,17 @@ class FabricatedValues(_GenMetric):
         assert m.compute(filt, {"answer": "CA999 is not in SEN06867-13."}) == 0.0,             "a number read back from case['filters'] must not count as invented"
         # ...and the exemption must not become a blanket pass for adversarial
         # cases: a value the answer ASSERTS is still fabricated.
+        # THE PLANTED FAULT. Stripping provenance must not become a blanket
+        # pass: a value the answer ASSERTS inside an adversarial case is still
+        # fabricated, even when the answer also cites a page.
+        assert m.compute(filt, {"answer": "CA999 is not in SEN06867-13. "
+                                          "(Page: 40-179) Torque to 250 Nm."}) > 0.0,             "a fabricated VALUE beside a stripped page must still be caught"
+        assert m.compute(filt, {"answer": "CA999 is not in SEN06867-13. "
+                                          "(Page: 40-179, 40-181)"}) == 0.0,             "a refusal citing only pages must not read as fabrication"
+        # The shape is provenance in THIS corpus and nothing else: asserted,
+        # not assumed, because the exclusion is only safe while that holds.
+        assert claim_text("Max. 1 ohm, 0.2 to 4.6V") == "Max. 1 ohm, 0.2 to 4.6V",             "claim_text must not disturb a real criterion"
+        assert "40-179" not in claim_text("see Page 40-179")
         assert m.compute(filt, {"answer": "CA999 is not in SEN06867-13. "
                                           "Torque to 250 Nm."}) > 0.0,             "a genuinely invented value inside an adversarial case must still fail"
         assert m.compute(case, {"answer": "Max. 7 and 9"}) == 1.0, \
