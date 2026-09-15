@@ -179,6 +179,12 @@ def run_self_tests(registry):
 def main():
     ap = argparse.ArgumentParser(description="Tier-1 deterministic evaluation")
     ap.add_argument("--chunker", default="structural", choices=sorted(chunkers.CHUNKERS))
+    ap.add_argument("--split", default="all", choices=("all", "train", "sealed"),
+                    help="which qa_set cases to score. 'sealed' is the holdout "
+                         "nothing has been tuned on -- see eval/sealed.py. A "
+                         "sealed run drops the generated injection and "
+                         "conversation cases, which are built from records "
+                         "without regard to the split.")
     ap.add_argument("--corpus", default="all", choices=sorted(chunkers.SCOPES),
                     help="which sections enter the retrieval corpus. "
                          "'section40' regenerates the pre-symptom baseline.")
@@ -234,6 +240,23 @@ def main():
     system = SYSTEMS[args.system](records) if args.system else None
     scenarios = m_conversation.build_scenarios(records, cases) if system else []
     injections = m_safety.injection_cases(records) if system else []
+
+    # THE SPLIT IS APPLIED HERE, over qa_set cases only.
+    #
+    # A sealed run also drops the generated injection and conversation cases.
+    # They are built from records without regard to the split, so most of them
+    # rest on records a system has been tuned on -- including them would put
+    # seen material inside a number labelled unseen, which is the whole thing
+    # the sealed set exists to avoid.
+    if args.split != "all":
+        from eval import sealed as sealed_mod
+        keep = (sealed_mod.sealed_ids() if args.split == "sealed"
+                else sealed_mod.train_ids())
+        before = len(cases)
+        cases = [c for c in cases if c["id"] in keep]
+        scenarios, injections = [], []
+        print(f"split={args.split}: {len(cases)} of {before} qa_set cases; "
+              f"generated cases excluded")
     all_cases = cases + injections + scenarios
 
     def _log_retrieval(case, ctx, timer):
@@ -360,7 +383,7 @@ def main():
         # different scopes are not comparable, and compare.py has to be able to
         # say so rather than diff their numbers as though they were.
         "config": {"chunker": args.chunker, "retriever": args.retriever,
-                   "corpus": args.corpus,
+                   "corpus": args.corpus, "split": args.split,
                    "system": args.system, "k": args.k,
                    "corpus_records": len(records),
                    "corpus_chunks": len(corpus), "cases": len(all_cases)},

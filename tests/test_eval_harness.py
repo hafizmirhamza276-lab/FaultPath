@@ -21,6 +21,7 @@ Three things, in order of how badly they bite:
 Deterministic throughout. Two invocations produce identical numbers; that is
 asserted rather than assumed.
 """
+import ast
 import collections
 import json
 import os
@@ -80,6 +81,62 @@ without = sorted(
     if m.name in gate_names and type(m).self_test is Metric.self_test)
 check("every gate-bearing metric has a self-test", not without,
       f"missing: {without}")
+
+
+# ============================================ 1b. the sealed case holdout
+print("\nsealed holdout: derived, stratified, and reads no eval result")
+from eval import sealed as sealed_mod                     # noqa: E402
+
+try:
+    sealed_mod.self_test()
+    check("sealed self-test passes (determinism, coverage, no straddle)", True)
+except AssertionError as exc:
+    check("sealed self-test passes", False, str(exc))
+
+_sd = sealed_mod.describe()
+check("the sealed fraction is near the declared 20%",
+      0.15 <= _sd["fraction"] <= 0.25, f"{_sd['fraction']:.3f}")
+check("every (section, type) bucket has sealed cases",
+      all(v["sealed"] > 0 for v in _sd["coverage"].values()),
+      f"blind buckets: {[k for k, v in _sd['coverage'].items() if not v['sealed']]}")
+check("every bucket still has train cases",
+      all(v["corpus"] - v["sealed"] > 0 for v in _sd["coverage"].values()))
+print(f"    {_sd['n_sealed']} sealed / {_sd['n_cases']} cases "
+      f"({_sd['fraction']:.1%}) over {_sd['sealed_records']} records, "
+      f"{len(_sd['coverage'])} buckets all covered")
+
+# SELECTION MUST NOT READ AN EVAL RESULT. Asserted over the parsed AST, not
+# trusted to review. This is the specific way the 91 held-out symptom phrasings
+# became contaminated: scoring was revised after seeing which of them failed.
+# A set chosen with any knowledge of outcomes is spent at the moment of
+# choosing.
+_sealed_src = open(os.path.join(REPO_ROOT, "eval", "sealed.py"),
+                   encoding="utf-8").read()
+_sealed_imports = {(n.module or "").split(".")[-1]
+                   for n in ast.walk(ast.parse(_sealed_src))
+                   if isinstance(n, ast.ImportFrom)}
+_sealed_imports |= {a.name.split(".")[-1]
+                    for n in ast.walk(ast.parse(_sealed_src))
+                    if isinstance(n, ast.Import) for a in n.names}
+_forbidden = _sealed_imports & {"run_eval", "synthetic", "adapters", "metrics",
+                                "retrieval", "generation", "compare"}
+check("sealed selection imports nothing that could carry an eval result",
+      not _forbidden, f"imports {sorted(_forbidden)}")
+check("sealed selection reads no run record",
+      "eval_out" not in _sealed_src and "runs/" not in _sealed_src)
+
+# The three holdouts are different things and must not be confused for one
+# another. Asserted by unit: codes, phrasings, case ids.
+from agent import holdout as code_holdout                 # noqa: E402
+_code_hold = code_holdout.holdout_set()
+_sealed = sealed_mod.sealed_ids()
+check("the code holdout and the sealed case holdout are different units",
+      not (_code_hold & _sealed),
+      "a code id and a case id should never collide; if they do, one of the "
+      "two holdouts is being read as the other")
+print(f"    agent/holdout.py {len(_code_hold)} codes | "
+      f"eval/sealed.py {len(_sealed)} cases | "
+      f"symptom_heldout.json sealed/contaminated phrasings -- three units")
 
 
 # ==================================================== 2. good/weak separation
