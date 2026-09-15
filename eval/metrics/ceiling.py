@@ -153,6 +153,46 @@ CEILING = {
 
 # ------------------------------------------------------------------ checks
 
+# ------------------------------------------- which systems the guard applies to
+#
+# THE CEILING IS A PROPERTY OF A REFERENCE, NOT OF EVERY SYSTEM.
+#
+# Requiring 1.0000 of a real model would be asserting that the thing being
+# measured has already succeeded -- the measurement and the assertion swapped
+# places. So the guard applies to REFERENCE systems only:
+#
+#   reference   perfection asserted. A bucket below 1.0000 is a false ceiling
+#               and the metric has no headroom there.
+#   floor       failure asserted. Passing a gate means the gate has a hole.
+#   under_test  nothing asserted. The score IS the measurement.
+#
+# The categories are DERIVED from each system's declared CATEGORY, and their
+# union is checked against the registry -- a system in no category fails naming
+# itself, exactly as an unclassified metric does above. Hardcoding "good" would
+# stop working the moment a second reference existed and would silently treat
+# it as a system under test.
+
+CATEGORIES = ("reference", "floor", "under_test")
+
+
+def classify_systems(systems):
+    """(uncategorised, unknown_category) for a {name: system} registry."""
+    uncategorised, unknown = [], []
+    for name, sysobj in sorted(systems.items()):
+        cat = getattr(sysobj, "CATEGORY", None)
+        if cat is None:
+            uncategorised.append(name)
+        elif cat not in CATEGORIES:
+            unknown.append(f"{name}={cat}")
+    return uncategorised, unknown
+
+
+def ceiling_systems(systems):
+    """The systems the ceiling guard applies to. References only."""
+    return sorted(n for n, s in systems.items()
+                  if getattr(s, "CATEGORY", None) == "reference")
+
+
 def perfect_value(metric):
     """The score a flawless system gets. 1.0, or 0.0 when lower is better."""
     return 1.0 if getattr(metric, "HIGHER_IS_BETTER", True) else 0.0

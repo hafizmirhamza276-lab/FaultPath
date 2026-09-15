@@ -348,22 +348,71 @@ def main():
     # --- determinism proof. Tier 1 claims byte-identical output; prove it
     # rather than asserting it in a doc. Timings are excluded because wall time
     # legitimately varies and would break the comparison for the wrong reason.
+    # DETERMINISM IS SCOPED TO THE HALF WE CONTROL; the model half gets a
+    # separate, weaker, separately-named claim. The decision, written down:
+    #
+    # A provider drifts even at temperature 0 -- retries land on different
+    # nodes, builds change under a stable deployment name. Three responses:
+    #   (a) delete the check                       -- unacceptable
+    #   (b) widen it until a model fits inside it  -- worse, because it keeps
+    #       the NAME "determinism" over a claim that is no longer determinism
+    #   (c) scope it to what genuinely is deterministic and report the rest
+    #       under its own name at its own strength
+    #
+    # (c). Retrieval, filters, chunking, case ids and retrieved chunk ids stay
+    # byte-identical for every system INCLUDING a model, because the model does
+    # not touch them; that property is real and stays exact. What the model
+    # produces is reported as `generation_stability` and never merged into a
+    # Tier-1 figure, for the same reason Tier 2 is never blended into Tier 1.
     determinism = None
+    generation_stability = None
     if args.prove_determinism:
+        from eval.synthetic import category_of
+        under_test = bool(args.system) and category_of(args.system) == "under_test"
         with log.timed("decision", "determinism_proof"):
             rows2, _ = evaluate(all_cases, registry, run_case, NullLogger())
             metrics2 = aggregate(registry, rows2)
+
+            det_names = {m.name for m in registry
+                         if m.APPLIES_TO == m_retrieval.RETRIEVAL_TYPES}
+            def _half(mm):
+                return {k: v for k, v in mm.items() if k in det_names}
+            same_retrieval = _half(metrics2[1]) == _half(metrics[1])
+            same_ids = [r["id"] for r in rows2] == [r["id"] for r in rows]
+            determinism = {"scope": "retrieval",
+                           "identical_retrieval_metrics": same_retrieval,
+                           "identical_case_ids": same_ids,
+                           "n_retrieval_metrics": len(det_names),
+                           "n_cases": len(rows)}
+
             same_agg = metrics2[1] == metrics[1]
             same_rows = ([r["metrics"] for r in rows2] ==
                          [r["metrics"] for r in rows])
-            determinism = {"identical_aggregate": same_agg,
-                           "identical_per_case": same_rows,
-                           "n_cases": len(rows)}
+            if under_test:
+                agree = sum(1 for a, b in zip(rows, rows2)
+                            if a["metrics"] == b["metrics"])
+                generation_stability = {
+                    "identical_aggregate": same_agg,
+                    "identical_per_case": same_rows,
+                    "per_case_agreement": (agree / len(rows)) if rows else 0.0,
+                    "n_cases": len(rows),
+                    "note": ("reported, never gated. A provider drifts at "
+                             "temperature 0; this is a stability observation, "
+                             "not a determinism claim.")}
+            else:
+                determinism["identical_aggregate"] = same_agg
+                determinism["identical_per_case"] = same_rows
         log.event("decision", "determinism", determinism)
-        if not (same_agg and same_rows):
-            print("\nDETERMINISM PROOF FAILED: two runs of the same config "
-                  "produced different metrics. Tier 1 is not reproducible; that "
-                  "is a bug in this harness, not noise.")
+        if generation_stability:
+            log.event("decision", "generation_stability", generation_stability)
+
+        det_ok = same_retrieval and same_ids
+        if not under_test:
+            det_ok = det_ok and same_agg and same_rows
+        if not det_ok:
+            print("\nDETERMINISM PROOF FAILED: the half this harness controls "
+                  "-- retrieval metrics and case ids -- was not reproducible. "
+                  "That is a bug in this harness, not provider noise.")
             log.close()
             return 3
 
@@ -379,6 +428,7 @@ def main():
         "timestamp": time.strftime("%Y%m%dT%H%M%S", time.gmtime(started)),
         "git": git_state(),
         "determinism": determinism,
+        "generation_stability": generation_stability,
         # `corpus` is part of the config, not a footnote. Two runs with
         # different scopes are not comparable, and compare.py has to be able to
         # say so rather than diff their numbers as though they were.
@@ -387,6 +437,12 @@ def main():
                    "system": args.system, "k": args.k,
                    "corpus_records": len(records),
                    "corpus_chunks": len(corpus), "cases": len(all_cases)},
+        # WHAT PRODUCED THE NUMBERS. The deployment is what was called; the
+        # model string is what answered, and it can change under a stable
+        # deployment name. Both, plus cache hit/miss -- a run served entirely
+        # from cache must not read as a fresh measurement.
+        "system_detail": (system.describe()
+                          if hasattr(system, "describe") else None),
         "case_id_scheme": "sha256(type|source_code|question|expected)[:10]",
         "metrics": metrics[1],
         "metrics_tier2": metrics[2],

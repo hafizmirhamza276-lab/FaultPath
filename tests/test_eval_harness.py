@@ -185,6 +185,46 @@ check("weak fails ALL gates", not weak_pass,
 # leave the fourth silently unguarded.
 print("\nthe good system is the ceiling, per metric per bucket")
 
+# Which SYSTEMS the guard applies to, before which metrics. A real model is a
+# system under test: requiring 1.0000 of it would assert that the thing being
+# measured has already succeeded.
+from eval.synthetic import SYSTEMS, categories            # noqa: E402
+
+_uncat, _unknown = ceiling.classify_systems(SYSTEMS)
+check("every registered system declares a category", not _uncat,
+      f"uncategorised: {_uncat}\n"
+      "          A system in no category fails here rather than being assumed "
+      "to be\n          one -- the same rule as an unclassified metric.")
+check("no system declares a category outside the declared set", not _unknown,
+      f"unknown: {_unknown}")
+check("the three categories are all populated",
+      set(categories()) == set(ceiling.CATEGORIES),
+      f"got {categories()}")
+check("the ceiling guard applies to references only, not to systems under test",
+      ceiling.ceiling_systems(SYSTEMS) == ["good"],
+      f"would assert perfection of: {ceiling.ceiling_systems(SYSTEMS)}")
+print(f"    systems: {categories()}")
+
+# SELF-TEST: a system in no category must fail, naming itself.
+class _Uncategorised:                                      # noqa: E301
+    name = "planted"
+
+
+_probe = dict(SYSTEMS, planted=_Uncategorised)
+check("  a system with no category fails, naming it",
+      ceiling.classify_systems(_probe)[0] == ["planted"],
+      str(ceiling.classify_systems(_probe)))
+
+
+class _BadCategory:                                        # noqa: E301
+    name = "planted2"
+    CATEGORY = "sort-of-good"
+
+
+check("  a system with an undeclared category fails, naming it",
+      ceiling.classify_systems(dict(SYSTEMS, planted2=_BadCategory))[1]
+      == ["planted2=sort-of-good"])
+
 unclassified, in_both = ceiling.classify(registry)
 check("every Tier-1 metric is declared CEILING or NOT_CEILING",
       not unclassified,

@@ -54,9 +54,15 @@ class _Base(Generator):
 
 
 class GoodSystem(_Base):
-    """Answers strictly out of the ground truth."""
+    """Answers strictly out of the ground truth. THE REFERENCE.
+
+    Its perfection is ASSERTED, not measured: the ceiling guard requires
+    1.0000 in every bucket, because a bucket where the reference is imperfect
+    is a bucket where the metric has no headroom to measure anything else in.
+    """
 
     name = "good"
+    CATEGORY = "reference"
 
     def retrieve(self, case, retriever, k):
         """Full question, filters pushed down."""
@@ -194,9 +200,16 @@ class GoodSystem(_Base):
 
 
 class WeakSystem(_Base):
-    """Deliberately bad, in the four specific ways the gates exist to catch."""
+    """Deliberately bad, in the four specific ways the gates exist to catch.
+    THE FLOOR.
+
+    Its FAILURE is asserted: if it passes a gate, that gate has a hole. It is
+    neither a reference nor a system under test, which is why the categories
+    are three and not two.
+    """
 
     name = "weak"
+    CATEGORY = "floor"
 
     def retrieve(self, case, retriever, k):
         """Ignores the model filter, and builds a poor query.
@@ -303,3 +316,38 @@ class WeakSystem(_Base):
 
 
 SYSTEMS = {"good": GoodSystem, "weak": WeakSystem}
+
+# The real model registers here so --system model is scored by exactly the same
+# harness. Imported lazily inside the factory: eval/model_system.py reads
+# credentials at call time, but importing it eagerly would still pull httpx
+# into every process that touches synthetic.py.
+REFERENCE, FLOOR, UNDER_TEST = "reference", "floor", "under_test"
+
+
+def _model_system(records):
+    from eval.model_system import ModelSystem
+    return ModelSystem(records)
+
+
+_model_system.name = "model"
+_model_system.CATEGORY = UNDER_TEST
+SYSTEMS["model"] = _model_system
+
+
+def category_of(name):
+    """The declared category of a registered system, or None.
+
+    Read off the class rather than matched on the name -- a guard that
+    hardcodes "good" stops working the moment a second reference exists, and
+    silently treats it as a system under test.
+    """
+    s = SYSTEMS[name]
+    return getattr(s, "CATEGORY", None)
+
+
+def categories():
+    """{category: [system names]}. The union check's derived side."""
+    out = {}
+    for n in SYSTEMS:
+        out.setdefault(category_of(n), []).append(n)
+    return {k: sorted(v) for k, v in sorted(out.items(), key=str)}
