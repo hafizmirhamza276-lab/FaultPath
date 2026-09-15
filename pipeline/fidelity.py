@@ -37,6 +37,78 @@ FACT_KINDS = ("measurement", "branch", "cause", "step_procedure",
 # current behaviour rather than asserting an aspiration.
 GATED_KINDS = ("measurement", "branch")
 
+
+# ------------------------------------------------- page containment bounds
+#
+# THE INVARIANT IS "a fact's provenance points where that fact is actually
+# printed." The page-span rule was an IMPLEMENTATION of that, exact only while
+# every enumerated kind came from a code's detail pages. Titles are the first
+# kind where the two come apart: 173 of 174 are printed in the shared
+# failure-code index table, outside every code's span by construction, and the
+# span rule failed all 173 while the provenance was right.
+#
+# That is the invariant being over-specific, not a gate being relaxed. Same
+# shape as `len(qa) == 1330` and the unresolved-facts total: each pinned
+# something broader than it meant, because at the time nothing distinguished
+# the two. This is the third instance.
+#
+# The boundary is DERIVED PER KIND rather than branched on by name, and a kind
+# with no rule FAILS naming itself. Never default an unknown kind to
+# permissive -- one check that derives its boundary cannot develop the hole two
+# checks that do not know about each other would.
+
+def code_table_pages():
+    """The pdf page range parse_code_table actually reads.
+
+    Taken from the parser's own signature defaults, not a literal. A constant
+    copied here would drift the first time the table moves, and a containment
+    rule that disagrees with the parser it is checking is worse than none.
+    """
+    import inspect
+    from pipeline.extract_golden import parse_code_table
+    sig = inspect.signature(parse_code_table).parameters
+    return (sig["start"].default, sig["end"].default)
+
+
+def _bounds_printed_with_the_record(rec):
+    """Facts printed on the record's own pages: everything read from a detail
+    or symptom page."""
+    lo, hi = rec["pdf_pages"]
+    return [(lo, hi)]
+
+
+def _bounds_title(rec):
+    """A Section 40 title is printed in the index table -- or, for the one code
+    absent from it, on its own detail page. Both are legitimate, and which one
+    applies is recorded per record by title_provenance being set or None."""
+    lo, hi = rec["pdf_pages"]
+    return [code_table_pages(), (lo, hi)]
+
+
+CONTAINMENT_BOUNDS = {
+    "measurement": _bounds_printed_with_the_record,
+    "cause": _bounds_printed_with_the_record,
+    "branch": _bounds_printed_with_the_record,
+    "step_procedure": _bounds_printed_with_the_record,
+    "remedy": _bounds_printed_with_the_record,
+    "symptom_title": _bounds_printed_with_the_record,
+    "title": _bounds_title,
+}
+
+
+def containment_ok(kind, rec, pdf_page):
+    """(ok, reason). An unknown kind is NOT ok -- it names itself and fails."""
+    rule = CONTAINMENT_BOUNDS.get(kind)
+    if rule is None:
+        return False, f"no containment rule for kind {kind!r}"
+    if pdf_page is None:
+        return False, "no pdf_page in provenance"
+    for lo, hi in rule(rec):
+        if lo <= pdf_page <= hi:
+            return True, ""
+    return False, (f"page {pdf_page} is outside "
+                   f"{rule(rec)} for kind {kind!r}")
+
 # Every section is gated on its own. Section 40 is mature; a new section
 # riding its denominator would be scored on someone else's work.
 SECTIONS = ("section40", "hmode", "smode")
@@ -235,6 +307,26 @@ def enumerate_facts(recs: Dict[str, dict]) -> List[dict]:
     """Every fact with a fact_id, its kind, and the page it claims to be on."""
     out = []
     for code, r in recs.items():
+        # THE TITLE, verified against the page its provenance names.
+        #
+        # c46dded captured title_provenance and MEASURED 174/174 resolution in
+        # a throwaway script. Nothing re-checked it: the assertions added there
+        # compare provenance to provenance, not text to page. Enumerating it
+        # here puts the title through check_facts, which resolves the stored
+        # string against the PDF page -- so an altered title fails rather than
+        # sitting unnoticed.
+        #
+        # `title_provenance or header_provenance` is the rule the resolver
+        # already uses and is right in both branches: title_provenance is None
+        # exactly when the title did not come from the index table, which is
+        # one code (DAF8KB, in_code_table False) whose title IS printed on its
+        # detail page.
+        if (r.get("title") or "").strip():
+            out.append({"fact_id": f"{code}:0:header:0", "kind": "title",
+                        "code": code, "text": r["title"],
+                        "prov": (r.get("title_provenance")
+                                 or r.get("header_provenance") or {}),
+                        "warn": None, "redirect": False})
         for m in r.get("standalone_measurements", []):
             out.append({"fact_id": m["fact_id"], "kind": "measurement",
                         "code": code, "text": m["criteria"],
@@ -330,14 +422,18 @@ def check_facts(recs=None, pages=None) -> dict:
             if entry["resolved"]:
                 k["resolved"] += 1
 
-    # page_containment: a fact must sit inside its own code's page span.
-    # A fact resolving on another code's page is worse than not resolving.
-    outside = []
+    # page_containment: a fact's provenance must point where that fact is
+    # actually printed. The boundary is derived per kind -- see
+    # CONTAINMENT_BOUNDS -- so a fact resolving on a page it cannot have come
+    # from is still caught, while a title printed in the shared index table is
+    # not failed for being outside its code's detail span.
+    outside, outside_why = [], []
     for f in facts:
-        lo, hi = recs[f["code"]]["pdf_pages"]
-        p = f["prov"].get("pdf_page")
-        if p is None or not (lo <= p <= hi):
+        ok, why = containment_ok(f["kind"], recs[f["code"]],
+                                 f["prov"].get("pdf_page"))
+        if not ok:
             outside.append(f["fact_id"])
+            outside_why.append(f"{f['fact_id']} ({f['code']}): {why}")
 
     scored = [r for r in rows if not r["relational"]]
 
@@ -369,6 +465,10 @@ def check_facts(recs=None, pages=None) -> dict:
         "by_section": {f"{s}/{k}": v for (s, k), v in rated(by_sec).items()},
         "page_containment": 1.0 - (len(outside) / total if total else 0.0),
         "page_containment_failures": outside,
+        # The reason, not just the id. A containment failure that says only
+        # "this fact is outside" makes the reader re-derive which boundary it
+        # missed and why.
+        "page_containment_reasons": outside_why[:20],
         "verbatim_integrity": (integrity / resolved) if resolved else 0.0,
         "rows": rows,
     }
@@ -658,7 +758,7 @@ if __name__ == "__main__":
     # to prevent.
     print(f"\n{'kind':16}{'section40':>24}{'hmode':>24}{'smode':>24}")
     for k in ("measurement", "branch", "cause", "step_procedure", "remedy",
-              "symptom_title"):
+              "title", "symptom_title"):
         cells = []
         for s in SECTIONS:
             v = res["by_section"].get(f"{s}/{k}")

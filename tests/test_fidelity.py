@@ -191,6 +191,43 @@ check("a code absent from the index table falls back to the header block",
       == cite_records()[_off[0]]["header_provenance"]["manual_page"],
       f"codes outside the index table: {_off}")
 
+# --------------------------- every enumerated kind has a containment rule
+#
+# The CEILING/NOT_CEILING union principle, applied to page containment. A kind
+# with no boundary rule must FAIL naming itself rather than default to
+# permissive -- which is also why there is ONE containment check deriving its
+# boundary per kind rather than two checks that do not know about each other.
+# Two would let a third kind land under neither and both stay green.
+print("\npage containment: one check, boundary derived per kind")
+
+_enumerated = sorted({f["kind"] for f in fidelity.enumerate_facts(
+    {k: v for k, v in fidelity.load_records().items()})}
+    | {f["kind"] for f in fidelity.enumerate_symptom_facts(
+        fidelity.load_symptom_records())})
+_no_rule = [k for k in _enumerated if k not in fidelity.CONTAINMENT_BOUNDS]
+check("every enumerated fact kind has a containment rule", not _no_rule,
+      f"kinds with no boundary: {_no_rule}")
+check("the index-table range is derived from the parser, not a literal",
+      fidelity.code_table_pages() == (655, 662),
+      f"got {fidelity.code_table_pages()} -- if parse_code_table's range moved, "
+      f"this follows it, which is the point")
+
+# FAULT 3: a kind with no rule fails, naming the kind. Not permissive.
+_ok, _why = fidelity.containment_ok("brand_new_kind", {"pdf_pages": [1, 9]}, 5)
+check("  FAULT 3  a kind with no boundary rule fails, naming it",
+      _ok is False and "brand_new_kind" in _why, f"{_ok} {_why}")
+check("  control  a known kind on a legitimate page passes",
+      fidelity.containment_ok("measurement", {"pdf_pages": [1, 9]}, 5)[0] is True)
+check("  control  a known kind on an illegitimate page fails",
+      fidelity.containment_ok("measurement", {"pdf_pages": [1, 9]}, 50)[0] is False)
+# A title may sit in the index table OR on its own detail page, and nowhere else.
+check("  a title inside the index-table range passes",
+      fidelity.containment_ok("title", {"pdf_pages": [700, 702]}, 656)[0] is True)
+check("  a title on its own detail page passes (DAF8KB's case)",
+      fidelity.containment_ok("title", {"pdf_pages": [700, 702]}, 701)[0] is True)
+check("  a title on neither fails",
+      fidelity.containment_ok("title", {"pdf_pages": [700, 702]}, 900)[0] is False)
+
 print("\nPIPELINE -- fidelity and structure over the full corpus")
 t0 = time.perf_counter()
 from eval.citations import PageText                      # noqa: E402
@@ -318,11 +355,27 @@ def mutate(kind, recs):
         for s in r[target]["steps"]:
             for m in s.get("measurements", []):
                 m["criteria"] = m["criteria"].replace("0.2", "0.9")
+    elif kind == "alter_a_title":
+        # FAULT 1: the title no longer appears on the page its provenance
+        # names. Titles were enumerated precisely so this fails.
+        r["CA131"]["title"] = "Throttle Sensor Extremely High Error"
+    elif kind == "move_title_off_the_index_table":
+        # FAULT 2c: provenance moved outside both legitimate ranges.
+        r["CA131"]["title_provenance"] = dict(
+            r["CA131"]["title_provenance"], pdf_page=900)
+    elif kind == "move_title_to_another_index_page":
+        # FAULT 2b: still inside the index table, wrong page. Containment
+        # cannot see it; text resolution can, because the title is not printed
+        # there.
+        tp = r["CA131"]["title_provenance"]
+        r["CA131"]["title_provenance"] = dict(tp, pdf_page=tp["pdf_page"] + 3)
     return r
 
 
 MUT = ["drop_a_step", "renumber_1_2_4", "remove_a_yes_branch",
-       "shift_fact_page", "corrupt_a_digit", "false_verified"]
+       "shift_fact_page", "corrupt_a_digit", "false_verified",
+       "alter_a_title", "move_title_off_the_index_table",
+       "move_title_to_another_index_page"]
 mut_rows = []
 if fid_res is not None:
     base = fidelity.load_records()
