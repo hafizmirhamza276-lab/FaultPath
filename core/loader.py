@@ -131,6 +131,43 @@ def build_verification(fidelity_result: dict,
     return payload
 
 
+def verification_drift(fidelity_result: dict,
+                       verification: Optional[dict] = None) -> dict:
+    """What is on disk vs what the current fidelity run says. BOTH DERIVED.
+
+    Regenerating the artefact once does not stop it going stale again, and the
+    way it went stale was invisible: load_ground_truth falls through to
+    UNVERIFIED for a missing fact, so a fact absent from the file and a fact
+    genuinely unverified are the same value to every reader. 2,757 facts were
+    reported unverified while the resolver verified them -- see
+    reports/frozen_verification_findings.md.
+
+    So both sides are derived and compared. `missing` is the half that caused
+    the understatement; `ghost` is the other direction, a fact the artefact
+    claims that the run no longer produces; `disagree` is a fact both know
+    about and label differently.
+    """
+    on_disk = (verification if verification is not None
+               else load_verification()).get("facts", {})
+    live = {}
+    for row in fidelity_result.get("rows", []):
+        live[row["fact_id"]] = (RESOLVER_VERIFIED if row.get("resolved") is True
+                                else UNVERIFIED)
+    missing = sorted(set(live) - set(on_disk))
+    ghost = sorted(set(on_disk) - set(live))
+    disagree = sorted(f for f in set(live) & set(on_disk)
+                      # A human_verified stamp is not drift: it is a claim the
+                      # resolver cannot make and must not be overwritten by a
+                      # rerun. Nothing is human_verified yet, so this is a
+                      # guard against a future round, not present behaviour.
+                      if on_disk[f] != live[f] and on_disk[f] != HUMAN_VERIFIED)
+    return {"missing": missing, "ghost": ghost, "disagree": disagree,
+            "n_missing": len(missing), "n_ghost": len(ghost),
+            "n_disagree": len(disagree),
+            "stale": bool(missing or ghost or disagree),
+            "on_disk_total": len(on_disk), "live_total": len(live)}
+
+
 def verification_of(fact_id: str, verification: Optional[dict] = None) -> str:
     ver = verification if verification is not None else load_verification()
     return ver.get("facts", {}).get(fact_id, UNVERIFIED)

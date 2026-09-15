@@ -245,6 +245,66 @@ else:
               g["status"] == "PASS")
     check("page_containment is total", fid_res["page_containment"] >= 1.0)
 
+    # ------------------------------- verification is derived, and staleness fails
+    #
+    # reports/fact_verification.json had no producer and sat frozen at e907cf4
+    # while the corpus tripled. load_ground_truth falls through to UNVERIFIED for a
+    # fact it cannot find, so 2,757 facts the resolver verifies were reported
+    # unverified to API callers. See reports/frozen_verification_findings.md.
+    #
+    # Both sides derived, as with LEVELS/STAGES and CEILING/NOT_CEILING: what is on
+    # disk is compared against what the current run produces. Regenerating once
+    # would not stop it going stale again.
+    print("\nverification is derived from the run, not read as a given")
+
+    check("build_verification has a caller",
+      "loader.build_verification" in open(
+          os.path.join(REPO_ROOT, "core", "orchestrator.py"),
+          encoding="utf-8").read(),
+      "it had none, which is how the artefact froze")
+
+    _drift = loader.verification_drift(fid_res)
+    check("the committed verification artefact matches the current run",
+          not _drift["stale"],
+          f"missing={_drift['n_missing']} ghost={_drift['n_ghost']} "
+          f"disagree={_drift['n_disagree']}\n"
+          "          Run the fidelity stage and commit "
+          "reports/fact_verification.json.")
+
+    _ver = loader.load_verification()
+    check("no fact is human_verified",
+          _ver["counts"].get(loader.HUMAN_VERIFIED, 0) == 0,
+          "nobody has read the pages; claiming otherwise is the self-agreement "
+          "this exercise exists to avoid")
+
+    # PLANTED FAULT: a stale artefact must be detected, not merely regenerated.
+    # An artefact that rebuilds but cannot be shown stale is decoration.
+    _stale = {"facts": {k: v for i, (k, v) in
+                        enumerate(_ver["facts"].items()) if i % 2 == 0}}
+    _d = loader.verification_drift(fid_res, verification=_stale)
+    check("  FAULT  a stale artefact is detected and names the gap",
+          _d["stale"] and _d["n_missing"] > 0
+          and _d["missing"][0] not in _stale["facts"],
+          f"{_d['n_missing']} missing, {_d['n_ghost']} ghost")
+    # ...and the other direction: a fact the artefact claims and the run does
+    # not produce. Dropping a corpus would otherwise look clean.
+    _ghosted = {"facts": dict(_ver["facts"], **{"GHOST:9:step:0": loader.RESOLVER_VERIFIED})}
+    _dg = loader.verification_drift(fid_res, verification=_ghosted)
+    check("  FAULT  a ghost fact in the artefact is detected",
+          _dg["stale"] and _dg["ghost"] == ["GHOST:9:step:0"], str(_dg["ghost"]))
+    # A human_verified stamp must NOT be reported as drift -- the resolver
+    # cannot make that claim and a rerun must not silently downgrade it.
+    _human = {"facts": dict(_ver["facts"])}
+    _first = next(iter(_human["facts"]))
+    _human["facts"][_first] = loader.HUMAN_VERIFIED
+    _dh = loader.verification_drift(fid_res, verification=_human)
+    check("  a human_verified stamp is not treated as drift",
+          _first not in _dh["disagree"],
+          "a rerun must not downgrade a human reading to resolver_verified")
+    check("  control: the real artefact shows no drift",
+          not loader.verification_drift(fid_res)["stale"])
+
+
     reader = structural.PageReader()
     st_res = structural.run(reader=reader)
     for g in structural.gates(st_res):

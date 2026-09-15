@@ -12,6 +12,7 @@ Fake stages are used throughout the module level so the logic is tested without
 a 6-minute pipeline behind it.
 """
 import ast
+import collections
 import glob
 import inspect
 import json
@@ -25,6 +26,7 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, REPO_ROOT)
 
 from core import orchestrator as orch                   # noqa: E402
+from core import loader                                 # noqa: E402
 
 failures, timings = [], {}
 
@@ -370,8 +372,21 @@ check("known_gaps reports human_verified as 0", gaps["human_verified"] == 0,
       str(gaps["human_verified"]))
 check("known_gaps records the round as NOT PERFORMED",
       gaps["human_round"] == "NOT PERFORMED", gaps["human_round"])
-check("known_gaps reports resolver_verified", gaps["resolver_verified"] == 3266,
+# PINNED AND DERIVED, both. The literal catches an unexpected change the way
+# REGRESSION COUNTS does; the derivation catches the literal agreeing with a
+# stale artefact, which is exactly how 3266 survived -- this pin and METRICS.md
+# both read the same frozen file and their agreement read as corroboration.
+check("known_gaps reports resolver_verified", gaps["resolver_verified"] == 6023,
       str(gaps["resolver_verified"]))
+_ver = loader.load_verification()
+check("the verification artefact's own counts agree with its facts",
+      collections.Counter(_ver["facts"].values()) == collections.Counter(_ver["counts"])
+      and _ver["total"] == len(_ver["facts"]),
+      f"counts {_ver['counts']} vs {collections.Counter(_ver['facts'].values())}")
+check("no fact is human_verified",
+      _ver["counts"].get(loader.HUMAN_VERIFIED, 0) == 0,
+      "claiming a human read pages nobody read is the self-agreement this "
+      "exercise exists to avoid")
 check("known_gaps reports the unresolved breakdown",
       gaps["unresolved_facts"].get("KNOWN_LIMITATION") == 504
       and gaps["unresolved_facts"].get("NEEDS_HUMAN_VERIFICATION") == 27
@@ -411,9 +426,15 @@ if pages.available():
     # ...and the stage must not QUIETLY DROP one. Subset comparison alone would
     # pass an s_fidelity that forgot half the gates, which is the failure this
     # cross-check exists for.
-    check("the stage adds the guard gate and drops none of the module's",
-          set(og) == set(dg) | {"fidelity_test_exit_zero"},
-          f"extra={sorted(set(og) - set(dg))} missing={sorted(set(dg) - set(og))}")
+    # The stage's own gates are NAMED, not counted. A fourth added later and
+    # not listed here fails, which is the point -- an inequality that merely
+    # allowed "more than the module's" would let a gate appear unnoticed.
+    STAGE_ONLY_GATES = {"fidelity_test_exit_zero", "verification_not_stale",
+                        "human_verified_still_zero"}
+    check("the stage adds exactly its own gates and drops none of the module's",
+          set(og) == set(dg) | STAGE_ONLY_GATES,
+          f"extra={sorted(set(og) - set(dg) - STAGE_ONLY_GATES)} "
+          f"missing={sorted(set(dg) - set(og))}")
 else:
     print("  SKIP  PDF unavailable; cross-check of fidelity values not run")
 timings["pipeline"] = time.perf_counter() - t0

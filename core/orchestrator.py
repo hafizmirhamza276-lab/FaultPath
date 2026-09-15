@@ -326,13 +326,46 @@ def s_fidelity(ctx) -> dict:
     pages.close()
     ctx["fidelity"] = res
     ctx["unresolved"] = payload
+
+    # VERIFICATION IS DERIVED HERE, not read from disk as a given.
+    #
+    # build_verification had no caller, so reports/fact_verification.json sat
+    # frozen at e907cf4 while the corpus tripled. load_ground_truth falls
+    # through to UNVERIFIED for a fact it cannot find, so 2,757 facts the
+    # resolver verifies were reported unverified to API callers -- the agent
+    # understating its own grounding, silently, because a missing key and a
+    # genuinely unverified fact are the same value.
+    # See reports/frozen_verification_findings.md.
+    #
+    # Drift is measured BEFORE the rewrite: afterwards the file agrees with the
+    # run by construction and the check would be vacuous. That ordering is the
+    # whole guard -- a green run must not be able to leave the artefact stale,
+    # and must not be able to hide that it WAS stale either.
+    from core import loader
+    drift = loader.verification_drift(res)
+    ver = loader.build_verification(res)
+    ctx["verification"] = ver
+    ctx["verification_drift"] = drift
+
     gates = [_gate(g["gate"], g["value"], g["op"], g["threshold"], "fidelity")
              for g in fidelity.gates(res)]
+    gates.append(_gate("verification_not_stale", 0 if drift["stale"] else 1,
+                       "==", 1, "fidelity"))
+    # Nobody has read the pages. A rerun that produced a human_verified stamp
+    # would mean the resolver had been allowed to claim one, which is the
+    # self-agreement this whole exercise exists to avoid.
+    gates.append(_gate("human_verified_still_zero",
+                       ver["counts"].get(loader.HUMAN_VERIFIED, 0), "==", 0,
+                       "fidelity"))
     g = _script("tests/test_fidelity.py")
     gates.append(_gate("fidelity_test_exit_zero", g["returncode"], "==", 0,
                        "fidelity"))
     return {"detail": {"by_kind": {k: v["rate"] for k, v in res["by_kind"].items()},
                        "unresolved": payload["by_classification"],
+                       "verification": ver["counts"],
+                       "verification_drift": {k: drift[k] for k in
+                                              ("n_missing", "n_ghost",
+                                               "n_disagree", "stale")},
                        "guard": g},
             "gates": gates}
 

@@ -252,29 +252,58 @@ The full source-document audit lives in `README.md` (21 findings: 6 high, 8
 medium, 5 low, 2 informational). The items that directly bound what these
 metrics can tell you:
 
-1. **Ground truth covers Section 40 failure codes only** — 174 codes. H-Mode and
-   S-Mode symptom trees are not extracted, so symptom-entry queries are
-   unmeasured.
+1. **Provenance is verified at PAGE granularity, never at row granularity.**
+   Every fact records `{manual_page, pdf_page, table_index, row_index}`, but
+   `row_index` and `table_index` are **recorded by every kind and checked by
+   nothing.** Both checks that could see them are page-granular: the resolver
+   asks whether the text is on the cited page, and `page_containment` asks
+   whether the page is in a legitimate range. Measured directly — mutating a
+   fact's `row_index` or `table_index` by one is invisible to both:
 
-2. **Diagrams are not evaluated.** 220 pages carry almost no extractable text and
+   ```
+   measurement row_index  +1  -> resolution 1.0000  containment 1.0000  MISSED
+   measurement table_index +1  -> resolution 1.0000                      MISSED
+   title       row_index  +1  -> resolution 1.0000  containment 1.0000  MISSED
+   ```
+
+   A wrong row on the *right* page therefore passes. Moving a fact to a
+   different page is caught (resolution drops), and moving it outside its
+   kind's legitimate range is caught (`page_containment` drops) — it is only
+   the same-page case that is open.
+
+   This is a property of the provenance schema, not of any one kind; titles
+   did not introduce it, enumerating them is what prompted the measurement.
+   Closing it would require **independent re-derivation from the PDF at check
+   time** — re-reading the table and confirming the row, the way
+   `pipeline/structural.py` re-derives step structure rather than trusting the
+   extractor. That is a separate decision, not yet taken.
+
+2. **Ground truth covers Section 40 and the symptom trees** — 174 failure codes
+   plus 57 H-Mode and S-Mode trees. It does not cover Testing and Adjusting,
+   which is where several things a technician asks about actually live: there
+   is no leak tree, no air-conditioner tree and no horn tree, and
+   `knowledge/symptom_unmapped.tsv` records 14 such phrasings rather than
+   forcing them to the nearest match.
+
+3. **Diagrams are not evaluated.** 220 pages carry almost no extractable text and
    103 of those are dense vector schematics. Any answer depending on reading a
    diagram is outside what this harness measures.
 
-3. **`DR31KX` has no parsable steps** — its layout matches none of the three
+4. **`DR31KX` has no parsable steps** — its layout matches none of the three
    table formats in Section 40. Excluded from step-based metrics.
 
-4. **27 steps are machine-repaired, not verified.** These carry
+5. **27 steps are machine-repaired, not verified.** These carry
    `extraction_warning: column_split_recovered` and should be checked by eye
    before being treated as ground truth.
 
-5. **Four source-document conflicts remain unresolved** — `F@BBZL`'s action
+6. **Four source-document conflicts remain unresolved** — `F@BBZL`'s action
    level disagrees between the summary table and its detail page, and `CA234`,
    `DKR2MA`, `DR31KX` have a level in one source only. `D8ARKR` references
    `CA445`, which does not exist in this manual. These are defects in the manual,
    not extraction errors; resolve with Komatsu before treating either value as
    authoritative.
 
-6. **Single model, single manual.** Every number here describes PC200-10M0
+7. **Single model, single manual.** Every number here describes PC200-10M0
    behaviour. Adding a second manual requires regenerating the golden set and
    re-baselining, because cross-model confusion is a failure mode that cannot
    appear in a single-model test set.
@@ -289,9 +318,23 @@ claim.
 
 | status | facts | what it means |
 |---|---:|---|
-| `resolver_verified` | 3,266 | text found on the cited PDF page by `eval/citations.py` |
+| `resolver_verified` | 6,023 | text found on the cited PDF page by `eval/citations.py` |
 | `human_verified` | **0** | a person read the page — **never performed** |
-| `unverified` | 39 | 12 known limitations + 27 machine-repaired causes |
+| `unverified` | 531 | 504 known limitations + 27 machine-repaired causes |
+
+**These are DERIVED every run, not maintained here.** The fidelity stage calls
+`loader.build_verification()` on its own result and gates on the artefact
+matching it, so the numbers above are a snapshot of a computed value rather
+than a figure anyone keeps up to date.
+
+They were 3,266 / 39 until `1cdf075`, because
+`reports/fact_verification.json` had no producer and had not been rebuilt since
+symptom trees existed. `load_ground_truth` falls through to `unverified` for a
+fact it cannot find, so **2,757 facts the resolver verifies were reported
+`unverified` to API callers** — the system understating its own grounding. The
+pin here and the one in `tests/test_orchestrator.py` both read that same frozen
+file, so they agreed with each other and the agreement read as corroboration.
+See `reports/frozen_verification_findings.md`.
 
 **The human round was built and not run.** `numeric_exactness`,
 `fabricated_values` and `citation_accuracy` all rest on facts that resolve
