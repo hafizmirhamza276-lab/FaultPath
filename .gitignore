@@ -53,3 +53,16 @@ reports/transcription/crops/*.png
 
 # session-hook artefacts, not project data
 .ai/
+
+# Meeting media and transcripts. Not project data, and not this repo's to hold:
+# the .mp4 alone is ~168 MB and sits in the repo root, one `git add -A` from
+# being permanent in history. The files are deliberately NOT deleted -- they
+# belong to whoever put them here. This only makes them un-addable.
+#
+# Not hypothetical: PROJECT_STATE.md entered the repo in 102600a exactly this
+# way, swept in by a blanket add on an unrelated commit.
+*.mp4
+*.mp3
+meeting_notes.md
+meeting_transcript.*
+transcribe_meeting.py
