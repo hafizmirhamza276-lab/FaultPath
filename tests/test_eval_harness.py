@@ -139,6 +139,119 @@ print(f"    agent/holdout.py {len(_code_hold)} codes | "
       f"symptom_heldout.json sealed/contaminated phrasings -- three units")
 
 
+# ================================ 1c. refusal detection, both languages
+#
+# _looks_refused matched ENGLISH ONLY, and the model refuses in Roman Urdu.
+# refusal_correctness read 1.0000 -> 0.8000 and that was the DETECTOR missing
+# 2 of 5, not the model failing. It was latent until richer context shifted the
+# model's language -- a check that agreed with reality by luck.
+#
+# The fixture is the guard: the next language shift fails a test instead of
+# quietly lowering a gate. Two of these are the ACTUAL answers from the run
+# that exposed it.
+print("\nrefusal detection: derived, and asserted in both languages")
+from eval.model_system import _looks_refused                # noqa: E402
+
+_ADV = {"question": "Failure code D9XQKR aaya hai PC200-10M0 par.",
+        "source_code": None, "expected": {}}
+_ANS = {"question": "CA451 ke liye value?", "source_code": "CA451",
+        "expected": {"criteria": "Max. 1 ohm"},
+        "must_contain_verbatim": ["Max. 1 ohm"]}
+_BRANCH = {"question": "F@BBZL step 1 ka result NO aaya.",
+           "source_code": "F@BBZL",
+           "expected": {"outcome": "Wiring harness or connector is defective."},
+           "must_contain": ["Wiring harness or connector is defective."]}
+
+REFUSAL_FIXTURE = [
+    # (case, text, is_refusal, note)
+    (_ADV, "I am sorry, but I cannot find failure code D9XQKR in the "
+           "provided manual extracts.", True, "english, first person"),
+    (_ADV, "Aapke dwara poocha gaya failure code \"D9XQKR\" ke diye gaye "
+           "manual extracts mein nahi milta. Main sirf manual mein diye gaye "
+           "codes par jawab de sakta hoon.", True,
+     "REAL ANSWER from the run: urdu, negation and first person in "
+     "DIFFERENT sentences"),
+    (_ADV, "Main aapki madad nahi kar sakta, kyunki failure code CA999 "
+           "manual extracts mein nahi milta.", True,
+     "REAL ANSWER from the run: urdu, first person"),
+    (_ADV, "Yeh failure code D9XQKR manual mein nahi hai.", True,
+     "urdu, entity negated, no first person"),
+    (_ANS, "Standard value: Max. 1 ohm (page 40-122).", False,
+     "a plain answer is not a refusal"),
+    (_BRANCH, "Step 1 ka result NO aaya: Wiring harness or connector is "
+              "defective.", False,
+     "NO is a BRANCH LABEL in this corpus -- negation alone flagged 30% of "
+     "answerable cases on it"),
+    (_ANS, "Manual ke mutabiq yeh value nahi badalti: Max. 1 ohm.", False,
+     "urdu negation inside a delivered answer must not read as refusal"),
+]
+_bad = []
+for _case, _text, _want, _note in REFUSAL_FIXTURE:
+    got = _looks_refused(_case, _text)
+    if got != _want:
+        _bad.append(f"{_note}: expected {_want}, got {got}")
+check(f"refusal fixture: {len(REFUSAL_FIXTURE)} texts, both languages",
+      not _bad, "\n          ".join(_bad))
+check("  the fixture contains both languages in both directions",
+      any("nahi" in t for _, t, w, _ in REFUSAL_FIXTURE if w)
+      and any("nahi" in t for _, t, w, _ in REFUSAL_FIXTURE if not w)
+      and any("cannot" in t for _, t, w, _ in REFUSAL_FIXTURE if w))
+
+# THE STATED BOUNDARY. A refusal whose subject is neither the speaker nor the
+# named entity -- a bare demonstrative -- is NOT detected, in either language.
+# Extending the subject class to demonstratives was measured on the 1,511
+# cached answers: it caught no additional refusal (5/5 either way) and raised
+# answerable false positives 3.85% -> 4.58%. Rejected on that evidence.
+#
+# These are asserted as MISSES so the limit is a fact in the suite rather than
+# a sentence in a docstring. If one starts passing, that is an improvement --
+# move it up into REFUSAL_FIXTURE rather than deleting the assertion.
+KNOWN_MISSES = [
+    (_ADV, "That code does not appear in this manual.",
+     "english, bare demonstrative subject"),
+    (_ADV, "Yeh manual mein maujood nahi hai.",
+     "urdu, bare demonstrative subject"),
+]
+_wrong = [n for c, t, n in KNOWN_MISSES if _looks_refused(c, t)]
+check(f"the {len(KNOWN_MISSES)} documented misses are still missed, not claimed",
+      not _wrong, f"now detected (good -- promote them): {_wrong}")
+
+# THE CACHE MUST NOT FREEZE A DERIVED FIELD.
+# Fixing the detector changed nothing at first: every cache HIT returned the
+# stored `refused` verdict, so the repaired detector never ran on 1,511 of
+# 1,511 answers. Cache the EVIDENCE (the model's text), derive the JUDGEMENT.
+# Asserted on a real hit rather than on the shape of the code.
+from eval import model_system as _ms                         # noqa: E402
+
+
+class _NoClient:
+    """Any call to this is the bug: a cache HIT must reach no network."""
+
+    def deployment(self):
+        return "stub"
+
+    def complete(self, *a, **k):
+        raise AssertionError("cache hit called the model")
+
+
+_urdu_refusal = REFUSAL_FIXTURE[1][1]
+_cache = _ms.ResponseCache(path=os.path.join(tempfile.mkdtemp(), "c.jsonl"))
+_sys = _ms.ModelSystem({}, client=_NoClient(), cache=_cache)
+_ctx = [{"id": "chunk-1", "text": "irrelevant"}]
+# POISON IT exactly the way the old code would have: the stored verdict is the
+# English-only detector's, i.e. wrong.
+_key = _ms.cache_key(_ADV["id"] if "id" in _ADV else "fixture-adv",
+                     _ms.build_prompt(_ADV, _ctx), "stub", ["chunk-1"])
+_cache.put(_key, {"answer": _urdu_refusal, "refused": False, "citations": []},
+           {"case_id": "fixture-adv"})
+_replayed = _sys.answer(dict(_ADV, id="fixture-adv"), _ctx)
+check("a cache HIT re-derives the verdict instead of replaying the stored one",
+      _replayed["refused"] is True,
+      f"stored refused=False was returned verbatim: got {_replayed['refused']}. "
+      f"This is what made the detector fix invisible on all 1,511 answers.")
+check("  and the hit still reached no network", True)
+
+
 # ==================================================== 2. good/weak separation
 print("\ngood passes every gate, weak fails every gate")
 

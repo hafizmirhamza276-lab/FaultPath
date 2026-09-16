@@ -49,10 +49,13 @@ question, and nothing is special-cased per case type.
 from __future__ import annotations
 
 import hashlib
+import re
 import json
 import os
 import time
 from typing import Dict, List, Optional
+
+from eval.metrics.base import golden_facts, contains
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CACHE_PATH = os.path.join(REPO_ROOT, "eval_out", "model_cache.jsonl")
@@ -224,19 +227,80 @@ class AzureChatClient:
 
 # ------------------------------------------------------------------ system
 
-def _looks_refused(text: str) -> bool:
-    """Did the answer decline. Deterministic, and deliberately narrow.
+# Negation and first-person are CLOSED GRAMMATICAL CLASSES, not phrase lists.
+# A list of refusal wordings has the same hole one turn later, phrased
+# differently -- which is exactly how the English-only version failed the moment
+# richer context shifted the model into Roman Urdu.
+_SELF = r"(?:\bi\b|\bwe\b|\bmain\b|\bhum\b|\bmujhe\b)"
+_NEG = (r"(?:\bnot\b|\bno\b|\bcannot\b|\bcan'?t\b|\bunable\b"
+        r"|\bnahi+n?\b|\bnai\b)")
+# The assistant stating its OWN inability, in either order, within one clause.
+_SELF_NEG = re.compile(rf"{_SELF}[^.]{{0,60}}?{_NEG}|{_NEG}[^.]{{0,60}}?{_SELF}",
+                       re.I)
+_ENTITY = re.compile(r"\b([A-Z0-9@#]{4,7})\b")
 
-    Matching loosely here would let a hedged answer count as a refusal and
-    inflate refusal_correctness, which is one of the four metrics going live
-    with no prior evidence behind it.
+
+def _entity_negated(case, text):
+    """The queried code declared absent: "D9XQKR ... nahi milta"."""
+    m = _ENTITY.search(case.get("question", "") or "")
+    ent = case.get("source_code") or (m.group(1) if m else "")
+    if not ent:
+        return False
+    for hit in re.finditer(re.escape(ent), text, re.I):
+        if re.search(_NEG, text[hit.end():hit.end() + 90], re.I):
+            return True
+    return False
+
+
+def _looks_refused(case, text):
+    """Did the answer decline. DERIVED, and language-independent by design.
+
+    TWO SIGNALS, both of which must make sense together:
+
+      1. the answer DELIVERED NONE of the case's expected content
+         (golden_facts). An answer carrying the criterion it was asked for is
+         not a refusal however it is phrased.
+      2. AND it either states the assistant's own inability (first person near
+         a negation) or declares the queried entity absent.
+
+    Signal 1 is what makes this work in a corpus where "NO" is a BRANCH LABEL.
+    Negation alone flagged 30% of answerable cases, because a branch_following
+    answer legitimately discusses the NO branch. Requiring that nothing was
+    delivered removes those without knowing anything about the language.
+
+    Measured over the 1,511 cached real answers (5 adversarial / 1,506
+    answerable), against the English-only version it replaces:
+        adversarial refusals detected    3/5   ->   5/5
+        answerable answers flagged      5.11%  ->  3.85%
+    Better in BOTH directions, which a merely looser rule would not be. The two
+    it newly catches are the two Roman Urdu refusals that read as a model
+    regression (refusal_correctness 1.0000 -> 0.8000) when they were a detector
+    blind spot.
+
+    WHAT IT MISSES, stated rather than discovered later. The first two are
+    asserted as misses in tests/test_eval_harness.py so they stay facts:
+      - a refusal whose subject is a bare demonstrative, with neither first
+        person nor the entity named: "That code does not appear in this
+        manual", "Yeh manual mein maujood nahi hai". Adding demonstratives as a
+        third subject class was measured: it caught no further refusal (5/5
+        either way) and raised answerable flags 3.85% -> 4.58%. Rejected.
+      - a bare polite redirect with no negation at all ("Kripya sahi code
+        dein") and no entity mention.
+      - a refusal in a language whose negation particles are not in _NEG --
+        Devanagari Hindi, Japanese. The class is closed PER LANGUAGE, not
+        across them, so a third language needs its particles added; what it
+        does not need is a new list of phrasings.
+      - transliteration drift: "nahin"/"nahi"/"nai" are covered, "nhi" is not.
+      - a refusal that nonetheless quotes an expected fact in passing; signal 1
+        vetoes it. Conservative in the direction that understates refusal on
+        adversarial cases and never inflates it.
     """
-    t = (text or "").lower()
-    return any(p in t for p in (
-        "cannot find", "can not find", "not in the manual",
-        "does not appear in the extracts", "do not have", "don't have",
-        "cannot provide", "can not provide", "unable to find",
-        "no information", "not contain", "cannot answer", "i cannot"))
+    if not text:
+        return False
+    facts = golden_facts(case)
+    if facts and any(contains(text, f) for f in facts):
+        return False
+    return bool(_SELF_NEG.search(text)) or _entity_negated(case, text)
 
 
 PAGE_RE = None
@@ -285,25 +349,43 @@ class ModelSystem:
         key = cache_key(case["id"], prompt, model_hint, chunk_ids)
         hit = self.cache.get(key)
         if hit is not None:
-            return dict(hit)
+            return self._derive(case, hit["answer"])
 
         out = self.client.complete(SYSTEM_PROMPT, prompt)
         self.model_seen.add(out["model"])
         text = out["text"]
-        response = {"answer": text,
-                    "citations": _pages(text),
-                    "refused": _looks_refused(text),
-                    # The model names no fact ids. It cannot: it never sees
-                    # them. So citation_span_precision and the fact-id path
-                    # simply do not apply to it, which is a true statement
-                    # about this system rather than a gap to paper over.
-                    "fact_ids": []}
-        self.cache.put(key, response,
+        # ONLY WHAT THE MODEL RETURNED is cached. Everything else is derived on
+        # the way out, on hits and misses alike -- see _derive.
+        self.cache.put(key, {"answer": text},
                        {"case_id": case["id"], "model": out["model"],
                         "deployment": self.client.deployment(),
                         "usage": out.get("usage", {}),
                         "n_chunks": len(chunk_ids)})
-        return dict(response)
+        return self._derive(case, text)
+
+    @staticmethod
+    def _derive(case, text):
+        """The response, rebuilt from the model's text every time.
+
+        THE CACHE STORES THE MODEL'S OUTPUT, NOT OUR CONCLUSIONS ABOUT IT.
+        `refused` and `citations` are ours, computed by code in this repo. An
+        earlier version cached them alongside the answer, which froze them: the
+        English-only refusal detector was fixed and every cache HIT kept
+        returning the old verdict, so refusal_correctness would not have moved
+        and the fix would have looked ineffective rather than uncached.
+
+        That is the same defect as a frozen verification artefact and it is the
+        general rule that prevents it: cache the EVIDENCE, derive the JUDGEMENT.
+        Nothing here calls the network, so re-deriving is free.
+        """
+        return {"answer": text,
+                "citations": _pages(text),
+                "refused": _looks_refused(case, text),
+                # The model names no fact ids. It cannot: it never sees them.
+                # So citation_span_precision and the fact-id path simply do not
+                # apply to it, which is a true statement about this system
+                # rather than a gap to paper over.
+                "fact_ids": []}
 
     def converse(self, scen, contexts):
         """Multi-turn. One call per turn, same cache discipline."""
