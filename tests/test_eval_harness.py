@@ -23,6 +23,7 @@ asserted rather than assumed.
 """
 import ast
 import collections
+import glob
 import json
 import os
 import subprocess
@@ -235,6 +236,88 @@ try:
     check("  the shared detector's own self-test passes", True)
 except AssertionError as exc:
     check("  the shared detector's own self-test passes", False, str(exc))
+
+
+# ==================== 1c2. one definition of "a value", and only one way to ask
+#
+# numbers_in() returns every numeric token, and six metrics read that as "values
+# the answer delivered". The same bug was then found and patched THREE times in
+# isolation -- fabricated_values (pages), injection_resistance (step ordinals),
+# clean_refusal (machine identity) -- because each call site worked the
+# distinction out separately and two got it wrong.
+#
+# eval/values.py is the single definition. This section is the reason a FOURTH
+# site cannot get it wrong quietly: a new direct numbers_in() call inside
+# eval/metrics/ fails here until someone registers it with a reason.
+print("\nvalues: one definition, and a registered exception list")
+from eval import values as _values                            # noqa: E402
+
+try:
+    _values.self_test()
+    check("the value extractor's own self-test passes", True)
+except AssertionError as exc:
+    check("the value extractor's own self-test passes", False, str(exc))
+
+# GROUND TRUTH IS THE POSITIVE CONTROL. If the identifier mask were too greedy
+# it would eat real criteria, and this is what would notice.
+_crits = [m["criteria"]
+          for r in records.values()
+          for m in ((r.get("standalone_measurements") or [])
+                    + [x for s in (r.get("steps") or [])
+                       for x in (s.get("measurements") or [])])
+          if m.get("criteria")]
+# Scoped by derivation, not by a carve-out list: a criterion with no digit
+# cannot yield a value, and some legitimately have none -- the 26 continuity
+# checks in audit finding E5, and two symptom criteria that name a table
+# ("Pressure for each flow setting", HM17) instead of a number. Everything that
+# DOES contain a digit must survive the mask, which is the property under test.
+_numeric_crits = [c for c in _crits if any(ch.isdigit() for ch in c)]
+_no_value = [c for c in _numeric_crits if not _values.actionable_values(c)]
+check(f"all {len(_numeric_crits)} golden criteria containing a digit still "
+      f"yield a value", not _no_value,
+      f"the identifier mask ate {len(_no_value)}: {_no_value[:3]}")
+print(f"    {len(_crits) - len(_numeric_crits)} criteria carry no digit at all "
+      f"(continuity checks and 2 symptom criteria naming a table)")
+
+_idents = ["PC200-10M0", "Manual: SEN06867-13", "Page: 40-241, 40-242",
+           "Step 1: Wiring harness and connector.", "S/N 700001", "CA451"]
+_leaky = [i for i in _idents if _values.actionable_values(i)]
+check(f"none of the {len(_idents)} identifier shapes reads as a value",
+      not _leaky, f"still counted as values: {_leaky}")
+
+# THE REGISTERED EXCEPTIONS. Everything else must go through eval/values.py.
+NUMBERS_IN_ALLOWED = {
+    # file                      function         why this one is NOT a value question
+    ("generation.py", "_atoms"): "grounding asks which ATOMS need support, and a "
+                                 "page or a code IS a claim that needs it -- a "
+                                 "different question from 'did it state a value'",
+}
+_direct = []
+for _path in sorted(glob.glob(os.path.join(REPO_ROOT, "eval", "metrics", "*.py"))):
+    _name = os.path.basename(_path)
+    if _name == "base.py":
+        continue                      # base.py DEFINES numbers_in
+    _tree = ast.parse(open(_path, encoding="utf-8").read())
+    for _fn in ast.walk(_tree):
+        if not isinstance(_fn, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            continue
+        for _n in ast.walk(_fn):
+            if (isinstance(_n, ast.Call)
+                    and getattr(_n.func, "id", "") in ("numbers_in",
+                                                       "numbers_in_record")
+                    and (_name, _fn.name) not in NUMBERS_IN_ALLOWED):
+                _direct.append(f"{_name}:{_fn.name} line {_n.lineno}")
+check("no unregistered numbers_in() call remains in eval/metrics/",
+      not _direct,
+      f"{_direct} -- ask eval/values.py instead, or register it with a reason")
+
+# SELF-TEST: the enforcement must fail on a planted call, or it is decoration.
+_planted = ast.parse("def f():\n    return numbers_in(x)\n")
+_hits = [n for fn in ast.walk(_planted)
+         if isinstance(fn, ast.FunctionDef)
+         for n in ast.walk(fn)
+         if isinstance(n, ast.Call) and getattr(n.func, "id", "") == "numbers_in"]
+check("  enforcement self-test: a planted direct call is detected", bool(_hits))
 
 
 # ============================ 1d. injection compliance, derived not listed

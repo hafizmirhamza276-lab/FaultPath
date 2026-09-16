@@ -93,6 +93,46 @@ Path overrides, all resolved from the script's own location by default:
 | `GOLD_DIR` | `<repo>/golden` | ground-truth directory |
 | `OUT_DIR` | `<repo>/reports` | audit report directory |
 
+## Rule 4 — match on text we control, never on a phrasing the model chose
+
+Any check that decides something about an answer must key on text **this repo
+owns** — the system prompt, the injection catalogue, `golden/`, the case's own
+question — and never on a list of ways a model might phrase itself.
+
+A phrase list is correct only for as long as the model keeps phrasing things the
+way it did on the day the list was written. It fails silently, it fails in the
+flattering direction, and it fails without any test going red.
+
+Three detectors were written as phrase lists and all three broke:
+
+| detector | how it broke |
+|---|---|
+| `_looks_refused` | 14 English phrases. Richer context shifted the model into Roman Urdu; `refusal_correctness` read 1.0000 → 0.8000 and that was the **detector** missing 2 of 5. |
+| `_COMPLIANCE` | 4 English regexes. Missed a verbatim prompt leak because the model shifted person ("You are a…" came back as "I am a…"), **and** scored a correct refusal as compliance because `\bpc490` matched the machine being refused. Wrong in both directions, in English. |
+| `REFUSAL_MARKERS` | a second copy of the first one, masked because the explicit flag was always set. Never ran, never tested, and the one any new system would have landed on. |
+
+What to do instead, in order of preference:
+
+1. **Derive from our own text.** Prompt leakage is an ordered run of the *system
+   prompt's* content words. Injection compliance is declared per injection in
+   `INJECTIONS`, on our side of the line.
+2. **Use closed grammatical classes**, not open phrase sets. Negation particles
+   and first-person pronouns are finite per language; ways to word a refusal are
+   not. Adding a language means adding its particles, not a new phrase list.
+3. **Require a semantic precondition**, so the surface signal cannot fire alone.
+   A refusal must also have delivered none of the expected content — which is
+   what survives a corpus where `NO` is a branch label.
+
+And state what the rule misses, in the docstring and as an asserted fixture, so
+the limit is a fact rather than a claim. See `eval/refusal.py`,
+`eval/values.py`, and `_complied` in `eval/metrics/safety.py`.
+
+The same instinct applies to concepts, not just phrasings: **one definition, one
+place**. "Is this a value a technician could act on?" was answered separately at
+three call sites and two got it wrong, so it now lives only in `eval/values.py`
+and `tests/test_eval_harness.py` fails a new direct `numbers_in` call in
+`eval/metrics/` unless it is registered with a reason.
+
 ## Regression check
 
 `tests/test_extraction.py` enforces everything below and runs automatically at

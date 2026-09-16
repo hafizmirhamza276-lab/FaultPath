@@ -22,6 +22,7 @@ atoms are not scored either way rather than counted as free passes.
 import re
 import json
 
+from eval.values import (actionable_values, asserted_values, values_in_record)
 from .base import (Metric, normalise, contains, numbers_in, numbers_in_record,
                    sentences, golden_facts, is_adversarial)
 
@@ -55,37 +56,18 @@ def _atoms(text):
                                     if any(ch.isdigit() for ch in c)}
 
 
-PAGE_TOKEN = re.compile(r"\b\d{2}-\d{1,4}\b")
-
-
-def claim_text(answer):
-    """The answer with its PROVENANCE METADATA removed.
-
-    fabricated_values exists to catch invented VALUES. A page number is not a
-    value -- it is provenance, and whether provenance is correct is already
-    measured three times over by citation_accuracy, citation_resolvability and
-    citation_span_precision. Scoring it here as well conflates citing the wrong
-    page with inventing a torque spec, which are different failures with
-    different fixes.
-
-    STRIPPED BY SHAPE, NOT BY MARKER. The answer format separates claim from
-    citation only BY CONVENTION: measured over 1,839 page tokens in real model
-    answers, 1,698 sat inside a "Page:" marker and 141 did not ("Source: Page
-    40-132"). A marker-based strip would have missed 7.7% of them and the
-    exclusion would have depended on how the model happened to phrase itself.
-
-    Safe because the shape is unambiguous IN THIS CORPUS: zero golden criteria
-    across both sections contain a page-shaped token, so nothing that is
-    actually a value is removed. Asserted in self_test rather than assumed.
-
-    Not scoped to "pages that exist": that would pass an invented page which
-    happens to match a real one and fail one that does not, making the verdict
-    turn on coincidence while duplicating citation_accuracy badly.
-
-    numbers_in() splits "40-132" into "40" and "132", which is why an
-    uncited-page problem showed up as two fabricated values apiece.
-    """
-    return PAGE_TOKEN.sub(" ", str(answer or ""))
+# claim_text() / PAGE_TOKEN lived here: the answer with page-shaped tokens
+# stripped, so fabricated_values would stop counting provenance as invented
+# values. It was PATCH ONE of a bug that then reappeared twice more, and it is
+# deleted rather than kept beside the general fix -- two ways to ask "is this a
+# value" is how the second one drifts. eval/values.py masks pages along with
+# machine models, manual ids, serials, step ordinals and the 174 known codes:
+# the same exclusion, stated once and stated wider.
+#
+# The evidence that justified the shape-based strip still holds and is why the
+# mask is shape-based too: measured over 1,839 page tokens in real answers,
+# 1,698 sat inside a "Page:" marker and 141 did not, so a marker-based rule
+# would have missed 7.7% of them.
 
 
 # ------------------------------------------------------------------ exactness
@@ -144,7 +126,7 @@ class FabricatedValues(_GenMetric):
         self.records = records
 
     def _allowed(self, case):
-        allowed = set(numbers_in(case.get("question", "")))
+        allowed = actionable_values(case.get("question", ""))
         # The FILTERS are given to the system, exactly as the question is.
         #
         # A prompt states "Manual: SEN06867-13" because the case says so, and
@@ -157,10 +139,10 @@ class FabricatedValues(_GenMetric):
         # allowed. The original diagnosis -- that refusals are penalised for
         # naming what they refuse -- did not survive checking.
         for v in (case.get("filters") or {}).values():
-            allowed |= set(numbers_in(str(v)))
+            allowed |= actionable_values(str(v))
         rec = self.records.get(case.get("source_code"))
         if rec:
-            allowed |= numbers_in_record(rec)
+            allowed |= values_in_record(rec)
             # step indices are legitimate even when phrased as "step 3 of 7"
             allowed |= {str(s["step"]) for s in rec.get("steps", [])}
             allowed |= {str(len(rec.get("steps", [])))}
@@ -168,7 +150,7 @@ class FabricatedValues(_GenMetric):
 
     def compute(self, case, result):
         allowed = self._allowed(case)
-        found = numbers_in(claim_text(result.get("answer", "")))
+        found = actionable_values(result.get("answer", ""))
         if not found:
             return 0.0
         bad = [n for n in found if n not in allowed]
@@ -177,8 +159,7 @@ class FabricatedValues(_GenMetric):
     def flagged(self, case, result):
         """The actual invented values, for the per-case row."""
         allowed = self._allowed(case)
-        return sorted({n for n in numbers_in(claim_text(result.get("answer", "")))
-                       if n not in allowed})
+        return sorted(actionable_values(result.get("answer", "")) - allowed)
 
     def self_test(self):
         m = FabricatedValues({"X": {"steps": [], "criteria": "Max. 1"}})
@@ -202,8 +183,8 @@ class FabricatedValues(_GenMetric):
                                           "(Page: 40-179, 40-181)"}) == 0.0,             "a refusal citing only pages must not read as fabrication"
         # The shape is provenance in THIS corpus and nothing else: asserted,
         # not assumed, because the exclusion is only safe while that holds.
-        assert claim_text("Max. 1 ohm, 0.2 to 4.6V") == "Max. 1 ohm, 0.2 to 4.6V",             "claim_text must not disturb a real criterion"
-        assert "40-179" not in claim_text("see Page 40-179")
+        assert actionable_values("Max. 1 ohm, 0.2 to 4.6V") == {"1", "0.2", "4.6"},             "a real criterion must survive the identifier mask"
+        assert not actionable_values("see Page 40-179"),             "a page token must not read as a value"
         assert m.compute(filt, {"answer": "CA999 is not in SEN06867-13. "
                                           "Torque to 250 Nm."}) > 0.0,             "a genuinely invented value inside an adversarial case must still fail"
         assert m.compute(case, {"answer": "Max. 7 and 9"}) == 1.0, \
@@ -349,7 +330,7 @@ class Contradiction(_GenMetric):
         # The correct string is absent. If the answer names the measuring point
         # and still emits numbers, it is asserting a different value.
         point = (case.get("expected") or {}).get("point") or ""
-        if point and contains(ans, point) and numbers_in(ans):
+        if point and contains(ans, point) and asserted_values(case, ans):
             return 1.0
         return 0.0
 
