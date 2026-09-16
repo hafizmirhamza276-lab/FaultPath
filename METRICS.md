@@ -236,10 +236,29 @@ Three things, in order of how badly they bite:
 3. **Two runs of one config produce identical numbers**, asserted rather than
    assumed.
 
-`run_weak` is a deliberately bad system: it nudges every number by 10%, cites
-wrong pages, ignores the model filter, and invents procedures for codes that do
-not exist. If it ever passes a gate, the harness has a hole in it and the gate
-is not measuring what it claims to.
+`run_weak` is a deliberately bad system: it reports **a different real criterion
+from the manual**, cites wrong pages, ignores the model filter, and invents
+procedures for codes that do not exist. If it ever passes a gate, the harness
+has a hole in it and the gate is not measuring what it claims to.
+
+> **The floor must fail BY CONSTRUCTION, and until 2026-09-16 it did not.**
+> It used to nudge every number by 10% and round. Every integer from 0 to 4 is
+> a fixed point of `round(n × 1.1)`, and this manual is made of small integers,
+> so **650 of 1,146 golden criteria came back unchanged** — including
+> `Max. 1 Ω` (235×) and `Min. 1 MΩ` (244×). On 57% of `numeric_exactness` cases
+> the deliberately-bad system emitted the **correct** answer and scored 1.0.
+>
+> `weak`'s `numeric_exactness` was **0.4994**; it is now **0.0000**. Every
+> good-vs-weak separation previously recorded on that metric was carried by the
+> 43% of cases where the arithmetic happened to move a number. The gate-level
+> claim ("weak fails 0/7") always held, because it is an aggregate — which is
+> exactly why it did not catch this. A floor does not need to fail on average;
+> it needs to fail on every case.
+>
+> `tests/test_eval_harness.py` now asserts that weak's answer never contains
+> the criterion, over all 1,146 criteria and all three corpus scopes, and
+> carries a self-test showing the old `_nudge` fails that assertion on 650 of
+> them. Full account: `reports/weak_floor_finding.md`.
 
 Re-run this check whenever a metric is added or a threshold is changed. A
 scorecard that cannot fail is not a scorecard.

@@ -110,3 +110,58 @@ system is wrong rather than in a way that advertises itself as synthetic.
 
 Expect baselines to move wherever `weak` appears, and expect good-vs-weak
 separation to **widen**. That is the metric becoming honest, not an improvement.
+
+---
+
+## FIXED — 2026-09-16
+
+`_nudge` is replaced by `wrong_criterion`, which substitutes **a different real
+criterion from the manual**, chosen by hash of the original and walked forward
+until the result does not contain it. Derived from the corpus rather than
+computed from the value, so there is no arithmetic for a fixed point to hide in.
+
+Asserted over all 1,146 criteria and all three corpus scopes — `all` (pool 124),
+`section40` (90), `symptoms` (34): **0 survivors** in each. The guarantee is
+*containment*, not inequality, because `numeric_exactness` asks whether the
+answer contains the verbatim criterion, so `1 Ω` inside `Max. 1 Ω` would pass
+while being a different string.
+
+It does not advertise itself as synthetic: the output is a real measurement
+value from this manual, formatted like the right one. That is how a bad
+retrieval system actually fails — wrong row, full confidence — rather than a
+sentinel a scorer could special-case.
+
+### `weak`, before → after (train split)
+
+| metric | before | after |
+|---|---:|---:|
+| `numeric_exactness` | 0.4994 | **0.0000** |
+| `contradiction` | 0.3858 | 0.8234 |
+| `groundedness` | 0.7904 | 0.5049 |
+| `faithfulness_det` | 0.8317 | 0.6523 |
+| `uncited_claim_rate` | 0.6534 | 0.8276 |
+| `fabricated_values` | 0.0906 | 0.1762 |
+| `content_recall` | 0.3106 | 0.2116 |
+
+All seven move in the direction of *worse*, which is what a floor should be.
+No other Tier-1 metric moved, and `good` is untouched.
+
+### How to read historical run records
+
+Run records in `eval_out/runs/` are append-only and **cannot be rewritten**.
+Any record written before 2026-09-16 with `"system": "weak"` carries a
+`numeric_exactness` near **0.50 that is not a measurement of anything** — it is
+roughly the share of criteria whose numbers the 10% nudge failed to move. Read
+those records as follows:
+
+- `weak`'s `numeric_exactness`, and the six metrics above, are **void** in any
+  pre-fix record. Do not diff them against a post-fix run; `eval/compare.py`
+  will report a large regression that is the fix, not a change in behaviour.
+- Any **good-vs-weak separation** quoted from a pre-fix record understates the
+  true separation, and was computed over a mixed population where 57% of cases
+  had no floor at all.
+- `good` and `model` numbers in those records are **unaffected** — neither
+  system touches `_nudge` — so pre-fix records remain valid for those.
+
+The `git` commit that fixes this is the boundary. Records are identified by
+their `timestamp` and by the `git` block each record already carries.

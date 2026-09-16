@@ -18,7 +18,9 @@ of returning anything else.
 Deterministic: no randomness, seeded or otherwise. WeakSystem's corruptions are
 arithmetic functions of the input, so its failures reproduce exactly.
 """
+import hashlib
 import re
+import unicodedata
 
 from .adapters import Generator
 from .metrics.base import numbers_in
@@ -26,13 +28,71 @@ from .metrics.base import numbers_in
 VAGUE_FOLLOWUP = re.compile(r"thoda|lag raha|shayad|normal hi", re.I)
 
 
-def _nudge(text, factor=1.1):
-    """Move every number by 10%. Deterministic, and enough to fail exactness."""
-    def rep(m):
-        v = float(m.group(0))
-        out = v * factor
-        return f"{out:.1f}" if "." in m.group(0) else str(int(round(out)))
-    return re.sub(r"\d+(?:\.\d+)?", rep, text)
+def corpus_criteria(records):
+    """Every distinct criterion in the corpus, sorted. The pool weak draws from."""
+    out = set()
+    for rec in (records or {}).values():
+        ms = (rec.get("standalone_measurements") or [])
+        ms += [m for st in (rec.get("steps") or [])
+               for m in (st.get("measurements") or [])]
+        for m in ms:
+            c = (m.get("criteria") or "").strip()
+            if c:
+                out.add(c)
+    return sorted(out)
+
+
+def wrong_criterion(text, pool):
+    """A DIFFERENT real criterion from the manual, chosen deterministically.
+
+    THE FLOOR MUST FAIL BY CONSTRUCTION, NOT BY ARITHMETIC LUCK.
+
+    This replaces _nudge(), which moved every number by 10% and rounded, and
+    whose docstring claimed that was "enough to fail exactness". It was not:
+    every integer from 0 to 4 is a fixed point of round(n * 1.1), and this
+    manual is made of small integers. 650 of 1,146 golden criteria came back
+    UNCHANGED -- including Max. 1 Ω (235 times) and Min. 1 MΩ (244) -- so on
+    57% of numeric_exactness cases the deliberately-bad system emitted the
+    correct answer verbatim and scored 1.0. See reports/weak_floor_finding.md.
+
+    A different constant would not fix it. factor=1.3 still maps 1 to 1, and
+    choosing a factor that happens to clear today's corpus is the same defect
+    with a new number.
+
+    So the wrongness is DERIVED rather than computed: take another criterion
+    that actually appears in the manual, chosen by hash of the original and
+    walked forward until it satisfies the guarantee below. Two properties
+    matter and both are asserted over all 1,146 criteria in
+    tests/test_eval_harness.py, not sampled:
+
+      1. the result never CONTAINS the original. Containment, not inequality,
+         is the right guarantee, because numeric_exactness asks whether the
+         answer contains the verbatim criterion -- "1 Ω" inside "Max. 1 Ω"
+         would pass while being a different string.
+      2. a replacement always exists, because the pool holds hundreds of
+         distinct criteria and only those containing the original are barred.
+
+    AND IT DOES NOT ADVERTISE ITSELF. The output is a real measurement value
+    from this manual, formatted exactly like the right one. That is how a bad
+    retrieval system actually fails -- it finds the wrong row and reports its
+    value with full confidence -- rather than emitting a tell-tale sentinel
+    that any scorer could special-case.
+    """
+    original = str(text or "")
+    if not pool:
+        return original
+    norm = _norm(original)
+    start = int(hashlib.sha256(original.encode("utf-8")).hexdigest()[:8], 16)
+    for i in range(len(pool)):
+        cand = pool[(start + i) % len(pool)]
+        if norm and norm not in _norm(cand):
+            return cand
+    return original
+
+
+def _norm(s):
+    """NFC, lowered, whitespace collapsed. Criteria mix Ω U+2126 and U+03A9."""
+    return re.sub(r"\s+", " ", unicodedata.normalize("NFC", str(s))).strip().lower()
 
 
 class _Base(Generator):
@@ -41,6 +101,12 @@ class _Base(Generator):
 
     def _rec(self, case):
         return self.records.get(case.get("source_code"))
+
+    def _pool(self):
+        """The corpus's distinct criteria, built once per system instance."""
+        if getattr(self, "_criteria_pool", None) is None:
+            self._criteria_pool = corpus_criteria(self.records)
+        return self._criteria_pool
 
     def retrieve(self, case, retriever, k):
         """A system is a retriever AND a generator.
@@ -260,7 +326,7 @@ class WeakSystem(_Base):
         exp = case.get("expected") or {}
         if t == "numeric_exactness":
             ans = (f"For {case['source_code']}, at {exp.get('point','')} the "
-                   f"value is {_nudge(str(exp.get('criteria','')))}.")
+                   f"value is {wrong_criterion(str(exp.get('criteria','')), self._pool())}.")
         elif t == "direct_lookup":
             ans = f"{case['source_code']} is a system fault. Check the wiring."
         elif t == "step_ordering":

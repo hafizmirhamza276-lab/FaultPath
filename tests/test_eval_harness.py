@@ -26,6 +26,7 @@ import collections
 import glob
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -236,6 +237,70 @@ try:
     check("  the shared detector's own self-test passes", True)
 except AssertionError as exc:
     check("  the shared detector's own self-test passes", False, str(exc))
+
+
+# ================================= 1b2. the floor must fail BY CONSTRUCTION
+#
+# _nudge() moved every number by 10% and rounded, and its docstring claimed
+# that was "enough to fail exactness". Every integer 0-4 is a fixed point of
+# round(n * 1.1), and this manual is made of small integers: 650 of 1,146
+# golden criteria came back UNCHANGED, so on 57% of numeric_exactness cases
+# THE FLOOR SYSTEM EMITTED THE CORRECT ANSWER and scored 1.0.
+#
+# It went unnoticed because "weak fails every gate" is an AGGREGATE assertion.
+# A floor does not need to fail on average; it needs to fail on every case.
+# That property is asserted here, over ALL 1,146 criteria rather than sampled.
+# See reports/weak_floor_finding.md.
+print("\nthe floor fails by construction, on every criterion in the corpus")
+from eval import synthetic as _syn                          # noqa: E402
+
+_all_crits = [m["criteria"]
+              for r in records.values()
+              for m in ((r.get("standalone_measurements") or [])
+                        + [x for s in (r.get("steps") or [])
+                           for x in (s.get("measurements") or [])])
+              if m.get("criteria")]
+
+# Checked for EVERY corpus scope, because --corpus changes the pool weak draws
+# from and the guarantee has to hold for each.
+_survivors = {}
+for _scope in ("all", "section40", "symptoms"):
+    _pool = _syn.corpus_criteria(run_eval.load_records(_scope))
+    _survivors[_scope] = [c for c in _all_crits
+                          if _syn._norm(c) in _syn._norm(
+                              _syn.wrong_criterion(c, _pool))]
+_worst = {k: len(v) for k, v in _survivors.items() if v}
+check(f"weak's answer never contains the criterion, over all "
+      f"{len(_all_crits)} criteria x {len(_survivors)} scopes",
+      not _worst,
+      f"criteria the floor still reproduces: {_worst}; "
+      f"e.g. {[v[:2] for v in _survivors.values() if v][:1]}")
+
+# CONTAINMENT, not inequality: numeric_exactness asks whether the answer
+# CONTAINS the verbatim criterion, so "1 Ω" inside "Max. 1 Ω" would pass while
+# being a different string. Asserted so the weaker guarantee cannot be
+# substituted later.
+_pool_all = _syn.corpus_criteria(records)
+check("  the guarantee is containment, not merely inequality",
+      _syn._norm("1 Ω") in _syn._norm("Max. 1 Ω"),
+      "if this stops holding the containment rule has lost its point")
+check("  it is deterministic",
+      all(_syn.wrong_criterion(c, _pool_all) == _syn.wrong_criterion(c, _pool_all)
+          for c in _all_crits[:200]))
+# AND IT MUST NOT ADVERTISE ITSELF. A floor that emits a sentinel is one a
+# scorer could special-case; this one emits a real value from this manual.
+check("  and weak's wrong values are real criteria from the manual",
+      all(_syn.wrong_criterion(c, _pool_all) in _pool_all
+          for c in _all_crits[:200]))
+
+# SELF-TEST: the old behaviour must fail this check, or it is not measuring.
+_old_nudge = lambda t: re.sub(r"\d+(?:\.\d+)?",
+                              lambda m: str(int(round(float(m.group(0)) * 1.1)))
+                              if "." not in m.group(0) else
+                              f"{float(m.group(0)) * 1.1:.1f}", t)
+_old_survivors = [c for c in _all_crits if _syn._norm(c) in _syn._norm(_old_nudge(c))]
+check(f"floor self-test: the replaced _nudge fails this check ({len(_old_survivors)} "
+      f"of {len(_all_crits)} survive it)", bool(_old_survivors))
 
 
 # ==================== 1c2. one definition of "a value", and only one way to ask
