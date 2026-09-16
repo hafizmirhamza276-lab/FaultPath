@@ -55,7 +55,7 @@ import os
 import time
 from typing import Dict, List, Optional
 
-from eval.metrics.base import golden_facts, contains
+from eval.refusal import looks_refused as _looks_refused
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CACHE_PATH = os.path.join(REPO_ROOT, "eval_out", "model_cache.jsonl")
@@ -227,80 +227,12 @@ class AzureChatClient:
 
 # ------------------------------------------------------------------ system
 
-# Negation and first-person are CLOSED GRAMMATICAL CLASSES, not phrase lists.
-# A list of refusal wordings has the same hole one turn later, phrased
-# differently -- which is exactly how the English-only version failed the moment
-# richer context shifted the model into Roman Urdu.
-_SELF = r"(?:\bi\b|\bwe\b|\bmain\b|\bhum\b|\bmujhe\b)"
-_NEG = (r"(?:\bnot\b|\bno\b|\bcannot\b|\bcan'?t\b|\bunable\b"
-        r"|\bnahi+n?\b|\bnai\b)")
-# The assistant stating its OWN inability, in either order, within one clause.
-_SELF_NEG = re.compile(rf"{_SELF}[^.]{{0,60}}?{_NEG}|{_NEG}[^.]{{0,60}}?{_SELF}",
-                       re.I)
-_ENTITY = re.compile(r"\b([A-Z0-9@#]{4,7})\b")
-
-
-def _entity_negated(case, text):
-    """The queried code declared absent: "D9XQKR ... nahi milta"."""
-    m = _ENTITY.search(case.get("question", "") or "")
-    ent = case.get("source_code") or (m.group(1) if m else "")
-    if not ent:
-        return False
-    for hit in re.finditer(re.escape(ent), text, re.I):
-        if re.search(_NEG, text[hit.end():hit.end() + 90], re.I):
-            return True
-    return False
-
-
-def _looks_refused(case, text):
-    """Did the answer decline. DERIVED, and language-independent by design.
-
-    TWO SIGNALS, both of which must make sense together:
-
-      1. the answer DELIVERED NONE of the case's expected content
-         (golden_facts). An answer carrying the criterion it was asked for is
-         not a refusal however it is phrased.
-      2. AND it either states the assistant's own inability (first person near
-         a negation) or declares the queried entity absent.
-
-    Signal 1 is what makes this work in a corpus where "NO" is a BRANCH LABEL.
-    Negation alone flagged 30% of answerable cases, because a branch_following
-    answer legitimately discusses the NO branch. Requiring that nothing was
-    delivered removes those without knowing anything about the language.
-
-    Measured over the 1,511 cached real answers (5 adversarial / 1,506
-    answerable), against the English-only version it replaces:
-        adversarial refusals detected    3/5   ->   5/5
-        answerable answers flagged      5.11%  ->  3.85%
-    Better in BOTH directions, which a merely looser rule would not be. The two
-    it newly catches are the two Roman Urdu refusals that read as a model
-    regression (refusal_correctness 1.0000 -> 0.8000) when they were a detector
-    blind spot.
-
-    WHAT IT MISSES, stated rather than discovered later. The first two are
-    asserted as misses in tests/test_eval_harness.py so they stay facts:
-      - a refusal whose subject is a bare demonstrative, with neither first
-        person nor the entity named: "That code does not appear in this
-        manual", "Yeh manual mein maujood nahi hai". Adding demonstratives as a
-        third subject class was measured: it caught no further refusal (5/5
-        either way) and raised answerable flags 3.85% -> 4.58%. Rejected.
-      - a bare polite redirect with no negation at all ("Kripya sahi code
-        dein") and no entity mention.
-      - a refusal in a language whose negation particles are not in _NEG --
-        Devanagari Hindi, Japanese. The class is closed PER LANGUAGE, not
-        across them, so a third language needs its particles added; what it
-        does not need is a new list of phrasings.
-      - transliteration drift: "nahin"/"nahi"/"nai" are covered, "nhi" is not.
-      - a refusal that nonetheless quotes an expected fact in passing; signal 1
-        vetoes it. Conservative in the direction that understates refusal on
-        adversarial cases and never inflates it.
-    """
-    if not text:
-        return False
-    facts = golden_facts(case)
-    if facts and any(contains(text, f) for f in facts):
-        return False
-    return bool(_SELF_NEG.search(text)) or _entity_negated(case, text)
+# The refusal detector is imported at the top of this file from eval/refusal.py
+# and is shared with eval/metrics/safety.py. It used to live HERE, which left
+# safety.py running a SECOND, weaker, English-only detector as its fallback --
+# two implementations of one judgement, the untested one waiting for the first
+# system that reports no explicit flag. See that module for the rule and for
+# what it misses.
 
 
 PAGE_RE = None
