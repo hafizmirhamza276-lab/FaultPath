@@ -198,6 +198,61 @@ FACT_RE = re.compile(r"^[A-Z0-9@#]{4,7}:\d+:(step|meas|branch):\d+$")
 malformed = [f for f in fact_ids if not FACT_RE.match(f)]
 check("every fact id is well formed", not malformed, "; ".join(malformed[:5]))
 
+
+# EVERY FACT ID IS RE-DERIVED FROM POSITION AND COMPARED.
+#
+# Uniqueness and shape were the only checks, plus ONE hand-picked spot. An id
+# that is unique, well formed and pointing at the WRONG FACT passed all three.
+#
+# That matters more here than anywhere else in the repo. eval/citations.py
+# resolves citations BY FACT ID, and the whole provenance claim is that the
+# model names an id and code renders the page -- "what the model does not
+# generate it cannot get wrong". A mismatched id does not fail loudly; it
+# renders a confident, correctly formatted, WRONG citation.
+#
+# The id is defined as a function of position and nothing else, so the stored
+# copy is a derived value and this is the derivation it must match. See
+# reports/stored_derived_inventory.md.
+def derived_fact_ids(rec):
+    """Every fact id this record's structure implies, in the schema's order."""
+    code = rec["code"]
+    out = []
+    for step in rec.get("steps") or []:
+        n = step["step"]
+        out.append((f"{code}:{n}:step:0", step.get("fact_id"), f"step {n}"))
+        for i, m in enumerate(step.get("measurements") or []):
+            out.append((f"{code}:{n}:meas:{i}", m.get("fact_id"),
+                        f"step {n} measurement {i}"))
+        bf = step.get("branch_fact_ids") or {}
+        for i, outcome in enumerate(sorted(bf)):
+            out.append((f"{code}:{n}:branch:{i}", bf[outcome],
+                        f"step {n} branch {outcome}"))
+    for i, m in enumerate(rec.get("standalone_measurements") or []):
+        out.append((f"{code}:0:meas:{i}", m.get("fact_id"),
+                    f"standalone measurement {i}"))
+    return out
+
+
+def fact_id_mismatches(records):
+    return [f"{r['code']} {what}: stored {got!r}, position implies {want!r}"
+            for r in records.values()
+            for want, got, what in derived_fact_ids(r) if got != want]
+
+
+_pairs = [p for r in recs.values() for p in derived_fact_ids(r)]
+_mismatch = fact_id_mismatches(recs)
+check(f"all {len(_pairs)} fact ids match the position they are derived from",
+      not _mismatch, "; ".join(_mismatch[:5]))
+
+# SELF-TEST. This check reports zero on a healthy repo, which is the exact
+# shape audit checks E4 and H2 were in when their zeros were read as clean.
+_planted = json.loads(json.dumps(recs[sorted(recs)[0]]))
+if _planted.get("steps"):
+    _planted["steps"][0]["fact_id"] = f"{_planted['code']}:99:step:0"
+    check("fact id self-test: a mismatched id fails the run",
+          bool(fact_id_mismatches({"x": _planted})),
+          "the check cannot detect an id that points at the wrong fact")
+
 # The record this whole chain of work exists for.
 _ca451 = [s for s in recs["CA451"]["steps"] if s["step"] == 6]
 if _ca451 and _ca451[0]["measurements"]:
