@@ -42,6 +42,8 @@ eval/
 tests/
   test_extraction.py   ground-truth regression guard; runs after extraction
   test_eval_harness.py verifies the harness: good 7/7, weak 0/7
+  test_readme_baselines.py  re-derives the VERIFIED tables in this file and
+                       compares them digit for digit
 METRICS.md             metric definitions and interpretation guide
 
 golden/
@@ -90,9 +92,28 @@ The corpus is **both sections**: 174 failure codes plus the 57 H-Mode and
 S-Mode symptom trees. Scored over the same 1,318 Section 40 retrieval cases in
 both tables, so the two are comparable line by line.
 
-#### `--corpus all` — 231 records (the baseline)
+> **VERIFIED vs HISTORICAL — read this before quoting any number below.**
+>
+> Two kinds of table appear in this README and they carry different weight:
+>
+> | | meaning | checked by |
+> |---|---|---|
+> | ✅ **VERIFIED** | re-derived on every test run and compared digit for digit. If it stops reproducing, the suite fails and names the cell. | `tests/test_readme_baselines.py` |
+> | 🕓 **HISTORICAL** | a measurement taken at a stated commit, against a corpus or case set that has since changed. **Not expected to reproduce.** Kept because the comparison it records was real when made. | nothing — by design |
+>
+> The two Local baseline tables immediately below are VERIFIED. Everything
+> under *What the 57 symptom trees cost* is HISTORICAL.
+>
+> This distinction exists because the sentence it replaces claimed a table
+> reproduced "digit for digit" and nothing checked it. It stopped being true in
+> `9d9b7c1` and stayed in the README for months. An unverifiable claim of
+> exactness is worse than an honest record of what a number was on a given day.
+
+#### ✅ VERIFIED — `--corpus all` — 231 records (the baseline)
 
 Scored over 1,853 retrieval cases from the full 1,865-case qa_set.
+
+<!-- BASELINE corpus=all -->
 
 | | structural | fixed_2000 | fixed_512 |
 |---|---:|---:|---:|
@@ -105,7 +126,9 @@ Scored over 1,853 retrieval cases from the full 1,865-case qa_set.
 | mrr | 0.9869 | 0.9396 | 0.8509 |
 | gates | 7/7 | 7/7 | **6/7** |
 
-#### `--corpus section40` — 174 records
+#### ✅ VERIFIED — `--corpus section40` — 174 records
+
+<!-- BASELINE corpus=section40 -->
 
 | | structural | fixed_2000 | fixed_512 |
 |---|---:|---:|---:|
@@ -131,10 +154,22 @@ doc line true again would be the wrong order of operations.
 What the scope still does is real: it builds the corpus from Section 40 alone.
 What it no longer does is reproduce a historical table.
 
-#### What the 57 symptom trees cost
+**That gap is now closed in the only way that lasts.** The table above is no
+longer trusted to stay true — `tests/test_readme_baselines.py` re-derives every
+cell in it on each suite run and fails naming the cell if one moves. The
+previous claim was accurate on the day it was written and rotted silently; this
+one cannot, because nothing says it is exact except a check that just proved it.
 
-Measured before they were added, by running the evaluation six times over the
-same Section 40 cases with and without them.
+#### 🕓 HISTORICAL — What the 57 symptom trees cost
+
+<!-- HISTORICAL symptom-tree-cost -->
+
+**Not expected to reproduce, and nothing checks it.** Measured at the commit
+that added the trees, over a 1,318-case qa_set that no longer exists — the case
+set is now 1,865. Re-running the same commands today gives different numbers
+for a legitimate reason, and that is not a regression. The comparison below is
+kept because it is the evidence for a decision that was actually made: the
+evaluation run six times over the same Section 40 cases, with and without them.
 
 **Ranking does not move.** On `structural` — the chunking the system uses —
 `ceiling_recall`, `recall@5`, `answer_coverage@5`, `fragmentation_gap@10` and

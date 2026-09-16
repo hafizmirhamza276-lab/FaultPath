@@ -55,7 +55,7 @@ def fake(name, ok=True, skip=None, depends=None, marker=None):
 print("\nMODULE")
 t0 = time.perf_counter()
 
-check("stages are registered", len(orch.STAGES) == 13, str(len(orch.STAGES)))
+check("stages are registered", len(orch.STAGES) == 14, str(len(orch.STAGES)))
 names = [s.name for s in orch.ordered_stages()]
 check("dependency order is topological",
       names.index("extract") < names.index("fidelity") < names.index("qa_set")

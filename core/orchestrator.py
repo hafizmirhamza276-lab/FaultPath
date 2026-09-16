@@ -443,6 +443,21 @@ def s_harness(ctx) -> dict:
         _gate("harness_exit_zero", r["returncode"], "==", 0, "harness")]}
 
 
+def s_readme_baselines(ctx) -> dict:
+    """The README's two baseline tables, re-derived and compared digit for digit.
+
+    Expensive -- six full evaluations, ~625s -- and that is the honest price of
+    a documented table that claims exactness. The claim it replaces was that
+    `--corpus section40` reproduced a table "digit for digit"; it stopped being
+    true when qa_set went from 1,318 to 1,865 cases, and nothing noticed for
+    months because nothing checked it.
+    """
+    r = _script("tests/test_readme_baselines.py")
+    return {"detail": r, "gates": [
+        _gate("readme_baselines_exit_zero", r["returncode"], "==", 0,
+              "readme")]}
+
+
 def s_agent(ctx) -> dict:
     r = _script("tests/test_agent_replay.py")
     return {"detail": r, "gates": [
@@ -517,6 +532,13 @@ STAGES: List[Stage] = [
           inputs=["tests/test_eval_harness.py", "eval", "golden/qa_set.json"],
           outputs=[], gates="good 7/7, weak 0/7, determinism",
           expected_s=290, depends=["qa_set"]),
+    Stage("readme_baselines", s_readme_baselines,
+          inputs=["tests/test_readme_baselines.py", "README.md",
+                  "eval", "golden/qa_set.json"],
+          outputs=[],
+          gates="both anchored baseline tables reproduce cell by cell; the "
+                "historical sections still carry their label",
+          expected_s=625, needs_pdf=True, depends=["qa_set"]),
     Stage("agent", s_agent,
           inputs=["tests/test_agent_replay.py", "agent", "golden/failure_codes"],
           outputs=[], gates="good 7/7, bad 0/7, replay determinism",

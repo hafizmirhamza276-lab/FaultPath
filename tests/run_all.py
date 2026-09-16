@@ -41,6 +41,10 @@ LEVELS = [
     ("symptom-map", "tests/test_symptom_map.py"),
     ("human-verify", "tests/test_human_verify.py"),
     ("harness", "tests/test_eval_harness.py"),
+    # Expensive (~10 min: six full evaluations) and deliberately not optional.
+    # The README table it checks claimed exactness for months after it stopped
+    # reproducing, because nothing ran.
+    ("readme-baselines", "tests/test_readme_baselines.py"),
     ("agent", "tests/test_agent_replay.py"),
     ("module", "tests/test_api_module.py"),
     ("pipeline+e2e", "tests/test_api_e2e.py"),
