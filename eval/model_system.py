@@ -190,6 +190,13 @@ class AzureChatClient:
     def deployment(self) -> str:
         return self._s()["deployment"]
 
+    def api_version(self) -> str:
+        """The api-version actually sent. Recorded so a number stays
+        attributable: a provider can change behaviour under a stable deployment
+        name, and the version is the only thing in the request that says which
+        contract was in force. Never returns key material."""
+        return self._s()["version"]
+
     def complete(self, system: str, user: str, retries: int = 3) -> dict:
         """-> {"text", "model", "usage"}. Raises on repeated failure."""
         import httpx
@@ -332,5 +339,6 @@ class ModelSystem:
         """What produced the numbers. Deployment and model are both recorded."""
         return {"system": self.name, "category": self.CATEGORY,
                 "deployment": self.client.deployment(),
+                "api_version": self.client.api_version(),
                 "model": sorted(self.model_seen) or None,
                 "cache": self.cache.stats()}

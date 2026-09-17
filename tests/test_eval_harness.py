@@ -124,8 +124,19 @@ _forbidden = _sealed_imports & {"run_eval", "synthetic", "adapters", "metrics",
                                 "retrieval", "generation", "compare"}
 check("sealed selection imports nothing that could carry an eval result",
       not _forbidden, f"imports {sorted(_forbidden)}")
+# Scanned over the CODE, with the module docstring removed. A docstring cannot
+# read anything, and the file has to be able to RECORD that it was spent and in
+# which run records -- provenance a later reader needs. Grepping the whole file
+# would force a choice between documenting the measurement and passing the
+# check, which is the wrong trade: the guarantee is about what the selection
+# EXECUTES, not about which words appear in it.
+_sealed_body = _sealed_src.replace(ast.get_docstring(ast.parse(_sealed_src)) or "", "")
 check("sealed selection reads no run record",
-      "eval_out" not in _sealed_src and "runs/" not in _sealed_src)
+      "eval_out" not in _sealed_body and "runs/" not in _sealed_body,
+      "the selection code itself references a run record")
+check("  and the docstring-stripping is real, not a way to pass",
+      len(_sealed_body) < len(_sealed_src) and "def split(" in _sealed_body,
+      "the body scan must still cover the selection code")
 
 # The three holdouts are different things and must not be confused for one
 # another. Asserted by unit: codes, phrasings, case ids.

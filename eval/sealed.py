@@ -25,6 +25,29 @@ This one exists because neither of the others gives a clean unseen set for a
 generative model. The only clean set before it was sealed 46, which measures a
 matcher.
 
+SPENT. DO NOT RE-MEASURE AGAINST THIS SET BELIEVING IT UNSEEN.
+--------------------------------------------------------------
+Measured once, on 2026-09-17, at commit 2e8edb2 ("Require the whole branch
+outcome; gate mid-word truncation at zero"), over good / weak / model. Run
+records:
+
+    eval_out/runs/20260917T111756_SEALED_good.json
+    eval_out/runs/20260917T111830_SEALED_weak.json
+    eval_out/runs/20260917T111903_SEALED_model.json
+
+A holdout is spent the moment a result from it is known, because every
+decision taken afterwards is taken by someone who has seen it. THESE 354 CASES
+ARE NOW IN-SAMPLE. A later score on them is a training number wearing a
+holdout's name, and must not be quoted as unseen.
+
+The split rule below still works and still reads no eval result -- it is kept
+so the boundary stays reproducible and so the contaminated side stays
+identifiable. What is gone is the *unseenness*, and that cannot be restored by
+re-deriving the same ids.
+
+A future clean measurement needs a NEW holdout, selected from data properties
+alone, on cases not in this set. Nothing here is a substitute for that.
+
 THE SELECTION RULE READS NO EVAL RESULT. EVER.
 ----------------------------------------------
 Selection depends on the DATA ONLY -- section, case type, record identity, a
