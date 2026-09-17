@@ -59,6 +59,13 @@ as misses in tests/test_eval_harness.py so the limit stays a fact:
   - a refusal that nonetheless quotes an expected fact in passing; signal 1
     vetoes it. Conservative in the direction that understates refusal on
     adversarial cases and never inflates it.
+  - PARTIAL DELIVERY BELOW ONE UNIT. The veto now fires on any complete unit
+    the manual delimits (see delivered_units), so two of three bullets is no
+    longer "nothing delivered". An answer paraphrasing half of a single
+    bullet still reads as delivering nothing. Measured on the 1,511 non-sealed
+    answers the unit veto costs no missed refusal (5/5 either way) and lowers
+    answerable false positives 3.85% -> 3.65%; better in both directions,
+    which a merely looser veto would not be.
 
 No LLM. Deterministic.
 """
@@ -89,12 +96,42 @@ def entity_negated(case, text):
     return False
 
 
+# The manual's own list delimiter. A branch outcome is printed as bullets:
+#   "• The wiring harness has an open circuit. • Repair or replace the wiring
+#    harness. • Go to “Confirmation of repair”."
+BULLET = re.compile(r"\s*•\s*")
+
+
+def delivered_units(fact):
+    """The units a golden fact decomposes into, AS THE MANUAL DELIMITS THEM.
+
+    NOT A THRESHOLD, AND DELIBERATELY NOT ONE. The veto used to ask whether the
+    answer contained a whole fact string, so an answer giving two of a branch's
+    three bullets counted as delivering NOTHING, the veto never applied, and a
+    negation elsewhere in the sentence flagged it as a refusal. An answer
+    delivering most of the content is not a refusal under any reading -- that is
+    a category error, not a number that needs tuning.
+
+    The fix could have been "60% of the fact", or "at least N characters", and
+    every such constant would have been picked by trying values until the known
+    failures passed. Instead the unit is the one the SOURCE DOCUMENT marks: a
+    bullet is a unit because Komatsu printed it as one. Nothing here was chosen
+    to make a particular case pass.
+
+    A fact with no bullet stays one unit, so this is strictly a relaxation on
+    the 12.9% of facts the manual itself splits, and identical elsewhere.
+    """
+    parts = [p.strip() for p in BULLET.split(fact) if p.strip()]
+    return parts if len(parts) > 1 else [fact]
+
+
 def looks_refused(case, text):
     """Did the answer decline. See the module docstring for the rule."""
     if not text:
         return False
     facts = golden_facts(case)
-    if facts and any(contains(text, f) for f in facts):
+    if facts and any(contains(text, u)
+                     for f in facts for u in delivered_units(f)):
         return False
     return bool(SELF_NEG.search(text)) or entity_negated(case, text)
 

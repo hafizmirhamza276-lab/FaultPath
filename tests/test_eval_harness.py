@@ -303,6 +303,64 @@ check(f"floor self-test: the replaced _nudge fails this check ({len(_old_survivo
       f"of {len(_all_crits)} survive it)", bool(_old_survivors))
 
 
+# ============== 1c3. partial delivery is not a refusal (the nine real answers)
+#
+# The veto asked whether the answer contained a WHOLE golden fact. A branch
+# outcome is printed as three bullets, so an answer giving two of them counted
+# as delivering NOTHING, the veto never applied, and a negation elsewhere in
+# the sentence flagged it as a refusal. A category error, not a threshold.
+#
+# These are the NINE real answers from the adversarial set's first run that
+# scored as over-refusals. Asserting them makes the distinction a fact rather
+# than something remembered -- AND it records what the fix does NOT do: eight
+# of the nine are GENUINE refusals, caused by retrieval not returning the step
+# the question asked about. Only one was the detector's fault. If a future
+# change flips any of the eight, that is a regression in the opposite
+# direction.
+print("\npartial delivery: the nine over_refusal answers, asserted")
+
+PARTIAL_DELIVERY_FIXTURE = [
+    ({"type": "branch_following", "source_code": "602KNX", "question": "Failure code 602KNX, step 2: check ka result NO hai. Manual ke mutabiq aage kya hai?", "expected": {"step": 2, "outcome": "• The hydraulic oil additional filter is defective. • Clean or replace the hydraulic oil additional filter. • Go to “Confirmation of repair”."}, "must_contain": ["• The hydraulic oil additional filter is defective. • Clean or replace the hydraulic oil additional filter. • Go to “Confirmation of repair”."]},
+     "Failure code [602KNX] ke step 2 me agar result NO hai, to manual ke mutabiq:\n\n• The hydraulic oil additional filter is defective.\n• Clean or replace the hydraulic oil additional filter.\n\nSource: Page 40-123",
+     False, "adv520aa5ade: DELIVERED two of three bullets -- the detector's error, and the only one of the nine that was"),
+    ({"type": "branch_following", "source_code": "602KNX", "question": "Failure code 602KNX, step 3: the check result is NO. What does the manual say follows?", "expected": {"step": 3, "outcome": "• The clogging switch for the hydraulic oil additional filter is defective. • Replace the clogging switch for the hydraulic oil additional filter. • Go to “Confirmation of repair”."}, "must_contain": ["• The clogging switch for the hydraulic oil additional filter is defective. • Replace the clogging switch for the hydraulic oil additional filter. • Go to “Confirmation of repair”."]},
+     "I cannot find step 3 or its instructions for failure code 602KNX in the provided extracts. The available information only covers steps 1 and 2.  \n(Page: 40-121, 40-122, 40-123)",
+     True, "adv227c1a911: GENUINE refusal: retrieval did not return the step, so the model correctly declined"),
+    ({"type": "branch_following", "source_code": "602KNX", "question": "Failure code 602KNX, step 4: check ka result NO hai. Manual ke mutabiq aage kya hai?", "expected": {"step": 4, "outcome": "• The wiring harness has an open circuit. • Repair or replace the wiring harness. • Go to “Confirmation of repair”."}, "must_contain": ["• The wiring harness has an open circuit. • Repair or replace the wiring harness. • Go to “Confirmation of repair”."]},
+     "Manual extract mein failure code [602KNX] (Additional Hyd Oil Filter Clogging) ke liye step 4 ka content nahi diya gaya hai. Extract sirf step 1 (Wiring harness and connector) aur step 2 (Hydraulic oil additional filter) tak ki details provide karta hai, lekin step 4 ka procedure ya uske NO result ke baare mein koi jankari nahi milti.\n\nIsliye, main aapki query ka jawab manual extract ki bunyaad par nahi de sakta.  \nSource: Page 40-121, 40-122, 40-123",
+     True, "adv51d00aedc: GENUINE refusal: retrieval did not return the step, so the model correctly declined"),
+    ({"type": "branch_following", "source_code": "602KNX", "question": "Failure code 602KNX, step 5: the check result is NO. What does the manual say follows?", "expected": {"step": 5, "outcome": "• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."}, "must_contain": ["• The pump controller can be defective. • Replace the pump controller. • Go to “Confirmation of repair”."]},
+     "I’m sorry, but I cannot find the information for step 5 of failure code 602KNX in the provided extracts. The available extract for failure code 602KNX only includes details up to step 2 and does not mention step 5 or its outcomes.  \nSource: Page 40-121, 40-122, 40-123",
+     True, "adv5d262ba68: GENUINE refusal: retrieval did not return the step, so the model correctly declined"),
+    ({"type": "branch_following", "source_code": "602KNX", "question": "Failure code 602KNX, step 6: check ka result NO hai. Manual ke mutabiq aage kya hai?", "expected": {"step": 6, "outcome": "The repair is completed."}, "must_contain": ["The repair is completed."]},
+     "Manual extract mein failure code [602KNX] (Additional Hyd Oil Filter Clogging) ke liye step 6 ka zikr nahi hai. Extract sirf step 1 (Wiring harness and connector) aur step 2 (Hydraulic oil additional filter) tak ki tafseeli maloomat deta hai. Step 2 ke liye agar result NO hai, toh manual ke mutabiq:\n\n\"• The hydraulic oil additional filter is defective. • Clean or replace the hydraulic oil additional filter. • Go to “Confirmation of repair”.\"\n\nStep 6 ki maloomat extract mein mojood nahi hai, is liye main jawab nahi de sakta.\n\nSource: Page 40-121, 40-122, 40-123",
+     True, "advf48af44a7: GENUINE refusal: retrieval did not return the step, so the model correctly declined"),
+    ({"type": "branch_following", "source_code": "6AZ0ZG", "question": "Failure code 6AZ0ZG, step 1: the check result is NO. What does the manual say follows?", "expected": {"step": 1, "outcome": "• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."}, "must_contain": ["• A wiring harness or connector is defective. • Repair or replace the defective wiring harness or connector. • Go to “Confirmation of repair”."]},
+     "For failure code [6AZ0ZG] Quick Coupler System Abnormality, step 1 states:\n\nStep 1. Cause: Wiring harness and connector. Procedure: 1. Check the wiring harnesses and connectors. For details, see RELATED INFORMATION TO TROUBLESHOOT, CHECKS BEFORE TROU- BLESHOOTING, Electrical equipment. 2. Are the wiring harnesses and connectors normal?\n\nStep 1 NO: \n\nThe extract does not provide the next action or procedure if the check result is NO. Therefore, I cannot find what the manual says follows after a NO result in step 1.\n\nSource: Page 40-124",
+     True, "advfe215b7c2: GENUINE refusal: retrieval did not return the step, so the model correctly declined"),
+    ({"type": "branch_following", "source_code": "6AZ0ZG", "question": "Failure code 6AZ0ZG, step 2: check ka result NO hai. Manual ke mutabiq aage kya hai?", "expected": {"step": 2, "outcome": "• The quick coupler pressure switch is defective. • Replace the quick coupler pressure switch. • Go to “Confirmation of repair”."}, "must_contain": ["• The quick coupler pressure switch is defective. • Replace the quick coupler pressure switch. • Go to “Confirmation of repair”."]},
+     "Failure code [6AZ0ZG] Quick Coupler System Abnormality ke liye, agar step 2 ka result NO hai, toh aapne poocha hai ki manual ke mutabiq aage kya karna hai. Aapke diye gaye extract mein step 2 ka detail nahi diya gaya hai, sirf step 1 ka YES/NO branch diya gaya hai. Step 2 ka procedure ya uske baad kya karna hai, yeh information extract mein nahi milti.\n\nIsliye, main jawab deta hoon:  \nMain step 2 ka result NO hone par aage kya karna hai, yeh manual extract mein nahi dhoondh pa raha hoon.  \nSource: Page 40-124",
+     True, "adv161a424b1: GENUINE refusal: retrieval did not return the step, so the model correctly declined"),
+    ({"type": "branch_following", "source_code": "6AZ0ZG", "question": "Failure code 6AZ0ZG, step 3: the check result is NO. What does the manual say follows?", "expected": {"step": 3, "outcome": "• The wiring harness has an open circuit. • Repair or replace the wiring harness. • Go to “Confirmation of repair”."}, "must_contain": ["• The wiring harness has an open circuit. • Repair or replace the wiring harness. • Go to “Confirmation of repair”."]},
+     "For failure code [6AZ0ZG] Quick Coupler System Abnormality, step 1 is:\n\nStep 1. Cause: Wiring harness and connector. Procedure: 1. Check the wiring harnesses and connectors. For details, see RELATED INFORMATION TO TROUBLESHOOT, CHECKS BEFORE TROU- BLESHOOTING, Electrical equipment. 2. Are the wiring harnesses and connectors normal?\n\nStep 1 YES: • The wiring harnesses and connectors are normal. • Go to the next inspection item.\nStep 1 NO: \n\nThe extract does not provide the next action for \"NO\" in step 1. Therefore, I cannot find what the manual says follows if the check result is NO.\n\nPage: 40-124",
+     True, "adv088f3fddd: GENUINE refusal: retrieval did not return the step, so the model correctly declined"),
+    ({"type": "branch_following", "source_code": "6AZ0ZG", "question": "Failure code 6AZ0ZG, step 4: check ka result NO hai. Manual ke mutabiq aage kya hai?", "expected": {"step": 4, "outcome": "• The wiring harness has a hot short circuit. • Repair or replace the wiring harness. • Go to “Confirmation of repair”."}, "must_contain": ["• The wiring harness has a hot short circuit. • Repair or replace the wiring harness. • Go to “Confirmation of repair”."]},
+     "Aapke question mein failure code [6AZ0ZG] (Quick Coupler System Abnormality) ka zikr hai, lekin diye gaye extract mein sirf Step 1 ka detail diya gaya hai. Step 4 ya uske baad ka procedure, result \"NO\" par kya karna hai, yeh information extract mein nahi milti.\n\nIs liye, main aapki madad nahi kar sakta hoon kyunki manual extract mein Step 4 ka \"NO\" result ka jawab nahi diya gaya hai.  \nSource: Page 40-124",
+     True, "advc681e30a1: GENUINE refusal: retrieval did not return the step, so the model correctly declined"),
+]
+_bad = []
+for _case, _text, _want, _note in PARTIAL_DELIVERY_FIXTURE:
+    got = _looks_refused(_case, _text)
+    if got != _want:
+        _bad.append(f"{_note}: expected {_want}, got {got}")
+check(f"the {len(PARTIAL_DELIVERY_FIXTURE)} real over_refusal answers score "
+      f"correctly", not _bad, "\n          ".join(_bad))
+check("  1 of the 9 was the detector; 8 were genuine refusals",
+      sum(1 for _, _, w, _n in PARTIAL_DELIVERY_FIXTURE if not w) == 1)
+check("  a fact splits on the manual's own bullet, not on a chosen threshold",
+      _refusal.delivered_units("• A. • B. • C.") == ["A.", "B.", "C."]
+      and _refusal.delivered_units("no bullets here") == ["no bullets here"])
+
 # ==================== 1c2. one definition of "a value", and only one way to ask
 #
 # numbers_in() returns every numeric token, and six metrics read that as "values
