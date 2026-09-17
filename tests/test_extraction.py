@@ -277,6 +277,101 @@ else:
     with open(QA_PATH, encoding="utf-8") as f:
         qa = json.load(f)
 
+    # ---- NO EXPECTATION MAY END MID-WORD ----------------------------------
+    #
+    # eval/build_qa_set.py slices branch outcomes with `outcome[:60]`, so 153
+    # branch_following cases carry a must_contain that is a 60-character PREFIX
+    # of the real outcome, and 134 of those land MID-WORD:
+    #
+    #   qa_set: '• A wiring harness or connector is defective. • Repair or re'
+    #   golden: '• A wiring harness or connector is defective. • Repair or
+    #            replace the defective wiring harness or connector. • Go to
+    #            "Confirmation of repair".'
+    #
+    # golden/ IS INTACT -- this is the test set under-requiring, not the ground
+    # truth being wrong -- so the effect is permissive rather than incorrect: an
+    # answer that stops after 60 characters passes a check the full answer also
+    # passes. It still means "the whole expected answer" is not what is being
+    # required, and nothing was looking.
+    #
+    # DERIVED, not a word list: an expectation is truncated when it is a STRICT
+    # PREFIX of a string in its own golden record and the characters either side
+    # of the cut are both alphanumeric. No heuristic about what a word is.
+    #
+    # PINNED, not gated at zero. The slice is a real defect with a real fix
+    # (widen or remove the cut) and that fix moves qa_set expectations, so it
+    # lands separately. Until then this stops the count GROWING, which is the
+    # property that was missing when the slice was introduced -- it would have
+    # gone 0 -> 153 right here.
+    # Covers BOTH sections. `recs` in this file is the 174 failure codes only,
+    # which would leave the 18 symptom-side truncations unwatched -- the same
+    # shape of blindness the check exists to remove.
+    KNOWN_TRUNCATED = 134
+
+    _all_recs = dict(recs)
+    for _p in glob.glob(os.path.join(GOLD, "symptoms", "*.json")):
+        if os.path.basename(_p) == "index.json":
+            continue
+        with open(_p, encoding="utf-8") as _f:
+            _r = json.load(_f)
+        _all_recs[_r.get("symptom_id") or _r.get("code")] = _r
+
+    def _record_strings(rec):
+        out = set()
+        for st in rec.get("steps") or []:
+            for v in (st.get("branches") or {}).values():
+                out.add(v)
+            for k in ("cause", "procedure", "remedy", "point_to_check"):
+                if st.get(k):
+                    out.add(st[k])
+        return out
+
+    def truncated_expectations(qa_cases, records):
+        bad = []
+        for c in qa_cases:
+            rec = records.get(c.get("source_code"))
+            if not rec:
+                continue
+            pool = _record_strings(rec)
+            for field in ("must_contain", "must_contain_verbatim"):
+                for want in (c.get(field) or []):
+                    if not want or want in pool:
+                        continue
+                    for full in pool:
+                        if not (full.startswith(want) and len(full) > len(want)):
+                            continue
+                        if want[-1].isalnum() and full[len(want)].isalnum():
+                            bad.append((c["id"], c["type"], field, want))
+                        break
+        return bad
+
+    _trunc = truncated_expectations(qa, _all_recs)
+    check(f"expectations ending mid-word held at the known {KNOWN_TRUNCATED}",
+          len(_trunc) == KNOWN_TRUNCATED,
+          f"found {len(_trunc)}; if this GREW a new truncation was introduced "
+          f"-- e.g. {_trunc[:2]}")
+    check("  and none of them is a must_contain_verbatim",
+          not [t for t in _trunc if t[2] == "must_contain_verbatim"],
+          "a verbatim expectation must never be a fragment")
+
+    # SELF-TEST. This reports a fixed number on a healthy repo, which is the
+    # shape E4 and H2 were in when their zeros were read as clean. Plant one
+    # more truncation and require it to be seen.
+    # The cut position is DERIVED -- the first index where both neighbouring
+    # characters are alphanumeric -- rather than a fixed offset that might land
+    # on a space and make the probe vacuously pass.
+    _probe_code = sorted(recs)[0]
+    _probe_src = sorted(_record_strings(recs[_probe_code]), key=len, reverse=True)
+    _cut = next((i for s in _probe_src[:1] for i in range(2, len(s))
+                 if s[i - 1].isalnum() and s[i].isalnum()), None)
+    check("truncation self-test: a planted mid-word expectation is detected",
+          _cut is not None
+          and len(truncated_expectations(
+              [{"id": "planted", "type": "branch_following",
+                "source_code": _probe_code,
+                "must_contain": [_probe_src[0][:_cut]]}], recs)) == 1,
+          "the check cannot see a fragment it was built to see")
+
     # EXPECTED PER (section, type), NOT AS A TOTAL.
     #
     # This replaced `len(qa) == 1330`. That assertion was not wrong -- it was
