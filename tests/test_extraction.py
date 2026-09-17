@@ -279,9 +279,9 @@ else:
 
     # ---- NO EXPECTATION MAY END MID-WORD ----------------------------------
     #
-    # eval/build_qa_set.py slices branch outcomes with `outcome[:60]`, so 153
-    # branch_following cases carry a must_contain that is a 60-character PREFIX
-    # of the real outcome, and 134 of those land MID-WORD:
+    # eval/build_qa_set.py USED TO slice branch outcomes with `outcome[:60]`,
+    # so 153 branch_following cases carried a must_contain that was a
+    # 60-character PREFIX of the real outcome, 134 of them cut MID-WORD:
     #
     #   qa_set: '• A wiring harness or connector is defective. • Repair or re'
     #   golden: '• A wiring harness or connector is defective. • Repair or
@@ -298,15 +298,15 @@ else:
     # PREFIX of a string in its own golden record and the characters either side
     # of the cut are both alphanumeric. No heuristic about what a word is.
     #
-    # PINNED, not gated at zero. The slice is a real defect with a real fix
-    # (widen or remove the cut) and that fix moves qa_set expectations, so it
-    # lands separately. Until then this stops the count GROWING, which is the
-    # property that was missing when the slice was introduced -- it would have
-    # gone 0 -> 153 right here.
+    # GATED AT ZERO. It was PINNED at 134 for exactly one commit, while the
+    # defect existed and its fix was still pending. Leaving a pin in place after
+    # the fix would permit the defect's return: a pin says "no worse", and what
+    # is wanted now is "none".
+    #
     # Covers BOTH sections. `recs` in this file is the 174 failure codes only,
     # which would leave the 18 symptom-side truncations unwatched -- the same
     # shape of blindness the check exists to remove.
-    KNOWN_TRUNCATED = 134
+    KNOWN_TRUNCATED = 0
 
     _all_recs = dict(recs)
     for _p in glob.glob(os.path.join(GOLD, "symptoms", "*.json")):
@@ -346,10 +346,9 @@ else:
         return bad
 
     _trunc = truncated_expectations(qa, _all_recs)
-    check(f"expectations ending mid-word held at the known {KNOWN_TRUNCATED}",
+    check(f"no expectation ends mid-word ({KNOWN_TRUNCATED} permitted)",
           len(_trunc) == KNOWN_TRUNCATED,
-          f"found {len(_trunc)}; if this GREW a new truncation was introduced "
-          f"-- e.g. {_trunc[:2]}")
+          f"found {len(_trunc)} truncated expectations -- e.g. {_trunc[:2]}")
     check("  and none of them is a must_contain_verbatim",
           not [t for t in _trunc if t[2] == "must_contain_verbatim"],
           "a verbatim expectation must never be a fragment")

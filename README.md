@@ -118,13 +118,24 @@ Scored over 1,853 retrieval cases from the full 1,865-case qa_set.
 | | structural | fixed_2000 | fixed_512 |
 |---|---:|---:|---:|
 | chunks | 231 | 740 | 2,607 |
-| **ceiling_recall** | **1.0000** | **0.9990** | **0.9814** |
-| recall@5 | 0.9974 | 0.9665 | 0.8324 |
+| **ceiling_recall** | **1.0000** | **0.9990** | **0.9803** |
+| recall@5 | 0.9974 | 0.9665 | 0.8311 |
 | answer_coverage@5 | 0.9968 | 0.9460 | 0.7550 |
-| fragmentation_gap@10 | 0.0003 | 0.0149 | 0.0577 |
-| context_precision | 0.7165 | 0.6403 | 0.6044 |
-| mrr | 0.9869 | 0.9396 | 0.8509 |
+| fragmentation_gap@10 | 0.0003 | 0.0149 | 0.0564 |
+| context_precision | 0.7159 | 0.6395 | 0.5648 |
+| mrr | 0.9869 | 0.9374 | 0.8495 |
 | gates | 7/7 | 7/7 | **6/7** |
+
+
+> **Both tables moved on 2026-09-17** and the movement is the harness getting
+> stricter, not retrieval degrading. `eval/build_qa_set.py` used to cut branch
+> outcomes with `outcome[:60]`, so relevance for 153 `branch_following` cases
+> was judged against a 60-character prefix. It is now judged against the whole
+> outcome, which is harder to contain — most visibly for `fixed_512`, where
+> `context_precision` falls 0.6044 → 0.5648 because a 140-character outcome
+> straddles a 512-character chunk boundary that a 60-character prefix did not.
+> `ceiling_recall` on `structural` is unmoved at 1.0000. See
+> `reports/truncated_expectations_finding.md`.
 
 #### ✅ VERIFIED — `--corpus section40` — 174 records
 
@@ -134,11 +145,11 @@ Scored over 1,853 retrieval cases from the full 1,865-case qa_set.
 |---|---:|---:|---:|
 | chunks | 174 | 501 | 1,733 |
 | **ceiling_recall** | **0.7204** | **0.7202** | **0.7153** |
-| recall@5 | 0.7178 | 0.6992 | 0.5926 |
+| recall@5 | 0.7178 | 0.6990 | 0.5923 |
 | answer_coverage@5 | 0.7091 | 0.6730 | 0.5370 |
-| fragmentation_gap@10 | 0.0086 | 0.0210 | 0.0492 |
-| context_precision | 0.6154 | 0.5147 | 0.4316 |
-| mrr | 0.7242 | 0.6945 | 0.5889 |
+| fragmentation_gap@10 | 0.0086 | 0.0210 | 0.0489 |
+| context_precision | 0.6152 | 0.5144 | 0.4157 |
+| mrr | 0.7242 | 0.6922 | 0.5888 |
 | gates | **5/7** | **5/7** | **5/7** |
 
 **This table is no longer an inertness proof, and the reason is worth stating.**

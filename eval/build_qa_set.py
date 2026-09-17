@@ -306,7 +306,19 @@ def case_branch_following(rec):
                      "Ab kya karun?"),
         "filters": dict(FILTERS),
         "expected": {"step": step["step"], "branch": "NO", "outcome": outcome},
-        "must_contain": [outcome[:60]],
+        # THE WHOLE OUTCOME. This was `outcome[:60]` in both builders, a
+        # bare slice with no comment, which left 153 branch_following
+        # cases requiring a 60-character prefix and 134 of those cut
+        # mid-word ("... • Repair or re").
+        #
+        # THE SLICE HAD NO RECOVERABLE JUSTIFICATION. Searched before
+        # removing it: must_contain has exactly one consumer,
+        # golden_facts in eval/metrics/base.py, which does containment
+        # and assumes no length; the commit that introduced it (fa78f7c)
+        # never mentions truncation; and the other [:60] in this repo,
+        # agent/runner.py, compares agent state and is not downstream of
+        # this field. Recorded rather than left implied.
+        "must_contain": [outcome],
         "must_cite_page": page_of_fact(step, rec),
         "must_not_refuse": True,
         "fact_ids": [(step.get("branch_fact_ids") or {}).get("NO")]
@@ -545,7 +557,19 @@ def case_symptom_branch_following(rec):
                      f"({step.get('cause','')}) ka result NO aaya. Ab kya karun?"),
         "filters": dict(FILTERS),
         "expected": {"step": step["step"], "branch": "NO", "outcome": outcome},
-        "must_contain": [outcome[:60]],
+        # THE WHOLE OUTCOME. This was `outcome[:60]` in both builders, a
+        # bare slice with no comment, which left 153 branch_following
+        # cases requiring a 60-character prefix and 134 of those cut
+        # mid-word ("... • Repair or re").
+        #
+        # THE SLICE HAD NO RECOVERABLE JUSTIFICATION. Searched before
+        # removing it: must_contain has exactly one consumer,
+        # golden_facts in eval/metrics/base.py, which does containment
+        # and assumes no length; the commit that introduced it (fa78f7c)
+        # never mentions truncation; and the other [:60] in this repo,
+        # agent/runner.py, compares agent state and is not downstream of
+        # this field. Recorded rather than left implied.
+        "must_contain": [outcome],
         # The BRANCH's own page, not the step's. HM22 step 5's NO prints on
         # 40-858 while its step is on 40-857.
         "must_cite_page": bprov.get("manual_page") or page_of_fact(step, rec),
