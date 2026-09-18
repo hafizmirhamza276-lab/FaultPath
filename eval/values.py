@@ -118,10 +118,50 @@ def _identifier_re():
     return _IDENT_RE
 
 
+_MANUAL_SERIALS = None
+
+
+def manual_serials() -> set:
+    """The serial numbers THIS MANUAL PUBLISHES ABOUT ITSELF.
+
+    SEN06867-13 covers "PC200-10M0 Hydraulic Excavator, S/N 700001 and up", and
+    every one of the 174 records carries that range. It is a statement of which
+    machines the manual applies to -- printed on the cover -- not an individual
+    machine's serial and not personal information about anybody.
+
+    WHY THIS IS NOT JUST A SHAPE IN _IDENT_SHAPES. That tuple answers "which
+    numeric tokens are not VALUES", and the serial shape is already in it. PII
+    asks a different question of the same shape: not "is this an identifier"
+    but "whose identifier is it". A customer's machine serial and the manual's
+    own scope marker are identical in form and opposite in meaning, so no
+    pattern can separate them -- only membership in the ground truth can. Hence
+    a derived SET here rather than a sixth regex there.
+
+    Same rule the rest of the harness already uses for legitimacy: a token is
+    the manual's own if it appears in the manual. See numbers_in_record.
+    """
+    global _MANUAL_SERIALS
+    if _MANUAL_SERIALS is None:
+        found = set()
+        for p in glob.glob(os.path.join(GOLD, "**", "*.json"), recursive=True):
+            if os.path.basename(p) == "index.json":
+                continue
+            try:
+                with open(p, encoding="utf-8") as f:
+                    rec = json.load(f)
+            except (OSError, json.JSONDecodeError):
+                continue
+            if isinstance(rec, dict) and rec.get("serial_range"):
+                found |= set(NUMBER_RE.findall(rec["serial_range"]))
+        _MANUAL_SERIALS = found
+    return _MANUAL_SERIALS
+
+
 def reset_cache() -> None:
     """Forget the derived mask. For tests that point GOLD_DIR elsewhere."""
-    global _IDENT_RE
+    global _IDENT_RE, _MANUAL_SERIALS
     _IDENT_RE = None
+    _MANUAL_SERIALS = None
 
 
 def identifiers_in(text) -> list:
