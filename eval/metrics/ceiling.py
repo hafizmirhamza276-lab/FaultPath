@@ -219,6 +219,76 @@ CEILING = {
 }
 
 
+# ------------------------------------------- what a ceiling MEANS, per metric
+#
+# CEILING said only "good must be perfect here". It did not say whether that
+# perfection is ATTAINABLE BY A REAL SYSTEM, and those are different claims
+# that were being read as one.
+#
+# GoodSystem builds its answer out of case["expected"] -- it is the answer key
+# wearing a system's interface. For most metrics that is fine: the ceiling is
+# reachable because a real system that produces the same WORDS scores the same.
+# For the metrics keyed on fact_ids it is not, because GoodSystem also returns
+# list(case["fact_ids"]), and no real system can produce those from a prompt
+# that never contains one. The sealed run made the difference visible --
+# citation_resolvability 0.0000 for the model against good's 0.9886 -- and
+# nothing in this file distinguished the two cases.
+#
+#   REACHABLE       a real system attains it by producing the right output
+#   REFERENCE_ONLY  it exists only because the reference reads ground truth
+#                   the system under test was never given
+#
+# DERIVED, NOT LISTED, for the same reason CEILING/NOT_CEILING are: membership
+# is read from each compute()'s own source. A metric whose scoring touches
+# `fact_id` or `citations_rendered` is reading a channel populated from
+# case["fact_ids"], which is answer-key data the system could not have
+# produced. Anything else scores the answer text.
+#
+# The union is checked the same way: a CEILING metric in neither bucket fails
+# the run naming itself.
+#
+# THIS CHANGES NO SCORE. It changes what a score means, which is the part that
+# was wrong.
+_FACT_ID_CHANNELS = ("fact_id", "citations_rendered")
+
+
+def _reads_answer_key(metric) -> bool:
+    """Does this metric's compute() score a channel fed from case['fact_ids'].
+
+    Read from the source rather than declared, so a metric that STARTS reading
+    fact_ids is reclassified by the same check that classified the others --
+    a hand-kept list would drift exactly the way the reason strings did.
+    """
+    import inspect
+    try:
+        src = inspect.getsource(type(metric).compute)
+    except (OSError, TypeError):
+        return False
+    return any(ch in src for ch in _FACT_ID_CHANNELS)
+
+
+def classify_ceiling(registry):
+    """(reachable, reference_only, unclassified) over the WHOLE registry.
+
+    Not scoped to CEILING. Two of the three fact_id-keyed metrics --
+    citation_resolvability and uncited_claim_rate -- sit in NOT_CEILING, and
+    their documented caps are reference-derived in exactly the same way. The
+    question "is this number attainable by the system under test" is worth
+    answering for every metric, not only the ones asserted perfect.
+
+    unclassified is always empty by construction here; it is returned so the
+    union check has something to fail on if that ever stops being true.
+    """
+    reachable, reference_only, unclassified = set(), set(), set()
+    for m in registry:
+        name = getattr(m, "name", None)
+        if not name:                            # pragma: no cover
+            unclassified.add(repr(m))
+            continue
+        (reference_only if _reads_answer_key(m) else reachable).add(name)
+    return reachable, reference_only, unclassified
+
+
 # ------------------------------------------------------------------ checks
 
 # ------------------------------------------- which systems the guard applies to

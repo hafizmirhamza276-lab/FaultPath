@@ -372,6 +372,52 @@ check("  a fact splits on the manual's own bullet, not on a chosen threshold",
       _refusal.delivered_units("• A. • B. • C.") == ["A.", "B.", "C."]
       and _refusal.delivered_units("no bullets here") == ["no bullets here"])
 
+# =============== 1b3. what a ceiling MEANS: reachable vs reference-only
+#
+# CEILING said only "good must be perfect here", never whether that perfection
+# is ATTAINABLE. GoodSystem builds its answer from case["expected"] and returns
+# list(case["fact_ids"]) -- it is the answer key wearing a system's interface.
+# For metrics scored on the answer TEXT the ceiling is reachable: a real system
+# producing the same words scores the same. For metrics keyed on fact_ids it is
+# not, and the sealed run made that visible (citation_resolvability 0.0000 for
+# the model against good's 0.9886) while nothing here distinguished the cases.
+#
+# Derived from each compute()'s source, same discipline as CEILING/NOT_CEILING:
+# a metric in neither bucket fails the run naming itself.
+print("\nceiling meaning: reachable vs reference-only, derived not listed")
+
+_reach, _refonly, _unclassified = ceiling.classify_ceiling(registry)
+_names = {m.name for m in registry}
+check("every metric is classified reachable or reference-only",
+      not _unclassified and (_reach | _refonly) == _names,
+      f"unclassified={sorted(_unclassified)}; "
+      f"missing={sorted(_names - _reach - _refonly)}")
+check("  the two buckets do not overlap", not (_reach & _refonly))
+check(f"the {len(_refonly)} reference-only metrics are the fact_id-keyed ones",
+      _refonly == {"citation_resolvability", "citation_span_precision",
+                   "uncited_claim_rate"},
+      f"got {sorted(_refonly)} -- if a metric joined or left, its ceiling "
+      f"changed meaning and METRICS.md needs to say so")
+print(f"    reference-only: {sorted(_refonly)}")
+print(f"    reachable: {len(_reach)} metrics")
+
+# SELF-TEST: the classifier must move a metric that starts reading fact_ids,
+# or it is a list with extra steps.
+class _PlantedFactIdMetric(Metric):
+    name = "planted_reads_fact_id"
+
+    def compute(self, case, result):
+        return 1.0 if result.get("citations_rendered") else None
+
+
+_probe = Registry()
+_probe.extend([_PlantedFactIdMetric()])
+_pr, _pro, _ = ceiling.classify_ceiling(_probe)
+check("ceiling-meaning self-test: a metric reading citations_rendered is "
+      "classified reference-only", _pro == {"planted_reads_fact_id"},
+      f"reachable={sorted(_pr)} reference_only={sorted(_pro)}")
+
+
 # ==================== 1c2. one definition of "a value", and only one way to ask
 #
 # numbers_in() returns every numeric token, and six metrics read that as "values
