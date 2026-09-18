@@ -372,6 +372,84 @@ check("  a fact splits on the manual's own bullet, not on a chosen threshold",
       _refusal.delivered_units("• A. • B. • C.") == ["A.", "B.", "C."]
       and _refusal.delivered_units("no bullets here") == ["no bullets here"])
 
+# ============ 1b2b. the selector must not drop an answer retrieval delivered
+#
+# THIS IS THE CHECK WHOSE ABSENCE LET MAX_CHUNK_CHARS HIDE TWO THIRDS OF THE
+# CORPUS FOR THE WHOLE PROJECT. build_prompt sliced text[:1800] against a
+# median chunk of 3,969, records render header -> steps -> measurements, and
+# so the measurement table -- the thing numeric_exactness asks about -- was
+# discarded on 87% of chunks. Nothing measured the relationship between the cap
+# and the chunk sizes, and the symptom surfaced everywhere else: as refusals,
+# as low numeric_exactness, as eight of nine supposed partial deliveries.
+#
+# GATED AT 100% PER BUCKET, NOT PINNED. A pin says "no worse"; what is wanted
+# is "nothing dropped". If the renderer, the chunker or the selector loses a
+# row, this goes red naming the case and the bucket.
+#
+# SCOPE: the selector is accountable for what RETRIEVAL DELIVERED, and nothing
+# else. Two step_ordering cases (CA441, SM18) are unreachable at any budget --
+# up to 30,000 -- because their record is not in the top 6 chunks at all. That
+# is a retrieval miss with a different owner, and folding it in here would mean
+# gating this check on something it does not control. The exclusion is DERIVED
+# (is the answer in the full retrieved text?), never a list of ids.
+print("\nprompt selector: every answer retrieval delivered survives the slice")
+from eval import model_system as _ms_sel                     # noqa: E402
+from eval.adapters import LocalBM25Retriever as _BM25        # noqa: E402
+
+_sel_ret = _BM25(corpus)
+_sel_cases = [c for c in run_eval.load_cases()
+              if c["id"] not in sealed_mod.sealed_ids()]
+
+
+def _expected_text(case):
+    e = case.get("expected") or {}
+    return (e.get("criteria") or e.get("outcome") or e.get("remedy")
+            or e.get("cause") or e.get("title"))
+
+
+def selector_drops(cases, budget=None):
+    """(dropped, delivered) -- answers retrieval gave that the slice lost."""
+    from eval.metrics.base import contains as _c
+    dropped, delivered = [], 0
+    for case in cases:
+        want = _expected_text(case)
+        if not want:
+            continue
+        ctx = _sel_ret.search(case["question"], 20, case.get("filters"))
+        ctx = ctx[:_ms_sel.MAX_CONTEXT_CHUNKS]
+        exp = case.get("expected") or {}
+        pt = exp.get("point") if exp.get("criteria") else None
+
+        def present(blob):
+            if pt:
+                return any(_c(l, want) and _c(l, pt) for l in blob.split("\n"))
+            return _c(blob, want)
+
+        if not present("\n".join((x.get("text") or "") for x in ctx)):
+            continue                       # retrieval never delivered it
+        delivered += 1
+        kept = "\n".join(
+            _ms_sel.select_rows(x.get("text") or "", case,
+                                budget or _ms_sel.MAX_CHUNK_CHARS) for x in ctx)
+        if not present(kept):
+            dropped.append((case["id"], case["type"]))
+    return dropped, delivered
+
+
+_dropped, _delivered = selector_drops(_sel_cases)
+_by_bucket = collections.Counter(t for _, t in _dropped)
+check(f"the selector drops none of the {_delivered} answers retrieval "
+      f"delivered", not _dropped,
+      f"dropped {len(_dropped)} in {dict(_by_bucket)}; e.g. {_dropped[:3]}")
+
+# SELF-TEST: this reports zero on a healthy repo, so it must be shown capable
+# of firing. Squeezing the budget must lose rows and be seen to.
+_squeezed, _ = selector_drops(_sel_cases[:150], budget=300)
+check("selector self-test: a starved budget is detected as dropping rows",
+      bool(_squeezed),
+      "the check cannot see rows it was built to see")
+
+
 # =============== 1b3. what a ceiling MEANS: reachable vs reference-only
 #
 # CEILING said only "good must be perfect here", never whether that perfection

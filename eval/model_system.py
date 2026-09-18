@@ -64,7 +64,17 @@ CACHE_PATH = os.path.join(REPO_ROOT, "eval_out", "model_cache.jsonl")
 REFERENCE, FLOOR, UNDER_TEST = "reference", "floor", "under_test"
 
 MAX_CONTEXT_CHUNKS = 6
-MAX_CHUNK_CHARS = 1800
+# DERIVED, not chosen. Reachability of the expected content across all
+# non-sealed cases, by budget:
+#     1,800   94.89%      numeric_exactness 91.8%
+#     2,500   99.19%      numeric_exactness 98.9%
+#     3,500   99.87%      every bucket 100% except two RETRIEVAL misses
+#     5,000+  99.87%      no further gain -- the plateau is not the budget
+# 3,500 is the knee: the first budget at which every bucket the selector can
+# reach is complete, and above which nothing improves. Mean prompt 18,645
+# chars (~4.7k tokens), ~7.0M input tokens for a 1,511-case run against
+# ~3.8M at 1,800 -- 1.8x for the last 5.0 points of reachability.
+MAX_CHUNK_CHARS = 3500
 # Azure rejects max_tokens on this API version; the parameter is
 # max_completion_tokens. Kept as a named constant so the difference is visible
 # rather than buried in a dict literal.
@@ -168,6 +178,18 @@ def select_rows(text: str, case: dict, budget: int = MAX_CHUNK_CHARS) -> str:
         return ""
     point, step = _anchors(case)
 
+    # THE ORDER DEPENDS ON WHAT THE CASE ASKS FOR, derived from its expected
+    # fields exactly as the anchors are. A question about a standard value
+    # wants measurement rows; a question about which check comes first wants
+    # STEP PROSE, and ranking prose below measurements it does not need is
+    # what cost precondition citation_accuracy 1.0000 -> 0.6250 and
+    # step_ordering 0.8870 -> 0.8352 in 6cbd647. Raising the budget alone did
+    # not fix it: at 3,500 prose retention reaches only 87.3% / 84.9%.
+    wants_value = bool((case.get("expected") or {}).get("criteria"))
+    order = (("header", "anchored", "measurement", "remedy", "branch", "step")
+             if wants_value else
+             ("header", "anchored", "step", "remedy", "branch", "measurement"))
+
     def anchored(ln: str) -> bool:
         if point and normalise(point) in normalise(ln):
             return True
@@ -188,9 +210,7 @@ def select_rows(text: str, case: dict, budget: int = MAX_CHUNK_CHARS) -> str:
             buckets[kind].append((i, ln))
 
     kept, used = [], 0
-    # remedy outranks branch/prose: on a FLAT symptom tree it is the answer,
-    # and it sits on its own line away from the row that anchors it.
-    for name in ("header", "anchored", "measurement", "remedy", "branch", "step"):
+    for name in order:
         for i, ln in buckets[name]:
             if used + len(ln) + 1 > budget:
                 continue          # a later, shorter row may still fit
