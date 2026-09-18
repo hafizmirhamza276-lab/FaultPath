@@ -48,6 +48,26 @@ re-deriving the same ids.
 A future clean measurement needs a NEW holdout, selected from data properties
 alone, on cases not in this set. Nothing here is a substitute for that.
 
+WHAT THE SPENT NUMBER IS A MEASUREMENT OF: THIS MODEL ON 34.3% OF CONTEXT.
+--------------------------------------------------------------------------
+Never quote the sealed result without this. At the time it was taken,
+build_prompt sliced every retrieved chunk at MAX_CHUNK_CHARS = 1800 against a
+median chunk of 3,969 characters, so 87% of chunks were cut and the model could
+reach only 34.3% of the corpus text. Records render header -> steps ->
+measurements, so what was cut was reliably the MEASUREMENT TABLE -- exactly
+what the failing gates ask about.
+
+Measured afterwards, not assumed: of 237 non-sealed false_absence answers, 233
+(98.3%) lost the (measuring point, standard value) pair to that slice, and
+retrieval had missed in none of them.
+
+So the 4-of-7 gate result stands as a record of what happened, and the three
+failures -- numeric_exactness 0.5450, citation_accuracy 0.7435,
+fabricated_values 0.0105 -- are substantially a measurement of the truncation
+rather than of the model. See reports/prompt_truncation_finding.md.
+
+This does not invalidate the run. It fixes what the run was a measurement OF.
+
 THE SELECTION RULE READS NO EVAL RESULT. EVER.
 ----------------------------------------------
 Selection depends on the DATA ONLY -- section, case type, record identity, a
