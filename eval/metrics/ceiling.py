@@ -146,14 +146,52 @@ _exclude(
 #    means citing every delivered step's fact id, which is a real change to the
 #    good system and to the completeness/uncited balance, not a reclassification.
 #    Revisit together, not separately.
+#    AND IT IS ALSO ARCHITECTURE-GATED, which the above does not say. The
+#    sealed run read 0.7179 for the model against 0.3905 for good, and that gap
+#    is not a quality gap. The supported-atom set is built from each citation's
+#    verbatim_text; a system that names no fact_ids has citations synthesised
+#    from its typed pages, whose verbatim_text is "", so support collapses to
+#    the QUESTION ALONE and the rate is high BY CONSTRUCTION.
+#
+#    Unlike citation_resolvability this reads as an ordinary quality number --
+#    both systems get a mid-range score, so nothing on its face says the two
+#    are not comparable. They are not.
+#
+#    (a) OR (b) -- ARGUED AND MEASURED, n=1,511 non-sealed, before deciding:
+#          current  (verbatim_text "" -> question only)   0.6910
+#          (b1)     support = the retrieved context       0.0004
+#          (b2)     support = text of the pages cited     0.0882
+#
+#    (a), architecture-gated, for three reasons:
+#      1. (b1) is the natural reading of "support the harness can see" and it
+#         COLLAPSES INTO faithfulness_det, which measures exactly that and
+#         reads 0.0019 as a rate. A metric that cannot differ from its
+#         neighbour is not measuring anything -- the fragmentation_gap lesson.
+#      2. (b2) is distinct, but it answers a DIFFERENT QUESTION: "is the claim
+#         on the page you cited" rather than "is the claim backed by a fact
+#         id". That is a new metric wearing this one's name, and the honest
+#         way to have it is to add it, not to redefine this.
+#      3. (b2)'s residue is partly an artefact of its own: 142 cited pages had
+#         no manual->pdf mapping, so some of the 8.82% is missing map entries
+#         rather than unsupported claims. Swapping one construction artefact
+#         for another is not a fix.
+#
+#    So the number stays and the CAVEAT is recorded instead. Both exclusions
+#    now apply and they are different in kind: the completeness tension caps
+#    GOOD, and the empty support set inflates ANY SYSTEM WITHOUT FACT_IDS.
 _exclude(
     ["uncited_claim_rate"],
-    "capped by a deliberate tension with completeness: the good system "
-    "delivers every step cause so completeness can be measured, while citing "
-    "only the queried fact, leaving the rest uncited by construction. NOT "
-    "because of missing fact_ids -- step_ordering scores 0.9630 with them. "
-    "The weaker exclusion: a perfect system arguably should reach 0.0, and "
-    "doing so means changing what the good system cites.")
+    "TWO causes, different in kind. (i) capped by a deliberate tension with "
+    "completeness: the good system delivers every step cause so completeness "
+    "can be measured, while citing only the queried fact, leaving the rest "
+    "uncited by construction -- NOT missing fact_ids, since step_ordering "
+    "scores 0.9630 with them. (ii) ARCHITECTURE-GATED as well: support is "
+    "built from each citation's verbatim_text, which is empty for a system "
+    "that names no fact_ids, so support collapses to the question and the "
+    "rate is inflated by construction -- model 0.7179 vs good 0.3905 on "
+    "sealed is not a quality gap. Measured alternatives: support from "
+    "retrieved context reads 0.0004 and duplicates faithfulness_det; support "
+    "from cited-page text reads 0.0882 and is a different question.")
 
 
 # ----------------------------------------------------------------- ceiling

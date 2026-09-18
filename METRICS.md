@@ -113,6 +113,31 @@ rather than scored — see the caveat above.
 `uncited_claim_rate` — factual statements carrying no `fact_id`. These are the
 model speaking on its own account, which the design is meant to make impossible.
 
+> **⚠ Also architecture-gated — and unlike `citation_resolvability`, this one
+> looks like an ordinary quality number.** Both systems get a mid-range score,
+> so nothing on its face warns you.
+>
+> Support is built from each citation's `verbatim_text`. A system that names no
+> `fact_id`s has citations synthesised from its typed pages, whose
+> `verbatim_text` is `""`, so the support set collapses to **the question
+> alone** and the rate is high **by construction**. Sealed: model **0.7179** vs
+> good **0.3905** — *that gap is not a quality gap.*
+>
+> Measured alternatives, n=1,511 non-sealed, before keeping the current rule:
+>
+> | support set | rate |
+> |---|---:|
+> | current (`verbatim_text` → question only) | 0.6910 |
+> | retrieved context | 0.0004 — duplicates `faithfulness_det` (0.0019) |
+> | text of the cited pages | 0.0882 — a *different* question |
+>
+> Kept as-is: the first alternative measures what `faithfulness_det` already
+> measures, and the second asks "is the claim on the page you cited" rather
+> than "is the claim backed by a fact id". That is a metric worth having, but
+> it is a new one, not a repair of this one.
+>
+> Read this number **within an architecture, never across one.**
+
 On the local baseline these separate cleanly by mechanism: every case type that
 names fact ids resolves at **1.0000** (1,126 cases), and every type that types
 its own page resolves at **0.0000**. The metric is measuring adoption of the
