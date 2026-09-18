@@ -77,10 +77,38 @@ ground truth. Three metrics measure whether that holds.
 page it names and finds its text there. A citation that cannot be resolved is
 not a citation, it is a claim about one.
 
+> **⚠ This metric separates ARCHITECTURES, not quality. Do not read a low score
+> as "cites badly".**
+>
+> It can only score a system that **names `fact_id`s**. A system that answers
+> from prose and types page numbers scores **0.0000 regardless of how good its
+> answers are** — `citations_rendered` falls back to entries synthesised from
+> the typed pages, and `resolve()` returns *"citation carries no pdf_page"*
+> without ever opening the PDF.
+>
+> On the sealed run the real model scored **0.0000** here and **0.7435** on
+> `citation_accuracy`. Those are not the same measurement and reading them as
+> one understates the model by 0.74. It is never shown a `fact_id`:
+> `build_prompt` renders `--- extract (page N, record CODE) ---` and no
+> `fact_id` appears anywhere in the prompt.
+>
+> `GoodSystem` scores 0.9886 by returning `list(case["fact_ids"])` — the case's
+> own answer key. It is not resolving anything; it is echoing ground truth it
+> was handed, which makes its score an **existence proof that the metric can
+> reach 1.0**, not evidence a real system can.
+>
+> Consequence, stated plainly: **it cannot discriminate between two real
+> systems of the same architecture.** Both score 0.0000 without a fact-id-
+> carrying retrieval layer and both score near 1.0 with one, whatever the
+> answers say. The same caveat applies to `citation_span_precision` below,
+> which also keys on `fact_id` and reported **NOT MEASURED** for the model.
+
 `citation_span_precision` — the cited page is the page the fact is *on*, not
 merely a page belonging to that code. 75% of measurements are not on their
 code's first page, so a per-code citation is right by accident a quarter of the
-time.
+time. **Also fact_id-keyed**: it scores only citations carrying a `fact_id` the
+ground truth knows, so a system that names none is reported as NOT MEASURED
+rather than scored — see the caveat above.
 
 `uncited_claim_rate` — factual statements carrying no `fact_id`. These are the
 model speaking on its own account, which the design is meant to make impossible.

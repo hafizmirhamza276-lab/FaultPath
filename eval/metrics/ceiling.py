@@ -91,12 +91,42 @@ _exclude(
 #                     sentence; the manual states no ordering.
 #      injection      an adversarial prompt has nothing to cite, which is the
 #                     same precedent the adversarial_* cases set.
+#    AND A THIRD THING THE REASON MISSED UNTIL THE SEALED RUN. Everything above
+#    explains why GOOD stops at 0.9886. It does not explain what the metric
+#    measures about anyone else, and the sealed run made that unavoidable: the
+#    model scored 0.0000 -- exactly the floor, the only metric where it sat
+#    there.
+#
+#    That is not a quality result. citation_resolvability requires the answer
+#    to name fact_ids, and the model is never shown one: build_prompt renders
+#    "--- extract (page N, record CODE) ---" and no fact_id appears anywhere in
+#    the prompt. With none named, citations_rendered falls back to entries
+#    synthesised from the pages the model typed, and resolve() returns
+#    "citation carries no pdf_page" without opening the PDF. 0.0000 is the
+#    fallback reporting that it has nothing to resolve.
+#
+#    GoodSystem scores 0.9886 by returning list(case["fact_ids"]) -- the case's
+#    own answer key. It is not resolving anything; it is echoing ground truth
+#    it was handed.
+#
+#    So the metric SEPARATES ARCHITECTURES, NOT QUALITY. A system whose
+#    retrieval layer carries fact-id-tagged spans through to its output scores
+#    near 1.0; one that answers from prose scores 0.0000, however good its
+#    answers are. It CANNOT DISCRIMINATE BETWEEN TWO REAL SYSTEMS of the same
+#    architecture, and it must not be read as "the model cites badly". The
+#    model's actual citation behaviour is citation_accuracy (0.7435 sealed),
+#    which scores the pages it does type. The two are different measurements
+#    and reading them as one understates the model by 0.74.
 _exclude(
     ["citation_resolvability"],
-    "three buckets are uncited after being checked -- cross_ref_hop (would "
-    "cite unresolvable synthetic text), precondition (the claim is derived, "
-    "not stated) and injection (nothing to cite). Each records its reason in "
-    "the case. Perfect on every bucket that carries a fact_id.")
+    "ARCHITECTURAL, not quality: it requires the answer to name fact_ids, and "
+    "a system that is never shown one scores 0.0000 however good its answers "
+    "are -- the model does, while citation_accuracy reads 0.7435. good's "
+    "0.9886 is the reference echoing case['fact_ids'], not a resolvable "
+    "pipeline. Its own cap is three buckets uncited after being checked: "
+    "cross_ref_hop (would cite unresolvable synthetic text), precondition "
+    "(the claim is derived, not stated) and injection (nothing to cite), each "
+    "recording its reason in the case.")
 
 # 3. uncited_claim_rate -- capped by a DELIBERATE TENSION BETWEEN TWO METRICS,
 #    not by missing fact_ids. This is the correction: step_ordering scores
