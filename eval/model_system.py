@@ -55,6 +55,7 @@ import os
 import time
 from typing import Dict, List, Optional
 
+from eval.metrics.base import normalise
 from eval.refusal import looks_refused as _looks_refused
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -85,13 +86,128 @@ SYSTEM_PROMPT = (
 
 # ------------------------------------------------------------------ prompt
 
+# Row kinds in a rendered record, in the order eval/chunkers.py emits them.
+# The renderer is line-oriented, so a line IS the unit, and no parsing of prose
+# is needed to tell a measurement from a step.
+def _row_kind(line: str) -> str:
+    """BOTH renderers. Section 40 emits "Step n"; a FLAT symptom tree emits
+    "Check n" and "Check n remedy", because the two tree kinds invert and
+    eval/chunkers.py keeps that distinction in the text deliberately. Treating
+    a Check row as header -- which a Step-only rule does -- puts every flat
+    symptom row in priority 1 and spends the budget before the measurements.
+    """
+    if line.startswith("Measurement.") or " measurement." in line[:26]:
+        return "measurement"
+    if line.startswith("Step ") and (" YES:" in line or " NO:" in line):
+        return "branch"
+    if " remedy:" in line[:24]:
+        return "remedy"
+    if line.startswith(("Step ", "Check ")):
+        return "step"
+    if line.startswith("Refers elsewhere:"):
+        return "step"
+    return "header"
+
+
+def _anchors(case: dict) -> tuple:
+    """What this case is ABOUT, taken from its own fields.
+
+    DERIVED FROM THE CASE, NOT FROM THE QUESTION STRING. Selecting on overlap
+    with the question would make the prompt's contents depend on how the
+    technician phrased themselves -- two wordings of one question would get
+    different extracts, and the same system would score differently on each.
+    The measuring point and the step number are properties of what is being
+    asked, not of how.
+
+    Returns (point_or_none, step_or_none).
+    """
+    exp = case.get("expected") or {}
+    point = exp.get("point") or exp.get("point_to_check") or None
+    step = exp.get("step")
+    return (point if isinstance(point, str) and point.strip() else None,
+            step if isinstance(step, int) else None)
+
+
+def select_rows(text: str, case: dict, budget: int = MAX_CHUNK_CHARS) -> str:
+    """The rows of one record worth showing, within `budget` characters.
+
+    REPLACES text[:MAX_CHUNK_CHARS], which kept the FIRST 1,800 characters.
+    Records render header -> steps -> measurements, so a head slice reliably
+    kept the header and the step prose and reliably discarded the measurement
+    table -- the thing numeric_exactness asks about. 87% of chunks were cut and
+    the model could reach 34.3% of the corpus; 233 of 237 false_absence answers
+    lost their (point, value) pair that way. See
+    reports/prompt_truncation_finding.md.
+
+    PRIORITY, filled until the budget runs out:
+
+      1. the HEADER block -- identifies the record and carries its pages. A
+         chunk without it is unattributable.
+      2. rows ANCHORED by the case: the measuring point it asks about, or the
+         step number. This is the question-aware part.
+      3. every OTHER measurement row. Kept deliberately: if only the anchored
+         row survived, the harness would have done the model's searching for it
+         and numeric_exactness would measure transcription rather than
+         retrieval-in-context. The distractors have to stay.
+      4. branch rows, then step prose, in record order.
+
+    THE BUDGET IS UNCHANGED AT 1,800. This does not buy the model more context;
+    it spends the same context on the rows that answer the question. Total text
+    reachability stays ~34% -- what changes is WHICH 34%.
+
+    FALLBACK when a case has no anchor -- direct_lookup asks about the title and
+    action level, which are header, and adversarial cases name a code that does
+    not exist. Priority 2 is then empty and the order is header, measurements,
+    branches, prose. That costs step prose for prose-shaped questions with no
+    step field (cross_ref_hop, precondition, 19 non-sealed cases between them),
+    which now rank below measurements they do not need. They are short records
+    and fit regardless; asserted rather than assumed in the tests.
+    """
+    lines = (text or "").split("\n")
+    if not lines:
+        return ""
+    point, step = _anchors(case)
+
+    def anchored(ln: str) -> bool:
+        if point and normalise(point) in normalise(ln):
+            return True
+        if not step:
+            return False
+        return ln.startswith((f"Step {step}.", f"Step {step} ",
+                              f"Check {step}.", f"Check {step} "))
+
+    buckets = {"header": [], "anchored": [], "measurement": [],
+               "remedy": [], "branch": [], "step": []}
+    for i, ln in enumerate(lines):
+        kind = _row_kind(ln)
+        if kind == "header":
+            buckets["header"].append((i, ln))
+        elif anchored(ln):
+            buckets["anchored"].append((i, ln))
+        else:
+            buckets[kind].append((i, ln))
+
+    kept, used = [], 0
+    # remedy outranks branch/prose: on a FLAT symptom tree it is the answer,
+    # and it sits on its own line away from the row that anchors it.
+    for name in ("header", "anchored", "measurement", "remedy", "branch", "step"):
+        for i, ln in buckets[name]:
+            if used + len(ln) + 1 > budget:
+                continue          # a later, shorter row may still fit
+            kept.append((i, ln))
+            used += len(ln) + 1
+    # Emitted in RECORD ORDER, not priority order: the model should see a
+    # record that reads like the manual, not a ranked list.
+    return "\n".join(ln for _, ln in sorted(kept))
+
+
 def build_prompt(case: dict, contexts: List[dict]) -> str:
     """The exact user-message text. Deterministic, and part of the cache key."""
     lines = []
     for c in contexts[:MAX_CONTEXT_CHUNKS]:
         page = c.get("manual_page") or "?"
         lines.append(f"--- extract (page {page}, record {c.get('code')}) ---\n"
-                     f"{(c.get('text') or '')[:MAX_CHUNK_CHARS]}")
+                     f"{select_rows(c.get('text') or '', case)}")
     filt = case.get("filters") or {}
     return (f"Machine: {filt.get('model', 'unspecified')}   "
             f"Manual: {filt.get('manual_id', 'unspecified')}\n\n"
