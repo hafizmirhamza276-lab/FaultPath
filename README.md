@@ -1,8 +1,12 @@
-# Komatsu Diagnostic Assistant — Golden Dataset & Evaluation Harness
+# FaultPath — Golden Dataset & Evaluation Harness
+
+*the manual's own diagnosis, one step at a time*
 
 Ground truth and measurement scaffolding for a guided diagnostic assistant built
 over Komatsu Shop Manual **SEN06867-13** (PC200-10M0 Hydraulic Excavator,
 S/N 700001 and up, revision 13, 2,226 pages).
+
+**Source manual is Komatsu copyrighted material and is not included.**
 
 Built without workshop access: the manual is the ground truth.
 
