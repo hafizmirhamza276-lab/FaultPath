@@ -231,6 +231,19 @@ Emit one JSON object per test case to `runs/<name>.jsonl`:
 `module_trace` is optional but unlocks the module-level metrics — without it you
 can see that something broke, not where.
 
+> **The built-in `--system model` numbers are not a fair target for your
+> system.** Since `6cbd647` its prompt builder reads `case["expected"]` — the
+> answer key — to decide which rows of each retrieved record the model is
+> shown: `_anchors()` promotes the measuring point and step being asked about,
+> and the row order is chosen by whether `expected.criteria` is set. A real
+> deployment has the technician's question and nothing else, so those scores
+> include work the harness did on the model's behalf.
+>
+> Run with `SELECTOR_BLIND=1` for the comparable number. Measured on the same
+> model, retriever and budget: `numeric_exactness` **0.9831 → 0.8594**,
+> `citation_accuracy` **0.9747 → 0.8607**, **gates 7/7 → 5/7**. See
+> `reports/oracle_selection_finding.md`.
+
 ## What the dataset contains
 
 | | |

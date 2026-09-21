@@ -119,18 +119,54 @@ def _row_kind(line: str) -> str:
     return "header"
 
 
+def selector_blind() -> bool:
+    """Is the prompt builder forbidden to read the answer key.
+
+    OFF BY DEFAULT, so no committed number moves by adding this. Set
+    SELECTOR_BLIND=1 to hide case["expected"] from select_rows: no anchors, and
+    one fixed row order that does not depend on the case.
+
+    It exists to MEASURE the leak reported in
+    reports/oracle_selection_finding.md. _anchors and `wants_value` both read
+    case["expected"], which does not exist at runtime -- a real deployment has
+    the technician's question and nothing else. The oracle numbers are
+    therefore an upper bound that includes work the harness did on the model's
+    behalf, and the blind numbers are the part that survives without it.
+
+    Read at CALL TIME, never captured at import, so a test can set it around a
+    single call. The blind prompt differs from the oracle prompt, so the cache
+    key differs and a blind run cannot be served oracle answers.
+    """
+    return os.environ.get("SELECTOR_BLIND", "").strip() not in ("", "0", "false")
+
+
+# The one order used when the selector is blind. Deliberately NOT chosen per
+# case -- choosing per case is the leak. Measurements rank above prose because
+# the header/prose-first head slice is what the truncation finding was about;
+# it is the same order the oracle path uses for a value question, minus the
+# anchor.
+BLIND_ORDER = ("header", "measurement", "remedy", "branch", "step")
+
+
 def _anchors(case: dict) -> tuple:
     """What this case is ABOUT, taken from its own fields.
+
+    READS THE ANSWER KEY. `expected.point` / `expected.point_to_check` /
+    `expected.step` are scoring fields; they do not exist at inference time.
+    See selector_blind() and reports/oracle_selection_finding.md.
 
     DERIVED FROM THE CASE, NOT FROM THE QUESTION STRING. Selecting on overlap
     with the question would make the prompt's contents depend on how the
     technician phrased themselves -- two wordings of one question would get
     different extracts, and the same system would score differently on each.
     The measuring point and the step number are properties of what is being
-    asked, not of how.
+    asked, not of how. That reasoning is sound and is also how the leak got in:
+    the case's own fields include its answer.
 
-    Returns (point_or_none, step_or_none).
+    Returns (point_or_none, step_or_none), or (None, None) when blind.
     """
+    if selector_blind():
+        return (None, None)
     exp = case.get("expected") or {}
     point = exp.get("point") or exp.get("point_to_check") or None
     step = exp.get("step")
@@ -161,9 +197,14 @@ def select_rows(text: str, case: dict, budget: int = MAX_CHUNK_CHARS) -> str:
          retrieval-in-context. The distractors have to stay.
       4. branch rows, then step prose, in record order.
 
-    THE BUDGET IS UNCHANGED AT 1,800. This does not buy the model more context;
-    it spends the same context on the rows that answer the question. Total text
-    reachability stays ~34% -- what changes is WHICH 34%.
+    THE BUDGET IS 3,500, raised from 1,800 in cb990e1 -- see MAX_CHUNK_CHARS
+    for the sweep that derived it. This docstring said "UNCHANGED AT 1,800"
+    through that commit, describing the version before it.
+
+    PRIORITIES 2 AND THE ORDER ITSELF READ case["expected"], which is the
+    answer key and does not exist at inference time. SELECTOR_BLIND=1 removes
+    both; see selector_blind() and reports/oracle_selection_finding.md. The
+    default is unchanged.
 
     FALLBACK when a case has no anchor -- direct_lookup asks about the title and
     action level, which are header, and adversarial cases name a code that does
@@ -185,10 +226,13 @@ def select_rows(text: str, case: dict, budget: int = MAX_CHUNK_CHARS) -> str:
     # what cost precondition citation_accuracy 1.0000 -> 0.6250 and
     # step_ordering 0.8870 -> 0.8352 in 6cbd647. Raising the budget alone did
     # not fix it: at 3,500 prose retention reaches only 87.3% / 84.9%.
-    wants_value = bool((case.get("expected") or {}).get("criteria"))
-    order = (("header", "anchored", "measurement", "remedy", "branch", "step")
-             if wants_value else
-             ("header", "anchored", "step", "remedy", "branch", "measurement"))
+    if selector_blind():
+        order = BLIND_ORDER
+    else:
+        wants_value = bool((case.get("expected") or {}).get("criteria"))
+        order = (("header", "anchored", "measurement", "remedy", "branch", "step")
+                 if wants_value else
+                 ("header", "anchored", "step", "remedy", "branch", "measurement"))
 
     def anchored(ln: str) -> bool:
         if point and normalise(point) in normalise(ln):
@@ -474,6 +518,10 @@ class ModelSystem:
     def describe(self) -> dict:
         """What produced the numbers. Deployment and model are both recorded."""
         return {"system": self.name, "category": self.CATEGORY,
+                # Which selector produced the prompts. A blind run and an
+                # oracle run are not the same measurement and the run record
+                # has to say which one it is.
+                "selector": "blind" if selector_blind() else "oracle",
                 "deployment": self.client.deployment(),
                 "api_version": self.client.api_version(),
                 "model": sorted(self.model_seen) or None,

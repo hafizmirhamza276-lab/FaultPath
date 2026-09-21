@@ -380,6 +380,34 @@ metrics can tell you:
    re-baselining, because cross-model confusion is a failure mode that cannot
    appear in a single-model test set.
 
+8. **Every `model`-system number from `6cbd647` onward was produced by a prompt
+   selector that reads the answer key.** `eval/model_system.py` `_anchors()`
+   reads `case["expected"]["point" / "point_to_check" / "step"]` to promote
+   rows, and `select_rows()` reads `case["expected"]["criteria"]` to choose the
+   row order. `expected` is a scoring field; it does not exist at inference
+   time. The harness is therefore doing part of the model's searching and
+   reporting the result as the model's score.
+
+   Measured by `SELECTOR_BLIND=1`, which hides `expected` from the selector.
+   Same model, same retriever, same budget, 1,567 scored cases:
+
+   | | oracle (`cb990e1`) | blind | delta |
+   |---|---:|---:|---:|
+   | `numeric_exactness` | 0.9831 | **0.8594** | −0.1237 |
+   | `citation_accuracy` | 0.9747 | **0.8607** | −0.1140 |
+   | `contradiction` | 0.0146 | 0.0619 | +0.0472 |
+   | `content_recall` | 0.8353 | 0.7932 | −0.0421 |
+   | **gates** | **7/7** | **5/7** | |
+
+   Retrieval, filter, refusal and fabrication metrics are unmoved — the flag
+   changes only what the model is shown.
+
+   **Quote the `cb990e1` figures — `numeric_exactness` 0.9831,
+   `citation_accuracy` 0.9747, 7/7 gates — only as an upper bound with this
+   caveat attached.** They measure the model plus an oracle-assisted prompt,
+   not the model. Full account and per-bucket tables:
+   `reports/oracle_selection_finding.md`.
+
 ---
 
 ## Verification status of the ground truth
