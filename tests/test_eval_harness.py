@@ -152,6 +152,66 @@ print(f"    agent/holdout.py {len(_code_hold)} codes | "
       f"symptom_heldout.json sealed/contaminated phrasings -- three units")
 
 
+# ==================================== 1b-2. the SECOND holdout, sealed2
+#
+# sealed.py is spent. sealed2 is drawn from what it left, before the selector
+# it exists to judge was designed. Everything asserted about the first split is
+# asserted about this one, plus the two properties only a second split can
+# violate: that it shares no case with the spent set, and that dev + sealed2
+# reconstitutes train exactly.
+print("\nsealed2: the second holdout, disjoint from the spent one")
+from eval import sealed2 as sealed2_mod                   # noqa: E402
+
+try:
+    sealed2_mod.self_test()
+    check("sealed2 self-test passes (determinism, coverage, no straddle, "
+          "disjoint from sealed)", True)
+except AssertionError as exc:
+    check("sealed2 self-test passes", False, str(exc))
+
+_s2d = sealed2_mod.describe()
+check("the sealed2 fraction is near the declared 20%",
+      0.15 <= _s2d["fraction"] <= 0.25, f"{_s2d['fraction']:.3f}")
+check("every (section, type) bucket has sealed2 cases",
+      all(v["sealed2"] > 0 for v in _s2d["coverage"].values()),
+      f"blind buckets: {[k for k, v in _s2d['coverage'].items() if not v['sealed2']]}")
+check("every bucket still has dev cases",
+      all(v["pool"] - v["sealed2"] > 0 for v in _s2d["coverage"].values()))
+
+# dev + sealed2 == train, EXACTLY. If this drifts, a case has gone missing from
+# both sides and every dev number is quietly computed over less than it claims.
+_dev, _s2 = sealed2_mod.dev_ids(), sealed2_mod.sealed2_ids()
+check("dev + sealed2 reconstitutes train with nothing lost or duplicated",
+      (_dev | _s2) == sealed_mod.train_ids() and not (_dev & _s2),
+      f"dev {len(_dev)} + sealed2 {len(_s2)} vs train {len(sealed_mod.train_ids())}")
+check("sealed2 shares no case with the SPENT sealed set",
+      not (_s2 & _sealed),
+      "a spent case inside sealed2 makes the whole set in-sample")
+
+# The algorithm is sealed.py's, used once, not copied. A second implementation
+# is how the record-unit guarantee drifts between the two splits.
+_s2_src = open(os.path.join(REPO_ROOT, "eval", "sealed2.py"),
+               encoding="utf-8").read()
+_s2_tree = ast.parse(_s2_src)
+_s2_body = _s2_src.replace(ast.get_docstring(_s2_tree) or "", "")
+check("sealed2 imports the split algorithm rather than reimplementing it",
+      "derive_split" in _s2_body and "by_stratum" not in _s2_body,
+      "sealed2 carries its own copy of the stratification")
+_s2_imports = {(n.module or "").split(".")[-1]
+               for n in ast.walk(_s2_tree) if isinstance(n, ast.ImportFrom)}
+_s2_imports |= {a.name.split(".")[-1] for n in ast.walk(_s2_tree)
+                if isinstance(n, ast.Import) for a in n.names}
+check("sealed2 selection imports nothing that could carry an eval result",
+      not (_s2_imports & {"run_eval", "synthetic", "adapters", "metrics",
+                          "retrieval", "generation", "compare", "model_system"}),
+      f"imports {sorted(_s2_imports)}")
+check("sealed2 selection reads no run record",
+      "eval_out" not in _s2_body and "runs/" not in _s2_body)
+print(f"    {_s2d['n_sealed2']} sealed2 / {_s2d['n_pool']} pool "
+      f"({_s2d['fraction']:.1%}) over {_s2d['sealed2_records']} records, "
+      f"dev {_s2d['n_dev']}")
+
+
 # ================================ 1c. refusal detection, both languages
 #
 # _looks_refused matched ENGLISH ONLY, and the model refuses in Roman Urdu.

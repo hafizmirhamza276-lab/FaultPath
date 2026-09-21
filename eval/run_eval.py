@@ -179,12 +179,15 @@ def run_self_tests(registry):
 def main():
     ap = argparse.ArgumentParser(description="Tier-1 deterministic evaluation")
     ap.add_argument("--chunker", default="structural", choices=sorted(chunkers.CHUNKERS))
-    ap.add_argument("--split", default="all", choices=("all", "train", "sealed"),
-                    help="which qa_set cases to score. 'sealed' is the holdout "
-                         "nothing has been tuned on -- see eval/sealed.py. A "
-                         "sealed run drops the generated injection and "
-                         "conversation cases, which are built from records "
-                         "without regard to the split.")
+    ap.add_argument("--split", default="all",
+                    choices=("all", "train", "sealed", "dev", "sealed2"),
+                    help="which qa_set cases to score. 'sealed' is SPENT -- see "
+                         "eval/sealed.py. 'train' is everything it left; "
+                         "'dev' and 'sealed2' are the second split of that "
+                         "remainder (eval/sealed2.py), train = dev + sealed2. "
+                         "Tune on dev, measure once on sealed2. Generated "
+                         "injection and conversation cases follow the same "
+                         "record-level rule rather than being dropped.")
     ap.add_argument("--corpus", default="all", choices=sorted(chunkers.SCOPES),
                     help="which sections enter the retrieval corpus. "
                          "'section40' regenerates the pre-symptom baseline.")
@@ -250,8 +253,13 @@ def main():
     # the sealed set exists to avoid.
     if args.split != "all":
         from eval import sealed as sealed_mod
-        keep = (sealed_mod.sealed_ids() if args.split == "sealed"
-                else sealed_mod.train_ids())
+        from eval import sealed2 as sealed2_mod
+        # dev / sealed2 are the SECOND split, drawn from train only -- see
+        # eval/sealed2.py. train = dev + sealed2, and sealed stays spent.
+        keep = {"sealed": sealed_mod.sealed_ids,
+                "train": sealed_mod.train_ids,
+                "dev": sealed2_mod.dev_ids,
+                "sealed2": sealed2_mod.sealed2_ids}[args.split]()
         before = len(cases)
         cases = [c for c in cases if c["id"] in keep]
 
@@ -267,13 +275,22 @@ def main():
         # train. That keeps the leak rule intact -- a record never straddles
         # the boundary -- while keeping the metric alive on both sides.
         sealed_recs = sealed_mod.sealed_records()
-        want_sealed = args.split == "sealed"
+        sealed2_recs = sealed2_mod.sealed2_records()
+
+        def _side(src):
+            if src in sealed_recs:
+                return "sealed"
+            return "sealed2" if src in sealed2_recs else "dev"
+
+        # 'train' is dev + sealed2, so it accepts both.
+        wanted = ({"dev", "sealed2"} if args.split == "train"
+                  else {args.split})
 
         def _keep_generated(c):
             src = c.get("source_code")
             if src is None:
                 return False          # no record: cannot be attributed, so excluded
-            return (src in sealed_recs) == want_sealed
+            return _side(src) in wanted
 
         n_scen, n_inj = len(scenarios), len(injections)
         scenarios = [c for c in scenarios if _keep_generated(c)]

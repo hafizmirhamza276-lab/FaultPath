@@ -134,10 +134,14 @@ SPLIT_SALT = "komatsu-sealed-cases-v1"
 NO_RECORD = "<no-record>"
 
 
-def _rank(key: str) -> float:
+def rank_with(salt: str, key: str) -> float:
     """Stable pseudo-random rank in [0,1). Same order on every machine."""
-    h = hashlib.sha256(f"{SPLIT_SALT}:{key}".encode()).hexdigest()
+    h = hashlib.sha256(f"{salt}:{key}".encode()).hexdigest()
     return int(h[:12], 16) / 0xFFFFFFFFFFFF
+
+
+def _rank(key: str) -> float:
+    return rank_with(SPLIT_SALT, key)
 
 
 def load_cases(path: str = None) -> List[dict]:
@@ -164,9 +168,24 @@ def type_signature(cases: List[dict]) -> Tuple:
     return tuple(sorted({(c["section"], c["type"]) for c in cases}))
 
 
-def split(cases: List[dict] = None) -> Tuple[List[str], List[str]]:
-    """(train_case_ids, sealed_case_ids). Deterministic; reads no eval result."""
-    cases = cases if cases is not None else load_cases()
+def derive_split(cases: List[dict], fraction: float,
+                 salt: str) -> Tuple[List[str], List[str]]:
+    """(kept_ids, held_ids) under this repo's one holdout rule.
+
+    THE ALGORITHM LIVES HERE ONCE. `split()` below is this function at
+    SEALED_FRACTION and SPLIT_SALT, and eval/sealed2.py is the same function at
+    a different salt over the cases sealed.py did not take. A second holdout
+    built from a COPY of this code would drift from it -- the record-unit
+    guarantee and the coverage repair are exactly the parts that look
+    incidental and are not -- and the project has already paid for one
+    judgement implemented twice (see eval/refusal.py).
+
+    Reads no eval result: section, type, record identity and a content hash,
+    and nothing else.
+    """
+    def _r(key: str) -> float:
+        return rank_with(salt, key)
+
     by_record: Dict[str, List[dict]] = collections.defaultdict(list)
     for c in cases:
         by_record[record_of(c)].append(c)
@@ -183,14 +202,14 @@ def split(cases: List[dict] = None) -> Tuple[List[str], List[str]]:
     sealed_records: List[str] = []
     remainders = []
     for key in sorted(by_stratum, key=str):
-        members = sorted(by_stratum[key], key=_rank)
-        exact = len(members) * SEALED_FRACTION
+        members = sorted(by_stratum[key], key=_r)
+        exact = len(members) * fraction
         take = int(exact)
         sealed_records += members[:take]
         if take < len(members):
-            remainders.append((exact - take, _rank(members[take]), members[take]))
+            remainders.append((exact - take, _r(members[take]), members[take]))
 
-    target = int(round(len(by_record) * SEALED_FRACTION))
+    target = int(round(len(by_record) * fraction))
     for _, _, rec in sorted(remainders, key=lambda x: (-x[0], x[1])):
         if len(sealed_records) >= target:
             break
@@ -210,7 +229,7 @@ def split(cases: List[dict] = None) -> Tuple[List[str], List[str]]:
         cands = sorted((r for r, rc in by_record.items()
                         if r not in sealed
                         and want in {(c["section"], c["type"]) for c in rc}),
-                       key=_rank)
+                       key=_r)
         for r in cands:
             others = [x for x, rc in by_record.items()
                       if x != r and x not in sealed
@@ -221,12 +240,22 @@ def split(cases: List[dict] = None) -> Tuple[List[str], List[str]]:
                 break
 
     sealed_ids = [c["id"] for r in sealed for c in by_record[r]]
-    loose_sealed = [c["id"] for c in sorted(loose, key=lambda c: _rank(c["id"]))
-                    [:int(round(len(loose) * SEALED_FRACTION))]]
+    loose_sealed = [c["id"] for c in sorted(loose, key=lambda c: _r(c["id"]))
+                    [:int(round(len(loose) * fraction))]]
     sealed_ids += loose_sealed
     sid = set(sealed_ids)
     train_ids = [c["id"] for c in cases if c["id"] not in sid]
     return sorted(train_ids), sorted(sid)
+
+
+def split(cases: List[dict] = None) -> Tuple[List[str], List[str]]:
+    """(train_case_ids, sealed_case_ids). Deterministic; reads no eval result.
+
+    SPENT -- see the module docstring. The rule is kept reproducible so the
+    contaminated side stays identifiable, not so the set can be re-used.
+    """
+    cases = cases if cases is not None else load_cases()
+    return derive_split(cases, SEALED_FRACTION, SPLIT_SALT)
 
 
 _cache = None
