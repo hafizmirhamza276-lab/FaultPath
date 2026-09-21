@@ -467,14 +467,22 @@ def _expected_text(case):
             or e.get("cause") or e.get("title"))
 
 
-def selector_drops(cases, budget=None):
-    """(dropped, delivered) -- answers retrieval gave that the slice lost."""
+def selector_drops(cases, budget=None, perturbation=None):
+    """(dropped, delivered) -- answers retrieval gave that the slice lost.
+
+    `perturbation` rewrites the question, and ONLY the question, before
+    retrieval and selection. The expectation is untouched, so the case is still
+    scored against the same answer -- what changes is how it was asked.
+    """
     from eval.metrics.base import contains as _c
     dropped, delivered = [], 0
     for case in cases:
         want = _expected_text(case)
         if not want:
             continue
+        if perturbation:
+            from eval import perturb as _pt
+            case = dict(case, question=_pt.apply(perturbation, case["question"]))
         ctx = _sel_ret.search(case["question"], 20, case.get("filters"))
         ctx = ctx[:_ms_sel.MAX_CONTEXT_CHUNKS]
         exp = case.get("expected") or {}
@@ -508,6 +516,170 @@ _squeezed, _ = selector_drops(_sel_cases[:150], budget=300)
 check("selector self-test: a starved budget is detected as dropping rows",
       bool(_squeezed),
       "the check cannot see rows it was built to see")
+
+# NOTE ON SCOPE, so it is a stated fact rather than a quiet one: this check
+# runs over ALL non-sealed cases, which includes sealed2. It contains no model
+# output -- it is ground truth, retrieval and the selector -- so it is not an
+# eval result and does not spend the holdout. It is nonetheless the one piece
+# of sealed2-derived information available while the selector was being
+# built, and narrowing it to dev would have weakened a standing gate to keep
+# a bookkeeping rule tidy. Recorded in reports/question_selection.md.
+
+
+# ====================== 1b2c. the selector may not read the answer key
+#
+# THE DEFECT THIS EXISTS FOR: eval/model_system.py used to anchor prompt rows
+# on case["expected"]["point"] and order them by bool(expected.criteria). The
+# harness found the answer row and then scored the model on reading the row it
+# had been handed -- 7/7 gates with the oracle, 5/7 without. Full account in
+# reports/oracle_selection_finding.md.
+#
+# DERIVED, NOT LISTED, on both sides:
+#   - the forbidden names come from qa_set itself: every key any case's
+#     `expected` dict actually has. Add a field to build_qa_set.py and it is
+#     forbidden here the same day, with nobody updating a list.
+#   - the functions checked come from a CALL GRAPH walk out of build_prompt,
+#     not from a hand-written set of file names. A leak one call deeper is
+#     still a leak.
+print("\nprompt selection reads no answer key (AST, over the call graph)")
+from eval import selector as _sel_mod                        # noqa: E402
+from eval import perturb as _perturb_mod                     # noqa: E402
+
+for _m in (_sel_mod, _perturb_mod):
+    try:
+        _m.self_test()
+        check(f"{_m.__name__.split('.')[-1]} self-test passes", True)
+    except AssertionError as _exc:
+        check(f"{_m.__name__.split('.')[-1]} self-test passes", False, str(_exc))
+
+_EXPECTED_KEYS = set()
+for _c0 in run_eval.load_cases():
+    _EXPECTED_KEYS |= set((_c0.get("expected") or {}).keys())
+_FORBIDDEN = _EXPECTED_KEYS | {"expected", "gold", "must_contain_verbatim",
+                               "must_cite_page", "fact_ids"}
+
+
+def _module_funcs(path):
+    tree = ast.parse(open(path, encoding="utf-8").read())
+    return tree, {n.name: n for n in tree.body if isinstance(n, ast.FunctionDef)}
+
+
+_MS_PATH = os.path.join(REPO_ROOT, "eval", "model_system.py")
+_SEL_PATH = os.path.join(REPO_ROOT, "eval", "selector.py")
+
+
+def answer_key_reads(ms_src=None, sel_src=None):
+    """Every (function, key) on the prompt path that touches the answer key.
+
+    Walks OUT from build_prompt and select_rows. A read is a subscript or a
+    .get() whose literal argument is one of qa_set's own expected-field names,
+    or any use of a name called `expected` / `gold`.
+    """
+    mods = {}
+    for name, path, src in (("model_system", _MS_PATH, ms_src),
+                            ("selector", _SEL_PATH, sel_src)):
+        text = src if src is not None else open(path, encoding="utf-8").read()
+        tree = ast.parse(text)
+        mods[name] = {n.name: n for n in tree.body
+                      if isinstance(n, ast.FunctionDef)}
+
+    seen, queue, found = set(), [("model_system", "build_prompt"),
+                                 ("model_system", "select_rows")], []
+    while queue:
+        mod, fn = queue.pop()
+        if (mod, fn) in seen or fn not in mods.get(mod, {}):
+            continue
+        seen.add((mod, fn))
+        node = mods[mod][fn]
+        for n in ast.walk(node):
+            # follow the call graph
+            if isinstance(n, ast.Call):
+                if isinstance(n.func, ast.Name):
+                    queue += [(mod, n.func.id), ("selector", n.func.id)]
+                elif isinstance(n.func, ast.Attribute):
+                    if isinstance(n.func.value, ast.Name):
+                        queue.append((n.func.value.id, n.func.attr))
+                    # x.get("point")
+                    if n.func.attr == "get" and n.args and \
+                            isinstance(n.args[0], ast.Constant) and \
+                            n.args[0].value in _FORBIDDEN:
+                        found.append((f"{mod}.{fn}", n.args[0].value))
+            if isinstance(n, ast.Subscript) and \
+                    isinstance(n.slice, ast.Constant) and \
+                    n.slice.value in _FORBIDDEN:
+                found.append((f"{mod}.{fn}", n.slice.value))
+            if isinstance(n, ast.Name) and n.id in ("expected", "gold"):
+                found.append((f"{mod}.{fn}", n.id))
+            if isinstance(n, ast.Attribute) and n.attr in ("expected", "gold"):
+                found.append((f"{mod}.{fn}", n.attr))
+    return sorted(set(found)), sorted(seen)
+
+
+_reads, _walked = answer_key_reads()
+check(f"no function reachable from build_prompt reads the answer key "
+      f"({len(_walked)} functions walked)",
+      not _reads, f"reads: {_reads}")
+check("  and the walk actually reached the selector, not just the adapter",
+      ("selector", "select") in _walked and ("selector", "score_rows") in _walked,
+      f"walked only {_walked}")
+check(f"  the forbidden set is derived from qa_set ({len(_EXPECTED_KEYS)} keys)",
+      {"point", "criteria", "step"} <= _EXPECTED_KEYS,
+      f"derived {sorted(_EXPECTED_KEYS)}")
+
+# PLANTED FAULT 1 -- a direct read, the shape the old code had.
+_planted = open(_SEL_PATH, encoding="utf-8").read().replace(
+    "def select(text: str, question: str, budget: int, blind: bool = False) -> str:",
+    "def select(text: str, question: str, budget: int, blind: bool = False,\n"
+    "           case=None) -> str:\n"
+    '    _leak = (case or {}).get("point")')
+_pr, _ = answer_key_reads(sel_src=_planted)
+check("planted-fault: a .get(\"point\") inside selector.select is caught",
+      any(k == "point" for _, k in _pr), f"not caught; found {_pr}")
+
+# PLANTED FAULT 2 -- THE ACTUAL OLD CODE, re-inserted. A guard that catches a
+# toy read but not the real one is not a guard.
+_planted2 = open(_MS_PATH, encoding="utf-8").read().replace(
+    '    return selector.select(text, case.get("question", ""), budget,',
+    '    exp = case.get("expected") or {}\n'
+    '    point = exp.get("point") or exp.get("point_to_check")\n'
+    '    return selector.select(text, case.get("question", ""), budget,')
+_pr2, _ = answer_key_reads(ms_src=_planted2)
+check("planted-fault: the cb990e1 oracle anchor, re-inserted verbatim, is caught",
+      any(k in ("expected", "point", "point_to_check") for _, k in _pr2),
+      f"the mutation was not caught; found {_pr2}")
+print(f"    caught by: no-answer-key AST check, naming "
+      f"{sorted({k for _, k in _pr2})}")
+
+# select_rows must pass the QUESTION and nothing else. A function that never
+# receives the case cannot read its answer key, which is stronger than a rule
+# about which fields it may touch.
+_sel_sig = ast.parse(open(_SEL_PATH, encoding="utf-8").read())
+_sel_args = {n.name: [a.arg for a in n.args.args] for n in _sel_sig.body
+             if isinstance(n, ast.FunctionDef)}
+check("selector.select takes a question, never a case",
+      "case" not in _sel_args.get("select", []),
+      f"signature is {_sel_args.get('select')}")
+
+
+# ================= 1b2d. and it must survive a question phrased differently
+#
+# ON THIS CORPUS THE QUESTION CONTAINS ITS MEASURING POINT VERBATIM 100% OF THE
+# TIME -- build_qa_set.py templates it in. A question-anchored selector is
+# therefore measured under conditions no technician reproduces, and a clean
+# number on template wording is not evidence that the anchoring works.
+#
+# So the same 100%-gated reachability check is run over deterministic English
+# rewrites of the questions: lowercase, punctuation stripped, pin numbers
+# written loosely, connector qualifiers dropped, quantity words abbreviated,
+# one character wrong. `combined` applies all six at once -- the worst
+# realistic case, not an average one.
+print("\nselection survives the question being phrased differently")
+for _p in sorted(_perturb_mod.PERTURBATIONS):
+    _d, _n = selector_drops(_sel_cases, perturbation=_p)
+    check(f"  [{_p}] the selector drops none of the {_n} answers retrieval "
+          f"delivered", not _d,
+          f"dropped {len(_d)} in "
+          f"{dict(collections.Counter(t for _, t in _d))}; e.g. {_d[:3]}")
 
 
 # =============== 1b3. what a ceiling MEANS: reachable vs reference-only

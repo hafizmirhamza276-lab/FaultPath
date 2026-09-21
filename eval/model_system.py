@@ -55,7 +55,7 @@ import os
 import time
 from typing import Dict, List, Optional
 
-from eval.metrics.base import normalise
+from eval import selector
 from eval.refusal import looks_refused as _looks_refused
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -95,174 +95,55 @@ SYSTEM_PROMPT = (
 
 
 # ------------------------------------------------------------------ prompt
-
-# Row kinds in a rendered record, in the order eval/chunkers.py emits them.
-# The renderer is line-oriented, so a line IS the unit, and no parsing of prose
-# is needed to tell a measurement from a step.
-def _row_kind(line: str) -> str:
-    """BOTH renderers. Section 40 emits "Step n"; a FLAT symptom tree emits
-    "Check n" and "Check n remedy", because the two tree kinds invert and
-    eval/chunkers.py keeps that distinction in the text deliberately. Treating
-    a Check row as header -- which a Step-only rule does -- puts every flat
-    symptom row in priority 1 and spends the budget before the measurements.
-    """
-    if line.startswith("Measurement.") or " measurement." in line[:26]:
-        return "measurement"
-    if line.startswith("Step ") and (" YES:" in line or " NO:" in line):
-        return "branch"
-    if " remedy:" in line[:24]:
-        return "remedy"
-    if line.startswith(("Step ", "Check ")):
-        return "step"
-    if line.startswith("Refers elsewhere:"):
-        return "step"
-    return "header"
+#
+# WHICH ROWS THE MODEL SEES LIVES IN eval/selector.py, and it is handed the
+# QUESTION, never the case. A function that never receives the case object
+# cannot read its answer key -- a stronger guarantee than a convention about
+# which fields to touch. What the previous version did instead, and what it
+# cost, is reports/oracle_selection_finding.md.
 
 
 def selector_blind() -> bool:
-    """Is the prompt builder forbidden to read the answer key.
+    """Run with no question signal at all: one fixed row order, no matching.
 
-    OFF BY DEFAULT, so no committed number moves by adding this. Set
-    SELECTOR_BLIND=1 to hide case["expected"] from select_rows: no anchors, and
-    one fixed row order that does not depend on the case.
-
-    It exists to MEASURE the leak reported in
-    reports/oracle_selection_finding.md. _anchors and `wants_value` both read
-    case["expected"], which does not exist at runtime -- a real deployment has
-    the technician's question and nothing else. The oracle numbers are
-    therefore an upper bound that includes work the harness did on the model's
-    behalf, and the blind numbers are the part that survives without it.
+    OFF BY DEFAULT. It is the BASELINE the question-derived selector is scored
+    against -- "what does this model do when the prompt builder is told
+    nothing" -- and it is what the oracle leak was measured against in
+    3804598. Kept, and kept measurable, because a selector that cannot be
+    compared to showing-nothing-in-particular has no floor.
 
     Read at CALL TIME, never captured at import, so a test can set it around a
-    single call. The blind prompt differs from the oracle prompt, so the cache
-    key differs and a blind run cannot be served oracle answers.
+    single call. The blind prompt differs from the question-derived one, so the
+    cache key differs and a blind run cannot be served the other's answers.
     """
     return os.environ.get("SELECTOR_BLIND", "").strip() not in ("", "0", "false")
-
-
-# The one order used when the selector is blind. Deliberately NOT chosen per
-# case -- choosing per case is the leak. Measurements rank above prose because
-# the header/prose-first head slice is what the truncation finding was about;
-# it is the same order the oracle path uses for a value question, minus the
-# anchor.
-BLIND_ORDER = ("header", "measurement", "remedy", "branch", "step")
-
-
-def _anchors(case: dict) -> tuple:
-    """What this case is ABOUT, taken from its own fields.
-
-    READS THE ANSWER KEY. `expected.point` / `expected.point_to_check` /
-    `expected.step` are scoring fields; they do not exist at inference time.
-    See selector_blind() and reports/oracle_selection_finding.md.
-
-    DERIVED FROM THE CASE, NOT FROM THE QUESTION STRING. Selecting on overlap
-    with the question would make the prompt's contents depend on how the
-    technician phrased themselves -- two wordings of one question would get
-    different extracts, and the same system would score differently on each.
-    The measuring point and the step number are properties of what is being
-    asked, not of how. That reasoning is sound and is also how the leak got in:
-    the case's own fields include its answer.
-
-    Returns (point_or_none, step_or_none), or (None, None) when blind.
-    """
-    if selector_blind():
-        return (None, None)
-    exp = case.get("expected") or {}
-    point = exp.get("point") or exp.get("point_to_check") or None
-    step = exp.get("step")
-    return (point if isinstance(point, str) and point.strip() else None,
-            step if isinstance(step, int) else None)
 
 
 def select_rows(text: str, case: dict, budget: int = MAX_CHUNK_CHARS) -> str:
     """The rows of one record worth showing, within `budget` characters.
 
-    REPLACES text[:MAX_CHUNK_CHARS], which kept the FIRST 1,800 characters.
-    Records render header -> steps -> measurements, so a head slice reliably
-    kept the header and the step prose and reliably discarded the measurement
-    table -- the thing numeric_exactness asks about. 87% of chunks were cut and
-    the model could reach 34.3% of the corpus; 233 of 237 false_absence answers
-    lost their (point, value) pair that way. See
-    reports/prompt_truncation_finding.md.
+    A THIN ADAPTER, deliberately. It pulls exactly one field out of the case --
+    the question, which is what a technician types -- and hands it to
+    selector.select. Everything that decides anything lives there, where the
+    AST guard can assert it reads no answer key.
 
-    PRIORITY, filled until the budget runs out:
+    History this replaces, in two steps:
 
-      1. the HEADER block -- identifies the record and carries its pages. A
-         chunk without it is unattributable.
-      2. rows ANCHORED by the case: the measuring point it asks about, or the
-         step number. This is the question-aware part.
-      3. every OTHER measurement row. Kept deliberately: if only the anchored
-         row survived, the harness would have done the model's searching for it
-         and numeric_exactness would measure transcription rather than
-         retrieval-in-context. The distractors have to stay.
-      4. branch rows, then step prose, in record order.
+      b0c26fa and earlier   text[:1800]. Records render header -> steps ->
+                            measurements, so the head slice reliably kept the
+                            prose and dropped the measurement table.
+                            numeric_exactness 0.5450.
+      6cbd647 / cb990e1     anchored on case["expected"]["point"] and ordered
+                            by bool(case["expected"]["criteria"]). Reached
+                            0.9831 and 7/7 gates by reading the answer key;
+                            0.8594 and 5/7 without it.
 
-    THE BUDGET IS 3,500, raised from 1,800 in cb990e1 -- see MAX_CHUNK_CHARS
-    for the sweep that derived it. This docstring said "UNCHANGED AT 1,800"
-    through that commit, describing the version before it.
-
-    PRIORITIES 2 AND THE ORDER ITSELF READ case["expected"], which is the
-    answer key and does not exist at inference time. SELECTOR_BLIND=1 removes
-    both; see selector_blind() and reports/oracle_selection_finding.md. The
-    default is unchanged.
-
-    FALLBACK when a case has no anchor -- direct_lookup asks about the title and
-    action level, which are header, and adversarial cases name a code that does
-    not exist. Priority 2 is then empty and the order is header, measurements,
-    branches, prose. That costs step prose for prose-shaped questions with no
-    step field (cross_ref_hop, precondition, 19 non-sealed cases between them),
-    which now rank below measurements they do not need. They are short records
-    and fit regardless; asserted rather than assumed in the tests.
+    `case` is still the parameter because every caller and the standing
+    selector gate pass one. It is narrowed HERE, in one line, so there is a
+    single place to audit rather than a rule about what selector.py may touch.
     """
-    lines = (text or "").split("\n")
-    if not lines:
-        return ""
-    point, step = _anchors(case)
-
-    # THE ORDER DEPENDS ON WHAT THE CASE ASKS FOR, derived from its expected
-    # fields exactly as the anchors are. A question about a standard value
-    # wants measurement rows; a question about which check comes first wants
-    # STEP PROSE, and ranking prose below measurements it does not need is
-    # what cost precondition citation_accuracy 1.0000 -> 0.6250 and
-    # step_ordering 0.8870 -> 0.8352 in 6cbd647. Raising the budget alone did
-    # not fix it: at 3,500 prose retention reaches only 87.3% / 84.9%.
-    if selector_blind():
-        order = BLIND_ORDER
-    else:
-        wants_value = bool((case.get("expected") or {}).get("criteria"))
-        order = (("header", "anchored", "measurement", "remedy", "branch", "step")
-                 if wants_value else
-                 ("header", "anchored", "step", "remedy", "branch", "measurement"))
-
-    def anchored(ln: str) -> bool:
-        if point and normalise(point) in normalise(ln):
-            return True
-        if not step:
-            return False
-        return ln.startswith((f"Step {step}.", f"Step {step} ",
-                              f"Check {step}.", f"Check {step} "))
-
-    buckets = {"header": [], "anchored": [], "measurement": [],
-               "remedy": [], "branch": [], "step": []}
-    for i, ln in enumerate(lines):
-        kind = _row_kind(ln)
-        if kind == "header":
-            buckets["header"].append((i, ln))
-        elif anchored(ln):
-            buckets["anchored"].append((i, ln))
-        else:
-            buckets[kind].append((i, ln))
-
-    kept, used = [], 0
-    for name in order:
-        for i, ln in buckets[name]:
-            if used + len(ln) + 1 > budget:
-                continue          # a later, shorter row may still fit
-            kept.append((i, ln))
-            used += len(ln) + 1
-    # Emitted in RECORD ORDER, not priority order: the model should see a
-    # record that reads like the manual, not a ranked list.
-    return "\n".join(ln for _, ln in sorted(kept))
+    return selector.select(text, case.get("question", ""), budget,
+                           blind=selector_blind())
 
 
 def build_prompt(case: dict, contexts: List[dict]) -> str:
@@ -355,20 +236,50 @@ class AzureChatClient:
 
     def __init__(self):
         self._settings = None
+        # None = not yet known, True = accepted, False = rejected by the model.
+        self._temperature = None
+
+    def temperature_supported(self):
+        return self._temperature
+
+    # Which variable named the deployment. Both are recorded rather than one
+    # silently standing in for the other: on 2026-09-21 the chat deployment
+    # moved from gpt-4.1 to gpt-5.6-luna and the variable name moved with it,
+    # from AZURE_OPENAI_CHAT_DEPLOYMENT to AZURE_OPENAI_DEPLOYMENT. Falling
+    # back without saying so is how a run gets attributed to the wrong model.
+    DEPLOYMENT_VARS = ("AZURE_OPENAI_CHAT_DEPLOYMENT", "AZURE_OPENAI_DEPLOYMENT")
 
     def _s(self) -> dict:
         if self._settings is None:
             from core import config
+            dep = var = None
+            for name in self.DEPLOYMENT_VARS:
+                if config.get(name):
+                    dep, var = config.get(name), name
+                    break
+            if not dep:
+                raise SystemExit(
+                    "ERROR: no chat deployment is set. Tried "
+                    f"{', '.join(self.DEPLOYMENT_VARS)}.\n"
+                    "  Put one in .env; .env is gitignored and must stay that way.")
             self._settings = {
                 "key": config.require("AZURE_OPENAI_API_KEY"),
                 "endpoint": config.require("AZURE_OPENAI_ENDPOINT").rstrip("/"),
-                "deployment": config.require("AZURE_OPENAI_CHAT_DEPLOYMENT"),
+                "deployment": dep,
+                "deployment_var": var,
                 "version": config.require("AZURE_OPENAI_CHAT_API_VERSION"),
+                "reasoning_effort": config.get("MODEL_REASONING_EFFORT"),
             }
         return self._settings
 
     def deployment(self) -> str:
         return self._s()["deployment"]
+
+    def deployment_var(self) -> str:
+        return self._s()["deployment_var"]
+
+    def reasoning_effort(self):
+        return self._s()["reasoning_effort"]
 
     def api_version(self) -> str:
         """The api-version actually sent. Recorded so a number stays
@@ -385,19 +296,35 @@ class AzureChatClient:
                f"/chat/completions?api-version={s['version']}")
         body = {"messages": [{"role": "system", "content": system},
                              {"role": "user", "content": user}],
-                "max_completion_tokens": MAX_COMPLETION_TOKENS,
-                "temperature": 0}
+                "max_completion_tokens": MAX_COMPLETION_TOKENS}
+        # TEMPERATURE IS PROBED, NOT ASSUMED. gpt-4.1 takes temperature=0 and
+        # that is the only determinism lever this harness has. gpt-5.6-luna
+        # rejects it outright -- "does not support 0 with this model. Only the
+        # default (1) value is supported" -- so a hardcoded 0 turns every call
+        # into a 400. The first rejection is remembered for the process, so the
+        # cost is one failed request per run and no per-model table in the code.
+        if self._temperature is not False:
+            body["temperature"] = 0
+        if s.get("reasoning_effort"):
+            body["reasoning_effort"] = s["reasoning_effort"]
         last = None
         for attempt in range(retries):
             try:
                 r = httpx.post(url, headers={"api-key": s["key"],
                                              "content-type": "application/json"},
-                               json=body, timeout=120)
+                               json=body, timeout=180)
                 if r.status_code == 200:
                     d = r.json()
+                    if self._temperature is None:
+                        self._temperature = True
                     return {"text": d["choices"][0]["message"]["content"] or "",
                             "model": d.get("model", ""),
                             "usage": d.get("usage", {})}
+                if r.status_code == 400 and self._temperature is not False and \
+                        "temperature" in (r.text or ""):
+                    self._temperature = False
+                    body.pop("temperature", None)
+                    continue           # same attempt budget, one less parameter
                 if r.status_code in (429, 500, 502, 503, 504):
                     last = f"HTTP {r.status_code}"
                     time.sleep(2 ** attempt)
@@ -465,6 +392,13 @@ class ModelSystem:
         # then keys consistently.
         model_hint = sorted(self.model_seen)[0] if self.model_seen else \
             self.client.deployment()
+        # REASONING EFFORT IS PART OF THE MODEL, for caching purposes. It
+        # changes the response under an unchanged deployment and model string,
+        # so leaving it out would let a `low` answer be served to a `none` run
+        # -- the stale-entry-as-hit failure this cache exists to prevent.
+        effort = self.client.reasoning_effort()
+        if effort:
+            model_hint = f"{model_hint}+effort={effort}"
         key = cache_key(case["id"], prompt, model_hint, chunk_ids)
         hit = self.cache.get(key)
         if hit is not None:
@@ -521,8 +455,14 @@ class ModelSystem:
                 # Which selector produced the prompts. A blind run and an
                 # oracle run are not the same measurement and the run record
                 # has to say which one it is.
-                "selector": "blind" if selector_blind() else "oracle",
+                "selector": "blind" if selector_blind() else "question",
                 "deployment": self.client.deployment(),
+                # Which env var named it, and whether temperature was accepted.
+                # Both are properties of THIS run that change what the number
+                # means, and neither is recoverable afterwards.
+                "deployment_var": self.client.deployment_var(),
+                "temperature_0": self.client.temperature_supported(),
+                "reasoning_effort": self.client.reasoning_effort(),
                 "api_version": self.client.api_version(),
                 "model": sorted(self.model_seen) or None,
                 "cache": self.cache.stats()}

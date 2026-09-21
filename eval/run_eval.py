@@ -194,6 +194,14 @@ def main():
     ap.add_argument("--retriever", default="bm25", choices=sorted(RETRIEVERS))
     ap.add_argument("--system", default=None, choices=sorted(SYSTEMS),
                     help="synthetic system under test; omit for retrieval only")
+    ap.add_argument("--perturb", default=None,
+                    help="rewrite every question with this perturbation from "
+                         "eval/perturb.py before retrieval and prompting. The "
+                         "qa_set questions template the measuring point in "
+                         "verbatim 100%% of the time, so a clean score on them "
+                         "overstates how well question-anchored selection "
+                         "works. Expectations and case ids are untouched -- "
+                         "only how the question is written.")
     ap.add_argument("--retrieval-only", action="store_true")
     ap.add_argument("--k", type=int, default=20)
     ap.add_argument("--label", default=None)
@@ -299,6 +307,21 @@ def main():
               f"{len(injections)} of {n_inj} injection, "
               f"{len(scenarios)} of {n_scen} conversation")
     all_cases = cases + injections + scenarios
+
+    # PERTURBATION IS APPLIED TO THE QUESTION AND NOTHING ELSE. Retrieval and
+    # the prompt both see the rewritten text, because a technician typing
+    # differently changes both; expectations, ids and filters are untouched, so
+    # the case is still scored against the same answer.
+    if args.perturb:
+        from eval import perturb as perturb_mod
+        perturb_mod.self_test()
+        for c in all_cases:
+            c["question"] = perturb_mod.apply(args.perturb, c["question"])
+            if c.get("turns"):
+                c["turns"] = [perturb_mod.apply(args.perturb, t)
+                              for t in c["turns"]]
+        print(f"perturb={args.perturb}: every question rewritten "
+              f"({len(all_cases)} cases)")
 
     def _log_retrieval(case, ctx, timer):
         """Everything needed to reconstruct this retrieval without re-running."""
@@ -475,6 +498,10 @@ def main():
         # say so rather than diff their numbers as though they were.
         "config": {"chunker": args.chunker, "retriever": args.retriever,
                    "corpus": args.corpus, "split": args.split,
+                   # A perturbed run is a different measurement and the record
+                   # has to say which one it is. null means the questions are
+                   # the qa_set's own.
+                   "perturb": args.perturb,
                    "system": args.system, "k": args.k,
                    "corpus_records": len(records),
                    "corpus_chunks": len(corpus), "cases": len(all_cases)},
